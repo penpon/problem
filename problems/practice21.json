@@ -1,0 +1,48 @@
+{
+  "id": "practice21",
+  "title": "練習問題21：電車の乗車券の料金計算",
+  "description": "電車の乗車券の料金を計算するプログラムを作成してください。",
+  "instructions": [
+    "距離による基本料金を設定：",
+    "- 10km以下は200円",
+    "- 11km以上30km以下は300円",
+    "- 31km以上は500円",
+    "",
+    "大人は基本料金、子供は半額で計算してください。"
+  ],
+  "template": "//電車の乗車券の料金を計算するプログラムを作成してください。\n// 参照問題: practice2.js（年齢による料金判定）+ practice6.js（割引価格計算）\nlet distance = 25; // 走行距離（km）\nlet adultCount = 2; // 大人の人数\nlet childCount = 1; // 子供の人数\nlet basicFare; // 基本料金\nlet totalFare; // 合計料金\n\n// 距離による基本料金を設定\n// 10km以下は200円、11km以上30km以下は300円、31km以上は500円\nif (distance <= 10) {\n    /* ここに基本料金200円の代入を書く */\n    basicFare = \n} else if (distance >= 11 && distance <= 30) {\n    basicFare = 300;\n} else {\n    basicFare = 500;\n}\n\n// 大人は基本料金、子供は半額で計算\nlet adultFare = basicFare * adultCount;\nlet childFare = (basicFare/2) * childCount;\n/* ここに合計料金の計算式を書く */\ntotalFare = \n\n\nconsole.log(\"走行距離: \" + distance + \"km\");\nconsole.log(\"基本料金: \" + basicFare + \"円\");\nconsole.log(\"大人\" + adultCount + \"人、子供\" + childCount + \"人\");\nconsole.log(\"合計料金: \" + totalFare + \"円\");",
+  "testCases": [
+    {
+      "name": "基本ケース（中距離）",
+      "variables": { "distance": 25, "adultCount": 2, "childCount": 1 },
+      "expectedOutput": "走行距離: 25km\\n基本料金: 300円\\n大人2人、子供1人\\n合計料金: 750円"
+    },
+    {
+      "name": "短距離ケース",
+      "variables": { "distance": 8, "adultCount": 1, "childCount": 2 },
+      "expectedOutput": "走行距離: 8km\\n基本料金: 200円\\n大人1人、子供2人\\n合計料金: 400円"
+    },
+    {
+      "name": "長距離ケース",
+      "variables": { "distance": 35, "adultCount": 3, "childCount": 0 },
+      "expectedOutput": "走行距離: 35km\\n基本料金: 500円\\n大人3人、子供0人\\n合計料金: 1500円"
+    },
+    {
+      "name": "境界値ケース（10km）",
+      "variables": { "distance": 10, "adultCount": 1, "childCount": 1 },
+      "expectedOutput": "走行距離: 10km\\n基本料金: 200円\\n大人1人、子供1人\\n合計料金: 300円"
+    },
+    {
+      "name": "境界値ケース（30km）",
+      "variables": { "distance": 30, "adultCount": 2, "childCount": 2 },
+      "expectedOutput": "走行距離: 30km\\n基本料金: 300円\\n大人2人、子供2人\\n合計料金: 900円"
+    }
+  ],
+  "expectedOutput": "走行距離: 25km\\n基本料金: 300円\\n大人2人、子供1人\\n合計料金: 750円",
+  "testVariables": {
+    "distance": 25,
+    "adultCount": 2,
+    "childCount": 1
+  },
+  "points": 100
+}

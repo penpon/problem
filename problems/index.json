@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "problems": [
+    {
+      "id": "practice21",
+      "title": "練習問題21：電車の乗車券の料金計算",
+      "category": "基本",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "practice22", 
+      "title": "練習問題22：図書館延滞料金計算",
+      "category": "基本",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "practice23",
+      "title": "練習問題23：成績統計計算",
+      "category": "配列",
+      "difficulty": "中級",
+      "points": 100
+    },
+    {
+      "id": "practice24",
+      "title": "練習問題24：映画館座席予約システム",
+      "category": "配列",
+      "difficulty": "中級",
+      "points": 100
+    },
+    {
+      "id": "practice25",
+      "title": "練習問題25：釣り銭計算プログラム",
+      "category": "繰り返し",
+      "difficulty": "中級",
+      "points": 100
+    }
+  ]
+}

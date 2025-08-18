@@ -1,0 +1,43 @@
+{
+  "id": "practice25",
+  "title": "練習問題25：釣り銭計算プログラム",
+  "description": "釣り銭計算プログラムを作成してください。",
+  "instructions": [
+    "100円玉、50円玉、10円玉の枚数を計算してください。",
+    "while文を使って計算することが重要です。"
+  ],
+  "template": "//釣り銭計算プログラムを作成してください。\n// 参照問題: practice5.js（数値の連続除算）+ practice16.js（お菓子の分配計算）\nlet price = 1260; // 商品価格（円）\nlet payment = 2000; // 支払い金額（円）\nlet change = 0; // 釣り銭\nlet hundreds = 0; // 100円玉の枚数\nlet fifties = 0; // 50円玉の枚数\nlet tens = 0; // 10円玉の枚数\n\nconsole.log(\"=== 釣り銭計算 ===\");\nconsole.log(\"商品価格: \" + price + \"円\");\nconsole.log(\"支払い金額: \" + payment + \"円\");\n\n// 釣り銭を計算\nchange = payment - price;\n\n// 100円玉の枚数を計算\nwhile (change >= 100) {\n    hundreds += 1;\n    change -= 100;\n    /* ここに100円玉を1枚増やして釣り銭を100円減らすコードを書く */\n}\n\n// 残りの金額から50円玉の枚数を計算\n/* ここに50円玉の計算をwhile文で書く */\nwhile () {\n    \n    \n}\n\n\n\n\n// 残りの金額から10円玉の枚数を計算\ntens = change / 10;\n\n\nconsole.log(\"釣り銭: \" + (payment - price) + \"円\");\nconsole.log(\"100円玉: \" + hundreds + \"枚\");\nconsole.log(\"50円玉: \" + fifties + \"枚\");\nconsole.log(\"10円玉: \" + tens + \"枚\");",
+  "testCases": [
+    {
+      "name": "基本ケース（740円）",
+      "variables": { "price": 1260, "payment": 2000 },
+      "expectedOutput": "=== 釣り銭計算 ===\\n商品価格: 1260円\\n支払い金額: 2000円\\n釣り銭: 740円\\n100円玉: 7枚\\n50円玉: 0枚\\n10円玉: 4枚"
+    },
+    {
+      "name": "50円玉使用ケース（350円）",
+      "variables": { "price": 650, "payment": 1000 },
+      "expectedOutput": "=== 釣り銭計算 ===\\n商品価格: 650円\\n支払い金額: 1000円\\n釣り銭: 350円\\n100円玉: 3枚\\n50円玉: 1枚\\n10円玉: 0枚"
+    },
+    {
+      "name": "少額釣り銭ケース（80円）",
+      "variables": { "price": 420, "payment": 500 },
+      "expectedOutput": "=== 釣り銭計算 ===\\n商品価格: 420円\\n支払い金額: 500円\\n釣り銭: 80円\\n100円玉: 0枚\\n50円玉: 1枚\\n10円玉: 3枚"
+    },
+    {
+      "name": "大額釣り銭ケース（1590円）",
+      "variables": { "price": 410, "payment": 2000 },
+      "expectedOutput": "=== 釣り銭計算 ===\\n商品価格: 410円\\n支払い金額: 2000円\\n釣り銭: 1590円\\n100円玉: 15枚\\n50円玉: 1枚\\n10円玉: 4枚"
+    },
+    {
+      "name": "10円単位ぴったりケース（200円）",
+      "variables": { "price": 800, "payment": 1000 },
+      "expectedOutput": "=== 釣り銭計算 ===\\n商品価格: 800円\\n支払い金額: 1000円\\n釣り銭: 200円\\n100円玉: 2枚\\n50円玉: 0枚\\n10円玉: 0枚"
+    }
+  ],
+  "expectedOutput": "=== 釣り銭計算 ===\\n商品価格: 1260円\\n支払い金額: 2000円\\n釣り銭: 740円\\n100円玉: 7枚\\n50円玉: 0枚\\n10円玉: 4枚",
+  "testVariables": {
+    "price": 1260,
+    "payment": 2000
+  },
+  "points": 100
+}

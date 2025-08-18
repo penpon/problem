@@ -47,25 +47,41 @@ class AutoGrader {
     });
   }
   
-  loadProblems() {
-    const problems = getProblemList();
-    
-    // デフォルトオプション
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.textContent = '問題を選択してください';
-    this.problemSelect.appendChild(defaultOption);
-    
-    // 問題をオプションとして追加
-    problems.forEach(problem => {
-      const option = document.createElement('option');
-      option.value = problem.id;
-      option.textContent = problem.title;
-      this.problemSelect.appendChild(option);
-    });
+  async loadProblems() {
+    try {
+      // ローディング表示
+      const defaultOption = document.createElement('option');
+      defaultOption.value = '';
+      defaultOption.textContent = '問題を読み込み中...';
+      this.problemSelect.appendChild(defaultOption);
+      
+      const problems = await getProblemList();
+      
+      // ローディングオプションを削除
+      this.problemSelect.innerHTML = '';
+      
+      // デフォルトオプション
+      const newDefaultOption = document.createElement('option');
+      newDefaultOption.value = '';
+      newDefaultOption.textContent = '問題を選択してください';
+      this.problemSelect.appendChild(newDefaultOption);
+      
+      // 問題をオプションとして追加
+      problems.forEach(problem => {
+        const option = document.createElement('option');
+        option.value = problem.id;
+        option.textContent = problem.title;
+        this.problemSelect.appendChild(option);
+      });
+      
+      console.log(`${problems.length}問の読み込み完了`);
+    } catch (error) {
+      console.error('問題の読み込みに失敗しました:', error);
+      this.showError('問題の読み込みに失敗しました。ページを再読み込みしてください。');
+    }
   }
   
-  onProblemChange() {
+  async onProblemChange() {
     const selectedId = this.problemSelect.value;
     
     if (!selectedId) {
@@ -75,11 +91,24 @@ class AutoGrader {
       return;
     }
     
-    this.currentProblem = getProblem(selectedId);
-    if (this.currentProblem) {
-      this.displayProblem(this.currentProblem);
-      this.codeEditor.value = this.currentProblem.template;
-      this.clearResult();
+    try {
+      // ローディング表示
+      this.problemDetails.innerHTML = '<div class="loading-message">問題の詳細を読み込み中...</div>';
+      this.problemDetails.style.display = 'block';
+      
+      this.currentProblem = await getProblem(selectedId);
+      
+      if (this.currentProblem) {
+        this.displayProblem(this.currentProblem);
+        this.codeEditor.value = this.currentProblem.template;
+        this.clearResult();
+        console.log(`問題 ${selectedId} の詳細読み込み完了`);
+      } else {
+        throw new Error(`問題 ${selectedId} が見つかりませんでした`);
+      }
+    } catch (error) {
+      console.error(`問題 ${selectedId} の読み込みに失敗:`, error);
+      this.problemDetails.innerHTML = '<div class="error-message">問題の読み込みに失敗しました。他の問題を選択してください。</div>';
     }
   }
   

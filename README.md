@@ -9,6 +9,8 @@
 - **📱 レスポンシブ**: PC・スマホ・タブレット対応
 - **⚡ 高速**: リアルタイムでの採点結果表示
 - **🧪 多角的テスト**: 複数テストケースによる包括的な採点
+- **🚀 遅延読み込み**: 必要な問題のみを動的にロードし初期起動を高速化
+- **💾 スケーラブル**: JSONファイル個別管理で数百問まで対応
 - **🎨 美しいUI**: 直感的で使いやすいデザイン
 
 ## 🎯 対応問題
@@ -68,9 +70,14 @@ github-pages-grader/
 ├── css/
 │   └── style.css          # スタイルシート（複数テストケース対応UI含む）
 ├── js/
-│   ├── main.js            # メインアプリケーション（採点ロジック強化）
-│   ├── worker.js          # Web Worker（動的変数置換機能付き）
-│   └── problems.js        # 問題データ（testCases形式対応）
+│   ├── main.js              # メインアプリケーション（非同期問題読み込み対応）
+│   ├── problemLoader.js     # 問題遅延読み込みシステム（キャッシュ機能付き）
+│   └── worker.js            # Web Worker（動的変数置換機能付き）
+├── problems/                # 問題データ（JSON個別管理）
+│   ├── index.json           # 問題一覧メタデータ
+│   ├── practice21.json      # 個別問題ファイル
+│   ├── practice22.json
+│   └── ...
 └── README.md              # このファイル
 ```
 
@@ -83,53 +90,69 @@ github-pages-grader/
 
 ## 📝 新しい問題の追加方法
 
-1. **`js/problems.js`を編集**
-   ```javascript
-   const PROBLEMS = {
-     // 既存の問題...
-     
-     practice26: {
-       id: "practice26",
-       title: "新しい問題のタイトル",
-       description: "問題の説明",
-       instructions: ["実装のポイント1", "実装のポイント2"],
-       template: `// コードテンプレート
-   let example = "Hello, World!";
-   console.log(example);`,
-       
-       // 新しい複数テストケース形式（推奨）
-       testCases: [
-         {
-           name: "基本ケース",
-           variables: { example: "Hello, World!" },
-           expectedOutput: "Hello, World!"
-         },
-         {
-           name: "別のケース", 
-           variables: { example: "こんにちは" },
-           expectedOutput: "こんにちは"
-         }
-         // 最大5つまでのテストケースを追加可能
-       ],
-       
-       // 後方互換性のための旧形式（オプション）
-       expectedOutput: "Hello, World!",
-       testVariables: { example: "Hello, World!" },
-       points: 100
-     }
-   };
+### 🆕 新しいJSON形式（推奨）
+
+1. **個別問題ファイル作成**
+   ```json
+   // problems/practice26.json
+   {
+     "id": "practice26",
+     "title": "新しい問題のタイトル",
+     "description": "問題の説明",
+     "instructions": ["実装のポイント1", "実装のポイント2"],
+     "template": "// コードテンプレート\\nlet example = \"Hello, World!\";\\nconsole.log(example);",
+     "testCases": [
+       {
+         "name": "基本ケース",
+         "variables": { "example": "Hello, World!" },
+         "expectedOutput": "Hello, World!"
+       },
+       {
+         "name": "別のケース", 
+         "variables": { "example": "こんにちは" },
+         "expectedOutput": "こんにちは"
+       }
+       // 最大5つまでのテストケースを追加可能
+     ],
+     "expectedOutput": "Hello, World!",
+     "testVariables": { "example": "Hello, World!" },
+     "points": 100
+   }
    ```
 
-2. **GitHubにプッシュ**
+2. **`problems/index.json`を更新**
+   ```json
+   {
+     "version": "1.0.0",
+     "problems": [
+       // 既存の問題...
+       {
+         "id": "practice26",
+         "title": "新しい問題のタイトル",
+         "category": "基本",
+         "difficulty": "初級",
+         "points": 100
+       }
+     ]
+   }
+   ```
+
+3. **GitHubにプッシュ**
    ```bash
-   git add js/problems.js
+   git add problems/practice26.json problems/index.json
    git commit -m "Add practice26"
    git push
    ```
 
-3. **自動的に反映** - GitHub Pagesで即座に利用可能
+4. **自動的に反映** - GitHub Pagesで即座に利用可能
 
 ## 🌟 高度な機能
+
+### 遅延読み込みシステム
+- **初期ロード最適化**: 問題一覧のみを最初に読み込み
+- **選択時読み込み**: 問題選択時に詳細データを動的取得
+- **インメモリキャッシュ**: 一度読み込んだ問題はキャッシュで高速アクセス
+- **エラーハンドリング**: ネットワークエラー時の適切なユーザーフィードバック
 
 ### キーボードショートカット
 - `Ctrl+Enter` (または `Cmd+Enter`): コード実行
@@ -153,6 +176,7 @@ github-pages-grader/
 
 - [ ] コード実行履歴の保存
 - [x] 複数テストケースの対応 ✨ **実装完了**
+- [x] JSONファイル個別管理と遅延読み込み ✨ **実装完了**
 - [ ] 実行時間とメモリ使用量の表示
 - [ ] 問題の難易度表示
 - [ ] 進捗管理機能
@@ -161,15 +185,20 @@ github-pages-grader/
 
 ### よくある問題
 
-1. **「Web Workerをサポートしていません」エラー**
+1. **「問題の読み込みに失敗しました」エラー**
+   - ネットワーク接続を確認してください
+   - ページを再読み込みしてみてください
+   - サーバーが正常に動作しているか確認してください
+
+2. **「Web Workerをサポートしていません」エラー**
    - 古いブラウザを使用している可能性があります
    - Chrome、Firefox、Safari、Edgeの最新版を使用してください
 
-2. **実行ボタンが反応しない**
-   - 問題が選択されているか確認してください
+3. **実行ボタンが反応しない**
+   - 問題が正常に選択・読み込みされているか確認してください
    - ブラウザのコンソールにエラーがないか確認してください
 
-3. **コードが実行されない**
+4. **コードが実行されない**
    - 構文エラーがないか確認してください
    - 5秒でタイムアウトするため、無限ループに注意してください
 

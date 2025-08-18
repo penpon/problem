@@ -1,0 +1,41 @@
+{
+  "id": "practice23",
+  "title": "練習問題23：成績統計計算",
+  "description": "成績の統計を計算するプログラムを作成してください。",
+  "instructions": [
+    "配列を使って合計点、平均点、80点以上の数をカウントしてください。"
+  ],
+  "template": "//次の配列を使って成績の統計を計算してください。\n// 参照問題: practice9.js（数値の合計計算）+ practice4.js（偶数の出力）+ practice3.js（配列の基本操作）\nlet scores = [85, 92, 78, 95, 88]; // テストの点数\nlet sum = 0; // 合計点\nlet average = 0; // 平均点\nlet highScoreCount = 0; // 80点以上の数\n\nconsole.log(\"=== 成績統計 ===\");\nconsole.log(\"テスト点数: \" + scores);\n\n// 1. 合計点を計算\n/* ここにfor文を使った合計計算のコード全体を書く */\nfor () {\n  \n}\n\n\n\n\n// 2. 平均点を計算\naverage = sum / scores.length;\n\n// 3. 80点以上の数をカウント\nfor (let i = 0; i < scores.length; i++) {\n    /* ここに80点以上の判定と処理をif文で書く */\n    if () {\n      \n    }\n    \n    \n}\n\nconsole.log(\"合計点: \" + sum + \"点\");\nconsole.log(\"平均点: \" + average + \"点\");\nconsole.log(\"80点以上: \" + highScoreCount + \"人\");",
+  "testCases": [
+    {
+      "name": "基本ケース",
+      "variables": { "scores": [85, 92, 78, 95, 88] },
+      "expectedOutput": "=== 成績統計 ===\\nテスト点数: 85,92,78,95,88\\n合計点: 438点\\n平均点: 87.6点\\n80点以上: 4人"
+    },
+    {
+      "name": "全員高得点ケース",
+      "variables": { "scores": [90, 95, 100, 88, 92] },
+      "expectedOutput": "=== 成績統計 ===\\nテスト点数: 90,95,100,88,92\\n合計点: 465点\\n平均点: 93点\\n80点以上: 5人"
+    },
+    {
+      "name": "低得点混在ケース",
+      "variables": { "scores": [45, 78, 90, 60, 85] },
+      "expectedOutput": "=== 成績統計 ===\\nテスト点数: 45,78,90,60,85\\n合計点: 358点\\n平均点: 71.6点\\n80点以上: 2人"
+    },
+    {
+      "name": "境界値ケース（80点）",
+      "variables": { "scores": [80, 79, 81, 80, 79] },
+      "expectedOutput": "=== 成績統計 ===\\nテスト点数: 80,79,81,80,79\\n合計点: 399点\\n平均点: 79.8点\\n80点以上: 3人"
+    },
+    {
+      "name": "全員低得点ケース",
+      "variables": { "scores": [60, 55, 70, 65, 50] },
+      "expectedOutput": "=== 成績統計 ===\\nテスト点数: 60,55,70,65,50\\n合計点: 300点\\n平均点: 60点\\n80点以上: 0人"
+    }
+  ],
+  "expectedOutput": "=== 成績統計 ===\\nテスト点数: 85,92,78,95,88\\n合計点: 438点\\n平均点: 87.6点\\n80点以上: 4人",
+  "testVariables": {
+    "scores": [85, 92, 78, 95, 88]
+  },
+  "points": 100
+}
