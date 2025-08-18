@@ -174,6 +174,13 @@ class AutoGrader {
   }
   
   displayResult(result) {
+    // 複数テストケースの場合
+    if (result.isMultipleTests) {
+      this.displayMultipleTestResults(result);
+      return;
+    }
+    
+    // 従来の単一テストケース
     const statusClass = result.status === 'ACCEPTED' ? 'status-accepted' : 
                        result.status === 'WRONG_ANSWER' ? 'status-wrong' : 'status-error';
     
@@ -229,6 +236,107 @@ ${result.logs.join('\\n')}
         `;
       }
     }
+    
+    this.resultArea.innerHTML = resultHtml;
+    this.resultArea.style.display = 'block';
+    
+    // 結果エリアにスクロール
+    this.resultArea.scrollIntoView({ behavior: 'smooth' });
+  }
+  
+  displayMultipleTestResults(result) {
+    const overallStatusClass = result.status === 'ALL_ACCEPTED' ? 'status-accepted' : 
+                              result.status === 'PARTIAL_ACCEPTED' ? 'status-partial' : 'status-error';
+    
+    const overallStatusIcon = result.status === 'ALL_ACCEPTED' ? '✅' : 
+                             result.status === 'PARTIAL_ACCEPTED' ? '🟡' : '❌';
+    
+    const scoreClass = result.score === result.maxScore ? 'score-perfect' : 
+                      result.score > 0 ? 'score-partial' : 'score-zero';
+    
+    let resultHtml = `
+      <div class="result-status ${overallStatusClass}">
+        ${overallStatusIcon} ${result.status === 'ALL_ACCEPTED' ? 'ALL ACCEPTED' : result.status}
+      </div>
+      <div class="score-display ${scoreClass}">
+        総合得点: ${result.score}/${result.maxScore}点
+      </div>
+      <div class="test-summary">
+        <strong>結果:</strong> ${result.message}
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: ${(result.passedCount / result.totalCount) * 100}%"></div>
+      </div>
+      <div class="progress-text">${result.passedCount}/${result.totalCount} テストケース成功</div>
+    `;
+    
+    // 各テストケースの結果を表示
+    resultHtml += `<div class="test-cases-container">`;
+    
+    result.testResults.forEach((testResult, index) => {
+      const testStatusClass = testResult.status === 'ACCEPTED' ? 'test-accepted' : 
+                             testResult.status === 'WRONG_ANSWER' ? 'test-wrong' : 'test-error';
+      
+      const testStatusIcon = testResult.status === 'ACCEPTED' ? '✅' : 
+                            testResult.status === 'WRONG_ANSWER' ? '❌' : '⚠️';
+      
+      resultHtml += `
+        <div class="test-case ${testStatusClass}">
+          <div class="test-case-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="test-case-title">
+              ${testStatusIcon} ${testResult.testCaseName}
+            </div>
+            <div class="test-case-score">${testResult.score}/100点</div>
+          </div>
+          <div class="test-case-details">
+            <div class="test-case-message">
+              <strong>結果:</strong> ${testResult.message}
+            </div>
+      `;
+      
+      // 実行ログを表示
+      if (testResult.logs && testResult.logs.length > 0) {
+        resultHtml += `
+          <div class="test-case-output">
+            <strong>プログラムの出力:</strong>
+            <div class="output-content">${this.escapeHtml(testResult.logs.join('\\n'))}</div>
+          </div>
+        `;
+      }
+      
+      // 不正解の場合は比較表示
+      if (testResult.status === 'WRONG_ANSWER' && testResult.comparison) {
+        resultHtml += `
+          <div class="test-case-comparison">
+            <div class="comparison-expected">
+              <h5>期待される出力:</h5>
+              <div class="output-content">${this.escapeHtml(testResult.expectedOutput)}</div>
+            </div>
+            <div class="comparison-actual">
+              <h5>実際の出力:</h5>
+              <div class="output-content">${this.escapeHtml(testResult.actualOutput)}</div>
+            </div>
+          </div>
+        `;
+        
+        if (testResult.comparison.expectedLine && testResult.comparison.actualLine) {
+          resultHtml += `
+            <div class="test-case-diff">
+              <strong>詳細な差異:</strong><br>
+              期待値: <code>${this.escapeHtml(testResult.comparison.expectedLine)}</code><br>
+              実際の値: <code>${this.escapeHtml(testResult.comparison.actualLine)}</code>
+            </div>
+          `;
+        }
+      }
+      
+      resultHtml += `
+          </div>
+        </div>
+      `;
+    });
+    
+    resultHtml += `</div>`;
     
     this.resultArea.innerHTML = resultHtml;
     this.resultArea.style.display = 'block';

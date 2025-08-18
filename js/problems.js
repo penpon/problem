@@ -46,6 +46,35 @@ console.log("走行距離: " + distance + "km");
 console.log("基本料金: " + basicFare + "円");
 console.log("大人" + adultCount + "人、子供" + childCount + "人");
 console.log("合計料金: " + totalFare + "円");`,
+    // 新しいテストケース形式（複数テストケース対応）
+    testCases: [
+      {
+        name: "基本ケース（中距離）",
+        variables: { distance: 25, adultCount: 2, childCount: 1 },
+        expectedOutput: "走行距離: 25km\\n基本料金: 300円\\n大人2人、子供1人\\n合計料金: 750円"
+      },
+      {
+        name: "短距離ケース",
+        variables: { distance: 8, adultCount: 1, childCount: 2 },
+        expectedOutput: "走行距離: 8km\\n基本料金: 200円\\n大人1人、子供2人\\n合計料金: 400円"
+      },
+      {
+        name: "長距離ケース",
+        variables: { distance: 35, adultCount: 3, childCount: 0 },
+        expectedOutput: "走行距離: 35km\\n基本料金: 500円\\n大人3人、子供0人\\n合計料金: 1500円"
+      },
+      {
+        name: "境界値ケース（10km）",
+        variables: { distance: 10, adultCount: 1, childCount: 1 },
+        expectedOutput: "走行距離: 10km\\n基本料金: 200円\\n大人1人、子供1人\\n合計料金: 300円"
+      },
+      {
+        name: "境界値ケース（30km）",
+        variables: { distance: 30, adultCount: 2, childCount: 2 },
+        expectedOutput: "走行距離: 30km\\n基本料金: 300円\\n大人2人、子供2人\\n合計料金: 900円"
+      }
+    ],
+    // 後方互換性のために古い形式も残す
     expectedOutput: "走行距離: 25km\\n基本料金: 300円\\n大人2人、子供1人\\n合計料金: 750円",
     testVariables: {
       distance: 25,
@@ -93,6 +122,35 @@ if () {
 console.log("借用日数: " + borrowedDays + "日");
 console.log("延滞日数: " + overdueDays + "日");
 console.log("延滞料金: " + fine + "円");`,
+    // 新しいテストケース形式（複数テストケース対応）
+    testCases: [
+      {
+        name: "基本ケース（延滞あり）",
+        variables: { borrowedDays: 18, standardPeriod: 14 },
+        expectedOutput: "=== 図書館延滞料金計算 ===\\n延滞しています！\\n借用日数: 18日\\n延滞日数: 4日\\n延滞料金: 40円"
+      },
+      {
+        name: "期限内返却ケース",
+        variables: { borrowedDays: 10, standardPeriod: 14 },
+        expectedOutput: "=== 図書館延滞料金計算 ===\\n期限内の返却です。\\n借用日数: 10日\\n延滞日数: 0日\\n延滞料金: 0円"
+      },
+      {
+        name: "ぴったり期限ケース",
+        variables: { borrowedDays: 14, standardPeriod: 14 },
+        expectedOutput: "=== 図書館延滞料金計算 ===\\n期限内の返却です。\\n借用日数: 14日\\n延滞日数: 0日\\n延滞料金: 0円"
+      },
+      {
+        name: "長期延滞ケース",
+        variables: { borrowedDays: 25, standardPeriod: 14 },
+        expectedOutput: "=== 図書館延滞料金計算 ===\\n延滞しています！\\n借用日数: 25日\\n延滞日数: 11日\\n延滞料金: 110円"
+      },
+      {
+        name: "1日延滞ケース",
+        variables: { borrowedDays: 15, standardPeriod: 14 },
+        expectedOutput: "=== 図書館延滞料金計算 ===\\n延滞しています！\\n借用日数: 15日\\n延滞日数: 1日\\n延滞料金: 10円"
+      }
+    ],
+    // 後方互換性のために古い形式も残す
     expectedOutput: "=== 図書館延滞料金計算 ===\\n延滞しています！\\n借用日数: 18日\\n延滞日数: 4日\\n延滞料金: 40円",
     testVariables: {
       borrowedDays: 18,
@@ -143,6 +201,35 @@ for (let i = 0; i < scores.length; i++) {
 console.log("合計点: " + sum + "点");
 console.log("平均点: " + average + "点");
 console.log("80点以上: " + highScoreCount + "人");`,
+    // 新しいテストケース形式（複数テストケース対応）
+    testCases: [
+      {
+        name: "基本ケース",
+        variables: { scores: [85, 92, 78, 95, 88] },
+        expectedOutput: "=== 成績統計 ===\\nテスト点数: 85,92,78,95,88\\n合計点: 438点\\n平均点: 87.6点\\n80点以上: 4人"
+      },
+      {
+        name: "全員高得点ケース",
+        variables: { scores: [90, 95, 100, 88, 92] },
+        expectedOutput: "=== 成績統計 ===\\nテスト点数: 90,95,100,88,92\\n合計点: 465点\\n平均点: 93点\\n80点以上: 5人"
+      },
+      {
+        name: "低得点混在ケース",
+        variables: { scores: [45, 78, 90, 60, 85] },
+        expectedOutput: "=== 成績統計 ===\\nテスト点数: 45,78,90,60,85\\n合計点: 358点\\n平均点: 71.6点\\n80点以上: 2人"
+      },
+      {
+        name: "境界値ケース（80点）",
+        variables: { scores: [80, 79, 81, 80, 79] },
+        expectedOutput: "=== 成績統計 ===\\nテスト点数: 80,79,81,80,79\\n合計点: 399点\\n平均点: 79.8点\\n80点以上: 3人"
+      },
+      {
+        name: "全員低得点ケース",
+        variables: { scores: [60, 55, 70, 65, 50] },
+        expectedOutput: "=== 成績統計 ===\\nテスト点数: 60,55,70,65,50\\n合計点: 300点\\n平均点: 60点\\n80点以上: 0人"
+      }
+    ],
+    // 後方互換性のために古い形式も残す
     expectedOutput: "=== 成績統計 ===\\nテスト点数: 85,92,78,95,88\\n合計点: 438点\\n平均点: 87.6点\\n80点以上: 4人",
     testVariables: {
       scores: [85, 92, 78, 95, 88]
@@ -179,6 +266,35 @@ if () {
 console.log("予約したい座席: " + (requestedSeat + 1) + "番");
 console.log("予約結果: " + reservationResult);
 console.log("更新後の座席状況: " + seats);`,
+    // 新しいテストケース形式（複数テストケース対応）
+    testCases: [
+      {
+        name: "基本ケース（予約失敗）",
+        variables: { seats: ["空席", "空席", "予約済", "空席", "空席"], requestedSeat: 2 },
+        expectedOutput: "=== 映画館座席予約 ===\\n現在の座席状況: 空席,空席,予約済,空席,空席\\n予約したい座席: 3番\\n予約結果: 予約できませんでした\\n更新後の座席状況: 空席,空席,予約済,空席,空席"
+      },
+      {
+        name: "予約成功ケース（1番座席）",
+        variables: { seats: ["空席", "空席", "予約済", "空席", "空席"], requestedSeat: 0 },
+        expectedOutput: "=== 映画館座席予約 ===\\n現在の座席状況: 空席,空席,予約済,空席,空席\\n予約したい座席: 1番\\n予約結果: 予約完了しました\\n更新後の座席状況: 予約済,空席,予約済,空席,空席"
+      },
+      {
+        name: "予約成功ケース（5番座席）",
+        variables: { seats: ["空席", "空席", "予約済", "空席", "空席"], requestedSeat: 4 },
+        expectedOutput: "=== 映画館座席予約 ===\\n現在の座席状況: 空席,空席,予約済,空席,空席\\n予約したい座席: 5番\\n予約結果: 予約完了しました\\n更新後の座席状況: 空席,空席,予約済,空席,予約済"
+      },
+      {
+        name: "全席予約済みケース",
+        variables: { seats: ["予約済", "予約済", "予約済"], requestedSeat: 1 },
+        expectedOutput: "=== 映画館座席予約 ===\\n現在の座席状況: 予約済,予約済,予約済\\n予約したい座席: 2番\\n予約結果: 予約できませんでした\\n更新後の座席状況: 予約済,予約済,予約済"
+      },
+      {
+        name: "全席空席ケース",
+        variables: { seats: ["空席", "空席", "空席"], requestedSeat: 1 },
+        expectedOutput: "=== 映画館座席予約 ===\\n現在の座席状況: 空席,空席,空席\\n予約したい座席: 2番\\n予約結果: 予約完了しました\\n更新後の座席状況: 空席,予約済,空席"
+      }
+    ],
+    // 後方互換性のために古い形式も残す
     expectedOutput: "=== 映画館座席予約 ===\\n現在の座席状況: 空席,空席,予約済,空席,空席\\n予約したい座席: 3番\\n予約結果: 予約できませんでした\\n更新後の座席状況: 空席,空席,予約済,空席,空席",
     testVariables: {
       requestedSeat: 2
@@ -235,6 +351,35 @@ console.log("釣り銭: " + (payment - price) + "円");
 console.log("100円玉: " + hundreds + "枚");
 console.log("50円玉: " + fifties + "枚");
 console.log("10円玉: " + tens + "枚");`,
+    // 新しいテストケース形式（複数テストケース対応）
+    testCases: [
+      {
+        name: "基本ケース（740円）",
+        variables: { price: 1260, payment: 2000 },
+        expectedOutput: "=== 釣り銭計算 ===\\n商品価格: 1260円\\n支払い金額: 2000円\\n釣り銭: 740円\\n100円玉: 7枚\\n50円玉: 0枚\\n10円玉: 4枚"
+      },
+      {
+        name: "50円玉使用ケース（350円）",
+        variables: { price: 650, payment: 1000 },
+        expectedOutput: "=== 釣り銭計算 ===\\n商品価格: 650円\\n支払い金額: 1000円\\n釣り銭: 350円\\n100円玉: 3枚\\n50円玉: 1枚\\n10円玉: 0枚"
+      },
+      {
+        name: "少額釣り銭ケース（80円）",
+        variables: { price: 420, payment: 500 },
+        expectedOutput: "=== 釣り銭計算 ===\\n商品価格: 420円\\n支払い金額: 500円\\n釣り銭: 80円\\n100円玉: 0枚\\n50円玉: 1枚\\n10円玉: 3枚"
+      },
+      {
+        name: "大額釣り銭ケース（1590円）",
+        variables: { price: 410, payment: 2000 },
+        expectedOutput: "=== 釣り銭計算 ===\\n商品価格: 410円\\n支払い金額: 2000円\\n釣り銭: 1590円\\n100円玉: 15枚\\n50円玉: 1枚\\n10円玉: 4枚"
+      },
+      {
+        name: "10円単位ぴったりケース（200円）",
+        variables: { price: 800, payment: 1000 },
+        expectedOutput: "=== 釣り銭計算 ===\\n商品価格: 800円\\n支払い金額: 1000円\\n釣り銭: 200円\\n100円玉: 2枚\\n50円玉: 0枚\\n10円玉: 0枚"
+      }
+    ],
+    // 後方互換性のために古い形式も残す
     expectedOutput: "=== 釣り銭計算 ===\\n商品価格: 1260円\\n支払い金額: 2000円\\n釣り銭: 740円\\n100円玉: 7枚\\n50円玉: 0枚\\n10円玉: 4枚",
     testVariables: {
       price: 1260,
