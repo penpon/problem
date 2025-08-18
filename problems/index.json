@@ -2,38 +2,38 @@
   "version": "1.0.0",
   "problems": [
     {
-      "id": "practice21",
-      "title": "練習問題21：電車の乗車券の料金計算",
-      "category": "基本",
+      "id": "practice1",
+      "title": "練習問題1：商品情報の表示",
+      "category": "オブジェクト",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice22", 
-      "title": "練習問題22：図書館延滞料金計算",
-      "category": "基本",
+      "id": "practice2",
+      "title": "練習問題2：ユーザー情報の更新",
+      "category": "オブジェクト",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice23",
-      "title": "練習問題23：成績統計計算",
-      "category": "配列",
-      "difficulty": "中級",
+      "id": "practice3",
+      "title": "練習問題3：undefinedの処理",
+      "category": "オブジェクト",
+      "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice24",
-      "title": "練習問題24：映画館座席予約システム",
-      "category": "配列",
-      "difficulty": "中級",
+      "id": "practice4",
+      "title": "練習問題4：商品の割引計算",
+      "category": "オブジェクト",
+      "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice25",
-      "title": "練習問題25：釣り銭計算プログラム",
-      "category": "繰り返し",
-      "difficulty": "中級",
+      "id": "practice5",
+      "title": "練習問題5：テスト結果の評価システム",
+      "category": "オブジェクト",
+      "difficulty": "初級",
       "points": 100
     }
   ]

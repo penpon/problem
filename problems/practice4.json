@@ -1,0 +1,76 @@
+{
+  "id": "practice4",
+  "title": "練習問題4：商品の割引計算",
+  "description": "商品オブジェクトを使って割引価格を計算するプログラムを作成してください。",
+  "instructions": [
+    "オブジェクトの値を使った計算処理を理解してください。",
+    "四則演算を組み合わせて割引計算を実装してください。"
+  ],
+  "template": "// 問題4: 商品の割引計算（オブジェクトと計算）\\n// 商品オブジェクトを使って割引価格を計算するプログラム\\n\\nlet item = {\\n  name: \"Tシャツ\",\\n  originalPrice: 3000,\\n  discountRate: 20  // 割引率（%）\\n};\\n\\n// 元の価格を表示\\nconsole.log(\"商品名: \" + item.name);\\n/* ここに「定価: 」+ 元の価格 + 「円」を表示するconsole.logを書く */;\\nconsole.log(\"割引率: \" + item.discountRate + \"%\");\\n\\n// 割引金額を計算\\nlet discountAmount = /* ここに割引金額の計算式を書く（定価 × 割引率 ÷ 100）*/;\\nconsole.log(\"割引金額: \" + discountAmount + \"円\");\\n\\n// 割引後価格を計算\\nlet finalPrice = item.originalPrice - discountAmount;\\n/* ここに「割引後価格: 」+ 最終価格 + 「円」を表示するconsole.logを書く */;\\n\\n// 節約金額を強調表示\\nconsole.log(\"★\" + discountAmount + \"円もお得です！\");",
+  "testCases": [
+    {
+      "name": "基本ケース（Tシャツ20%割引）",
+      "variables": { 
+        "item": { 
+          "name": "Tシャツ", 
+          "originalPrice": 3000, 
+          "discountRate": 20 
+        } 
+      },
+      "expectedOutput": "商品名: Tシャツ\\n定価: 3000円\\n割引率: 20%\\n割引金額: 600円\\n割引後価格: 2400円\\n★600円もお得です！"
+    },
+    {
+      "name": "高割引ケース（ジャケット50%割引）",
+      "variables": { 
+        "item": { 
+          "name": "ジャケット", 
+          "originalPrice": 8000, 
+          "discountRate": 50 
+        } 
+      },
+      "expectedOutput": "商品名: ジャケット\\n定価: 8000円\\n割引率: 50%\\n割引金額: 4000円\\n割引後価格: 4000円\\n★4000円もお得です！"
+    },
+    {
+      "name": "少額割引ケース（靴下10%割引）",
+      "variables": { 
+        "item": { 
+          "name": "靴下", 
+          "originalPrice": 500, 
+          "discountRate": 10 
+        } 
+      },
+      "expectedOutput": "商品名: 靴下\\n定価: 500円\\n割引率: 10%\\n割引金額: 50円\\n割引後価格: 450円\\n★50円もお得です！"
+    },
+    {
+      "name": "高額商品ケース（スーツ30%割引）",
+      "variables": { 
+        "item": { 
+          "name": "スーツ", 
+          "originalPrice": 25000, 
+          "discountRate": 30 
+        } 
+      },
+      "expectedOutput": "商品名: スーツ\\n定価: 25000円\\n割引率: 30%\\n割引金額: 7500円\\n割引後価格: 17500円\\n★7500円もお得です！"
+    },
+    {
+      "name": "中程度割引ケース（パンツ25%割引）",
+      "variables": { 
+        "item": { 
+          "name": "パンツ", 
+          "originalPrice": 4000, 
+          "discountRate": 25 
+        } 
+      },
+      "expectedOutput": "商品名: パンツ\\n定価: 4000円\\n割引率: 25%\\n割引金額: 1000円\\n割引後価格: 3000円\\n★1000円もお得です！"
+    }
+  ],
+  "expectedOutput": "商品名: Tシャツ\\n定価: 3000円\\n割引率: 20%\\n割引金額: 600円\\n割引後価格: 2400円\\n★600円もお得です！",
+  "testVariables": {
+    "item": {
+      "name": "Tシャツ",
+      "originalPrice": 3000,
+      "discountRate": 20
+    }
+  },
+  "points": 100
+}
