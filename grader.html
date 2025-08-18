@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript自動採点システム</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>🚀 JavaScript自動採点システム</h1>
+            <p>プログラミング問題を解いて、自動で採点結果を確認しよう！</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-content">
+            <!-- 問題選択エリア -->
+            <div class="problem-section">
+                <h2 class="section-title">📚 問題選択</h2>
+                <div class="form-group">
+                    <label for="problem-select">解きたい問題を選択してください:</label>
+                    <select id="problem-select">
+                        <!-- 問題がJavaScriptで動的に追加されます -->
+                    </select>
+                </div>
+                
+                <div id="problem-details" style="display: none;">
+                    <!-- 問題の詳細がここに表示されます -->
+                </div>
+            </div>
+
+            <!-- コードエディタエリア -->
+            <div class="editor-section">
+                <h2 class="section-title">💻 コードエディタ</h2>
+                <div class="form-group">
+                    <label for="code-editor">
+                        コードを入力してください (Ctrl+Enter で実行):
+                    </label>
+                    <textarea 
+                        id="code-editor" 
+                        class="code-editor" 
+                        placeholder="問題を選択すると、ここにテンプレートが表示されます。&#10;穴埋め部分を完成させてください。&#10;&#10;// 例：&#10;let message = 'Hello, World!';&#10;console.log(message);"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+                
+                <button id="run-button" class="run-button">
+                    🚀 コードを実行して採点
+                </button>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>コードを実行中...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 結果表示エリア -->
+        <div class="result-section">
+            <h2 class="section-title">📊 採点結果</h2>
+            <div id="result-area" style="display: none;">
+                <!-- 採点結果がここに表示されます -->
+            </div>
+            <div id="no-result" style="text-align: center; color: #a0aec0; padding: 40px;">
+                <p>🎯 問題を選択してコードを実行すると、採点結果がここに表示されます</p>
+                <p style="font-size: 0.9em; margin-top: 10px;">
+                    ヒント: コードエディタで <kbd>Ctrl</kbd> + <kbd>Enter</kbd> でも実行できます
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 30px; color: #a0aec0; border-top: 1px solid #e2e8f0; margin-top: 40px;">
+        <p>💡 <strong>使い方:</strong> 問題を選択 → コードを編集 → 実行ボタンで採点</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            JavaScript自動採点システム | プログラミング学習支援ツール
+        </p>
+    </footer>
+
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="js/navigation.js"></script>
+    <script src="js/problemLoader.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

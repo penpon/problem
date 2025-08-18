@@ -3,85 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript自動採点システム</title>
+    <title>JavaScript学習ツール - メニュー</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .tools-section {
+            padding: 80px 0;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .tool-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        
+        .tool-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .tool-description {
+            color: #718096;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .tool-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .tool-features li {
+            padding: 8px 0;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-features li::before {
+            content: "✨";
+            margin-right: 10px;
+        }
+        
+        .tool-button {
+            display: inline-block;
+            background: linear-gradient(145deg, #4299e1, #3182ce);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .tool-button:hover {
+            background: linear-gradient(145deg, #3182ce, #2b77ae);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.4);
+        }
+        
+        .grader-card {
+            border-color: #48bb78;
+        }
+        
+        .grader-card .tool-button {
+            background: linear-gradient(145deg, #48bb78, #38a169);
+        }
+        
+        .grader-card .tool-button:hover {
+            background: linear-gradient(145deg, #38a169, #2f855a);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+        
+        .visualizer-card {
+            border-color: #ed8936;
+        }
+        
+        .visualizer-card .tool-button {
+            background: linear-gradient(145deg, #ed8936, #dd6b20);
+        }
+        
+        .visualizer-card .tool-button:hover {
+            background: linear-gradient(145deg, #dd6b20, #c05621);
+            box-shadow: 0 5px 15px rgba(237, 137, 54, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2em;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 20px;
+            }
+            
+            .tool-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
+    <div class="hero-section">
         <div class="container">
-            <h1>🚀 JavaScript自動採点システム</h1>
-            <p>プログラミング問題を解いて、自動で採点結果を確認しよう！</p>
+            <h1 class="hero-title">🚀 JavaScript学習ツール</h1>
+            <p class="hero-subtitle">
+                プログラミング学習を支援する2つの強力なツールをご用意しました。<br>
+                自動採点でスキルを測定し、可視化ツールで理解を深めましょう。
+            </p>
         </div>
     </div>
 
-    <div class="container">
-        <div class="main-content">
-            <!-- 問題選択エリア -->
-            <div class="problem-section">
-                <h2 class="section-title">📚 問題選択</h2>
-                <div class="form-group">
-                    <label for="problem-select">解きたい問題を選択してください:</label>
-                    <select id="problem-select">
-                        <!-- 問題がJavaScriptで動的に追加されます -->
-                    </select>
-                </div>
-                
-                <div id="problem-details" style="display: none;">
-                    <!-- 問題の詳細がここに表示されます -->
-                </div>
-            </div>
-
-            <!-- コードエディタエリア -->
-            <div class="editor-section">
-                <h2 class="section-title">💻 コードエディタ</h2>
-                <div class="form-group">
-                    <label for="code-editor">
-                        コードを入力してください (Ctrl+Enter で実行):
-                    </label>
-                    <textarea 
-                        id="code-editor" 
-                        class="code-editor" 
-                        placeholder="問題を選択すると、ここにテンプレートが表示されます。&#10;穴埋め部分を完成させてください。&#10;&#10;// 例：&#10;let message = 'Hello, World!';&#10;console.log(message);"
-                        spellcheck="false"
-                    ></textarea>
-                </div>
-                
-                <button id="run-button" class="run-button">
-                    🚀 コードを実行して採点
-                </button>
-                
-                <div id="loading" class="loading">
-                    <div class="spinner"></div>
-                    <p>コードを実行中...</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 結果表示エリア -->
-        <div class="result-section">
-            <h2 class="section-title">📊 採点結果</h2>
-            <div id="result-area" style="display: none;">
-                <!-- 採点結果がここに表示されます -->
-            </div>
-            <div id="no-result" style="text-align: center; color: #a0aec0; padding: 40px;">
-                <p>🎯 問題を選択してコードを実行すると、採点結果がここに表示されます</p>
-                <p style="font-size: 0.9em; margin-top: 10px;">
-                    ヒント: コードエディタで <kbd>Ctrl</kbd> + <kbd>Enter</kbd> でも実行できます
+    <div class="tools-section">
+        <div class="tools-grid">
+            <!-- 自動採点システム -->
+            <div class="tool-card grader-card">
+                <div class="tool-icon">📊</div>
+                <h2 class="tool-title">自動採点システム</h2>
+                <p class="tool-description">
+                    プログラミング問題を解いて、瞬時に採点結果を確認できます。複数のテストケースで実力を試しましょう。
                 </p>
+                <ul class="tool-features">
+                    <li>5つの実践的なプログラミング問題</li>
+                    <li>複数テストケースによる包括的な採点</li>
+                    <li>リアルタイムフィードバック</li>
+                    <li>詳細な実行結果表示</li>
+                    <li>キーボードショートカット対応</li>
+                </ul>
+                <a href="grader.html" class="tool-button">📚 問題を解いてみる</a>
+            </div>
+
+            <!-- 可視化ツール -->
+            <div class="tool-card visualizer-card">
+                <div class="tool-icon">🔍</div>
+                <h2 class="tool-title">コード可視化ツール</h2>
+                <p class="tool-description">
+                    JavaScriptコードの実行過程を一行ずつ可視化。変数の変化や処理の流れを直感的に理解できます。
+                </p>
+                <ul class="tool-features">
+                    <li>ステップバイステップ実行</li>
+                    <li>変数の状態をリアルタイム表示</li>
+                    <li>実行速度の調整</li>
+                    <li>豊富なサンプルコード</li>
+                    <li>自動スクロール機能</li>
+                </ul>
+                <a href="visualizer.html" class="tool-button">🔍 コードを可視化する</a>
             </div>
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 30px; color: #a0aec0; border-top: 1px solid #e2e8f0; margin-top: 40px;">
-        <p>💡 <strong>使い方:</strong> 問題を選択 → コードを編集 → 実行ボタンで採点</p>
-        <p style="font-size: 0.9em; margin-top: 10px;">
-            JavaScript自動採点システム | プログラミング学習支援ツール
+    <footer style="text-align: center; padding: 40px; color: #a0aec0; border-top: 1px solid #e2e8f0; margin-top: 40px;">
+        <p>🌟 <strong>学習のコツ:</strong> まず採点システムで問題を解き、その後可視化ツールで理解を深めましょう</p>
+        <p style="font-size: 0.9em; margin-top: 15px;">
+            JavaScript学習ツール | プログラミング学習支援システム
         </p>
     </footer>
-
-    <!-- JavaScriptファイルの読み込み -->
-    <script src="js/problemLoader.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
