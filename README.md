@@ -1,6 +1,6 @@
-# 🚀 JavaScript自動採点システム（GitHub Pages版）
+# 🚀 JavaScript自動採点システム
 
-友達のプログラミング学習用に作られた、ブラウザで動作する自動採点システムです。
+プログラミング学習用に作られた、ブラウザで動作する自動採点システムです。
 
 ## ✨ 特徴
 
@@ -22,7 +22,7 @@
 
 ## 🚀 使い方
 
-### 友達への共有方法
+### 共有方法
 
 1. **GitHub Pagesにデプロイ**
    ```bash
@@ -36,9 +36,9 @@
    # GitHub → Settings → Pages → Deploy from a branch → main
    ```
 
-2. **友達にURLを共有**
+2. **URLを共有**
    ```
-   https://[username].github.io/js-auto-grader/
+   https://[username].github.io/problem
    ```
 
 3. **使用手順**
