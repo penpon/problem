@@ -1,0 +1,276 @@
+/**
+ * JavaScript自動採点システム - メインアプリケーション
+ * GitHub Pages版
+ */
+
+class AutoGrader {
+  constructor() {
+    this.worker = null;
+    this.currentProblem = null;
+    this.isRunning = false;
+    
+    this.initializeElements();
+    this.initializeWorker();
+    this.setupEventListeners();
+    this.loadProblems();
+  }
+  
+  initializeElements() {
+    this.problemSelect = document.getElementById('problem-select');
+    this.problemDetails = document.getElementById('problem-details');
+    this.codeEditor = document.getElementById('code-editor');
+    this.runButton = document.getElementById('run-button');
+    this.resultArea = document.getElementById('result-area');
+    this.loading = document.getElementById('loading');
+  }
+  
+  initializeWorker() {
+    if (typeof Worker !== 'undefined') {
+      this.worker = new Worker('js/worker.js');
+      this.worker.onmessage = (e) => this.handleWorkerMessage(e);
+      this.worker.onerror = (e) => this.handleWorkerError(e);
+    } else {
+      this.showError('お使いのブラウザはWeb Workerをサポートしていません。');
+    }
+  }
+  
+  setupEventListeners() {
+    this.problemSelect.addEventListener('change', () => this.onProblemChange());
+    this.runButton.addEventListener('click', () => this.runCode());
+    
+    // コードエディタでCtrl+Enterで実行
+    this.codeEditor.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        this.runCode();
+      }
+    });
+  }
+  
+  loadProblems() {
+    const problems = getProblemList();
+    
+    // デフォルトオプション
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = '問題を選択してください';
+    this.problemSelect.appendChild(defaultOption);
+    
+    // 問題をオプションとして追加
+    problems.forEach(problem => {
+      const option = document.createElement('option');
+      option.value = problem.id;
+      option.textContent = problem.title;
+      this.problemSelect.appendChild(option);
+    });
+  }
+  
+  onProblemChange() {
+    const selectedId = this.problemSelect.value;
+    
+    if (!selectedId) {
+      this.problemDetails.style.display = 'none';
+      this.codeEditor.value = '';
+      this.clearResult();
+      return;
+    }
+    
+    this.currentProblem = getProblem(selectedId);
+    if (this.currentProblem) {
+      this.displayProblem(this.currentProblem);
+      this.codeEditor.value = this.currentProblem.template;
+      this.clearResult();
+    }
+  }
+  
+  displayProblem(problem) {
+    this.problemDetails.innerHTML = `
+      <div class="problem-title">${problem.title}</div>
+      <div class="problem-description">${problem.description}</div>
+      <div class="problem-instructions">
+        <strong>実装のポイント：</strong>
+        <ul>
+          ${problem.instructions.map(instruction => 
+            instruction ? `<li>${instruction}</li>` : '<li style="list-style:none; height:5px;"></li>'
+          ).join('')}
+        </ul>
+      </div>
+    `;
+    this.problemDetails.style.display = 'block';
+  }
+  
+  runCode() {
+    if (this.isRunning) return;
+    
+    if (!this.currentProblem) {
+      this.showError('問題を選択してください。');
+      return;
+    }
+    
+    const code = this.codeEditor.value.trim();
+    if (!code) {
+      this.showError('コードを入力してください。');
+      return;
+    }
+    
+    this.startExecution();
+    
+    // タイムアウト設定（5秒）
+    const timeout = setTimeout(() => {
+      this.terminateExecution();
+      this.showError('実行時間制限を超過しました（5秒）。無限ループが発生していないか確認してください。');
+    }, 5000);
+    
+    // Workerにコードと問題データを送信
+    this.worker.postMessage({
+      code: code,
+      problem: this.currentProblem
+    });
+    
+    // 正常終了時はタイムアウトをクリア
+    this.worker.onmessage = (e) => {
+      clearTimeout(timeout);
+      this.handleWorkerMessage(e);
+    };
+  }
+  
+  startExecution() {
+    this.isRunning = true;
+    this.runButton.disabled = true;
+    this.runButton.textContent = '実行中...';
+    this.loading.classList.add('show');
+    this.clearResult();
+  }
+  
+  terminateExecution() {
+    this.isRunning = false;
+    this.runButton.disabled = false;
+    this.runButton.textContent = '🚀 コードを実行して採点';
+    this.loading.classList.remove('show');
+    
+    // Workerを再初期化
+    if (this.worker) {
+      this.worker.terminate();
+      this.initializeWorker();
+    }
+  }
+  
+  handleWorkerMessage(e) {
+    this.terminateExecution();
+    
+    const result = e.data;
+    
+    if (!result.success) {
+      this.showError(result.message, result.logs);
+      return;
+    }
+    
+    this.displayResult(result);
+  }
+  
+  handleWorkerError(e) {
+    this.terminateExecution();
+    this.showError(`Worker エラー: ${e.message}`);
+  }
+  
+  displayResult(result) {
+    const statusClass = result.status === 'ACCEPTED' ? 'status-accepted' : 
+                       result.status === 'WRONG_ANSWER' ? 'status-wrong' : 'status-error';
+    
+    const statusIcon = result.status === 'ACCEPTED' ? '✅' : 
+                      result.status === 'WRONG_ANSWER' ? '❌' : '⚠️';
+    
+    const scoreClass = result.score === result.maxScore ? 'score-perfect' : 'score-zero';
+    
+    let resultHtml = `
+      <div class="result-status ${statusClass}">
+        ${statusIcon} ${result.status}
+      </div>
+      <div class="score-display ${scoreClass}">
+        得点: ${result.score}/${result.maxScore}点
+      </div>
+      <div><strong>結果:</strong> ${result.message}</div>
+    `;
+    
+    // console.logの出力を表示
+    if (result.logs && result.logs.length > 0) {
+      resultHtml += `
+        <div style="margin-top: 20px;">
+          <strong>プログラムの出力:</strong>
+          <div class="result-area" style="margin-top: 10px; background: #2d3748; color: #e2e8f0;">
+${result.logs.join('\\n')}
+          </div>
+        </div>
+      `;
+    }
+    
+    // 不正解の場合は期待値と実際の値を比較表示
+    if (result.status === 'WRONG_ANSWER' && result.comparison) {
+      resultHtml += `
+        <div class="output-comparison">
+          <div class="output-box expected-output">
+            <h4>期待される出力</h4>
+            <div class="output-content">${this.escapeHtml(result.expectedOutput)}</div>
+          </div>
+          <div class="output-box actual-output">
+            <h4>実際の出力</h4>
+            <div class="output-content">${this.escapeHtml(result.actualOutput)}</div>
+          </div>
+        </div>
+      `;
+      
+      if (result.comparison.expectedLine && result.comparison.actualLine) {
+        resultHtml += `
+          <div style="margin-top: 15px; padding: 10px; background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 4px;">
+            <strong>詳細な差異:</strong><br>
+            期待値: <code>${this.escapeHtml(result.comparison.expectedLine)}</code><br>
+            実際の値: <code>${this.escapeHtml(result.comparison.actualLine)}</code>
+          </div>
+        `;
+      }
+    }
+    
+    this.resultArea.innerHTML = resultHtml;
+    this.resultArea.style.display = 'block';
+    
+    // 結果エリアにスクロール
+    this.resultArea.scrollIntoView({ behavior: 'smooth' });
+  }
+  
+  showError(message, logs = null) {
+    let errorHtml = `
+      <div class="result-status status-error">⚠️ エラー</div>
+      <div><strong>エラー内容:</strong> ${this.escapeHtml(message)}</div>
+    `;
+    
+    if (logs && logs.length > 0) {
+      errorHtml += `
+        <div style="margin-top: 20px;">
+          <strong>実行ログ:</strong>
+          <div class="result-area" style="margin-top: 10px; background: #2d3748; color: #e2e8f0;">
+${logs.join('\\n')}
+          </div>
+        </div>
+      `;
+    }
+    
+    this.resultArea.innerHTML = errorHtml;
+    this.resultArea.style.display = 'block';
+  }
+  
+  clearResult() {
+    this.resultArea.style.display = 'none';
+    this.resultArea.innerHTML = '';
+  }
+  
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+}
+
+// アプリケーション初期化
+document.addEventListener('DOMContentLoaded', () => {
+  new AutoGrader();
+});
