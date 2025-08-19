@@ -474,52 +474,110 @@ ${result.logs.join('\n')}
             </div>
       `;
       
-      // コード品質チェックの詳細表示
+      // 統合コード品質チェックの詳細表示（ESLint + リーダブルコード）
       if (isQualityCheck && testResult.qualityCheck) {
         const qc = testResult.qualityCheck;
         
-        if (qc.issues && qc.issues.length > 0) {
+        // スコア内訳を表示
+        if (qc.breakdown) {
           resultHtml += `
-            <div class="quality-issues">
-              <h5>🔍 コード品質の詳細:</h5>
-              <div class="issues-summary">
-                ${qc.errorCount > 0 ? `<span class="error-count">エラー: ${qc.errorCount}個</span>` : ''}
-                ${qc.warningCount > 0 ? `<span class="warning-count">改善点: ${qc.warningCount}個</span>` : ''}
-              </div>
-              <div class="issues-list">
-          `;
-          
-          qc.issues.forEach(issue => {
-            const issueIcon = issue.severity === 2 ? '🚨' : '💡';
-            const issueClass = issue.severity === 2 ? 'quality-error' : 'quality-warning';
-            
-            resultHtml += `
-              <div class="quality-issue ${issueClass}">
-                <div class="issue-header">
-                  ${issueIcon} 行${issue.line}:${issue.column} - ${issue.ruleId || '不明なルール'}
+            <div class="quality-breakdown">
+              <h5>📊 品質チェック詳細:</h5>
+              <div class="score-breakdown">
+                <div class="score-item">
+                  <span class="score-label">ESLint:</span>
+                  <span class="score-value">${qc.breakdown.eslint}/50点</span>
                 </div>
-                <div class="issue-message">
-                  ${this.escapeHtml(issue.message)}
+                <div class="score-item">
+                  <span class="score-label">リーダブルコード:</span>
+                  <span class="score-value">${qc.breakdown.readable}/50点</span>
                 </div>
-            `;
-            
-            // 日本語での説明があれば追加
-            if (issue.japaneseMessage) {
-              resultHtml += `
-                <div class="issue-explanation">
-                  <strong>説明:</strong> ${this.escapeHtml(issue.japaneseMessage.message)}
-                  <br><strong>改善提案:</strong> ${this.escapeHtml(issue.japaneseMessage.suggestion)}
-                </div>
-              `;
-            }
-            
-            resultHtml += `</div>`;
-          });
-          
-          resultHtml += `
               </div>
             </div>
           `;
+        }
+        
+        if (qc.issues && qc.issues.length > 0) {
+          // ESLintとリーダブルコードの問題を分類
+          const eslintIssues = qc.issues.filter(issue => issue.type === 'eslint');
+          const readableIssues = qc.issues.filter(issue => issue.type === 'readable');
+          
+          resultHtml += `<div class="quality-issues">`;
+          
+          // ESLintの問題を表示
+          if (eslintIssues.length > 0) {
+            resultHtml += `
+              <div class="eslint-section">
+                <h6>🔧 ESLint チェック結果:</h6>
+                <div class="issues-list">
+            `;
+            
+            eslintIssues.forEach(issue => {
+              const issueIcon = issue.severity === 2 ? '🚨' : '💡';
+              const issueClass = issue.severity === 2 ? 'quality-error' : 'quality-warning';
+              
+              resultHtml += `
+                <div class="quality-issue ${issueClass}">
+                  <div class="issue-header">
+                    ${issueIcon} 行${issue.line}:${issue.column} - ${issue.ruleId || '不明なルール'}
+                  </div>
+                  <div class="issue-message">
+                    ${this.escapeHtml(issue.message)}
+                  </div>
+              `;
+              
+              if (issue.japaneseMessage) {
+                resultHtml += `
+                  <div class="issue-explanation">
+                    <strong>説明:</strong> ${this.escapeHtml(issue.japaneseMessage.message)}
+                    <br><strong>改善提案:</strong> ${this.escapeHtml(issue.japaneseMessage.suggestion)}
+                  </div>
+                `;
+              }
+              
+              resultHtml += `</div>`;
+            });
+            
+            resultHtml += `</div></div>`;
+          }
+          
+          // リーダブルコードの問題を表示
+          if (readableIssues.length > 0) {
+            resultHtml += `
+              <div class="readable-section">
+                <h6>📚 リーダブルコード チェック結果:</h6>
+                <div class="issues-list">
+            `;
+            
+            readableIssues.forEach(issue => {
+              const issueIcon = this.getReadableIssueIcon(issue.ruleId);
+              const issueClass = 'readable-suggestion';
+              
+              resultHtml += `
+                <div class="quality-issue ${issueClass}">
+                  <div class="issue-header">
+                    ${issueIcon} 行${issue.line} - 変数「${issue.variable || '不明'}」
+                  </div>
+                  <div class="issue-message">
+                    ${this.escapeHtml(issue.message)}
+                  </div>
+              `;
+              
+              if (issue.japaneseMessage) {
+                resultHtml += `
+                  <div class="issue-explanation readable-explanation">
+                    <strong>💡 改善提案:</strong> ${this.escapeHtml(issue.japaneseMessage.suggestion)}
+                  </div>
+                `;
+              }
+              
+              resultHtml += `</div>`;
+            });
+            
+            resultHtml += `</div></div>`;
+          }
+          
+          resultHtml += `</div>`;
         } else if (qc.score === 100) {
           resultHtml += `
             <div class="quality-perfect">
@@ -528,8 +586,9 @@ ${result.logs.join('\n')}
               </div>
               <div class="quality-achievement">
                 <ul>
-                  <li>✨ コーディング規約に準拠</li>
-                  <li>✨ ベストプラクティスを実践</li>
+                  <li>✨ ESLint規約に準拠（${qc.breakdown ? qc.breakdown.eslint : 50}/50点）</li>
+                  <li>✨ リーダブルコード原則を実践（${qc.breakdown ? qc.breakdown.readable : 50}/50点）</li>
+                  <li>✨ 変数名が明確で理解しやすい</li>
                   <li>✨ 潜在的なバグなし</li>
                 </ul>
               </div>
@@ -685,6 +744,35 @@ ${logs.join('\n')}
       console.error('ナビゲーション機能が読み込まれていません。');
       alert('可視化機能の初期化に失敗しました。ページを再読み込みしてください。');
     }
+  }
+  
+  /**
+   * リーダブルコード問題種別に応じたアイコンを取得
+   */
+  getReadableIssueIcon(ruleId) {
+    if (!ruleId) return '📝';
+    
+    if (ruleId.includes('generic-name')) return '🔍';
+    if (ruleId.includes('short-name')) return '📏';
+    if (ruleId.includes('boolean-naming')) return '✅';
+    if (ruleId.includes('array-naming')) return '📋';
+    if (ruleId.includes('numeric-unit')) return '📊';
+    
+    return '💡';
+  }
+  
+  /**
+   * HTMLエスケープ処理
+   */
+  escapeHtml(unsafe) {
+    if (typeof unsafe !== 'string') return String(unsafe);
+    
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
 }
 

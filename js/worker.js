@@ -4,11 +4,17 @@
  * 6項目600点満点システム: 実行結果5項目 + コード品質1項目
  */
 
-// ESLint設定の読み込み（Web Worker環境でのグローバルアクセス）
+// ESLint設定とリーダブルコードチェッカーの読み込み（Web Worker環境でのグローバルアクセス）
 try {
   importScripts('./eslint-config.js');
 } catch (error) {
   console.warn('ESLint設定ファイルの読み込みに失敗しました:', error);
+}
+
+try {
+  importScripts('./readable-code-checker.js');
+} catch (error) {
+  console.warn('リーダブルコードチェッカーファイルの読み込みに失敗しました:', error);
 }
 
 // ESLintインスタンスの初期化（遅延初期化）
@@ -184,8 +190,61 @@ function compareOutput(expected, actual) {
   };
 }
 
-// ESLintを使用してコード品質をチェックする関数
+// 統合コード品質チェック関数（ESLint + リーダブルコードチェック）
 function checkCodeQuality(code) {
+  try {
+    // ESLintチェック（50点満点）
+    const eslintResult = checkESLintQuality(code);
+    
+    // リーダブルコードチェック（50点満点）
+    const readableResult = checkReadableCode(code);
+    
+    // 結果を統合
+    const totalScore = eslintResult.score + readableResult.score;
+    const allIssues = [...eslintResult.issues, ...readableResult.issues];
+    
+    // 総合ステータス判定
+    let status, message;
+    if (eslintResult.status === 'ERROR' || readableResult.status === 'NEEDS_IMPROVEMENT') {
+      status = 'ERROR';
+      message = `コード品質: 重要な改善点があります（ESLint: ${eslintResult.score}点, リーダブル: ${readableResult.score}点）`;
+    } else if (eslintResult.status === 'WARNING' || readableResult.status === 'GOOD_WITH_SUGGESTIONS') {
+      status = 'WARNING';
+      message = `コード品質: 改善提案があります（ESLint: ${eslintResult.score}点, リーダブル: ${readableResult.score}点）`;
+    } else if (totalScore === 100) {
+      status = 'PERFECT';
+      message = 'コード品質: 完璧です！（ESLint + リーダブルコード）';
+    } else {
+      status = 'GOOD';
+      message = `コード品質: 良好です（ESLint: ${eslintResult.score}点, リーダブル: ${readableResult.score}点）`;
+    }
+
+    return {
+      score: totalScore,
+      status: status,
+      message: message,
+      issues: allIssues,
+      eslintResult: eslintResult,
+      readableResult: readableResult,
+      breakdown: {
+        eslint: eslintResult.score,
+        readable: readableResult.score
+      }
+    };
+    
+  } catch (error) {
+    return {
+      score: 50,
+      status: 'ERROR',
+      message: `コード品質チェックでエラーが発生しました: ${error.message}`,
+      issues: [],
+      error: error.message
+    };
+  }
+}
+
+// ESLintによる品質チェック（50点満点）
+function checkESLintQuality(code) {
   try {
     // ESLintインスタンスの遅延初期化
     if (!eslintInstance && typeof ESLint !== 'undefined') {
@@ -209,7 +268,7 @@ function checkCodeQuality(code) {
 
     if (!eslintInstance) {
       return {
-        score: 100, // ESLintが利用できない場合は満点
+        score: 50, // ESLintが利用できない場合は満点（50点）
         status: 'UNAVAILABLE',
         message: 'ESLint機能は現在利用できません',
         issues: []
@@ -219,11 +278,11 @@ function checkCodeQuality(code) {
     // ESLintでコードを解析
     const results = eslintInstance.lintText(code, { filePath: 'user-code.js' });
     
-    if (!results || results.length === 0) {
+    if (!results || results.length === 0 || results[0].messages.length === 0) {
       return {
-        score: 100,
+        score: 50, // 満点（50点）
         status: 'PASSED',
-        message: 'コード品質チェック: 完璧です！',
+        message: 'ESLint: 完璧です！',
         issues: []
       };
     }
@@ -231,15 +290,6 @@ function checkCodeQuality(code) {
     const result = results[0];
     const { messages } = result;
     
-    if (messages.length === 0) {
-      return {
-        score: 100,
-        status: 'PASSED', 
-        message: 'コード品質チェック: 完璧です！',
-        issues: []
-      };
-    }
-
     // エラーと警告を分類して点数を計算
     let errorCount = 0;
     let warningCount = 0;
@@ -252,6 +302,7 @@ function checkCodeQuality(code) {
         ruleId: msg.ruleId,
         severity: msg.severity, // 1=warning, 2=error
         message: msg.message,
+        type: 'eslint',
         japaneseMessage: null
       };
 
@@ -270,39 +321,81 @@ function checkCodeQuality(code) {
       }
     });
 
-    // 点数計算（エラー1個につき-20点、警告1個につき-5点、最低0点）
-    let score = 100 - (errorCount * 20) - (warningCount * 5);
-    score = Math.max(0, score);
+    // 点数計算（エラー1個につき-10点、警告1個につき-2.5点、最低0点、満点50点）
+    let score = 50 - (errorCount * 10) - (warningCount * 2.5);
+    score = Math.max(0, Math.round(score));
 
-    let status, message;
+    let status;
     if (errorCount > 0) {
       status = 'ERROR';
-      message = `コード品質: ${errorCount}個のエラーがあります（警告${warningCount}個）`;
     } else if (warningCount > 0) {
       status = 'WARNING';
-      message = `コード品質: ${warningCount}個の改善点があります`;
     } else {
       status = 'PASSED';
-      message = 'コード品質: 完璧です！';
     }
 
     return {
       score: score,
       status: status,
-      message: message,
+      message: `ESLint: ${errorCount}個のエラー、${warningCount}個の警告`,
       issues: issues,
       errorCount: errorCount,
       warningCount: warningCount
     };
     
   } catch (error) {
-    // ESLintエラーの場合は部分点を与える
     return {
-      score: 50,
+      score: 25,
       status: 'ERROR',
-      message: `コード品質チェックでエラーが発生しました: ${error.message}`,
-      issues: [],
-      error: error.message
+      message: `ESLintチェックでエラー: ${error.message}`,
+      issues: []
+    };
+  }
+}
+
+// リーダブルコードチェック（50点満点）
+function checkReadableCode(code) {
+  try {
+    if (!self.ReadableCodeChecker) {
+      return {
+        score: 50, // チェッカーが利用できない場合は満点
+        status: 'UNAVAILABLE',
+        message: 'リーダブルコードチェッカーは現在利用できません',
+        issues: []
+      };
+    }
+
+    const result = self.ReadableCodeChecker.analyze(code);
+    
+    // リーダブルコードチェックの結果をESLint形式に合わせて変換
+    const formattedIssues = result.issues.map(issue => ({
+      line: issue.line,
+      column: 1,
+      ruleId: `readable-${issue.type}`,
+      severity: issue.severity === 'error' ? 2 : issue.severity === 'warning' ? 1 : 0,
+      message: issue.message,
+      type: 'readable',
+      variable: issue.variable,
+      japaneseMessage: {
+        message: issue.message,
+        suggestion: issue.suggestion
+      }
+    }));
+
+    return {
+      score: result.score,
+      status: result.status,
+      message: result.message,
+      issues: formattedIssues,
+      statistics: result.statistics
+    };
+    
+  } catch (error) {
+    return {
+      score: 25,
+      status: 'ERROR',
+      message: `リーダブルコードチェックでエラー: ${error.message}`,
+      issues: []
     };
   }
 }

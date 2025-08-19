@@ -86,6 +86,27 @@ const errorMessages = {
     'camelcase': {
         message: 'キャメルケース（例：userName）で命名してください',
         suggestion: 'JavaScriptでは変数名にキャメルケースを使うのが一般的です'
+    },
+    // リーダブルコードチェック用のメッセージ
+    'readable-generic-name': {
+        message: '変数名 "{0}" は汎用的すぎます',
+        suggestion: 'より具体的で意味のある名前を使用してください（例：userData, imageList）'
+    },
+    'readable-short-name': {
+        message: '変数名 "{0}" が短すぎます',
+        suggestion: '変数の用途を表すより長い名前を使用してください'
+    },
+    'readable-boolean-naming': {
+        message: 'ブール値変数 "{0}" には適切なプレフィックスを使用してください',
+        suggestion: 'is, has, can, should などを使用してください（例：isVisible, hasData）'
+    },
+    'readable-array-naming': {
+        message: '配列変数 "{0}" は複数形にしてください',
+        suggestion: '配列には複数形を使用してください（例：users, items, dataList）'
+    },
+    'readable-numeric-unit': {
+        message: '数値変数 "{0}" に単位を明記してください',
+        suggestion: '時間やサイズの変数には単位を追加してください（例：delayMs, widthPx）'
     }
 };
 
@@ -159,12 +180,31 @@ function getRecommendedLevel(userCode) {
     return 'basic';
 }
 
+// リーダブルコードチェック用の特別なメッセージ処理
+function getReadableCodeMessage(issueType, variableName) {
+    const ruleId = `readable-${issueType}`;
+    const errorInfo = errorMessages[ruleId];
+    if (!errorInfo) {
+        return {
+            message: `リーダブルコードチェック: "${issueType}" に問題があります`,
+            suggestion: 'コードの可読性を向上させてください'
+        };
+    }
+    
+    let message = errorInfo.message.replace('{0}', variableName || '');
+    return {
+        message: message,
+        suggestion: errorInfo.suggestion
+    };
+}
+
 // エクスポート（Web Worker環境では、グローバルオブジェクトに設定）
 if (typeof self !== 'undefined') {
     // Web Worker環境
     self.ESLintConfig = {
         createConfig: createESLintConfig,
         getJapaneseMessage: getJapaneseErrorMessage,
+        getReadableCodeMessage: getReadableCodeMessage,
         getRecommendedLevel: getRecommendedLevel,
         getRuleset: getRulesetForLevel
     };
@@ -173,6 +213,7 @@ if (typeof self !== 'undefined') {
     window.ESLintConfig = {
         createConfig: createESLintConfig,
         getJapaneseMessage: getJapaneseErrorMessage,
+        getReadableCodeMessage: getReadableCodeMessage,
         getRecommendedLevel: getRecommendedLevel,
         getRuleset: getRulesetForLevel
     };

@@ -1505,3 +1505,210 @@ select:focus {
     color: #a0aec0 !important;
   }
 }
+
+/* =====================================================
+   リーダブルコードチェック機能 専用スタイル
+   ===================================================== */
+
+/* 品質チェック詳細表示 */
+.quality-breakdown {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+}
+
+.quality-breakdown h5 {
+  margin: 0 0 12px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.score-breakdown {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  min-width: 140px;
+  flex: 1;
+}
+
+.score-label {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.score-value {
+  font-weight: 600;
+  color: #2b6cb0;
+}
+
+/* ESLint / リーダブルコードセクション */
+.eslint-section,
+.readable-section {
+  margin: 16px 0;
+}
+
+.eslint-section h6,
+.readable-section h6 {
+  margin: 0 0 12px 0;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.eslint-section h6 {
+  background: #edf2f7;
+  color: #2d3748;
+  border-left: 4px solid #4299e1;
+}
+
+.readable-section h6 {
+  background: #f0fff4;
+  color: #276749;
+  border-left: 4px solid #48bb78;
+}
+
+/* リーダブルコードの問題項目 */
+.readable-suggestion {
+  background: #fefcbf;
+  border-left: 4px solid #ecc94b;
+}
+
+.readable-suggestion .issue-header {
+  color: #744210;
+  font-weight: 600;
+}
+
+.readable-suggestion .issue-message {
+  color: #744210;
+}
+
+.readable-explanation {
+  background: #f0fff4;
+  border: 1px solid #c6f6d5;
+  color: #276749;
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* 完璧な品質達成時のスタイル拡張 */
+.quality-perfect .quality-achievement li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+/* リーダブルコード問題タイプ別のアイコン強調 */
+.quality-issue[data-readable-type="generic-name"] .issue-header::before {
+  content: "🔍 ";
+}
+
+.quality-issue[data-readable-type="short-name"] .issue-header::before {
+  content: "📏 ";
+}
+
+.quality-issue[data-readable-type="boolean-naming"] .issue-header::before {
+  content: "✅ ";
+}
+
+.quality-issue[data-readable-type="array-naming"] .issue-header::before {
+  content: "📋 ";
+}
+
+.quality-issue[data-readable-type="numeric-unit"] .issue-header::before {
+  content: "📊 ";
+}
+
+/* モバイル表示対応 */
+@media (max-width: 768px) {
+  .score-breakdown {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .score-item {
+    min-width: auto;
+  }
+  
+  .quality-breakdown h5 {
+    font-size: 1em;
+  }
+  
+  .eslint-section h6,
+  .readable-section h6 {
+    font-size: 0.9em;
+    padding: 6px 10px;
+  }
+}
+
+/* ダークモード対応 - リーダブルコード関連 */
+@media (prefers-color-scheme: dark) {
+  .quality-breakdown {
+    background: #374151;
+    border-color: #4a5568;
+  }
+  
+  .quality-breakdown h5 {
+    color: #f9fafb;
+  }
+  
+  .score-item {
+    background: #4a5568;
+    border-color: #6b7280;
+  }
+  
+  .score-label {
+    color: #d1d5db;
+  }
+  
+  .score-value {
+    color: #60a5fa;
+  }
+  
+  .eslint-section h6 {
+    background: #374151;
+    color: #e5e7eb;
+    border-left-color: #60a5fa;
+  }
+  
+  .readable-section h6 {
+    background: #065f46;
+    color: #d1fae5;
+    border-left-color: #34d399;
+  }
+  
+  .readable-suggestion {
+    background: #451a03;
+    border-left-color: #fbbf24;
+  }
+  
+  .readable-suggestion .issue-header {
+    color: #fde68a;
+  }
+  
+  .readable-suggestion .issue-message {
+    color: #fde68a;
+  }
+  
+  .readable-explanation {
+    background: #064e3b;
+    border-color: #065f46;
+    color: #a7f3d0;
+  }
+}
