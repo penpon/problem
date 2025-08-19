@@ -1,6 +1,6 @@
 {
   "id": "function/practice6",
-  "title": "練習問題13：関数と条件分岐",
+  "title": "練習問題6：関数と配列",
   "description": "if文を使った判定機能を持つ関数を作成しよう！",
   "instructions": [
     "if文を使った条件分岐を関数内で実装する方法を理解してください。",

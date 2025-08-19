@@ -1,6 +1,6 @@
 {
   "id": "function/practice1",
-  "title": "練習問題6：関数の基本呼び出し",
+  "title": "練習問題1：関数の基本呼び出し",
   "description": "挨拶をする関数を定義して、複数回呼び出してみよう！",
   "instructions": [
     "関数の定義方法（function宣言）を理解してください。",
