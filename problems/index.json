@@ -2,177 +2,247 @@
   "version": "1.0.0",
   "problems": [
     {
-      "id": "practice1",
+      "id": "object/practice1",
       "title": "練習問題1：商品情報の表示",
       "category": "オブジェクト",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice2",
+      "id": "object/practice2",
       "title": "練習問題2：ユーザー情報の更新",
       "category": "オブジェクト",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice3",
+      "id": "object/practice3",
       "title": "練習問題3：undefinedの処理",
       "category": "オブジェクト",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice4",
+      "id": "object/practice4",
       "title": "練習問題4：商品の割引計算",
       "category": "オブジェクト",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice5",
+      "id": "object/practice5",
       "title": "練習問題5：テスト結果の評価システム",
       "category": "オブジェクト",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice6",
+      "id": "function/practice1",
       "title": "練習問題6：関数の基本呼び出し",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice7",
+      "id": "function/practice2",
       "title": "練習問題7：引数を持つ関数",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice8",
+      "id": "function/practice3",
       "title": "練習問題8：複数引数の関数",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice9",
+      "id": "function/practice4",
       "title": "練習問題9：戻り値の活用",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice10",
+      "id": "function/practice5",
       "title": "練習問題10：アロー関数の基本",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice11",
+      "id": "function/practice6",
       "title": "練習問題11：関数と配列",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice12",
+      "id": "function/practice7",
       "title": "練習問題12：関数とオブジェクト",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice13",
+      "id": "function/practice8",
       "title": "練習問題13：関数と条件分岐",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice14",
+      "id": "function/practice9",
       "title": "練習問題14：関数とループ",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice15",
+      "id": "function/practice10",
       "title": "練習問題15：スコープの理解",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice16",
+      "id": "function/practice11",
       "title": "練習問題16：引数を持つ関数（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice17",
+      "id": "function/practice12",
       "title": "練習問題17：複数引数の関数（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice18",
+      "id": "function/practice13",
       "title": "練習問題18：戻り値の活用（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice19",
+      "id": "function/practice14",
       "title": "練習問題19：アロー関数の基本（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice20",
+      "id": "function/practice15",
       "title": "練習問題20：アロー関数の基本（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice21",
+      "id": "function/practice16",
       "title": "練習問題21：関数と配列（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice22",
+      "id": "function/practice17",
       "title": "練習問題22：関数とオブジェクト（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice23",
+      "id": "function/practice18",
       "title": "練習問題23：関数と条件分岐（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice24",
+      "id": "function/practice19",
       "title": "練習問題24：関数とループ（復習）",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
-      "id": "practice25",
+      "id": "function/practice20",
       "title": "練習問題25：スコープの理解（復習）",
       "category": "関数",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice1",
+      "title": "練習問題26：pushメソッドの基本",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice2",
+      "title": "練習問題27：pushメソッドで複数要素を追加",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice3",
+      "title": "練習問題28：forEachメソッドの基本",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice4",
+      "title": "練習問題29：forEachメソッドでインデックスも使用",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice5",
+      "title": "練習問題30：findメソッドの基本",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice6",
+      "title": "練習問題31：findメソッドで文字列を検索",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice7",
+      "title": "練習問題32：filterメソッドの基本",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice8",
+      "title": "練習問題33：filterメソッドで文字列をフィルタ",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice9",
+      "title": "練習問題34：mapメソッドの基本",
+      "category": "配列",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "array/practice10",
+      "title": "練習問題35：mapメソッドで文字列を変換",
+      "category": "配列",
       "difficulty": "初級",
       "points": 100
     }

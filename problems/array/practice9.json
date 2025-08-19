@@ -1,0 +1,45 @@
+{
+  "id": "array/practice9",
+  "title": "練習問題34：mapメソッドの基本",
+  "description": "mapメソッドを使って配列の各要素を変換した新しい配列を作成する方法を学習します。",
+  "instructions": [
+    "mapメソッドは各要素を変換した新しい配列を返します。",
+    "prices.map(function(price) { return price * 1.1; })のように使用します。"
+  ],
+  "template": "// 問題34: mapメソッドの基本\\n// 配列 prices の各値段に消費税10%を加えた新しい配列を作成してください\\n\\nlet prices = [100, 200, 300, 400];\\n\\n// ここにコードを書いてください\\n// mapメソッドを使って各価格に1.1をかけた新しい配列を作成\\n\\nlet pricesWithTax; // この変数に結果を代入\\n\\nconsole.log(pricesWithTax); // 期待される出力: [110, 220, 330, 440]",
+  "testCases": [
+    {
+      "name": "基本ケース（価格）",
+      "variables": { 
+        "prices": [100, 200, 300, 400]
+      },
+      "expectedOutput": "[110,220,330,440]"
+    },
+    {
+      "name": "異なる価格の場合",
+      "variables": { 
+        "prices": [50, 150, 250, 350]
+      },
+      "expectedOutput": "[55,165,275,385]"
+    },
+    {
+      "name": "小数点の場合",
+      "variables": { 
+        "prices": [10, 20, 30]
+      },
+      "expectedOutput": "[11,22,33]"
+    },
+    {
+      "name": "1つの要素の場合",
+      "variables": { 
+        "prices": [500]
+      },
+      "expectedOutput": "[550]"
+    }
+  ],
+  "expectedOutput": "[110,220,330,440]",
+  "testVariables": {
+    "prices": [100, 200, 300, 400]
+  },
+  "points": 100
+}

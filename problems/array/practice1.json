@@ -1,0 +1,45 @@
+{
+  "id": "array/practice1",
+  "title": "練習問題26：pushメソッドの基本",
+  "description": "配列に新しい要素を追加するpushメソッドの基本的な使い方を学習します。",
+  "instructions": [
+    "pushメソッドは配列の末尾に要素を追加するメソッドです。",
+    "fruits.push(\"banana\")のように使用します。"
+  ],
+  "template": "// 問題26: pushメソッドの基本\\n// 配列 fruits に新しい果物 \"banana\" を追加してください\\n\\nlet fruits = [\"apple\", \"orange\"];\\n\\n// ここにコードを書いてください\\n// fruits配列に\"banana\"を追加\\n\\nconsole.log(fruits); // 期待される出力: [\"apple\", \"orange\", \"banana\"]",
+  "testCases": [
+    {
+      "name": "基本ケース（フルーツ）",
+      "variables": { 
+        "fruits": ["apple", "orange"]
+      },
+      "expectedOutput": "[\"apple\",\"orange\",\"banana\"]"
+    },
+    {
+      "name": "野菜の場合",
+      "variables": { 
+        "fruits": ["carrot", "tomato"]
+      },
+      "expectedOutput": "[\"carrot\",\"tomato\",\"banana\"]"
+    },
+    {
+      "name": "空配列の場合",
+      "variables": { 
+        "fruits": []
+      },
+      "expectedOutput": "[\"banana\"]"
+    },
+    {
+      "name": "1つの要素の場合",
+      "variables": { 
+        "fruits": ["grape"]
+      },
+      "expectedOutput": "[\"grape\",\"banana\"]"
+    }
+  ],
+  "expectedOutput": "[\"apple\",\"orange\",\"banana\"]",
+  "testVariables": {
+    "fruits": ["apple", "orange"]
+  },
+  "points": 100
+}

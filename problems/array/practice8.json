@@ -1,0 +1,45 @@
+{
+  "id": "array/practice8",
+  "title": "練習問題33：filterメソッドで文字列をフィルタ",
+  "description": "filterメソッドを使って文字列の長さでフィルタリングする方法を学習します。",
+  "instructions": [
+    "文字列の長さはlengthプロパティで取得できます。",
+    "words.filter(function(word) { return word.length <= 3; })のように使用します。"
+  ],
+  "template": "// 問題33: filterメソッドで文字列をフィルタ\\n// 配列 words から3文字以下の単語のみを抽出した新しい配列を作成してください\\n\\nlet words = [\"cat\", \"elephant\", \"dog\", \"butterfly\", \"ant\"];\\n\\n// ここにコードを書いてください\\n// filterメソッドを使って3文字以下の単語を抽出\\n\\nlet shortWords; // この変数に結果を代入\\n\\nconsole.log(shortWords); // 期待される出力: [\"cat\", \"dog\", \"ant\"]",
+  "testCases": [
+    {
+      "name": "基本ケース（単語）",
+      "variables": { 
+        "words": ["cat", "elephant", "dog", "butterfly", "ant"]
+      },
+      "expectedOutput": "[\"cat\",\"dog\",\"ant\"]"
+    },
+    {
+      "name": "異なる単語の場合",
+      "variables": { 
+        "words": ["car", "airplane", "bus", "helicopter", "bike"]
+      },
+      "expectedOutput": "[\"car\",\"bus\"]"
+    },
+    {
+      "name": "該当なしの場合",
+      "variables": { 
+        "words": ["elephant", "butterfly", "helicopter", "airplane"]
+      },
+      "expectedOutput": "[]"
+    },
+    {
+      "name": "全て該当の場合",
+      "variables": { 
+        "words": ["cat", "dog", "ant", "bee"]
+      },
+      "expectedOutput": "[\"cat\",\"dog\",\"ant\",\"bee\"]"
+    }
+  ],
+  "expectedOutput": "[\"cat\",\"dog\",\"ant\"]",
+  "testVariables": {
+    "words": ["cat", "elephant", "dog", "butterfly", "ant"]
+  },
+  "points": 100
+}

@@ -86,11 +86,20 @@
 │   ├── main.js              # 採点システムメイン（可視化連携含む）
 │   ├── problemLoader.js     # 問題遅延読み込みシステム
 │   └── worker.js            # Web Worker（安全なコード実行）
-├── problems/                # 問題データ（JSON個別管理）
+├── problems/                # 問題データ（カテゴリ別管理）
 │   ├── index.json           # 問題一覧メタデータ
-│   ├── practice21.json      # 個別問題ファイル
-│   ├── practice22.json
-│   └── ...
+│   ├── object/              # オブジェクト問題
+│   │   ├── practice1.json
+│   │   ├── practice2.json
+│   │   └── ...
+│   ├── function/            # 関数問題
+│   │   ├── practice1.json
+│   │   ├── practice2.json
+│   │   └── ...
+│   └── array/               # 配列問題
+│       ├── practice1.json
+│       ├── practice2.json
+│       └── ...
 └── README.md              # このファイル
 ```
 
@@ -103,65 +112,18 @@
 
 ## 📝 新しい問題の追加方法
 
-### 🆕 新しいJSON形式（推奨）
+新しい問題を追加する際は、**[PROBLEM_GUIDE.md](PROBLEM_GUIDE.md)** をご確認ください。
 
-1. **個別問題ファイル作成**
-   ```json
-   // problems/practice26.json
-   {
-     "id": "practice26",
-     "title": "新しい問題のタイトル",
-     "description": "問題の説明",
-     "instructions": ["実装のポイント1", "実装のポイント2"],
-     "template": "// コードテンプレート\\nlet example = \"Hello, World!\";\\nconsole.log(example);",
-     "testCases": [
-       {
-         "name": "基本ケース",
-         "variables": { "example": "Hello, World!" },
-         "expectedOutput": "Hello, World!"
-       },
-       {
-         "name": "別のケース", 
-         "variables": { "example": "こんにちは" },
-         "expectedOutput": "こんにちは"
-       }
-       // 最大5つまでのテストケースを追加可能
-     ],
-     "expectedOutput": "Hello, World!",
-     "testVariables": { "example": "Hello, World!" },
-     "points": 100
-   }
-   ```
+- 📂 既存カテゴリに問題を追加する方法
+- 🆕 新しいカテゴリを作成する方法  
+- 📋 問題作成時のルールと注意事項
+- 🚀 デプロイ手順
 
-2. **`problems/index.json`を更新**
-   ```json
-   {
-     "version": "1.0.0",
-     "problems": [
-       // 既存の問題...
-       {
-         "id": "practice26",
-         "title": "新しい問題のタイトル",
-         "category": "基本",
-         "difficulty": "初級",
-         "points": 100
-       }
-     ]
-   }
-   ```
-
-3. **GitHubにプッシュ**
-   ```bash
-   git add problems/practice26.json problems/index.json
-   git commit -m "Add practice26"
-   git push
-   ```
-
-4. **自動的に反映** - GitHub Pagesで即座に利用可能
+が詳しく記載されています。
 
 ## 📚 問題構成
 
-現在25問の練習問題を以下のカテゴリに分けて提供しています：
+現在35問の練習問題を以下のカテゴリに分けて提供しています：
 
 ### 📦 オブジェクト（5問）
 - 商品情報の表示
@@ -183,11 +145,18 @@
 - スコープの理解
 - 各テーマの復習問題（10問）
 
+### 🔢 配列（10問）
+- pushメソッドの基本・応用
+- forEachメソッドの基本・応用
+- findメソッドの基本・応用
+- filterメソッドの基本・応用
+- mapメソッドの基本・応用
+
 ## 🌟 高度な機能
 
 ### タブ型UI
-- **カテゴリ別整理**: 問題をオブジェクト・関数などのカテゴリごとに整理
-- **視認性向上**: 25問に増加した問題を見やすく表示
+- **カテゴリ別整理**: 問題をオブジェクト・関数・配列のカテゴリごとに整理
+- **視認性向上**: 35問に増加した問題を見やすく表示
 - **直感的操作**: タブクリックでカテゴリ切り替え、ボタンクリックで問題選択
 - **レスポンシブ対応**: モバイルでの横スクロール対応
 

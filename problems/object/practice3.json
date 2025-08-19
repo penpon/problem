@@ -1,5 +1,5 @@
 {
-  "id": "practice3",
+  "id": "object/practice3",
   "title": "練習問題3：undefinedの処理",
   "description": "オブジェクトにないプロパティへのアクセスとundefined処理を学ぶプログラムを作成してください。",
   "instructions": [
