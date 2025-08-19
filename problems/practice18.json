@@ -7,7 +7,7 @@
     "データ管理システムでの関数活用方法を理解してください。",
     "複数の情報を組み合わせた出力の作成方法を学んでください。"
   ],
-  "template": "// 問題18: 複数引数の関数（復習）\\n// スポーツチームの記録システムで使う関数を作成しよう！\\n\\n// 1. showPlayerInfo関数を定義してください（引数: playerName, number, position）\\nfunction showPlayerInfo(playerName, number, position) {\\n    /* ここに「選手名: [playerName], 背番号: [number], ポジション: [position]」を表示するコードを書く */\\n}\\n\\n// 2. showGameResult関数を定義してください（引数: team1, score1, team2, score2）\\n/* ここにshowGameResult関数を定義する（「[team1] [score1] - [score2] [team2]」を表示）*/\\n\\n// 3. 関数を呼び出してテストしてください\\nconsole.log(\\\"=== 選手情報 ===\\\");\\n/* ここでshowPlayerInfo関数を「佐藤健太」、10、「フォワード」で呼び出す */\\n/* ここでshowPlayerInfo関数を「田中花子」、7、「ミッドフィールダー」で呼び出す */\\n\\nconsole.log(\\\"\\\\n=== 試合結果 ===\\\");\\n/* ここでshowGameResult関数を「レッドイーグルス」、3、「ブルーシャーク」、1で呼び出す */\\n/* ここでshowGameResult関数を「グリーンライオン」、2、「イエロータイガー」、2で呼び出す */",
+  "template": "// 問題18: 複数引数の関数（復習）\\n// スポーツチームの記録システムで使う関数を作成しよう！\\n\\n// 1. showPlayerInfo関数を定義してください（引数: playerName, number, position）\\nfunction showPlayerInfo(playerName, number, position) {\\n    /* ここに「選手名: [playerName], 背番号: [number], ポジション: [position]」を表示するコードを書く */\\n}\\n\\n// 2. showGameResult関数を定義してください（引数: team1, score1, team2, score2）\\n/* ここにshowGameResult関数を定義する（「[team1] [score1] - [score2] [team2]」を表示）*/\\n\\n// 3. 関数を呼び出してテストしてください\\nconsole.log(\"=== 選手情報 ===\");\\n/* ここでshowPlayerInfo関数を「佐藤健太」、10、「フォワード」で呼び出す */\\n/* ここでshowPlayerInfo関数を「田中花子」、7、「ミッドフィールダー」で呼び出す */\\n\\nconsole.log(\"\\\\n=== 試合結果 ===\");\\n/* ここでshowGameResult関数を「レッドイーグルス」、3、「ブルーシャーク」、1で呼び出す */\\n/* ここでshowGameResult関数を「グリーンライオン」、2、「イエロータイガー」、2で呼び出す */",
   "testCases": [
     {
       "name": "基本ケース（スポーツ記録システム）",

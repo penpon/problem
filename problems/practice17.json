@@ -7,7 +7,7 @@
     "実用的なシステムでの関数活用方法を理解してください。",
     "関数を使ったプログラムの構造化を学んでください。"
   ],
-  "template": "// 問題17: 引数を持つ関数（復習）\\n// カフェの注文システムで使う関数を作成しよう！\\n\\n// 1. orderDrink関数を定義してください（引数: drinkName）\\nfunction orderDrink(drinkName) {\\n    /* ここに「[drinkName]をご注文ありがとうございます」を表示するコードを書く */\\n}\\n\\n// 2. welcomeCustomer関数を定義してください（引数: customerName）\\n/* ここにwelcomeCustomer関数を定義する */\\n\\n// 3. 関数を呼び出してテストしてください\\nconsole.log(\\\"=== カフェ注文システム ===\\\");\\n/* ここでwelcomeCustomer関数を「鈴木」で呼び出す */\\n/* ここでorderDrink関数を「コーヒー」で呼び出す */\\n\\nconsole.log(\\\"\\\\n=== 別のお客様 ===\\\");\\n/* ここでwelcomeCustomer関数を「田中」で呼び出す */\\n/* ここでorderDrink関数を「紅茶」で呼び出す */",
+  "template": "// 問題17: 引数を持つ関数（復習）\\n// カフェの注文システムで使う関数を作成しよう！\\n\\n// 1. orderDrink関数を定義してください（引数: drinkName）\\nfunction orderDrink(drinkName) {\\n    /* ここに「[drinkName]をご注文ありがとうございます」を表示するコードを書く */\\n}\\n\\n// 2. welcomeCustomer関数を定義してください（引数: customerName）\\n/* ここにwelcomeCustomer関数を定義する */\\n\\n// 3. 関数を呼び出してテストしてください\\nconsole.log(\"=== カフェ注文システム ===\");\\n/* ここでwelcomeCustomer関数を「鈴木」で呼び出す */\\n/* ここでorderDrink関数を「コーヒー」で呼び出す */\\n\\nconsole.log(\"\\\\n=== 別のお客様 ===\");\\n/* ここでwelcomeCustomer関数を「田中」で呼び出す */\\n/* ここでorderDrink関数を「紅茶」で呼び出す */",
   "testCases": [
     {
       "name": "基本ケース（カフェ注文システム）",

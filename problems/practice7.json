@@ -7,7 +7,7 @@
     "引数を使って動的なメッセージを作成する方法を学んでください。",
     "関数に異なる値を渡して呼び出す方法を理解してください。"
   ],
-  "template": "// 問題7: 引数を持つ関数\\n// 名前を受け取って、個人的な挨拶をする関数を作成しよう！\\n\\n// 1. personalGreeting関数を定義してください（引数: name）\\nfunction personalGreeting(name) {\\n    /* ここに「[name]さん、こんにちは！」を表示するコードを書く */\\n}\\n\\n// 2. introduceMyself関数を定義してください（引数: name）\\n/* ここにintroduceMyself関数を定義する */\\n\\n// 3. 関数を呼び出してテストしてください\\nconsole.log(\\\"=== 個人的な挨拶 ===\\\");\\n/* ここでpersonalGreeting関数を「太郎」で呼び出す */\\n/* ここでintroduceMyself関数を「花子」で呼び出す */\\n\\nconsole.log(\\\"\\\\n=== 別のパターン ===\\\");\\n/* ここでpersonalGreeting関数を「田中」で呼び出す */\\n/* ここでintroduceMyself関数を「佐藤」で呼び出す */",
+  "template": "// 問題7: 引数を持つ関数\\n// 名前を受け取って、個人的な挨拶をする関数を作成しよう！\\n\\n// 1. personalGreeting関数を定義してください（引数: name）\\nfunction personalGreeting(name) {\\n    /* ここに「[name]さん、こんにちは！」を表示するコードを書く */\\n}\\n\\n// 2. introduceMyself関数を定義してください（引数: name）\\n/* ここにintroduceMyself関数を定義する */\\n\\n// 3. 関数を呼び出してテストしてください\\nconsole.log(\"=== 個人的な挨拶 ===\");\\n/* ここでpersonalGreeting関数を「太郎」で呼び出す */\\n/* ここでintroduceMyself関数を「花子」で呼び出す */\\n\\nconsole.log(\"\\\\n=== 別のパターン ===\");\\n/* ここでpersonalGreeting関数を「田中」で呼び出す */\\n/* ここでintroduceMyself関数を「佐藤」で呼び出す */",
   "testCases": [
     {
       "name": "基本ケース（太郎・花子）",
