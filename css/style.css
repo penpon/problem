@@ -788,35 +788,35 @@ select:focus {
 
 /* 品質レベル別の3段階カラーリング */
 .test-quality-excellent {
-  border-color: #48bb78;
-  background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+  border-color: #e2e8f0;
+  background: white;
 }
 
 .test-quality-excellent .test-case-header {
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-  color: white;
+  background: #f7fafc;
+  color: #4a5568;
   font-weight: 600;
 }
 
 .test-quality-good {
-  border-color: #ed8936;
-  background: linear-gradient(135deg, #fffaf0 0%, #fbd38d 100%);
+  border-color: #e2e8f0;
+  background: white;
 }
 
 .test-quality-good .test-case-header {
-  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
-  color: white;
+  background: #f7fafc;
+  color: #4a5568;
   font-weight: 600;
 }
 
 .test-quality-needs-improvement {
-  border-color: #e53e3e;
-  background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+  border-color: #e2e8f0;
+  background: white;
 }
 
 .test-quality-needs-improvement .test-case-header {
-  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
-  color: white;
+  background: #f7fafc;
+  color: #4a5568;
   font-weight: 600;
 }
 
@@ -1696,30 +1696,33 @@ select:focus {
   }
   
   .test-quality-excellent {
-    border-color: #34d399;
-    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+    border-color: #4a5568;
+    background: #2d3748;
   }
   
   .test-quality-excellent .test-case-header {
-    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    background: #374151;
+    color: #e2e8f0;
   }
   
   .test-quality-good {
-    border-color: #fbbf24;
-    background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+    border-color: #4a5568;
+    background: #2d3748;
   }
   
   .test-quality-good .test-case-header {
-    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    background: #374151;
+    color: #e2e8f0;
   }
   
   .test-quality-needs-improvement {
-    border-color: #f87171;
-    background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+    border-color: #4a5568;
+    background: #2d3748;
   }
   
   .test-quality-needs-improvement .test-case-header {
-    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+    background: #374151;
+    color: #e2e8f0;
   }
   
   .readable-section h6 {
