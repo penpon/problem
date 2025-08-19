@@ -245,6 +245,41 @@
       "category": "配列",
       "difficulty": "初級",
       "points": 100
+    },
+    {
+      "id": "general/practice1",
+      "title": "問題1: 変数と計算の基本",
+      "category": "総合",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "general/practice2",
+      "title": "問題2: 文字列とテンプレートリテラル",
+      "category": "総合",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "general/practice3",
+      "title": "問題3: 配列の基本操作",
+      "category": "総合",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "general/practice4",
+      "title": "問題4: 偶数・奇数判定",
+      "category": "総合",
+      "difficulty": "初級",
+      "points": 100
+    },
+    {
+      "id": "general/practice5",
+      "title": "問題5: FizzBuzz",
+      "category": "総合",
+      "difficulty": "初級",
+      "points": 100
     }
   ]
 }

@@ -115,6 +115,7 @@ class AutoGrader {
    */
   createTabs(problemsByCategory) {
     const categoryIcons = {
+      '総合': '🌟',
       'オブジェクト': '📦',
       '関数': '⚡',
       '配列': '📋',
