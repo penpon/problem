@@ -161,6 +161,7 @@ select:focus {
   background-color: #fafafa;
   resize: vertical;
   line-height: 1.5;
+  white-space: pre-wrap;
   transition: border-color 0.3s ease;
 }
 

@@ -234,7 +234,7 @@ class AutoGrader {
         <div style="margin-top: 20px;">
           <strong>プログラムの出力:</strong>
           <div class="result-area" style="margin-top: 10px; background: #2d3748; color: #e2e8f0;">
-${result.logs.join('\\n')}
+${result.logs.join('\n')}
           </div>
         </div>
       `;
@@ -331,7 +331,7 @@ ${result.logs.join('\\n')}
         resultHtml += `
           <div class="test-case-output">
             <strong>プログラムの出力:</strong>
-            <div class="output-content">${this.escapeHtml(testResult.logs.join('\\n'))}</div>
+            <div class="output-content">${this.escapeHtml(testResult.logs.join('\n'))}</div>
           </div>
         `;
       }
@@ -391,7 +391,7 @@ ${result.logs.join('\\n')}
         <div style="margin-top: 20px;">
           <strong>実行ログ:</strong>
           <div class="result-area" style="margin-top: 10px; background: #2d3748; color: #e2e8f0;">
-${logs.join('\\n')}
+${logs.join('\n')}
           </div>
         </div>
       `;
