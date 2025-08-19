@@ -243,11 +243,14 @@ class AutoGrader {
   }
   
   displayProblem(problem) {
+    // タイトルから「問題X: 」部分を除去
+    const cleanTitle = problem.title.replace(/^問題\d+：?\s*/, '');
+    
     this.problemDetails.innerHTML = `
-      <div class="problem-title">${problem.title}</div>
+      <div class="problem-title">${cleanTitle}</div>
       <div class="problem-description">${problem.description}</div>
       <div class="problem-instructions">
-        <strong>実装のポイント：</strong>
+        <div class="instructions-header">💡 実装のポイント</div>
         <ul>
           ${problem.instructions.map(instruction => 
             instruction ? `<li>${instruction}</li>` : '<li style="list-style:none; height:5px;"></li>'
