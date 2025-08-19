@@ -1,6 +1,6 @@
 {
   "id": "array/practice9",
-  "title": "練習問題34：mapメソッドの基本",
+  "title": "問題34：mapメソッドの基本",
   "description": "mapメソッドを使って配列の各要素を変換した新しい配列を作成する方法を学習します。",
   "instructions": [
     "mapメソッドは各要素を変換した新しい配列を返します。",

@@ -1,6 +1,6 @@
 {
   "id": "array/practice4",
-  "title": "練習問題29：forEachメソッドでインデックスも使用",
+  "title": "問題29：forEachメソッドでインデックスも使用",
   "description": "forEachメソッドで要素とインデックスの両方を使用する方法を学習します。",
   "instructions": [
     "forEachメソッドの関数には第2引数としてインデックスが渡されます。",

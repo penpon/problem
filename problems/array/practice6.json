@@ -1,6 +1,6 @@
 {
   "id": "array/practice6",
-  "title": "練習問題31：findメソッドで文字列を検索",
+  "title": "問題31：findメソッドで文字列を検索",
   "description": "findメソッドを使って文字列の条件で配列から要素を見つける方法を学習します。",
   "instructions": [
     "文字列の長さはlengthプロパティで取得できます。",

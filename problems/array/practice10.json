@@ -1,6 +1,6 @@
 {
   "id": "array/practice10",
-  "title": "練習問題35：mapメソッドで文字列を変換",
+  "title": "問題35：mapメソッドで文字列を変換",
   "description": "mapメソッドを使って文字列を変換した新しい配列を作成する方法を学習します。",
   "instructions": [
     "文字列のtoUpperCase()メソッドで大文字に変換できます。",
