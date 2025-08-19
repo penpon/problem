@@ -1,0 +1,41 @@
+{
+  "id": "general/practice3",
+  "title": "問題3: 配列の基本操作",
+  "description": "配列の長さを取得し、最初の要素と配列の長さを表示する基本的な配列操作を学習します。",
+  "instructions": [
+    "配列fruitsが定義されています。",
+    "配列の最初の要素（インデックス0）をコンソールに表示してください。",
+    "配列の長さ（length）をコンソールに表示してください。"
+  ],
+  "template": "// 問題3: 配列の基本操作\\n// 配列の最初の要素と長さを表示してください\\n\\nlet fruits = [\"りんご\", \"バナナ\", \"みかん\"];\\n\\n// ここにコードを書いてください\\n// 最初の要素を表示\\n\\n\\n// 配列の長さを表示\\n",
+  "testCases": [
+    {
+      "name": "基本ケース（果物）",
+      "variables": { "fruits": ["りんご", "バナナ", "みかん"] },
+      "expectedOutput": "りんご\\n3"
+    },
+    {
+      "name": "数値の配列",
+      "variables": { "fruits": [1, 2, 3, 4, 5] },
+      "expectedOutput": "1\\n5"
+    },
+    {
+      "name": "2要素の配列",
+      "variables": { "fruits": ["A", "B"] },
+      "expectedOutput": "A\\n2"
+    },
+    {
+      "name": "1要素の配列",
+      "variables": { "fruits": ["単独"] },
+      "expectedOutput": "単独\\n1"
+    },
+    {
+      "name": "異なる果物",
+      "variables": { "fruits": ["いちご", "ぶどう", "メロン", "スイカ"] },
+      "expectedOutput": "いちご\\n4"
+    }
+  ],
+  "expectedOutput": "りんご\\n3",
+  "testVariables": { "fruits": ["りんご", "バナナ", "みかん"] },
+  "points": 100
+}
