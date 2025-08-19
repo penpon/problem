@@ -769,7 +769,7 @@ select:focus {
 
 /* ===== コード品質チェック専用スタイル (6項目600点満点システム) ===== */
 
-/* 品質チェック項目の特別なスタイリング */
+/* 品質チェック項目の統一スタイリング */
 .quality-check-item {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   border: 2px solid #cbd5e0;
@@ -786,7 +786,7 @@ select:focus {
   background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
 }
 
-/* 品質レベル別のカラーリング */
+/* 品質レベル別の3段階カラーリング */
 .test-quality-excellent {
   border-color: #48bb78;
   background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
@@ -794,6 +794,8 @@ select:focus {
 
 .test-quality-excellent .test-case-header {
   background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  font-weight: 600;
 }
 
 .test-quality-good {
@@ -803,6 +805,8 @@ select:focus {
 
 .test-quality-good .test-case-header {
   background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+  color: white;
+  font-weight: 600;
 }
 
 .test-quality-needs-improvement {
@@ -812,6 +816,8 @@ select:focus {
 
 .test-quality-needs-improvement .test-case-header {
   background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+  color: white;
+  font-weight: 600;
 }
 
 /* 品質バッジ */
@@ -1576,34 +1582,36 @@ select:focus {
 }
 
 .readable-section h6 {
-  background: #f0fff4;
-  color: #276749;
-  border-left: 4px solid #48bb78;
+  background: #edf2f7;
+  color: #2d3748;
+  border-left: 4px solid #4299e1;
 }
 
-/* リーダブルコードの問題項目 */
+/* リーダブルコードの問題項目（統一スタイル） */
 .readable-suggestion {
-  background: #fefcbf;
-  border-left: 4px solid #ecc94b;
+  background: #f8fafc;
+  border-left: 4px solid #cbd5e0;
 }
 
 .readable-suggestion .issue-header {
-  color: #744210;
+  color: #4a5568;
   font-weight: 600;
 }
 
 .readable-suggestion .issue-message {
-  color: #744210;
+  color: #2d3748;
 }
 
 .readable-explanation {
-  background: #f0fff4;
-  border: 1px solid #c6f6d5;
-  color: #276749;
+  background: #e6f3ff;
+  border: 1px solid #bee3f8;
+  color: #1a202c;
   margin-top: 8px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 6px;
-  font-size: 0.9em;
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 /* 完璧な品質達成時のスタイル拡張 */
@@ -1687,28 +1695,56 @@ select:focus {
     border-left-color: #60a5fa;
   }
   
+  .test-quality-excellent {
+    border-color: #34d399;
+    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+  }
+  
+  .test-quality-excellent .test-case-header {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  }
+  
+  .test-quality-good {
+    border-color: #fbbf24;
+    background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+  }
+  
+  .test-quality-good .test-case-header {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  }
+  
+  .test-quality-needs-improvement {
+    border-color: #f87171;
+    background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  }
+  
+  .test-quality-needs-improvement .test-case-header {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+  }
+  
   .readable-section h6 {
-    background: #065f46;
-    color: #d1fae5;
-    border-left-color: #34d399;
+    background: #374151;
+    color: #e5e7eb;
+    border-left-color: #60a5fa;
   }
   
   .readable-suggestion {
-    background: #451a03;
-    border-left-color: #fbbf24;
+    background: #374151;
+    border-left-color: #9ca3af;
   }
   
   .readable-suggestion .issue-header {
-    color: #fde68a;
+    color: #e5e7eb;
   }
   
   .readable-suggestion .issue-message {
-    color: #fde68a;
+    color: #d1d5db;
   }
   
   .readable-explanation {
-    background: #064e3b;
-    border-color: #065f46;
-    color: #a7f3d0;
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #f7fafc;
+    font-weight: 500;
   }
 }

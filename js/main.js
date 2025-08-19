@@ -449,8 +449,8 @@ ${result.logs.join('\n')}
         // コード品質チェックの場合
         testStatusClass = testResult.status === 'ACCEPTED' ? 'test-quality-excellent' : 
                          testResult.status === 'WARNING' ? 'test-quality-good' : 'test-quality-needs-improvement';
-        testStatusIcon = testResult.status === 'ACCEPTED' ? '🏆' : 
-                        testResult.status === 'WARNING' ? '⚠️' : '🔧';
+        testStatusIcon = testResult.status === 'ACCEPTED' ? '✅' : 
+                        testResult.status === 'WARNING' ? '⚠️' : '❌';
       } else {
         // 通常のテストケースの場合
         testStatusClass = testResult.status === 'ACCEPTED' ? 'test-accepted' : 
