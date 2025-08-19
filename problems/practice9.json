@@ -1,0 +1,41 @@
+{
+  "id": "practice9",
+  "title": "練習問題9：戻り値の活用",
+  "description": "値を返す関数を作成して、その結果を活用しよう！",
+  "instructions": [
+    "return文を使用して値を返す関数の作り方を理解してください。",
+    "戻り値を変数に代入して活用する方法を学んでください。",
+    "関数の戻り値を使って計算や文字列操作を行う方法を理解してください。"
+  ],
+  "template": "// 問題9: 戻り値の活用\\n// 値を返す関数を作成して、その結果を活用しよう！\\n\\n// 1. multiplyBy2関数を定義してください（引数: number、戻り値: number * 2）\\nfunction multiplyBy2(number) {\\n    /* ここにnumberを2倍した値を返すコードを書く */\\n}\\n\\n// 2. getFullName関数を定義してください（引数: lastName, firstName、戻り値: 姓と名を結合した文字列）\\n/* ここにgetFullName関数を定義する */\\n\\n// 3. 関数を呼び出して戻り値を活用してください\\nconsole.log(\\\"=== 戻り値の活用 ===\\\");\\n\\n// multiplyBy2関数のテスト\\nlet number1 = 5;\\nlet result1 = /* ここでmultiplyBy2関数をnumber1で呼び出す */;\\nconsole.log(number1 + \\\"の2倍は\\\" + result1 + \\\"です\\\");\\n\\nlet number2 = 8;\\nlet result2 = /* ここでmultiplyBy2関数をnumber2で呼び出す */;\\nconsole.log(number2 + \\\"の2倍は\\\" + result2 + \\\"です\\\");\\n\\n// getFullName関数のテスト\\nlet fullName1 = /* ここでgetFullName関数を「田中」、「太郎」で呼び出す */;\\nconsole.log(\\\"フルネーム: \\\" + fullName1);\\n\\nlet fullName2 = /* ここでgetFullName関数を「佐藤」、「花子」で呼び出す */;\\nconsole.log(\\\"フルネーム: \\\" + fullName2);",
+  "testCases": [
+    {
+      "name": "基本ケース（戻り値活用）",
+      "variables": {},
+      "expectedOutput": "=== 戻り値の活用 ===\\n5の2倍は10です\\n8の2倍は16です\\nフルネーム: 田中 太郎\\nフルネーム: 佐藤 花子"
+    },
+    {
+      "name": "multiplyBy2関数チェック",
+      "variables": {},
+      "expectedOutput": "=== 戻り値の活用 ===\\n5の2倍は10です\\n8の2倍は16です\\nフルネーム: 田中 太郎\\nフルネーム: 佐藤 花子"
+    },
+    {
+      "name": "getFullName関数チェック",
+      "variables": {},
+      "expectedOutput": "=== 戻り値の活用 ===\\n5の2倍は10です\\n8の2倍は16です\\nフルネーム: 田中 太郎\\nフルネーム: 佐藤 花子"
+    },
+    {
+      "name": "戻り値代入と活用チェック",
+      "variables": {},
+      "expectedOutput": "=== 戻り値の活用 ===\\n5の2倍は10です\\n8の2倍は16です\\nフルネーム: 田中 太郎\\nフルネーム: 佐藤 花子"
+    },
+    {
+      "name": "計算結果と文字列結合チェック",
+      "variables": {},
+      "expectedOutput": "=== 戻り値の活用 ===\\n5の2倍は10です\\n8の2倍は16です\\nフルネーム: 田中 太郎\\nフルネーム: 佐藤 花子"
+    }
+  ],
+  "expectedOutput": "=== 戻り値の活用 ===\\n5の2倍は10です\\n8の2倍は16です\\nフルネーム: 田中 太郎\\nフルネーム: 佐藤 花子",
+  "testVariables": {},
+  "points": 100
+}

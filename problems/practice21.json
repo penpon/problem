@@ -1,0 +1,59 @@
+{
+  "id": "practice21",
+  "title": "練習問題21：関数と配列（復習）",
+  "description": "音楽プレイリストを管理する関数を作成して、配列の操作を学ぼう！",
+  "instructions": [
+    "配列を扱う関数の復習をしてください。",
+    "実用的なシステムでの配列操作方法を理解してください。",
+    "配列の様々なプロパティとメソッドの活用方法を学んでください。"
+  ],
+  "template": "// 問題21: 関数と配列（復習）\\n// 音楽プレイリストを管理する関数を作成して、配列の操作を学ぼう！\\n\\n// 1. showPlaylist関数を定義してください（引数: songs）\\nfunction showPlaylist(songs) {\\n    /* ここにfor文を使って配列の全ての楽曲を表示するコードを書く */\\n    /* ヒント: for (let i = 0; i < songs.length; i++) を使用 */\\n}\\n\\n// 2. getLastSong関数を定義してください（引数: songs、戻り値: 配列の最後の要素）\\n/* ここにgetLastSong関数を定義する */\\n\\n// 3. getPlaylistSize関数を定義してください（引数: songs、戻り値: 配列の長さ）\\nfunction getPlaylistSize(songs) {\\n    /* ここに配列の長さを返すコードを書く */\\n}\\n\\n// 4. 関数を呼び出してテストしてください\\nlet jpopPlaylist = [\\\"桜\\\", \\\"津軽海峡冬景色\\\", \\\"島唄\\\", \\\"青春\\\"];\\nlet rockPlaylist = [\\\"Bohemian Rhapsody\\\", \\\"Stairway to Heaven\\\"];\\n\\nconsole.log(\\\"=== 音楽プレイリスト管理 ===\\\");\\n\\n// showPlaylist関数のテスト\\nconsole.log(\\\"--- J-POPプレイリスト ---\\\");\\n/* ここでshowPlaylist関数をjpopPlaylistで呼び出す */\\n\\nconsole.log(\\\"--- ロックプレイリスト ---\\\");\\n/* ここでshowPlaylist関数をrockPlaylistで呼び出す */\\n\\n// getLastSong関数のテスト\\nlet lastJpop = /* ここでgetLastSong関数をjpopPlaylistで呼び出す */;\\nconsole.log(\\\"J-POPの最後の楽曲: \\\" + lastJpop);\\n\\nlet lastRock = /* ここでgetLastSong関数をrockPlaylistで呼び出す */;\\nconsole.log(\\\"ロックの最後の楽曲: \\\" + lastRock);\\n\\n// getPlaylistSize関数のテスト\\nlet jpopSize = /* ここでgetPlaylistSize関数をjpopPlaylistで呼び出す */;\\nconsole.log(\\\"J-POPプレイリストの楽曲数: \\\" + jpopSize);\\n\\nlet rockSize = /* ここでgetPlaylistSize関数をrockPlaylistで呼び出す */;\\nconsole.log(\\\"ロックプレイリストの楽曲数: \\\" + rockSize);",
+  "testCases": [
+    {
+      "name": "基本ケース（音楽プレイリスト管理）",
+      "variables": {
+        "jpopPlaylist": ["桜", "津軽海峡冬景色", "島唄", "青春"],
+        "rockPlaylist": ["Bohemian Rhapsody", "Stairway to Heaven"]
+      },
+      "expectedOutput": "=== 音楽プレイリスト管理 ===\\n--- J-POPプレイリスト ---\\n桜\\n津軽海峡冬景色\\n島唄\\n青春\\n--- ロックプレイリスト ---\\nBohemian Rhapsody\\nStairway to Heaven\\nJ-POPの最後の楽曲: 青春\\nロックの最後の楽曲: Stairway to Heaven\\nJ-POPプレイリストの楽曲数: 4\\nロックプレイリストの楽曲数: 2"
+    },
+    {
+      "name": "showPlaylist関数チェック",
+      "variables": {
+        "jpopPlaylist": ["桜", "津軽海峡冬景色", "島唄", "青春"],
+        "rockPlaylist": ["Bohemian Rhapsody", "Stairway to Heaven"]
+      },
+      "expectedOutput": "=== 音楽プレイリスト管理 ===\\n--- J-POPプレイリスト ---\\n桜\\n津軽海峡冬景色\\n島唄\\n青春\\n--- ロックプレイリスト ---\\nBohemian Rhapsody\\nStairway to Heaven\\nJ-POPの最後の楽曲: 青春\\nロックの最後の楽曲: Stairway to Heaven\\nJ-POPプレイリストの楽曲数: 4\\nロックプレイリストの楽曲数: 2"
+    },
+    {
+      "name": "getLastSong関数チェック",
+      "variables": {
+        "jpopPlaylist": ["桜", "津軽海峡冬景色", "島唄", "青春"],
+        "rockPlaylist": ["Bohemian Rhapsody", "Stairway to Heaven"]
+      },
+      "expectedOutput": "=== 音楽プレイリスト管理 ===\\n--- J-POPプレイリスト ---\\n桜\\n津軽海峡冬景色\\n島唄\\n青春\\n--- ロックプレイリスト ---\\nBohemian Rhapsody\\nStairway to Heaven\\nJ-POPの最後の楽曲: 青春\\nロックの最後の楽曲: Stairway to Heaven\\nJ-POPプレイリストの楽曲数: 4\\nロックプレイリストの楽曲数: 2"
+    },
+    {
+      "name": "getPlaylistSize関数チェック",
+      "variables": {
+        "jpopPlaylist": ["桜", "津軽海峡冬景色", "島唄", "青春"],
+        "rockPlaylist": ["Bohemian Rhapsody", "Stairway to Heaven"]
+      },
+      "expectedOutput": "=== 音楽プレイリスト管理 ===\\n--- J-POPプレイリスト ---\\n桜\\n津軽海峡冬景色\\n島唄\\n青春\\n--- ロックプレイリスト ---\\nBohemian Rhapsody\\nStairway to Heaven\\nJ-POPの最後の楽曲: 青春\\nロックの最後の楽曲: Stairway to Heaven\\nJ-POPプレイリストの楽曲数: 4\\nロックプレイリストの楽曲数: 2"
+    },
+    {
+      "name": "配列要素アクセス確認",
+      "variables": {
+        "jpopPlaylist": ["桜", "津軽海峡冬景色", "島唄", "青春"],
+        "rockPlaylist": ["Bohemian Rhapsody", "Stairway to Heaven"]
+      },
+      "expectedOutput": "=== 音楽プレイリスト管理 ===\\n--- J-POPプレイリスト ---\\n桜\\n津軽海峡冬景色\\n島唄\\n青春\\n--- ロックプレイリスト ---\\nBohemian Rhapsody\\nStairway to Heaven\\nJ-POPの最後の楽曲: 青春\\nロックの最後の楽曲: Stairway to Heaven\\nJ-POPプレイリストの楽曲数: 4\\nロックプレイリストの楽曲数: 2"
+    }
+  ],
+  "expectedOutput": "=== 音楽プレイリスト管理 ===\\n--- J-POPプレイリスト ---\\n桜\\n津軽海峡冬景色\\n島唄\\n青春\\n--- ロックプレイリスト ---\\nBohemian Rhapsody\\nStairway to Heaven\\nJ-POPの最後の楽曲: 青春\\nロックの最後の楽曲: Stairway to Heaven\\nJ-POPプレイリストの楽曲数: 4\\nロックプレイリストの楽曲数: 2",
+  "testVariables": {
+    "jpopPlaylist": ["桜", "津軽海峡冬景色", "島唄", "青春"],
+    "rockPlaylist": ["Bohemian Rhapsody", "Stairway to Heaven"]
+  },
+  "points": 100
+}
