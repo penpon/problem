@@ -100,7 +100,7 @@ class AutoGrader {
       
       if (this.currentProblem) {
         this.displayProblem(this.currentProblem);
-        this.codeEditor.value = this.currentProblem.template;
+        this.codeEditor.value = this.currentProblem.template.replace(/\\n/g, '\n');
         this.clearResult();
         console.log(`問題 ${selectedId} の詳細読み込み完了`);
       } else {
