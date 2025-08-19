@@ -788,6 +788,7 @@ select:focus {
 
 /* 品質レベル別の3段階カラーリング */
 .test-quality-excellent {
+  border-left: 4px solid #48bb78;
   border-color: #e2e8f0;
   background: white;
 }
@@ -799,6 +800,7 @@ select:focus {
 }
 
 .test-quality-good {
+  border-left: 4px solid #ed8936;
   border-color: #e2e8f0;
   background: white;
 }
@@ -810,6 +812,7 @@ select:focus {
 }
 
 .test-quality-needs-improvement {
+  border-left: 4px solid #f56565;
   border-color: #e2e8f0;
   background: white;
 }
@@ -1696,6 +1699,7 @@ select:focus {
   }
   
   .test-quality-excellent {
+    border-left: 4px solid #48bb78;
     border-color: #4a5568;
     background: #2d3748;
   }
@@ -1706,6 +1710,7 @@ select:focus {
   }
   
   .test-quality-good {
+    border-left: 4px solid #ed8936;
     border-color: #4a5568;
     background: #2d3748;
   }
@@ -1716,6 +1721,7 @@ select:focus {
   }
   
   .test-quality-needs-improvement {
+    border-left: 4px solid #f56565;
     border-color: #4a5568;
     background: #2d3748;
   }

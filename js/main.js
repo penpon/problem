@@ -446,11 +446,18 @@ ${result.logs.join('\n')}
       let testStatusClass, testStatusIcon;
       
       if (isQualityCheck) {
-        // コード品質チェックの場合
-        testStatusClass = testResult.status === 'ACCEPTED' ? 'test-quality-excellent' : 
-                         testResult.status === 'WARNING' ? 'test-quality-good' : 'test-quality-needs-improvement';
-        testStatusIcon = testResult.status === 'ACCEPTED' ? '✅' : 
-                        testResult.status === 'WARNING' ? '⚠️' : '❌';
+        // コード品質チェックの場合 - スコアベースで3段階評価
+        const score = testResult.score || 0;
+        if (score === 100) {
+          testStatusClass = 'test-quality-excellent';
+          testStatusIcon = '✅';
+        } else if (score >= 50) {
+          testStatusClass = 'test-quality-good';
+          testStatusIcon = '⚠️';
+        } else {
+          testStatusClass = 'test-quality-needs-improvement';
+          testStatusIcon = '❌';
+        }
       } else {
         // 通常のテストケースの場合
         testStatusClass = testResult.status === 'ACCEPTED' ? 'test-accepted' : 
