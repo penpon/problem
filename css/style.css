@@ -186,10 +186,11 @@ select:focus {
 }
 
 .problem-item.selected {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-  border-color: #667eea;
+  background: linear-gradient(135deg, #3182ce, #2c5aa0);
+  border-color: #2c5aa0;
   font-weight: 500;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 8px rgba(49, 130, 206, 0.4);
+  color: white;
 }
 
 .problem-item .problem-number {
@@ -200,6 +201,14 @@ select:focus {
 
 .problem-item .problem-title {
   color: #2d3748;
+}
+
+.problem-item.selected .problem-number {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.problem-item.selected .problem-title {
+  color: white;
 }
 
 /* 問題詳細表示 */
