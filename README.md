@@ -67,7 +67,7 @@
 
 ### 学習者の使い方
 
-1. **カテゴリ選択**: タブをクリックして問題カテゴリを選択（オブジェクト・関数など）
+1. **カテゴリ選択**: タブをクリックして問題カテゴリを選択（総合・オブジェクト・関数・配列）
 2. **問題選択**: カテゴリ内の問題リストから解きたい問題をクリック
 3. **コード編集**: 表示されたテンプレートの穴埋め部分を完成させる
 4. **実行**: 実行ボタンまたは `Ctrl+Enter` で採点
@@ -120,6 +120,7 @@
 ├── index.html              # メニューページ（ツール選択）
 ├── grader.html             # 自動採点システム（6項目600点満点）
 ├── visualizer.html         # コード可視化ツール
+├── .gitignore              # Git除外設定（開発用ファイル管理）
 ├── css/
 │   └── style.css          # 統合スタイルシート（コード品質UI含む）
 ├── js/
@@ -128,20 +129,29 @@
 │   ├── problemLoader.js     # 問題遅延読み込みシステム
 │   ├── worker.js            # Web Worker（実行結果+品質チェック）
 │   └── eslint-config.js     # ESLint設定（段階的ルールセット）
-├── problems/                # 問題データ（カテゴリ別管理）
+├── problems/                # 問題データ（カテゴリ別管理・合計40問）
 │   ├── index.json           # 問題一覧メタデータ
-│   ├── object/              # オブジェクト問題
+│   ├── general/             # 総合問題（5問）
 │   │   ├── practice1.json
 │   │   ├── practice2.json
-│   │   └── ...
-│   ├── function/            # 関数問題
+│   │   ├── practice3.json
+│   │   ├── practice4.json
+│   │   └── practice5.json
+│   ├── object/              # オブジェクト問題（5問）
 │   │   ├── practice1.json
 │   │   ├── practice2.json
-│   │   └── ...
-│   └── array/               # 配列問題
+│   │   ├── practice3.json
+│   │   ├── practice4.json
+│   │   └── practice5.json
+│   ├── function/            # 関数問題（20問）
+│   │   ├── practice1.json
+│   │   ├── practice2.json
+│   │   └── ... (practice20.jsonまで)
+│   └── array/               # 配列問題（10問）
 │       ├── practice1.json
 │       ├── practice2.json
-│       └── ...
+│       └── ... (practice10.jsonまで)
+├── PROBLEM_GUIDE.md        # 問題追加ガイドライン
 └── README.md              # このファイル
 ```
 
