@@ -517,36 +517,6 @@ select:focus {
   }
 }
 
-/* ダークモード対応（オプション） */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1a202c;
-    color: #e2e8f0;
-  }
-  
-  .problem-section,
-  .editor-section,
-  .result-section {
-    background: #2d3748;
-    border: 1px solid #4a5568;
-  }
-  
-  .code-editor {
-    background-color: #1a202c;
-    color: #e2e8f0;
-    border-color: #4a5568;
-  }
-  
-  .code-editor:focus {
-    background-color: #2d3748;
-  }
-  
-  select {
-    background-color: #2d3748;
-    color: #e2e8f0;
-    border-color: #4a5568;
-  }
-}
 
 /* 複数テストケース結果表示用スタイル */
 
@@ -847,6 +817,19 @@ select:focus {
   display: block;
 }
 
+/* インライン色指定の置き換え用のクラス */
+.no-result-text {
+  color: #a0aec0;
+}
+
+.footer-style {
+  text-align: center;
+  padding: 30px;
+  color: #a0aec0;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 40px;
+}
+
 /* 統合システム用の追加スタイル */
 
 /* 可視化ボタン関連 */
@@ -1087,7 +1070,7 @@ select:focus {
   }
 }
 
-/* ダークモード基本対応 */
+/* ダークモード統合対応 */
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #1a202c;
@@ -1113,8 +1096,177 @@ select:focus {
     border-color: #4a5568;
   }
   
+  .code-editor:focus {
+    background-color: #2d3748;
+  }
+  
+  select {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-color: #4a5568;
+  }
+  
   .section-title {
     color: #cbd5e0;
     border-color: #4a5568;
+  }
+  
+  /* プログレステキストの視認性改善 */
+  .progress-text {
+    color: #cbd5e0;
+  }
+  
+  /* プログレスバーの背景色改善 */
+  .progress-bar {
+    background-color: #4a5568;
+  }
+  
+  /* タブナビゲーションの改善 */
+  .tab-navigation {
+    border-color: #4a5568;
+  }
+  
+  .tab-button {
+    color: #a0aec0;
+  }
+  
+  .tab-button:hover {
+    color: #e2e8f0;
+    background: #4a5568;
+  }
+  
+  .tab-button.active {
+    color: #81c1f7;
+  }
+  
+  /* 問題リストアイテム */
+  .problem-item {
+    background: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .problem-item:hover {
+    background: #5a6478;
+    border-color: #718096;
+  }
+  
+  .problem-item .problem-number {
+    color: #a0aec0;
+  }
+  
+  .problem-item .problem-title {
+    color: #e2e8f0;
+  }
+  
+  /* 問題詳細 */
+  .problem-details {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .problem-instructions {
+    background: #374151;
+    border-color: #4a5568;
+  }
+  
+  .instructions-header {
+    background: #1e3a8a;
+    color: #bfdbfe;
+  }
+  
+  .problem-instructions li {
+    color: #d1d5db;
+  }
+  
+  /* 出力ボックス */
+  .output-box {
+    background: #374151;
+    border-color: #4a5568;
+  }
+  
+  .output-box h4 {
+    color: #d1d5db;
+  }
+  
+  .output-content {
+    background: #1a202c;
+    color: #e2e8f0;
+    border-color: #4a5568;
+  }
+  
+  /* テストケース関連 */
+  .test-cases-container {
+    border-color: #4a5568;
+  }
+  
+  .test-case {
+    border-color: #4a5568;
+  }
+  
+  .test-case-header {
+    background: #374151;
+    color: #e2e8f0;
+  }
+  
+  .test-case-header:hover {
+    background: #4a5568;
+  }
+  
+  .test-case.expanded .test-case-header {
+    background: #4a5568;
+    border-color: #718096;
+  }
+  
+  .test-case-title {
+    color: #e2e8f0;
+  }
+  
+  .test-case-details {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .test-case-message {
+    color: #cbd5e0;
+  }
+  
+  /* 比較表示 */
+  .comparison-expected {
+    background: #065f46;
+  }
+  
+  .comparison-actual {
+    background: #7f1d1d;
+  }
+  
+  .comparison-expected h5 {
+    color: #86efac;
+  }
+  
+  .comparison-actual h5 {
+    color: #fca5a5;
+  }
+  
+  /* ローディング・エラーメッセージ */
+  .loading-message {
+    background: #1e3a8a;
+    border-color: #3730a3;
+    color: #bfdbfe;
+  }
+  
+  .error-message {
+    background: #7f1d1d;
+    border-color: #991b1b;
+    color: #fca5a5;
+  }
+  
+  /* インライン色指定の置き換え */
+  .no-result-text {
+    color: #cbd5e0 !important;
+  }
+  
+  .footer-style {
+    border-color: #4a5568 !important;
+    color: #a0aec0 !important;
   }
 }
