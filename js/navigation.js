@@ -1,6 +1,6 @@
 /**
  * 共通ナビゲーション機能
- * JavaScript学習ツール統合システム
+ * JavaScript学習サイト統合システム
  */
 
 class NavigationManager {
@@ -39,7 +39,7 @@ class NavigationManager {
                 <div class="nav-content">
                     <a href="index.html" class="nav-brand">
                         <span class="nav-icon">🚀</span>
-                        <span class="nav-title">JavaScript学習ツール</span>
+                        <span class="nav-title">JavaScript学習サイト</span>
                     </a>
                     
                     <div class="nav-links">
