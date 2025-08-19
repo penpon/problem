@@ -56,6 +56,9 @@ function replaceVariables(code, variables) {
       formattedValue = `[${value.map(v => typeof v === 'string' ? `"${v}"` : v).join(', ')}]`;
     } else if (typeof value === 'string') {
       formattedValue = `"${value}"`;
+    } else if (typeof value === 'object' && value !== null) {
+      // オブジェクトの場合はJSON.stringifyして適切にフォーマット
+      formattedValue = JSON.stringify(value);
     } else {
       formattedValue = value;
     }
