@@ -1178,8 +1178,8 @@ select:focus {
   }
   
   .instructions-header {
-    background: #1e3a8a;
-    color: #bfdbfe;
+    background: #e6f3ff;
+    color: #3182ce;
   }
   
   .problem-instructions li {
