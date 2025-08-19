@@ -439,17 +439,32 @@ ${result.logs.join('\n')}
     resultHtml += `<div class="test-cases-container">`;
     
     result.testResults.forEach((testResult, index) => {
-      const testStatusClass = testResult.status === 'ACCEPTED' ? 'test-accepted' : 
-                             testResult.status === 'WRONG_ANSWER' ? 'test-wrong' : 'test-error';
+      // コード品質チェック項目の判定
+      const isQualityCheck = testResult.isQualityCheck === true;
       
-      const testStatusIcon = testResult.status === 'ACCEPTED' ? '✅' : 
-                            testResult.status === 'WRONG_ANSWER' ? '❌' : '⚠️';
+      // ステータスクラスとアイコンの設定（品質チェック用の拡張）
+      let testStatusClass, testStatusIcon;
+      
+      if (isQualityCheck) {
+        // コード品質チェックの場合
+        testStatusClass = testResult.status === 'ACCEPTED' ? 'test-quality-excellent' : 
+                         testResult.status === 'WARNING' ? 'test-quality-good' : 'test-quality-needs-improvement';
+        testStatusIcon = testResult.status === 'ACCEPTED' ? '🏆' : 
+                        testResult.status === 'WARNING' ? '⚠️' : '🔧';
+      } else {
+        // 通常のテストケースの場合
+        testStatusClass = testResult.status === 'ACCEPTED' ? 'test-accepted' : 
+                         testResult.status === 'WRONG_ANSWER' ? 'test-wrong' : 'test-error';
+        testStatusIcon = testResult.status === 'ACCEPTED' ? '✅' : 
+                        testResult.status === 'WRONG_ANSWER' ? '❌' : '⚠️';
+      }
       
       resultHtml += `
-        <div class="test-case ${testStatusClass}">
+        <div class="test-case ${testStatusClass} ${isQualityCheck ? 'quality-check-item' : ''}">
           <div class="test-case-header" onclick="this.parentElement.classList.toggle('expanded')">
             <div class="test-case-title">
               ${testStatusIcon} ${testResult.testCaseName}
+              ${isQualityCheck ? '<span class="quality-badge">品質チェック</span>' : ''}
             </div>
             <div class="test-case-score">${testResult.score}/100点</div>
           </div>
@@ -459,39 +474,103 @@ ${result.logs.join('\n')}
             </div>
       `;
       
-      // 実行ログを表示
-      if (testResult.logs && testResult.logs.length > 0) {
-        resultHtml += `
-          <div class="test-case-output">
-            <strong>プログラムの出力:</strong>
-            <div class="output-content">${this.escapeHtml(testResult.logs.join('\n'))}</div>
-          </div>
-        `;
-      }
-      
-      // 不正解の場合は比較表示
-      if (testResult.status === 'WRONG_ANSWER' && testResult.comparison) {
-        resultHtml += `
-          <div class="test-case-comparison">
-            <div class="comparison-expected">
-              <h5>期待される出力:</h5>
-              <div class="output-content">${this.escapeHtml(testResult.expectedOutput)}</div>
-            </div>
-            <div class="comparison-actual">
-              <h5>実際の出力:</h5>
-              <div class="output-content">${this.escapeHtml(testResult.actualOutput)}</div>
-            </div>
-          </div>
-        `;
+      // コード品質チェックの詳細表示
+      if (isQualityCheck && testResult.qualityCheck) {
+        const qc = testResult.qualityCheck;
         
-        if (testResult.comparison.expectedLine && testResult.comparison.actualLine) {
+        if (qc.issues && qc.issues.length > 0) {
           resultHtml += `
-            <div class="test-case-diff">
-              <strong>詳細な差異:</strong><br>
-              期待値: <code>${this.escapeHtml(testResult.comparison.expectedLine)}</code><br>
-              実際の値: <code>${this.escapeHtml(testResult.comparison.actualLine)}</code>
+            <div class="quality-issues">
+              <h5>🔍 コード品質の詳細:</h5>
+              <div class="issues-summary">
+                ${qc.errorCount > 0 ? `<span class="error-count">エラー: ${qc.errorCount}個</span>` : ''}
+                ${qc.warningCount > 0 ? `<span class="warning-count">改善点: ${qc.warningCount}個</span>` : ''}
+              </div>
+              <div class="issues-list">
+          `;
+          
+          qc.issues.forEach(issue => {
+            const issueIcon = issue.severity === 2 ? '🚨' : '💡';
+            const issueClass = issue.severity === 2 ? 'quality-error' : 'quality-warning';
+            
+            resultHtml += `
+              <div class="quality-issue ${issueClass}">
+                <div class="issue-header">
+                  ${issueIcon} 行${issue.line}:${issue.column} - ${issue.ruleId || '不明なルール'}
+                </div>
+                <div class="issue-message">
+                  ${this.escapeHtml(issue.message)}
+                </div>
+            `;
+            
+            // 日本語での説明があれば追加
+            if (issue.japaneseMessage) {
+              resultHtml += `
+                <div class="issue-explanation">
+                  <strong>説明:</strong> ${this.escapeHtml(issue.japaneseMessage.message)}
+                  <br><strong>改善提案:</strong> ${this.escapeHtml(issue.japaneseMessage.suggestion)}
+                </div>
+              `;
+            }
+            
+            resultHtml += `</div>`;
+          });
+          
+          resultHtml += `
+              </div>
             </div>
           `;
+        } else if (qc.score === 100) {
+          resultHtml += `
+            <div class="quality-perfect">
+              <div class="quality-celebration">
+                🎉 <strong>素晴らしい！</strong> コードが全ての品質基準を満たしています！
+              </div>
+              <div class="quality-achievement">
+                <ul>
+                  <li>✨ コーディング規約に準拠</li>
+                  <li>✨ ベストプラクティスを実践</li>
+                  <li>✨ 潜在的なバグなし</li>
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+      } else {
+        // 通常のテストケースの場合：実行ログを表示
+        if (testResult.logs && testResult.logs.length > 0) {
+          resultHtml += `
+            <div class="test-case-output">
+              <strong>プログラムの出力:</strong>
+              <div class="output-content">${this.escapeHtml(testResult.logs.join('\n'))}</div>
+            </div>
+          `;
+        }
+        
+        // 不正解の場合は比較表示
+        if (testResult.status === 'WRONG_ANSWER' && testResult.comparison) {
+          resultHtml += `
+            <div class="test-case-comparison">
+              <div class="comparison-expected">
+                <h5>期待される出力:</h5>
+                <div class="output-content">${this.escapeHtml(testResult.expectedOutput)}</div>
+              </div>
+              <div class="comparison-actual">
+                <h5>実際の出力:</h5>
+                <div class="output-content">${this.escapeHtml(testResult.actualOutput)}</div>
+              </div>
+            </div>
+          `;
+          
+          if (testResult.comparison.expectedLine && testResult.comparison.actualLine) {
+            resultHtml += `
+              <div class="test-case-diff">
+                <strong>詳細な差異:</strong><br>
+                期待値: <code>${this.escapeHtml(testResult.comparison.expectedLine)}</code><br>
+                実際の値: <code>${this.escapeHtml(testResult.comparison.actualLine)}</code>
+              </div>
+            `;
+          }
         }
       }
       

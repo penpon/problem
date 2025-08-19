@@ -767,6 +767,233 @@ select:focus {
   }
 }
 
+/* ===== コード品質チェック専用スタイル (6項目600点満点システム) ===== */
+
+/* 品質チェック項目の特別なスタイリング */
+.quality-check-item {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 2px solid #cbd5e0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.quality-check-item .test-case-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+}
+
+.quality-check-item .test-case-header:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+/* 品質レベル別のカラーリング */
+.test-quality-excellent {
+  border-color: #48bb78;
+  background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+}
+
+.test-quality-excellent .test-case-header {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+.test-quality-good {
+  border-color: #ed8936;
+  background: linear-gradient(135deg, #fffaf0 0%, #fbd38d 100%);
+}
+
+.test-quality-good .test-case-header {
+  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+}
+
+.test-quality-needs-improvement {
+  border-color: #e53e3e;
+  background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+}
+
+.test-quality-needs-improvement .test-case-header {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+}
+
+/* 品質バッジ */
+.quality-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 500;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+/* 品質チェック完璧な場合の祝福スタイル */
+.quality-perfect {
+  background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+  border: 2px solid #48bb78;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.quality-celebration {
+  font-size: 1.2em;
+  color: #2f855a;
+  margin-bottom: 15px;
+}
+
+.quality-achievement {
+  background: rgba(72, 187, 120, 0.1);
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.quality-achievement ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quality-achievement li {
+  color: #2f855a;
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+/* 品質問題の詳細表示 */
+.quality-issues {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 15px 0;
+}
+
+.quality-issues h5 {
+  color: #4a5568;
+  margin: 0 0 12px 0;
+  font-size: 1.1em;
+}
+
+.issues-summary {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.error-count {
+  background: #fed7d7;
+  color: #c53030;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.warning-count {
+  background: #fbd38d;
+  color: #dd6b20;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.issues-list {
+  space-y: 12px;
+}
+
+/* 個別の品質問題 */
+.quality-issue {
+  background: white;
+  border-left: 4px solid #cbd5e0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.quality-issue.quality-error {
+  border-left-color: #e53e3e;
+  background: #fff5f5;
+}
+
+.quality-issue.quality-warning {
+  border-left-color: #ed8936;
+  background: #fffaf0;
+}
+
+.issue-header {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+.quality-error .issue-header {
+  color: #c53030;
+}
+
+.quality-warning .issue-header {
+  color: #dd6b20;
+}
+
+.issue-message {
+  color: #4a5568;
+  font-size: 0.9em;
+  margin-bottom: 8px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.issue-explanation {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 8px;
+  font-size: 0.85em;
+  color: #2d3748;
+}
+
+.issue-explanation strong {
+  color: #1a202c;
+}
+
+/* レスポンシブ対応 - 品質チェック */
+@media (max-width: 768px) {
+  .quality-issues {
+    padding: 12px;
+  }
+  
+  .issues-summary {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .error-count,
+  .warning-count {
+    text-align: center;
+  }
+  
+  .quality-issue {
+    padding: 10px 12px;
+  }
+  
+  .issue-explanation {
+    padding: 8px;
+    font-size: 0.8em;
+  }
+  
+  .quality-badge {
+    display: block;
+    margin: 4px 0 0 0;
+    text-align: center;
+    padding: 4px 8px;
+  }
+}
+
+/* ===== コード品質チェックスタイル終了 ===== */
+
 /* ローディング・エラーメッセージ */
 .loading-message {
   text-align: center;

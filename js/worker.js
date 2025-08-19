@@ -1,7 +1,18 @@
 /**
  * Web Worker for safe JavaScript code execution
  * JavaScript自動採点システム - セキュアな実行環境
+ * 6項目600点満点システム: 実行結果5項目 + コード品質1項目
  */
+
+// ESLint設定の読み込み（Web Worker環境でのグローバルアクセス）
+try {
+  importScripts('./eslint-config.js');
+} catch (error) {
+  console.warn('ESLint設定ファイルの読み込みに失敗しました:', error);
+}
+
+// ESLintインスタンスの初期化（遅延初期化）
+let eslintInstance = null;
 
 // console.logの出力をキャプチャするための配列
 let capturedLogs = [];
@@ -173,12 +184,136 @@ function compareOutput(expected, actual) {
   };
 }
 
-// 複数テストケースを実行する関数
+// ESLintを使用してコード品質をチェックする関数
+function checkCodeQuality(code) {
+  try {
+    // ESLintインスタンスの遅延初期化
+    if (!eslintInstance && typeof ESLint !== 'undefined') {
+      const level = self.ESLintConfig ? self.ESLintConfig.getRecommendedLevel(code) : 'basic';
+      const config = self.ESLintConfig ? self.ESLintConfig.createConfig(level) : {
+        env: { browser: true, es2021: true },
+        parserOptions: { ecmaVersion: 'latest', sourceType: 'script' },
+        rules: {
+          'no-undef': 'error',
+          'no-unused-vars': 'warn',
+          'semi': ['error', 'always'],
+          'prefer-const': 'warn'
+        }
+      };
+      
+      eslintInstance = new ESLint({ 
+        baseConfig: config,
+        useEslintrc: false 
+      });
+    }
+
+    if (!eslintInstance) {
+      return {
+        score: 100, // ESLintが利用できない場合は満点
+        status: 'UNAVAILABLE',
+        message: 'ESLint機能は現在利用できません',
+        issues: []
+      };
+    }
+
+    // ESLintでコードを解析
+    const results = eslintInstance.lintText(code, { filePath: 'user-code.js' });
+    
+    if (!results || results.length === 0) {
+      return {
+        score: 100,
+        status: 'PASSED',
+        message: 'コード品質チェック: 完璧です！',
+        issues: []
+      };
+    }
+
+    const result = results[0];
+    const { messages } = result;
+    
+    if (messages.length === 0) {
+      return {
+        score: 100,
+        status: 'PASSED', 
+        message: 'コード品質チェック: 完璧です！',
+        issues: []
+      };
+    }
+
+    // エラーと警告を分類して点数を計算
+    let errorCount = 0;
+    let warningCount = 0;
+    const issues = [];
+
+    messages.forEach(msg => {
+      const issue = {
+        line: msg.line,
+        column: msg.column,
+        ruleId: msg.ruleId,
+        severity: msg.severity, // 1=warning, 2=error
+        message: msg.message,
+        japaneseMessage: null
+      };
+
+      // 日本語メッセージを追加
+      if (self.ESLintConfig && msg.ruleId) {
+        const japaneseInfo = self.ESLintConfig.getJapaneseMessage(msg.ruleId, [msg.nodeType]);
+        issue.japaneseMessage = japaneseInfo;
+      }
+
+      issues.push(issue);
+
+      if (msg.severity === 2) {
+        errorCount++;
+      } else if (msg.severity === 1) {
+        warningCount++;
+      }
+    });
+
+    // 点数計算（エラー1個につき-20点、警告1個につき-5点、最低0点）
+    let score = 100 - (errorCount * 20) - (warningCount * 5);
+    score = Math.max(0, score);
+
+    let status, message;
+    if (errorCount > 0) {
+      status = 'ERROR';
+      message = `コード品質: ${errorCount}個のエラーがあります（警告${warningCount}個）`;
+    } else if (warningCount > 0) {
+      status = 'WARNING';
+      message = `コード品質: ${warningCount}個の改善点があります`;
+    } else {
+      status = 'PASSED';
+      message = 'コード品質: 完璧です！';
+    }
+
+    return {
+      score: score,
+      status: status,
+      message: message,
+      issues: issues,
+      errorCount: errorCount,
+      warningCount: warningCount
+    };
+    
+  } catch (error) {
+    // ESLintエラーの場合は部分点を与える
+    return {
+      score: 50,
+      status: 'ERROR',
+      message: `コード品質チェックでエラーが発生しました: ${error.message}`,
+      issues: [],
+      error: error.message
+    };
+  }
+}
+
+// 複数テストケースを実行する関数（6項目対応）
 function runMultipleTestCases(code, testCases) {
   const results = [];
   let totalScore = 0;
   let maxTotalScore = 0;
   
+  // 実行結果テスト（5項目 × 100点）
   for (let i = 0; i < testCases.length; i++) {
     const testCase = testCases[i];
     maxTotalScore += 100; // 各テストケース100点とする
@@ -220,12 +355,31 @@ function runMultipleTestCases(code, testCases) {
     });
   }
   
+  // コード品質チェック（6項目目 × 100点）
+  const qualityCheck = checkCodeQuality(code);
+  maxTotalScore += 100; // コード品質チェック100点を追加
+  totalScore += qualityCheck.score;
+  
+  // コード品質結果を追加
+  results.push({
+    testCaseName: 'コード品質チェック (ESLint)',
+    status: qualityCheck.status === 'PASSED' ? 'ACCEPTED' : 
+            qualityCheck.status === 'WARNING' ? 'WARNING' : 'CODE_QUALITY_ISSUE',
+    isCorrect: qualityCheck.score === 100,
+    message: qualityCheck.message,
+    score: qualityCheck.score,
+    qualityCheck: qualityCheck, // 詳細な品質情報
+    isQualityCheck: true // 品質チェック項目であることを示すフラグ
+  });
+  
   return {
     results: results,
     totalScore: totalScore,
     maxTotalScore: maxTotalScore,
     passedCount: results.filter(r => r.isCorrect).length,
-    totalCount: results.length
+    totalCount: results.length,
+    qualityScore: qualityCheck.score, // 品質チェックの点数
+    hasQualityCheck: true // 品質チェックが含まれていることを示すフラグ
   };
 }
 
@@ -247,17 +401,20 @@ self.onmessage = function(e) {
       // 複数テストケースを実行
       const multiTestResult = runMultipleTestCases(code, problem.testCases);
       
-      // 結果をメインスレッドに送信
+      // 6項目600点満点システムの結果をメインスレッドに送信
       self.postMessage({
         success: true,
         isMultipleTests: true,
         testResults: multiTestResult.results,
         status: multiTestResult.passedCount === multiTestResult.totalCount ? 'ALL_ACCEPTED' : 'PARTIAL_ACCEPTED',
-        message: `${multiTestResult.passedCount}/${multiTestResult.totalCount} テストケースが成功しました`,
+        message: `${multiTestResult.passedCount}/${multiTestResult.totalCount} 項目が成功しました（コード品質チェック含む）`,
         score: multiTestResult.totalScore,
         maxScore: multiTestResult.maxTotalScore,
         passedCount: multiTestResult.passedCount,
-        totalCount: multiTestResult.totalCount
+        totalCount: multiTestResult.totalCount,
+        qualityScore: multiTestResult.qualityScore,
+        hasQualityCheck: multiTestResult.hasQualityCheck,
+        is600PointSystem: true // 600点満点システムである事を示すフラグ
       });
     } else {
       // 従来の単一テストケース
