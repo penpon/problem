@@ -164,7 +164,12 @@ select:focus {
   gap: 10px;
   max-height: 400px;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 10px 0;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 1;
 }
 
 .problem-item {
@@ -212,6 +217,28 @@ select:focus {
 }
 
 /* 問題詳細表示 */
+#problem-details {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 18px;
+  margin-top: 15px;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #3182ce;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: opacity 0.2s ease-in-out;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#problem-details[style*="display: none"] {
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+}
+
+/* 問題詳細の親コンテナスタイル */
 .problem-details {
   background: #ffffff;
   border-radius: 6px;

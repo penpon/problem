@@ -193,6 +193,9 @@ class AutoGrader {
    */
   async selectProblem(problemId) {
     try {
+      // スクロール位置を保存
+      const scrollTop = this.problemList.scrollTop;
+      
       // 現在選択中の問題のハイライトを削除
       this.problemList.querySelectorAll('.problem-item').forEach(item => {
         item.classList.remove('selected');
@@ -217,6 +220,14 @@ class AutoGrader {
         this.codeEditor.value = this.currentProblem.template.replace(/\\n/g, '\n');
         this.clearResult();
         console.log(`問題 ${problemId} の詳細読み込み完了`);
+        
+        // スクロール位置を復元（少し遅延を入れてDOMの更新を待つ）
+        setTimeout(() => {
+          this.problemList.scrollTop = scrollTop;
+          // スクロールイベントを強制的に有効にする
+          this.problemList.style.overflowY = 'auto';
+          this.problemList.style.pointerEvents = 'auto';
+        }, 10);
       } else {
         throw new Error(`問題 ${problemId} が見つかりませんでした`);
       }
@@ -240,6 +251,10 @@ class AutoGrader {
     this.problemList.querySelectorAll('.problem-item').forEach(item => {
       item.classList.remove('selected');
     });
+    
+    // スクロール機能を確実に有効にする
+    this.problemList.style.overflowY = 'auto';
+    this.problemList.style.pointerEvents = 'auto';
   }
   
   displayProblem(problem) {
