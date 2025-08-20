@@ -334,6 +334,15 @@
                         </div>
                         
                         <div class="control-group">
+                            <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+                                <label for="pngScale" style="font-weight: bold;">PNG解像度:</label>
+                                <select id="pngScale" style="padding: 5px 10px; border-radius: 5px; border: 2px solid #ddd;">
+                                    <option value="1">標準 (1x)</option>
+                                    <option value="2" selected>高解像度 (2x)</option>
+                                    <option value="3">超高解像度 (3x)</option>
+                                    <option value="4">最高解像度 (4x)</option>
+                                </select>
+                            </div>
                             <button id="downloadPngBtn" class="download-btn" onclick="downloadDiagram('png')" disabled>
                                 💾 PNG保存
                             </button>
@@ -903,32 +912,58 @@ processor.processOrder({
                 return;
             }
             
+            // スケールファクターを取得
+            const scaleSelect = document.getElementById('pngScale');
+            const scale = parseInt(scaleSelect.value) || 2;
+            
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
+            
+            // SVGの元のサイズを取得
+            const svgRect = svgElement.getBoundingClientRect();
+            const originalWidth = svgRect.width || svgElement.clientWidth || 800;
+            const originalHeight = svgRect.height || svgElement.clientHeight || 600;
+            
+            // 高解像度対応: canvasサイズをスケール倍に設定
+            canvas.width = originalWidth * scale;
+            canvas.height = originalHeight * scale;
+            
+            // 高解像度描画のためのコンテキスト設定
+            ctx.scale(scale, scale);
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
             const svgData = new XMLSerializer().serializeToString(svgElement);
             const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
             const url = URL.createObjectURL(svgBlob);
             
             const img = new Image();
             img.onload = function() {
-                canvas.width = img.width;
-                canvas.height = img.height;
+                // 白い背景を描画
                 ctx.fillStyle = 'white';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0);
+                ctx.fillRect(0, 0, originalWidth, originalHeight);
                 
+                // 高解像度でSVGを描画
+                ctx.drawImage(img, 0, 0, originalWidth, originalHeight);
+                
+                // PNG品質設定でBlob生成
                 canvas.toBlob(function(blob) {
                     const downloadUrl = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = downloadUrl;
-                    a.download = `sequence-diagram-${timestamp}.png`;
+                    a.download = `sequence-diagram-${scale}x-${timestamp}.png`;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
                     URL.revokeObjectURL(downloadUrl);
-                    showMessage('PNGファイルをダウンロードしました。', 'success');
-                });
+                    showMessage(`PNG(${scale}x解像度)ファイルをダウンロードしました。`, 'success');
+                }, 'image/png', 0.95); // 高品質PNG
                 
+                URL.revokeObjectURL(url);
+            };
+            
+            img.onerror = function() {
+                showMessage('PNG生成中にエラーが発生しました。', 'error');
                 URL.revokeObjectURL(url);
             };
             
