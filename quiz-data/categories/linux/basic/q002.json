@@ -1,0 +1,57 @@
+{
+  "id": "linux_basic_002",
+  "version": "1.0",
+  "category": "linux",
+  "level": "basic",
+  "tags": ["cd", "directory", "navigation", "beginner-friendly"],
+  "question": {
+    "text": "別のディレクトリに移動するためのコマンドは？",
+    "hint": "Change Directoryの略です",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1200
+    },
+    "visual": {
+      "type": "terminal_window",
+      "content": "user@host:~$ __ /home/user/documents"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "mv",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "cd", 
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "go",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "move",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "B",
+  "explanation": {
+    "text": "cdコマンドは'Change Directory'の略で、現在のディレクトリを変更（移動）するために使います。Linuxでのナビゲーションの基本となるコマンドです。",
+    "example": "$ cd /home/user/documents\n$ cd ..  (親ディレクトリに移動)\n$ cd ~   (ホームディレクトリに移動)",
+    "relatedCommands": ["pwd", "ls", "pushd", "popd"],
+    "furtherReading": "相対パス（../など）と絶対パス（/から始まる）の両方が使えます。"
+  },
+  "difficulty": {
+    "score": 1,
+    "timeLimit": 30,
+    "points": 10
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

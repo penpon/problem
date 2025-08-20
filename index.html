@@ -133,6 +133,19 @@
             box-shadow: 0 5px 15px rgba(237, 137, 54, 0.4);
         }
         
+        .quiz-card {
+            border-color: #8b5cf6;
+        }
+        
+        .quiz-card .tool-button {
+            background: linear-gradient(145deg, #8b5cf6, #7c3aed);
+        }
+        
+        .quiz-card .tool-button:hover {
+            background: linear-gradient(145deg, #7c3aed, #6d28d9);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+        
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2em;
@@ -195,6 +208,23 @@
                     <li>自動スクロール機能</li>
                 </ul>
                 <a href="visualizer.html" class="tool-button">🔍 コードを可視化する</a>
+            </div>
+
+            <!-- エンジニア初心者クイズ -->
+            <div class="tool-card quiz-card">
+                <div class="tool-icon">📱</div>
+                <h2 class="tool-title">エンジニア初心者クイズ</h2>
+                <p class="tool-description">
+                    Linuxコマンドとネットワーク基礎の4択クイズ。モバイル最適化されたタッチ操作で、エンジニアの基礎知識を身につけましょう。
+                </p>
+                <ul class="tool-features">
+                    <li>Linuxコマンド・ネットワーク基礎問題</li>
+                    <li>モバイル最適化されたタッチUI</li>
+                    <li>復習機能付きの学習管理</li>
+                    <li>アニメーション付きの分かりやすい解説</li>
+                    <li>進捗トラッキングと実績システム</li>
+                </ul>
+                <a href="quiz.html" class="tool-button">📱 クイズに挑戦する</a>
             </div>
         </div>
     </div>

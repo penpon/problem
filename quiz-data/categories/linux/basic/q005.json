@@ -1,0 +1,57 @@
+{
+  "id": "linux_basic_005",
+  "version": "1.0",
+  "category": "linux",
+  "level": "basic",
+  "tags": ["ls", "hidden-files", "dotfiles", "practical"],
+  "question": {
+    "text": "隠しファイル（.で始まるファイル）も含めて一覧表示するlsコマンドのオプションは？",
+    "hint": "allの略です",
+    "animation": {
+      "type": "terminal_typing",
+      "duration": 1200
+    },
+    "visual": {
+      "type": "terminal_window",
+      "content": "user@host:~$ ls __\n.bashrc  .gitignore  .vimrc  file.txt"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "-a",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "-h",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "-d",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "-s",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "ls -aは隠しファイル（ドットファイル）も含めてすべてのファイルを表示します。Linuxでは.で始まるファイルは隠しファイルとして扱われ、通常のlsコマンドでは表示されません。設定ファイルなど重要なファイルが隠しファイルになっていることが多いです。",
+    "example": "$ ls\nfile.txt  folder\n\n$ ls -a\n.  ..  .bashrc  .gitignore  .vimrc  file.txt  folder\n\n$ ls -la  (詳細表示と組み合わせ)\n合計 32\ndrwxr-xr-x  3 user user 4096 Aug 20 10:30 .\ndrwxr-xr-x 10 root root 4096 Aug 19 15:20 ..\n-rw-------  1 user user 3526 Aug 20 09:15 .bashrc",
+    "relatedCommands": ["ls -la", "find . -name '.*'", "tree -a"],
+    "furtherReading": "「.」は現在のディレクトリ、「..」は親ディレクトリを表す特殊なエントリです。"
+  },
+  "difficulty": {
+    "score": 2,
+    "timeLimit": 40,
+    "points": 15
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

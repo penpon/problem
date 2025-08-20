@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2025-08-20",
+  "categories": [
+    {
+      "id": "linux",
+      "name": "Linuxコマンド",
+      "icon": "🐧",
+      "description": "Webエンジニア・ネットワークエンジニア必須のLinux基本コマンド",
+      "color": "#f97316",
+      "levels": ["basic", "intermediate", "advanced"],
+      "questionCount": 40,
+      "enabled": true
+    },
+    {
+      "id": "network",
+      "name": "ネットワーク基礎",
+      "icon": "🌐",
+      "description": "エンジニアに必要なネットワークの基本概念と知識",
+      "color": "#3b82f6",
+      "levels": ["basic", "intermediate", "advanced"],
+      "questionCount": 40,
+      "enabled": true
+    }
+  ],
+  "totalQuestions": 80,
+  "supportedLanguages": ["ja"],
+  "features": {
+    "animations": true,
+    "touchOptimized": true,
+    "reviewMode": true,
+    "progressTracking": true,
+    "offlineMode": false
+  },
+  "ui": {
+    "theme": "mobile-first",
+    "minTouchTarget": 60,
+    "animationDuration": 300,
+    "colors": {
+      "primary": "#6366f1",
+      "correct": "#10b981",
+      "incorrect": "#ef4444",
+      "warning": "#f59e0b"
+    }
+  }
+}

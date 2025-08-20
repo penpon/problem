@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "tags": {
+    "terminal": {
+      "name": "ターミナル",
+      "description": "コマンドラインインターフェースの操作",
+      "color": "#374151"
+    },
+    "command-line": {
+      "name": "コマンドライン",
+      "description": "コマンドライン操作全般",
+      "color": "#6b7280"
+    },
+    "unix": {
+      "name": "Unix",
+      "description": "Unixシステムの基本概念",
+      "color": "#f97316"
+    },
+    "file-system": {
+      "name": "ファイルシステム",
+      "description": "ファイル・ディレクトリの管理",
+      "color": "#eab308"
+    },
+    "process-management": {
+      "name": "プロセス管理",
+      "description": "プロセスとジョブの制御",
+      "color": "#dc2626"
+    },
+    "tcp-ip": {
+      "name": "TCP/IP",
+      "description": "TCP/IPプロトコル群",
+      "color": "#2563eb"
+    },
+    "http": {
+      "name": "HTTP",
+      "description": "HTTPプロトコル関連",
+      "color": "#16a34a"
+    },
+    "dns": {
+      "name": "DNS",
+      "description": "ドメインネームシステム",
+      "color": "#7c3aed"
+    },
+    "security": {
+      "name": "セキュリティ",
+      "description": "ネットワークセキュリティの基本",
+      "color": "#be185d"
+    },
+    "protocols": {
+      "name": "プロトコル",
+      "description": "ネットワークプロトコル全般",
+      "color": "#0891b2"
+    },
+    "beginner-friendly": {
+      "name": "初心者向け",
+      "description": "プログラミング未経験者にも優しい問題",
+      "color": "#059669"
+    },
+    "practical": {
+      "name": "実践的",
+      "description": "実務で使える知識",
+      "color": "#ea580c"
+    }
+  }
+}

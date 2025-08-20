@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>エンジニア初心者クイズ</title>
+    <link rel="stylesheet" href="css/quiz-mobile.css">
+    <link rel="stylesheet" href="css/quiz-animations.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+    <!-- Safe area support for modern mobile devices -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <style>
+        /* Critical CSS for immediate rendering */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0; 
+            padding: 0; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .loading-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #6366f1;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .loading-spinner {
+            width: 40px; height: 40px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <p style="margin-top: 20px;">クイズを準備中...</p>
+    </div>
+
+    <!-- Main Quiz Container -->
+    <div class="quiz-container" id="quizContainer" style="display: none;">
+        <!-- Header -->
+        <header class="quiz-header">
+            <div class="header-content">
+                <div class="quiz-logo">
+                    <span class="logo-icon">📱</span>
+                    <h1 class="logo-text">エンジニアクイズ</h1>
+                </div>
+                <button class="menu-button" id="menuBtn">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+            
+            <!-- Progress bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">問題 1 / 20</div>
+            </div>
+        </header>
+
+        <!-- Category Selection Screen -->
+        <div class="screen category-screen active" id="categoryScreen">
+            <div class="screen-content">
+                <h2 class="screen-title">📚 学習分野を選択</h2>
+                <p class="screen-subtitle">基礎から学習して、エンジニアとしての第一歩を踏み出そう！</p>
+                
+                <div class="category-grid" id="categoryGrid">
+                    <!-- Categories will be loaded here -->
+                </div>
+                
+                <div class="stats-summary" id="statsSummary">
+                    <div class="stat-item">
+                        <span class="stat-icon">🎯</span>
+                        <span class="stat-text">総問題数: <strong id="totalQuestions">-</strong></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">⭐</span>
+                        <span class="stat-text">正解率: <strong id="overallAccuracy">-</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div class="screen quiz-screen" id="quizScreen">
+            <div class="screen-content">
+                <!-- Question Area -->
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="category-badge" id="categoryBadge">Linuxコマンド</span>
+                        <span class="difficulty-badge" id="difficultyBadge">基礎</span>
+                    </div>
+                    
+                    <div class="question-content">
+                        <div class="question-text" id="questionText">
+                            <!-- Question text with animation -->
+                        </div>
+                        <div class="question-visual" id="questionVisual">
+                            <!-- Visual aids (terminal, network diagram) -->
+                        </div>
+                        <div class="question-hint" id="questionHint" style="display: none;">
+                            <!-- Hint text -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Choices Area -->
+                <div class="choices-container" id="choicesContainer">
+                    <div class="choices-grid">
+                        <button class="choice-btn" id="choiceA" data-choice="A">
+                            <span class="choice-label">A</span>
+                            <span class="choice-text"></span>
+                        </button>
+                        <button class="choice-btn" id="choiceB" data-choice="B">
+                            <span class="choice-label">B</span>
+                            <span class="choice-text"></span>
+                        </button>
+                        <button class="choice-btn" id="choiceC" data-choice="C">
+                            <span class="choice-label">C</span>
+                            <span class="choice-text"></span>
+                        </button>
+                        <button class="choice-btn" id="choiceD" data-choice="D">
+                            <span class="choice-label">D</span>
+                            <span class="choice-text"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="quiz-actions">
+                    <button class="action-btn secondary" id="hintBtn">
+                        <span class="btn-icon">💡</span>
+                        ヒント
+                    </button>
+                    <button class="action-btn secondary" id="skipBtn">
+                        <span class="btn-icon">⏭️</span>
+                        スキップ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div class="screen result-screen" id="resultScreen">
+            <div class="screen-content">
+                <div class="result-header">
+                    <div class="result-icon" id="resultIcon">🎉</div>
+                    <h2 class="result-title" id="resultTitle">お疲れさまでした！</h2>
+                </div>
+                
+                <div class="score-display">
+                    <div class="score-main">
+                        <span class="score-value" id="scoreValue">85</span>
+                        <span class="score-unit">%</span>
+                    </div>
+                    <div class="score-details">
+                        <span id="correctCount">17</span> / <span id="totalCount">20</span> 正解
+                    </div>
+                </div>
+
+                <div class="result-breakdown">
+                    <div class="breakdown-item correct">
+                        <span class="breakdown-icon">✅</span>
+                        <span class="breakdown-text">正解した問題: <strong id="correctQuestions">17問</strong></span>
+                    </div>
+                    <div class="breakdown-item incorrect">
+                        <span class="breakdown-icon">❌</span>
+                        <span class="breakdown-text">間違えた問題: <strong id="incorrectQuestions">3問</strong></span>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button class="action-btn primary" id="reviewBtn">
+                        <span class="btn-icon">📖</span>
+                        間違えた問題を復習
+                    </button>
+                    <button class="action-btn secondary" id="retryBtn">
+                        <span class="btn-icon">🔄</span>
+                        もう一度挑戦
+                    </button>
+                    <button class="action-btn secondary" id="homeBtn">
+                        <span class="btn-icon">🏠</span>
+                        トップに戻る
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explanation Modal -->
+        <div class="modal-overlay" id="explanationModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">解説</h3>
+                    <button class="modal-close" id="closeExplanation">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="explanation-content" id="explanationContent">
+                        <!-- Explanation will be loaded here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="action-btn primary" id="nextQuestionBtn">
+                        <span class="btn-icon">➡️</span>
+                        次の問題へ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/quiz-loader.js"></script>
+    <script src="js/quiz-storage.js"></script>
+    <script src="js/quiz-animations.js"></script>
+    <script src="js/quiz-app.js"></script>
+    
+    <script>
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const app = new QuizApp();
+            app.initialize();
+        });
+
+        // Register service worker for offline support (future)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(console.error);
+        }
+    </script>
+</body>
+</html>
