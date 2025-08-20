@@ -1357,13 +1357,14 @@ select:focus {
   }
   
   .problem-instructions {
-    background: #374151;
+    background: #1f2937;
     border-color: #4a5568;
   }
   
   .instructions-header {
-    background: #e6f3ff;
-    color: #3182ce;
+    background: #1e3a8a;
+    color: #f8fafc;
+    border-left-color: #3b82f6;
   }
   
   .problem-instructions li {
@@ -1674,6 +1675,6 @@ select:focus {
     background: #1e293b;
     border-color: #334155;
     color: #e2e8f0;
-    font-weight: 600;
+    font-weight: 500;
   }
 }
