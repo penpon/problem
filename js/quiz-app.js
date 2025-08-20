@@ -528,7 +528,16 @@ class QuizApp {
             // テキスト設定
             const textElement = element.querySelector('.choice-text');
             if (textElement) {
-                textElement.textContent = choice.text;
+                // コード検出と自動クラス適用
+                if (this.isCodeContent(choice.text)) {
+                    // コード内容の場合、セミコロンの後で改行を挿入
+                    const formattedCode = this.formatCodeText(choice.text);
+                    textElement.textContent = formattedCode;
+                    textElement.classList.add('choice-code');
+                } else {
+                    textElement.textContent = choice.text;
+                    textElement.classList.remove('choice-code');
+                }
             }
             
             // アニメーション
@@ -537,6 +546,85 @@ class QuizApp {
                 element.classList.add(`animate-${animationType}`);
             }, index * 100);
         });
+    }
+
+    /**
+     * テキストがコード内容かどうかを判定
+     * @param {string} text 判定対象のテキスト
+     * @return {boolean} コード内容の場合true
+     * @private
+     */
+    isCodeContent(text) {
+        if (!text || typeof text !== 'string') return false;
+        
+        // 長さのチェック（80文字以上）
+        const isLong = text.length >= 80;
+        
+        // JavaScriptコードの特徴をチェック
+        const codePatterns = [
+            /\b(let|const|var|function|for|if|while|switch)\b/g, // キーワード
+            /[{}();]/g, // 特殊文字
+            /\.\w+\(/g, // メソッド呼び出し
+            /=>/g, // アロー関数
+            /\+\+|--|==|!=|<=|>=/g // 演算子
+        ];
+        
+        const patternMatches = codePatterns.reduce((count, pattern) => {
+            const matches = text.match(pattern);
+            return count + (matches ? matches.length : 0);
+        }, 0);
+        
+        // コードパターンが3個以上、かつ長いテキストの場合にコードと判定
+        return isLong && patternMatches >= 3;
+    }
+
+    /**
+     * コードテキストの整形（セミコロンの後で改行）
+     * @param {string} code 整形対象のコード
+     * @return {string} 整形されたコード
+     * @private
+     */
+    formatCodeText(code) {
+        if (!code || typeof code !== 'string') return code;
+        
+        // セミコロンの後で改行を挿入（ただし文字列内のセミコロンは除外）
+        let result = code;
+        
+        // 文字列リテラル内のセミコロンを一時的に置換
+        const stringPatterns = [];
+        let tempIndex = 0;
+        
+        // シングルクォート文字列の保護
+        result = result.replace(/'[^']*'/g, (match) => {
+            const placeholder = `__STRING_${tempIndex}__`;
+            stringPatterns[tempIndex] = match;
+            tempIndex++;
+            return placeholder;
+        });
+        
+        // ダブルクォート文字列の保護
+        result = result.replace(/"[^"]*"/g, (match) => {
+            const placeholder = `__STRING_${tempIndex}__`;
+            stringPatterns[tempIndex] = match;
+            tempIndex++;
+            return placeholder;
+        });
+        
+        // セミコロンの後に改行を挿入（スペースがある場合は削除してから改行）
+        result = result.replace(/;\s*/g, ';\n');
+        
+        // 文字列リテラルを復元
+        stringPatterns.forEach((str, index) => {
+            result = result.replace(`__STRING_${index}__`, str);
+        });
+        
+        // 連続する改行を整理
+        result = result.replace(/\n+/g, '\n');
+        
+        // 最後の改行を削除
+        result = result.replace(/\n$/, '');
+        
+        return result;
     }
 
     /**
