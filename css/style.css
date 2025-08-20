@@ -769,59 +769,7 @@ select:focus {
 
 /* ===== コード品質チェック専用スタイル (6項目600点満点システム) ===== */
 
-/* 品質チェック項目の統一スタイリング */
-.quality-check-item {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border: 2px solid #cbd5e0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
 
-.quality-check-item .test-case-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  font-weight: 600;
-}
-
-.quality-check-item .test-case-header:hover {
-  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-}
-
-/* 品質レベル別の3段階カラーリング */
-.test-quality-excellent {
-  border-left: 4px solid #48bb78;
-  border-color: #e2e8f0;
-  background: white;
-}
-
-.test-quality-excellent .test-case-header {
-  background: #f7fafc;
-  color: #4a5568;
-  font-weight: 600;
-}
-
-.test-quality-good {
-  border-left: 4px solid #ed8936;
-  border-color: #e2e8f0;
-  background: white;
-}
-
-.test-quality-good .test-case-header {
-  background: #f7fafc;
-  color: #4a5568;
-  font-weight: 600;
-}
-
-.test-quality-needs-improvement {
-  border-left: 4px solid #f56565;
-  border-color: #e2e8f0;
-  background: white;
-}
-
-.test-quality-needs-improvement .test-case-header {
-  background: #f7fafc;
-  color: #4a5568;
-  font-weight: 600;
-}
 
 /* 品質バッジ */
 .quality-badge {
@@ -1698,38 +1646,6 @@ select:focus {
     border-left-color: #60a5fa;
   }
   
-  .test-quality-excellent {
-    border-left: 4px solid #48bb78;
-    border-color: #4a5568;
-    background: #2d3748;
-  }
-  
-  .test-quality-excellent .test-case-header {
-    background: #374151;
-    color: #e2e8f0;
-  }
-  
-  .test-quality-good {
-    border-left: 4px solid #ed8936;
-    border-color: #4a5568;
-    background: #2d3748;
-  }
-  
-  .test-quality-good .test-case-header {
-    background: #374151;
-    color: #e2e8f0;
-  }
-  
-  .test-quality-needs-improvement {
-    border-left: 4px solid #f56565;
-    border-color: #4a5568;
-    background: #2d3748;
-  }
-  
-  .test-quality-needs-improvement .test-case-header {
-    background: #374151;
-    color: #e2e8f0;
-  }
   
   .readable-section h6 {
     background: #374151;

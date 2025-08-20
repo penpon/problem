@@ -446,16 +446,16 @@ ${result.logs.join('\n')}
       let testStatusClass, testStatusIcon;
       
       if (isQualityCheck) {
-        // コード品質チェックの場合 - スコアベースで3段階評価
+        // コード品質チェックの場合 - スコアベースで3段階評価（統一クラス使用）
         const score = testResult.score || 0;
         if (score === 100) {
-          testStatusClass = 'test-quality-excellent';
+          testStatusClass = 'test-accepted';
           testStatusIcon = '✅';
         } else if (score >= 50) {
-          testStatusClass = 'test-quality-good';
+          testStatusClass = 'test-error';
           testStatusIcon = '⚠️';
         } else {
-          testStatusClass = 'test-quality-needs-improvement';
+          testStatusClass = 'test-wrong';
           testStatusIcon = '❌';
         }
       } else {
@@ -467,7 +467,7 @@ ${result.logs.join('\n')}
       }
       
       resultHtml += `
-        <div class="test-case ${testStatusClass} ${isQualityCheck ? 'quality-check-item' : ''}">
+        <div class="test-case ${testStatusClass}">
           <div class="test-case-header" onclick="this.parentElement.classList.toggle('expanded')">
             <div class="test-case-title">
               ${testStatusIcon} ${testResult.testCaseName}
