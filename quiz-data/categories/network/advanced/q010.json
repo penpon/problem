@@ -1,0 +1,34 @@
+{
+  "id": "network_advanced_010",
+  "version": "1.0",
+  "category": "network",
+  "level": "advanced",
+  "tags": ["cloud", "security", "firewall", "access-control"],
+  "question": {
+    "text": "クラウドネットワークセキュリティの重要な考慮事項は？",
+    "hint": "責任共有モデルを理解して適切なセキュリティ対策を実装します",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "cloud_security",
+      "content": "クラウド事業者の責任：インフラセキュリティ\n        ↓\nユーザーの責任：アプリケーション・データ・アクセス制御"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "責任共有モデルを理解し適切な権限管理とネットワーク制御を実装", "animation": "slide_in_left"},
+    {"id": "B", "text": "すべてのセキュリティはクラウド事業者が担当", "animation": "slide_in_right"},
+    {"id": "C", "text": "セキュリティ対策は不要", "animation": "slide_in_left"},
+    {"id": "D", "text": "物理的なセキュリティのみで十分", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "クラウドセキュリティは責任共有モデルに基づき、クラウド事業者とユーザーが適切に役割分担してセキュリティを確保する必要があります。",
+    "example": "クラウドセキュリティのベストプラクティス：\n1. IAM（Identity and Access Management）による厳格な権限管理\n2. ネットワークセグメンテーション（サブネット分割）\n3. セキュリティグループ/NACLによる通信制御\n4. ログ監視と異常検知\n5. 暗号化（保存時・転送時）",
+    "relatedCommands": [],
+    "furtherReading": "ゼロトラストアーキテクチャがクラウドセキュリティの新たな標準となっています。"
+  },
+  "difficulty": {"score": 4, "timeLimit": 90, "points": 35},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

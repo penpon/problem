@@ -1,0 +1,34 @@
+{
+  "id": "network_intermediate_001",
+  "version": "1.0",
+  "category": "network",
+  "level": "intermediate",
+  "tags": ["http", "https", "ssl", "security"],
+  "question": {
+    "text": "HTTPとHTTPSの最も重要な違いは何ですか？",
+    "hint": "データの安全性に関する違いです",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "security_comparison",
+      "content": "HTTP: データが平文で送信\nHTTPS: データが暗号化されて送信"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "HTTPSはデータを暗号化して通信する", "animation": "slide_in_left"},
+    {"id": "B", "text": "HTTPSは速度が速い", "animation": "slide_in_right"},
+    {"id": "C", "text": "HTTPSは無料で使える", "animation": "slide_in_left"},
+    {"id": "D", "text": "HTTPSは古いブラウザで動作する", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "HTTPSは SSL/TLS プロトコルを使用してデータを暗号化し、安全な通信を提供します。HTTPは平文でデータを送信するため盗聴のリスクがあります。",
+    "example": "実際の違い：\nHTTP: パスワードが \"password123\" として平文送信\nHTTPS: パスワードが \"xJ9mKp2@\" のような暗号化された文字列で送信",
+    "relatedCommands": [],
+    "furtherReading": "現在のWebサイトはほとんどHTTPS化されており、GoogleもHTTPS使用を推奨しています。"
+  },
+  "difficulty": {"score": 2, "timeLimit": 45, "points": 20},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

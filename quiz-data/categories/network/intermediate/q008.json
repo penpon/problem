@@ -1,0 +1,34 @@
+{
+  "id": "network_intermediate_008",
+  "version": "1.0",
+  "category": "network",
+  "level": "intermediate",
+  "tags": ["firewall", "rule", "allow", "deny"],
+  "question": {
+    "text": "ファイアウォールルールの基本的な動作原理は？",
+    "hint": "ルールは上から順番に評価され、最初にマッチしたルールが適用されます",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "firewall_rules",
+      "content": "ルール1: 特定IPを拒否\nルール2: HTTPを許可\nルール3: すべて拒否\n↓\n上から順番に評価"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "上から順番に評価し、最初にマッチしたルールを適用", "animation": "slide_in_left"},
+    {"id": "B", "text": "すべてのルールを評価してから決定", "animation": "slide_in_right"},
+    {"id": "C", "text": "ランダムにルールを選択", "animation": "slide_in_left"},
+    {"id": "D", "text": "最も厳しいルールを適用", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "ファイアウォールは設定されたルールを上から順番に評価し、通信内容が最初にマッチしたルールを適用します。そのため、ルールの順序が非常に重要です。",
+    "example": "ルール評価の例：\n1. 192.168.1.100からの通信を拒否\n2. HTTPポート80を許可\n3. デフォルトで全て拒否\n\n192.168.1.100からHTTPアクセス → ルール1適用で拒否",
+    "relatedCommands": [],
+    "furtherReading": "より具体的なルールを上に、一般的なルールを下に配置するのが基本です。"
+  },
+  "difficulty": {"score": 3, "timeLimit": 60, "points": 25},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

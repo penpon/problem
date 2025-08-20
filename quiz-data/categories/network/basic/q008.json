@@ -1,0 +1,34 @@
+{
+  "id": "network_basic_008",
+  "version": "1.0",
+  "category": "network",
+  "level": "basic",
+  "tags": ["packet", "communication", "basic", "beginner-friendly"],
+  "question": {
+    "text": "パケット通信とは何ですか？",
+    "hint": "データを小さな単位に分けて送信する方式です",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "packet_diagram",
+      "content": "大きなデータ\n↓ 分割\nパケット1 | パケット2 | パケット3\n↓ 送信\n受信側で再構成\n↓\n元のデータ"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "データを暗号化して送信する方式", "animation": "slide_in_left"},
+    {"id": "B", "text": "データを小さな単位に分けて送信する方式", "animation": "slide_in_right"},
+    {"id": "C", "text": "データを圧縮して送信する方式", "animation": "slide_in_left"},
+    {"id": "D", "text": "データを一度に全部送信する方式", "animation": "slide_in_right"}
+  ],
+  "correct": "B",
+  "explanation": {
+    "text": "パケット通信は、大きなデータを小さな単位（パケット）に分割し、それぞれを独立して送信する方式です。受信側で再びつなぎ合わせて元のデータを復元します。",
+    "example": "パケット通信の利点：\n- 効率的なネットワーク利用\n- エラー時は該当パケットのみ再送\n- 複数の経路を使える\n- 他の通信と同じ回線を共有可能\n\n例：\n- メールを送る → 複数のパケットに分割\n- 各パケットが異なる経路で送信\n- 受信側で順序通りに再構成\n- 元のメールが完成",
+    "relatedCommands": [],
+    "furtherReading": "現在のインターネットはすべてパケット通信で動作しており、効率的で信頼性の高い通信を実現しています。"
+  },
+  "difficulty": {"score": 1, "timeLimit": 30, "points": 10},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

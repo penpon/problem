@@ -1,0 +1,34 @@
+{
+  "id": "network_intermediate_010",
+  "version": "1.0",
+  "category": "network",
+  "level": "intermediate",
+  "tags": ["routing", "gateway", "default"],
+  "question": {
+    "text": "デフォルトゲートウェイの役割は？",
+    "hint": "他のネットワークに接続するための出入り口です",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "default_gateway",
+      "content": "ローカルネットワーク(192.168.1.0/24)\n           ↓\n    デフォルトゲートウェイ(192.168.1.1)\n           ↓\n         インターネット"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "異なるネットワークへの通信の出入り口", "animation": "slide_in_left"},
+    {"id": "B", "text": "ファイルサーバー", "animation": "slide_in_right"},
+    {"id": "C", "text": "プリントサーバー", "animation": "slide_in_left"},
+    {"id": "D", "text": "メールサーバー", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "デフォルトゲートウェイは、ローカルネットワーク外（他のネットワークやインターネット）への通信を中継するルーター（またはゲートウェイ機器）のIPアドレスです。",
+    "example": "デフォルトゲートウェイの動作：\n1. PC（192.168.1.100）からgoogle.com（外部）へアクセス\n2. ローカルネットワークにないと判断\n3. デフォルトゲートウェイ（192.168.1.1）に送信\n4. ルーターがインターネットに転送",
+    "relatedCommands": [],
+    "furtherReading": "家庭のWi-Fiルーターが一般的なデフォルトゲートウェイの例です。"
+  },
+  "difficulty": {"score": 3, "timeLimit": 60, "points": 25},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

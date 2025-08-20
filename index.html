@@ -146,6 +146,19 @@
             box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
         }
         
+        .admin-card {
+            border-color: #ef4444;
+        }
+        
+        .admin-card .tool-button {
+            background: linear-gradient(145deg, #ef4444, #dc2626);
+        }
+        
+        .admin-card .tool-button:hover {
+            background: linear-gradient(145deg, #dc2626, #b91c1c);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+        }
+        
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2em;
@@ -225,6 +238,23 @@
                     <li>進捗トラッキングと実績システム</li>
                 </ul>
                 <a href="quiz.html" class="tool-button">📱 クイズに挑戦する</a>
+            </div>
+
+            <!-- 管理画面 -->
+            <div class="tool-card admin-card">
+                <div class="tool-icon">🎛️</div>
+                <h2 class="tool-title">学習システム管理画面</h2>
+                <p class="tool-description">
+                    プログラミング問題と4択クイズの統合管理システム。問題の管理、統計分析、データのインポート・エクスポートが可能です。
+                </p>
+                <ul class="tool-features">
+                    <li>プログラミング問題・クイズ問題の管理</li>
+                    <li>詳細な統計とダッシュボード機能</li>
+                    <li>カテゴリ管理とデータ整合性チェック</li>
+                    <li>JSON形式でのデータ入出力</li>
+                    <li>レスポンシブ対応の管理UI</li>
+                </ul>
+                <a href="admin.html" class="tool-button">🎛️ 管理画面を開く</a>
             </div>
         </div>
     </div>

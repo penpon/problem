@@ -1,0 +1,34 @@
+{
+  "id": "network_advanced_009",
+  "version": "1.0",
+  "category": "network",
+  "level": "advanced",
+  "tags": ["vpc", "cloud", "virtual", "network"],
+  "question": {
+    "text": "VPC（Virtual Private Cloud）の概念とは？",
+    "hint": "クラウド上に作成する仮想的なプライベートネットワークです",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "vpc_diagram",
+      "content": "パブリッククラウド内\n┌─────────────────┐\n│ VPC（仮想ネットワーク） │\n│ ┌────┐ ┌────┐  │\n│ │VM1 │ │VM2 │  │\n│ └────┘ └────┘  │\n└─────────────────┘"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "クラウド上に構築する論理的に分離されたプライベートネットワーク", "animation": "slide_in_left"},
+    {"id": "B", "text": "物理的なプライベートクラウド", "animation": "slide_in_right"},
+    {"id": "C", "text": "無料のクラウドサービス", "animation": "slide_in_left"},
+    {"id": "D", "text": "ウイルス対策サービス", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "VPCは、パブリッククラウド（AWS、Azure、GCPなど）内に論理的に分離された仮想プライベートネットワーク環境を構築するサービスです。",
+    "example": "VPCの特徴：\n1. 論理分離：他のユーザーから隔離された環境\n2. カスタマイズ可能：IPアドレス範囲、サブネット設計\n3. セキュリティ：ファイアウォール、アクセス制御\n4. 接続性：オンプレミスとの接続、インターネットゲートウェイ",
+    "relatedCommands": [],
+    "furtherReading": "AWS VPC、Azure Virtual Network、Google VPCなどが各クラウドで提供されています。"
+  },
+  "difficulty": {"score": 4, "timeLimit": 90, "points": 35},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

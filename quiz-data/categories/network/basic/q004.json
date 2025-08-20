@@ -1,0 +1,34 @@
+{
+  "id": "network_basic_004",
+  "version": "1.0",
+  "category": "network",
+  "level": "basic",
+  "tags": ["osi", "layer", "physical", "beginner-friendly"],
+  "question": {
+    "text": "OSI参照モデルの第1層（最下位層）は何と呼ばれますか？",
+    "hint": "ケーブルや電波など、実際の物理的な信号を扱う層です",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "network_diagram",
+      "content": "Layer 7: アプリケーション層\nLayer 6: プレゼンテーション層\nLayer 5: セッション層\nLayer 4: トランスポート層\nLayer 3: ネットワーク層\nLayer 2: データリンク層\nLayer 1: ? ← 最下位層"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "データリンク層", "animation": "slide_in_left"},
+    {"id": "B", "text": "物理層", "animation": "slide_in_right"},
+    {"id": "C", "text": "セッション層", "animation": "slide_in_left"},
+    {"id": "D", "text": "プレゼンテーション層", "animation": "slide_in_right"}
+  ],
+  "correct": "B",
+  "explanation": {
+    "text": "OSI参照モデルの第1層は物理層です。ケーブル、電波、光ファイバーなどの物理的な媒体を通じて、実際の電気信号や光信号を送受信します。",
+    "example": "物理層の具体例：\n- LANケーブル（銅線）\n- Wi-Fi（電波）\n- 光ファイバーケーブル\n- Bluetooth（電波）\n- USB接続\n\n役割：\n- デジタルデータを電気・光・電波信号に変換\n- 物理的な接続の管理\n- 信号の増幅や再生",
+    "relatedCommands": [],
+    "furtherReading": "物理層は最も基本的な層で、すべてのネットワーク通信の基盤となります。"
+  },
+  "difficulty": {"score": 1, "timeLimit": 30, "points": 10},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

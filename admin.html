@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習システム管理画面</title>
+    
+    <!-- 既存CSSの読み込み -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 管理画面専用CSS -->
+    <link rel="stylesheet" href="css/admin-style.css">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Chart.js for analytics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-cog fa-spin"></i>
+            <p>データを読み込んでいます...</p>
+        </div>
+    </div>
+
+    <!-- Admin layout -->
+    <div class="admin-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="admin-sidebar" id="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="fas fa-cogs"></i>
+                    管理画面
+                </h2>
+                <button class="sidebar-toggle" id="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h3>主要機能</h3>
+                    <ul>
+                        <li>
+                            <a href="#dashboard" class="menu-item active" data-view="dashboard">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>ダッシュボード</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#programming-problems" class="menu-item" data-view="programming-problems">
+                                <i class="fas fa-code"></i>
+                                <span>プログラミング問題</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#quiz-questions" class="menu-item" data-view="quiz-questions">
+                                <i class="fas fa-question-circle"></i>
+                                <span>4択クイズ問題</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#categories" class="menu-item" data-view="categories">
+                                <i class="fas fa-folder"></i>
+                                <span>カテゴリ管理</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>データ管理</h3>
+                    <ul>
+                        <li>
+                            <a href="#import-export" class="menu-item" data-view="import-export">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>インポート・エクスポート</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#backup" class="menu-item" data-view="backup">
+                                <i class="fas fa-save"></i>
+                                <span>バックアップ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>システム</h3>
+                    <ul>
+                        <li>
+                            <a href="#settings" class="menu-item" data-view="settings">
+                                <i class="fas fa-cog"></i>
+                                <span>設定</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#system-info" class="menu-item" data-view="system-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span>システム情報</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="back-to-site">
+                    <a href="index.html" class="btn btn-outline">
+                        <i class="fas fa-home"></i>
+                        サイトに戻る
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content area -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1 id="page-title">ダッシュボード</h1>
+                    <nav class="breadcrumb">
+                        <span id="breadcrumb-path">管理画面 > ダッシュボード</span>
+                    </nav>
+                </div>
+                
+                <div class="header-right">
+                    <div class="header-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-code"></i>
+                            <span>プログラミング問題: <span id="programming-count">-</span></span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-question"></i>
+                            <span>クイズ問題: <span id="quiz-count">-</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="btn btn-primary" id="refresh-data">
+                            <i class="fas fa-sync-alt"></i>
+                            データ更新
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content" id="admin-content">
+                <!-- Dashboard View -->
+                <div class="content-view active" id="dashboard-view">
+                    <div class="dashboard-grid">
+                        <!-- 統計カード -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-chart-bar"></i> 全体統計</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="stats-grid">
+                                    <div class="stat-box">
+                                        <div class="stat-value" id="total-programming-problems">0</div>
+                                        <div class="stat-label">プログラミング問題</div>
+                                    </div>
+                                    <div class="stat-box">
+                                        <div class="stat-value" id="total-quiz-questions">0</div>
+                                        <div class="stat-label">クイズ問題</div>
+                                    </div>
+                                    <div class="stat-box">
+                                        <div class="stat-value" id="total-categories">0</div>
+                                        <div class="stat-label">カテゴリ</div>
+                                    </div>
+                                    <div class="stat-box">
+                                        <div class="stat-value" id="cache-size">0KB</div>
+                                        <div class="stat-label">キャッシュ使用量</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- カテゴリ別統計 -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-pie-chart"></i> カテゴリ別分布</h3>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="categoryChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- 最近の活動 -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-history"></i> 最近の活動</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="activity-list" id="recent-activities">
+                                    <div class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <div class="activity-message">管理画面が初期化されました</div>
+                                            <div class="activity-time" id="init-time">-</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- システム状況 -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-server"></i> システム状況</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="system-status">
+                                    <div class="status-item">
+                                        <span class="status-label">プログラミング問題システム</span>
+                                        <span class="status-badge status-ok" id="programming-system-status">正常</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-label">クイズシステム</span>
+                                        <span class="status-badge status-ok" id="quiz-system-status">正常</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-label">データ整合性</span>
+                                        <span class="status-badge status-ok" id="data-integrity-status">正常</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-label">ローカルストレージ</span>
+                                        <span class="status-badge status-ok" id="storage-status">正常</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programming Problems View -->
+                <div class="content-view" id="programming-problems-view">
+                    <div class="view-header">
+                        <h2>プログラミング問題管理</h2>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="add-programming-problem">
+                                <i class="fas fa-plus"></i> 新しい問題を追加
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label for="programming-category-filter">カテゴリ:</label>
+                            <select id="programming-category-filter" class="form-control">
+                                <option value="">すべて</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="programming-difficulty-filter">難易度:</label>
+                            <select id="programming-difficulty-filter" class="form-control">
+                                <option value="">すべて</option>
+                                <option value="初級">初級</option>
+                                <option value="中級">中級</option>
+                                <option value="上級">上級</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="programming-search">検索:</label>
+                            <input type="text" id="programming-search" class="form-control" placeholder="タイトルやIDで検索...">
+                        </div>
+                    </div>
+                    
+                    <div class="problems-table-container">
+                        <table class="problems-table" id="programming-problems-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>タイトル</th>
+                                    <th>カテゴリ</th>
+                                    <th>難易度</th>
+                                    <th>ポイント</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quiz Questions View -->
+                <div class="content-view" id="quiz-questions-view">
+                    <div class="view-header">
+                        <h2>4択クイズ問題管理</h2>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="add-quiz-question">
+                                <i class="fas fa-plus"></i> 新しいクイズを追加
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label for="quiz-category-filter">カテゴリ:</label>
+                            <select id="quiz-category-filter" class="form-control">
+                                <option value="">すべて</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="quiz-level-filter">レベル:</label>
+                            <select id="quiz-level-filter" class="form-control">
+                                <option value="">すべて</option>
+                                <option value="basic">基礎</option>
+                                <option value="intermediate">中級</option>
+                                <option value="advanced">上級</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="quiz-search">検索:</label>
+                            <input type="text" id="quiz-search" class="form-control" placeholder="問題文やタグで検索...">
+                        </div>
+                    </div>
+                    
+                    <div class="problems-table-container">
+                        <table class="problems-table" id="quiz-questions-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>問題文</th>
+                                    <th>カテゴリ</th>
+                                    <th>レベル</th>
+                                    <th>タグ</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Categories View -->
+                <div class="content-view" id="categories-view">
+                    <div class="view-header">
+                        <h2>カテゴリ管理</h2>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="add-category">
+                                <i class="fas fa-plus"></i> カテゴリを追加
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="categories-grid" id="categories-grid">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+
+                <!-- Import Export View -->
+                <div class="content-view" id="import-export-view">
+                    <div class="view-header">
+                        <h2>データインポート・エクスポート</h2>
+                    </div>
+                    
+                    <div class="import-export-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-download"></i> データエクスポート</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="export-options">
+                                    <button class="btn btn-secondary" id="export-all-programming">
+                                        <i class="fas fa-code"></i> プログラミング問題を全エクスポート
+                                    </button>
+                                    <button class="btn btn-secondary" id="export-all-quiz">
+                                        <i class="fas fa-question"></i> クイズ問題を全エクスポート
+                                    </button>
+                                    <button class="btn btn-secondary" id="export-categories">
+                                        <i class="fas fa-folder"></i> カテゴリ情報をエクスポート
+                                    </button>
+                                    <button class="btn btn-primary" id="export-complete-backup">
+                                        <i class="fas fa-save"></i> 完全バックアップ作成
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-upload"></i> データインポート</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="import-options">
+                                    <div class="file-upload-area" id="file-upload-area">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>JSONファイルをドラッグ&ドロップ<br>またはクリックしてファイルを選択</p>
+                                        <input type="file" id="import-file" accept=".json" style="display: none;">
+                                    </div>
+                                    <div class="import-buttons">
+                                        <button class="btn btn-secondary" id="validate-data">
+                                            <i class="fas fa-check-circle"></i> データ整合性チェック
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other views (placeholder) -->
+                <div class="content-view" id="backup-view">
+                    <div class="view-header">
+                        <h2>バックアップ管理</h2>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-content">
+                            <p>バックアップ機能は開発中です。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-view" id="settings-view">
+                    <div class="view-header">
+                        <h2>設定</h2>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-content">
+                            <p>設定画面は開発中です。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-view" id="system-info-view">
+                    <div class="view-header">
+                        <h2>システム情報</h2>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-content">
+                            <div class="system-info" id="system-info">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal containers -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content" id="modal-content">
+            <!-- Dynamic modal content -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- 既存システムのスクリプト -->
+    <script src="js/problemLoader.js"></script>
+    <script src="js/quiz-loader.js"></script>
+    <script src="js/quiz-storage.js"></script>
+    
+    <!-- 管理画面のスクリプト -->
+    <script src="js/admin-statistics.js"></script>
+    <script src="js/admin-question-manager.js"></script>
+    <script src="js/admin-import-export.js"></script>
+    <script src="js/admin-app.js"></script>
+</body>
+</html>

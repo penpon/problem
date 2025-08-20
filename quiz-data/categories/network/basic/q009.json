@@ -1,0 +1,34 @@
+{
+  "id": "network_basic_009",
+  "version": "1.0",
+  "category": "network",
+  "level": "basic",
+  "tags": ["protocol", "concept", "basic", "beginner-friendly"],
+  "question": {
+    "text": "ネットワークにおける「プロトコル」とは何ですか？",
+    "hint": "コンピューター同士が通信するための約束事やルールのことです",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "protocol_concept",
+      "content": "コンピューターA ←→ プロトコル（ルール） ←→ コンピューターB\n\n例：HTTP、TCP、IP、DNS..."
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "通信を高速化するソフトウェア", "animation": "slide_in_left"},
+    {"id": "B", "text": "通信するための約束事やルール", "animation": "slide_in_right"},
+    {"id": "C", "text": "データを暗号化する技術", "animation": "slide_in_left"},
+    {"id": "D", "text": "ネットワーク機器の名称", "animation": "slide_in_right"}
+  ],
+  "correct": "B",
+  "explanation": {
+    "text": "プロトコルは、異なるコンピューターやネットワーク機器が互いに通信するための共通のルールや約束事です。人間同士の会話でも言語という共通ルールが必要なのと同じです。",
+    "example": "主要なプロトコル例：\n- HTTP/HTTPS: Web閲覧のルール\n- TCP: 信頼できるデータ送信のルール\n- IP: データの宛先を決めるルール\n- DNS: ドメイン名を解決するルール\n- SMTP: メール送信のルール\n\n比喩：\n- 人間の言語（日本語、英語）\n- 交通ルール（信号、標識）\n- 手紙の書式（住所の書き方）",
+    "relatedCommands": [],
+    "furtherReading": "異なるメーカーのデバイスでも通信できるのは、共通のプロトコルを使っているからです。"
+  },
+  "difficulty": {"score": 1, "timeLimit": 30, "points": 10},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

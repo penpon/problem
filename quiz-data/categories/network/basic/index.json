@@ -1,0 +1,172 @@
+{
+  "version": "1.0.0",
+  "category": "network",
+  "level": "basic",
+  "name": "ネットワーク基礎",
+  "description": "エンジニア初心者向けネットワーク基礎知識を学習します",
+  "totalQuestions": 20,
+  "estimatedTime": "10-15分",
+  "lastUpdated": "2025-08-20",
+  "questions": [
+    {
+      "id": "network_basic_001",
+      "file": "q001.json",
+      "title": "OSI参照モデルの第7層",
+      "topic": "OSI参照モデル基礎",
+      "difficulty": 1,
+      "tags": ["osi", "layer", "application", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_002",
+      "file": "q002.json",
+      "title": "OSI参照モデルの第4層",
+      "topic": "OSI参照モデル基礎",
+      "difficulty": 1,
+      "tags": ["osi", "layer", "transport", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_003",
+      "file": "q003.json",
+      "title": "OSI参照モデルの第3層",
+      "topic": "OSI参照モデル基礎",
+      "difficulty": 1,
+      "tags": ["osi", "layer", "network", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_004",
+      "file": "q004.json",
+      "title": "OSI参照モデルの第1層",
+      "topic": "OSI参照モデル基礎",
+      "difficulty": 1,
+      "tags": ["osi", "layer", "physical", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_005",
+      "file": "q005.json",
+      "title": "OSI参照モデルの第2層",
+      "topic": "OSI参照モデル基礎",
+      "difficulty": 1,
+      "tags": ["osi", "layer", "datalink", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_006",
+      "file": "q006.json",
+      "title": "TCPとUDPの基本的な違い",
+      "topic": "TCP/IPプロトコル基礎",
+      "difficulty": 1,
+      "tags": ["tcp", "udp", "protocol", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_007",
+      "file": "q007.json",
+      "title": "IPアドレスの基本的な役割",
+      "topic": "TCP/IPプロトコル基礎",
+      "difficulty": 1,
+      "tags": ["ip", "address", "role", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_008",
+      "file": "q008.json",
+      "title": "パケット通信の基本概念",
+      "topic": "TCP/IPプロトコル基礎",
+      "difficulty": 1,
+      "tags": ["packet", "communication", "basic", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_009",
+      "file": "q009.json",
+      "title": "プロトコルとは何か",
+      "topic": "TCP/IPプロトコル基礎",
+      "difficulty": 1,
+      "tags": ["protocol", "concept", "basic", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_010",
+      "file": "q010.json",
+      "title": "TCP/IPの階層構造",
+      "topic": "TCP/IPプロトコル基礎",
+      "difficulty": 2,
+      "tags": ["tcp", "ip", "layer", "structure", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_011",
+      "file": "q011.json",
+      "title": "IPv4アドレスの基本構造",
+      "topic": "IPアドレス・サブネット基礎",
+      "difficulty": 1,
+      "tags": ["ipv4", "address", "structure", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_012",
+      "file": "q012.json",
+      "title": "プライベートIPアドレスの範囲",
+      "topic": "IPアドレス・サブネット基礎",
+      "difficulty": 2,
+      "tags": ["private", "ip", "address", "range", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_013",
+      "file": "q013.json",
+      "title": "サブネットマスクの基本",
+      "topic": "IPアドレス・サブネット基礎",
+      "difficulty": 2,
+      "tags": ["subnet", "mask", "basic", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_014",
+      "file": "q014.json",
+      "title": "ネットワークアドレスとホストアドレス",
+      "topic": "IPアドレス・サブネット基礎",
+      "difficulty": 2,
+      "tags": ["network", "host", "address", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_015",
+      "file": "q015.json",
+      "title": "ローカルホストアドレス",
+      "topic": "IPアドレス・サブネット基礎",
+      "difficulty": 1,
+      "tags": ["localhost", "loopback", "127.0.0.1", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_016",
+      "file": "q016.json",
+      "title": "DNSの役割と仕組み",
+      "topic": "DNS・DHCP・基本プロトコル",
+      "difficulty": 1,
+      "tags": ["dns", "domain", "name", "resolution", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_017",
+      "file": "q017.json",
+      "title": "DHCPの役割",
+      "topic": "DNS・DHCP・基本プロトコル",
+      "difficulty": 1,
+      "tags": ["dhcp", "ip", "automatic", "assignment", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_018",
+      "file": "q018.json",
+      "title": "HTTPとHTTPSの違い",
+      "topic": "DNS・DHCP・基本プロトコル",
+      "difficulty": 1,
+      "tags": ["http", "https", "protocol", "security", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_019",
+      "file": "q019.json",
+      "title": "基本的なポート番号（HTTP）",
+      "topic": "DNS・DHCP・基本プロトコル",
+      "difficulty": 1,
+      "tags": ["port", "number", "http", "80", "beginner-friendly"]
+    },
+    {
+      "id": "network_basic_020",
+      "file": "q020.json",
+      "title": "基本的なポート番号（HTTPS・SSH）",
+      "topic": "DNS・DHCP・基本プロトコル",
+      "difficulty": 2,
+      "tags": ["port", "number", "https", "ssh", "443", "22", "beginner-friendly"]
+    }
+  ]
+}

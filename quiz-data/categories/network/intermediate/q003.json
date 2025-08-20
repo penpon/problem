@@ -1,0 +1,34 @@
+{
+  "id": "network_intermediate_003",
+  "version": "1.0",
+  "category": "network",
+  "level": "intermediate",
+  "tags": ["http", "method", "get", "post"],
+  "question": {
+    "text": "HTTPのGETメソッドとPOSTメソッドの使い分けで正しいものは？",
+    "hint": "データの取得と送信で使い分けます",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "http_methods",
+      "content": "GET: データを取得\nPOST: データを送信・更新"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "GETはデータ取得、POSTはデータ送信", "animation": "slide_in_left"},
+    {"id": "B", "text": "GETは古い方法、POSTは新しい方法", "animation": "slide_in_right"},
+    {"id": "C", "text": "GETは有料、POSTは無料", "animation": "slide_in_left"},
+    {"id": "D", "text": "両者に違いはない", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "GETは情報の取得（読み取り）に使用し、POSTは情報の送信・作成・更新に使用します。GETはURLにパラメータが含まれ、POSTは本文（body）にデータを含めます。",
+    "example": "使用例の違い：\nGET: Webページ表示、検索結果取得\n　　 URL: /search?q=ネットワーク\n\nPOST: ログイン、フォーム送信、ファイルアップロード\n　　  データは本文に含めて送信",
+    "relatedCommands": [],
+    "furtherReading": "RESTfulAPIでは、他にもPUT（更新）、DELETE（削除）メソッドも使用されます。"
+  },
+  "difficulty": {"score": 3, "timeLimit": 60, "points": 25},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

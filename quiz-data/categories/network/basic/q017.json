@@ -1,0 +1,34 @@
+{
+  "id": "network_basic_017",
+  "version": "1.0",
+  "category": "network",
+  "level": "basic",
+  "tags": ["dhcp", "ip", "automatic", "assignment", "beginner-friendly"],
+  "question": {
+    "text": "DHCP（Dynamic Host Configuration Protocol）の役割は何ですか？",
+    "hint": "ネットワークに接続したデバイスに自動的にIPアドレスを割り当てるサービスです",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "dhcp_process",
+      "content": "新しいデバイス\n↓\nDHCPサーバー\n↓ 自動割り当て\nIPアドレス: 192.168.1.100\nサブネットマスク: 255.255.255.0\nゲートウェイ: 192.168.1.1"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "ドメイン名の管理", "animation": "slide_in_left"},
+    {"id": "B", "text": "IPアドレスの自動割り当て", "animation": "slide_in_right"},
+    {"id": "C", "text": "データの暗号化", "animation": "slide_in_left"},
+    {"id": "D", "text": "ウイルス対策", "animation": "slide_in_right"}
+  ],
+  "correct": "B",
+  "explanation": {
+    "text": "DHCPは、ネットワークに接続するデバイスに対してIPアドレス、サブネットマスク、ゲートウェイアドレス、DNSサーバーアドレスなどを自動的に割り当てるプロトコルです。",
+    "example": "DHCPの動作例：\n\n【デバイスがネットワークに接続】\n1. 新しいPC/スマホがWi-Fiに接続\n2. DHCPサーバー（通常はルーター）に要求\n3. 利用可能なIPアドレスを自動割り当て\n\n【設定される内容】\n• IPアドレス: 192.168.1.100\n• サブネットマスク: 255.255.255.0\n• デフォルトゲートウェイ: 192.168.1.1\n• DNSサーバー: 192.168.1.1\n\n【利点】\n• 手動設定不要\n• IPアドレス重複を防止\n• ネットワーク管理が簡単",
+    "relatedCommands": [],
+    "furtherReading": "DHCPがないと、すべてのデバイスに手動でIPアドレス設定を行う必要があり、管理が非常に困難になります。"
+  },
+  "difficulty": {"score": 1, "timeLimit": 30, "points": 10},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

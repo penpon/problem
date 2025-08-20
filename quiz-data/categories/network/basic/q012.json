@@ -1,0 +1,34 @@
+{
+  "id": "network_basic_012",
+  "version": "1.0",
+  "category": "network",
+  "level": "basic",
+  "tags": ["private", "ip", "address", "range", "beginner-friendly"],
+  "question": {
+    "text": "プライベートIPアドレスの範囲で正しいものはどれですか？",
+    "hint": "家庭や会社のLAN内で使用される、インターネットで直接通信できないIPアドレスです",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "ip_ranges",
+      "content": "プライベートIP範囲：\n\nクラスA: 10.0.0.0～10.255.255.255\nクラスB: 172.16.0.0～172.31.255.255\nクラスC: 192.168.0.0～192.168.255.255"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "192.168.0.0～192.168.255.255", "animation": "slide_in_left"},
+    {"id": "B", "text": "8.8.8.0～8.8.8.255", "animation": "slide_in_right"},
+    {"id": "C", "text": "1.1.1.0～1.1.1.255", "animation": "slide_in_left"},
+    {"id": "D", "text": "127.0.0.0～127.255.255.255", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "プライベートIPアドレスは、組織内のLANで使用され、インターネット上では直接通信できないIPアドレスです。RFC 1918で規定された3つの範囲があります。",
+    "example": "プライベートIPアドレス範囲（RFC 1918）：\n\n• クラスA: 10.0.0.0～10.255.255.255\n  - 大企業向け（約1677万個）\n\n• クラスB: 172.16.0.0～172.31.255.255\n  - 中規模組織向け（約100万個）\n\n• クラスC: 192.168.0.0～192.168.255.255\n  - 家庭・小規模オフィス向け（約65,000個）\n\n特徴：\n- インターネットと直接通信不可\n- NAT/ルーターが必要",
+    "relatedCommands": [],
+    "furtherReading": "家庭のWi-Fiルーターは通常192.168.1.1や192.168.0.1などのプライベートIPを使用しています。"
+  },
+  "difficulty": {"score": 2, "timeLimit": 30, "points": 10},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

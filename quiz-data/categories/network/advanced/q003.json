@@ -1,0 +1,34 @@
+{
+  "id": "network_advanced_003",
+  "version": "1.0",
+  "category": "network",
+  "level": "advanced",
+  "tags": ["encryption", "public-key", "private-key", "security"],
+  "question": {
+    "text": "公開鍵暗号方式の仕組みで正しいものは？",
+    "hint": "2つの鍵（公開鍵と秘密鍵）を使用する暗号方式です",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "public_key_encryption",
+      "content": "送信者: 公開鍵で暗号化 → 暗号化データ → 受信者: 秘密鍵で復号化"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "公開鍵で暗号化し、対応する秘密鍵で復号化", "animation": "slide_in_left"},
+    {"id": "B", "text": "同じ鍵で暗号化と復号化を行う", "animation": "slide_in_right"},
+    {"id": "C", "text": "暗号化は不要", "animation": "slide_in_left"},
+    {"id": "D", "text": "ランダムな鍵を毎回生成", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "公開鍵暗号方式では、公開鍵で暗号化されたデータは対応する秘密鍵でのみ復号化できます。公開鍵は公開し、秘密鍵は所有者のみが保持します。",
+    "example": "公開鍵暗号の応用：\n1. HTTPS通信での暗号化\n2. デジタル署名（身元証明）\n3. 電子メールの暗号化\n4. SSH接続での認証\n\n数学的に関連付けられた鍵ペアを使用",
+    "relatedCommands": [],
+    "furtherReading": "RSA、楕円曲線暗号（ECC）が代表的な公開鍵暗号方式です。"
+  },
+  "difficulty": {"score": 4, "timeLimit": 90, "points": 35},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

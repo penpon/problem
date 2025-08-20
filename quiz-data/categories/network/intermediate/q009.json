@@ -1,0 +1,34 @@
+{
+  "id": "network_intermediate_009",
+  "version": "1.0",
+  "category": "network",
+  "level": "intermediate",
+  "tags": ["routing", "table", "gateway"],
+  "question": {
+    "text": "ルーティングテーブルの役割は？",
+    "hint": "データパケットをどの経路で送信するかを決定するテーブルです",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "routing_table",
+      "content": "宛先ネットワーク | ゲートウェイ\n192.168.1.0/24 | 直接接続\n0.0.0.0/0      | 192.168.1.1"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "パケットの送信経路を決定する情報", "animation": "slide_in_left"},
+    {"id": "B", "text": "ユーザーのログイン情報", "animation": "slide_in_right"},
+    {"id": "C", "text": "ファイルの保存場所", "animation": "slide_in_left"},
+    {"id": "D", "text": "プリンターの設定情報", "animation": "slide_in_right"}
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "ルーティングテーブルは、各宛先ネットワークへのパケット転送経路（ゲートウェイ）を記録したテーブルです。ルーターはこのテーブルを参照してパケットを最適な経路で転送します。",
+    "example": "ルーティングテーブルの例：\n宛先: 192.168.1.0/24 → 直接接続\n宛先: 10.0.0.0/8 → ゲートウェイ: 192.168.1.10\n宛先: 0.0.0.0/0（デフォルト） → ゲートウェイ: 192.168.1.1",
+    "relatedCommands": [],
+    "furtherReading": "インターネットは無数のルーターのルーティングテーブルによってパケットが正しい宛先に届けられています。"
+  },
+  "difficulty": {"score": 2, "timeLimit": 45, "points": 20},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

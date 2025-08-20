@@ -1,0 +1,34 @@
+{
+  "id": "network_basic_007",
+  "version": "1.0",
+  "category": "network",
+  "level": "basic",
+  "tags": ["ip", "address", "role", "beginner-friendly"],
+  "question": {
+    "text": "IPアドレスの基本的な役割は何ですか？",
+    "hint": "インターネット上で各デバイスを識別するために使われます",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "ip_concept",
+      "content": "デバイスA: 192.168.1.10\n↓\nインターネット\n↓ \nデバイスB: 192.168.2.20"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "データの暗号化", "animation": "slide_in_left"},
+    {"id": "B", "text": "ネットワーク上でのデバイス識別", "animation": "slide_in_right"},
+    {"id": "C", "text": "ファイルの圧縮", "animation": "slide_in_left"},
+    {"id": "D", "text": "データの高速化", "animation": "slide_in_right"}
+  ],
+  "correct": "B",
+  "explanation": {
+    "text": "IPアドレスは、インターネットやネットワーク上で各デバイス（コンピュータ、スマホ、サーバーなど）を一意に識別するための住所のような役割を果たします。",
+    "example": "IPアドレスの役割：\n- デバイスの住所として機能\n- データの送信先を特定\n- インターネット通信を可能にする\n\n例えば：\n- 自分のPC: 192.168.1.100\n- Googleのサーバー: 172.217.175.78\n- 自宅のルーター: 192.168.1.1\n\n住所と同様に、正確なIPアドレスがないとデータは届きません。",
+    "relatedCommands": [],
+    "furtherReading": "現実世界の住所と同じように、IPアドレスがあることで、世界中のどのデバイスとも通信できます。"
+  },
+  "difficulty": {"score": 1, "timeLimit": 30, "points": 10},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}

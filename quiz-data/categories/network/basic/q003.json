@@ -1,0 +1,34 @@
+{
+  "id": "network_basic_003",
+  "version": "1.0",
+  "category": "network",
+  "level": "basic",
+  "tags": ["osi", "layer", "network", "beginner-friendly"],
+  "question": {
+    "text": "OSI参照モデルの第3層（ネットワーク層）の主な役割は何ですか？",
+    "hint": "IPアドレスを使って、データをどの経路で送るかを決める層です",
+    "animation": {
+      "type": "fade_in_words",
+      "duration": 1000
+    },
+    "visual": {
+      "type": "network_diagram",
+      "content": "Layer 7: アプリケーション層\nLayer 6: プレゼンテーション層\nLayer 5: セッション層\nLayer 4: トランスポート層\nLayer 3: ネットワーク層 ← ここ！\nLayer 2: データリンク層\nLayer 1: 物理層"
+    }
+  },
+  "choices": [
+    {"id": "A", "text": "データの暗号化と復号化", "animation": "slide_in_left"},
+    {"id": "B", "text": "電気信号への変換", "animation": "slide_in_right"},
+    {"id": "C", "text": "経路選択とIPアドレスによる配送", "animation": "slide_in_left"},
+    {"id": "D", "text": "データの圧縮と展開", "animation": "slide_in_right"}
+  ],
+  "correct": "C",
+  "explanation": {
+    "text": "ネットワーク層は、IPアドレスを使ってデータをどの経路で送るかを決める経路選択（ルーティング）と、データの配送を担当します。",
+    "example": "ネットワーク層の機能：\n- IPアドレスによるデータ配送\n- ルーティング（経路選択）\n- パケットの分割と再構成\n\nプロトコル例：\n- IP (Internet Protocol)\n- ICMP (ping コマンドで使用)\n- ARP (IPアドレスとMACアドレスの変換)",
+    "relatedCommands": [],
+    "furtherReading": "インターネット上でデータが正しい宛先に届くのは、ネットワーク層のルーティング機能のおかげです。"
+  },
+  "difficulty": {"score": 1, "timeLimit": 30, "points": 10},
+  "statistics": {"attempts": 0, "correctRate": 0}
+}
