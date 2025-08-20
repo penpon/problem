@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_010",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["global", "local", "scope", "variable"],
+  "question": {
+    "text": "次のコードで最後のconsole.logの出力は？\nlet x = 10;\nfunction changeX() {\n  let x = 20;\n  console.log('関数内:', x);\n}\nchangeX();\nconsole.log('関数外:', x);",
+    "hint": "ローカル変数はグローバル変数に影響しません",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "let x = 10; // グローバル\nfunction changeX() {\n  let x = 20; // ローカル\n  console.log('関数内:', x);\n}\nchangeX();\nconsole.log('関数外:', x); // ?"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "関数外: 10",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "関数外: 20",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "関数外: undefined",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "エラー",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "関数内のlet x = 20;は新しいローカル変数を作成します。グローバルのxは変更されません。これを変数のシャドーイングと呼びます。",
+    "example": "let x = 10; // グローバル変数\nfunction changeX() {\n  let x = 20; // 新しいローカル変数\n  console.log('関数内:', x); // 20\n}\nchangeX();\nconsole.log('関数外:', x); // 10 (変更されない)\n\n// グローバル変数を変更する場合\nfunction changeGlobal() {\n  x = 30; // letを使わない\n}",
+    "relatedCommands": ["variable declaration", "scope", "shadowing"],
+    "furtherReading": "同じ名前でもスコープが異なれば別の変数として扱われます。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 40,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

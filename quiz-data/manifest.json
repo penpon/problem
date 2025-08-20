@@ -21,9 +21,19 @@
       "levels": ["basic", "intermediate", "advanced"],
       "questionCount": 40,
       "enabled": true
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript基礎",
+      "icon": "📝",
+      "description": "プログラミング初学者向けのJavaScript文法と基礎知識",
+      "color": "#f59e0b",
+      "levels": ["basic", "intermediate", "advanced"],
+      "questionCount": 60,
+      "enabled": true
     }
   ],
-  "totalQuestions": 80,
+  "totalQuestions": 140,
   "supportedLanguages": ["ja"],
   "features": {
     "animations": true,

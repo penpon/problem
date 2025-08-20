@@ -1,0 +1,220 @@
+{
+  "level": "basic",
+  "categoryId": "javascript",
+  "name": "JavaScript基礎",
+  "description": "JavaScript文法の基本（変数、制御文、配列、オブジェクト）",
+  "totalQuestions": 30,
+  "estimatedTime": "15-20分",
+  "questions": [
+    {
+      "id": "js_basic_001",
+      "file": "q001.json",
+      "topic": "console.log",
+      "difficulty": 1,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_002", 
+      "file": "q002.json",
+      "topic": "calculation",
+      "difficulty": 1,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_003",
+      "file": "q003.json", 
+      "topic": "string_concatenation",
+      "difficulty": 1,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_004",
+      "file": "q004.json",
+      "topic": "variables",
+      "difficulty": 2,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_005",
+      "file": "q005.json",
+      "topic": "variables",
+      "difficulty": 2,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_006",
+      "file": "q006.json",
+      "topic": "const",
+      "difficulty": 2,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_007",
+      "file": "q007.json",
+      "topic": "template_literal",
+      "difficulty": 2,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_008",
+      "file": "q008.json",
+      "topic": "if_statement",
+      "difficulty": 2,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_009",
+      "file": "q009.json",
+      "topic": "boolean_operators",
+      "difficulty": 2,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_010",
+      "file": "q010.json",
+      "topic": "else_statement",
+      "difficulty": 2,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_011",
+      "file": "q011.json",
+      "topic": "else_if",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_012",
+      "file": "q012.json",
+      "topic": "multiple_conditions",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_013",
+      "file": "q013.json",
+      "topic": "while_loop",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_014",
+      "file": "q014.json",
+      "topic": "for_loop",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_015",
+      "file": "q015.json",
+      "topic": "arrays",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_016",
+      "file": "q016.json",
+      "topic": "array_elements",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_017",
+      "file": "q017.json",
+      "topic": "array_update",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_018",
+      "file": "q018.json",
+      "topic": "array_loop",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_019",
+      "file": "q019.json",
+      "topic": "array_loop_advanced",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_020",
+      "file": "q020.json",
+      "topic": "objects",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_021",
+      "file": "q021.json",
+      "topic": "object_access",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_022",
+      "file": "q022.json",
+      "topic": "object_update",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_023",
+      "file": "q023.json",
+      "topic": "object_array",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_024",
+      "file": "q024.json",
+      "topic": "object_array_advanced",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_025",
+      "file": "q025.json",
+      "topic": "undefined",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_026",
+      "file": "q026.json",
+      "topic": "undefined_handling",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_027",
+      "file": "q027.json",
+      "topic": "nested_loops",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_028",
+      "file": "q028.json",
+      "topic": "complex_conditions",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_029",
+      "file": "q029.json",
+      "topic": "mixed_data_types",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_basic_030",
+      "file": "q030.json",
+      "topic": "practical_application",
+      "difficulty": 5,
+      "weight": 1
+    }
+  ]
+}

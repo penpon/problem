@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_016",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["array_access", "indexing", "elements"],
+  "question": {
+    "text": "配列 fruits = ['apple', 'banana', 'orange'] の最初の要素を取得するコードは？",
+    "hint": "配列のインデックスは0から始まります",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const fruits = ['apple', 'banana', 'orange'];\n// 最初の要素を取得\nconsole.log(_);"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "fruits[0]",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "fruits[1]",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "fruits.first",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "fruits(0)",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "配列の要素は角括弧 [ ] とインデックス番号で取得します。インデックスは0から始まるので、最初の要素は [0] でアクセスします。",
+    "example": "const fruits = ['apple', 'banana', 'orange'];\nconsole.log(fruits[0]);  // 'apple'\nconsole.log(fruits[1]);  // 'banana'\nconsole.log(fruits[2]);  // 'orange'",
+    "relatedCommands": ["配列の長さ", "配列の更新", "配列の追加"],
+    "furtherReading": "配列のインデックスは常に0から始まることを覚えておきましょう。"
+  },
+  "difficulty": {
+    "score": 3,
+    "timeLimit": 30,
+    "points": 15
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

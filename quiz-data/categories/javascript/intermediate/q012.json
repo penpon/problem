@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_012",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["variable", "shadowing", "scope", "precedence"],
+  "question": {
+    "text": "次のコードでconsole.logの出力は？\nlet name = '太郎';\nfunction test(name) {\n  console.log(name);\n}\ntest('花子');",
+    "hint": "引数は最も内側のスコープになります",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "let name = '太郎';    // グローバル\nfunction test(name) { // 引数\n  console.log(name);  // 何が出力される？\n}\ntest('花子');"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "花子",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "太郎",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "undefined",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "エラー",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "関数の引数は最も内側のスコープを持ち、同名のグローバル変数をシャドーイング（隠す）します。関数内では引数の値が優先されます。",
+    "example": "let name = '太郎';        // グローバル変数\nfunction test(name) {     // 引数nameがグローバルnameを隠す\n  console.log(name);      // '花子' (引数の値)\n  \n  function inner() {\n    let name = '次郎';    // さらに内側のローカル変数\n    console.log(name);    // '次郎'\n  }\n  inner();\n}\ntest('花子');\nconsole.log(name);        // '太郎' (グローバルは変更されない)",
+    "relatedCommands": ["function parameters", "scope chain", "variable shadowing"],
+    "furtherReading": "同名の変数がある場合、最も内側のスコープが優先されます。"
+  },
+  "difficulty": {
+    "score": 5,
+    "timeLimit": 40,
+    "points": 25
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

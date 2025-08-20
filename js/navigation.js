@@ -15,6 +15,7 @@ class NavigationManager {
         
         if (filename === 'grader.html') return 'grader';
         if (filename === 'visualizer.html') return 'visualizer';
+        if (filename === 'quiz.html') return 'quiz';
         return 'home';
     }
 
@@ -50,6 +51,10 @@ class NavigationManager {
                         <a href="grader.html" class="nav-link ${this.currentPage === 'grader' ? 'active' : ''}">
                             <span class="link-icon">📊</span>
                             <span class="link-text">採点システム</span>
+                        </a>
+                        <a href="quiz.html" class="nav-link ${this.currentPage === 'quiz' ? 'active' : ''}">
+                            <span class="link-icon">📱</span>
+                            <span class="link-text">エンジニアクイズ</span>
                         </a>
                         <a href="visualizer.html" class="nav-link ${this.currentPage === 'visualizer' ? 'active' : ''}">
                             <span class="link-icon">🔍</span>
@@ -229,6 +234,20 @@ class NavigationManager {
 
             .nav-header + .container {
                 margin-top: 20px;
+            }
+
+            /* quiz.html専用の調整 */
+            .nav-header + .quiz-container {
+                margin-top: 0;
+            }
+
+            .nav-header + .quiz-container .quiz-header .header-content {
+                display: none; /* クイズロゴとメニューボタンのみ非表示 */
+            }
+
+            .nav-header + .quiz-container .quiz-header {
+                background: transparent; /* 背景を透明に */
+                padding: 10px 0; /* パディング調整 */
             }
         `;
         document.head.appendChild(style);

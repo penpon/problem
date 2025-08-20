@@ -44,6 +44,164 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Subcategory Screen Styles */
+        .subcategory-screen .back-button-container {
+            margin-bottom: 20px;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+        
+        .subcategory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .subcategory-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subcategory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .subcategory-card.new {
+            border-left: 4px solid #10b981;
+        }
+        
+        .subcategory-card.incorrect {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .subcategory-card.review {
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .subcategory-card.random {
+            border-left: 4px solid #8b5cf6;
+        }
+        
+        .subcategory-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subcategory-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0 0 10px 0;
+        }
+        
+        .subcategory-description {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 0 0 15px 0;
+            line-height: 1.4;
+        }
+        
+        .subcategory-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .subcategory-count {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4a5568;
+        }
+        
+        .subcategory-label {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+        
+        .reset-section {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 15px;
+        }
+        
+        .reset-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 auto 10px;
+        }
+        
+        .reset-button:hover {
+            background: #dc2626;
+            transform: scale(1.05);
+        }
+        
+        .reset-description {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 0;
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 480px) {
+            .subcategory-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .subcategory-card {
+                padding: 15px;
+            }
+            
+            .subcategory-icon {
+                font-size: 2rem;
+            }
+            
+            .subcategory-title {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -97,6 +255,80 @@
                         <span class="stat-icon">⭐</span>
                         <span class="stat-text">正解率: <strong id="overallAccuracy">-</strong></span>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subcategory Selection Screen -->
+        <div class="screen subcategory-screen" id="subcategoryScreen">
+            <div class="screen-content">
+                <div class="back-button-container">
+                    <button class="back-button" id="backToCategories">
+                        <span class="back-icon">←</span>
+                        <span class="back-text">カテゴリ選択に戻る</span>
+                    </button>
+                </div>
+                
+                <h2 class="screen-title" id="subcategoryTitle">📱 エンジニアクイズ</h2>
+                <p class="screen-subtitle" id="subcategorySubtitle">学習モードを選択してください</p>
+                
+                <div class="subcategory-grid" id="subcategoryGrid">
+                    <!-- Subcategories will be loaded here -->
+                    <button class="subcategory-card new" id="newProblems">
+                        <div class="subcategory-header">
+                            <div class="subcategory-icon">✨</div>
+                            <h3 class="subcategory-title">新規問題</h3>
+                        </div>
+                        <p class="subcategory-description">まだ出題していない問題にチャレンジ</p>
+                        <div class="subcategory-stats">
+                            <span class="subcategory-count" id="newCount">0</span>
+                            <span class="subcategory-label">問題</span>
+                        </div>
+                    </button>
+                    
+                    <button class="subcategory-card incorrect" id="incorrectProblems">
+                        <div class="subcategory-header">
+                            <div class="subcategory-icon">🔄</div>
+                            <h3 class="subcategory-title">間違えた問題</h3>
+                        </div>
+                        <p class="subcategory-description">復習して理解を深めよう</p>
+                        <div class="subcategory-stats">
+                            <span class="subcategory-count" id="incorrectCount">0</span>
+                            <span class="subcategory-label">問題</span>
+                        </div>
+                    </button>
+                    
+                    <button class="subcategory-card review" id="reviewProblems">
+                        <div class="subcategory-header">
+                            <div class="subcategory-icon">📚</div>
+                            <h3 class="subcategory-title">復習問題</h3>
+                        </div>
+                        <p class="subcategory-description">正解したけど理解を確実にしよう</p>
+                        <div class="subcategory-stats">
+                            <span class="subcategory-count" id="reviewCount">0</span>
+                            <span class="subcategory-label">問題</span>
+                        </div>
+                    </button>
+                    
+                    <button class="subcategory-card random" id="randomProblems">
+                        <div class="subcategory-header">
+                            <div class="subcategory-icon">🎲</div>
+                            <h3 class="subcategory-title">ランダム</h3>
+                        </div>
+                        <p class="subcategory-description">すべての問題からランダムに出題</p>
+                        <div class="subcategory-stats">
+                            <span class="subcategory-count" id="randomCount">20</span>
+                            <span class="subcategory-label">問題</span>
+                        </div>
+                    </button>
+                </div>
+                
+                <div class="reset-section">
+                    <button class="reset-button" id="resetProgress">
+                        <span class="reset-icon">🗑️</span>
+                        <span class="reset-text">学習履歴をリセット</span>
+                    </button>
+                    <p class="reset-description">このカテゴリの学習記録を削除します</p>
                 </div>
             </div>
         </div>
@@ -229,6 +461,7 @@
     </div>
 
     <!-- JavaScript -->
+    <script src="js/navigation.js"></script>
     <script src="js/quiz-loader.js"></script>
     <script src="js/quiz-storage.js"></script>
     <script src="js/quiz-animations.js"></script>

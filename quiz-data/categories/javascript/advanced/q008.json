@@ -1,0 +1,57 @@
+{
+  "id": "js_advanced_008",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "advanced",
+  "tags": ["map", "array", "transformation", "new-array"],
+  "question": {
+    "text": "APIから取得した顧客データを画面表示用のフォーマットに変換する処理で、各要素を変換して新しい配列を作成するメソッドは？",
+    "hint": "mapメソッドは各要素を変換して新しい配列を作成します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 2000
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// 顧客データを表示用フォーマットに変換\nconst customers = [\n  {id: 1, firstName: '太郎', lastName: '山田', email: 'yamada@example.com', age: 30},\n  {id: 2, firstName: '花子', lastName: '田中', email: 'tanaka@example.com', age: 25},\n  {id: 3, firstName: '次郎', lastName: '佐藤', email: 'sato@example.com', age: 35}\n];\n// 'lastName firstName (age歳)' の形式に変換"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "const formatted = customers.map(c => `${c.lastName} ${c.firstName} (${c.age}歳)`);",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "const formatted = customers.transform(c => `${c.lastName} ${c.firstName} (${c.age}歳)`);",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "const formatted = customers.convert(c => `${c.lastName} ${c.firstName} (${c.age}歳)`);",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "const formatted = customers.format(c => `${c.lastName} ${c.firstName} (${c.age}歳)`);",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "mapメソッドは配列の各要素に関数を適用し、その結果で新しい配列を作成します。元の配列は変更されません。データの変換やフォーマット変更に最適です。",
+    "example": "const prices = [100, 200, 300];\nconst withTax = prices.map(price => price * 1.1);\nconsole.log(withTax); // [110, 220, 330]\nconsole.log(prices); // [100, 200, 300] (元の配列は変更なし)",
+    "relatedCommands": ["filter", "reduce", "forEach"],
+    "furtherReading": "mapは関数型プログラミングの核となるメソッドで、データパイプライン処理に欠かせません。"
+  },
+  "difficulty": {
+    "score": 5,
+    "timeLimit": 55,
+    "points": 25
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

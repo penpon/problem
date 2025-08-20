@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_003",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["string", "concatenation", "plus_operator"],
+  "question": {
+    "text": "JavaScriptで「Hello」と「World」を連結して「HelloWorld」を出力するコードは？",
+    "hint": "文字列の連結には+演算子を使います",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor", 
+      "content": "// 'Hello' と 'World' を連結しよう\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "console.log('Hello' + 'World');",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "console.log('Hello', 'World');",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "console.log('Hello' & 'World');",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "console.log('Hello' * 'World');",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "JavaScriptでは+演算子を使って文字列を連結できます。Bのようにカンマ区切りだと「Hello World」（間にスペース）が表示されます。",
+    "example": "console.log('Hello' + 'World');  // HelloWorld\nconsole.log('Hello', 'World');   // Hello World（スペース有り）",
+    "relatedCommands": ["文字列連結", "テンプレートリテラル"],
+    "furtherReading": "文字列の連結は文字列操作の基本です。"
+  },
+  "difficulty": {
+    "score": 1,
+    "timeLimit": 30,
+    "points": 10
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

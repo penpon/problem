@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_019",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["array_loop_advanced", "sum", "calculation"],
+  "question": {
+    "text": "配列 scores = [80, 75, 90, 85] の全ての要素の合計を求めるコードは？",
+    "hint": "合計用の変数を用意して、for文で各要素を加算します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const scores = [80, 75, 90, 85];\nlet sum = 0;\n// 合計を計算\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "for (let i = 0; i < scores.length; i++) { sum += scores[i]; }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "for (let i = 0; i < scores.length; i++) { sum = scores[i]; }",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "for (let i = 0; i < scores.length; i++) { sum + scores[i]; }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "sum = scores[0] + scores[1] + scores[2] + scores[3];",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "sum += scores[i] は sum = sum + scores[i] の省略形で、各要素を合計に加算します。配列の全要素を処理する典型的なパターンです。",
+    "example": "const scores = [80, 75, 90, 85];\nlet sum = 0;\nfor (let i = 0; i < scores.length; i++) {\n  sum += scores[i];  // 80 + 75 + 90 + 85 = 330\n}\nconsole.log(sum);  // 330",
+    "relatedCommands": ["+=演算子", "配列の平均", "reduce", "Math.max"],
+    "furtherReading": "+= は値を累積する際によく使われる便利な演算子です。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 60,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

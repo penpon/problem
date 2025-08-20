@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_007",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["function", "multiple", "parameters"],
+  "question": {
+    "text": "3つの引数（a, b, c）を受け取り、それらを足し合わせる関数を定義するコードは？",
+    "hint": "引数はカンマで区切ります",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// 3つの数値を受け取って合計を返す関数\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "function sum(a, b, c) { return a + b + c; }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "function sum(a; b; c) { return a + b + c; }",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "function sum(a & b & c) { return a + b + c; }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "function sum(a b c) { return a + b + c; }",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "複数の引数は()内でカンマ（,）で区切って定義します。関数を呼び出す際も、同じ順序でカンマ区切りで渡します。",
+    "example": "function sum(a, b, c) {\n  return a + b + c;\n}\nconsole.log(sum(1, 2, 3)); // 6\nconsole.log(sum(10, 20, 30)); // 60",
+    "relatedCommands": ["function call", "return", "arithmetic operators"],
+    "furtherReading": "引数の数に制限はありませんが、多すぎると保守性が悪くなります。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 35,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_007",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["template_literal", "string_interpolation", "backticks"],
+  "question": {
+    "text": "変数 name に「太郎」が入っているとき、「こんにちは、太郎さん」と表示するテンプレートリテラルの書き方は？",
+    "hint": "バッククォート（`）と ${}を使います",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const name = '太郎';\n// テンプレートリテラルで挨拶を作ろう\nconsole.log(_);"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "`こんにちは、${name}さん`",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "'こんにちは、${name}さん'",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "\"こんにちは、\" + name + \"さん\"",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "'こんにちは、' + ${name} + 'さん'",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "テンプレートリテラルはバッククォート（`）で囲み、変数を${変数名}の形で埋め込みます。文字列の連結より読みやすく書けます。",
+    "example": "const name = '太郎';\nconsole.log(`こんにちは、${name}さん`);  // こんにちは、太郎さん",
+    "relatedCommands": ["文字列連結", "変数展開"],
+    "furtherReading": "テンプレートリテラルはES6で導入された便利な文字列記法です。"
+  },
+  "difficulty": {
+    "score": 2,
+    "timeLimit": 40,
+    "points": 10
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

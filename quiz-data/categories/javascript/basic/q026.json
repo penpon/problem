@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_026",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["undefined_handling", "default_values", "error_prevention"],
+  "question": {
+    "text": "オブジェクト user の phone プロパティが存在しない場合に '未設定' を表示するコードは？",
+    "hint": "|| 演算子を使ってデフォルト値を設定できます",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const user = { name: '田中', email: 'tanaka@example.com' };\n// phone が undefined なら '未設定' を表示\nconsole.log(_);"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "user.phone || '未設定'",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "user.phone && '未設定'",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "user.phone === undefined ? '未設定' : user.phone",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "if (user.phone) { '未設定' } else { user.phone }",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "|| 演算子は左側の値がfalsy（undefined、null、空文字など）の場合、右側の値を返します。undefinedのデフォルト値設定によく使われます。",
+    "example": "const user = { name: '田中', email: 'tanaka@example.com' };\nconsole.log(user.phone || '未設定');  // '未設定'\nconsole.log(user.name || '未設定');   // '田中'",
+    "relatedCommands": ["?? 演算子", "三項演算子", "undefined チェック"],
+    "furtherReading": "|| 演算子はデフォルト値の設定に便利ですが、ES2020の ?? 演算子も覚えておくと良いです。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 60,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

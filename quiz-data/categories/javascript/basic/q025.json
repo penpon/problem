@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_025",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["undefined", "data_types", "null"],
+  "question": {
+    "text": "宣言されていない変数やオブジェクトの存在しないプロパティにアクセスしたときの値は？",
+    "hint": "JavaScriptで「値が定義されていない」ことを表す特別な値です",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const obj = { name: 'テスト' };\nconsole.log(obj.age);  // 結果は？"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "undefined",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "null",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "false",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "エラーが発生",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "undefined は「値が定義されていない」ことを示すJavaScriptの特別な値です。存在しないプロパティや初期化されていない変数の値です。",
+    "example": "const obj = { name: 'テスト' };\nconsole.log(obj.age);  // undefined\n\nlet x;\nconsole.log(x);  // undefined",
+    "relatedCommands": ["null", "typeof", "変数の初期化"],
+    "furtherReading": "undefined と null は似ていますが、undefined は「未定義」、null は「意図的な空の値」です。"
+  },
+  "difficulty": {
+    "score": 3,
+    "timeLimit": 40,
+    "points": 15
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

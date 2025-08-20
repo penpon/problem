@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_021",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["object_access", "dot_notation", "properties"],
+  "question": {
+    "text": "オブジェクト person = { name: '花子', age: 30 } から name の値を取得するコードは？",
+    "hint": "ドット記法またはブラケット記法でプロパティにアクセスします",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const person = { name: '花子', age: 30 };\n// name の値を取得\nconsole.log(_);"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "person.name",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "person[name]",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "person(name)",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "person->name",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "オブジェクトのプロパティにアクセスするには、ドット記法（オブジェクト.プロパティ名）またはブラケット記法（オブジェクト['プロパティ名']）を使います。",
+    "example": "const person = { name: '花子', age: 30 };\nconsole.log(person.name);  // '花子'\nconsole.log(person['age']);  // 30",
+    "relatedCommands": ["ブラケット記法", "オブジェクトの更新", "Object.keys"],
+    "furtherReading": "ドット記法が一般的ですが、プロパティ名に特殊文字がある場合はブラケット記法を使います。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 30,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

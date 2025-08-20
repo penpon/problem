@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_009",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["boolean", "comparison", "operators", "true_false"],
+  "question": {
+    "text": "5 > 3 の結果として正しいものは？",
+    "hint": "比較演算子の結果は真偽値（true/false）です",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "console.log(5 > 3);\n// この結果は？"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "true",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "false",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "2",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "undefined",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "比較演算子の結果は真偽値（boolean）です。5は3より大きいので、5 > 3 は true になります。",
+    "example": "console.log(5 > 3);   // true\nconsole.log(3 > 5);   // false\nconsole.log(5 === 5); // true",
+    "relatedCommands": ["比較演算子", "boolean", "条件分岐"],
+    "furtherReading": "真偽値はプログラムの条件分岐で重要な役割を果たします。"
+  },
+  "difficulty": {
+    "score": 2,
+    "timeLimit": 30,
+    "points": 10
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

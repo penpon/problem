@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_006",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["const", "constants", "immutable", "declaration"],
+  "question": {
+    "text": "値が変更されない定数を宣言するキーワードは？",
+    "hint": "一度代入すると変更できない変数のことです",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// 変更されない値を宣言するには？\n_ PI = 3.14159;"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "const",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "let",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "var",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "final",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "const は定数を宣言するキーワードです。一度代入した値は変更できません。定数名は慣習的に大文字で書かれることが多いです。",
+    "example": "const PI = 3.14159;\nconsole.log(PI);  // 3.14159\n// PI = 3.14;  // エラー: 定数は変更できない",
+    "relatedCommands": ["let", "var", "変数宣言"],
+    "furtherReading": "const は値が変わらないことが明確な場合に使用します。"
+  },
+  "difficulty": {
+    "score": 2,
+    "timeLimit": 30,
+    "points": 10
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_011",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["else_if", "multiple_conditions", "grading"],
+  "question": {
+    "text": "score に応じて「優秀」(90以上)、「良好」(70以上)、「普通」(それ以外) を表示するコードは？",
+    "hint": "else if を使って複数の条件を順番にチェックします",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const score = 75;\n// 3段階で評価しよう\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "if (score >= 90) { console.log('優秀'); } else if (score >= 70) { console.log('良好'); } else { console.log('普通'); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "if (score >= 90) { console.log('優秀'); } if (score >= 70) { console.log('良好'); } else { console.log('普通'); }",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "if (score >= 70) { console.log('良好'); } else if (score >= 90) { console.log('優秀'); } else { console.log('普通'); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "if (score === 90) { console.log('優秀'); } else if (score === 70) { console.log('良好'); } else { console.log('普通'); }",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "else if を使うことで複数の条件を順番にチェックできます。条件は高い値から順番にチェックすることが重要です。",
+    "example": "const score = 75;\nif (score >= 90) {\n  console.log('優秀');\n} else if (score >= 70) {\n  console.log('良好');  // 75 >= 70 なのでこちらが実行\n} else {\n  console.log('普通');\n}",
+    "relatedCommands": ["if文", "else", "条件分岐"],
+    "furtherReading": "条件の順序が重要です。高い値から低い値へ順番にチェックします。"
+  },
+  "difficulty": {
+    "score": 3,
+    "timeLimit": 50,
+    "points": 15
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_028",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["complex_conditions", "logical_operators", "age_categories"],
+  "question": {
+    "text": "年齢によって「子供」(12歳以下)、「学生」(13-22歳)、「大人」(23-64歳)、「シニア」(65歳以上)を判定するコードは？",
+    "hint": "複数のelse ifを使って年齢範囲を順番にチェックします",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const age = 20;\n// 年齢カテゴリを判定\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "if (age <= 12) { console.log('子供'); } else if (age <= 22) { console.log('学生'); } else if (age <= 64) { console.log('大人'); } else { console.log('シニア'); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "if (age >= 65) { console.log('シニア'); } else if (age >= 23) { console.log('大人'); } else if (age >= 13) { console.log('学生'); } else { console.log('子供'); }",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "if (age <= 12) { console.log('子供'); } if (age >= 13 && age <= 22) { console.log('学生'); } if (age >= 23 && age <= 64) { console.log('大人'); } if (age >= 65) { console.log('シニア'); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "if (age === 12) { console.log('子供'); } else if (age === 22) { console.log('学生'); } else if (age === 64) { console.log('大人'); } else { console.log('シニア'); }",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "範囲判定では順番に条件をチェックします。12歳以下、22歳以下、64歳以下の順でチェックし、どれにも当てはまらなければシニアです。効率的な条件設定が重要です。",
+    "example": "const age = 20;\nif (age <= 12) {\n  console.log('子供');\n} else if (age <= 22) {\n  console.log('学生');  // 20歳なのでここが実行される\n} else if (age <= 64) {\n  console.log('大人');\n} else {\n  console.log('シニア');\n}",
+    "relatedCommands": ["switch文", "三項演算子", "論理演算子"],
+    "furtherReading": "範囲判定では条件の順序と境界値の処理が重要です。"
+  },
+  "difficulty": {
+    "score": 5,
+    "timeLimit": 90,
+    "points": 25
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

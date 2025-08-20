@@ -178,6 +178,14 @@ class QuizApp {
                 e.returnValue = 'クイズが進行中です。本当にページを離れますか？';
             }
         });
+        
+        // サブカテゴリ関連のイベントリスナー
+        document.getElementById('backToCategories')?.addEventListener('click', () => this.backToCategories());
+        document.getElementById('newProblems')?.addEventListener('click', () => this.selectSubcategory('new'));
+        document.getElementById('incorrectProblems')?.addEventListener('click', () => this.selectSubcategory('incorrect'));
+        document.getElementById('reviewProblems')?.addEventListener('click', () => this.selectSubcategory('review'));
+        document.getElementById('randomProblems')?.addEventListener('click', () => this.selectSubcategory('random'));
+        document.getElementById('resetProgress')?.addEventListener('click', () => this.resetProgress());
     }
 
     /**
@@ -351,11 +359,8 @@ class QuizApp {
             this.currentCategory = category;
             console.log(`📂 Selected category: ${category.name}`);
             
-            // 問題を読み込み
-            await this.loadQuestions();
-            
-            // クイズ開始
-            this.startQuiz();
+            // サブカテゴリ選択画面を表示
+            this.showSubcategoryScreen();
             
         } catch (error) {
             console.error('❌ Failed to select category:', error);
@@ -800,10 +805,12 @@ class QuizApp {
      * @private
      */
     showScreen(screenName) {
-        const screens = ['category', 'quiz', 'result'];
+        const screens = ['category', 'subcategory', 'quiz', 'result'];
         
         screens.forEach(screen => {
-            const element = this.elements[`${screen}Screen`];
+            const element = screen === 'subcategory' 
+                ? document.getElementById('subcategoryScreen')
+                : this.elements[`${screen}Screen`];
             if (element) {
                 element.classList.toggle('active', screen === screenName);
             }
@@ -853,6 +860,221 @@ class QuizApp {
                 if (this.currentScreen === 'quiz' && this.isAnswered) {
                     this.nextQuestion();
                 }
+            }
+        }
+    }
+
+    /**
+     * サブカテゴリ選択画面の表示
+     * @private
+     */
+    showSubcategoryScreen() {
+        if (!this.currentCategory) return;
+        
+        // タイトルとサブタイトルの更新
+        const titleElement = document.getElementById('subcategoryTitle');
+        const subtitleElement = document.getElementById('subcategorySubtitle');
+        
+        if (titleElement) {
+            titleElement.innerHTML = `${this.currentCategory.icon} ${this.currentCategory.name}`;
+        }
+        if (subtitleElement) {
+            subtitleElement.textContent = '学習モードを選択してください';
+        }
+        
+        // サブカテゴリ統計の更新
+        this.updateSubcategoryStats();
+        
+        // サブカテゴリ選択画面を表示
+        this.showScreen('subcategory');
+    }
+    
+    /**
+     * サブカテゴリ統計の更新
+     * @private
+     */
+    updateSubcategoryStats() {
+        if (!this.currentCategory) return;
+        
+        const stats = this.storage.getSubcategoryStats(this.currentCategory.id, this.currentLevel);
+        
+        // 各サブカテゴリの問題数を更新
+        const newCountElement = document.getElementById('newCount');
+        const incorrectCountElement = document.getElementById('incorrectCount');
+        const reviewCountElement = document.getElementById('reviewCount');
+        
+        if (newCountElement) newCountElement.textContent = stats.new;
+        if (incorrectCountElement) incorrectCountElement.textContent = stats.incorrect;
+        if (reviewCountElement) reviewCountElement.textContent = stats.review;
+        
+        // サブカテゴリカードの有効/無効状態を更新
+        this.updateSubcategoryCardStates(stats);
+    }
+    
+    /**
+     * サブカテゴリカードの状態更新
+     * @private
+     */
+    updateSubcategoryCardStates(stats) {
+        const cards = {
+            new: document.getElementById('newProblems'),
+            incorrect: document.getElementById('incorrectProblems'),
+            review: document.getElementById('reviewProblems'),
+            random: document.getElementById('randomProblems')
+        };
+        
+        Object.entries(cards).forEach(([type, card]) => {
+            if (!card) return;
+            
+            const count = stats[type] || 0;
+            const isDisabled = count === 0 && type !== 'random';
+            
+            card.style.opacity = isDisabled ? '0.5' : '1';
+            card.style.pointerEvents = isDisabled ? 'none' : 'auto';
+            
+            if (isDisabled) {
+                card.setAttribute('title', `${type === 'new' ? '新規' : type === 'incorrect' ? '間違えた' : '復習'}問題がありません`);
+            } else {
+                card.removeAttribute('title');
+            }
+        });
+    }
+    
+    /**
+     * サブカテゴリ選択（問題モード選択）
+     * @param {string} mode 選択されたモード ('new', 'incorrect', 'review', 'random')
+     */
+    async selectSubcategory(mode) {
+        try {
+            this.currentMode = mode;
+            console.log(`📂 Selected mode: ${mode} for ${this.currentCategory.name}`);
+            
+            // モードに応じた問題を読み込み
+            await this.loadQuestionsByMode(mode);
+            
+            // クイズ開始
+            this.startQuiz();
+            
+        } catch (error) {
+            console.error('❌ Failed to select subcategory:', error);
+            this.showError('問題の読み込みに失敗しました。');
+        }
+    }
+    
+    /**
+     * モード別問題読み込み
+     * @private
+     */
+    async loadQuestionsByMode(mode) {
+        let questions = [];
+        
+        switch (mode) {
+            case 'new':
+                questions = await this.loadNewQuestions();
+                break;
+            case 'incorrect':
+                questions = await this.loadIncorrectQuestions();
+                break;
+            case 'review':
+                questions = await this.loadReviewQuestions();
+                break;
+            case 'random':
+            default:
+                questions = await this.loadRandomQuestions();
+                break;
+        }
+        
+        if (questions.length === 0) {
+            throw new Error('選択されたモードの問題が見つかりませんでした');
+        }
+        
+        this.currentQuestions = questions;
+        this.currentQuestionIndex = 0;
+        
+        console.log(`📚 Loaded ${questions.length} questions for mode: ${mode}`);
+    }
+    
+    /**
+     * 新規問題の読み込み
+     * @private
+     */
+    async loadNewQuestions() {
+        const questionIds = this.storage.getQuestionsByStatus(this.currentCategory.id, this.currentLevel, 'new');
+        const allQuestions = await this.loader.loadQuestions(this.currentCategory.id, this.currentLevel);
+        
+        // 新規問題がない場合は全問題から取得
+        if (questionIds.length === 0) {
+            return allQuestions.slice(0, this.config.questionCount);
+        }
+        
+        const newQuestions = allQuestions.filter(q => questionIds.includes(q.id));
+        return newQuestions.slice(0, this.config.questionCount);
+    }
+    
+    /**
+     * 不正解問題の読み込み
+     * @private
+     */
+    async loadIncorrectQuestions() {
+        const questionIds = this.storage.getQuestionsByStatus(this.currentCategory.id, this.currentLevel, 'incorrect');
+        const allQuestions = await this.loader.loadQuestions(this.currentCategory.id, this.currentLevel);
+        
+        const incorrectQuestions = allQuestions.filter(q => questionIds.includes(q.id));
+        return incorrectQuestions.slice(0, this.config.questionCount);
+    }
+    
+    /**
+     * 復習問題の読み込み
+     * @private
+     */
+    async loadReviewQuestions() {
+        const questionIds = this.storage.getQuestionsByStatus(this.currentCategory.id, this.currentLevel, 'review');
+        const allQuestions = await this.loader.loadQuestions(this.currentCategory.id, this.currentLevel);
+        
+        const reviewQuestions = allQuestions.filter(q => questionIds.includes(q.id));
+        return reviewQuestions.slice(0, this.config.questionCount);
+    }
+    
+    /**
+     * ランダム問題の読み込み
+     * @private
+     */
+    async loadRandomQuestions() {
+        return await this.loader.getRandomQuestions(
+            this.currentCategory.id, 
+            this.currentLevel, 
+            this.config.questionCount
+        );
+    }
+    
+    /**
+     * カテゴリ選択に戻る
+     * @private
+     */
+    backToCategories() {
+        this.currentCategory = null;
+        this.currentMode = null;
+        this.showScreen('category');
+    }
+    
+    /**
+     * 学習履歴のリセット
+     * @private
+     */
+    resetProgress() {
+        if (!this.currentCategory) return;
+        
+        const confirmed = confirm(`${this.currentCategory.name}の学習履歴をリセットしますか？\nこの操作は取り消せません。`);
+        
+        if (confirmed) {
+            this.storage.clearCategoryData(this.currentCategory.id);
+            this.updateSubcategoryStats();
+            
+            // 通知
+            if (window.showNotification) {
+                window.showNotification('学習履歴をリセットしました', 'success');
+            } else {
+                alert('学習履歴をリセットしました');
             }
         }
     }

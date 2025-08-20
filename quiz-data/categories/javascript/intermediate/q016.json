@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_016",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["function", "first-class", "value", "assignment"],
+  "question": {
+    "text": "次のコードでmyFuncには何が代入されますか？\nfunction sayHi() {\n  return 'Hi!';\n}\nlet myFunc = sayHi;",
+    "hint": "()を付けないと関数自体を参照します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "function sayHi() {\n  return 'Hi!';\n}\nlet myFunc = sayHi; // ()なし\n// myFuncには何が入る？"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "関数自体（関数オブジェクト）",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "文字列 'Hi!'",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "undefined",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "null",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "JavaScriptでは関数は「第一級オブジェクト」です。()を付けずに関数名を参照すると、関数自体（関数オブジェクト）が取得できます。",
+    "example": "function sayHi() {\n  return 'Hi!';\n}\n\n// 関数自体を代入\nlet myFunc = sayHi;          // 関数オブジェクト\nconsole.log(typeof myFunc);  // 'function'\nconsole.log(myFunc());       // 'Hi!' (関数を実行)\n\n// 関数の実行結果を代入\nlet result = sayHi();        // 'Hi!' (文字列)\nconsole.log(typeof result);  // 'string'\n\n// 配列に関数を格納\nlet funcs = [sayHi, myFunc]; // 関数の配列",
+    "relatedCommands": ["function reference", "first-class functions", "function call"],
+    "furtherReading": "関数は変数に代入、配列に格納、他の関数の引数として渡すことができます。"
+  },
+  "difficulty": {
+    "score": 5,
+    "timeLimit": 40,
+    "points": 25
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

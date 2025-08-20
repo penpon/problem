@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_020",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["practical", "function", "utility", "real-world"],
+  "question": {
+    "text": "配列の要素をフィルタリングする実用的な関数として正しいものは？",
+    "hint": "filter()メソッドとコールバック関数を組み合わせます",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// 偶数のみを抽出する関数\nfunction getEvenNumbers(numbers) {\n  return numbers.filter(_);\n}"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "num => num % 2 === 0",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "num => num / 2 === 0",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "num => num * 2 === 0",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "num => num + 2 === 0",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "filter()メソッドは配列の各要素に対してテスト関数を実行し、trueを返す要素だけで新しい配列を作成します。偶数判定には剰余演算子（%）を使用します。",
+    "example": "function getEvenNumbers(numbers) {\n  return numbers.filter(num => num % 2 === 0);\n}\n\n// 使用例\nconst numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nconst evenNumbers = getEvenNumbers(numbers);\nconsole.log(evenNumbers); // [2, 4, 6, 8, 10]\n\n// より実用的な例\nfunction filterByAge(users, minAge) {\n  return users.filter(user => user.age >= minAge);\n}\n\nconst users = [\n  { name: '太郎', age: 25 },\n  { name: '花子', age: 17 },\n  { name: '次郎', age: 30 }\n];\nconst adults = filterByAge(users, 18);\nconsole.log(adults); // 18歳以上のユーザー",
+    "relatedCommands": ["Array.filter", "arrow functions", "modulo operator"],
+    "furtherReading": "filter、map、reduceは関数型プログラミングの重要な概念です。"
+  },
+  "difficulty": {
+    "score": 5,
+    "timeLimit": 45,
+    "points": 25
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

@@ -603,6 +603,138 @@ class QuizStorage {
     }
 
     /**
+     * ステータス別問題取得（サブカテゴリ機能用）
+     * @param {string} categoryId カテゴリID
+     * @param {string} level レベル
+     * @param {string} status ステータス ('new', 'incorrect', 'review')
+     * @returns {Array} ステータスに応じた問題ID配列
+     */
+    getQuestionsByStatus(categoryId, level, status) {
+        try {
+            if (!this.data.categories[categoryId] || 
+                !this.data.categories[categoryId].levels[level]) {
+                return [];
+            }
+
+            const questions = this.data.categories[categoryId].levels[level].questions;
+            const questionIds = [];
+
+            for (const [questionId, questionData] of Object.entries(questions)) {
+                switch (status) {
+                    case 'new':
+                        // 新規問題: 一度も回答していない問題
+                        if (questionData.attempts === 0) {
+                            questionIds.push(questionId);
+                        }
+                        break;
+                        
+                    case 'incorrect':
+                        // 不正解問題: 間違えた回数が1回以上の問題
+                        if (questionData.incorrect > 0) {
+                            questionIds.push(questionId);
+                        }
+                        break;
+                        
+                    case 'review':
+                        // 復習問題: 正解したが信頼度70%未満の問題
+                        if (questionData.correct > 0 && questionData.confidence < 70) {
+                            questionIds.push(questionId);
+                        }
+                        break;
+                }
+            }
+
+            return questionIds;
+            
+        } catch (error) {
+            console.error('❌ Failed to get questions by status:', error);
+            return [];
+        }
+    }
+
+    /**
+     * カテゴリ別データクリア（記憶のリセット機能用）
+     * @param {string} categoryId カテゴリID
+     * @param {string} level レベル（オプション）
+     */
+    clearCategoryData(categoryId, level = null) {
+        try {
+            if (!this.data.categories[categoryId]) {
+                console.log(`⚠️ Category ${categoryId} does not exist`);
+                return;
+            }
+
+            if (level) {
+                // 特定レベルのみクリア
+                if (this.data.categories[categoryId].levels[level]) {
+                    this.data.categories[categoryId].levels[level].questions = {};
+                    this.data.categories[categoryId].levels[level].totalCorrect = 0;
+                    this.data.categories[categoryId].levels[level].totalIncorrect = 0;
+                    this.data.categories[categoryId].levels[level].averageTime = 0;
+                    this.data.categories[categoryId].levels[level].completion = 0;
+                    console.log(`🗑️ Cleared data for ${categoryId}/${level}`);
+                }
+            } else {
+                // カテゴリ全体をクリア
+                delete this.data.categories[categoryId];
+                console.log(`🗑️ Cleared all data for category ${categoryId}`);
+            }
+
+            this.data.lastUpdated = new Date().toISOString();
+            this.saveData();
+            
+        } catch (error) {
+            console.error('❌ Failed to clear category data:', error);
+        }
+    }
+
+    /**
+     * サブカテゴリの統計取得
+     * @param {string} categoryId カテゴリID  
+     * @param {string} level レベル
+     * @returns {Object} サブカテゴリ別統計
+     */
+    getSubcategoryStats(categoryId, level) {
+        try {
+            if (!this.data.categories[categoryId] ||
+                !this.data.categories[categoryId].levels[level]) {
+                return {
+                    new: 0,
+                    incorrect: 0,
+                    review: 0,
+                    total: 0
+                };
+            }
+
+            const questions = this.data.categories[categoryId].levels[level].questions;
+            let newCount = 0;
+            let incorrectCount = 0;
+            let reviewCount = 0;
+
+            for (const questionData of Object.values(questions)) {
+                if (questionData.attempts === 0) {
+                    newCount++;
+                } else if (questionData.incorrect > 0) {
+                    incorrectCount++;
+                } else if (questionData.correct > 0 && questionData.confidence < 70) {
+                    reviewCount++;
+                }
+            }
+
+            return {
+                new: newCount,
+                incorrect: incorrectCount,
+                review: reviewCount,
+                total: Object.keys(questions).length
+            };
+            
+        } catch (error) {
+            console.error('❌ Failed to get subcategory stats:', error);
+            return { new: 0, incorrect: 0, review: 0, total: 0 };
+        }
+    }
+
+    /**
      * ストレージサイズの取得
      * @returns {Object} サイズ情報
      */

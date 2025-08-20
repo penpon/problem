@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_014",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["for_loop", "iteration", "counter"],
+  "question": {
+    "text": "0から4まで順番に表示するfor文は？",
+    "hint": "for (初期化; 条件; 更新) の形で書きます",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// 0から4まで表示するfor文\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "for (let i = 0; i < 5; i++) { console.log(i); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "for (let i = 0; i <= 4; i++) { console.log(i); }",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "for (let i = 1; i < 5; i++) { console.log(i); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "for (i = 0; i < 5; i++) { console.log(i); }",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "for文は (初期化; 条件; 更新) の3つの部分から構成されます。i < 5 と i <= 4 は同じ意味ですが、一般的には i < 5 を使います。",
+    "example": "for (let i = 0; i < 5; i++) {\n  console.log(i);  // 0, 1, 2, 3, 4 が順番に表示\n}",
+    "relatedCommands": ["while文", "配列のfor文", "break", "continue"],
+    "furtherReading": "for文は繰り返し処理の最も基本的な書き方です。"
+  },
+  "difficulty": {
+    "score": 3,
+    "timeLimit": 40,
+    "points": 15
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

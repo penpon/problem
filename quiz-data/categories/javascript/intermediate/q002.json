@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_002",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["function", "call", "invocation"],
+  "question": {
+    "text": "定義した関数「greet」を呼び出すコードは？",
+    "hint": "関数名に()を付けて呼び出します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "function greet() {\n  console.log('Hello!');\n}\n// greet関数を呼び出そう\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "greet()",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "call greet",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "greet[]",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "run greet()",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "関数を呼び出すには、関数名の後に()を付けます。これにより関数内の処理が実行されます。",
+    "example": "function greet() {\n  console.log('Hello!');\n}\ngreet(); // 'Hello!' が出力される",
+    "relatedCommands": ["function declaration", "function parameters", "return statement"],
+    "furtherReading": "()なしでは関数オブジェクト自体を参照するだけで、実行されません。"
+  },
+  "difficulty": {
+    "score": 3,
+    "timeLimit": 30,
+    "points": 15
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

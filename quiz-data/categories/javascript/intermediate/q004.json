@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_004",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["function", "return", "value"],
+  "question": {
+    "text": "関数から値を返すために使用するキーワードは？",
+    "hint": "計算結果を呼び出し元に返します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "function add(a, b) {\n  let sum = a + b;\n  _ sum; // 計算結果を返す\n}"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "return",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "output",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "send",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "result",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "returnキーワードを使用して、関数から値を呼び出し元に返します。returnが実行されると、関数の処理は終了します。",
+    "example": "function add(a, b) {\n  return a + b;\n}\nlet result = add(3, 5); // result = 8",
+    "relatedCommands": ["function call", "variable assignment", "expression"],
+    "furtherReading": "returnの後ろに続く文は実行されません（到達不能コード）。"
+  },
+  "difficulty": {
+    "score": 3,
+    "timeLimit": 30,
+    "points": 15
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

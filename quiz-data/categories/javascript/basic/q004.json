@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_004",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["variables", "let", "declaration"],
+  "question": {
+    "text": "JavaScriptで「message」という変数に「Hello」という文字列を代入するコードは？",
+    "hint": "letキーワードを使って変数を宣言します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// messageという変数にHelloを代入しよう\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "let message = 'Hello';",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "message = 'Hello';",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "var message := 'Hello';",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "variable message = 'Hello';",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "JavaScriptでは「let」キーワードを使って変数を宣言し、「=」を使って値を代入します。letは現代のJavaScriptで推奨される変数宣言方法です。",
+    "example": "let message = 'Hello';\nconsole.log(message);  // Helloが出力される",
+    "relatedCommands": ["const", "var", "変数の更新"],
+    "furtherReading": "変数はプログラムで値を保存する基本的な仕組みです。"
+  },
+  "difficulty": {
+    "score": 2,
+    "timeLimit": 30,
+    "points": 10
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

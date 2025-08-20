@@ -1,0 +1,57 @@
+{
+  "id": "js_advanced_001",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "advanced",
+  "tags": ["push", "array", "method", "dynamic"],
+  "question": {
+    "text": "eコマースサイトでカート機能を実装する際、商品データ（オブジェクト）を配列に追加するコードは？",
+    "hint": "pushメソッドを使用してオブジェクトを配列に追加します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 2000
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// カートに新商品を追加する処理\nconst cart = [{id: 1, name: 'ノートPC', price: 89800}];\nconst newProduct = {id: 2, name: 'マウス', price: 2980};\n// ここに新商品をカートに追加するコード"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "cart.push(newProduct);",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "cart.add(newProduct);",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "cart.append(newProduct);",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "cart.insert(newProduct);",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "pushメソッドは配列の末尾に1つ以上の要素を追加し、新しい配列の長さを返します。eコマースサイトのカート機能では、商品オブジェクトを動的に追加する際によく使用されます。",
+    "example": "const cart = [];\nconst product = {id: 1, name: 'iPhone', price: 89800};\ncart.push(product);\nconsole.log(cart); // [{id: 1, name: 'iPhone', price: 89800}]",
+    "relatedCommands": ["unshift", "splice", "concat"],
+    "furtherReading": "pushメソッドは配列操作の基本でありながら、Webアプリケーションの動的コンテンツ管理に欠かせないメソッドです。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 45,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

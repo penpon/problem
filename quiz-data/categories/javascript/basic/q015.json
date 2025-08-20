@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_015",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["arrays", "array_creation", "data_structures"],
+  "question": {
+    "text": "数値 10, 20, 30 を要素に持つ配列の正しい作成方法は？",
+    "hint": "角括弧 [ ] を使って配列を作成します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// 10, 20, 30 を要素に持つ配列\nconst numbers = _;"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "[10, 20, 30]",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "(10, 20, 30)",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "{10, 20, 30}",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "<10, 20, 30>",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "配列は角括弧 [ ] で作成し、要素をカンマで区切って並べます。配列は複数の値をまとめて管理できる便利なデータ構造です。",
+    "example": "const numbers = [10, 20, 30];\nconsole.log(numbers);  // [10, 20, 30]\nconsole.log(numbers.length);  // 3",
+    "relatedCommands": ["配列の要素取得", "push", "pop", "length"],
+    "furtherReading": "配列は順序を持った複数のデータを格納できます。"
+  },
+  "difficulty": {
+    "score": 3,
+    "timeLimit": 30,
+    "points": 15
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

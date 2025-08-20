@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_005",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["arrow", "function", "es6"],
+  "question": {
+    "text": "アロー関数（矢印関数）を使って、引数xを2倍にする関数を定義するコードは？",
+    "hint": "=> を使用します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// アロー関数で2倍にする関数を定義\nconst double = _;"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "(x) => x * 2",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "(x) -> x * 2",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "(x) <= x * 2",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "(x) == x * 2",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "アロー関数は => を使って定義します。引数が1つの場合、()は省略可能です。単一の式の場合、returnも省略可能です。",
+    "example": "const double = (x) => x * 2;\n// または\nconst double = x => x * 2;\nconsole.log(double(5)); // 10",
+    "relatedCommands": ["const", "function expression", "return"],
+    "furtherReading": "アロー関数は従来の関数よりも短く書けて、thisの扱いも異なります。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 35,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

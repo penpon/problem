@@ -1,0 +1,57 @@
+{
+  "id": "js_intermediate_008",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "intermediate",
+  "tags": ["return", "value", "usage", "assignment"],
+  "question": {
+    "text": "関数の戻り値を変数に代入する正しいコードは？",
+    "hint": "関数の実行結果を変数に保存します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "function multiply(x, y) {\n  return x * y;\n}\n// 戻り値を変数に保存\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "let result = multiply(4, 5);",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "let result <- multiply(4, 5);",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "let result get multiply(4, 5);",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "let result return multiply(4, 5);",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "関数の戻り値は、通常の代入演算子（=）を使って変数に代入できます。この場合、関数が実行され、その結果が変数に保存されます。",
+    "example": "function multiply(x, y) {\n  return x * y;\n}\nlet result = multiply(4, 5);\nconsole.log(result); // 20\n\n// 直接使用も可能\nconsole.log(multiply(3, 7)); // 21",
+    "relatedCommands": ["variable declaration", "function call", "assignment operator"],
+    "furtherReading": "戻り値は他の関数の引数としても直接使用できます。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 35,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

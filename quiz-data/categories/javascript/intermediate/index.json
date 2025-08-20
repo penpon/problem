@@ -1,0 +1,150 @@
+{
+  "level": "intermediate",
+  "categoryId": "javascript",
+  "name": "JavaScript中級 - 関数編",
+  "description": "関数の基本とスコープの理解",
+  "totalQuestions": 20,
+  "estimatedTime": "15-25分",
+  "questions": [
+    {
+      "id": "js_intermediate_001",
+      "file": "q001.json",
+      "topic": "function_definition",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_002", 
+      "file": "q002.json",
+      "topic": "function_call",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_003",
+      "file": "q003.json", 
+      "topic": "function_parameters",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_004",
+      "file": "q004.json",
+      "topic": "function_return",
+      "difficulty": 3,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_005",
+      "file": "q005.json",
+      "topic": "arrow_function_basic",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_006",
+      "file": "q006.json",
+      "topic": "arrow_function_syntax",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_007",
+      "file": "q007.json",
+      "topic": "multiple_parameters",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_008",
+      "file": "q008.json",
+      "topic": "return_value_usage",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_009",
+      "file": "q009.json",
+      "topic": "scope_basic",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_010",
+      "file": "q010.json",
+      "topic": "global_local_scope",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_011",
+      "file": "q011.json",
+      "topic": "function_scope",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_012",
+      "file": "q012.json",
+      "topic": "variable_shadowing",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_013",
+      "file": "q013.json",
+      "topic": "function_expressions",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_014",
+      "file": "q014.json",
+      "topic": "function_hoisting",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_015",
+      "file": "q015.json",
+      "topic": "default_parameters",
+      "difficulty": 4,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_016",
+      "file": "q016.json",
+      "topic": "function_as_value",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_017",
+      "file": "q017.json",
+      "topic": "callback_basic",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_018",
+      "file": "q018.json",
+      "topic": "function_parameters_validation",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_019",
+      "file": "q019.json",
+      "topic": "complex_return_values",
+      "difficulty": 5,
+      "weight": 1
+    },
+    {
+      "id": "js_intermediate_020",
+      "file": "q020.json",
+      "topic": "practical_function_usage",
+      "difficulty": 5,
+      "weight": 1
+    }
+  ]
+}

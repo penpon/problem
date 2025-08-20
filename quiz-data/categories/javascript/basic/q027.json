@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_027",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["nested_loops", "multiplication_table", "double_loop"],
+  "question": {
+    "text": "2つのfor文を使って、1×1から3×3まで（9通り）の掛け算を表示するコードは？",
+    "hint": "外側のfor文と内側のfor文を組み合わせます",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// 1×1, 1×2, 1×3, 2×1, 2×2, 2×3, 3×1, 3×2, 3×3\n// を順番に表示する\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "for (let i = 1; i <= 3; i++) { for (let j = 1; j <= 3; j++) { console.log(i + '×' + j); } }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "for (let i = 1; i <= 3; i++) { for (let j = 1; j <= 3; j++) { console.log(i * j); } }",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "for (let i = 1; i <= 3; i++) { console.log(i + '×' + i); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "for (let i = 1; i <= 9; i++) { console.log(i); }",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "ネストしたループでは、外側のループが1回実行されるごとに内側のループが完全に実行されます。i が1のときにj が1,2,3と変化し、次にi が2になります。",
+    "example": "for (let i = 1; i <= 3; i++) {\n  for (let j = 1; j <= 3; j++) {\n    console.log(i + '×' + j);\n    // 1×1, 1×2, 1×3, 2×1, 2×2, 2×3, 3×1, 3×2, 3×3\n  }\n}",
+    "relatedCommands": ["2次元配列", "break", "continue", "ループの制御"],
+    "furtherReading": "ネストしたループは表やグリッドなどの2次元データ処理に重要です。"
+  },
+  "difficulty": {
+    "score": 5,
+    "timeLimit": 80,
+    "points": 25
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

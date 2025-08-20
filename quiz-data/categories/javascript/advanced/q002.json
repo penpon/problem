@@ -1,0 +1,57 @@
+{
+  "id": "js_advanced_002",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "advanced",
+  "tags": ["pop", "array", "method", "stack"],
+  "question": {
+    "text": "チャットアプリで最新のメッセージを取得して配列から削除する処理において、配列の最後の要素を取り出すコードは？",
+    "hint": "popメソッドは配列の最後の要素を削除して返します",
+    "animation": {
+      "type": "code_typing",
+      "duration": 2000
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// メッセージ履歴の最新メッセージを取得\nconst messages = [\n  {id: 1, text: '今日はいい天気ですね', time: '10:00'},\n  {id: 2, text: 'プロジェクトの進捗いかがですか？', time: '10:05'},\n  {id: 3, text: '順調に進んでいます', time: '10:10'}\n];\n// 最新メッセージを取得して配列から削除"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "const latest = messages.pop();",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "const latest = messages.getLast();",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "const latest = messages.removeLast();",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "const latest = messages.takeLast();",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "popメソッドは配列の最後の要素を削除し、その要素を返します。チャットアプリやスタック構造のデータ管理において、LIFO（Last In, First Out）の操作に使用されます。",
+    "example": "const stack = [1, 2, 3, 4, 5];\nconst last = stack.pop();\nconsole.log(last); // 5\nconsole.log(stack); // [1, 2, 3, 4]",
+    "relatedCommands": ["push", "shift", "splice"],
+    "furtherReading": "popメソッドはスタック操作やundo機能の実装において重要な役割を果たします。"
+  },
+  "difficulty": {
+    "score": 4,
+    "timeLimit": 45,
+    "points": 20
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

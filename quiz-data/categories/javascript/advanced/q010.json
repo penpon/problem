@@ -1,0 +1,57 @@
+{
+  "id": "js_advanced_010",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "advanced",
+  "tags": ["practical", "complex-operation", "method-chaining", "real-world"],
+  "question": {
+    "text": "オンライン学習プラットフォームで「完了済みコースの平均評価点が4.0以上の受講生の名前」を取得する実践的な処理は？",
+    "hint": "filter、map、reduceを組み合わせた複合的な配列操作が必要です",
+    "animation": {
+      "type": "code_typing",
+      "duration": 3000
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "// 学習プラットフォームのデータ分析\nconst students = [\n  {\n    name: '田中太郎',\n    courses: [\n      {title: 'JavaScript基礎', completed: true, rating: 4.2},\n      {title: 'React応用', completed: true, rating: 4.5},\n      {title: 'Node.js', completed: false, rating: null}\n    ]\n  },\n  {\n    name: '佐藤花子', \n    courses: [\n      {title: 'HTML/CSS', completed: true, rating: 3.8},\n      {title: 'JavaScript基礎', completed: true, rating: 3.9}\n    ]\n  }\n];\n// 完了済みコースの平均評価4.0以上の受講生名"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "students.filter(student => {\n  const completed = student.courses.filter(c => c.completed);\n  const avg = completed.reduce((sum, c) => sum + c.rating, 0) / completed.length;\n  return avg >= 4.0;\n}).map(student => student.name)",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "students.map(student => student.name).filter(student => student.courses.every(c => c.rating >= 4.0))",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "students.filter(student => student.courses.filter(c => c.completed && c.rating >= 4.0))",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "students.find(student => student.courses.some(c => c.completed && c.rating >= 4.0)).map(s => s.name)",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": "複雑なデータ分析では段階的な処理が必要です。①完了済みコースをfilter、②評価点の平均をreduce、③条件を満たす受講生をfilter、④名前をmapで抽出。実際のWebアプリ開発でよく使われるパターンです。",
+    "example": "// 売上データから高売上店舗を抽出\nconst stores = [{name: 'A店', sales: [100, 200, 300]}];\nconst highPerform = stores\n  .filter(store => {\n    const avg = store.sales.reduce((a,b) => a+b) / store.sales.length;\n    return avg >= 200;\n  })\n  .map(store => store.name);",
+    "relatedCommands": ["reduce", "every", "some"],
+    "furtherReading": "実践的な配列操作では、データの構造を理解し段階的に処理を組み立てることが重要です。"
+  },
+  "difficulty": {
+    "score": 6,
+    "timeLimit": 90,
+    "points": 35
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}

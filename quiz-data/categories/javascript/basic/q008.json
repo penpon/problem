@@ -1,0 +1,57 @@
+{
+  "id": "js_basic_008",
+  "version": "1.0",
+  "category": "javascript",
+  "level": "basic",
+  "tags": ["if_statement", "conditions", "control_flow"],
+  "question": {
+    "text": "変数 score が 80 以上の場合に「合格」と表示するif文は？",
+    "hint": "if (条件) { 処理 } の形で書きます",
+    "animation": {
+      "type": "code_typing",
+      "duration": 1500
+    },
+    "visual": {
+      "type": "code_editor",
+      "content": "const score = 85;\n// score が 80 以上なら「合格」と表示\n_"
+    }
+  },
+  "choices": [
+    {
+      "id": "A",
+      "text": "if (score >= 80) { console.log('合格'); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "B",
+      "text": "if (score > 80) { console.log('合格'); }",
+      "animation": "slide_in_right"
+    },
+    {
+      "id": "C",
+      "text": "if (score == 80) { console.log('合格'); }",
+      "animation": "slide_in_left"
+    },
+    {
+      "id": "D",
+      "text": "if score >= 80 { console.log('合格'); }",
+      "animation": "slide_in_right"
+    }
+  ],
+  "correct": "A",
+  "explanation": {
+    "text": ">= は「以上」を表す比較演算子です。score >= 80 は「scoreが80以上」という条件になります。if文の条件は必ず括弧()で囲みます。",
+    "example": "const score = 85;\nif (score >= 80) {\n  console.log('合格');  // 合格 と表示される\n}",
+    "relatedCommands": ["比較演算子", "else", "論理演算子"],
+    "furtherReading": "比較演算子: > (より大きい) >= (以上) < (未満) <= (以下) === (等しい)"
+  },
+  "difficulty": {
+    "score": 2,
+    "timeLimit": 40,
+    "points": 10
+  },
+  "statistics": {
+    "attempts": 0,
+    "correctRate": 0
+  }
+}
