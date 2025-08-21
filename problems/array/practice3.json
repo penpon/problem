@@ -1,6 +1,6 @@
 {
   "id": "array/practice3",
-  "title": "問題28：forEachメソッドの基本",
+  "title": "問題3：forEachメソッドの基本",
   "description": "forEachメソッドを使って配列の各要素を順番に処理する方法を学習します。",
   "instructions": [
     "forEachメソッドは配列の各要素に対して関数を実行します。",

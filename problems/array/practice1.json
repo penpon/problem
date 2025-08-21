@@ -1,6 +1,6 @@
 {
   "id": "array/practice1",
-  "title": "問題26：pushメソッドの基本",
+  "title": "問題1：pushメソッドの基本",
   "description": "配列に新しい要素を追加するpushメソッドの基本的な使い方を学習します。",
   "instructions": [
     "pushメソッドは配列の末尾に要素を追加するメソッドです。",

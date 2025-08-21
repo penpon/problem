@@ -1,6 +1,6 @@
 {
   "id": "array/practice8",
-  "title": "問題33：filterメソッドで文字列をフィルタ",
+  "title": "問題8：filterメソッドで文字列をフィルタ",
   "description": "filterメソッドを使って文字列の長さでフィルタリングする方法を学習します。",
   "instructions": [
     "文字列の長さはlengthプロパティで取得できます。",

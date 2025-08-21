@@ -1,6 +1,6 @@
 {
   "id": "array/practice2",
-  "title": "問題27：pushメソッドで複数要素を追加",
+  "title": "問題2：pushメソッドで複数要素を追加",
   "description": "pushメソッドを使って配列に複数の要素を一度に追加する方法を学習します。",
   "instructions": [
     "pushメソッドには複数の引数を渡すことができます。",

@@ -1,6 +1,6 @@
 {
   "id": "array/practice5",
-  "title": "問題30：findメソッドの基本",
+  "title": "問題5：findメソッドの基本",
   "description": "findメソッドを使って配列から条件に合う最初の要素を見つける方法を学習します。",
   "instructions": [
     "findメソッドは条件に合う最初の要素を返します。",

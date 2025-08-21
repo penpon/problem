@@ -1,6 +1,6 @@
 {
   "id": "array/practice7",
-  "title": "問題32：filterメソッドの基本",
+  "title": "問題7：filterメソッドの基本",
   "description": "filterメソッドを使って配列から条件に合う要素をすべて抽出する方法を学習します。",
   "instructions": [
     "filterメソッドは条件に合うすべての要素を含む新しい配列を返します。",
