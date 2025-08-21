@@ -127,8 +127,9 @@ class NavigationManager {
 
             .nav-links {
                 display: flex;
-                gap: 20px;
+                gap: 12px;
                 align-items: center;
+                flex-wrap: nowrap;
             }
 
             .nav-link {
@@ -136,10 +137,12 @@ class NavigationManager {
                 align-items: center;
                 text-decoration: none;
                 color: #718096;
-                padding: 8px 16px;
-                border-radius: 8px;
+                padding: 6px 12px;
+                border-radius: 6px;
                 transition: all 0.3s ease;
                 font-weight: 500;
+                white-space: nowrap;
+                font-size: 0.9em;
             }
 
             .nav-link:hover {
@@ -155,8 +158,8 @@ class NavigationManager {
             }
 
             .link-icon {
-                margin-right: 6px;
-                font-size: 1.1em;
+                margin-right: 4px;
+                font-size: 1em;
             }
 
             .mobile-menu-toggle {
@@ -181,8 +184,25 @@ class NavigationManager {
                 background: #4299e1;
             }
 
-            /* モバイル対応 */
-            @media (max-width: 768px) {
+            /* 中サイズ画面での調整 */
+            @media (max-width: 1200px) {
+                .nav-link {
+                    padding: 6px 10px;
+                    font-size: 0.85em;
+                }
+                
+                .nav-links {
+                    gap: 8px;
+                }
+                
+                .link-icon {
+                    margin-right: 3px;
+                    font-size: 0.9em;
+                }
+            }
+
+            /* タブレット・モバイル対応 */
+            @media (max-width: 1024px) {
                 .nav-brand .nav-title {
                     display: none;
                 }
