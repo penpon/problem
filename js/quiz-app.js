@@ -521,7 +521,7 @@ class QuizApp {
      * @private
      */
     displayChoices() {
-        const choices = this.currentQuestion.choices;
+        const originalChoices = this.currentQuestion.choices;
         const choiceElements = [
             this.elements.choiceA,
             this.elements.choiceB, 
@@ -529,13 +529,24 @@ class QuizApp {
             this.elements.choiceD
         ];
         
-        choices.forEach((choice, index) => {
+        // 選択肢をランダム化
+        const shuffledChoices = this.shuffleChoices(originalChoices);
+        
+        // 正解の新しい位置を記録
+        const correctChoice = originalChoices.find(choice => choice.id === this.currentQuestion.correct);
+        this.currentCorrectPosition = shuffledChoices.findIndex(choice => choice === correctChoice);
+        
+        shuffledChoices.forEach((choice, index) => {
             const element = choiceElements[index];
             if (!element) return;
             
             // リセット
             element.className = 'choice-btn';
             element.disabled = false;
+            
+            // データ属性に元のIDを保持
+            element.setAttribute('data-original-id', choice.id);
+            element.setAttribute('data-choice', String.fromCharCode(65 + index)); // A, B, C, D
             
             // テキスト設定
             const textElement = element.querySelector('.choice-text');
@@ -561,6 +572,21 @@ class QuizApp {
     }
 
     /**
+     * 選択肢をシャッフル
+     * @param {Array} choices 選択肢の配列
+     * @return {Array} シャッフルされた選択肢の配列
+     * @private
+     */
+    shuffleChoices(choices) {
+        const shuffled = [...choices];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+
+    /**
      * テキストがコード内容かどうかを判定
      * @param {string} text 判定対象のテキスト
      * @return {boolean} コード内容の場合true
@@ -569,8 +595,13 @@ class QuizApp {
     isCodeContent(text) {
         if (!text || typeof text !== 'string') return false;
         
-        // 長さのチェック（80文字以上）
-        const isLong = text.length >= 80;
+        // console.logを含む場合は即座にコードと判定
+        if (text.includes('console.log')) {
+            return true;
+        }
+        
+        // 長さのチェック（20文字以上に緩和）
+        const isLong = text.length >= 20;
         
         // JavaScriptコードの特徴をチェック
         const codePatterns = [
@@ -578,7 +609,8 @@ class QuizApp {
             /[{}();]/g, // 特殊文字
             /\.\w+\(/g, // メソッド呼び出し
             /=>/g, // アロー関数
-            /\+\+|--|==|!=|<=|>=/g // 演算子
+            /\+\+|--|==|!=|<=|>=/g, // 演算子
+            /\b(print|echo|output)\b/g // その他の出力関数
         ];
         
         const patternMatches = codePatterns.reduce((count, pattern) => {
@@ -586,8 +618,8 @@ class QuizApp {
             return count + (matches ? matches.length : 0);
         }, 0);
         
-        // コードパターンが3個以上、かつ長いテキストの場合にコードと判定
-        return isLong && patternMatches >= 3;
+        // console.logがない場合は、コードパターンが2個以上、かつ一定の長さの場合にコードと判定
+        return isLong && patternMatches >= 2;
     }
 
     /**
@@ -711,8 +743,9 @@ class QuizApp {
         // 回答時間の計算
         const answerTime = (Date.now() - this.questionStartTime) / 1000;
         
-        // 正解判定
-        const isCorrect = choiceId === this.currentQuestion.correct;
+        // 正解判定（元のIDを使用）
+        const originalId = choiceElement.getAttribute('data-original-id');
+        const isCorrect = originalId === this.currentQuestion.correct;
         
         // フィードバックアニメーション
         await this.showAnswerFeedback(choiceElement, isCorrect);
