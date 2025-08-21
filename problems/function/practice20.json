@@ -1,59 +1,41 @@
 {
   "id": "function/practice20",
-  "title": "問題20：変数スコープの実践",
-  "description": "ゲームアプリで使う変数のスコープ（有効範囲）について学ぼう！",
+  "title": "問題20：戻り値の活用",
+  "description": "計算アプリで使う関数の戻り値を活用してみよう！",
   "instructions": [
-    "変数のスコープ（有効範囲）の概念を復習してください。",
-    "グローバル変数とローカル変数の違いを理解してください。",
-    "実用的なゲームアプリでのスコープ管理方法を学んでください。"
+    "関数の戻り値（return）の概念を復習してください。",
+    "関数の結果を変数に保存して活用する方法を理解してください。",
+    "実用的な計算アプリでの戻り値活用方法を学んでください。"
   ],
-  "template": "// 問題20: 変数スコープの実践\\n// ゲームアプリで使う変数のスコープ（有効範囲）について学ぼう！\\n// グローバル変数を定義\\nlet gameTitle = \"RPGアドベンチャー\";\\nlet playerScore = 0;\\n// 1. showGameInfo関数を定義してください\\nfunction showGameInfo() {\\n    /* ここにgameTitleを表示するコードを書く */\\n    /* グローバル変数のplayerScoreに100を足すコードを書く */\\n    console.log(\"現在のスコア: \" + playerScore);\\n}\\n// 2. battleSystem関数を定義してください\\nfunction battleSystem() {\\n    let enemyName = \"ドラゴン\";\\n    let battleResult = \"勝利\";\\n    /* ここにenemyNameを表示するコードを書く */\\n    console.log(\"戦闘結果: \" + battleResult);\\n    // 関数内からグローバル変数にアクセス\\n    console.log(\"戦闘中のゲーム: \" + gameTitle);\\n}\\n// 3. levelUpReward関数を定義してください（引数: baseReward, level）\\nfunction levelUpReward(baseReward, level) {\\n    let bonus = /* ここにbaseReward * levelを代入 */;\\n    let message = \"レベルアップ報酬は\" + bonus + \"ポイントです\";\\n    /* ここにmessageを表示するコードを書く */\\n    /* ここにbonusを返すコードを書く */\\n}\\n// 4. 関数を呼び出してテストしてください\\nconsole.log(\"=== ゲームアプリ ===\");\\n// グローバル変数の確認\\nconsole.log(\"ゲーム開始: \" + gameTitle);\\nconsole.log(\"初期スコア: \" + playerScore);\\nconsole.log(\"--- ゲーム情報の表示 ---\");\\n/* ここでshowGameInfo関数を呼び出す */;\\n/* ここでshowGameInfo関数をもう一度呼び出す */;\\nconsole.log(\"--- 戦闘システム ---\");\\n/* ここでbattleSystem関数を呼び出す */;\\nconsole.log(\"--- レベルアップ報酬 ---\");\\nlet reward1 = /* ここでlevelUpReward関数を50、3で呼び出す */;\\nconsole.log(\"獲得した報酬: \" + reward1);\\nlet reward2 = /* ここでlevelUpReward関数を30、5で呼び出す */;\\nconsole.log(\"獲得した報酬: \" + reward2);\\n// グローバル変数の最終状態を確認\\nconsole.log(\"--- 最終状態 ---\");\\nconsole.log(\"最終スコア: \" + playerScore);",
+  "template": "// 問題20: 戻り値の活用\\n// 計算アプリで使う関数の戻り値を活用してみよう！\\n\\n// 1. add関数を定義してください（引数: a, b）\\nfunction add(a, b) {\\n    /* ここにa + bを返すコードを書く */\\n}\\n\\n// 2. multiply関数を定義してください（引数: x, y）\\nfunction multiply(x, y) {\\n    /* ここにx * yを返すコードを書く */\\n}\\n\\n// 3. calculateArea関数を定義してください（引数: width, height）\\nfunction calculateArea(width, height) {\\n    /* ここにmultiply関数を使ってwidth * heightを計算し、結果を返す */\\n}\\n\\n// 4. 関数を使って計算してみよう\\nconsole.log(\\\"=== 計算アプリ ===\");\\n\\n// add関数のテスト\\nlet sum1 = /* ここでadd関数を5、3で呼び出し、結果を取得 */;\\nconsole.log(\\\"5 + 3 = \\\" + sum1);\\n\\nlet sum2 = /* ここでadd関数を10、7で呼び出し、結果を取得 */;\\nconsole.log(\\\"10 + 7 = \\\" + sum2);\\n\\n// multiply関数のテスト\\nlet product1 = /* ここでmultiply関数を4、6で呼び出し、結果を取得 */;\\nconsole.log(\\\"4 × 6 = \\\" + product1);\\n\\n// calculateArea関数のテスト\\nlet area1 = /* ここでcalculateArea関数を5、8で呼び出し、結果を取得 */;\\nconsole.log(\\\"幅5×高8の面積: \\\" + area1);\\n\\nlet area2 = /* ここでcalculateArea関数を3、9で呼び出し、結果を取得 */;\\nconsole.log(\\\"幅3×高9の面積: \\\" + area2);\\n\\n// 組み合わせのテスト\\nlet totalArea = /* ここでadd関数を使ってarea1とarea2を足し、結果を取得 */;\\nconsole.log(\\\"総面積: \\\" + totalArea);",
   "testCases": [
     {
-      "name": "基本ケース（ゲームアプリ）",
-      "variables": {
-        "gameTitle": "RPGアドベンチャー",
-        "playerScore": 0
-      },
-      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+      "name": "基本ケース（計算アプリ）",
+      "variables": {},
+      "expectedOutput": "=== 計算アプリ ===\\n5 + 3 = 8\\n10 + 7 = 17\\n4 × 6 = 24\\n幅5×高8の面積: 40\\n幅3×高9の面積: 27\\n総面積: 67"
     },
     {
-      "name": "showGameInfo関数チェック",
-      "variables": {
-        "gameTitle": "RPGアドベンチャー",
-        "playerScore": 0
-      },
-      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+      "name": "add関数チェック",
+      "variables": {},
+      "expectedOutput": "=== 計算アプリ ===\\n5 + 3 = 8\\n10 + 7 = 17\\n4 × 6 = 24\\n幅5×高8の面積: 40\\n幅3×高9の面積: 27\\n総面積: 67"
     },
     {
-      "name": "battleSystem関数チェック",
-      "variables": {
-        "gameTitle": "RPGアドベンチャー",
-        "playerScore": 0
-      },
-      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+      "name": "multiply関数チェック",
+      "variables": {},
+      "expectedOutput": "=== 計算アプリ ===\\n5 + 3 = 8\\n10 + 7 = 17\\n4 × 6 = 24\\n幅5×高8の面積: 40\\n幅3×高9の面積: 27\\n総面積: 67"
     },
     {
-      "name": "levelUpReward関数チェック",
-      "variables": {
-        "gameTitle": "RPGアドベンチャー",
-        "playerScore": 0
-      },
-      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+      "name": "calculateArea関数チェック",
+      "variables": {},
+      "expectedOutput": "=== 計算アプリ ===\\n5 + 3 = 8\\n10 + 7 = 17\\n4 × 6 = 24\\n幅5×高8の面積: 40\\n幅3×高9の面積: 27\\n総面積: 67"
     },
     {
-      "name": "グローバル変数状態変化確認",
-      "variables": {
-        "gameTitle": "RPGアドベンチャー",
-        "playerScore": 0
-      },
-      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+      "name": "関数の組み合わせチェック",
+      "variables": {},
+      "expectedOutput": "=== 計算アプリ ===\\n5 + 3 = 8\\n10 + 7 = 17\\n4 × 6 = 24\\n幅5×高8の面積: 40\\n幅3×高9の面積: 27\\n総面積: 67"
     }
   ],
-  "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200",
-  "testVariables": {
-    "gameTitle": "RPGアドベンチャー",
-    "playerScore": 0
-  },
+  "expectedOutput": "=== 計算アプリ ===\\n5 + 3 = 8\\n10 + 7 = 17\\n4 × 6 = 24\\n幅5×高8の面積: 40\\n幅3×高9の面積: 27\\n総面積: 67",
+  "testVariables": {},
   "points": 100
 }
