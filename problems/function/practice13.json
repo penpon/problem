@@ -1,6 +1,6 @@
 {
   "id": "function/practice13",
-  "title": "問題13：戻り値の応用",
+  "title": "問題13：アロー関数の基本",
   "description": "料理レシピアプリで使うアロー関数を作成してみよう！",
   "instructions": [
     "アロー関数の記法を復習してください。",
