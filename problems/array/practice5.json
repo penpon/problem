@@ -6,7 +6,7 @@
     "findメソッドは条件に合う最初の要素を返します。",
     "scores.find(function(score) { return score >= 60; })のように使用します。"
   ],
-  "template": "// 問題30: findメソッドの基本\\n// 配列 scores から60以上の最初の点数を見つけて出力してください\\n\\nlet scores = [45, 38, 72, 91, 55];\\n\\n// ここにコードを書いてください\\n// findメソッドを使って60以上の最初の値を見つける\\n\\nlet result; // この変数に結果を代入\\n\\nconsole.log(result); // 期待される出力: 72",
+  "template": "// 問題5: findメソッドの基本\\n// 配列 scores から60以上の最初の点数を見つけて出力してください\\n\\nlet scores = [45, 38, 72, 91, 55];\\n\\n// ここにコードを書いてください\\n// findメソッドを使って60以上の最初の値を見つける\\n\\nlet result; // この変数に結果を代入\\n\\nconsole.log(result); // 期待される出力: 72",
   "testCases": [
     {
       "name": "基本ケース（点数）",

@@ -6,7 +6,7 @@
     "文字列の長さはlengthプロパティで取得できます。",
     "names.find(function(name) { return name.length === 4; })のように使用します。"
   ],
-  "template": "// 問題31: findメソッドで文字列を検索\\n// 配列 names から文字数が4文字の最初の名前を見つけて出力してください\\n\\nlet names = [\"Tom\", \"Alice\", \"Bob\", \"Charlie\"];\\n\\n// ここにコードを書いてください\\n// findメソッドを使って4文字の最初の名前を見つける\\n\\nlet result; // この変数に結果を代入\\n\\nconsole.log(result); // 期待される出力: Alice",
+  "template": "// 問題6: findメソッドで文字列を検索\\n// 配列 names から文字数が4文字の最初の名前を見つけて出力してください\\n\\nlet names = [\"Tom\", \"Alice\", \"Bob\", \"Charlie\"];\\n\\n// ここにコードを書いてください\\n// findメソッドを使って4文字の最初の名前を見つける\\n\\nlet result; // この変数に結果を代入\\n\\nconsole.log(result); // 期待される出力: Alice",
   "testCases": [
     {
       "name": "基本ケース（名前）",

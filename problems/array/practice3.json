@@ -6,7 +6,7 @@
     "forEachメソッドは配列の各要素に対して関数を実行します。",
     "colors.forEach(function(color) { console.log(color); })のように使用します。"
   ],
-  "template": "// 問題28: forEachメソッドの基本\\n// 配列 colors の各要素を順番にconsole.logで出力してください\\n\\nlet colors = [\"red\", \"blue\", \"green\"];\\n\\n// ここにコードを書いてください\\n// forEachメソッドを使って各色を出力\\n\\n// 期待される出力:\\n// red\\n// blue\\n// green",
+  "template": "// 問題3: forEachメソッドの基本\\n// 配列 colors の各要素を順番にconsole.logで出力してください\\n\\nlet colors = [\"red\", \"blue\", \"green\"];\\n\\n// ここにコードを書いてください\\n// forEachメソッドを使って各色を出力\\n\\n// 期待される出力:\\n// red\\n// blue\\n// green",
   "testCases": [
     {
       "name": "基本ケース（色）",

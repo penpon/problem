@@ -6,7 +6,7 @@
     "文字列のtoUpperCase()メソッドで大文字に変換できます。",
     "cities.map(function(city) { return city.toUpperCase(); })のように使用します。"
   ],
-  "template": "// 問題35: mapメソッドで文字列を変換\\n// 配列 cities の各都市名を大文字に変換した新しい配列を作成してください\\n\\nlet cities = [\"tokyo\", \"osaka\", \"kyoto\", \"nagoya\"];\\n\\n// ここにコードを書いてください\\n// mapメソッドを使って各都市名を大文字に変換\\n\\nlet upperCities; // この変数に結果を代入\\n\\nconsole.log(upperCities); // 期待される出力: [\"TOKYO\", \"OSAKA\", \"KYOTO\", \"NAGOYA\"]",
+  "template": "// 問題10: mapメソッドで文字列を変換\\n// 配列 cities の各都市名を大文字に変換した新しい配列を作成してください\\n\\nlet cities = [\"tokyo\", \"osaka\", \"kyoto\", \"nagoya\"];\\n\\n// ここにコードを書いてください\\n// mapメソッドを使って各都市名を大文字に変換\\n\\nlet upperCities; // この変数に結果を代入\\n\\nconsole.log(upperCities); // 期待される出力: [\"TOKYO\", \"OSAKA\", \"KYOTO\", \"NAGOYA\"]",
   "testCases": [
     {
       "name": "基本ケース（都市名）",

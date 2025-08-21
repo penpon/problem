@@ -6,7 +6,7 @@
     "pushメソッドは配列の末尾に要素を追加するメソッドです。",
     "fruits.push(\"banana\")のように使用します。"
   ],
-  "template": "// 問題26: pushメソッドの基本\\n// 配列 fruits に新しい果物 \"banana\" を追加してください\\n\\nlet fruits = [\"apple\", \"orange\"];\\n\\n// ここにコードを書いてください\\n// fruits配列に\"banana\"を追加\\n\\nconsole.log(fruits); // 期待される出力: [\"apple\", \"orange\", \"banana\"]",
+  "template": "// 問題1: pushメソッドの基本\\n// 配列 fruits に新しい果物 \"banana\" を追加してください\\n\\nlet fruits = [\"apple\", \"orange\"];\\n\\n// ここにコードを書いてください\\n// fruits配列に\"banana\"を追加\\n\\nconsole.log(fruits); // 期待される出力: [\"apple\", \"orange\", \"banana\"]",
   "testCases": [
     {
       "name": "基本ケース（フルーツ）",

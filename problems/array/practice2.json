@@ -6,7 +6,7 @@
     "pushメソッドには複数の引数を渡すことができます。",
     "numbers.push(4, 5, 6)のように使用します。"
   ],
-  "template": "// 問題27: pushメソッドで複数要素を追加\\n// 配列 numbers に数値 4, 5, 6 を一度に追加してください\\n\\nlet numbers = [1, 2, 3];\\n\\n// ここにコードを書いてください\\n// numbers配列に4, 5, 6を追加\\n\\nconsole.log(numbers); // 期待される出力: [1, 2, 3, 4, 5, 6]",
+  "template": "// 問題2: pushメソッドで複数要素を追加\\n// 配列 numbers に数値 4, 5, 6 を一度に追加してください\\n\\nlet numbers = [1, 2, 3];\\n\\n// ここにコードを書いてください\\n// numbers配列に4, 5, 6を追加\\n\\nconsole.log(numbers); // 期待される出力: [1, 2, 3, 4, 5, 6]",
   "testCases": [
     {
       "name": "基本ケース（数値）",
