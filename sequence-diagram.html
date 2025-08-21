@@ -686,6 +686,8 @@ processor.processOrder({
                     if (funcMatch) {
                         currentFunction = funcMatch[1] || funcMatch[2];
                         if (!currentClass) {
+                            // 検出された関数名を個別アクターとして追加
+                            this.actors.add(currentFunction);
                             this.actors.add('Main');
                         }
                         continue;
@@ -749,10 +751,16 @@ processor.processOrder({
                             funcName = funcName[1];
                             // 予約語や既知のメソッドをスキップ
                             if (!['if', 'for', 'while', 'switch', 'catch', 'return', 'new', 'console'].includes(funcName)) {
-                                this.actors.add('Main');
+                                // 検出された関数名を個別アクターとして追加
+                                this.actors.add(funcName);
+                                
+                                // 正しい呼び出し関係を設定
+                                const fromActor = currentFunction || currentClass || 'Main';
+                                this.actors.add(fromActor);
+                                
                                 this.interactions.push({
-                                    from: currentClass || 'Main',
-                                    to: 'Main',
+                                    from: fromActor,
+                                    to: funcName,
                                     message: funcName + "()",
                                     type: 'call'
                                 });
