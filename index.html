@@ -133,6 +133,19 @@
             box-shadow: 0 5px 15px rgba(237, 137, 54, 0.4);
         }
         
+        .memory-card {
+            border-color: #14b8a6;
+        }
+        
+        .memory-card .tool-button {
+            background: linear-gradient(145deg, #14b8a6, #0f766e);
+        }
+        
+        .memory-card .tool-button:hover {
+            background: linear-gradient(145deg, #0f766e, #0d5b4f);
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.4);
+        }
+        
         .quiz-card {
             border-color: #8b5cf6;
         }
@@ -217,6 +230,23 @@
                     <li>自動スクロール機能</li>
                 </ul>
                 <a href="visualizer.html" class="tool-button">🔍 コードを可視化する</a>
+            </div>
+
+            <!-- メモリ状態遷移解析ツール -->
+            <div class="tool-card memory-card">
+                <div class="tool-icon">🧠</div>
+                <h2 class="tool-title">メモリ状態遷移解析ツール</h2>
+                <p class="tool-description">
+                    JavaScriptのメモリ管理を視覚的に学習。スタック、ヒープ、ガベージコレクションの動作を詳しく理解できます。
+                </p>
+                <ul class="tool-features">
+                    <li>JavaScriptメモリの動的可視化</li>
+                    <li>スタック・ヒープの状態表示</li>
+                    <li>ガベージコレクション動作確認</li>
+                    <li>5つの学習シナリオ</li>
+                    <li>リアルタイムメモリマップ表示</li>
+                </ul>
+                <a href="memory-state-transition.html" class="tool-button">🧠 メモリを解析する</a>
             </div>
 
             <!-- エンジニア初心者クイズ -->

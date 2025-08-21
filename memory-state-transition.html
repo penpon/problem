@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript メモリ状態遷移解析ツール</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: #f5f5f5;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            padding: 30px;
+        }
+        
+        .scenario-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .scenario-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .scenario-btn:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .scenario-btn.active {
+            background: #2c3e50;
+            color: white;
+            border-color: #2c3e50;
+        }
+        
+        .memory-layout {
+            display: grid;
+            grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr) minmax(400px, 1.2fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .memory-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-height: 400px;
+            overflow-y: auto;
+            overflow-x: visible;
+        }
+        
+        .memory-section:nth-child(3) {
+            max-height: none;
+            min-height: 500px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background: #34495e;
+            color: white;
+            border-radius: 8px 8px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .section-info {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .memory-entry {
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .memory-entry.highlight {
+            border-color: #e74c3c;
+            background: #ffe5e5;
+            animation: pulse 1s;
+        }
+        
+        .memory-entry.new {
+            border-color: #27ae60;
+            background: #e5ffe5;
+            animation: slideIn 0.5s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .memory-address {
+            font-size: 0.85rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-family: monospace;
+        }
+        
+        .memory-variable {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+        }
+        
+        .var-name {
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .var-value {
+            color: #27ae60;
+            font-weight: bold;
+            padding: 3px 8px;
+            background: rgba(39, 174, 96, 0.1);
+            border-radius: 4px;
+        }
+        
+        .var-type {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-left: 10px;
+        }
+        
+        .reference-arrow {
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #e67e22;
+            font-size: 1.5rem;
+            z-index: 20;
+        }
+        
+        .heap-object {
+            background: #fff3cd;
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+            word-break: break-word;
+        }
+        
+        .heap-object.unreachable {
+            opacity: 0.5;
+            border-style: dashed;
+            background: #ffebee;
+            border-color: #e74c3c;
+        }
+        
+        .object-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f39c12;
+        }
+        
+        .object-type {
+            color: #d35400;
+            font-weight: bold;
+        }
+        
+        .object-size {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+        }
+        
+        .object-property {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            margin: 3px 0;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 4px;
+        }
+        
+        .prop-key {
+            color: #8e44ad;
+            font-weight: 500;
+        }
+        
+        .prop-value {
+            color: #16a085;
+            font-weight: bold;
+        }
+        
+        .code-execution {
+            background: #2c3e50;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .code-line {
+            color: #ecf0f1;
+            padding: 8px 15px;
+            margin: 3px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+            opacity: 0.6;
+        }
+        
+        .code-line.executing {
+            background: rgba(52, 152, 219, 0.3);
+            opacity: 1;
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+        }
+        
+        .code-line.executed {
+            opacity: 0.8;
+        }
+        
+        
+        .comment {
+            color: #95a5a6;
+            font-style: italic;
+            margin-left: 20px;
+        }
+        
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            padding: 12px 24px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .control-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .control-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .speed-label {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .speed-slider {
+            width: 100px;
+        }
+        
+        .memory-diagram {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .diagram-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .memory-visualization {
+            display: grid;
+            grid-template-columns: repeat(24, 14px);
+            grid-template-rows: repeat(5, 14px);
+            gap: 1px;
+            padding: 8px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            margin: 10px 0;
+            width: fit-content;
+            justify-content: start;
+            align-content: start;
+        }
+        
+        .memory-byte {
+            width: 14px;
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+            font-weight: bold;
+            color: white;
+            border-radius: 2px;
+            box-sizing: border-box;
+            background: #bdc3c7;
+            flex: none;
+            min-width: 14px;
+            min-height: 14px;
+            max-width: 14px;
+            max-height: 14px;
+        }
+        
+        .memory-byte.allocated {
+            background: #27ae60;
+        }
+        
+        .memory-byte.freed {
+            background: #e74c3c;
+            animation: flash 0.5s;
+        }
+        
+        /* 変数ごとの色分けクラス */
+        .memory-byte.var-x { background: #3498db !important; }
+        .memory-byte.var-y { background: #e74c3c !important; }
+        .memory-byte.var-obj1 { background: #f39c12 !important; }
+        .memory-byte.var-obj2 { background: #9b59b6 !important; }
+        .memory-byte.var-arr { background: #1abc9c !important; }
+        .memory-byte.var-arr2 { background: #e67e22 !important; }
+        .memory-byte.var-ref { background: #8e44ad !important; }
+        .memory-byte.var-closure { background: #16a085 !important; }
+        .memory-byte.var-a { background: #2980b9 !important; }
+        .memory-byte.var-b { background: #c0392b !important; }
+        .memory-byte.var-result { background: #27ae60 !important; }
+        .memory-byte.var-sum { background: #f1c40f !important; }
+        
+        /* スタック領域の色（青系） */
+        .memory-byte.stack-primitive { background: #3498db !important; }
+        .memory-byte.stack-reference { background: #2980b9 !important; }
+        .memory-byte.stack-function { background: #5dade2 !important; }
+        
+        /* ヒープ領域の色（オレンジ系） */
+        .memory-byte.heap-object { background: #f39c12 !important; }
+        .memory-byte.heap-array { background: #e67e22 !important; }
+        .memory-byte.heap-closure { background: #d35400 !important; }
+        .memory-byte.heap-property { background: #f8c471 !important; }
+        
+        /* メモリマップセル用のスタイルリセット - ヒープオブジェクトクラスの影響を無効化 */
+        .memory-byte.heap-object,
+        .memory-byte.heap-array,
+        .memory-byte.heap-closure,
+        .memory-byte.heap-property {
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            border-radius: 2px !important;
+            word-break: normal !important;
+        }
+        
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .execution-state {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .state-box {
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .state-label {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .state-value {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .step-timeline {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+        
+        .timeline-step.active {
+            opacity: 1;
+        }
+        
+        .timeline-step.completed {
+            opacity: 0.8;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #ecf0f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        
+        .timeline-step.active .step-number {
+            background: #3498db;
+            color: white;
+        }
+        
+        .timeline-step.completed .step-number {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .step-description {
+            flex: 1;
+            color: #2c3e50;
+        }
+        
+        .pointer-visualization {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .pointer-line {
+            position: absolute;
+            height: 2px;
+            background: #e74c3c;
+            transform-origin: left center;
+            z-index: 20;
+        }
+        
+        .pointer-line::after {
+            content: '▶';
+            position: absolute;
+            right: -10px;
+            top: -8px;
+            color: #e74c3c;
+            font-size: 16px;
+        }
+        
+        .info-panel {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .info-title {
+            color: #2980b9;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .info-content {
+            color: #34495e;
+            line-height: 1.6;
+        }
+        
+        .gc-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 2px solid #e74c3c;
+            border-radius: 8px;
+            padding: 10px 15px;
+            display: none;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .gc-indicator.active {
+            display: block;
+        }
+        
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+        
+        @media (max-width: 992px) {
+            .memory-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+            .memory-section {
+                max-height: none;
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>JavaScript メモリ状態遷移解析ツール</h1>
+        </div>
+        
+        <div class="main-content">
+            <div class="scenario-selector">
+                <button class="scenario-btn active" onclick="loadScenario('basic', event)">基本型と参照型</button>
+                <button class="scenario-btn" onclick="loadScenario('function', event)">関数呼び出しとスコープ</button>
+                <button class="scenario-btn" onclick="loadScenario('closure', event)">クロージャとメモリ</button>
+                <button class="scenario-btn" onclick="loadScenario('array', event)">配列の動的メモリ</button>
+                <button class="scenario-btn" onclick="loadScenario('gc', event)">ガベージコレクション</button>
+            </div>
+            
+            <div class="memory-layout">
+                <!-- スタック領域 -->
+                <div class="memory-section">
+                    <div class="section-header">
+                        <span class="section-title">スタック領域</span>
+                        <span class="section-info">LIFO構造</span>
+                    </div>
+                    <div id="stack-area">
+                        <!-- 動的生成 -->
+                    </div>
+                </div>
+                
+                <!-- ヒープ領域 -->
+                <div class="memory-section">
+                    <div class="section-header">
+                        <span class="section-title">ヒープ領域</span>
+                        <span class="section-info">動的メモリ</span>
+                    </div>
+                    <div id="heap-area">
+                        <!-- 動的生成 -->
+                    </div>
+                </div>
+                
+                <!-- メモリ状態 -->
+                <div class="memory-section">
+                    <div class="section-header">
+                        <span class="section-title">メモリ状態</span>
+                        <span class="section-info">リアルタイム</span>
+                    </div>
+                    <div class="execution-state">
+                        <div class="state-box">
+                            <div class="state-label">スタック使用量</div>
+                            <div class="state-value" id="stack-usage">0 KB</div>
+                        </div>
+                        <div class="state-box">
+                            <div class="state-label">ヒープ使用量</div>
+                            <div class="state-value" id="heap-usage">0 KB</div>
+                        </div>
+                        <div class="state-box">
+                            <div class="state-label">参照カウント</div>
+                            <div class="state-value" id="ref-count">0</div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <div style="font-weight: bold; color: #2c3e50; margin-bottom: 8px; font-size: 0.9rem;">スタックメモリマップ</div>
+                        <div class="memory-visualization" id="stack-memory-map">
+                            <!-- スタック用メモリマップ -->
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <div style="font-weight: bold; color: #2c3e50; margin-bottom: 8px; font-size: 0.9rem;">ヒープメモリマップ</div>
+                        <div class="memory-visualization" id="heap-memory-map">
+                            <!-- ヒープ用メモリマップ -->
+                        </div>
+                    </div>
+                    <div class="info-panel">
+                        <div class="info-title">メモリ割り当て情報</div>
+                        <div class="info-content" id="memory-info">
+                            待機中...
+                        </div>
+                    </div>
+                    <div class="info-panel" style="margin-top: 10px;">
+                        <div class="info-title">変数の色分け凡例</div>
+                        <div class="info-content" id="color-legend" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <!-- 動的生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-execution">
+                <div id="code-display">
+                    <!-- 動的生成 -->
+                </div>
+            </div>
+            
+            <div class="control-panel">
+                <button class="control-btn" onclick="executeStep()">次のステップ</button>
+                <button class="control-btn" onclick="executeAll()">全実行</button>
+                <button class="control-btn" onclick="reset()">リセット</button>
+                <div class="speed-control">
+                    <span class="speed-label">実行速度:</span>
+                    <input type="range" class="speed-slider" id="speed" min="100" max="2000" value="1000">
+                    <span id="speed-value">1.0秒</span>
+                </div>
+            </div>
+            
+            <div class="step-timeline">
+                <div class="diagram-title">実行タイムライン</div>
+                <div id="timeline">
+                    <!-- 動的生成 -->
+                </div>
+            </div>
+            
+            <canvas id="pointer-canvas"></canvas>
+        </div>
+    </div>
+    
+    <div class="gc-indicator" id="gc-indicator">
+        🔄 ガベージコレクション実行中...
+    </div>
+
+    <script>
+        // メモリマネージャー
+        class MemoryManager {
+            constructor() {
+                this.stack = [];
+                this.heap = {};
+                this.stackMemoryMap = new Array(120).fill(null);
+                this.heapMemoryMap = new Array(120).fill(null);
+                this.stackPointer = 0x7FFF;
+                this.heapPointer = 0x1000;
+                this.references = new Map();
+                this.currentStep = 0;
+                this.scenario = null;
+                this.executionSpeed = 1000;
+                this.isRunning = false;
+                this.stackSize = 0;
+                this.heapSize = 0;
+                this.refCount = 0;
+                this.variableColors = new Map();
+                this.colorPalette = [
+                    'x', 'y', 'obj1', 'obj2', 'arr', 'arr2', 'ref', 'closure', 
+                    'a', 'b', 'result', 'sum'
+                ];
+                this.nextColorIndex = 0;
+            }
+            
+            // 変数名に色クラスを割り当て
+            getVariableColorClass(variableName) {
+                if (!this.variableColors.has(variableName)) {
+                    // 新しい変数の場合、色クラス名を決定
+                    let colorClass;
+                    if (this.colorPalette.includes(variableName)) {
+                        colorClass = `var-${variableName}`;
+                    } else {
+                        // 予定色にない場合はインデックスベースの色を使用
+                        const index = this.nextColorIndex % this.colorPalette.length;
+                        colorClass = `var-${this.colorPalette[index]}`;
+                        this.nextColorIndex++;
+                    }
+                    this.variableColors.set(variableName, colorClass);
+                }
+                return this.variableColors.get(variableName);
+            }
+            
+            // スタックにプッシュ
+            pushStack(name, value, type = 'primitive') {
+                const address = `0x${this.stackPointer.toString(16).toUpperCase()}`;
+                this.stackPointer -= 4;
+                
+                const entry = {
+                    address,
+                    name,
+                    value,
+                    type,
+                    size: 8  // プリミティブ型、参照型ともに8バイト
+                };
+                
+                this.stack.push(entry);
+                this.stackSize += entry.size;
+                
+                if (type === 'reference') {
+                    this.refCount++;
+                }
+                
+                this.renderStack();
+                this.updateMemoryStats();
+                this.allocateStackMemoryMap(entry.size, name);
+                
+                return address;
+            }
+            
+            // スタックからポップ
+            popStack() {
+                if (this.stack.length > 0) {
+                    const entry = this.stack.pop();
+                    this.stackPointer += 4;
+                    this.stackSize -= entry.size;
+                    
+                    if (entry.type === 'reference') {
+                        this.refCount--;
+                        this.checkUnreachableObjects();
+                    }
+                    
+                    this.renderStack();
+                    this.updateMemoryStats();
+                    this.freeStackMemoryMap(entry.size, entry.name);
+                    
+                    return entry;
+                }
+                return null;
+            }
+            
+            // ヒープにオブジェクト作成
+            createHeapObject(type, data, variableName) {
+                const address = `0x${this.heapPointer.toString(16).toUpperCase()}`;
+                const size = this.calculateObjectSize(data);
+                this.heapPointer += size;
+                
+                const heapEntry = {
+                    address,
+                    type,
+                    data: JSON.parse(JSON.stringify(data)), // ディープコピーで参照の問題を回避
+                    size,
+                    referenceCount: 0,
+                    reachable: true,
+                    variableName: variableName
+                };
+                
+                this.heap[address] = heapEntry;
+                this.heapSize += size;
+                
+                this.renderHeap();
+                this.updateMemoryStats();
+                this.allocateHeapMemoryMap(size, variableName, data);
+                
+                return address;
+            }
+            
+            // オブジェクトサイズ計算
+            calculateObjectSize(data) {
+                if (Array.isArray(data)) {
+                    return 32 + data.length * 8;
+                } else if (typeof data === 'object') {
+                    return 32 + Object.keys(data).length * 16;
+                }
+                return 32;
+            }
+            
+            // スタック表示
+            renderStack() {
+                const stackArea = document.getElementById('stack-area');
+                stackArea.innerHTML = '';
+                
+                // スタックを逆順で表示（TOPが上）
+                this.stack.slice().reverse().forEach((entry, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'memory-entry';
+                    if (index === 0) div.classList.add('new');
+                    
+                    div.innerHTML = `
+                        <div class="memory-address">${entry.address}</div>
+                        <div class="memory-variable">
+                            <span class="var-name">${entry.name}</span>
+                            <span>
+                                <span class="var-value">${entry.type === 'reference' ? '→ ' + entry.value : entry.value}</span>
+                                <span class="var-type">[${entry.type}]</span>
+                            </span>
+                        </div>
+                        ${entry.type === 'reference' ? '<span class="reference-arrow">→</span>' : ''}
+                    `;
+                    
+                    stackArea.appendChild(div);
+                });
+            }
+            
+            // ヒープ表示
+            renderHeap() {
+                const heapArea = document.getElementById('heap-area');
+                heapArea.innerHTML = '';
+                
+                Object.values(this.heap).forEach(entry => {
+                    const div = document.createElement('div');
+                    div.className = 'heap-object';
+                    if (!entry.reachable) {
+                        div.classList.add('unreachable');
+                    }
+                    
+                    let propertiesHtml = '';
+                    if (Array.isArray(entry.data)) {
+                        propertiesHtml = entry.data.map((val, i) => `
+                            <div class="object-property">
+                                <span class="prop-key">[${i}]</span>
+                                <span class="prop-value">${val}</span>
+                            </div>
+                        `).join('');
+                    } else if (typeof entry.data === 'object') {
+                        propertiesHtml = Object.entries(entry.data).map(([key, val]) => `
+                            <div class="object-property">
+                                <span class="prop-key">${key}:</span>
+                                <span class="prop-value">${val}</span>
+                            </div>
+                        `).join('');
+                    }
+                    
+                    div.innerHTML = `
+                        <div class="memory-address">${entry.address}</div>
+                        <div class="object-header">
+                            <span class="object-type">${entry.type}</span>
+                            <span class="object-size">${entry.size} bytes</span>
+                        </div>
+                        ${propertiesHtml}
+                    `;
+                    
+                    heapArea.appendChild(div);
+                });
+            }
+            
+            // スタック用メモリマップ更新
+            allocateStackMemoryMap(size, variableName) {
+                let bytes = Math.ceil(size / 8);
+                
+                // スタックから変数の値を取得
+                const stackEntry = this.stack.find(e => e.name === variableName);
+                if (!stackEntry) return;
+                
+                // 色クラスの決定（変数名ベースの色分け）
+                let colorClass = this.getVariableColorClass(variableName);
+                
+                let value = 0;
+                if (stackEntry.type === 'reference') {
+                    // 参照型の場合、アドレス値を数値に変換
+                    const addressMatch = stackEntry.value.match(/0x([0-9A-F]+)/i);
+                    if (addressMatch) {
+                        value = parseInt(addressMatch[1], 16);
+                    }
+                } else {
+                    value = typeof stackEntry.value === 'number' ? stackEntry.value : 0;
+                }
+                
+                let cellIndex = 0;
+                for (let i = 0; i < this.stackMemoryMap.length && bytes > 0; i++) {
+                    if (this.stackMemoryMap[i] === null) {
+                        this.stackMemoryMap[i] = variableName;
+                        bytes--;
+                        const cell = document.querySelector(`#stack-memory-map .memory-byte:nth-child(${i + 1})`);
+                        if (cell) {
+                            cell.classList.add('allocated');
+                            cell.classList.add(colorClass);
+                            cell.setAttribute('data-variable', variableName);
+                            
+                            // ツールチップ
+                            let tooltipText;
+                            if (stackEntry.type === 'reference') {
+                                const referencedObject = Object.values(this.heap).find(obj => obj.address === stackEntry.value);
+                                const objName = referencedObject ? referencedObject.variableName : 'unknown';
+                                tooltipText = `スタック変数: ${variableName} → ${objName}オブジェクト (${stackEntry.value})`;
+                            } else {
+                                tooltipText = `スタック変数: ${variableName} = ${stackEntry.value} (プリミティブ型)`;
+                            }
+                            cell.title = tooltipText;
+                            
+                            // 16進数値の表示
+                            let hexValue;
+                            if (stackEntry.type === 'reference') {
+                                const byteShift = cellIndex * 8;
+                                hexValue = ((value >> byteShift) & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                            } else {
+                                hexValue = (value & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                            }
+                            cell.textContent = hexValue;
+                            cellIndex++;
+                        }
+                    }
+                }
+            }
+            
+            // ヒープ用メモリマップ更新
+            allocateHeapMemoryMap(size, variableName, data) {
+                let bytes = Math.ceil(size / 8);
+                
+                // 色クラスの決定（変数名ベースの色分け）
+                let colorClass = this.getVariableColorClass(variableName);
+                
+                let cellIndex = 0;
+                for (let i = 0; i < this.heapMemoryMap.length && bytes > 0; i++) {
+                    if (this.heapMemoryMap[i] === null) {
+                        this.heapMemoryMap[i] = variableName;
+                        bytes--;
+                        const cell = document.querySelector(`#heap-memory-map .memory-byte:nth-child(${i + 1})`);
+                        if (cell) {
+                            cell.classList.add('allocated');
+                            cell.classList.add(colorClass);
+                            cell.setAttribute('data-variable', variableName);
+                            
+                            // ツールチップ
+                            let tooltipText = `ヒープオブジェクト: ${variableName} (${size}バイト)`;
+                            cell.title = tooltipText;
+                            
+                            // 実際のプロパティ値を表示
+                            let displayValue;
+                            if (Array.isArray(data) && cellIndex < data.length) {
+                                displayValue = (data[cellIndex] & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                            } else if (typeof data === 'object' && !Array.isArray(data) && !data.name) {
+                                const values = Object.values(data);
+                                if (cellIndex < values.length && typeof values[cellIndex] === 'number') {
+                                    displayValue = (values[cellIndex] & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                                } else {
+                                    displayValue = (size & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                                }
+                            } else {
+                                displayValue = (size & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                            }
+                            
+                            cell.textContent = displayValue;
+                            cellIndex++;
+                        }
+                    }
+                }
+            }
+            
+            // スタック用メモリマップ解放
+            freeStackMemoryMap(size, variableName) {
+                const bytes = Math.ceil(size / 8);
+                let freed = 0;
+                for (let i = this.stackMemoryMap.length - 1; i >= 0 && freed < bytes; i--) {
+                    if (this.stackMemoryMap[i] === variableName) {
+                        this.stackMemoryMap[i] = null;
+                        freed++;
+                        const cell = document.querySelector(`#stack-memory-map .memory-byte:nth-child(${i + 1})`);
+                        if (cell) {
+                            cell.classList.remove('allocated', 'stack-primitive', 'stack-reference');
+                            cell.classList.add('freed');
+                            cell.removeAttribute('data-variable');
+                            cell.removeAttribute('title');
+                            cell.textContent = '00';
+                            setTimeout(() => cell.classList.remove('freed'), 500);
+                        }
+                    }
+                }
+            }
+            
+            // ヒープ用メモリマップ解放
+            freeHeapMemoryMap(size, variableName) {
+                const bytes = Math.ceil(size / 8);
+                let freed = 0;
+                for (let i = this.heapMemoryMap.length - 1; i >= 0 && freed < bytes; i--) {
+                    if (this.heapMemoryMap[i] === variableName) {
+                        this.heapMemoryMap[i] = null;
+                        freed++;
+                        const cell = document.querySelector(`#heap-memory-map .memory-byte:nth-child(${i + 1})`);
+                        if (cell) {
+                            cell.classList.remove('allocated', 'heap-object', 'heap-array', 'heap-closure');
+                            cell.classList.add('freed');
+                            cell.removeAttribute('data-variable');
+                            cell.removeAttribute('title');
+                            cell.textContent = '00';
+                            setTimeout(() => cell.classList.remove('freed'), 500);
+                        }
+                    }
+                }
+            }
+            
+            // ヒープメモリマップの値を更新
+            updateHeapMemoryMapValue(variableName, data) {
+                let cellIndex = 0;
+                for (let i = 0; i < this.heapMemoryMap.length; i++) {
+                    if (this.heapMemoryMap[i] === variableName) {
+                        const cell = document.querySelector(`#heap-memory-map .memory-byte:nth-child(${i + 1})`);
+                        if (cell) {
+                            // 実際のプロパティ値を表示
+                            let displayValue;
+                            if (Array.isArray(data) && cellIndex < data.length) {
+                                displayValue = (data[cellIndex] & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                            } else if (typeof data === 'object' && !Array.isArray(data) && !data.name) {
+                                const values = Object.values(data);
+                                if (cellIndex < values.length && typeof values[cellIndex] === 'number') {
+                                    displayValue = (values[cellIndex] & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                                } else {
+                                    // その他のセルは現在の値を保持
+                                    displayValue = cell.textContent;
+                                }
+                            } else {
+                                displayValue = cell.textContent;
+                            }
+                            
+                            cell.textContent = displayValue;
+                            
+                            // ツールチップも更新
+                            if (typeof data === 'object' && !Array.isArray(data) && !data.name) {
+                                const props = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join(', ');
+                                cell.title = `ヒープオブジェクト: ${variableName} {${props}}`;
+                            }
+                            cellIndex++;
+                        }
+                    }
+                }
+            }
+            
+            // スタック用メモリマップの値を更新
+            updateStackMemoryMapValue(variableName, newValue) {
+                const stackEntry = this.stack.find(e => e.name === variableName);
+                if (!stackEntry) return;
+                
+                let cellIndex = 0;
+                for (let i = 0; i < this.stackMemoryMap.length; i++) {
+                    if (this.stackMemoryMap[i] === variableName) {
+                        const cell = document.querySelector(`#stack-memory-map .memory-byte:nth-child(${i + 1})`);
+                        if (cell) {
+                            let value = 0;
+                            let colorClass = this.getVariableColorClass(variableName);
+                            
+                            if (stackEntry.type === 'reference') {
+                                const addressMatch = newValue.match(/0x([0-9A-F]+)/i);
+                                if (addressMatch) {
+                                    value = parseInt(addressMatch[1], 16);
+                                }
+                            } else {
+                                value = typeof newValue === 'number' ? newValue : 0;
+                            }
+                            
+                            cell.className = 'memory-byte allocated ' + colorClass;
+                            
+                            let hexValue;
+                            if (stackEntry.type === 'reference') {
+                                const byteShift = cellIndex * 8;
+                                hexValue = ((value >> byteShift) & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                            } else {
+                                hexValue = (value & 0xFF).toString(16).toUpperCase().padStart(2, '0');
+                            }
+                            cell.textContent = hexValue;
+                            
+                            let tooltipText;
+                            if (stackEntry.type === 'reference') {
+                                const referencedObject = Object.values(this.heap).find(obj => obj.address === newValue);
+                                const objName = referencedObject ? referencedObject.variableName : 'unknown';
+                                tooltipText = `スタック変数: ${variableName} → ${objName}オブジェクト (${newValue})`;
+                            } else {
+                                tooltipText = `スタック変数: ${variableName} = ${newValue} (プリミティブ型)`;
+                            }
+                            cell.title = tooltipText;
+                            cellIndex++;
+                        }
+                    }
+                }
+            }
+            
+            // メモリ統計更新
+            updateMemoryStats() {
+                // スタックサイズを実際のスタックエントリから計算
+                const actualStackSize = this.stack.reduce((total, entry) => total + entry.size, 0);
+                
+                // ヒープサイズを実際のヒープオブジェクトから計算（到達可能なもののみ）
+                const actualHeapSize = Object.values(this.heap)
+                    .filter(obj => obj.reachable)
+                    .reduce((total, obj) => total + obj.size, 0);
+                
+                // 参照カウントを実際のスタックエントリから計算
+                const actualRefCount = this.stack.filter(entry => entry.type === 'reference').length;
+                
+                document.getElementById('stack-usage').textContent = `${(actualStackSize / 1024).toFixed(3)} KB`;
+                document.getElementById('heap-usage').textContent = `${(actualHeapSize / 1024).toFixed(3)} KB`;
+                document.getElementById('ref-count').textContent = actualRefCount;
+                
+                // 内部状態も更新
+                this.stackSize = actualStackSize;
+                this.heapSize = actualHeapSize;
+                this.refCount = actualRefCount;
+                
+                const totalUsage = this.stackSize + this.heapSize;
+                const info = `
+                    スタック: ${this.stack.length} 個の変数<br>
+                    ヒープ: ${Object.keys(this.heap).length} 個のオブジェクト<br>
+                    総メモリ使用量: ${(totalUsage / 1024).toFixed(3)} KB<br>
+                    空きメモリ: ${((256 * 32 - totalUsage) / 1024).toFixed(3)} KB
+                `;
+                document.getElementById('memory-info').innerHTML = info;
+                this.updateColorLegend();
+            }
+            
+            // 色分け凡例を更新
+            updateColorLegend() {
+                const legendContainer = document.getElementById('color-legend');
+                if (!legendContainer) return;
+                
+                legendContainer.innerHTML = '';
+                
+                // 現在使用されている変数名と色のマッピングを取得
+                const usedVariables = new Set();
+                
+                // スタックから変数名を収集
+                this.stack.forEach(entry => {
+                    usedVariables.add(entry.name);
+                });
+                
+                // ヒープから変数名を収集
+                Object.values(this.heap).forEach(entry => {
+                    if (entry.variableName) {
+                        usedVariables.add(entry.variableName);
+                    }
+                });
+                
+                // 使用されている変数の凡例を作成
+                usedVariables.forEach(varName => {
+                    const colorClass = this.getVariableColorClass(varName);
+                    const legendItem = document.createElement('div');
+                    legendItem.style.display = 'flex';
+                    legendItem.style.alignItems = 'center';
+                    legendItem.style.gap = '4px';
+                    legendItem.style.fontSize = '0.85rem';
+                    
+                    const colorBox = document.createElement('div');
+                    colorBox.style.width = '12px';
+                    colorBox.style.height = '12px';
+                    colorBox.style.borderRadius = '2px';
+                    colorBox.className = `memory-byte ${colorClass}`;
+                    
+                    const label = document.createElement('span');
+                    label.textContent = varName;
+                    
+                    legendItem.appendChild(colorBox);
+                    legendItem.appendChild(label);
+                    legendContainer.appendChild(legendItem);
+                });
+            }
+            
+            // 到達不可能オブジェクトチェック
+            checkUnreachableObjects() {
+                // すべてのオブジェクトを到達不可能としてマーク
+                Object.values(this.heap).forEach(obj => {
+                    obj.reachable = false;
+                });
+                
+                // スタックから参照されているオブジェクトをマーク
+                this.stack.forEach(entry => {
+                    if (entry.type === 'reference' && this.heap[entry.value]) {
+                        this.heap[entry.value].reachable = true;
+                    }
+                });
+                
+                this.renderHeap();
+            }
+            
+            // ガベージコレクション実行
+            runGarbageCollection() {
+                const indicator = document.getElementById('gc-indicator');
+                indicator.classList.add('active');
+                
+                setTimeout(() => {
+                    const unreachable = Object.values(this.heap).filter(obj => !obj.reachable);
+                    unreachable.forEach(obj => {
+                        this.heapSize -= obj.size;
+                        this.freeHeapMemoryMap(obj.size, obj.variableName);
+                        delete this.heap[obj.address];
+                    });
+                    
+                    this.renderHeap();
+                    this.updateMemoryStats();
+                    indicator.classList.remove('active');
+                }, 1500);
+            }
+        }
+        
+        // シナリオ定義
+        const scenarios = {
+            basic: {
+                title: "基本型と参照型の動作",
+                code: [
+                    "// プリミティブ型の値渡し",
+                    "let x = 42;",
+                    "let y = x;  // 値がコピーされる",
+                    "y = 100;    // xは影響を受けない",
+                    "",
+                    "let obj1 = { value: 10 };",
+                    "let obj2 = obj1;  // 参照がコピーされる",
+                    "obj2.value = 20;  // obj1も変更される"
+                ],
+                steps: [
+                    { type: 'push', name: 'x', value: 42, dataType: 'primitive' },
+                    { type: 'push', name: 'y', value: 42, dataType: 'primitive' },
+                    { type: 'modify', name: 'y', value: 100 },
+                    { type: 'createObject', varName: 'obj1', data: { value: 10 } },
+                    { type: 'copyReference', from: 'obj1', to: 'obj2' },
+                    { type: 'modifyObject', ref: 'obj2', key: 'value', value: 20 }
+                ]
+            },
+            function: {
+                title: "関数呼び出しとスコープ",
+                code: [
+                    "function add(a, b) {",
+                    "    let result = a + b;",
+                    "    return result;",
+                    "}",
+                    "",
+                    "let x = 10;",
+                    "let y = 20;",
+                    "let sum = add(x, y);"
+                ],
+                steps: [
+                    { type: 'push', name: 'x', value: 10, dataType: 'primitive' },
+                    { type: 'push', name: 'y', value: 20, dataType: 'primitive' },
+                    { type: 'functionCall', name: 'add' },
+                    { type: 'push', name: 'a', value: 10, dataType: 'primitive' },
+                    { type: 'push', name: 'b', value: 20, dataType: 'primitive' },
+                    { type: 'push', name: 'result', value: 30, dataType: 'primitive' },
+                    { type: 'functionReturn', value: 30 },
+                    { type: 'push', name: 'sum', value: 30, dataType: 'primitive' }
+                ]
+            },
+            closure: {
+                title: "クロージャとメモリ保持",
+                code: [
+                    "function outer(x) {",
+                    "    return function inner(y) {",
+                    "        return x + y;",
+                    "    };",
+                    "}",
+                    "",
+                    "let closure = outer(10);",
+                    "let result = closure(5);"
+                ],
+                steps: [
+                    { type: 'functionCall', name: 'outer' },
+                    { type: 'push', name: 'x', value: 10, dataType: 'primitive' },
+                    { type: 'createClosure', name: 'inner', capturedVars: ['x'] },
+                    { type: 'push', name: 'closure', value: '0x2000', dataType: 'reference' },
+                    { type: 'functionCall', name: 'closure' },
+                    { type: 'push', name: 'y', value: 5, dataType: 'primitive' },
+                    { type: 'push', name: 'result', value: 15, dataType: 'primitive' }
+                ]
+            },
+            array: {
+                title: "配列の動的メモリ割り当て",
+                code: [
+                    "let arr = [1, 2, 3];",
+                    "arr.push(4);  // 配列を拡張",
+                    "arr[0] = 10;  // 要素を変更",
+                    "",
+                    "let arr2 = arr;  // 参照のコピー",
+                    "arr2.push(5);    // 両方に影響"
+                ],
+                steps: [
+                    { type: 'createObject', varName: 'arr', data: [1, 2, 3], objType: 'Array' },
+                    { type: 'arrayPush', ref: 'arr', value: 4 },
+                    { type: 'arrayModify', ref: 'arr', index: 0, value: 10 },
+                    { type: 'copyReference', from: 'arr', to: 'arr2' },
+                    { type: 'arrayPush', ref: 'arr2', value: 5 }
+                ]
+            },
+            gc: {
+                title: "ガベージコレクション",
+                code: [
+                    "let obj = { data: 'important' };",
+                    "let ref = obj;  // 参照カウント: 2",
+                    "",
+                    "obj = null;     // 参照カウント: 1",
+                    "ref = null;     // 参照カウント: 0",
+                    "// ガベージコレクション対象"
+                ],
+                steps: [
+                    { type: 'createObject', varName: 'obj', data: { data: 'important' } },
+                    { type: 'copyReference', from: 'obj', to: 'ref' },
+                    { type: 'nullify', name: 'obj' },
+                    { type: 'nullify', name: 'ref' },
+                    { type: 'gc' }
+                ]
+            }
+        };
+        
+        // グローバルインスタンス
+        const memoryManager = new MemoryManager();
+        
+        // シナリオ読み込み
+        function loadScenario(scenarioName, event) {
+            // ボタンのアクティブ状態更新
+            document.querySelectorAll('.scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // eventがある場合はevent.targetを、ない場合はシナリオ名でボタンを探す
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                // シナリオ名に基づいてボタンを探す
+                const scenarioMapping = {
+                    'basic': '基本型と参照型',
+                    'function': '関数呼び出しとスコープ',
+                    'closure': 'クロージャとメモリ',
+                    'array': '配列の動的メモリ',
+                    'gc': 'ガベージコレクション'
+                };
+                document.querySelectorAll('.scenario-btn').forEach(btn => {
+                    if (btn.textContent.trim() === scenarioMapping[scenarioName]) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+            
+            // シナリオ設定
+            const scenario = scenarios[scenarioName];
+            memoryManager.scenario = scenario;
+            memoryManager.currentStep = 0;
+            
+            // コード表示
+            const codeDisplay = document.getElementById('code-display');
+            codeDisplay.innerHTML = scenario.code.map((line, index) => `
+                <div class="code-line" id="code-line-${index}">
+                    ${line}
+                </div>
+            `).join('');
+            
+            // タイムライン表示
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = scenario.steps.map((step, index) => `
+                <div class="timeline-step" id="step-${index}">
+                    <div class="step-number">${index + 1}</div>
+                    <div class="step-description">${getStepDescription(step)}</div>
+                </div>
+            `).join('');
+            
+            reset();
+        }
+        
+        // ステップ説明取得
+        function getStepDescription(step) {
+            switch(step.type) {
+                case 'push':
+                    return `スタックに ${step.name} = ${step.value} を追加`;
+                case 'modify':
+                    return `${step.name} を ${step.value} に変更`;
+                case 'createObject':
+                    return `ヒープに ${step.varName} オブジェクトを作成`;
+                case 'copyReference':
+                    return `${step.from} の参照を ${step.to} にコピー`;
+                case 'modifyObject':
+                    return `${step.ref}.${step.key} を ${step.value} に変更`;
+                case 'functionCall':
+                    return `関数 ${step.name} を呼び出し`;
+                case 'functionReturn':
+                    return `関数から ${step.value} を返却`;
+                case 'arrayPush':
+                    return `${step.ref} に ${step.value} を追加`;
+                case 'arrayModify':
+                    return `${step.ref}[${step.index}] を ${step.value} に変更`;
+                case 'nullify':
+                    return `${step.name} を null に設定`;
+                case 'gc':
+                    return 'ガベージコレクション実行';
+                case 'createClosure':
+                    return `クロージャ ${step.name} を作成`;
+                default:
+                    return step.type;
+            }
+        }
+        
+        // ステップ実行
+        function executeStep() {
+            if (!memoryManager.scenario || memoryManager.currentStep >= memoryManager.scenario.steps.length) {
+                return;
+            }
+            
+            const step = memoryManager.scenario.steps[memoryManager.currentStep];
+            
+            // タイムライン更新
+            document.querySelectorAll('.timeline-step').forEach((el, index) => {
+                el.classList.remove('active');
+                if (index < memoryManager.currentStep) {
+                    el.classList.add('completed');
+                } else if (index === memoryManager.currentStep) {
+                    el.classList.add('active');
+                }
+            });
+            
+            // コード行ハイライト
+            const codeLineIndex = getCodeLineForStep(memoryManager.currentStep);
+            document.querySelectorAll('.code-line').forEach((el, index) => {
+                el.classList.remove('executing');
+                if (index < codeLineIndex) {
+                    el.classList.add('executed');
+                } else if (index === codeLineIndex) {
+                    el.classList.add('executing');
+                }
+            });
+            
+            // ステップ実行
+            executeStepAction(step);
+            
+            memoryManager.currentStep++;
+        }
+        
+        // ステップアクション実行
+        function executeStepAction(step) {
+            switch(step.type) {
+                case 'push':
+                    memoryManager.pushStack(step.name, step.value, step.dataType);
+                    break;
+                    
+                case 'modify':
+                    const stackEntry = memoryManager.stack.find(e => e.name === step.name);
+                    if (stackEntry) {
+                        stackEntry.value = step.value;
+                        memoryManager.renderStack();
+                        highlightEntry(stackEntry);
+                        // メモリマップの該当セルも更新
+                        memoryManager.updateStackMemoryMapValue(step.name, step.value);
+                    }
+                    break;
+                    
+                case 'createObject':
+                    const heapAddr = memoryManager.createHeapObject(step.objType || 'Object', step.data, step.varName);
+                    memoryManager.pushStack(step.varName, heapAddr, 'reference');
+                    break;
+                    
+                case 'copyReference':
+                    const sourceRef = memoryManager.stack.find(e => e.name === step.from);
+                    if (sourceRef) {
+                        memoryManager.pushStack(step.to, sourceRef.value, 'reference');
+                    }
+                    break;
+                    
+                case 'modifyObject':
+                    const ref = memoryManager.stack.find(e => e.name === step.ref);
+                    if (ref && memoryManager.heap[ref.value]) {
+                        memoryManager.heap[ref.value].data[step.key] = step.value;
+                        memoryManager.renderHeap();
+                        // メモリマップも更新 - 実際のヒープオブジェクトの変数名を使用
+                        memoryManager.updateHeapMemoryMapValue(memoryManager.heap[ref.value].variableName, memoryManager.heap[ref.value].data);
+                    }
+                    break;
+                    
+                case 'arrayPush':
+                    const arrRef = memoryManager.stack.find(e => e.name === step.ref);
+                    if (arrRef && memoryManager.heap[arrRef.value]) {
+                        memoryManager.heap[arrRef.value].data.push(step.value);
+                        memoryManager.renderHeap();
+                        // メモリマップも更新
+                        memoryManager.updateHeapMemoryMapValue(step.ref, memoryManager.heap[arrRef.value].data);
+                    }
+                    break;
+                    
+                case 'arrayModify':
+                    const arrRef2 = memoryManager.stack.find(e => e.name === step.ref);
+                    if (arrRef2 && memoryManager.heap[arrRef2.value]) {
+                        memoryManager.heap[arrRef2.value].data[step.index] = step.value;
+                        memoryManager.renderHeap();
+                        // メモリマップも更新
+                        memoryManager.updateHeapMemoryMapValue(step.ref, memoryManager.heap[arrRef2.value].data);
+                    }
+                    break;
+                    
+                case 'nullify':
+                    const entry = memoryManager.stack.find(e => e.name === step.name);
+                    if (entry) {
+                        entry.value = 'null';
+                        entry.type = 'primitive';
+                        memoryManager.refCount--;
+                        memoryManager.checkUnreachableObjects();
+                        memoryManager.renderStack();
+                        memoryManager.updateMemoryStats();
+                    }
+                    break;
+                    
+                case 'gc':
+                    memoryManager.runGarbageCollection();
+                    break;
+                    
+                case 'functionCall':
+                    // スタックフレームの視覚的表現
+                    const frameMarker = document.createElement('div');
+                    frameMarker.style.borderTop = '2px solid #e74c3c';
+                    frameMarker.style.margin = '10px 0';
+                    document.getElementById('stack-area').appendChild(frameMarker);
+                    break;
+                    
+                case 'functionReturn':
+                    // 関数スコープの変数を削除 - より安全な実装
+                    const frameMarkers = document.querySelectorAll('#stack-area > div[style*="border-top"]');
+                    if (frameMarkers.length > 0) {
+                        // 最後のフレームマーカーを削除
+                        frameMarkers[frameMarkers.length - 1].remove();
+                    }
+                    break;
+                    
+                case 'createClosure':
+                    const closureAddr = memoryManager.createHeapObject('Closure', {
+                        name: step.name,
+                        capturedVars: step.capturedVars,
+                        scope: step.capturedVars.reduce((acc, varName) => {
+                            const stackVar = memoryManager.stack.find(e => e.name === varName);
+                            if (stackVar) {
+                                acc[varName] = stackVar.value;
+                            }
+                            return acc;
+                        }, {})
+                    }, step.name);
+                    // クロージャの参照は通常は後続のステップで変数に割り当てられる
+                    break;
+            }
+        }
+        
+        // コード行インデックス取得
+        function getCodeLineForStep(stepIndex) {
+            const scenario = memoryManager.scenario;
+            if (!scenario) return 0;
+            
+            // 各シナリオに対応した詳細なマッピング
+            const scenarioMappings = {
+                "基本型と参照型の動作": [
+                    1, // ステップ0: let x = 42;
+                    2, // ステップ1: let y = x;
+                    3, // ステップ2: y = 100;
+                    5, // ステップ3: let obj1 = { value: 10 };
+                    6, // ステップ4: let obj2 = obj1;
+                    7  // ステップ5: obj2.value = 20;
+                ],
+                "関数呼び出しとスコープ": [
+                    5, // ステップ0: let x = 10;
+                    6, // ステップ1: let y = 20;
+                    7, // ステップ2: let sum = add(x, y); (関数呼び出し)
+                    0, // ステップ3: function add(a, b) { (パラメータa設定)
+                    0, // ステップ4: function add(a, b) { (パラメータb設定)
+                    1, // ステップ5: let result = a + b;
+                    2, // ステップ6: return result;
+                    7  // ステップ7: let sum = add(x, y); (戻り値受取)
+                ],
+                "クロージャとメモリ保持": [
+                    6, // ステップ0: 関数outer呼び出し開始
+                    0, // ステップ1: function outer(x) { (パラメータx設定)
+                    1, // ステップ2: return function inner(y) {
+                    7, // ステップ3: let closure = outer(10);
+                    8, // ステップ4: let result = closure(5); (クロージャ呼び出し)
+                    1, // ステップ5: function inner(y) { (パラメータy設定)
+                    8  // ステップ6: let result = closure(5); (戻り値受取)
+                ],
+                "配列の動的メモリ割り当て": [
+                    0, // ステップ0: let arr = [1, 2, 3];
+                    1, // ステップ1: arr.push(4);
+                    2, // ステップ2: arr[0] = 10;
+                    4, // ステップ3: let arr2 = arr;
+                    5  // ステップ4: arr2.push(5);
+                ],
+                "ガベージコレクション": [
+                    0, // ステップ0: let obj = { data: 'important' };
+                    1, // ステップ1: let ref = obj;
+                    3, // ステップ2: obj = null;
+                    4, // ステップ3: ref = null;
+                    5  // ステップ4: ガベージコレクション実行
+                ]
+            };
+            
+            const mapping = scenarioMappings[scenario.title];
+            if (mapping && stepIndex < mapping.length) {
+                return mapping[stepIndex];
+            }
+            
+            // フォールバック：ステップインデックスをそのまま使用
+            return Math.min(stepIndex, scenario.code.length - 1);
+        }
+        
+        // エントリハイライト
+        function highlightEntry(entry) {
+            setTimeout(() => {
+                const elements = document.querySelectorAll('.memory-entry');
+                elements.forEach(el => {
+                    if (el.textContent.includes(entry.name)) {
+                        el.classList.add('highlight');
+                        setTimeout(() => el.classList.remove('highlight'), 1000);
+                    }
+                });
+            }, 100);
+        }
+        
+        // 全実行
+        async function executeAll() {
+            if (memoryManager.isRunning || !memoryManager.scenario) return;
+            memoryManager.isRunning = true;
+            
+            while (memoryManager.currentStep < memoryManager.scenario.steps.length && memoryManager.isRunning) {
+                executeStep();
+                await sleep(memoryManager.executionSpeed);
+            }
+            
+            memoryManager.isRunning = false;
+        }
+        
+        // リセット
+        function reset() {
+            memoryManager.isRunning = false;
+            memoryManager.stack = [];
+            memoryManager.heap = {};
+            memoryManager.stackMemoryMap.fill(null);
+            memoryManager.heapMemoryMap.fill(null);
+            memoryManager.stackPointer = 0x7FFF;
+            memoryManager.heapPointer = 0x1000;
+            memoryManager.currentStep = 0;
+            memoryManager.stackSize = 0;
+            memoryManager.heapSize = 0;
+            memoryManager.refCount = 0;
+            
+            memoryManager.renderStack();
+            memoryManager.renderHeap();
+            memoryManager.updateMemoryStats();
+            
+            // スタックメモリマップリセット
+            const stackMemoryMap = document.getElementById('stack-memory-map');
+            if (stackMemoryMap) {
+                stackMemoryMap.innerHTML = '';
+                for (let i = 0; i < 120; i++) {
+                    const byte = document.createElement('div');
+                    byte.className = 'memory-byte';
+                    byte.textContent = '00';
+                    stackMemoryMap.appendChild(byte);
+                }
+            }
+            
+            // ヒープメモリマップリセット
+            const heapMemoryMap = document.getElementById('heap-memory-map');
+            if (heapMemoryMap) {
+                heapMemoryMap.innerHTML = '';
+                for (let i = 0; i < 120; i++) {
+                    const byte = document.createElement('div');
+                    byte.className = 'memory-byte';
+                    byte.textContent = '00';
+                    heapMemoryMap.appendChild(byte);
+                }
+            }
+            
+            // コード行リセット
+            document.querySelectorAll('.code-line').forEach(el => {
+                el.classList.remove('executing', 'executed');
+            });
+            
+            // タイムラインリセット
+            document.querySelectorAll('.timeline-step').forEach(el => {
+                el.classList.remove('active', 'completed');
+            });
+        }
+        
+        // ユーティリティ
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        // スピードコントロール
+        document.getElementById('speed').addEventListener('input', (e) => {
+            memoryManager.executionSpeed = parseInt(e.target.value);
+            document.getElementById('speed-value').textContent = `${(memoryManager.executionSpeed / 1000).toFixed(1)}秒`;
+        });
+        
+        // 初期化
+        window.onload = () => {
+            // スタックメモリマップの初期化を確実に実行
+            const stackMemoryMap = document.getElementById('stack-memory-map');
+            if (stackMemoryMap && !stackMemoryMap.children.length) {
+                for (let i = 0; i < 120; i++) {
+                    const byte = document.createElement('div');
+                    byte.className = 'memory-byte';
+                    byte.textContent = '00';
+                    stackMemoryMap.appendChild(byte);
+                }
+            }
+            
+            // ヒープメモリマップの初期化を確実に実行
+            const heapMemoryMap = document.getElementById('heap-memory-map');
+            if (heapMemoryMap && !heapMemoryMap.children.length) {
+                for (let i = 0; i < 120; i++) {
+                    const byte = document.createElement('div');
+                    byte.className = 'memory-byte';
+                    byte.textContent = '00';
+                    heapMemoryMap.appendChild(byte);
+                }
+            }
+            
+            // シナリオをロード（resetはloadScenario内で呼ばれる）
+            loadScenario('basic');
+        };
+    </script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

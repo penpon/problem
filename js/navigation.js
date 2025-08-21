@@ -15,6 +15,7 @@ class NavigationManager {
         
         if (filename === 'grader.html') return 'grader';
         if (filename === 'visualizer.html') return 'visualizer';
+        if (filename === 'memory-state-transition.html') return 'memory';
         if (filename === 'sequence-diagram.html') return 'sequence';
         if (filename === 'quiz.html') return 'quiz';
         return 'home';
@@ -60,6 +61,10 @@ class NavigationManager {
                         <a href="visualizer.html" class="nav-link ${this.currentPage === 'visualizer' ? 'active' : ''}">
                             <span class="link-icon">🔍</span>
                             <span class="link-text">可視化ツール</span>
+                        </a>
+                        <a href="memory-state-transition.html" class="nav-link ${this.currentPage === 'memory' ? 'active' : ''}">
+                            <span class="link-icon">🧠</span>
+                            <span class="link-text">メモリ解析</span>
                         </a>
                         <a href="sequence-diagram.html" class="nav-link ${this.currentPage === 'sequence' ? 'active' : ''}">
                             <span class="link-icon">📈</span>
