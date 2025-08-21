@@ -94,14 +94,14 @@
     },
     {
       "id": "function/practice9",
-      "title": "問題9：関数とループ",
+      "title": "問題9：関数呼び出しの流れ",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
       "id": "function/practice10",
-      "title": "問題10：スコープの理解",
+      "title": "問題10：引数を持つ関数",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
@@ -122,56 +122,56 @@
     },
     {
       "id": "function/practice13",
-      "title": "問題13：戻り値の応用",
+      "title": "問題13：アロー関数の基本",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
       "id": "function/practice14",
-      "title": "問題14：アロー関数の応用",
+      "title": "問題14：関数と配列の応用",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
       "id": "function/practice15",
-      "title": "問題15：関数と配列の応用",
+      "title": "問題15：関数とオブジェクトの応用",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
       "id": "function/practice16",
-      "title": "問題16：関数とオブジェクトの応用",
+      "title": "問題16：関数と条件分岐の応用",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
       "id": "function/practice17",
-      "title": "問題17：関数と条件分岐の応用",
+      "title": "問題17：関数とループの応用",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
       "id": "function/practice18",
-      "title": "問題18：関数とループの応用",
+      "title": "問題18：ゲームアプリのスコープ管理",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
       "id": "function/practice19",
-      "title": "問題19：スコープの応用",
+      "title": "問題19：複合関数システム",
       "category": "関数",
       "difficulty": "初級",
       "points": 100
     },
     {
       "id": "function/practice20",
-      "title": "問題20：変数スコープの実践",
+      "title": "問題20：戻り値の活用",
       "category": "関数",
       "difficulty": "初級",
       "points": 100

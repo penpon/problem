@@ -195,26 +195,51 @@ const categoryIcons = {
   ```
 
 #### templateフィールドの表記
-- **コメント行**: 「// 問題X:」形式を使用
+- **コメント行**: 「// 問題X：」形式を使用（全角コロン使用）
 - **問題番号**: ファイル名の番号と一致させる
-- **titleとの整合性**: titleの番号と必ず一致させる
+- **titleとの整合性**: titleの番号とタイトルを必ず一致させる
   ```json
   // practice1.json の場合
-  "template": "// 問題1: 関数の基本呼び出し\\n..."  // ✅ 正しい
-  "template": "// 問題6: 関数の基本呼び出し\\n..."  // ❌ 禁止
+  "template": "// 問題1：関数の基本呼び出し\\n..."  // ✅ 正しい
+  "template": "// 問題1: 関数の基本呼び出し\\n..."  // ❌ 半角コロンは禁止
+  "template": "// 問題6：関数の基本呼び出し\\n..."  // ❌ 番号不一致は禁止
   ```
 
-#### 番号統一チェックリスト
-- [ ] ファイル名（practiceX.json）の番号
-- [ ] titleの問題番号
-- [ ] templateのコメント番号
-- [ ] 上記3つが全て同一の番号になっている
+#### 🔄 三者一致の徹底（最重要）
+**practice*.json、template、index.jsonの完全一致が必須です！**
+
+```json
+// practice14.json の例
+{
+  "title": "問題14：関数と配列の応用",           // ← ①
+  "template": "// 問題14：関数と配列の応用...", // ← ②（①と完全一致）
+}
+
+// problems/index.json の対応エントリ
+{
+  "id": "function/practice14",
+  "title": "問題14：関数と配列の応用",          // ← ③（①②と完全一致）
+}
+```
+
+#### 一致確認チェックリスト
+- [ ] **ファイル名**: `practiceX.json` の番号
+- [ ] **practice*.json title**: `"問題X：タイトル"`の番号・タイトル
+- [ ] **practice*.json template**: `"// 問題X：タイトル"`の番号・タイトル
+- [ ] **index.json title**: practice*.jsonのtitleと完全一致
+- [ ] **上記4つが全て同一**になっている
 
 #### カテゴリ別の番号ルール
 - **object**: practice1.json → 問題1, practice2.json → 問題2...
 - **function**: practice1.json → 問題1, practice2.json → 問題2...
 - **array**: practice1.json → 問題1, practice2.json → 問題2...
 - **general**: practice1.json → 問題1, practice2.json → 問題2...
+
+#### 🚨 不一致が発生した場合の対応
+1. **practice*.jsonのtitleを正解とする**
+2. templateのコメント行をtitleに合わせて修正
+3. index.jsonの該当エントリをtitleに合わせて修正
+4. システム全体の整合性を確保
 
 ### テストケース作成のポイント
 1. **基本ケース**: 標準的な入力での動作確認
