@@ -478,9 +478,21 @@ class QuizApp {
     async displayQuestion() {
         const question = this.currentQuestion.question;
         
+        // 問題文の整形（改行を適切に処理）
+        let formattedText = question.text;
+        if (this.isCodeContent(formattedText)) {
+            // コード内容の場合、改行を保持してHTML形式に変換
+            formattedText = this.formatQuestionText(formattedText);
+            this.elements.questionText.innerHTML = `<pre class="question-code">${formattedText}</pre>`;
+        } else {
+            // 通常のテキストの場合、改行文字をHTML改行に変換
+            formattedText = formattedText.replace(/\n/g, '<br>');
+            this.elements.questionText.innerHTML = formattedText;
+        }
+        
         // 問題文のアニメーション
         if (this.elements.questionText) {
-            await this.animations.animateQuestionText(this.elements.questionText, question.text, question.animation?.type || 'fade-in');
+            await this.animations.animateQuestionText(this.elements.questionText, null, question.animation?.type || 'fade-in');
         }
         
         // ビジュアルエイドの表示
@@ -625,6 +637,53 @@ class QuizApp {
         result = result.replace(/\n$/, '');
         
         return result;
+    }
+
+    /**
+     * 問題文テキストの整形（改行とコードブロックを適切に処理）
+     * @param {string} text 整形対象のテキスト
+     * @return {string} 整形されたテキスト
+     * @private
+     */
+    formatQuestionText(text) {
+        if (!text || typeof text !== 'string') return text;
+        
+        // コード内容の場合の特別な処理
+        if (this.isCodeContent(text)) {
+            // セミコロンとコメントで改行を挿入
+            let result = text;
+            
+            // コメント部分を保護
+            const comments = [];
+            let commentIndex = 0;
+            
+            // 行コメント（//）の保護
+            result = result.replace(/\/\/[^\n]*/g, (match) => {
+                const placeholder = `__COMMENT_${commentIndex}__`;
+                comments[commentIndex] = match;
+                commentIndex++;
+                return placeholder;
+            });
+            
+            // セミコロンの後に改行を挿入
+            result = result.replace(/;\s*/g, ';\n');
+            
+            // コメントを復元
+            comments.forEach((comment, index) => {
+                result = result.replace(`__COMMENT_${index}__`, `\n${comment}`);
+            });
+            
+            // 連続する改行を整理
+            result = result.replace(/\n+/g, '\n');
+            
+            // 先頭の改行を削除
+            result = result.replace(/^\n/, '');
+            
+            return result;
+        }
+        
+        // 通常のテキストの場合はそのまま返す
+        return text;
     }
 
     /**
@@ -981,10 +1040,28 @@ class QuizApp {
      * サブカテゴリ統計の更新
      * @private
      */
-    updateSubcategoryStats() {
+    async updateSubcategoryStats() {
         if (!this.currentCategory) return;
         
+        // 新規問題のカウントを正しく計算
+        const allQuestions = await this.loader.loadQuestions(this.currentCategory.id, this.currentLevel);
+        const categoryData = this.storage.getCategoryStats(this.currentCategory.id);
+        const answeredQuestionIds = new Set();
+        
+        if (categoryData && categoryData.levels[this.currentLevel]) {
+            Object.keys(categoryData.levels[this.currentLevel].questions).forEach(questionId => {
+                const questionData = categoryData.levels[this.currentLevel].questions[questionId];
+                if (questionData.attempts > 0) {
+                    answeredQuestionIds.add(questionId);
+                }
+            });
+        }
+        
+        const newCount = allQuestions.filter(q => !answeredQuestionIds.has(q.id)).length;
         const stats = this.storage.getSubcategoryStats(this.currentCategory.id, this.currentLevel);
+        
+        // 新規問題数を正しい値で上書き
+        stats.new = newCount;
         
         // 各サブカテゴリの問題数を更新
         const newCountElement = document.getElementById('newCount');
@@ -1087,15 +1164,30 @@ class QuizApp {
      * @private
      */
     async loadNewQuestions() {
-        const questionIds = this.storage.getQuestionsByStatus(this.currentCategory.id, this.currentLevel, 'new');
         const allQuestions = await this.loader.loadQuestions(this.currentCategory.id, this.currentLevel);
         
+        // ストレージから回答済み問題を取得
+        const categoryData = this.storage.getCategoryStats(this.currentCategory.id);
+        const answeredQuestionIds = new Set();
+        
+        if (categoryData && categoryData.levels[this.currentLevel]) {
+            // 既に回答したことがある問題IDを収集
+            Object.keys(categoryData.levels[this.currentLevel].questions).forEach(questionId => {
+                const questionData = categoryData.levels[this.currentLevel].questions[questionId];
+                if (questionData.attempts > 0) {
+                    answeredQuestionIds.add(questionId);
+                }
+            });
+        }
+        
+        // 未回答の問題を新規問題として取得
+        const newQuestions = allQuestions.filter(q => !answeredQuestionIds.has(q.id));
+        
         // 新規問題がない場合は全問題から取得
-        if (questionIds.length === 0) {
+        if (newQuestions.length === 0) {
             return allQuestions.slice(0, this.config.questionCount);
         }
         
-        const newQuestions = allQuestions.filter(q => questionIds.includes(q.id));
         return newQuestions.slice(0, this.config.questionCount);
     }
     

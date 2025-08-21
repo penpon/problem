@@ -310,6 +310,22 @@ body {
     line-height: 1.6;
     margin-bottom: 16px;
     min-height: 50px;
+    white-space: pre-wrap; /* 改行を保持 */
+}
+
+.question-text .question-code {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px 0;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    color: #374151;
+    white-space: pre;
+    overflow-x: auto;
+    line-height: 1.4;
 }
 
 .question-visual {
