@@ -153,7 +153,7 @@ class AutoGrader {
       problemItem.dataset.problemId = problem.id;
       problemItem.innerHTML = `
         <span class="problem-number">${problem.id.replace('practice', '#')}</span>
-        <span class="problem-title">${problem.title.replace(/^練習問題\d+：/, '')}</span>
+        <span class="problem-title">${problem.title.replace(/^(練習問題|問題)\d+[:：]\s*/, '')}</span>
       `;
       
       this.problemList.appendChild(problemItem);
