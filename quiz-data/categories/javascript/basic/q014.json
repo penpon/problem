@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "// 0から4まで表示するfor文\n_"
+      "content": "// 0から4まで表示するfor文\n\n_"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "for文は (初期化; 条件; 更新) の3つの部分から構成されます。i < 5 と i <= 4 は同じ意味ですが、一般的には i < 5 を使います。",
-    "example": "for (let i = 0; i < 5; i++) {\n  console.log(i);\n  // 0, 1, 2, 3, 4 が順番に表示\n}",
+    "example": "for (let i = 0; i < 5; i++) {\n  console.log(i);\n\n  // 0, 1, 2, 3, 4 が順番に表示\n}",
     "relatedCommands": ["while文", "配列のfor文", "break", "continue"],
     "furtherReading": "for文は繰り返し処理の最も基本的な書き方です。"
   },

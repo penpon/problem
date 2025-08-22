@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "forEachのコールバック関数は3つの引数を受け取ります：現在の要素、インデックス、配列全体。インデックスは0から始まるため、連番表示には+1が必要です。",
-    "example": "const items = ['apple', 'banana', 'orange'];\nitems.forEach((item, index, array) => {\n  console.log(`${index + 1}. ${item}`);\n  // array は元の配列への参照\n});",
+    "example": "const items = ['apple', 'banana', 'orange'];\nitems.forEach((item, index, array) => {\n  console.log(`${index + 1}. ${item}`);\n  \n  // array は元の配列への参照\n});",
     "relatedCommands": ["map", "entries", "keys"],
     "furtherReading": "forEachの第2引数のインデックスは、順序付きリストの表示や条件分岐に活用できます。"
   },

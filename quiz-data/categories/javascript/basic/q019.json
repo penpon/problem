@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "const scores = [80, 75, 90, 85];\nlet sum = 0;\n// 合計を計算\n_"
+      "content": "const scores = [80, 75, 90, 85];\nlet sum = 0;\n\n// 合計を計算\n_"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "sum += scores[i] は sum = sum + scores[i] の省略形で、各要素を合計に加算します。配列の全要素を処理する典型的なパターンです。",
-    "example": "const scores = [80, 75, 90, 85];\nlet sum = 0;\nfor (let i = 0; i < scores.length; i++) {\n  sum += scores[i];\n  // 80 + 75 + 90 + 85 = 330\n}\nconsole.log(sum);\n// 330",
+    "example": "const scores = [80, 75, 90, 85];\nlet sum = 0;\nfor (let i = 0; i < scores.length; i++) {\n  sum += scores[i];\n\n  // 80 + 75 + 90 + 85 = 330\n}\nconsole.log(sum);\n\n// 330",
     "relatedCommands": ["+=演算子", "配列の平均", "reduce", "Math.max"],
     "furtherReading": "+= は値を累積する際によく使われる便利な演算子です。"
   },

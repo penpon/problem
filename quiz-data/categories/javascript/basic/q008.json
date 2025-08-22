@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "const score = 85;\n// score が 80 以上なら「合格」と表示\n_"
+      "content": "const score = 85;\n\n// score が 80 以上なら「合格」と表示\n_"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": ">= は「以上」を表す比較演算子です。score >= 80 は「scoreが80以上」という条件になります。if文の条件は必ず括弧()で囲みます。",
-    "example": "const score = 85;\nif (score >= 80) {\n  console.log('合格');\n  // 合格 と表示される\n}",
+    "example": "const score = 85;\nif (score >= 80) {\n  console.log('合格');\n\n  // 合格 と表示される\n}",
     "relatedCommands": ["比較演算子", "else", "論理演算子"],
     "furtherReading": "比較演算子: > (より大きい) >= (以上) < (未満) <= (以下) === (等しい)"
   },
