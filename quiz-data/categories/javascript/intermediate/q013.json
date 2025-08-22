@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数式では、const、let、またはvarを使って関数を変数に代入します。constが推奨されます（再代入を防ぐため）。",
-    "example": "// 関数式（無名関数）\nconst greet = function() {\n  console.log('こんにちは');\n};\n\n// 名前付き関数式\nconst greet2 = function sayHello() {\n  console.log('こんにちは');\n};\n\n// アロー関数式\nconst greet3 = () => {\n  console.log('こんにちは');\n};\n\ngreet(); // 呼び出し",
+    "example": "// 関数式（無名関数）\nconst greet = function() {\n  console.log('こんにちは');\n};\n\n// 名前付き関数式\nconst greet2 = function sayHello() {\n  console.log('こんにちは');\n};\n\n// アロー関数式\nconst greet3 = () => {\n  console.log('こんにちは');\n};\n\ngreet();\n// 呼び出し",
     "relatedCommands": ["const", "anonymous function", "arrow function"],
     "furtherReading": "関数宣言とは異なり、関数式は巻き上げ（hoisting）されません。"
   },

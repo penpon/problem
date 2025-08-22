@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "JavaScriptでは数値をそのまま計算できます。クォート（'または\"）で囲むと文字列になってしまい、計算ではなく文字として表示されます。",
-    "example": "console.log(5 + 3);  // 8が出力される\nconsole.log('5 + 3');  // 5 + 3という文字が出力される",
+    "example": "console.log(5 + 3);\n// 8が出力される\nconsole.log('5 + 3');\n// 5 + 3という文字が出力される",
     "relatedCommands": ["四則演算", "演算子"],
     "furtherReading": "数値と文字列の違いを理解することが重要です。"
   },

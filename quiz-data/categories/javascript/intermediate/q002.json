@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数を呼び出すには、関数名の後に()を付けます。これにより関数内の処理が実行されます。",
-    "example": "function greet() {\n  console.log('Hello!');\n}\ngreet(); // 'Hello!' が出力される",
+    "example": "function greet() {\n  console.log('Hello!');\n}\ngreet();\n// 'Hello!' が出力される",
     "relatedCommands": ["function declaration", "function parameters", "return statement"],
     "furtherReading": "()なしでは関数オブジェクト自体を参照するだけで、実行されません。"
   },

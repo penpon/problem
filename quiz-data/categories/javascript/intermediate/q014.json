@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "sayHello(); // 定義前に呼び出し\n\nfunction sayHello() {\n  console.log('Hello!');\n}\n// 動作する？"
+      "content": "sayHello();\n// 定義前に呼び出し\n\nfunction sayHello() {\n  console.log('Hello!');\n}\n// 動作する？"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数宣言は「巻き上げ（hoisting）」により、定義前でも呼び出せます。これは、JavaScriptエンジンが実行前に関数宣言を先に処理するためです。",
-    "example": "// これは動作する（関数宣言）\nsayHello(); // 'Hello!'\nfunction sayHello() {\n  console.log('Hello!');\n}\n\n// これはエラー（関数式）\n// greet(); // TypeError: greet is not a function\nconst greet = function() {\n  console.log('Hi!');\n};\n\n// これもエラー（アロー関数）\n// welcome(); // TypeError: welcome is not a function\nconst welcome = () => console.log('Welcome!');",
+    "example": "// これは動作する（関数宣言）\nsayHello();\n// 'Hello!'\nfunction sayHello() {\n  console.log('Hello!');\n}\n\n// これはエラー（関数式）\n// greet();\n// TypeError: greet is not a function\nconst greet = function() {\n  console.log('Hi!');\n};\n\n// これもエラー（アロー関数）\n// welcome();\n// TypeError: welcome is not a function\nconst welcome = () => console.log('Welcome!');",
     "relatedCommands": ["function declaration", "function expression", "var hoisting"],
     "furtherReading": "関数式やアロー関数は巻き上げられないので、定義前に呼び出すとエラーになります。"
   },

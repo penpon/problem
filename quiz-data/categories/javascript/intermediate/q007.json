@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "複数の引数は()内でカンマ（,）で区切って定義します。関数を呼び出す際も、同じ順序でカンマ区切りで渡します。",
-    "example": "function sum(a, b, c) {\n  return a + b + c;\n}\nconsole.log(sum(1, 2, 3)); // 6\nconsole.log(sum(10, 20, 30)); // 60",
+    "example": "function sum(a, b, c) {\n  return a + b + c;\n}\nconsole.log(sum(1, 2, 3));\n// 6\nconsole.log(sum(10, 20, 30));\n// 60",
     "relatedCommands": ["function call", "return", "arithmetic operators"],
     "furtherReading": "引数の数に制限はありませんが、多すぎると保守性が悪くなります。"
   },

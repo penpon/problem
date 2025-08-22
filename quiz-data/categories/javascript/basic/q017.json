@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "配列の要素を更新するには、インデックスを指定して新しい値を代入します。2番目の要素はインデックス1（0から数えて）です。",
-    "example": "let colors = ['red', 'blue', 'green'];\ncolors[1] = 'yellow';\nconsole.log(colors);  // ['red', 'yellow', 'green']",
+    "example": "let colors = ['red', 'blue', 'green'];\ncolors[1] = 'yellow';\nconsole.log(colors);\n// ['red', 'yellow', 'green']",
     "relatedCommands": ["配列の要素取得", "push", "splice", "配列の操作"],
     "furtherReading": "配列は変更可能（mutable）なので、要素を後から変更できます。"
   },

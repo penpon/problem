@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "すでに宣言された変数の値を更新する場合、変数名 = 新しい値; の形で代入します。let や var を再び使うと再宣言エラーになります。",
-    "example": "let x = 10;\nconsole.log(x);  // 10\nx = 20;\nconsole.log(x);  // 20",
+    "example": "let x = 10;\nconsole.log(x);\n// 10\nx = 20;\nconsole.log(x);\n// 20",
     "relatedCommands": ["var", "const", "変数宣言"],
     "furtherReading": "変数の宣言と代入の違いを理解することが重要です。"
   },

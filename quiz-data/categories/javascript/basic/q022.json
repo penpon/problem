@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "オブジェクトのプロパティを更新するには、ドット記法で既存のプロパティに新しい値を代入します。配列の要素更新と似た書き方です。",
-    "example": "let car = { brand: 'Toyota', year: 2020 };\ncar.year = 2023;\nconsole.log(car);  // { brand: 'Toyota', year: 2023 }",
+    "example": "let car = { brand: 'Toyota', year: 2020 };\ncar.year = 2023;\nconsole.log(car);\n// { brand: 'Toyota', year: 2023 }",
     "relatedCommands": ["オブジェクトのアクセス", "プロパティ追加", "delete演算子"],
     "furtherReading": "オブジェクトのプロパティは後から変更・追加・削除できます。"
   },

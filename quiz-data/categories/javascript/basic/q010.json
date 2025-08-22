@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "else文はif文の条件が満たされなかった場合の処理を記述します。if-else構文により、条件によって異なる処理を実行できます。",
-    "example": "const score = 45;\nif (score >= 60) {\n  console.log('合格');\n} else {\n  console.log('不合格');  // こちらが実行される\n}",
+    "example": "const score = 45;\nif (score >= 60) {\n  console.log('合格');\n} else {\n  console.log('不合格');\n  // こちらが実行される\n}",
     "relatedCommands": ["if文", "else if", "条件分岐"],
     "furtherReading": "else文は条件が false の場合の代替処理を提供します。"
   },

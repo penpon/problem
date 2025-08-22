@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "オブジェクトは波括弧 { } で作成し、キー: 値 の形でプロパティを定義します。複数のプロパティはカンマで区切ります。",
-    "example": "const person = { name: '太郎', age: 25 };\nconsole.log(person);  // { name: '太郎', age: 25 }\nconsole.log(person.name);  // '太郎'",
+    "example": "const person = { name: '太郎', age: 25 };\nconsole.log(person);\n// { name: '太郎', age: 25 }\nconsole.log(person.name);\n// '太郎'",
     "relatedCommands": ["オブジェクトのアクセス", "プロパティ追加", "オブジェクトの更新"],
     "furtherReading": "オブジェクトは関連するデータをまとめて管理する便利な構造です。"
   },

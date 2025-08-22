@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "const は定数を宣言するキーワードです。一度代入した値は変更できません。定数名は慣習的に大文字で書かれることが多いです。",
-    "example": "const PI = 3.14159;\nconsole.log(PI);  // 3.14159\n// PI = 3.14;  // エラー: 定数は変更できない",
+    "example": "const PI = 3.14159;\nconsole.log(PI);\n// 3.14159\n// PI = 3.14;\n// エラー: 定数は変更できない",
     "relatedCommands": ["let", "var", "変数宣言"],
     "furtherReading": "const は値が変わらないことが明確な場合に使用します。"
   },

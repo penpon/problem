@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "while文は条件が true の間、処理を繰り返します。i++ でカウンタを増やし、i <= 5 で5まで実行します。",
-    "example": "let i = 1;\nwhile (i <= 5) {\n  console.log(i);  // 1, 2, 3, 4, 5 が順番に表示\n  i++;  // カウンタを増やすことで無限ループを防ぐ\n}",
+    "example": "let i = 1;\nwhile (i <= 5) {\n  console.log(i);\n  // 1, 2, 3, 4, 5 が順番に表示\n  i++;\n  // カウンタを増やすことで無限ループを防ぐ\n}",
     "relatedCommands": ["for文", "do-while", "break", "continue"],
     "furtherReading": "while文では必ずカウンタを更新して無限ループを防ぎましょう。"
   },

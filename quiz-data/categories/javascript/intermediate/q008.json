@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数の戻り値は、通常の代入演算子（=）を使って変数に代入できます。この場合、関数が実行され、その結果が変数に保存されます。",
-    "example": "function multiply(x, y) {\n  return x * y;\n}\nlet result = multiply(4, 5);\nconsole.log(result); // 20\n\n// 直接使用も可能\nconsole.log(multiply(3, 7)); // 21",
+    "example": "function multiply(x, y) {\n  return x * y;\n}\nlet result = multiply(4, 5);\nconsole.log(result);\n// 20\n\n// 直接使用も可能\nconsole.log(multiply(3, 7));\n// 21",
     "relatedCommands": ["variable declaration", "function call", "assignment operator"],
     "furtherReading": "戻り値は他の関数の引数としても直接使用できます。"
   },

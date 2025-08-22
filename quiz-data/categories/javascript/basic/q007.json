@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "テンプレートリテラルはバッククォート（`）で囲み、変数を${変数名}の形で埋め込みます。文字列の連結より読みやすく書けます。",
-    "example": "const name = '太郎';\nconsole.log(`こんにちは、${name}さん`);  // こんにちは、太郎さん",
+    "example": "const name = '太郎';\nconsole.log(`こんにちは、${name}さん`);\n// こんにちは、太郎さん",
     "relatedCommands": ["文字列連結", "変数展開"],
     "furtherReading": "テンプレートリテラルはES6で導入された便利な文字列記法です。"
   },

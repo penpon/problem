@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "アロー関数は => を使って定義します。引数が1つの場合、()は省略可能です。単一の式の場合、returnも省略可能です。",
-    "example": "const double = (x) => x * 2;\n// または\nconst double = x => x * 2;\nconsole.log(double(5)); // 10",
+    "example": "const double = (x) => x * 2;\n// または\nconst double = x => x * 2;\nconsole.log(double(5));\n// 10",
     "relatedCommands": ["const", "function expression", "return"],
     "furtherReading": "アロー関数は従来の関数よりも短く書けて、thisの扱いも異なります。"
   },

@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "let name = '太郎';    // グローバル\nfunction test(name) { // 引数\n  console.log(name);  // 何が出力される？\n}\ntest('花子');"
+      "content": "let name = '太郎';\n// グローバル\nfunction test(name) {\n  // 引数\n  console.log(name);\n  // 何が出力される？\n}\ntest('花子');"
     }
   },
   "choices": [

@@ -41,7 +41,14 @@
   "correct": "A",
   "explanation": {
     "text": "実践的なデータ処理では、条件に合う要素を数えながら同時に値を計算します。合格者数をカウントし、合格者の点数のみを合計して平均を計算します。",
-    "example": "const students = [\n  { name: 'A', score: 85 },  // 合格\n  { name: 'B', score: 45 },  // 不合格\n  { name: 'C', score: 92 },  // 合格\n  { name: 'D', score: 38 }   // 不合格\n];\nlet count = 0, total = 0;\nfor (let i = 0; i < students.length; i++) {\n  if (students[i].score >= 60) {\n    count++;  // 合格者数: 2人\n    total += students[i].score;  // 合格者の合計: 85 + 92 = 177\n  }\n}\nconsole.log('合格者: ' + count + '人, 平均: ' + (total / count) + '点');\n// 合格者: 2人, 平均: 88.5点",
+    "example": "const students = [\n  { name: 'A', score: 85 },
+  // 合格\n  { name: 'B', score: 45 },
+  // 不合格\n  { name: 'C', score: 92 },
+  // 合格\n  { name: 'D', score: 38 }
+  // 不合格\n];\nlet count = 0, total = 0;\nfor (let i = 0; i < students.length; i++) {\n  if (students[i].score >= 60) {\n    count++;
+    // 合格者数: 2人\n    total += students[i].score;
+    // 合格者の合計: 85 + 92 = 177\n  }\n}\nconsole.log('合格者: ' + count + '人, 平均: ' + (total / count) + '点');\n
+// 合格者: 2人, 平均: 88.5点",
     "relatedCommands": ["filter", "reduce", "map", "配列の高階関数"],
     "furtherReading": "このような集計処理はWebアプリケーションでよく使われる実用的なパターンです。"
   },

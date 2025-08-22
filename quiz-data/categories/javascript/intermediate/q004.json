@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "function add(a, b) {\n  let sum = a + b;\n  _ sum; // 計算結果を返す\n}"
+      "content": "function add(a, b) {\n  let sum = a + b;\n  _ sum;\n  // 計算結果を返す\n}"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "returnキーワードを使用して、関数から値を呼び出し元に返します。returnが実行されると、関数の処理は終了します。",
-    "example": "function add(a, b) {\n  return a + b;\n}\nlet result = add(3, 5); // result = 8",
+    "example": "function add(a, b) {\n  return a + b;\n}\nlet result = add(3, 5);\n// result = 8",
     "relatedCommands": ["function call", "variable assignment", "expression"],
     "furtherReading": "returnの後ろに続く文は実行されません（到達不能コード）。"
   },

@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "範囲判定では順番に条件をチェックします。12歳以下、22歳以下、64歳以下の順でチェックし、どれにも当てはまらなければシニアです。効率的な条件設定が重要です。",
-    "example": "const age = 20;\nif (age <= 12) {\n  console.log('子供');\n} else if (age <= 22) {\n  console.log('学生');  // 20歳なのでここが実行される\n} else if (age <= 64) {\n  console.log('大人');\n} else {\n  console.log('シニア');\n}",
+    "example": "const age = 20;\nif (age <= 12) {\n  console.log('子供');\n} else if (age <= 22) {\n  console.log('学生');\n  // 20歳なのでここが実行される\n} else if (age <= 64) {\n  console.log('大人');\n} else {\n  console.log('シニア');\n}",
     "relatedCommands": ["switch文", "三項演算子", "論理演算子"],
     "furtherReading": "範囲判定では条件の順序と境界値の処理が重要です。"
   },

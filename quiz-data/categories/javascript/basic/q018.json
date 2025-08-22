@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "配列のfor文では i < 配列.length を条件にします。インデックスは0から始まるので i = 0 から開始し、numbers[i] で各要素にアクセスします。",
-    "example": "const numbers = [1, 2, 3, 4, 5];\nfor (let i = 0; i < numbers.length; i++) {\n  console.log(numbers[i]);  // 1, 2, 3, 4, 5 が順番に表示\n}",
+    "example": "const numbers = [1, 2, 3, 4, 5];\nfor (let i = 0; i < numbers.length; i++) {\n  console.log(numbers[i]);\n  // 1, 2, 3, 4, 5 が順番に表示\n}",
     "relatedCommands": ["配列のlength", "for...of文", "forEach", "while文"],
     "furtherReading": "配列.length は配列の要素数を返す便利なプロパティです。"
   },

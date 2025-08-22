@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数の引数は()内に書きます。複数の引数がある場合は、カンマで区切ります。",
-    "example": "function sayHello(name) {\n  console.log('Hello, ' + name);\n}\nsayHello('太郎'); // 'Hello, 太郎' が出力",
+    "example": "function sayHello(name) {\n  console.log('Hello, ' + name);\n}\nsayHello('太郎');\n// 'Hello, 太郎' が出力",
     "relatedCommands": ["function call", "multiple parameters", "default parameters"],
     "furtherReading": "引数は関数内で変数として使用できます。"
   },

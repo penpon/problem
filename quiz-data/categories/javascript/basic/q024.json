@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "配列の各オブジェクトをfor文で順番にチェックし、if文で価格が1000以上の条件を満たす場合に名前を表示します。配列・オブジェクト・条件分岐の組み合わせです。",
-    "example": "const products = [\n  { name: 'ペン', price: 500 },\n  { name: 'ノート', price: 1200 },\n  { name: '消しゴム', price: 300 }\n];\nfor (let i = 0; i < products.length; i++) {\n  if (products[i].price >= 1000) {\n    console.log(products[i].name);  // 'ノート' が表示される\n  }\n}",
+    "example": "const products = [\n  { name: 'ペン', price: 500 },\n  { name: 'ノート', price: 1200 },\n  { name: '消しゴム', price: 300 }\n];\nfor (let i = 0; i < products.length; i++) {\n  if (products[i].price >= 1000) {\n    console.log(products[i].name);\n    // 'ノート' が表示される\n  }\n}",
     "relatedCommands": ["filter", "forEach", "find", "配列メソッド"],
     "furtherReading": "この処理パターンはデータ検索でよく使われる重要な技法です。"
   },

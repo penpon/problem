@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "typeof演算子は値の型を文字列で返します。配列の各要素に対してtypeofを使用することで、混在するデータ型を確認できます。",
-    "example": "const data = [42, 'hello', true, null, undefined];\nfor (let i = 0; i < data.length; i++) {\n  console.log(typeof data[i]);\n  // 'number', 'string', 'boolean', 'object', 'undefined' が表示される\n}",
+    "example": "const data = [42, 'hello', true, null, undefined];\nfor (let i = 0; i < data.length; i++) {\n  console.log(typeof data[i]);\n}\n// 'number', 'string', 'boolean', 'object', 'undefined' が表示される",
     "relatedCommands": ["instanceof", "Array.isArray", "型変換"],
     "furtherReading": "typeof null は 'object' を返すJavaScriptの有名な特殊ケースです。"
   },

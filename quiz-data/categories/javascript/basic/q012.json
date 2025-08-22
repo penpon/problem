@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "AND演算子（&&）は両方の条件が true の場合のみ true になります。「かつ」という意味で、両方の条件を満たす必要があります。",
-    "example": "const age = 30;\nif (age >= 18 && age < 65) {\n  console.log('働ける年齢');  // 両方の条件を満たすので実行\n}",
+    "example": "const age = 30;\nif (age >= 18 && age < 65) {\n  console.log('働ける年齢');\n  // 両方の条件を満たすので実行\n}",
     "relatedCommands": ["||（OR演算子）", "!（NOT演算子）", "論理演算子"],
     "furtherReading": "&&（AND）、||（OR）、!（NOT）が主な論理演算子です。"
   },

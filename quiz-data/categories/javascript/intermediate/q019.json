@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数からオブジェクトを返すには、{}を使用してオブジェクトリテラルを作成し、returnで返します。これにより複数の関連するデータを構造化して返せます。",
-    "example": "function createUser(name, age) {\n  return {\n    name: name,\n    age: age,\n    greet: function() {\n      return `こんにちは、${this.name}です`;\n    }\n  };\n}\n\n// ES6のプロパティ短縮記法\nfunction createUserES6(name, age) {\n  return { name, age }; // name: name と同じ\n}\n\n// 使用例\nconst user = createUser('太郎', 25);\nconsole.log(user.name);    // '太郎'\nconsole.log(user.age);     // 25\nconsole.log(user.greet()); // 'こんにちは、太郎です'\n\n// 配列を返す場合\nfunction getCoordinates() {\n  return [10, 20]; // 配列を返す\n}",
+    "example": "function createUser(name, age) {\n  return {\n    name: name,\n    age: age,\n    greet: function() {\n      return `こんにちは、${this.name}です`;\n    }\n  };\n}\n\n// ES6のプロパティ短縮記法\nfunction createUserES6(name, age) {\n  return { name, age };\n  // name: name と同じ\n}\n\n// 使用例\nconst user = createUser('太郎', 25);\nconsole.log(user.name);\n// '太郎'\nconsole.log(user.age);\n// 25\nconsole.log(user.greet());\n// 'こんにちは、太郎です'\n\n// 配列を返す場合\nfunction getCoordinates() {\n  return [10, 20];\n  // 配列を返す\n}",
     "relatedCommands": ["object literal", "property shorthand", "return statement"],
     "furtherReading": "複雑なデータ構造を返すことで、関数の有用性が大幅に向上します。"
   },

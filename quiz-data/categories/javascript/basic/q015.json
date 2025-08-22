@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "配列は角括弧 [ ] で作成し、要素をカンマで区切って並べます。配列は複数の値をまとめて管理できる便利なデータ構造です。",
-    "example": "const numbers = [10, 20, 30];\nconsole.log(numbers);  // [10, 20, 30]\nconsole.log(numbers.length);  // 3",
+    "example": "const numbers = [10, 20, 30];\nconsole.log(numbers);\n// [10, 20, 30]\nconsole.log(numbers.length);\n// 3",
     "relatedCommands": ["配列の要素取得", "push", "pop", "length"],
     "furtherReading": "配列は順序を持った複数のデータを格納できます。"
   },

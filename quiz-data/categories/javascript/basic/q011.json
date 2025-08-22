@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "else if を使うことで複数の条件を順番にチェックできます。条件は高い値から順番にチェックすることが重要です。",
-    "example": "const score = 75;\nif (score >= 90) {\n  console.log('優秀');\n} else if (score >= 70) {\n  console.log('良好');  // 75 >= 70 なのでこちらが実行\n} else {\n  console.log('普通');\n}",
+    "example": "const score = 75;\nif (score >= 90) {\n  console.log('優秀');\n} else if (score >= 70) {\n  console.log('良好');\n  // 75 >= 70 なのでこちらが実行\n} else {\n  console.log('普通');\n}",
     "relatedCommands": ["if文", "else", "条件分岐"],
     "furtherReading": "条件の順序が重要です。高い値から低い値へ順番にチェックします。"
   },

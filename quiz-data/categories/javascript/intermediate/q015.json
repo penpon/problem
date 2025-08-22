@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "ES6のデフォルト引数機能を使用して、引数が渡されない場合のデフォルト値を設定できます。引数名の後に = デフォルト値を書きます。",
-    "example": "function greet(name = 'ゲスト') {\n  console.log('こんにちは、' + name);\n}\n\ngreet('太郎');    // 'こんにちは、太郎'\ngreet();         // 'こんにちは、ゲスト'\ngreet(undefined); // 'こんにちは、ゲスト'\ngreet(null);     // 'こんにちは、null'\n\n// 複数のデフォルト引数\nfunction introduce(name = '名無し', age = 0) {\n  console.log(`${name}さん、${age}歳`);\n}",
+    "example": "function greet(name = 'ゲスト') {\n  console.log('こんにちは、' + name);\n}\n\ngreet('太郎');\n// 'こんにちは、太郎'\ngreet();\n// 'こんにちは、ゲスト'\ngreet(undefined);\n// 'こんにちは、ゲスト'\ngreet(null);\n// 'こんにちは、null'\n\n// 複数のデフォルト引数\nfunction introduce(name = '名無し', age = 0) {\n  console.log(`${name}さん、${age}歳`);\n}",
     "relatedCommands": ["function parameters", "ES6 features", "undefined"],
     "furtherReading": "デフォルト値は関数が呼び出されるたびに評価されます。"
   },

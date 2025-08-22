@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "オブジェクトのプロパティにアクセスするには、ドット記法（オブジェクト.プロパティ名）またはブラケット記法（オブジェクト['プロパティ名']）を使います。",
-    "example": "const person = { name: '花子', age: 30 };\nconsole.log(person.name);  // '花子'\nconsole.log(person['age']);  // 30",
+    "example": "const person = { name: '花子', age: 30 };\nconsole.log(person.name);\n// '花子'\nconsole.log(person['age']);\n// 30",
     "relatedCommands": ["ブラケット記法", "オブジェクトの更新", "Object.keys"],
     "furtherReading": "ドット記法が一般的ですが、プロパティ名に特殊文字がある場合はブラケット記法を使います。"
   },

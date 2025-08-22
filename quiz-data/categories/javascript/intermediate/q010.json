@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "let x = 10; // グローバル\nfunction changeX() {\n  let x = 20; // ローカル\n  console.log('関数内:', x);\n}\nchangeX();\nconsole.log('関数外:', x); // ?"
+      "content": "let x = 10;\n// グローバル\nfunction changeX() {\n  let x = 20;\n  // ローカル\n  console.log('関数内:', x);\n}\nchangeX();\nconsole.log('関数外:', x);\n// ?"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数内のlet x = 20;は新しいローカル変数を作成します。グローバルのxは変更されません。これを変数のシャドーイングと呼びます。",
-    "example": "let x = 10; // グローバル変数\nfunction changeX() {\n  let x = 20; // 新しいローカル変数\n  console.log('関数内:', x); // 20\n}\nchangeX();\nconsole.log('関数外:', x); // 10 (変更されない)\n\n// グローバル変数を変更する場合\nfunction changeGlobal() {\n  x = 30; // letを使わない\n}",
+    "example": "let x = 10;\n// グローバル変数\nfunction changeX() {\n  let x = 20;\n  // 新しいローカル変数\n  console.log('関数内:', x);\n  // 20\n}\nchangeX();\nconsole.log('関数外:', x);\n// 10 (変更されない)\n\n// グローバル変数を変更する場合\nfunction changeGlobal() {\n  x = 30;\n  // letを使わない\n}",
     "relatedCommands": ["variable declaration", "scope", "shadowing"],
     "furtherReading": "同じ名前でもスコープが異なれば別の変数として扱われます。"
   },

@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "オブジェクトの配列では、まず配列のインデックス（[0]）でオブジェクトを取得し、次にドット記法（.name）でプロパティにアクセスします。",
-    "example": "const students = [\n  { name: '山田', score: 85 },\n  { name: '佐藤', score: 92 }\n];\nconsole.log(students[0].name);  // '山田'\nconsole.log(students[1].score);  // 92",
+    "example": "const students = [\n  { name: '山田', score: 85 },\n  { name: '佐藤', score: 92 }\n];\nconsole.log(students[0].name);\n// '山田'\nconsole.log(students[1].score);\n// 92",
     "relatedCommands": ["配列のfor文", "オブジェクトの操作", "forEach"],
     "furtherReading": "オブジェクトの配列は実用的なデータ構造で、よく使われます。"
   },

@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "const obj = { name: 'テスト' };\nconsole.log(obj.age);  // 結果は？"
+      "content": "const obj = { name: 'テスト' };\nconsole.log(obj.age);\n// 結果は？"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "undefined は「値が定義されていない」ことを示すJavaScriptの特別な値です。存在しないプロパティや初期化されていない変数の値です。",
-    "example": "const obj = { name: 'テスト' };\nconsole.log(obj.age);  // undefined\n\nlet x;\nconsole.log(x);  // undefined",
+    "example": "const obj = { name: 'テスト' };\nconsole.log(obj.age);\n// undefined\n\nlet x;\nconsole.log(x);\n// undefined",
     "relatedCommands": ["null", "typeof", "変数の初期化"],
     "furtherReading": "undefined と null は似ていますが、undefined は「未定義」、null は「意図的な空の値」です。"
   },

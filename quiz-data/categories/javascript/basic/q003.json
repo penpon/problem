@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "JavaScriptでは+演算子を使って文字列を連結できます。Bのようにカンマ区切りだと「Hello World」（間にスペース）が表示されます。",
-    "example": "console.log('Hello' + 'World');  // HelloWorld\nconsole.log('Hello', 'World');   // Hello World（スペース有り）",
+    "example": "console.log('Hello' + 'World');\n// HelloWorld\nconsole.log('Hello', 'World');\n// Hello World（スペース有り）",
     "relatedCommands": ["文字列連結", "テンプレートリテラル"],
     "furtherReading": "文字列の連結は文字列操作の基本です。"
   },
