@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "pushメソッドは配列の末尾に1つ以上の要素を追加し、新しい配列の長さを返します。eコマースサイトのカート機能では、商品オブジェクトを動的に追加する際によく使用されます。",
-    "example": "const cart = [];\nconst product = {id: 1, name: 'iPhone', price: 89800};\ncart.push(product);\nconsole.log(cart); // [{id: 1, name: 'iPhone', price: 89800}]",
+    "example": "const cart = [];\nconst product = {id: 1, name: 'iPhone', price: 89800};\ncart.push(product);\nconsole.log(cart);\n// [{id: 1, name: 'iPhone', price: 89800}]",
     "relatedCommands": ["unshift", "splice", "concat"],
     "furtherReading": "pushメソッドは配列操作の基本でありながら、Webアプリケーションの動的コンテンツ管理に欠かせないメソッドです。"
   },

@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "mapメソッドは配列の各要素に関数を適用し、その結果で新しい配列を作成します。元の配列は変更されません。データの変換やフォーマット変更に最適です。",
-    "example": "const prices = [100, 200, 300];\nconst withTax = prices.map(price => price * 1.1);\nconsole.log(withTax); // [110, 220, 330]\nconsole.log(prices); // [100, 200, 300] (元の配列は変更なし)",
+    "example": "const prices = [100, 200, 300];\nconst withTax = prices.map(price => price * 1.1);\nconsole.log(withTax);\n// [110, 220, 330]\nconsole.log(prices);\n// [100, 200, 300] (元の配列は変更なし)",
     "relatedCommands": ["filter", "reduce", "forEach"],
     "furtherReading": "mapは関数型プログラミングの核となるメソッドで、データパイプライン処理に欠かせません。"
   },

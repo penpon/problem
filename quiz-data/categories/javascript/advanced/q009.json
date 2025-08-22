@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "メソッドチェーンは処理を左から右に順次実行します。まずfilterで条件に合致する要素を絞り込み、その後mapで必要なプロパティのみを抽出します。順序が重要です。",
-    "example": "const users = [{name: 'A', age: 25}, {name: 'B', age: 17}];\nconst adultNames = users\n  .filter(user => user.age >= 18) // 成人のみ\n  .map(user => user.name);        // 名前のみ\nconsole.log(adultNames); // ['A']",
+    "example": "const users = [{name: 'A', age: 25}, {name: 'B', age: 17}];\nconst adultNames = users\n  .filter(user => user.age >= 18)\n  // 成人のみ\n  .map(user => user.name);\n  // 名前のみ\nconsole.log(adultNames);\n// ['A']",
     "relatedCommands": ["reduce", "sort", "slice"],
     "furtherReading": "メソッドチェーンは可読性とパフォーマンスを両立させるJavaScriptの強力な機能です。"
   },

@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "findメソッドは配列内で条件に合致する最初の要素を返し、見つからない場合はundefinedを返します。データベース操作のような単一レコード検索に最適です。",
-    "example": "const products = [\n  {id: 1, name: 'ノートPC', price: 89800},\n  {id: 2, name: 'マウス', price: 2980}\n];\nconst product = products.find(p => p.id === 1);\nconsole.log(product); // {id: 1, name: 'ノートPC', price: 89800}",
+    "example": "const products = [\n  {id: 1, name: 'ノートPC', price: 89800},\n  {id: 2, name: 'マウス', price: 2980}\n];\nconst product = products.find(p => p.id === 1);\nconsole.log(product);\n// {id: 1, name: 'ノートPC', price: 89800}",
     "relatedCommands": ["findIndex", "filter", "includes"],
     "furtherReading": "findは最初にマッチした要素のみを返すため、パフォーマンス的にも優れています。"
   },

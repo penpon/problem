@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "popメソッドは配列の最後の要素を削除し、その要素を返します。チャットアプリやスタック構造のデータ管理において、LIFO（Last In, First Out）の操作に使用されます。",
-    "example": "const stack = [1, 2, 3, 4, 5];\nconst last = stack.pop();\nconsole.log(last); // 5\nconsole.log(stack); // [1, 2, 3, 4]",
+    "example": "const stack = [1, 2, 3, 4, 5];\nconst last = stack.pop();\nconsole.log(last);\n// 5\nconsole.log(stack);\n// [1, 2, 3, 4]",
     "relatedCommands": ["push", "shift", "splice"],
     "furtherReading": "popメソッドはスタック操作やundo機能の実装において重要な役割を果たします。"
   },
