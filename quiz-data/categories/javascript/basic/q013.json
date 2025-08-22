@@ -19,22 +19,22 @@
   "choices": [
     {
       "id": "A",
-      "text": "while (i <= 5) { console.log(i); i++; }",
+      "text": "while (i <= 5) {\n    console.log(i);\n    i++;\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "while (i < 5) { console.log(i); i++; }",
+      "text": "while (i < 5) {\n    console.log(i);\n    i++;\n}",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "while (i <= 5) { i++; console.log(i); }",
+      "text": "while (i <= 5) {\n    i++;\n    console.log(i);\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "while (i = 5) { console.log(i); i++; }",
+      "text": "while (i = 5) {\n    console.log(i);\n    i++;\n}",
       "animation": "slide_in_right"
     }
   ],

@@ -19,17 +19,17 @@
   "choices": [
     {
       "id": "A",
-      "text": "for (let i = 0; i < scores.length; i++) { sum += scores[i]; }",
+      "text": "for (let i = 0; i < scores.length; i++) {\n    sum += scores[i];\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "for (let i = 0; i < scores.length; i++) { sum = scores[i]; }",
+      "text": "for (let i = 0; i < scores.length; i++) {\n    sum = scores[i];\n}",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "for (let i = 0; i < scores.length; i++) { sum + scores[i]; }",
+      "text": "for (let i = 0; i < scores.length; i++) {\n    sum + scores[i];\n}",
       "animation": "slide_in_left"
     },
     {

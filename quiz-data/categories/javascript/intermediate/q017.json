@@ -19,7 +19,7 @@
   "choices": [
     {
       "id": "A",
-      "text": "processData(10, function(result) { console.log(result); });",
+      "text": "processData(10, function(result) {\n    console.log(result);\n});",
       "animation": "slide_in_left"
     },
     {

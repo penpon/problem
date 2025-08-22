@@ -19,22 +19,22 @@
   "choices": [
     {
       "id": "A",
-      "text": "if (score >= 80) { console.log('合格'); }",
+      "text": "if (score >= 80) {\n    console.log('合格');\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "if (score > 80) { console.log('合格'); }",
+      "text": "if (score > 80) {\n    console.log('合格');\n}",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "if (score == 80) { console.log('合格'); }",
+      "text": "if (score == 80) {\n    console.log('合格');\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "if score >= 80 { console.log('合格'); }",
+      "text": "if score >= 80 {\n    console.log('合格');\n}",
       "animation": "slide_in_right"
     }
   ],

@@ -19,22 +19,22 @@
   "choices": [
     {
       "id": "A",
-      "text": "for (let i = 0; i < numbers.length; i++) { console.log(numbers[i]); }",
+      "text": "for (let i = 0; i < numbers.length; i++) {\n    console.log(numbers[i]);\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "for (let i = 1; i <= numbers.length; i++) { console.log(numbers[i]); }",
+      "text": "for (let i = 1; i <= numbers.length; i++) {\n    console.log(numbers[i]);\n}",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "for (let i = 0; i <= numbers.length; i++) { console.log(numbers[i]); }",
+      "text": "for (let i = 0; i <= numbers.length; i++) {\n    console.log(numbers[i]);\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "for (let number in numbers) { console.log(number); }",
+      "text": "for (let number in numbers) {\n    console.log(number);\n}",
       "animation": "slide_in_right"
     }
   ],

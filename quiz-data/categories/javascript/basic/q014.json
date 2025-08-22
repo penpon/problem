@@ -19,22 +19,22 @@
   "choices": [
     {
       "id": "A",
-      "text": "for (let i = 0; i < 5; i++) { console.log(i); }",
+      "text": "for (let i = 0; i < 5; i++) {\n    console.log(i);\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "for (let i = 0; i <= 4; i++) { console.log(i); }",
+      "text": "for (let i = 0; i <= 4; i++) {\n    console.log(i);\n}",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "for (let i = 1; i < 5; i++) { console.log(i); }",
+      "text": "for (let i = 1; i < 5; i++) {\n    console.log(i);\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "for (i = 0; i < 5; i++) { console.log(i); }",
+      "text": "for (i = 0; i < 5; i++) {\n    console.log(i);\n}",
       "animation": "slide_in_right"
     }
   ],

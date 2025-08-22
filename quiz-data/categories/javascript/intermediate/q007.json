@@ -19,22 +19,22 @@
   "choices": [
     {
       "id": "A",
-      "text": "function sum(a, b, c) { return a + b + c; }",
+      "text": "function sum(a, b, c) {\n    return a + b + c;\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "function sum(a; b; c) { return a + b + c; }",
+      "text": "function sum(a; b; c) {\n    return a + b + c;\n}",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "function sum(a & b & c) { return a + b + c; }",
+      "text": "function sum(a & b & c) {\n    return a + b + c;\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "function sum(a b c) { return a + b + c; }",
+      "text": "function sum(a b c) {\n    return a + b + c;\n}",
       "animation": "slide_in_right"
     }
   ],

@@ -188,6 +188,20 @@ PROBLEM_GUIDE.mdには以下の内容が詳しく記載されています：
 
 **PROBLEM_GUIDE.mdの参照なしに問題を追加すると、システムが正常に動作しない可能性があります。**
 
+### 📐 JavaScriptクイズ問題の品質基準
+
+**重要**: JavaScriptクイズ問題を作成・編集する際は、必ず **[JAVASCRIPT_QUIZ_GUIDE.md](JAVASCRIPT_QUIZ_GUIDE.md)** を参照してください。
+
+JAVASCRIPT_QUIZ_GUIDE.mdには以下のJavaScript固有の品質基準が記載されています：
+
+- 🎯 **コードフォーマット規則**: if文・for文・while文・function定義の適切な改行
+- 📏 **インデント基準**: 4スペース統一、視認性重視の構造化
+- 🎨 **フィールド別ガイドライン**: choices[].text、explanation.example、question.visual.contentの書き方
+- 🚫 **避けるべきパターン**: 1行にまとめられた複雑なコード、不一貫なインデント
+- ✅ **品質チェックリスト**: 新規作成・編集時の必須確認項目
+
+**適切なコードフォーマットなしにJavaScript問題を追加すると、学習者の理解を妨げる可能性があります。**
+
 ## ⚙️ 技術仕様
 
 ### 🔧 使用技術

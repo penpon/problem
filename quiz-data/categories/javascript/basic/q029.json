@@ -19,12 +19,12 @@
   "choices": [
     {
       "id": "A",
-      "text": "for (let i = 0; i < data.length; i++) { console.log(typeof data[i]); }",
+      "text": "for (let i = 0; i < data.length; i++) {\n    console.log(typeof data[i]);\n}",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "for (let i = 0; i < data.length; i++) { console.log(data[i].type); }",
+      "text": "for (let i = 0; i < data.length; i++) {\n    console.log(data[i].type);\n}",
       "animation": "slide_in_right"
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "id": "D",
-      "text": "for (let item of data) { console.log(item instanceof String); }",
+      "text": "for (let item of data) {\n    console.log(item instanceof String);\n}",
       "animation": "slide_in_right"
     }
   ],
