@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "function add(a, b) {\n  let sum = a + b;\n  _ sum;\n  // 計算結果を返す\n}"
+      "content": "function add(a, b) {\n  let sum = a + b;\n  _ sum;\n  \n// 計算結果を返す\n}"
     }
   },
   "choices": [

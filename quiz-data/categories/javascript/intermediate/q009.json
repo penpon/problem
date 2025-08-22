@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "let message = 'グローバル';\nfunction test() {\n  console.log(message);\n}\ntest();\n// 出力は？"
+      "content": "let message = 'グローバル';\nfunction test() {\n  console.log(message);\n}\ntest();\n\n// 出力は？"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数内から外側（グローバル）の変数にアクセスできます。これをスコープチェーンと呼びます。内側から外側へ順番に変数を探します。",
-    "example": "let message = 'グローバル';\nfunction test() {\n  console.log(message);\n  // 'グローバル'\n}\ntest();\n\n// ローカル変数が優先される例\nfunction test2() {\n  let message = 'ローカル';\n  console.log(message);\n  // 'ローカル'\n}",
+    "example": "let message = 'グローバル';\nfunction test() {\n  console.log(message);\n  \n// 'グローバル'\n}\ntest();\n\n// ローカル変数が優先される例\nfunction test2() {\n  let message = 'ローカル';\n  console.log(message);\n  \n// 'ローカル'\n}",
     "relatedCommands": ["variable declaration", "function scope", "global scope"],
     "furtherReading": "JavaScriptは字句スコープ（レキシカルスコープ）を採用しています。"
   },

@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "function calculate(num) {\n  // numが数値かどうかチェック\n  if (_ num !== 'number') {\n    throw new Error('数値を入力してください');\n  }\n  return num * 2;\n}"
+      "content": "function calculate(num) {\n  \n// numが数値かどうかチェック\n  if (_ num !== 'number') {\n    throw new Error('数値を入力してください');\n  }\n  return num * 2;\n}"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "typeof演算子は変数のデータ型を文字列で返します。引数の検証により、関数の堅牢性を向上させることができます。",
-    "example": "function calculate(num) {\n  // 型チェック\n  if (typeof num !== 'number') {\n    throw new Error('数値を入力してください');\n  }\n  \n  // NaNのチェックも追加できる\n  if (isNaN(num)) {\n    throw new Error('有効な数値を入力してください');\n  }\n  \n  return num * 2;\n}\n\n// 使用例\ntry {\n  console.log(calculate(5));     // 10\n  console.log(calculate('5'));   // エラー\n  console.log(calculate(NaN));   // エラー\n} catch (error) {\n  console.log(error.message);\n}",
+    "example": "function calculate(num) {\n  \n// 型チェック\n  if (typeof num !== 'number') {\n    throw new Error('数値を入力してください');\n  }\n  \n  \n// NaNのチェックも追加できる\n  if (isNaN(num)) {\n    throw new Error('有効な数値を入力してください');\n  }\n  \n  return num * 2;\n}\n\n// 使用例\ntry {\n  console.log(calculate(5));     \n\n// 10\n  console.log(calculate('5'));   \n\n// エラー\n  console.log(calculate(NaN));   \n\n// エラー\n} catch (error) {\n  console.log(error.message);\n}",
     "relatedCommands": ["typeof", "isNaN", "throw", "try-catch"],
     "furtherReading": "引数の検証は、予期しないエラーを防ぐ重要な防御的プログラミングの技法です。"
   },

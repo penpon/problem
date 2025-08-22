@@ -13,7 +13,7 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "let name = '太郎';\n// グローバル\nfunction test(name) {\n  // 引数\n  console.log(name);\n  // 何が出力される？\n}\ntest('花子');"
+      "content": "let name = '太郎';\n\n// グローバル\nfunction test(name) {\n  \n// 引数\n  console.log(name);\n  \n// 何が出力される？\n}\ntest('花子');"
     }
   },
   "choices": [
@@ -41,7 +41,7 @@
   "correct": "A",
   "explanation": {
     "text": "関数の引数は最も内側のスコープを持ち、同名のグローバル変数をシャドーイング（隠す）します。関数内では引数の値が優先されます。",
-    "example": "let name = '太郎';        // グローバル変数\nfunction test(name) {     // 引数nameがグローバルnameを隠す\n  console.log(name);      // '花子' (引数の値)\n  \n  function inner() {\n    let name = '次郎';    // さらに内側のローカル変数\n    console.log(name);    // '次郎'\n  }\n  inner();\n}\ntest('花子');\nconsole.log(name);        // '太郎' (グローバルは変更されない)",
+    "example": "let name = '太郎';        \n\n// グローバル変数\nfunction test(name) {     \n\n// 引数nameがグローバルnameを隠す\n  console.log(name);      \n\n// '花子' (引数の値)\n  \n  function inner() {\n    let name = '次郎';    \n\n// さらに内側のローカル変数\n    console.log(name);    \n\n// '次郎'\n  }\n  inner();\n}\ntest('花子');\nconsole.log(name);        \n\n// '太郎' (グローバルは変更されない)",
     "relatedCommands": ["function parameters", "scope chain", "variable shadowing"],
     "furtherReading": "同名の変数がある場合、最も内側のスコープが優先されます。"
   },
