@@ -5,7 +5,7 @@
   "level": "basic",
   "tags": ["complex_conditions", "logical_operators", "age_categories"],
   "question": {
-    "text": "年齢によって「子供」(12歳以下)、「学生」(13-22歳)、「大人」(23-64歳)、「シニア」(65歳以上)を判定するコードは？",
+    "text": "年齢カテゴリ判定で、以下の条件設定のうち正しいのは？\n\n・子供（12歳以下）\n・学生（13-22歳）\n・大人（23-64歳）\n・シニア（65歳以上）",
     "hint": "複数のelse ifを使って年齢範囲を順番にチェックします",
     "animation": {
       "type": "code_typing",
@@ -13,35 +13,35 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "const age = 20;\n// 年齢カテゴリを判定\n_"
+      "content": "const age = 20;\n\nif (___) {\n  console.log('子供');\n} else if (___) {\n  console.log('学生');\n} else if (___) {\n  console.log('大人');\n} else {\n  console.log('シニア');\n}"
     }
   },
   "choices": [
     {
       "id": "A",
-      "text": "if (age <= 12) { console.log('子供'); } else if (age <= 22) { console.log('学生'); } else if (age <= 64) { console.log('大人'); } else { console.log('シニア'); }",
+      "text": "age <= 12, age <= 22, age <= 64",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "if (age >= 65) { console.log('シニア'); } else if (age >= 23) { console.log('大人'); } else if (age >= 13) { console.log('学生'); } else { console.log('子供'); }",
+      "text": "age >= 65, age >= 23, age >= 13",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "if (age <= 12) { console.log('子供'); } if (age >= 13 && age <= 22) { console.log('学生'); } if (age >= 23 && age <= 64) { console.log('大人'); } if (age >= 65) { console.log('シニア'); }",
+      "text": "age <= 12, age >= 13 && age <= 22, age >= 23 && age <= 64",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "if (age === 12) { console.log('子供'); } else if (age === 22) { console.log('学生'); } else if (age === 64) { console.log('大人'); } else { console.log('シニア'); }",
+      "text": "age === 12, age === 22, age === 64",
       "animation": "slide_in_right"
     }
   ],
   "correct": "A",
   "explanation": {
     "text": "範囲判定では順番に条件をチェックします。12歳以下、22歳以下、64歳以下の順でチェックし、どれにも当てはまらなければシニアです。効率的な条件設定が重要です。",
-    "example": "const age = 20;\nif (age <= 12) {\n  console.log('子供');\n} else if (age <= 22) {\n  console.log('学生');\n  // 20歳なのでここが実行される\n} else if (age <= 64) {\n  console.log('大人');\n} else {\n  console.log('シニア');\n}",
+    "example": "const age = 20;\nif (age <= 12) {\n  console.log('子供');\n} else if (age <= 22) {\n  console.log('学生');\n\n  // 20歳なのでここが実行される\n} else if (age <= 64) {\n  console.log('大人');\n} else {\n  console.log('シニア');\n}",
     "relatedCommands": ["switch文", "三項演算子", "論理演算子"],
     "furtherReading": "範囲判定では条件の順序と境界値の処理が重要です。"
   },

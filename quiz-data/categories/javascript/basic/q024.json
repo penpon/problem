@@ -5,7 +5,7 @@
   "level": "basic",
   "tags": ["object_array_advanced", "loop", "complex_data"],
   "question": {
-    "text": "商品の配列で、価格が1000円以上の商品の名前をすべて表示するコードは？",
+    "text": "以下のコードで価格が1000円以上の商品名を表示する正しい条件と出力は？\n\nfor (let i = 0; i < products.length; i++) {\n  if (___) {\n    console.log(___);\n  }\n}",
     "hint": "for文とif文を組み合わせて条件に合う商品を見つけます",
     "animation": {
       "type": "code_typing",
@@ -13,35 +13,35 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "const products = [\n  { name: 'ペン', price: 500 },\n  { name: 'ノート', price: 1200 },\n  { name: '消しゴム', price: 300 }\n];\n// 1000円以上の商品名を表示\n_"
+      "content": "const products = [\n  { name: 'ペン', price: 500 },\n  { name: 'ノート', price: 1200 },\n  { name: '消しゴム', price: 300 }\n];\n\nfor (let i = 0; i < products.length; i++) {\n  if (___) {\n    console.log(___);\n  }\n}"
     }
   },
   "choices": [
     {
       "id": "A",
-      "text": "for (let i = 0; i < products.length; i++) { if (products[i].price >= 1000) { console.log(products[i].name); } }",
+      "text": "products[i].price >= 1000, products[i].name",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "for (let i = 0; i < products.length; i++) { if (products[i].name >= 1000) { console.log(products[i].price); } }",
+      "text": "products[i].name >= 1000, products[i].price",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "if (products.price >= 1000) { console.log(products.name); }",
+      "text": "products.price >= 1000, products.name",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "for (let product in products) { if (price >= 1000) { console.log(name); } }",
+      "text": "price >= 1000, name",
       "animation": "slide_in_right"
     }
   ],
   "correct": "A",
   "explanation": {
     "text": "配列の各オブジェクトをfor文で順番にチェックし、if文で価格が1000以上の条件を満たす場合に名前を表示します。配列・オブジェクト・条件分岐の組み合わせです。",
-    "example": "const products = [\n  { name: 'ペン', price: 500 },\n  { name: 'ノート', price: 1200 },\n  { name: '消しゴム', price: 300 }\n];\nfor (let i = 0; i < products.length; i++) {\n  if (products[i].price >= 1000) {\n    console.log(products[i].name);\n    // 'ノート' が表示される\n  }\n}",
+    "example": "const products = [\n  { name: 'ペン', price: 500 },\n  { name: 'ノート', price: 1200 },\n  { name: '消しゴム', price: 300 }\n];\nfor (let i = 0; i < products.length; i++) {\n  if (products[i].price >= 1000) {\n    console.log(products[i].name);\n\n    // 'ノート' が表示される\n  }\n}",
     "relatedCommands": ["filter", "forEach", "find", "配列メソッド"],
     "furtherReading": "この処理パターンはデータ検索でよく使われる重要な技法です。"
   },

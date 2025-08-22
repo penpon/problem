@@ -5,7 +5,7 @@
   "level": "basic",
   "tags": ["practical_application", "data_processing", "statistics"],
   "question": {
-    "text": "学生の成績データから、合格者（60点以上）の人数と平均点を計算するコードは？",
+    "text": "以下のコードで、合格者（60点以上）の人数と平均点を正しく計算するには？\n\nlet count = 0, total = 0;\nfor (let i = 0; i < students.length; i++) {\n  if (students[i].score >= 60) {\n    ___\n  }\n}\nconsole.log('合格者: ' + count + '人, 平均: ' + (total / ___) + '点');",
     "hint": "for文で各学生をチェックし、合格者をカウントして点数を合計します",
     "animation": {
       "type": "code_typing",
@@ -13,42 +13,35 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "const students = [\n  { name: 'A', score: 85 },\n  { name: 'B', score: 45 },\n  { name: 'C', score: 92 },\n  { name: 'D', score: 38 }\n];\n// 合格者数と平均点を計算\n_"
+      "content": "const students = [\n  { name: 'A', score: 85 },\n  { name: 'B', score: 45 },\n  { name: 'C', score: 92 },\n  { name: 'D', score: 38 }\n];\n\nlet count = 0, total = 0;\nfor (let i = 0; i < students.length; i++) {\n  if (students[i].score >= 60) {\n    ___\n  }\n}\nconsole.log('合格者: ' + count + '人, 平均: ' + (total / ___) + '点');"
     }
   },
   "choices": [
     {
       "id": "A",
-      "text": "let count = 0, total = 0; for (let i = 0; i < students.length; i++) { if (students[i].score >= 60) { count++; total += students[i].score; } } console.log('合格者: ' + count + '人, 平均: ' + (total / count) + '点');",
+      "text": "count++; total += students[i].score; | count",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "let count = 0; for (let i = 0; i < students.length; i++) { if (students[i].score >= 60) { count++; } } console.log('合格者: ' + count + '人');",
+      "text": "count++; | count",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "let total = 0; for (let i = 0; i < students.length; i++) { total += students[i].score; } console.log('平均: ' + (total / students.length) + '点');",
+      "text": "total += students[i].score; | students.length",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "console.log('合格者: 2人, 平均: 88.5点');",
+      "text": "何もしない（結果は固定値）",
       "animation": "slide_in_right"
     }
   ],
   "correct": "A",
   "explanation": {
     "text": "実践的なデータ処理では、条件に合う要素を数えながら同時に値を計算します。合格者数をカウントし、合格者の点数のみを合計して平均を計算します。",
-    "example": "const students = [\n  { name: 'A', score: 85 },
-  // 合格\n  { name: 'B', score: 45 },
-  // 不合格\n  { name: 'C', score: 92 },
-  // 合格\n  { name: 'D', score: 38 }
-  // 不合格\n];\nlet count = 0, total = 0;\nfor (let i = 0; i < students.length; i++) {\n  if (students[i].score >= 60) {\n    count++;
-    // 合格者数: 2人\n    total += students[i].score;
-    // 合格者の合計: 85 + 92 = 177\n  }\n}\nconsole.log('合格者: ' + count + '人, 平均: ' + (total / count) + '点');\n
-// 合格者: 2人, 平均: 88.5点",
+    "example": "const students = [\n  { name: 'A', score: 85 },\n\n  // 合格\n  { name: 'B', score: 45 },\n\n  // 不合格\n  { name: 'C', score: 92 },\n\n  // 合格\n  { name: 'D', score: 38 }\n\n  // 不合格\n];\nlet count = 0, total = 0;\nfor (let i = 0; i < students.length; i++) {\n  if (students[i].score >= 60) {\n    count++;\n\n    // 合格者数: 2人\n    total += students[i].score;\n\n    // 合格者の合計: 85 + 92 = 177\n  }\n}\nconsole.log('合格者: ' + count + '人, 平均: ' + (total / count) + '点');\n\n// 合格者: 2人, 平均: 88.5点",
     "relatedCommands": ["filter", "reduce", "map", "配列の高階関数"],
     "furtherReading": "このような集計処理はWebアプリケーションでよく使われる実用的なパターンです。"
   },

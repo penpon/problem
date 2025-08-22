@@ -5,7 +5,7 @@
   "level": "advanced",
   "tags": ["practical", "complex-operation", "method-chaining", "real-world"],
   "question": {
-    "text": "オンライン学習プラットフォームで「完了済みコースの平均評価点が4.0以上の受講生の名前」を取得する実践的な処理は？",
+    "text": "完了済みコースの平均評価点が4.0以上の受講生名を取得する正しい処理手順は？\n\n1. 各受講生の完了済みコースを抽出\n2. 完了済みコースの平均評価点を計算\n3. 平均4.0以上の受講生を選択\n4. 受講生の名前を取得",
     "hint": "filter、map、reduceを組み合わせた複合的な配列操作が必要です",
     "animation": {
       "type": "code_typing",
@@ -13,28 +13,28 @@
     },
     "visual": {
       "type": "code_editor",
-      "content": "// 学習プラットフォームのデータ分析\nconst students = [\n  {\n    name: '田中太郎',\n    courses: [\n      {title: 'JavaScript基礎', completed: true, rating: 4.2},\n      {title: 'React応用', completed: true, rating: 4.5},\n      {title: 'Node.js', completed: false, rating: null}\n    ]\n  },\n  {\n    name: '佐藤花子', \n    courses: [\n      {title: 'HTML/CSS', completed: true, rating: 3.8},\n      {title: 'JavaScript基礎', completed: true, rating: 3.9}\n    ]\n  }\n];\n// 完了済みコースの平均評価4.0以上の受講生名"
+      "content": "// 学習プラットフォームのデータ分析\nconst students = [\n  {\n    name: '田中太郎',\n    courses: [\n      {title: 'JavaScript基礎', completed: true, rating: 4.2},\n      {title: 'React応用', completed: true, rating: 4.5},\n      {title: 'Node.js', completed: false, rating: null}\n    ]\n  },\n  {\n    name: '佐藤花子', \n    courses: [\n      {title: 'HTML/CSS', completed: true, rating: 3.8},\n      {title: 'JavaScript基礎', completed: true, rating: 3.9}\n    ]\n  }\n];\n\n// 正しい処理手順を選択してください"
     }
   },
   "choices": [
     {
       "id": "A",
-      "text": "students.filter(student => {\n  const completed = student.courses.filter(c => c.completed);\n  const avg = completed.reduce((sum, c) => sum + c.rating, 0) / completed.length;\n  return avg >= 4.0;\n}).map(student => student.name)",
+      "text": "filter(完了済み) → reduce(平均計算) → filter(4.0以上) → map(名前)",
       "animation": "slide_in_left"
     },
     {
       "id": "B",
-      "text": "students.map(student => student.name).filter(student => student.courses.every(c => c.rating >= 4.0))",
+      "text": "map(名前) → filter(全コース4.0以上)",
       "animation": "slide_in_right"
     },
     {
       "id": "C",
-      "text": "students.filter(student => student.courses.filter(c => c.completed && c.rating >= 4.0))",
+      "text": "filter(完了済み4.0以上のコースあり)",
       "animation": "slide_in_left"
     },
     {
       "id": "D",
-      "text": "students.find(student => student.courses.some(c => c.completed && c.rating >= 4.0)).map(s => s.name)",
+      "text": "find(4.0以上コースあり) → map(名前)",
       "animation": "slide_in_right"
     }
   ],
