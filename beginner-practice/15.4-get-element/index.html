@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステップ15.4 - 要素取得入門</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #FFE135;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-info {
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .demo-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 2px solid #FFE135;
+        }
+        
+        .highlight-element {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #2c3e50;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .info-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #FFE135;
+        }
+        
+        .highlight {
+            color: #FFE135;
+            font-weight: bold;
+        }
+        
+        .code-example {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .instruction {
+            background: rgba(255, 193, 7, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #FFE135;
+            margin: 20px 0;
+        }
+        
+        .celebration {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .before-after > div {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            text-align: center;
+            color: #FFE135;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 要素取得入門</h1>
+        <div class="step-info">
+            <strong>ステップ15.4 - HTMLとJavaScriptをつなぐ</strong>
+        </div>
+        
+        <div class="celebration">🔗 📄 💻</div>
+        
+        <div class="info-box">
+            <h3>📚 このステップで学ぶこと</h3>
+            <ul>
+                <li><strong>document.getElementById()</strong>で要素を取得する</li>
+                <li><strong>textContent</strong>で要素の内容を変更する</li>
+                <li>HTMLとJavaScriptを連携させる基礎</li>
+            </ul>
+        </div>
+        
+        <div class="demo-box">
+            <h3>🎪 実際の変化を見てみよう！</h3>
+            
+            <div class="before-after">
+                <div>
+                    <h4>変更前</h4>
+                    <div style="background: #e74c3c; padding: 10px; border-radius: 5px; color: white;">
+                        ここは元のテキストです
+                    </div>
+                </div>
+                <div>
+                    <h4>変更後（自動実行）</h4>
+                    <div class="highlight-element" id="demo-element">
+                        ここは元のテキストです
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️ JavaScript実行後 ⬇️</div>
+            
+            <div class="highlight-element" id="welcome-message">
+                読み込み中...
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>🎯 document.getElementById() とは？</h3>
+            <p><strong>document.getElementById()</strong>は、HTMLの要素を「ID」で探して取得するJavaScriptの機能です。</p>
+            
+            <div class="code-example">
+// HTMLの要素を取得
+let element = document.getElementById("要素のID名");
+
+// 要素の内容を変更
+element.textContent = "新しいテキスト";
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>🔧 IDとは？</h3>
+            <p>HTMLの要素に付ける「名札」のようなものです：</p>
+            <div class="code-example">
+&lt;div id="my-element"&gt;ここが変更されます&lt;/div&gt;
+            </div>
+            <p>この例では、<code>"my-element"</code>がIDです。</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>👀 実際のコードを見てみよう</h3>
+            <p>このページで実行されているコード：</p>
+            <div class="code-example">
+// 1. 要素を取得
+let demoElement = document.getElementById("demo-element");
+
+// 2. 内容を変更
+demoElement.textContent = "🎉 JavaScriptで変更されました！";
+
+// 3. ウェルカムメッセージも変更
+let welcomeElement = document.getElementById("welcome-message");
+welcomeElement.textContent = "ようこそ！要素取得の世界へ！";
+            </div>
+        </div>
+        
+        <div class="instruction">
+            <h3>🚀 開発者ツールで確認しよう</h3>
+            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブで実行過程を確認してください！</p>
+        </div>
+    </div>
+    
+    <script>
+        console.log("🎯 ステップ15.4: 要素取得入門を開始します！");
+        console.log("==================================");
+        
+        // 1. 要素を取得
+        console.log("📍 要素を取得中...");
+        let demoElement = document.getElementById("demo-element");
+        let welcomeElement = document.getElementById("welcome-message");
+        
+        // 2. 取得できたか確認
+        console.log("取得した要素:", demoElement);
+        console.log("要素の元の内容:", demoElement.textContent);
+        
+        // 3. 内容を変更
+        console.log("🔄 内容を変更中...");
+        demoElement.textContent = "🎉 JavaScriptで変更されました！";
+        welcomeElement.textContent = "ようこそ！要素取得の世界へ！";
+        
+        // 4. 変更後の確認
+        console.log("変更後の内容:", demoElement.textContent);
+        console.log("✅ 要素の内容変更が完了しました！");
+        
+        console.log("");
+        console.log("🌟 HTMLとJavaScriptが連携できるようになりました！");
+    </script>
+</body>
+</html>

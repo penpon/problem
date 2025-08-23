@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2商品ギャラリー - 学習の集大成</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ヘッダー -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">🚀 商品ギャラリー</h1>
+                <p class="app-subtitle">20ステップ学習の集大成 - 実用的なECサイト</p>
+                
+                <!-- 学習進捗表示 -->
+                <div class="learning-progress">
+                    <div class="progress-item completed">
+                        <span class="progress-icon">✅</span>
+                        <span class="progress-text">HTML基礎</span>
+                    </div>
+                    <div class="progress-item completed">
+                        <span class="progress-icon">✅</span>
+                        <span class="progress-text">CSS基礎</span>
+                    </div>
+                    <div class="progress-item completed">
+                        <span class="progress-icon">✅</span>
+                        <span class="progress-text">JavaScript基礎</span>
+                    </div>
+                    <div class="progress-item completed">
+                        <span class="progress-icon">✅</span>
+                        <span class="progress-text">統合開発</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- コントロールパネル -->
+        <div class="controls-panel">
+            <div class="controls-container">
+                <!-- 検索バー -->
+                <div class="search-section">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="商品を検索..." class="search-input">
+                        <button id="search-btn" class="search-btn" aria-label="検索">🔍</button>
+                    </div>
+                </div>
+                
+                <!-- フィルターとソート -->
+                <div class="filters-section">
+                    <div class="filter-group">
+                        <label for="category-filter">カテゴリ:</label>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">すべて</option>
+                            <option value="electronics">家電</option>
+                            <option value="accessories">アクセサリー</option>
+                            <option value="audio">オーディオ</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort-filter">並び順:</label>
+                        <select id="sort-filter" class="filter-select">
+                            <option value="default">デフォルト</option>
+                            <option value="price-asc">価格: 安い順</option>
+                            <option value="price-desc">価格: 高い順</option>
+                            <option value="likes-desc">人気順</option>
+                            <option value="name-asc">名前順</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <button id="reset-filters" class="reset-btn">リセット</button>
+                    </div>
+                </div>
+                
+                <!-- 統計情報 -->
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <span class="stat-label">商品数:</span>
+                        <span id="products-count" class="stat-value">2</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">カート:</span>
+                        <span id="cart-total" class="stat-value">0個</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">お気に入り:</span>
+                        <span id="favorites-count" class="stat-value">0個</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 商品グリッド -->
+        <main class="products-grid" id="products-grid">
+            <!-- 商品は動的に生成 -->
+        </main>
+        
+        <!-- カートサイドバー -->
+        <div class="cart-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                <h3 class="cart-title">🛒 ショッピングカート</h3>
+                <button id="cart-close" class="cart-close" aria-label="カートを閉じる">×</button>
+            </div>
+            
+            <div class="cart-content" id="cart-content">
+                <div class="cart-empty">
+                    <p>カートは空です</p>
+                    <p>商品を追加してみましょう！</p>
+                </div>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>小計:</span>
+                        <span id="cart-subtotal">¥0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>送料:</span>
+                        <span id="cart-shipping">無料</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>合計:</span>
+                        <span id="cart-total-price">¥0</span>
+                    </div>
+                </div>
+                
+                <div class="cart-actions">
+                    <button id="clear-cart" class="cart-action-btn secondary">カートを空にする</button>
+                    <button id="checkout" class="cart-action-btn primary" disabled>レジに進む</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- カート開くボタン -->
+        <button id="cart-toggle" class="cart-toggle" aria-label="カートを開く">
+            🛒
+            <span id="cart-badge" class="cart-badge">0</span>
+        </button>
+        
+        <!-- 商品比較パネル -->
+        <div class="compare-panel" id="compare-panel">
+            <div class="compare-header">
+                <h3>📊 商品比較</h3>
+                <button id="compare-close" class="compare-close">×</button>
+            </div>
+            <div class="compare-content" id="compare-content">
+                <p>商品を選択して比較してみましょう</p>
+            </div>
+        </div>
+        
+        <!-- 通知システム -->
+        <div class="notification-system" id="notification-system">
+            <!-- 通知は動的に追加 -->
+        </div>
+        
+        <!-- 機能説明パネル -->
+        <div class="features-panel">
+            <h3>🌟 実装機能一覧</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-emoji">🔍</span>
+                    <div class="feature-info">
+                        <strong>商品検索</strong>
+                        <p>リアルタイム検索</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-emoji">🏷️</span>
+                    <div class="feature-info">
+                        <strong>カテゴリフィルター</strong>
+                        <p>商品の絞り込み</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-emoji">📊</span>
+                    <div class="feature-info">
+                        <strong>ソート機能</strong>
+                        <p>価格・人気順の並替</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-emoji">🛒</span>
+                    <div class="feature-info">
+                        <strong>ショッピングカート</strong>
+                        <p>商品の追加・管理</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-emoji">❤️</span>
+                    <div class="feature-info">
+                        <strong>お気に入り</strong>
+                        <p>商品のいいね管理</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-emoji">📱</span>
+                    <div class="feature-info">
+                        <strong>レスポンシブ</strong>
+                        <p>モバイル完全対応</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-emoji">💾</span>
+                    <div class="feature-info">
+                        <strong>データ永続化</strong>
+                        <p>LocalStorage活用</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-emoji">⚡</span>
+                    <div class="feature-info">
+                        <strong>動的更新</strong>
+                        <p>リアルタイム反映</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学習完了メッセージ -->
+        <div class="completion-message">
+            <div class="completion-content">
+                <h2>🎉 20ステップ学習完了！</h2>
+                <p>HTML、CSS、JavaScriptの基礎から実用的なWebアプリケーション開発まで、</p>
+                <p>すべての技術を統合した実用的なサイトが完成しました！</p>
+                <div class="completion-stats">
+                    <div class="completion-stat">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">ステップ完了</div>
+                    </div>
+                    <div class="completion-stat">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">行のJavaScript</div>
+                    </div>
+                    <div class="completion-stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">実用レベル</div>
+                    </div>
+                </div>
+                <p class="next-steps">
+                    <strong>次のステップ:</strong>
+                    React、Vue.js、Node.jsなど、より高度な技術にチャレンジしてみましょう！
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

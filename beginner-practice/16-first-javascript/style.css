@@ -1,0 +1,369 @@
+/* 初めてのJavaScript - 基本的なJavaScript学習用スタイル */
+
+/* 基本スタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    transition: background-color 0.5s ease;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    margin: 0 0 40px 0;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    font-size: 28px;
+}
+
+h2 {
+    color: white;
+    margin: 40px 0 20px 0;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    font-size: 20px;
+    border-left: 4px solid #ffd700;
+}
+
+/* デモセクション */
+.demo-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ボタンスタイル */
+.demo-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.demo-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a6fd8, #6a4190);
+}
+
+.demo-button:active {
+    transform: translateY(0px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* カウンターセクション */
+.counter-section {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+#counter {
+    display: inline-block;
+    font-size: 48px;
+    font-weight: bold;
+    color: #2c3e50;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    background-color: rgba(102, 126, 234, 0.1);
+    min-width: 100px;
+}
+
+.counter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.counter-btn {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+}
+
+.counter-btn:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.counter-btn:active {
+    transform: translateY(0px);
+}
+
+/* メッセージセクション */
+.message-section {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.message-box {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 400px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+.message-box.show {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* コンソール説明 */
+.console-info {
+    background: rgba(46, 204, 113, 0.1);
+    border: 2px solid rgba(46, 204, 113, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.console-info::before {
+    content: "💡 ";
+    font-size: 18px;
+}
+
+/* 警告・注意書き */
+.note {
+    background: rgba(255, 193, 7, 0.1);
+    border: 2px solid rgba(255, 193, 7, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    color: #856404;
+    font-weight: bold;
+}
+
+.note::before {
+    content: "📝 ";
+    font-size: 18px;
+}
+
+/* 成功メッセージ */
+.success {
+    background: rgba(40, 167, 69, 0.1);
+    border: 2px solid rgba(40, 167, 69, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    color: #155724;
+    font-weight: bold;
+}
+
+.success::before {
+    content: "✅ ";
+    font-size: 18px;
+}
+
+/* JavaScript有効/無効表示 */
+.js-status {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(40, 167, 69, 0.9);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.js-status.disabled {
+    background: rgba(220, 53, 69, 0.9);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        padding: 20px;
+    }
+    
+    h2 {
+        font-size: 18px;
+        padding: 12px 15px;
+    }
+    
+    .demo-section {
+        padding: 20px;
+    }
+    
+    .demo-button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+    
+    .counter-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .counter-btn {
+        width: 200px;
+    }
+    
+    #counter {
+        font-size: 36px;
+        padding: 8px 15px;
+    }
+    
+    .message-box {
+        max-width: 100%;
+        font-size: 16px;
+        padding: 15px;
+    }
+    
+    .js-status {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px auto;
+        text-align: center;
+        display: block;
+        width: fit-content;
+    }
+}
+
+@media (max-width: 480px) {
+    .counter-buttons {
+        gap: 5px;
+    }
+    
+    .counter-btn {
+        width: 100%;
+        min-width: auto;
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+    
+    #counter {
+        font-size: 32px;
+        min-width: 80px;
+    }
+}
+
+/* アニメーション効果 */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.bounce {
+    animation: bounce 0.6s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 0.3s ease;
+}
+
+/* JavaScript無効時のフォールバック */
+.no-js .js-only {
+    display: none;
+}
+
+.no-js .no-js-warning {
+    display: block;
+    background: rgba(220, 53, 69, 0.1);
+    border: 2px solid rgba(220, 53, 69, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    color: #721c24;
+    font-weight: bold;
+    text-align: center;
+}
+
+.no-js-warning {
+    display: none;
+}
+
+.no-js-warning::before {
+    content: "⚠️ ";
+    font-size: 18px;
+}

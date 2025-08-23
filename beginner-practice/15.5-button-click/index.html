@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステップ15.5 - 最初のクリック</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #e74c3c;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-info {
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0.8;
+            color: #7f8c8d;
+        }
+        
+        .demo-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .click-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-weight: bold;
+        }
+        
+        .click-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .click-button:active {
+            transform: translateY(0);
+        }
+        
+        .message-display {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #3498db;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .code-example {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            margin: 15px 0;
+            border: 1px solid #34495e;
+        }
+        
+        .instruction {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .celebration {
+            font-size: 3rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖱️ 最初のクリック</h1>
+        <div class="step-info">
+            <strong>ステップ15.5 - インタラクティブWebページの誕生</strong>
+        </div>
+        
+        <div class="celebration">🎉 🖱️ ✨</div>
+        
+        <div class="info-box">
+            <h3>📚 このステップで学ぶこと</h3>
+            <ul>
+                <li><strong>ボタンクリック</strong>でJavaScript関数を実行する</li>
+                <li><strong>addEventListener</strong>でイベントを設定する</li>
+                <li>ユーザーの操作に<strong>応答</strong>するWebページの作成</li>
+            </ul>
+        </div>
+        
+        <div class="demo-section">
+            <h3>🎪 インタラクティブデモ</h3>
+            <p>下のボタンをクリックして、JavaScriptの魔法を体験しましょう！</p>
+            
+            <div class="message-display" id="message-display">
+                👋 ボタンをクリックしてみてください！
+            </div>
+            
+            <button class="click-button" id="hello-button">
+                🌟 Hello ボタン 🌟
+            </button>
+            
+            <button class="click-button" id="color-button">
+                🎨 色変更ボタン 🎨
+            </button>
+            
+            <button class="click-button" id="time-button">
+                🕐 時間表示ボタン 🕐
+            </button>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div>クリック回数</div>
+                    <div id="click-count" style="font-size: 2rem; font-weight: bold; color: #feca57;">0</div>
+                </div>
+                <div class="stat-item">
+                    <div>最後にクリックしたボタン</div>
+                    <div id="last-button" style="font-size: 1.2rem; font-weight: bold;">まだありません</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>🎯 addEventListener とは？</h3>
+            <p><strong>addEventListener</strong>は、HTML要素に「イベント」を設定するJavaScriptの機能です。</p>
+            
+            <div class="code-example">
+// ボタンを取得
+let button = document.getElementById("my-button");
+
+// クリック時の動作を設定
+button.addEventListener("click", function() {
+    alert("ボタンがクリックされました！");
+});
+            </div>
+            
+            <p>この設定により、ボタンがクリックされた時に指定した処理が実行されます。</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>👀 実際のコードを見てみよう</h3>
+            <p>このページで使用されているコード（一部抜粋）：</p>
+            <div class="code-example">
+// Helloボタンの処理
+let helloButton = document.getElementById("hello-button");
+helloButton.addEventListener("click", function() {
+    let display = document.getElementById("message-display");
+    display.textContent = "🌟 こんにちは！ JavaScriptの世界へようこそ！";
+});
+
+// 色変更ボタンの処理
+let colorButton = document.getElementById("color-button");
+colorButton.addEventListener("click", function() {
+    let display = document.getElementById("message-display");
+    display.textContent = "🎨 色が変わりました！";
+    display.style.background = "linear-gradient(135deg, #ff6b6b, #4ecdc4)";
+});
+            </div>
+        </div>
+        
+        <div class="instruction">
+            <h3>🚀 体験してみよう！</h3>
+            <p>上の3つのボタンをそれぞれクリックして、どんな変化が起こるか確認してみてください。</p>
+            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブでクリック時のメッセージも確認できます！</p>
+        </div>
+    </div>
+    
+    <script>
+        console.log("🖱️ ステップ15.5: 最初のクリック体験を開始します！");
+        console.log("=====================================");
+        
+        // クリック回数をカウントする変数
+        let totalClicks = 0;
+        
+        // 1. Helloボタンの処理
+        let helloButton = document.getElementById("hello-button");
+        helloButton.addEventListener("click", function() {
+            console.log("🌟 Helloボタンがクリックされました！");
+            
+            let display = document.getElementById("message-display");
+            display.textContent = "🌟 こんにちは！ JavaScriptの世界へようこそ！";
+            display.style.background = "linear-gradient(135deg, #667eea, #764ba2)";
+            
+            updateClickStats("Helloボタン");
+        });
+        
+        // 2. 色変更ボタンの処理
+        let colorButton = document.getElementById("color-button");
+        colorButton.addEventListener("click", function() {
+            console.log("🎨 色変更ボタンがクリックされました！");
+            
+            let display = document.getElementById("message-display");
+            display.textContent = "🎨 カラフルに変身しました！";
+            display.style.background = "linear-gradient(135deg, #ff6b6b, #4ecdc4)";
+            
+            updateClickStats("色変更ボタン");
+        });
+        
+        // 3. 時間表示ボタンの処理
+        let timeButton = document.getElementById("time-button");
+        timeButton.addEventListener("click", function() {
+            console.log("🕐 時間表示ボタンがクリックされました！");
+            
+            let display = document.getElementById("message-display");
+            let now = new Date();
+            let timeString = now.getHours() + ":" + 
+                           String(now.getMinutes()).padStart(2, '0') + ":" + 
+                           String(now.getSeconds()).padStart(2, '0');
+            
+            display.textContent = "🕐 現在時刻: " + timeString;
+            display.style.background = "linear-gradient(135deg, #fa709a, #fee140)";
+            
+            updateClickStats("時間表示ボタン");
+        });
+        
+        // クリック統計を更新する関数
+        function updateClickStats(buttonName) {
+            totalClicks++;
+            document.getElementById("click-count").textContent = totalClicks;
+            document.getElementById("last-button").textContent = buttonName;
+            
+            console.log("📊 合計クリック数: " + totalClicks);
+            console.log("📊 最後にクリック: " + buttonName);
+        }
+        
+        console.log("✅ すべてのボタンイベントが設定されました！");
+        console.log("💡 ボタンをクリックして、インタラクティブ機能を体験してください！");
+    </script>
+</body>
+</html>

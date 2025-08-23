@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フロントエンド入門 - HTML/CSS学習システム</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/frontend.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>🎨 フロントエンド入門</h1>
+            <p>HTML/CSSの基礎を学び、リアルタイムで結果を確認しよう！</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 4パネルレイアウト -->
+        <div class="frontend-layout">
+            <!-- 左上: 問題選択エリア -->
+            <div class="problem-panel">
+                <h2 class="section-title">📚 問題選択</h2>
+                
+                <div class="problem-list" id="problem-list">
+                    <!-- 動的に問題ボタンが追加される -->
+                </div>
+                
+                <div id="problem-details" style="display: none;">
+                    <!-- 問題の詳細がここに表示されます -->
+                </div>
+            </div>
+
+            <!-- 右上: コードエディタエリア -->
+            <div class="editor-panel">
+                <h2 class="section-title">💻 コードエディタ</h2>
+                <div class="editor-controls">
+                    <button id="format-button" class="format-button">
+                        ✨ コード整形
+                    </button>
+                    <button id="grade-button" class="grade-button">
+                        📊 採点実行
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="code-editor">
+                        HTMLとCSSを入力してください：
+                    </label>
+                    <textarea 
+                        id="code-editor" 
+                        class="code-editor" 
+                        placeholder="問題を選択すると、ここにテンプレートが表示されます。"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>採点中...</p>
+                </div>
+            </div>
+
+            <!-- 左下: 正解プレビューエリア -->
+            <div class="expected-panel">
+                <div class="expected-header">
+                    <h2 class="section-title">✅ 正解の見た目</h2>
+                    <div class="view-toggle">
+                        <button id="preview-tab" class="toggle-button active">見た目</button>
+                        <button id="code-tab" class="toggle-button">コード</button>
+                    </div>
+                </div>
+                <div class="expected-content">
+                    <div id="expected-preview-view" class="preview-container">
+                        <iframe id="expected-preview" class="preview-iframe" title="正解プレビュー">
+                        </iframe>
+                    </div>
+                    <div id="expected-code-view" class="code-view" style="display: none;">
+                        <pre class="code-display" id="expected-code-display">
+                        </pre>
+                    </div>
+                </div>
+                <div class="preview-info">
+                    <p id="preview-info-text">📌 この見た目を目指してコードを書いてください</p>
+                </div>
+            </div>
+
+            <!-- 右下: 現在のプレビューと結果エリア -->
+            <div class="current-panel">
+                <h2 class="section-title">🖼️ あなたのコード結果</h2>
+                <div class="preview-container">
+                    <iframe id="current-preview" class="preview-iframe" title="現在のプレビュー">
+                    </iframe>
+                </div>
+                
+                <!-- 採点結果エリア -->
+                <div id="result-area" style="display: none;">
+                    <!-- 採点結果がここに表示されます -->
+                </div>
+                
+                <div id="no-result" class="no-result-text" style="text-align: center; padding: 20px;">
+                    <p>🎯 問題を選択してコードを書くと、結果がここに表示されます</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-style">
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            フロントエンド入門 | HTML/CSS学習システム
+        </p>
+    </footer>
+
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="js/navigation.js"></script>
+    <script src="js/problemLoader.js"></script>
+    <script src="js/frontend.js"></script>
+</body>
+</html>

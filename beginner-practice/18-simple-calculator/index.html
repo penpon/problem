@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡単計算機</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>🧮 簡単計算機</h1>
+        
+        <div class="calculator-box">
+            <!-- 基本計算機 -->
+            <div class="calc-section">
+                <h2>基本計算機</h2>
+                <div class="input-group">
+                    <input type="number" id="num1" placeholder="最初の数値" step="any">
+                    <select id="operation">
+                        <option value="+">+ 足し算</option>
+                        <option value="-">- 引き算</option>
+                        <option value="*">× 掛け算</option>
+                        <option value="/">÷ 割り算</option>
+                    </select>
+                    <input type="number" id="num2" placeholder="2番目の数値" step="any">
+                    <button id="calculate" class="calc-button">計算実行</button>
+                </div>
+                
+                <div class="result-section">
+                    <div id="result" class="result-display">結果がここに表示されます</div>
+                    <div id="error" class="error-message"></div>
+                </div>
+            </div>
+            
+            <!-- 履歴機能 -->
+            <div class="calc-section">
+                <h2>計算履歴</h2>
+                <div class="history-controls">
+                    <button id="clear-history" class="clear-button">履歴をクリア</button>
+                </div>
+                <div id="history" class="history-list">
+                    <p class="history-empty">計算履歴はまだありません</p>
+                </div>
+            </div>
+            
+            <!-- 特殊計算 -->
+            <div class="calc-section">
+                <h2>特殊計算</h2>
+                <div class="special-calc">
+                    <div class="special-group">
+                        <label>平方根：</label>
+                        <input type="number" id="sqrt-input" placeholder="数値" step="any">
+                        <button id="sqrt-btn" class="special-button">√ 計算</button>
+                        <span id="sqrt-result" class="special-result"></span>
+                    </div>
+                    
+                    <div class="special-group">
+                        <label>乗算：</label>
+                        <input type="number" id="power-base" placeholder="底" step="any">
+                        <span class="power-symbol">^</span>
+                        <input type="number" id="power-exp" placeholder="指数" step="any">
+                        <button id="power-btn" class="special-button">計算</button>
+                        <span id="power-result" class="special-result"></span>
+                    </div>
+                    
+                    <div class="special-group">
+                        <label>円の面積：</label>
+                        <input type="number" id="circle-radius" placeholder="半径" step="any">
+                        <button id="circle-btn" class="special-button">面積計算</button>
+                        <span id="circle-result" class="special-result"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

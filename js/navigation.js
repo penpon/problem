@@ -15,6 +15,7 @@ class NavigationManager {
         
         if (filename === 'grader.html') return 'grader';
         if (filename === 'visualizer.html') return 'visualizer';
+        if (filename === 'frontend.html') return 'frontend';
         if (filename === 'memory-state-transition.html') return 'memory';
         if (filename === 'sequence-diagram.html') return 'sequence';
         if (filename === 'quiz.html') return 'quiz';
@@ -53,6 +54,10 @@ class NavigationManager {
                         <a href="grader.html" class="nav-link ${this.currentPage === 'grader' ? 'active' : ''}">
                             <span class="link-icon">📊</span>
                             <span class="link-text">採点システム</span>
+                        </a>
+                        <a href="frontend.html" class="nav-link ${this.currentPage === 'frontend' ? 'active' : ''}">
+                            <span class="link-icon">🎨</span>
+                            <span class="link-text">フロントエンド</span>
                         </a>
                         <a href="quiz.html" class="nav-link ${this.currentPage === 'quiz' ? 'active' : ''}">
                             <span class="link-icon">📱</span>
@@ -114,6 +119,8 @@ class NavigationManager {
                 color: #2d3748;
                 font-weight: bold;
                 font-size: 1.2em;
+                white-space: nowrap;
+                flex-shrink: 0;
             }
 
             .nav-brand:hover {
@@ -123,6 +130,11 @@ class NavigationManager {
             .nav-icon {
                 font-size: 1.5em;
                 margin-right: 10px;
+                flex-shrink: 0;
+            }
+
+            .nav-title {
+                white-space: nowrap;
             }
 
             .nav-links {
@@ -198,6 +210,22 @@ class NavigationManager {
                 .link-icon {
                     margin-right: 3px;
                     font-size: 0.9em;
+                }
+            }
+
+            /* 1100px以下での追加調整 - ナビゲーションタイトルの折り返し防止強化 */
+            @media (max-width: 1100px) {
+                .nav-brand {
+                    font-size: 1.1em;
+                }
+                
+                .nav-links {
+                    gap: 6px;
+                }
+                
+                .nav-link {
+                    padding: 6px 8px;
+                    font-size: 0.8em;
                 }
             }
 

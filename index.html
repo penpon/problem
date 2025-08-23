@@ -159,6 +159,19 @@
             box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
         }
         
+        .frontend-card {
+            border-color: #e53e3e;
+        }
+        
+        .frontend-card .tool-button {
+            background: linear-gradient(145deg, #e53e3e, #c53030);
+        }
+        
+        .frontend-card .tool-button:hover {
+            background: linear-gradient(145deg, #c53030, #9c1111);
+            box-shadow: 0 5px 15px rgba(229, 62, 62, 0.4);
+        }
+        
         
         @media (max-width: 768px) {
             .hero-title {
@@ -235,6 +248,23 @@
                     <li>リアルタイムメモリマップ表示</li>
                 </ul>
                 <a href="memory-state-transition.html" class="tool-button">🧠 メモリを解析する</a>
+            </div>
+
+            <!-- フロントエンド入門 -->
+            <div class="tool-card frontend-card">
+                <div class="tool-icon">🎨</div>
+                <h2 class="tool-title">フロントエンド入門</h2>
+                <p class="tool-description">
+                    HTML/CSSの基礎を学び、リアルタイムで結果を確認しながら学習できます。4パネルレイアウトで直感的にWebページ制作を体験しましょう。
+                </p>
+                <ul class="tool-features">
+                    <li>HTML/CSS基礎の5つのレッスン</li>
+                    <li>リアルタイムプレビュー機能</li>
+                    <li>正解との比較表示</li>
+                    <li>インテリジェント採点システム</li>
+                    <li>コード整形とエラーチェック</li>
+                </ul>
+                <a href="frontend.html" class="tool-button">🎨 HTML/CSSを学ぶ</a>
             </div>
 
             <!-- エンジニア初心者クイズ -->

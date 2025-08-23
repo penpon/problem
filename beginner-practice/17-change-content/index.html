@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画面内容変更</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>画面内容変更デモ</h1>
+    
+    <div class="demo-container">
+        <!-- 1. テキスト内容変更 -->
+        <div class="demo-section">
+            <h2>1. テキスト内容変更</h2>
+            <p id="demo-text">ここのテキストが変わります</p>
+            <div class="button-group">
+                <button id="text-button1" class="demo-button">挨拶メッセージ</button>
+                <button id="text-button2" class="demo-button">時刻表示</button>
+                <button id="text-button3" class="demo-button">ランダム名言</button>
+            </div>
+        </div>
+        
+        <!-- 2. HTML内容変更 -->
+        <div class="demo-section">
+            <h2>2. HTML内容変更</h2>
+            <div id="html-content">
+                <p>ここにHTML内容が追加されます</p>
+            </div>
+            <div class="button-group">
+                <button id="html-button1" class="demo-button">リスト追加</button>
+                <button id="html-button2" class="demo-button">進捗表示</button>
+                <button id="reset-button" class="demo-button reset">リセット</button>
+            </div>
+        </div>
+        
+        <!-- 3. 画像変更 -->
+        <div class="demo-section">
+            <h2>3. 画像変更</h2>
+            <img id="demo-image" src="../shared/images/simple-product.svg" alt="デモ画像" class="demo-img">
+            <div class="button-group">
+                <button id="image-button1" class="demo-button">元の画像</button>
+                <button id="image-button2" class="demo-button">代替画像</button>
+            </div>
+        </div>
+        
+        <!-- 4. スタイル変更 -->
+        <div class="demo-section">
+            <h2>4. スタイル変更</h2>
+            <div id="style-demo" class="style-box">
+                スタイルが変更されます
+            </div>
+            <div class="button-group">
+                <button id="color-button" class="demo-button">色変更</button>
+                <button id="size-button" class="demo-button">サイズ変更</button>
+                <button id="border-button" class="demo-button">枠線変更</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

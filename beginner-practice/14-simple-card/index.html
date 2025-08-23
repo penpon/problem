@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>シンプルカード</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>美しいカードレイアウト</h1>
+    
+    <h2>1. 基本的なカード</h2>
+    <div class="card-container">
+        <div class="card basic-card">
+            <h3>基本カード</h3>
+            <p>シンプルなカードデザインです。影と角丸で立体感を表現しています。</p>
+        </div>
+        <div class="card basic-card">
+            <h3>ホバー効果</h3>
+            <p>マウスを載せると少し浮き上がります。ユーザーに操作可能性を示します。</p>
+        </div>
+    </div>
+    
+    <h2>2. 画像付きカード</h2>
+    <div class="card-container">
+        <div class="card image-card">
+            <div class="card-image">
+                <div class="placeholder-image">📷</div>
+            </div>
+            <div class="card-content">
+                <h3>写真カード</h3>
+                <p>画像とテキストを組み合わせたカードです。</p>
+                <span class="card-tag">写真</span>
+            </div>
+        </div>
+        <div class="card image-card">
+            <div class="card-image">
+                <div class="placeholder-image">🎨</div>
+            </div>
+            <div class="card-content">
+                <h3>アートカード</h3>
+                <p>クリエイティブな内容を紹介するカードです。</p>
+                <span class="card-tag">デザイン</span>
+            </div>
+        </div>
+        <div class="card image-card">
+            <div class="card-image">
+                <div class="placeholder-image">💡</div>
+            </div>
+            <div class="card-content">
+                <h3>アイデアカード</h3>
+                <p>新しいアイデアや提案を表示するカードです。</p>
+                <span class="card-tag">アイデア</span>
+            </div>
+        </div>
+    </div>
+    
+    <h2>3. アクション付きカード</h2>
+    <div class="card-container">
+        <div class="card action-card">
+            <h3>プロジェクトA</h3>
+            <p>素晴らしいプロジェクトの詳細を確認できます。</p>
+            <div class="card-footer">
+                <span class="card-price">¥2,980</span>
+                <button class="card-button primary">詳細を見る</button>
+            </div>
+        </div>
+        <div class="card action-card">
+            <h3>プロジェクトB</h3>
+            <p>革新的なソリューションを提供します。</p>
+            <div class="card-footer">
+                <span class="card-price">¥4,500</span>
+                <button class="card-button primary">詳細を見る</button>
+            </div>
+        </div>
+    </div>
+    
+    <h2>4. プロフィールカード</h2>
+    <div class="card-container">
+        <div class="card profile-card">
+            <div class="profile-avatar">👨‍💻</div>
+            <h3>田中 太郎</h3>
+            <p class="profile-role">フロントエンドエンジニア</p>
+            <p class="profile-bio">React、Vue.jsを得意とするフロントエンド開発者です。</p>
+            <div class="profile-stats">
+                <div class="stat">
+                    <span class="stat-number">42</span>
+                    <span class="stat-label">プロジェクト</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1.2k</span>
+                    <span class="stat-label">フォロワー</span>
+                </div>
+            </div>
+            <button class="card-button secondary">フォローする</button>
+        </div>
+        <div class="card profile-card">
+            <div class="profile-avatar">👩‍🎨</div>
+            <h3>佐藤 花子</h3>
+            <p class="profile-role">UI/UXデザイナー</p>
+            <p class="profile-bio">使いやすく美しいインターフェースをデザインします。</p>
+            <div class="profile-stats">
+                <div class="stat">
+                    <span class="stat-number">28</span>
+                    <span class="stat-label">デザイン</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">856</span>
+                    <span class="stat-label">いいね</span>
+                </div>
+            </div>
+            <button class="card-button secondary">フォローする</button>
+        </div>
+    </div>
+    
+    <h2>5. 統計カード</h2>
+    <div class="card-container stats-container">
+        <div class="card stats-card">
+            <div class="stats-icon">📈</div>
+            <div class="stats-content">
+                <h3>売上</h3>
+                <p class="stats-number">¥1,250,000</p>
+                <p class="stats-change positive">+12.5%</p>
+            </div>
+        </div>
+        <div class="card stats-card">
+            <div class="stats-icon">👥</div>
+            <div class="stats-content">
+                <h3>ユーザー</h3>
+                <p class="stats-number">8,420</p>
+                <p class="stats-change positive">+8.2%</p>
+            </div>
+        </div>
+        <div class="card stats-card">
+            <div class="stats-icon">📊</div>
+            <div class="stats-content">
+                <h3>コンバージョン</h3>
+                <p class="stats-number">3.8%</p>
+                <p class="stats-change negative">-1.2%</p>
+            </div>
+        </div>
+        <div class="card stats-card">
+            <div class="stats-icon">⭐</div>
+            <div class="stats-content">
+                <h3>評価</h3>
+                <p class="stats-number">4.7</p>
+                <p class="stats-change positive">+0.3</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

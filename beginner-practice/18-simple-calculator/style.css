@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.calculator-box {
+    display: grid;
+    gap: 25px;
+}
+
+.calc-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calc-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.calc-section h2 {
+    color: #4a5568;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+/* 基本計算機のスタイル */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.input-group input[type="number"] {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input[type="number"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-group select {
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.input-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.calc-button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.calc-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(45deg, #5a67d8, #6b46c1);
+}
+
+.calc-button:active {
+    transform: translateY(0);
+}
+
+/* 結果表示のスタイル */
+.result-section {
+    margin-top: 15px;
+}
+
+.result-display {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.result-display.success {
+    background: #f0fff4;
+    border-color: #68d391;
+    color: #2d3748;
+}
+
+.result-display.error {
+    background: #fed7d7;
+    border-color: #fc8181;
+    color: #c53030;
+}
+
+.calculation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.calculation-expression {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.equals {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.4rem;
+}
+
+.calculation-result {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #2d3748;
+}
+
+.error-message {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #fed7d7;
+    border: 1px solid #fc8181;
+    border-radius: 6px;
+    color: #c53030;
+    font-weight: 500;
+    display: none;
+}
+
+/* 履歴機能のスタイル */
+.history-controls {
+    margin-bottom: 15px;
+}
+
+.clear-button {
+    background: linear-gradient(45deg, #f56565, #e53e3e);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-button:hover {
+    background: linear-gradient(45deg, #e53e3e, #c53030);
+    transform: translateY(-1px);
+}
+
+.history-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.history-empty {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    padding: 20px;
+}
+
+.history-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-expression {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.history-time {
+    font-size: 0.8rem;
+    color: #a0aec0;
+}
+
+/* 特殊計算のスタイル */
+.special-calc {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.special-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+}
+
+.special-group label {
+    font-weight: 600;
+    color: #4a5568;
+    min-width: 80px;
+}
+
+.special-group input[type="number"] {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.power-symbol {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #667eea;
+}
+
+.special-button {
+    background: linear-gradient(45deg, #48bb78, #38a169);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.special-button:hover {
+    background: linear-gradient(45deg, #38a169, #2f855a);
+    transform: translateY(-1px);
+}
+
+.special-result {
+    font-weight: bold;
+    min-width: 100px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.special-result.success {
+    color: #2f855a;
+    background: #f0fff4;
+}
+
+.special-result.error {
+    color: #c53030;
+    background: #fed7d7;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .calculator-container {
+        padding: 0 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .calc-section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .input-group input[type="number"],
+    .input-group select,
+    .calc-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .special-group {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .special-group label {
+        min-width: auto;
+        margin-bottom: 5px;
+    }
+    
+    .calculation {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .calc-section {
+        padding: 15px;
+    }
+    
+    .result-display {
+        font-size: 1rem;
+        padding: 15px;
+    }
+    
+    .calculation-result {
+        font-size: 1.2rem;
+    }
+}
