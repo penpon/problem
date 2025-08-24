@@ -7,9 +7,10 @@
 .frontend-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: minmax(300px, 1fr) minmax(300px, 1fr);
   gap: 20px;
   min-height: 80vh;
+  max-height: 90vh;
   margin-bottom: 30px;
 }
 
@@ -137,6 +138,12 @@
 .current-panel {
   display: flex;
   flex-direction: column;
+}
+
+/* current-panelの高さ制限 */
+.current-panel {
+  max-height: calc(45vh - 10px);
+  overflow: hidden;
 }
 
 .preview-container {
@@ -285,6 +292,9 @@
   white-space: pre-wrap;
   overflow-x: auto;
   border: 1px solid #2d3748;
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 /* HTML/CSS採点結果の特別スタイル */
@@ -292,29 +302,31 @@
   background: white;
   color: #2d3748;
   border: 1px solid #e2e8f0;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
+  font-size: 13px;
 }
 
 .result-status {
   display: inline-block;
-  padding: 8px 16px;
+  padding: 6px 12px;
   border-radius: 20px;
   font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 15px;
+  font-size: 13px;
+  margin-bottom: 10px;
 }
 
 .check-list {
   list-style: none;
   padding: 0;
-  margin: 15px 0;
+  margin: 8px 0;
+  line-height: 1.3;
 }
 
 .check-item {
   display: flex;
   align-items: center;
-  padding: 8px 0;
+  padding: 6px 0;
   border-bottom: 1px solid #f1f5f9;
 }
 
@@ -323,8 +335,8 @@
 }
 
 .check-icon {
-  margin-right: 10px;
-  font-size: 16px;
+  margin-right: 8px;
+  font-size: 14px;
 }
 
 .check-passed {
@@ -337,7 +349,8 @@
 
 .check-description {
   flex: 1;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 /* 差分表示 */
@@ -716,5 +729,28 @@
   
   .check-list {
     margin: 10px 0;
+  }
+  
+  /* 採点結果エリアのモバイル最適化 */
+  #result-area {
+    max-height: 200px;
+    padding: 10px;
+    font-size: 12px;
+  }
+  
+  .frontend-result {
+    padding: 10px;
+    font-size: 12px;
+  }
+  
+  .result-status {
+    padding: 4px 8px;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  
+  /* current-panelの高さ調整 */
+  .current-panel {
+    max-height: calc(40vh - 10px);
   }
 }
