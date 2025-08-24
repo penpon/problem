@@ -42,11 +42,11 @@ class FrontendLearning {
         this.expectedCodeDisplay = document.getElementById('expected-code-display');
         this.previewInfoText = document.getElementById('preview-info-text');
         
-        // あなたパネルの切り替え機能の要素
-        this.currentPreviewTab = document.getElementById('current-preview-tab');
-        this.currentResultTab = document.getElementById('current-result-tab');
-        this.currentPreviewView = document.getElementById('current-preview-view');
-        this.currentResultView = document.getElementById('current-result-view');
+        // 現在は使用しない（タブ機能削除済み）
+        // this.currentPreviewTab = document.getElementById('current-preview-tab');
+        // this.currentResultTab = document.getElementById('current-result-tab');
+        // this.currentPreviewView = document.getElementById('current-preview-view');
+        // this.currentResultView = document.getElementById('current-result-view');
         
         // ファイルタブ関連の要素
         this.fileTabList = document.getElementById('file-tab-list');
@@ -90,14 +90,14 @@ class FrontendLearning {
             this.showCodeView();
         });
         
-        // あなたパネルの切り替え
-        this.currentPreviewTab.addEventListener('click', () => {
-            this.showCurrentPreviewView();
-        });
-        
-        this.currentResultTab.addEventListener('click', () => {
-            this.showCurrentResultView();
-        });
+        // あなたパネルのタブ切り替え機能は削除済み
+        // this.currentPreviewTab.addEventListener('click', () => {
+        //     this.showCurrentPreviewView();
+        // });
+        // 
+        // this.currentResultTab.addEventListener('click', () => {
+        //     this.showCurrentResultView();
+        // });
         
         // ファイルタブの切り替え
         this.fileTabList.addEventListener('click', (e) => {
@@ -788,8 +788,8 @@ class FrontendLearning {
         this.resultArea.style.display = 'block';
         this.noResult.style.display = 'none';
         
-        // 採点結果表示後、自動的に「採点結果」タブに切り替え
-        this.showCurrentResultView();
+        // 採点結果の自動タブ切り替えは削除済み（獨立パネル化）
+        // this.showCurrentResultView();
         
         // プレビューにハイライト効果
         const previewContainer = this.currentPreview.closest('.preview-container');
@@ -856,25 +856,26 @@ class FrontendLearning {
         this.previewInfoText.textContent = '📋 正解のHTMLコードを参考にしてください';
     }
     
-    showCurrentPreviewView() {
-        // ボタンの状態を切り替え
-        this.currentPreviewTab.classList.add('active');
-        this.currentResultTab.classList.remove('active');
-        
-        // 表示を切り替え
-        this.currentPreviewView.style.display = 'block';
-        this.currentResultView.style.display = 'none';
-    }
-    
-    showCurrentResultView() {
-        // ボタンの状態を切り替え
-        this.currentPreviewTab.classList.remove('active');
-        this.currentResultTab.classList.add('active');
-        
-        // 表示を切り替え
-        this.currentPreviewView.style.display = 'none';
-        this.currentResultView.style.display = 'block';
-    }
+    // あなたパネルのタブ切り替え機能は削除済み（獨立パネル化）
+    // showCurrentPreviewView() {
+    //     // ボタンの状態を切り替え
+    //     this.currentPreviewTab.classList.add('active');
+    //     this.currentResultTab.classList.remove('active');
+    //     
+    //     // 表示を切り替え
+    //     this.currentPreviewView.style.display = 'block';
+    //     this.currentResultView.style.display = 'none';
+    // }
+    // 
+    // showCurrentResultView() {
+    //     // ボタンの状態を切り替え
+    //     this.currentPreviewTab.classList.remove('active');
+    //     this.currentResultTab.classList.add('active');
+    //     
+    //     // 表示を切り替え
+    //     this.currentPreviewView.style.display = 'none';
+    //     this.currentResultView.style.display = 'block';
+    // }
 }
 
 // アプリケーション初期化

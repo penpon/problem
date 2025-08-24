@@ -1,23 +1,27 @@
 /**
  * フロントエンド入門 - 専用スタイルシート
- * 4パネルレイアウトとリアルタイムプレビュー機能
+ * 3行2列レイアウトとリアルタイムプレビュー機能
  */
 
-/* 4パネル レイアウト */
+/* 3行2列 レイアウト */
 .frontend-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: minmax(300px, 1fr) minmax(300px, 1fr);
+  grid-template-rows: minmax(300px, 800px) minmax(400px, 500px) minmax(400px, 500px);
   gap: 20px;
-  min-height: 80vh;
-  max-height: 90vh;
+  min-height: 100vh;
   margin-bottom: 30px;
+  grid-template-areas: 
+    "problem problem"
+    "editor result"
+    "expected current";
 }
 
 .problem-panel,
 .editor-panel,
 .expected-panel,
-.current-panel {
+.current-panel,
+.result-panel {
   background: white;
   border-radius: 10px;
   padding: 25px;
@@ -29,6 +33,10 @@
 .problem-panel {
   display: flex;
   flex-direction: column;
+  grid-area: problem;
+  min-height: 300px;
+  max-height: 800px;
+  overflow: auto;
 }
 
 .problem-list {
@@ -66,10 +74,48 @@
   color: white;
 }
 
-/* エディタパネル（右上） */
+/* 問題詳細表示エリア */
+#problem-details {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#problem-details h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #2d3748;
+}
+
+#problem-details p {
+  margin: 8px 0;
+  color: #4a5568;
+}
+
+#problem-details ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+#problem-details li {
+  margin: 5px 0;
+  color: #4a5568;
+}
+
+/* エディタパネル（中央上） */
 .editor-panel {
   display: flex;
   flex-direction: column;
+  grid-area: editor;
+  min-height: 400px;
+  max-height: 500px;
+  overflow: hidden;
 }
 
 .editor-controls {
@@ -112,8 +158,9 @@
 
 .code-editor {
   flex: 1;
-  min-height: 300px;
-  max-height: 350px;
+  height: 100%;
+  max-height: 280px;
+  width: 100%;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   font-size: 13px;
   border: 2px solid #e2e8f0;
@@ -124,6 +171,7 @@
   line-height: 1.4;
   white-space: pre-wrap;
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .code-editor:focus {
@@ -131,6 +179,21 @@
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
   background-color: white;
+}
+
+/* Form Group レイアウト */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 14px;
 }
 
 /* プレビューパネル共通 */
@@ -145,6 +208,33 @@
   min-height: 300px;
   height: auto;
   overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 採点結果パネル（右上） */
+.result-panel {
+  grid-area: result;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.result-panel .section-title {
+  color: #805ad5;
+}
+
+.result-content-wrapper {
+  flex: 1;
+  overflow: auto;
+  background: #f8f9fa;
+  border: 2px solid #805ad5;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  max-height: 360px;
 }
 
 .preview-container {
@@ -154,7 +244,8 @@
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 15px;
-  min-height: 250px;
+  min-height: 280px;
+  max-height: 320px;
   position: relative;
   overflow: hidden;
 }
@@ -170,6 +261,13 @@
 }
 
 /* 正解プレビューパネル（左下） */
+.expected-panel {
+  grid-area: expected;
+  min-height: 400px;
+  max-height: 500px;
+  overflow: hidden;
+}
+
 .expected-panel .preview-container {
   border-color: #48bb78;
   background: linear-gradient(135deg, #f0fff4, #f7fafc);
@@ -266,6 +364,13 @@
 }
 
 /* 現在のプレビューパネル（右下） */
+.current-panel {
+  grid-area: current;
+  min-height: 400px;
+  max-height: 500px;
+  overflow: hidden;
+}
+
 .current-panel .preview-container {
   border-color: #4299e1;
   background: linear-gradient(135deg, #ebf8ff, #f7fafc);
@@ -273,24 +378,6 @@
 
 .current-panel .section-title {
   color: #3182ce;
-}
-
-.current-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.current-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.result-view {
-  flex: 1;
-  overflow: auto;
 }
 
 /* プレビューのレスポンシブ調整 */
@@ -307,7 +394,7 @@
   color: inherit;
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 16px;
-  padding: 8px;
+  padding: 0;
   border-radius: 0;
   white-space: normal;
   overflow: visible;
@@ -613,8 +700,14 @@
 @media (max-width: 1024px) {
   .frontend-layout {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
     gap: 15px;
+    grid-template-areas: 
+      "problem"
+      "editor"
+      "result"
+      "expected"
+      "current";
   }
   
   .preview-iframe {
@@ -637,7 +730,8 @@
   .problem-panel,
   .editor-panel,
   .expected-panel,
-  .current-panel {
+  .current-panel,
+  .result-panel {
     padding: 20px;
   }
   
@@ -674,7 +768,8 @@
   .problem-panel,
   .editor-panel,
   .expected-panel,
-  .current-panel {
+  .current-panel,
+  .result-panel {
     padding: 15px;
   }
   
@@ -692,7 +787,8 @@
   .problem-panel,
   .editor-panel,
   .expected-panel,
-  .current-panel {
+  .current-panel,
+  .result-panel {
     background: #2d3748;
     border-color: #4a5568;
     color: #e2e8f0;
