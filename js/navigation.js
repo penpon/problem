@@ -41,11 +41,6 @@ class NavigationManager {
         return `
             <nav class="nav-container">
                 <div class="nav-content">
-                    <a href="index.html" class="nav-brand">
-                        <span class="nav-icon">🚀</span>
-                        <span class="nav-title">JavaScript学習サイト</span>
-                    </a>
-                    
                     <div class="nav-links">
                         <a href="index.html" class="nav-link ${this.currentPage === 'home' ? 'active' : ''}">
                             <span class="link-icon">🏠</span>
