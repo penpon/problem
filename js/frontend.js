@@ -690,7 +690,17 @@ class FrontendLearning {
         }
     }
     
+    // HTMLエスケープ用ヘルパー関数を追加
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
     displayResults(result) {
+        // パーセンテージ計算
+        const percentage = Math.round((result.score / result.maxScore) * 100);
+        
         const statusClass = result.status === 'PERFECT' ? 'status-accepted' : 
                           result.status === 'PARTIAL' ? 'status-partial' : 'status-wrong';
         
@@ -700,35 +710,76 @@ class FrontendLearning {
         const statusText = result.status === 'PERFECT' ? '完璧です！' : 
                           result.status === 'PARTIAL' ? '部分的に正解' : '要改善';
         
+        // 各チェック項目の配点を動的に計算（10点ずつ均等配分）
+        const checkCount = result.checks.length;
+        const baseScore = 10; // 各項目10点固定
+        
+        // 青枠内に直接表示するレイアウト
         let resultHtml = `
-            <div class="frontend-result">
-                <div class="result-status ${statusClass}">
-                    ${statusIcon} ${statusText}
+            <div class="result-content">
+                <div class="result-header ${statusClass}">
+                    <div class="status-indicator">
+                        <span class="status-icon">${statusIcon}</span>
+                        <span class="status-text">${statusText}</span>
+                    </div>
+                    <div class="percentage-display">
+                        ${percentage}%
+                    </div>
                 </div>
-                <div class="score-display">
-                    得点: ${result.score}/${result.maxScore}点
+                
+                <div class="score-overview">
+                    <div class="total-score-display">
+                        <span class="score-label">総合得点:</span>
+                        <span class="score-value">${result.score}/${result.maxScore}点</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill ${statusClass}" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="check-results">
-                    <h4>チェック結果:</h4>
-                    <ul class="check-list">
+                
+                <div class="detailed-results">
+                    <div class="results-title">📊 採点結果詳細</div>
+                    <div class="test-cases">
         `;
         
-        result.checks.forEach(check => {
-            const iconClass = check.passed ? 'check-passed' : 'check-failed';
+        result.checks.forEach((check, index) => {
+            const checkScore = check.passed ? baseScore : 0;
+            const checkPercentage = check.passed ? 100 : 0;
+            const itemClass = check.passed ? 'test-case-passed' : 'test-case-failed';
             const icon = check.passed ? '✅' : '❌';
             
+            // チェック項目名をHTMLエスケープして表示
+            const displayName = this.escapeHtml(check.name);
+            const displayMessage = this.escapeHtml(check.message);
+            
             resultHtml += `
-                <li class="check-item">
-                    <span class="check-icon ${iconClass}">${icon}</span>
-                    <span class="check-description">
-                        ${check.name}: ${check.message}
-                    </span>
-                </li>
+                <div class="test-case ${itemClass}">
+                    <div class="test-case-header">
+                        <div class="test-info">
+                            <span class="test-icon">${icon}</span>
+                            <span class="test-name">${displayName}</span>
+                        </div>
+                        <div class="test-score">
+                            <span class="score-fraction">${checkScore}/${baseScore}点</span>
+                            <span class="score-percentage">${checkPercentage}%</span>
+                        </div>
+                    </div>
+                    <div class="test-message">
+                        ${displayMessage}
+                    </div>
+                    <div class="test-progress">
+                        <div class="test-progress-bar">
+                            <div class="test-progress-fill ${itemClass}" style="width: ${checkPercentage}%"></div>
+                        </div>
+                    </div>
+                </div>
             `;
         });
         
         resultHtml += `
-                    </ul>
+                    </div>
                 </div>
             </div>
         `;
