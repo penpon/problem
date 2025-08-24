@@ -1,0 +1,38 @@
+{
+  "id": "practice05",
+  "title": "05: リストの作成",
+  "description": "ulとolタグを使用してリストを作成する方法を学習しましょう。",
+  "category": "html-basics",
+  "difficulty": 3,
+  "instructions": [
+    "h1タグで「リスト表示」のメインタイトルを追加してください",
+    "h2タグで「順序なしリスト」のサブタイトルを追加してください",
+    "ulタグとliタグで順序なしリストを作成してください（3つの項目）",
+    "h2タグで「順序付きリスト」のサブタイトルを追加してください",
+    "olタグとliタグで順序付きリストを作成してください（3つの項目）"
+  ],
+  "files": {
+    "html": {
+      "filename": "index.html",
+      "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>リストのページ</title>\n</head>\n<body>\n    <h1>リスト表示</h1>\n    <h2>順序なしリスト</h2>\n    <!-- 順序なしリスト（ul/li）を追加してください -->\n    \n    <h2>順序付きリスト</h2>\n    <!-- 順序付きリスト（ol/li）を追加してください -->\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html>\n<head>\n    <title>リストのページ</title>\n</head>\n<body>\n    <h1>リスト表示</h1>\n    <h2>順序なしリスト</h2>\n    <ul>\n        <li>項目1</li>\n        <li>項目2</li>\n        <li>項目3</li>\n    </ul>\n    <h2>順序付きリスト</h2>\n    <ol>\n        <li>最初</li>\n        <li>次に</li>\n        <li>最後に</li>\n    </ol>\n</body>\n</html>"
+    }
+  },
+  "checks": [
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "h1", "name": "メインタイトル(h1)", "type": "content", "message": "<h1>見出しと内容が必要です" },
+    { "id": "ul", "name": "順序なしリスト(ul)", "type": "content", "message": "<ul>順序なしリストが必要です" },
+    { "id": "ol", "name": "順序付きリスト(ol)", "type": "content", "message": "<ol>順序付きリストが必要です" },
+    { "id": "li", "name": "リスト項目(li)", "type": "content", "message": "最低2つの<li>項目が必要です" }
+  ],
+  "hints": [
+    "ulは順序なしリスト（Unordered List）です",
+    "olは順序付きリスト（Ordered List）です",
+    "liタグはリスト項目（List Item）を表します",
+    "リストは入れ子にすることも可能です"
+  ]
+}

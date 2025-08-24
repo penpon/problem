@@ -6,6 +6,7 @@
 class ProblemLoader {
   constructor() {
     this.problemIndex = null;
+    this.frontendIndex = null;
     this.loadedProblems = new Map(); // キャッシュ機能
     this.isLoading = false;
   }
@@ -35,6 +36,37 @@ class ProblemLoader {
       
     } catch (error) {
       console.error('問題インデックスの読み込みに失敗しました:', error);
+      throw error;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  /**
+   * フロントエンド問題インデックスを読み込み
+   * @returns {Promise<Object>} フロントエンド問題データ
+   */
+  async loadFrontendIndex() {
+    if (this.frontendIndex) {
+      return this.frontendIndex;
+    }
+
+    try {
+      this.isLoading = true;
+      const response = await fetch('problems/frontend/index.json');
+      
+      if (!response.ok) {
+        throw new Error(`Failed to load frontend index: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      this.frontendIndex = data;
+      
+      console.log(`フロントエンド問題インデックス読み込み完了: ${data.totalProblems}問`);
+      return this.frontendIndex;
+      
+    } catch (error) {
+      console.error('フロントエンド問題インデックスの読み込みに失敗しました:', error);
       throw error;
     } finally {
       this.isLoading = false;
@@ -74,6 +106,40 @@ class ProblemLoader {
   }
 
   /**
+   * フロントエンド問題の詳細データを読み込み
+   * @param {string} problemId 問題ID
+   * @returns {Promise<Object>} 問題データ
+   */
+  async loadFrontendProblem(problemId) {
+    const cacheKey = `frontend_${problemId}`;
+    
+    // キャッシュから取得
+    if (this.loadedProblems.has(cacheKey)) {
+      return this.loadedProblems.get(cacheKey);
+    }
+
+    try {
+      const response = await fetch(`problems/frontend/${problemId}.json`);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to load frontend problem ${problemId}: ${response.status}`);
+      }
+      
+      const problemData = await response.json();
+      
+      // キャッシュに保存
+      this.loadedProblems.set(cacheKey, problemData);
+      
+      console.log(`フロントエンド問題 ${problemId} の詳細データ読み込み完了`);
+      return problemData;
+      
+    } catch (error) {
+      console.error(`フロントエンド問題 ${problemId} の読み込みに失敗しました:`, error);
+      throw error;
+    }
+  }
+
+  /**
    * 問題一覧を取得（レガシー関数の互換性維持）
    * @returns {Promise<Array>} 問題一覧
    */
@@ -83,6 +149,34 @@ class ProblemLoader {
       id: problem.id,
       title: problem.title
     }));
+  }
+
+  /**
+   * フロントエンド問題一覧を取得
+   * @returns {Promise<Array>} フロントエンド問題一覧
+   */
+  async getFrontendProblemList() {
+    const index = await this.loadFrontendIndex();
+    const problems = [];
+    
+    for (const category of index.categories) {
+      for (const problemId of category.problems) {
+        try {
+          const problem = await this.loadFrontendProblem(problemId);
+          problems.push({
+            id: problem.id,
+            title: problem.title,
+            description: problem.description,
+            category: problem.category,
+            difficulty: problem.difficulty
+          });
+        } catch (error) {
+          console.warn(`Failed to load frontend problem ${problemId}:`, error);
+        }
+      }
+    }
+    
+    return problems;
   }
 
   /**
@@ -99,6 +193,8 @@ class ProblemLoader {
    */
   clearCache() {
     this.loadedProblems.clear();
+    this.problemIndex = null;
+    this.frontendIndex = null;
     console.log('問題データキャッシュをクリアしました');
   }
 
@@ -134,6 +230,25 @@ async function getProblem(problemId) {
     return await problemLoader.getProblem(problemId);
   } catch (error) {
     console.error(`getProblem(${problemId}) error:`, error);
+    return null;
+  }
+}
+
+// フロントエンド学習システム用の関数
+async function getFrontendProblemList() {
+  try {
+    return await problemLoader.getFrontendProblemList();
+  } catch (error) {
+    console.error('getFrontendProblemList error:', error);
+    return [];
+  }
+}
+
+async function getFrontendProblem(problemId) {
+  try {
+    return await problemLoader.loadFrontendProblem(problemId);
+  } catch (error) {
+    console.error(`getFrontendProblem(${problemId}) error:`, error);
     return null;
   }
 }

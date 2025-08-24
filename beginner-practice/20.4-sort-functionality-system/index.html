@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20.4 ソート機能システム - 商品並び替え学習</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ギャラリーメインエリア -->
+        <div class="gallery-main">
+            <div class="gallery-header">
+                <h1 class="gallery-title">📊 ソート機能ギャラリー</h1>
+                <p class="gallery-subtitle">フィルタリング + 並び替えシステム</p>
+                <div class="system-status" id="systemStatus">
+                    10商品をフィルタ＆ソート処理中
+                </div>
+            </div>
+            
+            <!-- フィルタ・ソートコントロールエリア -->
+            <div class="controls-area">
+                <!-- フィルタコントロール -->
+                <div class="control-row">
+                    <div class="filter-section">
+                        <label class="filter-label">📂 カテゴリで絞り込み</label>
+                        <div class="filter-buttons" id="categoryFilters">
+                            <button class="filter-btn active" data-category="all">すべて</button>
+                            <button class="filter-btn" data-category="fashion">👕 ファッション</button>
+                            <button class="filter-btn" data-category="electronics">📱 電子機器</button>
+                            <button class="filter-btn" data-category="sports">⚽ スポーツ</button>
+                            <button class="filter-btn" data-category="accessories">👜 アクセサリー</button>
+                        </div>
+                    </div>
+                    
+                    <!-- ソートコントロール（新機能！） -->
+                    <div class="sort-section">
+                        <label class="filter-label">📊 並び順で整理</label>
+                        <select class="sort-select" id="sortSelect">
+                            <option value="default">追加順（デフォルト）</option>
+                            <option value="price-low">価格：安い順</option>
+                            <option value="price-high">価格：高い順</option>
+                            <option value="likes">いいね数：多い順</option>
+                            <option value="name">名前：あいうえお順</option>
+                        </select>
+                        <div class="sort-indicator" id="sortIndicator">
+                            📋 追加順で表示中
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 価格フィルタ -->
+                <div class="control-row">
+                    <div class="filter-section">
+                        <label class="filter-label">💰 価格帯で絞り込み</label>
+                        <div class="filter-buttons" id="priceFilters">
+                            <button class="filter-btn active" data-price="all">すべて</button>
+                            <button class="filter-btn" data-price="low">〜 ¥5,000</button>
+                            <button class="filter-btn" data-price="mid">¥5,000 〜 ¥10,000</button>
+                            <button class="filter-btn" data-price="high">¥10,000 〜</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 処理結果表示 -->
+            <div class="process-results" id="processResults">
+                <div class="process-text">10商品中 10商品を表示（フィルタ + ソート適用済み）</div>
+                <div class="process-order" id="processOrder">追加順</div>
+            </div>
+            
+            <!-- 商品グリッド（動的生成される） -->
+            <div class="products-grid" id="productsGrid">
+                <!-- ここに商品カードが動的に生成されます -->
+            </div>
+            
+            <!-- ギャラリー統計 -->
+            <div class="gallery-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="displayedProducts">10</div>
+                    <div class="stat-label">表示商品数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalProducts">10</div>
+                    <div class="stat-label">総商品数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalLikes">0</div>
+                    <div class="stat-label">総いいね</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="activeOperations">0</div>
+                    <div class="stat-label">適用操作数</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学習パネル -->
+        <div class="learning-panel">
+            <!-- ソートプロセス -->
+            <div class="panel-section">
+                <h2 class="section-title">🔄 ソートプロセス</h2>
+                <div class="sort-process">
+                    <div class="process-title">sort() メソッドのステップ:</div>
+                    <div id="sortSteps">
+                        <div class="process-step">1. フィルタ済配列をコピー</div>
+                        <div class="process-step">2. 比較関数で要素を比較</div>
+                        <div class="process-step">3. 条件に応じて順序を決定</div>
+                        <div class="process-step">4. 新しい順序の配列を作成</div>
+                        <div class="process-step">5. UI に並び替え結果を反映</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ソート統計 -->
+            <div class="panel-section">
+                <h2 class="section-title">📈 ソート統計</h2>
+                <div class="sort-stats" id="sortStats">
+                    <!-- 動的に生成 -->
+                </div>
+            </div>
+            
+            <!-- ソート学習情報 -->
+            <div class="panel-section">
+                <h2 class="section-title">🎓 ソート学習</h2>
+                <div class="sort-info" id="sortInfo">
+                    <div class="info-title">sort() の仕組み:</div>
+                    今回学習する sort() メソッド:<br><br>
+                    • 配列要素を指定した順序で並び替え<br>
+                    • 比較関数で自由なソート条件を設定<br>
+                    • フィルタリング後にソートを適用<br>
+                    • 実用的なECサイトの基本機能
+                </div>
+            </div>
+            
+            <!-- コントロール -->
+            <div class="panel-section">
+                <h2 class="section-title">🎮 コントロール</h2>
+                <div class="control-area">
+                    <button class="btn-control btn-reset" id="resetAll">
+                        🗑️ すべてリセット
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

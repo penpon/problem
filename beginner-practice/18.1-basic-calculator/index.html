@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステップ18.1 - 基本計算機</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .calculator {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            max-width: 350px;
+            width: 100%;
+        }
+        
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .calculator-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .calculator-header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .display {
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: right;
+            font-size: 24px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .display.error {
+            color: #ff6b6b;
+            font-size: 18px;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 20px 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-number {
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        .btn-number:hover {
+            background: #e9ecef;
+        }
+        
+        .btn-operator {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-operator:hover {
+            background: #0056b3;
+        }
+        
+        .btn-equals {
+            background: #28a745;
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .btn-equals:hover {
+            background: #1e7e34;
+        }
+        
+        .btn-clear {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-clear:hover {
+            background: #c82333;
+        }
+        
+        .btn-clear-entry {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .btn-clear-entry:hover {
+            background: #e0a800;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .status h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .current-operation {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="calculator-header">
+            <h1>🧮 基本計算機</h1>
+            <p>四則演算とクリア機能を学ぶ</p>
+        </div>
+        
+        <div class="display" id="display">0</div>
+        
+        <div class="buttons">
+            <button class="btn btn-clear" onclick="clearAll()">C</button>
+            <button class="btn btn-clear-entry" onclick="clearEntry()">CE</button>
+            <button class="btn btn-operator" onclick="inputOperator('/')" title="割り算">÷</button>
+            <button class="btn btn-operator" onclick="inputOperator('*')" title="掛け算">×</button>
+            
+            <button class="btn btn-number" onclick="inputNumber(7)">7</button>
+            <button class="btn btn-number" onclick="inputNumber(8)">8</button>
+            <button class="btn btn-number" onclick="inputNumber(9)">9</button>
+            <button class="btn btn-operator" onclick="inputOperator('-')" title="引き算">-</button>
+            
+            <button class="btn btn-number" onclick="inputNumber(4)">4</button>
+            <button class="btn btn-number" onclick="inputNumber(5)">5</button>
+            <button class="btn btn-number" onclick="inputNumber(6)">6</button>
+            <button class="btn btn-operator" onclick="inputOperator('+')" title="足し算">+</button>
+            
+            <button class="btn btn-number" onclick="inputNumber(1)">1</button>
+            <button class="btn btn-number" onclick="inputNumber(2)">2</button>
+            <button class="btn btn-number" onclick="inputNumber(3)">3</button>
+            <button class="btn btn-equals" onclick="calculate()" rowspan="2">=</button>
+            
+            <button class="btn btn-number" onclick="inputNumber(0)" style="grid-column: span 2;">0</button>
+            <button class="btn btn-number" onclick="inputDecimal()">.</button>
+        </div>
+        
+        <div class="status">
+            <h3>📊 計算機の状態</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="calculation-count">0</div>
+                    <div class="stat-label">計算実行回数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="button-count">0</div>
+                    <div class="stat-label">ボタンクリック回数</div>
+                </div>
+            </div>
+            <div class="current-operation" id="current-operation">
+                計算機が初期化されました
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 計算機の状態管理
+        let currentInput = '0';
+        let previousInput = null;
+        let operator = null;
+        let waitingForNewInput = false;
+        
+        // 統計情報
+        let calculationCount = 0;
+        let buttonClickCount = 0;
+        
+        // DOM要素の取得
+        const display = document.getElementById('display');
+        const calculationCountElement = document.getElementById('calculation-count');
+        const buttonCountElement = document.getElementById('button-count');
+        const currentOperationElement = document.getElementById('current-operation');
+        
+        /**
+         * 数字ボタンが押された時の処理
+         * @param {number} number - 入力された数字
+         */
+        function inputNumber(number) {
+            console.log(`📖 数字入力: ${number}`);
+            
+            if (waitingForNewInput) {
+                currentInput = number.toString();
+                waitingForNewInput = false;
+            } else {
+                if (currentInput === '0') {
+                    currentInput = number.toString();
+                } else {
+                    currentInput += number.toString();
+                }
+            }
+            
+            updateDisplay();
+            updateButtonCount();
+            updateStatus(`数字 "${number}" を入力しました`);
+            
+            console.log(`✅ 現在の入力: ${currentInput}`);
+        }
+        
+        /**
+         * 小数点ボタンが押された時の処理
+         */
+        function inputDecimal() {
+            console.log('📖 小数点入力');
+            
+            if (waitingForNewInput) {
+                currentInput = '0.';
+                waitingForNewInput = false;
+            } else if (!currentInput.includes('.')) {
+                currentInput += '.';
+            }
+            
+            updateDisplay();
+            updateButtonCount();
+            updateStatus('小数点を入力しました');
+            
+            console.log(`✅ 現在の入力: ${currentInput}`);
+        }
+        
+        /**
+         * 演算子ボタンが押された時の処理
+         * @param {string} op - 演算子 (+, -, *, /)
+         */
+        function inputOperator(op) {
+            console.log(`📖 演算子入力: ${op}`);
+            
+            const current = parseFloat(currentInput);
+            
+            if (previousInput === null) {
+                previousInput = current;
+            } else if (operator && !waitingForNewInput) {
+                const result = performCalculation();
+                if (result === null) return; // エラーが発生した場合
+                
+                currentInput = result.toString();
+                previousInput = result;
+                updateDisplay();
+                calculationCount++;
+                updateCalculationCount();
+            } else {
+                previousInput = current;
+            }
+            
+            operator = op;
+            waitingForNewInput = true;
+            
+            const operatorNames = {
+                '+': '足し算',
+                '-': '引き算',
+                '*': '掛け算',
+                '/': '割り算'
+            };
+            
+            updateButtonCount();
+            updateStatus(`${operatorNames[op]}を選択しました`);
+            
+            console.log(`✅ 演算子設定: ${op}, 前の値: ${previousInput}`);
+        }
+        
+        /**
+         * イコールボタンが押された時の処理
+         */
+        function calculate() {
+            console.log('📖 計算実行');
+            
+            if (operator === null || previousInput === null) {
+                updateStatus('❌ 計算する式が不完全です');
+                console.log('❌ 計算できない状態');
+                return;
+            }
+            
+            const result = performCalculation();
+            if (result === null) return; // エラーが発生した場合
+            
+            currentInput = result.toString();
+            previousInput = null;
+            operator = null;
+            waitingForNewInput = true;
+            
+            updateDisplay();
+            calculationCount++;
+            updateCalculationCount();
+            updateButtonCount();
+            updateStatus(`✅ 計算完了: 結果 = ${result}`);
+            
+            console.log(`✅ 計算完了: ${result}`);
+        }
+        
+        /**
+         * 実際の計算処理
+         * @returns {number|null} 計算結果またはnull（エラー時）
+         */
+        function performCalculation() {
+            const prev = previousInput;
+            const current = parseFloat(currentInput);
+            
+            console.log(`📊 計算実行: ${prev} ${operator} ${current}`);
+            
+            let result;
+            
+            try {
+                switch (operator) {
+                    case '+':
+                        result = prev + current;
+                        break;
+                    case '-':
+                        result = prev - current;
+                        break;
+                    case '*':
+                        result = prev * current;
+                        break;
+                    case '/':
+                        if (current === 0) {
+                            throw new Error('0で割ることはできません');
+                        }
+                        result = prev / current;
+                        break;
+                    default:
+                        throw new Error('不明な演算子です');
+                }
+                
+                // 結果の精度調整（小数点以下10桁で丸める）
+                result = Math.round(result * 10000000000) / 10000000000;
+                
+                console.log(`✅ 計算結果: ${result}`);
+                return result;
+                
+            } catch (error) {
+                console.error('❌ 計算エラー:', error.message);
+                showError(error.message);
+                return null;
+            }
+        }
+        
+        /**
+         * 全クリア（C）ボタンの処理
+         */
+        function clearAll() {
+            console.log('📖 全クリア実行');
+            
+            currentInput = '0';
+            previousInput = null;
+            operator = null;
+            waitingForNewInput = false;
+            
+            updateDisplay();
+            updateButtonCount();
+            updateStatus('🔄 計算機を初期化しました');
+            
+            console.log('✅ 全クリア完了');
+        }
+        
+        /**
+         * エントリークリア（CE）ボタンの処理
+         */
+        function clearEntry() {
+            console.log('📖 エントリークリア実行');
+            
+            currentInput = '0';
+            waitingForNewInput = false;
+            
+            updateDisplay();
+            updateButtonCount();
+            updateStatus('🔄 現在の入力をクリアしました');
+            
+            console.log('✅ エントリークリア完了');
+        }
+        
+        /**
+         * ディスプレイ表示を更新
+         */
+        function updateDisplay() {
+            display.textContent = currentInput;
+            display.classList.remove('error');
+        }
+        
+        /**
+         * エラー表示
+         * @param {string} message - エラーメッセージ
+         */
+        function showError(message) {
+            display.textContent = `エラー: ${message}`;
+            display.classList.add('error');
+            
+            // 3秒後に自動的にクリア
+            setTimeout(() => {
+                clearAll();
+            }, 3000);
+        }
+        
+        /**
+         * ボタンクリック回数を更新
+         */
+        function updateButtonCount() {
+            buttonClickCount++;
+            buttonCountElement.textContent = buttonClickCount;
+        }
+        
+        /**
+         * 計算実行回数を更新
+         */
+        function updateCalculationCount() {
+            calculationCountElement.textContent = calculationCount;
+        }
+        
+        /**
+         * ステータス表示を更新
+         * @param {string} message - 表示するメッセージ
+         */
+        function updateStatus(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            currentOperationElement.textContent = `[${timestamp}] ${message}`;
+        }
+        
+        // キーボード対応
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            
+            // 数字キー
+            if (key >= '0' && key <= '9') {
+                inputNumber(parseInt(key));
+                event.preventDefault();
+            }
+            // 演算子キー
+            else if (key === '+') {
+                inputOperator('+');
+                event.preventDefault();
+            } else if (key === '-') {
+                inputOperator('-');
+                event.preventDefault();
+            } else if (key === '*') {
+                inputOperator('*');
+                event.preventDefault();
+            } else if (key === '/') {
+                inputOperator('/');
+                event.preventDefault();
+            }
+            // その他の特殊キー
+            else if (key === 'Enter' || key === '=') {
+                calculate();
+                event.preventDefault();
+            } else if (key === 'Escape') {
+                clearAll();
+                event.preventDefault();
+            } else if (key === 'Backspace') {
+                clearEntry();
+                event.preventDefault();
+            } else if (key === '.') {
+                inputDecimal();
+                event.preventDefault();
+            }
+        });
+        
+        // 初期化処理
+        console.log('🚀 基本計算機が起動しました');
+        updateStatus('基本計算機が起動しました');
+    </script>
+</body>
+</html>

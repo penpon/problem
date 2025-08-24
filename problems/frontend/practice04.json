@@ -1,0 +1,36 @@
+{
+  "id": "practice04",
+  "title": "04: リンクの作成",
+  "description": "aタグを使用してリンクを作成する方法を学習しましょう。",
+  "category": "html-basics",
+  "difficulty": 2,
+  "instructions": [
+    "h1タグで「リンクの練習」の見出しを追加してください",
+    "aタグを使用してリンクを作成してください",
+    "href属性に「https://www.example.com」を設定してください",
+    "リンクテキストは「外部リンク」にしてください",
+    "pタグでリンクを囲んでください"
+  ],
+  "files": {
+    "html": {
+      "filename": "index.html",
+      "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>リンクのページ</title>\n</head>\n<body>\n    <h1>リンクの練習</h1>\n    <!-- リンク（a）を追加してください -->\n    <p>リンクを作成しました。</p>\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html>\n<head>\n    <title>リンクのページ</title>\n</head>\n<body>\n    <h1>リンクの練習</h1>\n    <p><a href=\"https://www.example.com\">外部リンク</a></p>\n    <p>リンクを作成しました。</p>\n</body>\n</html>"
+    }
+  },
+  "checks": [
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "h1", "name": "見出し(h1)", "type": "content", "message": "<h1>見出しと内容が必要です" },
+    { "id": "a", "name": "リンク(a)", "type": "content", "message": "<a>リンクと内容が必要です" },
+    { "id": "a-href", "name": "リンクのhref属性", "type": "attribute", "message": "リンクにhref属性が必要です" }
+  ],
+  "hints": [
+    "aタグのhref属性にはリンク先のURLを指定します",
+    "外部サイトへのリンクには完全なURLを使用します",
+    "リンクテキストは分かりやすい名前にしましょう"
+  ]
+}

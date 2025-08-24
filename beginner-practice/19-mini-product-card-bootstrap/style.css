@@ -1,0 +1,234 @@
+/* Bootstrap版 商品カード カスタムスタイル */
+
+/* CSS カスタムプロパティ（Bootstrap拡張） */
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --success-color: #48bb78;
+    --warning-color: #ed8936;
+    --error-color: #f56565;
+}
+
+/* ベーススタイル */
+body {
+    font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'Meiryo', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* カードのホバーエフェクト */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15) !important;
+}
+
+/* メイン画像 */
+.card-img-top {
+    height: 300px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* サムネイル画像 */
+.thumbnail {
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.thumbnail:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* プレースホルダーサムネイル */
+.placeholder {
+    background: linear-gradient(45deg, #e9ecef, #dee2e6);
+    font-size: 1.2rem;
+    border: 2px dashed #ced4da;
+}
+
+/* 評価星 */
+.star.filled {
+    color: #ffc107;
+}
+
+.star {
+    color: #e9ecef;
+    transition: color 0.2s ease;
+}
+
+/* ボタンカスタマイズ */
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #5a67d8, #6b46c1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-warning {
+    background: linear-gradient(45deg, var(--warning-color), #dd6b20);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(45deg, #dd6b20, #c05621);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.btn-outline-danger:hover {
+    background: var(--error-color);
+    border-color: var(--error-color);
+}
+
+/* ライクボタンアニメーション */
+.btn-outline-primary.liked {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+}
+
+/* カートカウントバッジ */
+.cart-count {
+    animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* 通知システム */
+.toast {
+    min-width: 300px;
+}
+
+.toast.show {
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* プログレスバーカスタマイズ */
+.progress-bar {
+    transition: width 0.5s ease;
+}
+
+/* アコーディオンカスタマイズ */
+.accordion-button {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.accordion-button:not(.collapsed) {
+    background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* テーブルカスタマイズ */
+.table td:first-child {
+    width: 30%;
+    color: var(--primary-color);
+}
+
+/* リストグループカスタマイズ */
+.list-group-item {
+    border: none;
+    padding-left: 0;
+}
+
+/* ユーティリティクラス */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 250px;
+    }
+    
+    .d-flex.gap-2 {
+        flex-direction: column;
+    }
+    
+    .d-flex.gap-2 .flex-fill {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .card-img-top {
+        height: 200px;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
+/* パルスアニメーション（いいねボタン） */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 0.3s ease-in-out;
+}
+
+/* フェードイン効果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}

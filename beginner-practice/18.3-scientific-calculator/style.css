@@ -1,0 +1,354 @@
+/* 18.3 高度な科学計算機 - CSSファイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 15px;
+}
+
+.calculator-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+}
+
+.main-calculator {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    padding: 25px;
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.calculator-header h1 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.calculator-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.display-section {
+    margin-bottom: 20px;
+}
+
+.expression-display {
+    background: #2d2d2d;
+    color: #aaa;
+    padding: 12px 20px;
+    border-radius: 8px 8px 0 0;
+    text-align: right;
+    font-size: 16px;
+    min-height: 40px;
+    font-family: 'Courier New', monospace;
+}
+
+.main-display {
+    background: #1a1a1a;
+    color: white;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    text-align: right;
+    font-size: 32px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
+}
+
+.main-display.error {
+    color: #ff6b6b;
+    font-size: 20px;
+}
+
+.angle-mode {
+    background: #17a2b8;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.angle-mode:hover {
+    background: #138496;
+}
+
+.buttons-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.basic-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.scientific-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    padding: 15px 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-number {
+    background: #f8f9fa;
+    color: #333;
+}
+
+.btn-number:hover {
+    background: #e9ecef;
+}
+
+.btn-operator {
+    background: #007bff;
+    color: white;
+}
+
+.btn-operator:hover {
+    background: #0056b3;
+}
+
+.btn-equals {
+    background: #28a745;
+    color: white;
+}
+
+.btn-equals:hover {
+    background: #1e7e34;
+}
+
+.btn-clear {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-clear:hover {
+    background: #c82333;
+}
+
+.btn-function {
+    background: #6f42c1;
+    color: white;
+    font-size: 12px;
+}
+
+.btn-function:hover {
+    background: #5a2d91;
+}
+
+.btn-bracket {
+    background: #fd7e14;
+    color: white;
+}
+
+.btn-bracket:hover {
+    background: #e8650e;
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.function-help,
+.expression-builder,
+.history-section,
+.stats-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.function-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.function-item {
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.function-item:hover {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+.function-name {
+    font-weight: bold;
+    color: #6f42c1;
+}
+
+.function-desc {
+    color: #666;
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.expression-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 10px;
+}
+
+.btn-evaluate {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-evaluate:hover {
+    background: #1e7e34;
+}
+
+.history-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.history-item {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-expression {
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.history-result {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border-left: 3px solid #007bff;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.stat-label {
+    font-size: 10px;
+    color: #666;
+    margin-top: 3px;
+}
+
+.current-status {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border-left: 3px solid #28a745;
+}
+
+.shortcut-help {
+    font-size: 11px;
+    color: #888;
+    margin-top: 8px;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+    .calculator-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .buttons-section {
+        grid-template-columns: 1fr;
+    }
+}

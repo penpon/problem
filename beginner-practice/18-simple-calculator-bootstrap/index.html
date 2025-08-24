@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡単計算機（Bootstrap版）</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center text-white mb-5">🧮 簡単計算機（Bootstrap版）</h1>
+        
+        <div class="row g-4">
+            <!-- 基本計算機 -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">基本計算機</h2>
+                        <div class="mb-3">
+                            <input type="number" id="num1" class="form-control mb-2" placeholder="最初の数値" step="any">
+                            <select id="operation" class="form-select mb-2">
+                                <option value="+">+ 足し算</option>
+                                <option value="-">- 引き算</option>
+                                <option value="*">× 掛け算</option>
+                                <option value="/">÷ 割り算</option>
+                            </select>
+                            <input type="number" id="num2" class="form-control mb-2" placeholder="2番目の数値" step="any">
+                            <div class="d-grid">
+                                <button id="calculate" class="btn btn-primary">計算実行</button>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <div id="result" class="alert alert-light text-center">結果がここに表示されます</div>
+                            <div id="error" class="alert alert-danger d-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 履歴機能 -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">計算履歴</h2>
+                        <div class="mb-3">
+                            <div class="d-grid">
+                                <button id="clear-history" class="btn btn-danger">履歴をクリア</button>
+                            </div>
+                        </div>
+                        <div id="history" class="history-list">
+                            <p class="text-muted text-center">計算履歴はまだありません</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 特殊計算 -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">特殊計算</h2>
+                        <div class="special-calc">
+                            <div class="mb-3">
+                                <label class="form-label">平方根：</label>
+                                <div class="input-group mb-2">
+                                    <input type="number" id="sqrt-input" class="form-control" placeholder="数値" step="any">
+                                    <button id="sqrt-btn" class="btn btn-success">√ 計算</button>
+                                </div>
+                                <span id="sqrt-result" class="badge bg-info"></span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">乗算：</label>
+                                <div class="input-group mb-2">
+                                    <input type="number" id="power-base" class="form-control" placeholder="底" step="any">
+                                    <span class="input-group-text">^</span>
+                                    <input type="number" id="power-exp" class="form-control" placeholder="指数" step="any">
+                                    <button id="power-btn" class="btn btn-success">計算</button>
+                                </div>
+                                <span id="power-result" class="badge bg-info"></span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">円の面積：</label>
+                                <div class="input-group mb-2">
+                                    <input type="number" id="circle-radius" class="form-control" placeholder="半径" step="any">
+                                    <button id="circle-btn" class="btn btn-success">面積計算</button>
+                                </div>
+                                <span id="circle-result" class="badge bg-info"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>

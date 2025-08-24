@@ -8,6 +8,14 @@ class FrontendLearning {
         this.currentProblem = null;
         this.isUpdating = false;
         this.previewUpdateTimeout = null;
+        this.activeFileType = 'html';
+        
+        // マルチファイル管理
+        this.fileContents = {
+            html: '',
+            css: '',
+            js: ''
+        };
         
         this.initializeElements();
         this.setupEventListeners();
@@ -33,11 +41,19 @@ class FrontendLearning {
         this.expectedCodeView = document.getElementById('expected-code-view');
         this.expectedCodeDisplay = document.getElementById('expected-code-display');
         this.previewInfoText = document.getElementById('preview-info-text');
+        
+        // ファイルタブ関連の要素
+        this.fileTabList = document.getElementById('file-tab-list');
+        this.editorLabel = document.getElementById('editor-label');
+        this.htmlTabName = document.getElementById('html-tab-name');
+        this.cssTabName = document.getElementById('css-tab-name');
+        this.jsTabName = document.getElementById('js-tab-name');
     }
     
     setupEventListeners() {
         // コードエディタのリアルタイム更新
         this.codeEditor.addEventListener('input', () => {
+            this.updateCurrentFileContent();
             this.schedulePreviewUpdate();
         });
         
@@ -67,128 +83,27 @@ class FrontendLearning {
         this.codeTab.addEventListener('click', () => {
             this.showCodeView();
         });
+        
+        // ファイルタブの切り替え
+        this.fileTabList.addEventListener('click', (e) => {
+            const fileTab = e.target.closest('.file-tab');
+            if (fileTab) {
+                const fileType = fileTab.dataset.fileType;
+                this.switchFileTab(fileType);
+            }
+        });
     }
     
     async loadProblems() {
         try {
             this.problemList.innerHTML = '<div style="padding: 20px; text-align: center;">問題を読み込み中...</div>';
             
-            // 問題データを直接定義（file://プロトコル対応）
-            const problems = [
-                {
-                    id: 'practice01',
-                    title: '01: 基本的なHTML',
-                    description: 'HTMLの基本構造を学習し、最初のWebページを作成しましょう。',
-                    instructions: [
-                        'DOCTYPE宣言を追加してください',
-                        'html、head、bodyタグを使用してください',
-                        'titleタグでページタイトルを設定してください',
-                        'bodyの中に「Hello, World!」を表示するpタグを追加してください'
-                    ],
-                    template: `<!DOCTYPE html>
-<html>
-<head>
-    <title>My First Page</title>
-</head>
-<body>
-    <!-- ここにコンテンツを追加してください -->
-</body>
-</html>`
-                },
-                {
-                    id: 'practice02',
-                    title: '02: 見出しの追加',
-                    description: '見出しタグ（h1）を使用して、ページに構造を持たせましょう。',
-                    instructions: [
-                        'h1タグを使用してメインタイトルを追加してください',
-                        '見出しは「メインタイトル」にしてください',
-                        '既存のpタグは残しておいてください'
-                    ],
-                    template: `<!DOCTYPE html>
-<html>
-<head>
-    <title>見出しのページ</title>
-</head>
-<body>
-    <!-- メインタイトル（h1）を追加してください -->
-    <p>Hello, World!</p>
-</body>
-</html>`
-                },
-                {
-                    id: 'practice03',
-                    title: '03: 画像の表示',
-                    description: 'imgタグを使用して画像を表示する方法を学習しましょう。',
-                    instructions: [
-                        'h1タグで「画像表示」の見出しを追加してください',
-                        'imgタグを使用して画像を表示してください',
-                        'src属性に「../shared/images/simple-product.svg」を設定してください',
-                        'alt属性に「商品画像」を設定してください',
-                        'pタグで説明文を追加してください'
-                    ],
-                    template: `<!DOCTYPE html>
-<html>
-<head>
-    <title>画像のページ</title>
-</head>
-<body>
-    <h1>画像表示</h1>
-    <!-- 画像（img）を追加してください -->
-    <!-- src="../shared/images/simple-product.svg" を使用 -->
-    <p>商品の説明テキスト</p>
-</body>
-</html>`
-                },
-                {
-                    id: 'practice04',
-                    title: '04: リンクの作成',
-                    description: 'aタグを使用してリンクを作成する方法を学習しましょう。',
-                    instructions: [
-                        'h1タグで「リンクの練習」の見出しを追加してください',
-                        'aタグを使用してリンクを作成してください',
-                        'href属性に「https://www.example.com」を設定してください',
-                        'リンクテキストは「外部リンク」にしてください',
-                        'pタグでリンクを囲んでください'
-                    ],
-                    template: `<!DOCTYPE html>
-<html>
-<head>
-    <title>リンクのページ</title>
-</head>
-<body>
-    <h1>リンクの練習</h1>
-    <!-- リンク（a）を追加してください -->
-    <p>リンクを作成しました。</p>
-</body>
-</html>`
-                },
-                {
-                    id: 'practice05',
-                    title: '05: リストの作成',
-                    description: 'ulとolタグを使用してリストを作成する方法を学習しましょう。',
-                    instructions: [
-                        'h1タグで「リスト表示」のメインタイトルを追加してください',
-                        'h2タグで「順序なしリスト」のサブタイトルを追加してください',
-                        'ulタグとliタグで順序なしリストを作成してください（3つの項目）',
-                        'h2タグで「順序付きリスト」のサブタイトルを追加してください',
-                        'olタグとliタグで順序付きリストを作成してください（3つの項目）'
-                    ],
-                    template: `<!DOCTYPE html>
-<html>
-<head>
-    <title>リストのページ</title>
-</head>
-<body>
-    <h1>リスト表示</h1>
-    <h2>順序なしリスト</h2>
-    <!-- 順序なしリスト（ul/li）を追加してください -->
-    
-    <h2>順序付きリスト</h2>
-    <!-- 順序付きリスト（ol/li）を追加してください -->
-</body>
-</html>`
-                }
-            ];
+            // ProblemLoaderを使用してフロントエンド問題を読み込み
+            const problems = await getFrontendProblemList();
+            
+            if (!problems || problems.length === 0) {
+                throw new Error('フロントエンド問題データが見つかりません');
+            }
             
             this.displayProblems(problems);
             this.allProblems = problems;
@@ -207,8 +122,12 @@ class FrontendLearning {
             const problemItem = document.createElement('button');
             problemItem.className = 'problem-item';
             problemItem.dataset.problemId = problem.id;
+            
+            // 問題番号を取得（practice01 -> 01 形式）
+            const problemNumber = problem.id.replace('practice', '');
+            
             problemItem.innerHTML = `
-                <span class="problem-number">#${problem.id.replace('practice', '')}</span>
+                <span class="problem-number">#${problemNumber}</span>
                 <span class="problem-title">${problem.title}</span>
             `;
             this.problemList.appendChild(problemItem);
@@ -228,8 +147,8 @@ class FrontendLearning {
                 selectedItem.classList.add('selected');
             }
             
-            // 問題データを取得
-            this.currentProblem = this.allProblems.find(p => p.id === problemId);
+            // ProblemLoaderから詳細な問題データを取得
+            this.currentProblem = await getFrontendProblem(problemId);
             
             if (this.currentProblem) {
                 this.displayProblemDetails(this.currentProblem);
@@ -266,15 +185,22 @@ class FrontendLearning {
     }
     
     loadProblemTemplate(problem) {
-        // HTMLテンプレートを設定
-        const template = problem.template || this.getDefaultTemplate();
-        this.codeEditor.value = template.replace(/\\n/g, '\n');
+        // 複数ファイルのテンプレートを設定
+        this.fileContents = {
+            html: problem.files?.html?.template || this.getDefaultTemplate(),
+            css: problem.files?.css?.template || '',
+            js: problem.files?.js?.template || ''
+        };
+        
+        // 現在のアクティブタブの内容をエディタに表示
+        this.codeEditor.value = this.fileContents[this.activeFileType].replace(/\\n/g, '\n');
+        this.updateEditorLabel();
         this.schedulePreviewUpdate();
     }
     
     async loadExpectedPreview(problem) {
-        // 期待される結果を生成して表示
-        const expectedHtml = this.createExpectedHtml(problem);
+        // 期待される結果をJSONデータから取得
+        const expectedHtml = problem.files?.html?.expected || '<html><body><p>期待される結果</p></body></html>';
         this.displayPreview(this.expectedPreview, expectedHtml);
         
         // コード表示用にも保存
@@ -285,91 +211,6 @@ class FrontendLearning {
         this.showPreviewView();
     }
     
-    createExpectedHtml(problem) {
-        const problemId = problem.id;
-        
-        switch (problemId) {
-            case 'practice01':
-                return `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My First Page</title>
-</head>
-<body>
-    <p>Hello, World!</p>
-</body>
-</html>`;
-                
-            case 'practice02':
-                return `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>見出しのページ</title>
-</head>
-<body>
-    <h1>メインタイトル</h1>
-    <p>Hello, World!</p>
-</body>
-</html>`;
-                
-            case 'practice03':
-                return `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>画像のページ</title>
-</head>
-<body>
-    <h1>画像表示</h1>
-    <img src="../shared/images/simple-product.svg" alt="商品画像">
-    <p>商品の説明テキスト</p>
-</body>
-</html>`;
-                
-            case 'practice04':
-                return `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>リンクのページ</title>
-</head>
-<body>
-    <h1>リンクの練習</h1>
-    <p><a href="https://www.example.com">外部リンク</a></p>
-    <p>リンクを作成しました。</p>
-</body>
-</html>`;
-                
-            case 'practice05':
-                return `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>リストのページ</title>
-</head>
-<body>
-    <h1>リスト表示</h1>
-    <h2>順序なしリスト</h2>
-    <ul>
-        <li>項目1</li>
-        <li>項目2</li>
-        <li>項目3</li>
-    </ul>
-    <h2>順序付きリスト</h2>
-    <ol>
-        <li>最初</li>
-        <li>次に</li>
-        <li>最後に</li>
-    </ol>
-</body>
-</html>`;
-                
-            default:
-                return '<html><body><p>期待される結果</p></body></html>';
-        }
-    }
     
     getDefaultTemplate() {
         return `<!DOCTYPE html>
@@ -383,6 +224,59 @@ class FrontendLearning {
 </html>`;
     }
     
+    // ファイルタブ切り替え機能
+    switchFileTab(fileType) {
+        if (fileType === this.activeFileType) return;
+        
+        // 現在編集中の内容を保存
+        this.updateCurrentFileContent();
+        
+        // アクティブタブを切り替え
+        this.activeFileType = fileType;
+        
+        // UIを更新
+        this.updateTabActiveState();
+        this.updateEditorContent();
+        this.updateEditorLabel();
+        
+        // プレビューを更新
+        this.schedulePreviewUpdate();
+    }
+    
+    updateCurrentFileContent() {
+        // 現在エディタにある内容を対応するファイルに保存
+        this.fileContents[this.activeFileType] = this.codeEditor.value;
+    }
+    
+    updateTabActiveState() {
+        // すべてのタブからactiveクラスを削除
+        this.fileTabList.querySelectorAll('.file-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // アクティブなタブにactiveクラスを追加
+        const activeTab = this.fileTabList.querySelector(`[data-file-type="${this.activeFileType}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+    }
+    
+    updateEditorContent() {
+        // アクティブなファイルの内容をエディタに表示
+        this.codeEditor.value = this.fileContents[this.activeFileType] || '';
+    }
+    
+    updateEditorLabel() {
+        // エディタのラベルを更新
+        const labels = {
+            html: 'HTMLを入力してください：',
+            css: 'CSSを入力してください：',
+            js: 'JavaScriptを入力してください：'
+        };
+        
+        this.editorLabel.textContent = labels[this.activeFileType] || 'コードを入力してください：';
+    }
+    
     schedulePreviewUpdate() {
         if (this.previewUpdateTimeout) {
             clearTimeout(this.previewUpdateTimeout);
@@ -394,8 +288,54 @@ class FrontendLearning {
     }
     
     updateCurrentPreview() {
-        const code = this.codeEditor.value;
-        this.displayPreview(this.currentPreview, code);
+        // 現在編集中の内容を保存
+        this.updateCurrentFileContent();
+        
+        // 複数ファイルを統合したHTMLを生成
+        const combinedHtml = this.generateCombinedHtml();
+        this.displayPreview(this.currentPreview, combinedHtml);
+    }
+    
+    generateCombinedHtml() {
+        const htmlContent = this.fileContents.html || '';
+        const cssContent = this.fileContents.css || '';
+        const jsContent = this.fileContents.js || '';
+        
+        // HTMLが空の場合はデフォルトテンプレート
+        if (!htmlContent.trim()) {
+            return this.getDefaultTemplate();
+        }
+        
+        // CSS と JS を HTML に挿入
+        let combinedHtml = htmlContent;
+        
+        // CSS を <style> タグとして挿入
+        if (cssContent.trim()) {
+            const styleTag = `\n<style>\n${cssContent}\n</style>`;
+            
+            // </head> の前に CSS を挿入
+            if (combinedHtml.includes('</head>')) {
+                combinedHtml = combinedHtml.replace('</head>', `${styleTag}\n</head>`);
+            } else {
+                // head タグがない場合は HTML の先頭に追加
+                combinedHtml = `<head>${styleTag}\n</head>\n${combinedHtml}`;
+            }
+        }
+        
+        // JavaScript を <script> タグとして挿入
+        if (jsContent.trim()) {
+            const scriptTag = `\n<script>\n${jsContent}\n</script>`;
+            
+            // </body> の前に JavaScript を挿入
+            if (combinedHtml.includes('</body>')) {
+                combinedHtml = combinedHtml.replace('</body>', `${scriptTag}\n</body>`);
+            } else {
+                // body タグがない場合は HTML の末尾に追加
+                combinedHtml = `${combinedHtml}\n${scriptTag}`;
+            }
+        }
+        
+        return combinedHtml;
     }
     
     displayPreview(iframe, htmlCode) {
@@ -452,8 +392,12 @@ class FrontendLearning {
             return;
         }
         
-        const code = this.codeEditor.value.trim();
-        if (!code) {
+        // 現在編集中の内容を保存
+        this.updateCurrentFileContent();
+        
+        // すべてのファイルが空でないかチェック
+        const hasContent = Object.values(this.fileContents).some(content => content.trim());
+        if (!hasContent) {
             this.showError('コードを入力してください。');
             return;
         }
@@ -461,7 +405,7 @@ class FrontendLearning {
         this.startGrading();
         
         try {
-            const result = await this.analyzeHtml(code);
+            const result = await this.analyzeCode();
             this.displayResults(result);
         } catch (error) {
             console.error('採点中にエラーが発生:', error);
@@ -471,10 +415,11 @@ class FrontendLearning {
         }
     }
     
-    async analyzeHtml(htmlCode) {
-        // HTML解析と採点ロジック
+    async analyzeCode() {
+        // 複数ファイルの解析と採点ロジック
+        const combinedHtml = this.generateCombinedHtml();
         const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlCode, 'text/html');
+        const doc = parser.parseFromString(combinedHtml, 'text/html');
         
         const checks = this.getChecksForProblem(this.currentProblem.id);
         const results = [];
@@ -482,54 +427,130 @@ class FrontendLearning {
         let maxScore = checks.length * 10;
         
         for (const check of checks) {
-            const result = await this.runCheck(doc, check, htmlCode);
+            const result = await this.runCheck(doc, check, combinedHtml);
             results.push(result);
             if (result.passed) {
                 totalScore += 10;
             }
         }
         
+        // 追加の複数ファイル評価
+        const additionalResults = await this.runAdditionalFileChecks();
+        results.push(...additionalResults);
+        maxScore += additionalResults.length * 10;
+        
+        additionalResults.forEach(result => {
+            if (result.passed) {
+                totalScore += 10;
+            }
+        });
+        
         return {
             score: totalScore,
             maxScore: maxScore,
             checks: results,
-            status: totalScore === maxScore ? 'PERFECT' : totalScore > 0 ? 'PARTIAL' : 'FAILED'
+            status: totalScore === maxScore ? 'PERFECT' : totalScore > 0 ? 'PARTIAL' : 'FAILED',
+            fileContents: this.fileContents
         };
     }
     
+    async runAdditionalFileChecks() {
+        const additionalChecks = [];
+        
+        // CSS関連のチェック
+        const cssContent = this.fileContents.css?.trim();
+        if (cssContent) {
+            additionalChecks.push({
+                id: 'css-content',
+                name: 'CSSスタイル',
+                type: 'css',
+                passed: cssContent.length > 0,
+                message: 'CSSが記述されています'
+            });
+            
+            // 基本的なCSS構文チェック
+            const hasValidCss = this.validateCssBasics(cssContent);
+            additionalChecks.push({
+                id: 'css-syntax',
+                name: 'CSS構文',
+                type: 'css',
+                passed: hasValidCss,
+                message: hasValidCss ? 'CSS構文が正常です' : 'CSS構文にエラーがあります'
+            });
+        }
+        
+        // JavaScript関連のチェック
+        const jsContent = this.fileContents.js?.trim();
+        if (jsContent) {
+            additionalChecks.push({
+                id: 'js-content',
+                name: 'JavaScript',
+                type: 'js',
+                passed: jsContent.length > 0,
+                message: 'JavaScriptが記述されています'
+            });
+            
+            // 基本的なJavaScript構文チェック
+            const hasValidJs = this.validateJsBasics(jsContent);
+            additionalChecks.push({
+                id: 'js-syntax',
+                name: 'JavaScript構文',
+                type: 'js',
+                passed: hasValidJs,
+                message: hasValidJs ? 'JavaScript構文が正常です' : 'JavaScript構文にエラーがあります'
+            });
+        }
+        
+        return additionalChecks;
+    }
+    
+    validateCssBasics(cssContent) {
+        try {
+            // 基本的なCSS構文チェック
+            // セレクタと波括弧のペアがあるかチェック
+            const hasSelector = /[a-zA-Z#.\-_\[\]:\s]+\s*\{[\s\S]*?\}/.test(cssContent);
+            return hasSelector;
+        } catch (error) {
+            return false;
+        }
+    }
+    
+    validateJsBasics(jsContent) {
+        try {
+            // 基本的なJavaScript構文チェック
+            // 簡単な構文解析（完全ではないが基本的なエラーを検出）
+            const hasFunction = /function\s+\w+\s*\([\s\S]*?\)\s*\{/.test(jsContent) ||
+                              /\w+\s*=\s*function\s*\([\s\S]*?\)\s*\{/.test(jsContent) ||
+                              /\w+\s*=\s*\([\s\S]*?\)\s*=>\s*\{/.test(jsContent) ||
+                              /const\s+\w+\s*=/.test(jsContent) ||
+                              /let\s+\w+\s*=/.test(jsContent) ||
+                              /var\s+\w+\s*=/.test(jsContent);
+            
+            // 基本的な制御構造
+            const hasControl = /if\s*\([\s\S]*?\)\s*\{/.test(jsContent) ||
+                             /for\s*\([\s\S]*?\)\s*\{/.test(jsContent) ||
+                             /while\s*\([\s\S]*?\)\s*\{/.test(jsContent);
+            
+            return hasFunction || hasControl || jsContent.includes('console.log');
+        } catch (error) {
+            return false;
+        }
+    }
+    
     getChecksForProblem(problemId) {
-        const commonChecks = [
-            { id: 'doctype', name: 'DOCTYPE宣言', type: 'structure' },
-            { id: 'html', name: '<html>タグ', type: 'structure' },
-            { id: 'head', name: '<head>セクション', type: 'structure' },
-            { id: 'body', name: '<body>セクション', type: 'structure' },
-            { id: 'title', name: '<title>タグ', type: 'structure' }
+        // 現在の問題からチェック項目を取得
+        if (this.currentProblem && this.currentProblem.checks) {
+            return this.currentProblem.checks;
+        }
+        
+        // フォールバック: 基本的なチェック項目
+        return [
+            { id: 'doctype', name: 'DOCTYPE宣言', type: 'structure', message: 'DOCTYPE html宣言が必要です' },
+            { id: 'html', name: '<html>タグ', type: 'structure', message: '<html>タグが必要です' },
+            { id: 'head', name: '<head>セクション', type: 'structure', message: '<head>セクションが必要です' },
+            { id: 'body', name: '<body>セクション', type: 'structure', message: '<body>セクションが必要です' },
+            { id: 'title', name: '<title>タグ', type: 'structure', message: '<title>タグと内容が必要です' }
         ];
-        
-        const specificChecks = {
-            'practice01': [],
-            'practice02': [
-                { id: 'h1', name: 'メインタイトル(h1)', type: 'content' }
-            ],
-            'practice03': [
-                { id: 'h1', name: '見出し(h1)', type: 'content' },
-                { id: 'img', name: '画像(img)', type: 'content' },
-                { id: 'img-alt', name: '画像のalt属性', type: 'attribute' }
-            ],
-            'practice04': [
-                { id: 'h1', name: '見出し(h1)', type: 'content' },
-                { id: 'a', name: 'リンク(a)', type: 'content' },
-                { id: 'a-href', name: 'リンクのhref属性', type: 'attribute' }
-            ],
-            'practice05': [
-                { id: 'h1', name: 'メインタイトル(h1)', type: 'content' },
-                { id: 'ul', name: '順序なしリスト(ul)', type: 'content' },
-                { id: 'ol', name: '順序付きリスト(ol)', type: 'content' },
-                { id: 'li', name: 'リスト項目(li)', type: 'content' }
-            ]
-        };
-        
-        return [...commonChecks, ...(specificChecks[problemId] || [])];
     }
     
     async runCheck(doc, check, originalHtml = '') {

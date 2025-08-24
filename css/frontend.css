@@ -579,3 +579,142 @@
 .preview-error {
   box-shadow: 0 0 20px rgba(245, 101, 101, 0.3);
 }
+
+/* マルチファイルタブスタイル */
+.file-tabs {
+  margin-bottom: 15px;
+}
+
+.tab-list {
+  display: flex;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 4px;
+  gap: 2px;
+}
+
+.file-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  transition: all 0.2s ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.file-tab:hover {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.file-tab.active {
+  background: white;
+  color: #1e293b;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.tab-icon {
+  font-size: 14px;
+}
+
+.tab-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ファイルタイプ別のアクティブ色 */
+.file-tab.active[data-file-type="html"] {
+  border-left: 3px solid #f97316;
+}
+
+.file-tab.active[data-file-type="css"] {
+  border-left: 3px solid #3b82f6;
+}
+
+.file-tab.active[data-file-type="js"] {
+  border-left: 3px solid #eab308;
+}
+
+/* タブのダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .tab-list {
+    background: #374151;
+  }
+  
+  .file-tab {
+    color: #9ca3af;
+  }
+  
+  .file-tab:hover {
+    background: #4b5563;
+    color: #d1d5db;
+  }
+  
+  .file-tab.active {
+    background: #1f2937;
+    color: #f9fafb;
+  }
+}
+
+/* レスポンシブ: タブの調整 */
+@media (max-width: 768px) {
+  .tab-name {
+    display: none;
+  }
+  
+  .file-tab {
+    justify-content: center;
+    padding: 8px;
+    gap: 0;
+  }
+  
+  .tab-icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-tabs {
+    margin-bottom: 10px;
+  }
+  
+  .tab-list {
+    padding: 2px;
+  }
+  
+  .file-tab {
+    padding: 6px;
+  }
+  
+  /* 採点結果チェックリストのモバイル最適化 */
+  .check-item {
+    padding: 10px 5px;
+    align-items: flex-start;
+  }
+  
+  .check-icon {
+    margin-right: 8px;
+    margin-top: 2px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  .check-description {
+    font-size: 13px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  .check-list {
+    margin: 10px 0;
+  }
+}

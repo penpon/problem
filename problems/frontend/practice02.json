@@ -1,0 +1,31 @@
+{
+  "id": "practice02",
+  "title": "02: 見出しの追加",
+  "description": "見出しタグ（h1）を使用して、ページに構造を持たせましょう。",
+  "category": "html-basics",
+  "difficulty": 1,
+  "instructions": [
+    "h1タグを使用してメインタイトルを追加してください",
+    "見出しは「メインタイトル」にしてください",
+    "既存のpタグは残しておいてください"
+  ],
+  "files": {
+    "html": {
+      "filename": "index.html",
+      "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>見出しのページ</title>\n</head>\n<body>\n    <!-- メインタイトル（h1）を追加してください -->\n    <p>Hello, World!</p>\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html>\n<head>\n    <title>見出しのページ</title>\n</head>\n<body>\n    <h1>メインタイトル</h1>\n    <p>Hello, World!</p>\n</body>\n</html>"
+    }
+  },
+  "checks": [
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "h1", "name": "メインタイトル(h1)", "type": "content", "message": "<h1>見出しと内容が必要です" }
+  ],
+  "hints": [
+    "h1タグは最重要な見出しを表します",
+    "見出しタグには適切な階層構造があります（h1 > h2 > h3...）"
+  ]
+}

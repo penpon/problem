@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>19.5 UI/UX完成 - レスポンシブ＆アクセシビリティ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- アクセシビリティ: スクリーンリーダー用ライブリージョン -->
+    <div id="liveRegion" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+    <!-- 通知システム -->
+    <div class="notification" id="notification" role="alert" aria-live="assertive"></div>
+
+    <main class="container" role="main">
+        <!-- 商品カード -->
+        <section class="product-card" role="region" aria-labelledby="product-title">
+            <!-- 画像システム -->
+            <div class="image-container">
+                <button class="product-image image-1" id="productImage" 
+                        aria-label="商品画像をクリックして次の画像に切り替え"
+                        role="button"
+                        tabindex="0">👕</button>
+            </div>
+            
+            <!-- 画像切替コントロール -->
+            <div class="image-controls" role="group" aria-label="商品画像選択">
+                <button class="image-btn active" 
+                        data-image="1"
+                        aria-label="商品画像1を表示"
+                        aria-pressed="true"></button>
+                <button class="image-btn" 
+                        data-image="2"
+                        aria-label="商品画像2を表示"
+                        aria-pressed="false"></button>
+                <button class="image-btn" 
+                        data-image="3"
+                        aria-label="商品画像3を表示"
+                        aria-pressed="false"></button>
+            </div>
+            
+            <header class="product-info">
+                <h2 id="product-title">プレミアム Tシャツ</h2>
+                <div class="product-price" aria-label="価格">¥<span id="productPrice">2,980</span></div>
+            </header>
+            
+            <div class="action-buttons" role="group" aria-label="商品操作">
+                <button class="btn btn-like" id="likeBtn"
+                        aria-label="この商品にいいねする"
+                        aria-pressed="false">
+                    <span>❤️ <span id="likeCount">0</span></span>
+                </button>
+                <button class="btn btn-details" id="detailsBtn"
+                        aria-label="商品詳細情報を表示"
+                        aria-expanded="false"
+                        aria-controls="productDetails">
+                    <span>📝 詳細</span>
+                </button>
+                <button class="btn btn-cart" id="cartBtn"
+                        aria-label="商品をカートに追加"
+                        aria-pressed="false">
+                    <span>🛒 カート</span>
+                </button>
+            </div>
+            
+            <div class="product-details" id="productDetails" 
+                 role="region" 
+                 aria-labelledby="details-title"
+                 aria-hidden="true">
+                <h3 id="details-title">商品詳細情報</h3>
+                <p><strong>素材:</strong> オーガニックコットン100%使用</p>
+                <p><strong>サイズ:</strong> S/M/L/XL の豊富なサイズ展開</p>
+                <p><strong>カラー:</strong> 4色のバリエーション</p>
+                <p><strong>特徴:</strong> 肌触り抜群で長持ちする高品質素材</p>
+                <p><strong>お手入れ:</strong> 洗濯機使用可、型崩れしにくい設計</p>
+            </div>
+        </section>
+        
+        <!-- 学習パネル -->
+        <aside class="learning-panel" role="complementary" aria-labelledby="learning-title">
+            <h2 id="learning-title" class="panel-title">🎨 UI/UX完成モード</h2>
+            
+            <!-- 統計表示 -->
+            <section class="stats-grid" role="group" aria-labelledby="stats-title">
+                <h3 id="stats-title" class="sr-only">使用統計</h3>
+                <div class="stat-item" tabindex="0" 
+                     role="button" 
+                     aria-label="いいね数">
+                    <div class="stat-number" id="totalLikes">0</div>
+                    <div class="stat-label">いいね数</div>
+                </div>
+                <div class="stat-item" tabindex="0" 
+                     role="button" 
+                     aria-label="詳細表示回数">
+                    <div class="stat-number" id="totalViews">0</div>
+                    <div class="stat-label">詳細表示</div>
+                </div>
+                <div class="stat-item" tabindex="0" 
+                     role="button" 
+                     aria-label="カート操作回数">
+                    <div class="stat-number" id="totalCart">0</div>
+                    <div class="stat-label">カート操作</div>
+                </div>
+                <div class="stat-item" tabindex="0" 
+                     role="button" 
+                     aria-label="画像切替回数">
+                    <div class="stat-number" id="totalImageChanges">0</div>
+                    <div class="stat-label">画像切替</div>
+                </div>
+            </section>
+            
+            <!-- レスポンシブ状態表示 -->
+            <div class="display-section">
+                <div class="section-title">📱 レスポンシブ状態</div>
+                <div class="content-area" id="responsiveDisplay">
+                    初期化中...
+                </div>
+            </div>
+            
+            <!-- オブジェクト表示 -->
+            <div class="display-section">
+                <div class="section-title">💾 保存データ</div>
+                <div class="content-area" id="objectDisplay">
+                    読み込み中...
+                </div>
+            </div>
+            
+            <!-- コントロールボタン -->
+            <div class="control-buttons">
+                <button class="btn-control btn-reset" id="resetBtn"
+                        aria-label="全てのデータをリセット">🔄 リセット</button>
+                <button class="btn-control btn-accessibility" id="accessibilityBtn"
+                        aria-label="アクセシビリティテスト実行">♿ A11yテスト</button>
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

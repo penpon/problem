@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19.6 統合システム - パフォーマンス最適化と学習の集大成</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左側: 商品カード -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <div id="productImage" class="product-image default-image" role="img" 
+                     aria-label="商品画像: デフォルト表示">🎽</div>
+                
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="changeImage(1)" aria-label="画像1に変更">
+                        <span class="image-preview">🎽</span>
+                    </button>
+                    <button class="image-btn" onclick="changeImage(2)" aria-label="画像2に変更">
+                        <span class="image-preview">👕</span>
+                    </button>
+                    <button class="image-btn" onclick="changeImage(3)" aria-label="画像3に変更">
+                        <span class="image-preview">🏷️</span>
+                    </button>
+                </div>
+                
+                <div id="performanceBadge" class="performance-badge" aria-live="polite">⚡ 最適化済み</div>
+            </div>
+            
+            <div class="product-info">
+                <h2 class="product-title">プレミアム Tシャツ</h2>
+                <div class="product-price">¥2,980</div>
+                
+                <div class="product-actions">
+                    <button id="likeBtn" class="btn like-btn" onclick="handleLike()" 
+                            aria-pressed="false" aria-label="この商品にいいねする">
+                        <span class="btn-icon">❤️</span>
+                        <span class="btn-text">いいね</span>
+                        <span id="likeCount" class="like-count">0</span>
+                    </button>
+                    
+                    <button id="detailsBtn" class="btn details-btn" onclick="handleDetails()" 
+                            aria-expanded="false" aria-label="商品詳細を表示">
+                        <span class="btn-icon">📋</span>
+                        <span class="btn-text">詳細</span>
+                    </button>
+                    
+                    <button id="cartBtn" class="btn cart-btn" onclick="handleCart()" 
+                            aria-pressed="false" aria-label="カートに追加">
+                        <span class="btn-icon">🛒</span>
+                        <span class="btn-text">カート</span>
+                    </button>
+                    
+                    <button id="shareBtn" class="btn share-btn" onclick="handleShare()" 
+                            aria-label="商品をシェアする">
+                        <span class="btn-icon">📤</span>
+                        <span class="btn-text">シェア</span>
+                    </button>
+                </div>
+                
+                <div id="productDetails" class="product-details" aria-hidden="true">
+                    <h3>商品詳細</h3>
+                    <ul>
+                        <li>素材: 100% 綿</li>
+                        <li>サイズ: S/M/L/XL</li>
+                        <li>カラー: 白/黒/グレー</li>
+                        <li>洗濯: 手洗い可</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右側: 学習パネル -->
+        <div class="learning-panel">
+            <!-- 統計セクション -->
+            <div class="stats-section">
+                <h3>📊 アクション統計</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">いいね</span>
+                        <span id="totalLikes" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">詳細確認</span>
+                        <span id="totalViews" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">カート追加</span>
+                        <span id="totalCart" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">画像切替</span>
+                        <span id="totalImageChanges" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">シェア回数</span>
+                        <span id="totalShares" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">総アクション</span>
+                        <span id="totalActions" class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- パフォーマンスメトリクス -->
+            <div class="performance-section">
+                <h3>⚡ パフォーマンス監視</h3>
+                <div id="performanceMetrics" class="performance-grid">
+                    <div class="metric-item">
+                        <span class="metric-label">平均応答時間</span>
+                        <span id="avgResponseTime" class="metric-value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">メモリ使用量</span>
+                        <span id="memoryUsage" class="metric-value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">フレームレート</span>
+                        <span id="frameRate" class="metric-value">-</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 高度分析 -->
+            <div class="analysis-section">
+                <h3>🎯 高度分析システム</h3>
+                <div id="analysisContent" class="analysis-content">
+                    <p>システム分析中...</p>
+                </div>
+            </div>
+            
+            <!-- オブジェクト表示 -->
+            <div class="object-section">
+                <h3>🔍 データオブジェクト</h3>
+                <div id="objectDisplay" class="object-display"></div>
+            </div>
+            
+            <!-- リセット・最適化ボタン -->
+            <div class="control-section">
+                <button id="resetBtn" class="btn reset-btn" onclick="handleReset()" aria-label="全データをリセット">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">リセット</span>
+                </button>
+                
+                <button id="optimizeBtn" class="btn optimize-btn" onclick="optimizeSystem()" aria-label="システムを最適化">
+                    <span class="btn-icon">⚡</span>
+                    <span class="btn-text">最適化</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知システム -->
+    <div id="notification" class="notification" role="alert" aria-live="assertive"></div>
+    
+    <!-- アクセシビリティ用ライブリージョン -->
+    <div id="liveRegion" class="sr-only" aria-live="polite"></div>
+
+    <!-- 外部JavaScriptファイルの読み込み -->
+    <script src="script.js"></script>
+</body>
+</html>

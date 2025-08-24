@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20.1 複数商品基礎管理 - 配列学習</title>
+    <!-- 外部CSSファイルの読み込み -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 商品ギャラリー -->
+        <div class="products-gallery">
+            <h1 class="gallery-title">📦 3商品ギャラリー - 配列管理体験</h1>
+            
+            <!-- 商品グリッド -->
+            <div class="products-grid" id="productsGrid">
+                <!-- 動的に生成される商品カード -->
+            </div>
+            
+            <!-- 統計サマリー -->
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalProducts">3</div>
+                    <div class="stat-label">総商品数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalLikes">0</div>
+                    <div class="stat-label">総いいね数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalOperations">0</div>
+                    <div class="stat-label">総操作回数</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学習パネル -->
+        <div class="learning-panel">
+            <h2 class="panel-title">📚 配列学習モード</h2>
+            
+            <!-- 配列可視化 -->
+            <div class="array-visualization">
+                <div class="array-title">🔍 products配列の中身</div>
+                <div class="array-content" id="arrayContent">
+                    読み込み中...
+                </div>
+            </div>
+            
+            <!-- 個別統計 -->
+            <div class="individual-stats">
+                <div class="stats-title">📊 商品別統計</div>
+                <div id="individualStats">
+                    <!-- 動的に生成 -->
+                </div>
+            </div>
+            
+            <!-- 操作ログ -->
+            <div class="operation-log">
+                <div class="log-title">📝 操作ログ</div>
+                <div id="operationLog">
+                    <div class="log-entry">システム初期化完了</div>
+                </div>
+            </div>
+            
+            <!-- コントロールボタン -->
+            <div class="control-buttons">
+                <button class="btn-control btn-reset" id="resetBtn">🔄 リセット</button>
+                <button class="btn-control btn-demo" id="demoBtn">✨ デモ実行</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 外部JavaScriptファイルの読み込み -->
+    <script src="script.js"></script>
+</body>
+</html>

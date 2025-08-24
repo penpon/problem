@@ -1,0 +1,289 @@
+/* 17.6 オブジェクト基礎 - データ構造管理の学習 */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    color: #2c3e50;
+    min-height: 100vh;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #e91e63;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.step-info {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0.8;
+    color: #7f8c8d;
+}
+
+.demo-section {
+    background: linear-gradient(135deg, #e91e63 0%, #f06292 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 25px 0;
+}
+
+.object-display {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.result-main {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FFE135;
+    margin: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.object-status {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.object-btn {
+    background: linear-gradient(135deg, #ff4081 0%, #e91e63 100%);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.object-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.object-btn:active {
+    transform: translateY(0);
+}
+
+.btn-basic { background: linear-gradient(135deg, #ff5722, #d84315); }
+.btn-method { background: linear-gradient(135deg, #4caf50, #388e3c); }
+.btn-nested { background: linear-gradient(135deg, #2196f3, #1565c0); }
+.btn-array { background: linear-gradient(135deg, #ff9800, #f57c00); }
+.btn-dynamic { background: linear-gradient(135deg, #9c27b0, #7b1fa2); }
+.btn-system { background: linear-gradient(135deg, #607d8b, #455a64); }
+
+.input-section {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.input-group {
+    margin: 15px 0;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #e91e63;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #bdc3c7;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #e91e63;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.object-display-area {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 15px 0;
+    border: 2px solid #e91e63;
+    min-height: 100px;
+}
+
+.object-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border-left: 4px solid #e91e63;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.object-property {
+    background: #e8f5e8;
+    color: #2e7d32;
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+}
+
+.method-result {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 8px 0;
+    font-weight: bold;
+}
+
+.info-box {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border-left: 5px solid #e91e63;
+}
+
+.highlight {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.code-example {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    margin: 15px 0;
+    border: 1px solid #34495e;
+}
+
+.instruction {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.celebration {
+    font-size: 3rem;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.stats-section {
+    background: rgba(52, 73, 94, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.stat-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #e91e63;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e91e63;
+}
+
+.library-system {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 3px solid #e91e63;
+}
+
+.book-list {
+    display: grid;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.book-item {
+    background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #e17055;
+}
+
+.book-actions {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.book-btn {
+    background: #e91e63;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.book-btn:hover {
+    background: #ad1457;
+}

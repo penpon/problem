@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19.3 データ管理強化 - localStorage学習</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        /* 商品カード */
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 15px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            color: white;
+        }
+
+        .product-info h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* アクションボタン */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            max-width: 90px;
+        }
+
+        .btn-like {
+            background: #f8f9fa;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+
+        .btn-like.liked {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        .btn-details {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-cart {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-cart.in-cart {
+            background: #f39c12;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 商品詳細 */
+        .product-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 10px;
+            display: none;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .product-details.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .product-details h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .product-details p {
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 3px;
+        }
+
+        /* 学習パネル */
+        .learning-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .panel-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* 統計表示（コンパクト版） */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .stat-label {
+            font-size: 9px;
+            opacity: 0.9;
+        }
+
+        /* localStorage状態表示 */
+        .storage-status {
+            background: #2ecc71;
+            color: white;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .storage-status.error {
+            background: #e74c3c;
+        }
+
+        /* 履歴表示エリア */
+        .history-section {
+            margin-bottom: 12px;
+        }
+
+        .history-title {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-clear-history {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 9px;
+            cursor: pointer;
+        }
+
+        .history-list {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 8px;
+            max-height: 120px;
+            overflow-y: auto;
+            font-size: 10px;
+        }
+
+        .history-item {
+            color: #666;
+            margin-bottom: 3px;
+            padding: 2px;
+            border-left: 2px solid #3498db;
+            padding-left: 6px;
+        }
+
+        /* オブジェクト表示（コンパクト版） */
+        .object-display {
+            background: #34495e;
+            color: #ecf0f1;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+        }
+
+        .object-title {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        /* コントロールボタン */
+        .control-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .btn-control {
+            padding: 8px;
+            border: none;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-reset {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-export {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-control:hover {
+            opacity: 0.8;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 商品カード -->
+        <div class="product-card">
+            <div class="product-image">👕</div>
+            
+            <div class="product-info">
+                <h2 id="productName">プレミアム Tシャツ</h2>
+                <div class="product-price">¥<span id="productPrice">2,980</span></div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-like" id="likeBtn">
+                    ❤️ <span id="likeCount">0</span>
+                </button>
+                <button class="btn btn-details" id="detailsBtn">
+                    📝 詳細
+                </button>
+                <button class="btn btn-cart" id="cartBtn">
+                    🛒 カート
+                </button>
+            </div>
+            
+            <div class="product-details" id="productDetails">
+                <h3>商品詳細情報</h3>
+                <p><strong>素材:</strong> オーガニックコットン100%</p>
+                <p><strong>サイズ:</strong> S/M/L/XL展開</p>
+                <p><strong>カラー:</strong> 4色バリエーション</p>
+                <p><strong>特徴:</strong> 肌触り抜群の高品質素材</p>
+            </div>
+        </div>
+        
+        <!-- 学習パネル -->
+        <div class="learning-panel">
+            <h2 class="panel-title">📚 localStorage学習モード</h2>
+            
+            <!-- localStorage状態表示 -->
+            <div class="storage-status" id="storageStatus">
+                localStorage: 初期化中...
+            </div>
+            
+            <!-- 統計表示 -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalLikes">0</div>
+                    <div class="stat-label">いいね</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalViews">0</div>
+                    <div class="stat-label">詳細表示</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalCart">0</div>
+                    <div class="stat-label">カート操作</div>
+                </div>
+            </div>
+            
+            <!-- 履歴セクション -->
+            <div class="history-section">
+                <div class="history-title">
+                    📜 操作履歴
+                    <button class="btn-clear-history" id="clearHistoryBtn">履歴クリア</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    初期化完了
+                </div>
+            </div>
+            
+            <!-- オブジェクト表示 -->
+            <div class="object-display">
+                <div class="object-title">💾 保存されたデータ</div>
+                <div id="objectDisplay">読み込み中...</div>
+            </div>
+            
+            <!-- コントロールボタン -->
+            <div class="control-buttons">
+                <button class="btn-control btn-reset" id="resetBtn">🔄 リセット</button>
+                <button class="btn-control btn-export" id="exportBtn">💾 データ表示</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === 19.3 メイン学習テーマ: localStorage による永続化 ===
+
+        // 1. 商品データオブジェクト（19.2から拡張）
+        let productData = {
+            name: "プレミアム Tシャツ",
+            price: 2980,
+            likes: 0,
+            isLiked: false,
+            showDetails: false,
+            inCart: false,
+            detailViews: 0,
+            cartActions: 0,
+            lastUpdated: new Date().toISOString() // 最終更新日時を追加
+        };
+
+        // 操作履歴を保存する配列
+        let actionHistory = [];
+
+        // 2. DOM要素の取得
+        const likeBtn = document.getElementById('likeBtn');
+        const detailsBtn = document.getElementById('detailsBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const productDetails = document.getElementById('productDetails');
+        const likeCount = document.getElementById('likeCount');
+        const totalLikes = document.getElementById('totalLikes');
+        const totalViews = document.getElementById('totalViews');
+        const totalCart = document.getElementById('totalCart');
+        const storageStatus = document.getElementById('storageStatus');
+        const historyList = document.getElementById('historyList');
+        const objectDisplay = document.getElementById('objectDisplay');
+        const resetBtn = document.getElementById('resetBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+
+        // 3. localStorage からデータを読み込む機能（新機能）
+        function loadData() {
+            try {
+                // productData の読み込み
+                const savedData = localStorage.getItem('productCardData');
+                if (savedData) {
+                    productData = JSON.parse(savedData);
+                    updateStorageStatus('✅ データを復元しました', false);
+                } else {
+                    updateStorageStatus('🆕 新規データで開始', false);
+                }
+
+                // 履歴データの読み込み
+                const savedHistory = localStorage.getItem('productCardHistory');
+                if (savedHistory) {
+                    actionHistory = JSON.parse(savedHistory);
+                }
+
+            } catch (error) {
+                console.error('データ読み込みエラー:', error);
+                updateStorageStatus('⚠️ データエラー - 初期化しました', true);
+                resetToDefaults();
+            }
+        }
+
+        // 4. localStorage にデータを保存する機能（新機能）
+        function saveData() {
+            try {
+                productData.lastUpdated = new Date().toISOString();
+                localStorage.setItem('productCardData', JSON.stringify(productData));
+                localStorage.setItem('productCardHistory', JSON.stringify(actionHistory));
+                updateStorageStatus('💾 データを保存しました', false);
+            } catch (error) {
+                console.error('データ保存エラー:', error);
+                updateStorageStatus('❌ 保存に失敗しました', true);
+            }
+        }
+
+        // 5. 履歴に操作を記録する機能（新機能）
+        function addToHistory(action) {
+            const timestamp = new Date().toLocaleTimeString();
+            actionHistory.unshift(`${timestamp}: ${action}`); // 新しい記録を先頭に追加
+            
+            // 履歴は最大10件まで保持
+            if (actionHistory.length > 10) {
+                actionHistory = actionHistory.slice(0, 10);
+            }
+            
+            updateHistoryDisplay();
+        }
+
+        // 6. localStorage状態表示の更新
+        function updateStorageStatus(message, isError) {
+            storageStatus.textContent = message;
+            storageStatus.className = isError ? 'storage-status error' : 'storage-status';
+        }
+
+        // 7. 履歴表示の更新
+        function updateHistoryDisplay() {
+            if (actionHistory.length === 0) {
+                historyList.innerHTML = '<div class="history-item">履歴がありません</div>';
+            } else {
+                historyList.innerHTML = actionHistory
+                    .map(item => `<div class="history-item">${item}</div>`)
+                    .join('');
+            }
+        }
+
+        // 8. オブジェクト表示の更新
+        function displayObjectData() {
+            objectDisplay.innerHTML = `
+                likes: ${productData.likes}<br>
+                isLiked: ${productData.isLiked}<br>
+                showDetails: ${productData.showDetails}<br>
+                inCart: ${productData.inCart}<br>
+                <small>保存: ${new Date(productData.lastUpdated).toLocaleTimeString()}</small>
+            `;
+        }
+
+        // 9. 統計表示の更新
+        function updateStats() {
+            totalLikes.textContent = productData.likes;
+            totalViews.textContent = productData.detailViews;
+            totalCart.textContent = productData.cartActions;
+        }
+
+        // 10. 画面全体の更新
+        function updateDisplay() {
+            // ボタン状態の更新
+            likeCount.textContent = productData.likes;
+            
+            if (productData.isLiked) {
+                likeBtn.classList.add('liked');
+            } else {
+                likeBtn.classList.remove('liked');
+            }
+            
+            if (productData.showDetails) {
+                productDetails.classList.add('show');
+                detailsBtn.textContent = '📝 閉じる';
+            } else {
+                productDetails.classList.remove('show');
+                detailsBtn.textContent = '📝 詳細';
+            }
+            
+            if (productData.inCart) {
+                cartBtn.classList.add('in-cart');
+                cartBtn.textContent = '🛒 削除';
+            } else {
+                cartBtn.classList.remove('in-cart');
+                cartBtn.textContent = '🛒 カート';
+            }
+            
+            updateStats();
+            displayObjectData();
+        }
+
+        // 11. いいね機能（自動保存付き）
+        function handleLike() {
+            productData.isLiked = !productData.isLiked;
+            productData.likes += productData.isLiked ? 1 : -1;
+            
+            addToHistory(productData.isLiked ? 'いいねしました' : 'いいねを取り消しました');
+            updateDisplay();
+            saveData(); // 自動保存
+        }
+
+        // 12. 詳細表示機能（自動保存付き）
+        function handleDetailsToggle() {
+            productData.showDetails = !productData.showDetails;
+            if (productData.showDetails) {
+                productData.detailViews += 1;
+                addToHistory('詳細情報を表示しました');
+            } else {
+                addToHistory('詳細情報を閉じました');
+            }
+            
+            updateDisplay();
+            saveData(); // 自動保存
+        }
+
+        // 13. カート機能（自動保存付き）
+        function handleCart() {
+            productData.inCart = !productData.inCart;
+            productData.cartActions += 1;
+            
+            addToHistory(productData.inCart ? 'カートに追加しました' : 'カートから削除しました');
+            updateDisplay();
+            saveData(); // 自動保存
+        }
+
+        // 14. データのリセット
+        function handleReset() {
+            if (confirm('全ての保存データを削除してリセットしますか？')) {
+                localStorage.removeItem('productCardData');
+                localStorage.removeItem('productCardHistory');
+                resetToDefaults();
+                addToHistory('データをリセットしました');
+                updateDisplay();
+                updateStorageStatus('🔄 データをリセットしました', false);
+            }
+        }
+
+        // 15. デフォルト値への復元
+        function resetToDefaults() {
+            productData = {
+                name: "プレミアム Tシャツ",
+                price: 2980,
+                likes: 0,
+                isLiked: false,
+                showDetails: false,
+                inCart: false,
+                detailViews: 0,
+                cartActions: 0,
+                lastUpdated: new Date().toISOString()
+            };
+            actionHistory = [];
+        }
+
+        // 16. データのエクスポート（学習用）
+        function handleExport() {
+            const exportData = {
+                productData: productData,
+                history: actionHistory,
+                timestamp: new Date().toISOString()
+            };
+            console.log('=== 保存されたデータの詳細 ===');
+            console.log(JSON.stringify(exportData, null, 2));
+            alert('コンソール（F12）にデータの詳細を出力しました！');
+        }
+
+        // 17. 履歴のクリア
+        function handleClearHistory() {
+            if (confirm('操作履歴をクリアしますか？')) {
+                actionHistory = [];
+                localStorage.setItem('productCardHistory', JSON.stringify(actionHistory));
+                updateHistoryDisplay();
+                addToHistory('履歴をクリアしました');
+            }
+        }
+
+        // 18. イベントリスナーの設定
+        likeBtn.addEventListener('click', handleLike);
+        detailsBtn.addEventListener('click', handleDetailsToggle);
+        cartBtn.addEventListener('click', handleCart);
+        resetBtn.addEventListener('click', handleReset);
+        exportBtn.addEventListener('click', handleExport);
+        clearHistoryBtn.addEventListener('click', handleClearHistory);
+
+        // 19. 初期化処理
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== 19.3 localStorage学習モード開始 ===');
+            console.log('新しい学習テーマ: データの永続化');
+            console.log('重要ポイント: ブラウザを閉じても状態を保持');
+            
+            loadData(); // 保存されたデータを読み込み
+            updateDisplay(); // 画面を更新
+            updateHistoryDisplay(); // 履歴を表示
+            
+            addToHistory('システムを開始しました');
+            
+            console.log('💡 ブラウザを閉じて再度開いても、状態が保持されることを確認してみましょう！');
+        });
+    </script>
+</body>
+</html>

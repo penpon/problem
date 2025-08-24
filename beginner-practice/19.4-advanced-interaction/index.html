@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19.4 インタラクション高度化 - アニメーション学習</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        /* 商品カード（アニメーション強化） */
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        /* 画像切替システム（新機能） */
+        .image-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .product-image:hover {
+            transform: scale(1.1);
+        }
+
+        .image-1 { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); }
+        .image-2 { background: linear-gradient(45deg, #a8e6cf, #ffd3a5); }
+        .image-3 { background: linear-gradient(45deg, #84fab0, #8fd3f4); }
+
+        /* 画像切替ボタン */
+        .image-controls {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .image-btn {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-btn.active {
+            background: #3498db;
+            transform: scale(1.3);
+        }
+
+        .image-btn:hover {
+            background: #3498db;
+            opacity: 0.7;
+        }
+
+        .product-info h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-price:hover {
+            transform: scale(1.05);
+        }
+
+        /* アクションボタン（アニメーション強化） */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            flex: 1;
+            max-width: 90px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transition: width 0.6s, height 0.6s;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn > span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-like {
+            background: #f8f9fa;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+
+        .btn-like.liked {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+            animation: pulse 0.6s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-details {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-cart {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-cart.in-cart {
+            background: #f39c12;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* 商品詳細（アニメーション強化） */
+        .product-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 15px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            text-align: left;
+        }
+
+        .product-details.show {
+            opacity: 1;
+            max-height: 200px;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-details h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .product-details p {
+            color: #666;
+            font-size: 11px;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+
+        /* 通知システム（新機能） */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: #e74c3c;
+        }
+
+        .notification.info {
+            background: #3498db;
+        }
+
+        /* 学習パネル（アニメーション強化） */
+        .learning-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .panel-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* 統計表示（アニメーション強化） */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .stat-number {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover .stat-number {
+            transform: scale(1.2);
+        }
+
+        .stat-label {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+
+        /* 各種表示エリア */
+        .display-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .display-section:hover {
+            background: #e9ecef;
+        }
+
+        .section-title {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .content-area {
+            font-size: 10px;
+            line-height: 1.3;
+            max-height: 80px;
+            overflow-y: auto;
+        }
+
+        /* コントロールボタン（アニメーション強化） */
+        .control-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn-control {
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-control:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-control:active {
+            transform: scale(0.95);
+        }
+
+        .btn-reset {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-demo {
+            background: #9b59b6;
+            color: white;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                transform: translateY(-100%);
+            }
+            
+            .notification.show {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 通知システム -->
+    <div class="notification" id="notification"></div>
+
+    <div class="container">
+        <!-- 商品カード -->
+        <div class="product-card">
+            <!-- 画像切替システム -->
+            <div class="image-container">
+                <div class="product-image image-1" id="productImage">👕</div>
+            </div>
+            
+            <!-- 画像切替コントロール -->
+            <div class="image-controls">
+                <button class="image-btn active" data-image="1"></button>
+                <button class="image-btn" data-image="2"></button>
+                <button class="image-btn" data-image="3"></button>
+            </div>
+            
+            <div class="product-info">
+                <h2 id="productName">プレミアム Tシャツ</h2>
+                <div class="product-price">¥<span id="productPrice">2,980</span></div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-like" id="likeBtn">
+                    <span>❤️ <span id="likeCount">0</span></span>
+                </button>
+                <button class="btn btn-details" id="detailsBtn">
+                    <span>📝 詳細</span>
+                </button>
+                <button class="btn btn-cart" id="cartBtn">
+                    <span>🛒 カート</span>
+                </button>
+            </div>
+            
+            <div class="product-details" id="productDetails">
+                <h3>商品詳細情報</h3>
+                <p><strong>素材:</strong> オーガニックコットン100%使用</p>
+                <p><strong>サイズ:</strong> S/M/L/XL の豊富なサイズ展開</p>
+                <p><strong>カラー:</strong> 4色のバリエーション</p>
+                <p><strong>特徴:</strong> 肌触り抜群で長持ちする高品質素材</p>
+                <p><strong>お手入れ:</strong> 洗濯機使用可、型崩れしにくい設計</p>
+            </div>
+        </div>
+        
+        <!-- 学習パネル -->
+        <div class="learning-panel">
+            <h2 class="panel-title">🎨 アニメーション学習モード</h2>
+            
+            <!-- 統計表示 -->
+            <div class="stats-grid">
+                <div class="stat-item" title="いいねの総数">
+                    <div class="stat-number" id="totalLikes">0</div>
+                    <div class="stat-label">いいね数</div>
+                </div>
+                <div class="stat-item" title="詳細表示回数">
+                    <div class="stat-number" id="totalViews">0</div>
+                    <div class="stat-label">詳細表示</div>
+                </div>
+                <div class="stat-item" title="カート操作回数">
+                    <div class="stat-number" id="totalCart">0</div>
+                    <div class="stat-label">カート操作</div>
+                </div>
+                <div class="stat-item" title="画像変更回数">
+                    <div class="stat-number" id="totalImageChanges">0</div>
+                    <div class="stat-label">画像切替</div>
+                </div>
+            </div>
+            
+            <!-- アニメーション状態表示 -->
+            <div class="display-section">
+                <div class="section-title">🎬 最新のアニメーション</div>
+                <div class="content-area" id="animationDisplay">
+                    システム初期化完了
+                </div>
+            </div>
+            
+            <!-- オブジェクト表示 -->
+            <div class="display-section">
+                <div class="section-title">💾 保存データ</div>
+                <div class="content-area" id="objectDisplay">
+                    読み込み中...
+                </div>
+            </div>
+            
+            <!-- コントロールボタン -->
+            <div class="control-buttons">
+                <button class="btn-control btn-reset" id="resetBtn">🔄 リセット</button>
+                <button class="btn-control btn-demo" id="demoBtn">✨ デモ実行</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === 19.4 メイン学習テーマ: アニメーションとUI制御 ===
+
+        // 1. 商品データオブジェクト（19.3から拡張）
+        let productData = {
+            name: "プレミアム Tシャツ",
+            price: 2980,
+            likes: 0,
+            isLiked: false,
+            showDetails: false,
+            inCart: false,
+            detailViews: 0,
+            cartActions: 0,
+            imageChanges: 0,         // 画像切替回数（新規追加）
+            currentImage: 1,         // 現在の画像番号（新規追加）
+            lastUpdated: new Date().toISOString()
+        };
+
+        let actionHistory = [];
+
+        // 2. DOM要素の取得
+        const productImage = document.getElementById('productImage');
+        const imageButtons = document.querySelectorAll('.image-btn');
+        const likeBtn = document.getElementById('likeBtn');
+        const detailsBtn = document.getElementById('detailsBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const productDetails = document.getElementById('productDetails');
+        const notification = document.getElementById('notification');
+        const likeCount = document.getElementById('likeCount');
+        const totalLikes = document.getElementById('totalLikes');
+        const totalViews = document.getElementById('totalViews');
+        const totalCart = document.getElementById('totalCart');
+        const totalImageChanges = document.getElementById('totalImageChanges');
+        const animationDisplay = document.getElementById('animationDisplay');
+        const objectDisplay = document.getElementById('objectDisplay');
+        const resetBtn = document.getElementById('resetBtn');
+        const demoBtn = document.getElementById('demoBtn');
+
+        // 3. 通知システム（新機能）
+        function showNotification(message, type = 'success') {
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            // 3秒後に自動で非表示
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // 4. アニメーションログ記録（新機能）
+        function logAnimation(action) {
+            const timestamp = new Date().toLocaleTimeString();
+            animationDisplay.textContent = `${timestamp}: ${action}`;
+            console.log(`アニメーション: ${action}`);
+        }
+
+        // 5. 画像切替システム（新機能 - メイン学習ポイント）
+        function changeImage(imageNumber) {
+            const images = ['👕', '👔', '🧥']; // 3種類の商品画像
+            const imageClasses = ['image-1', 'image-2', 'image-3'];
+            
+            // 現在の画像クラスを削除
+            productImage.className = 'product-image';
+            
+            // 新しい画像を設定（アニメーション付き）
+            setTimeout(() => {
+                productImage.className = `product-image ${imageClasses[imageNumber - 1]}`;
+                productImage.textContent = images[imageNumber - 1];
+                productData.currentImage = imageNumber;
+                productData.imageChanges += 1;
+                
+                // ボタンのactive状態を更新
+                imageButtons.forEach((btn, index) => {
+                    btn.classList.toggle('active', index + 1 === imageNumber);
+                });
+                
+                logAnimation(`画像を ${imageNumber} 番に切替`);
+                showNotification(`商品画像を変更しました`, 'info');
+                updateDisplay();
+                saveData();
+            }, 100);
+        }
+
+        // 6. データ保存・読み込み（19.3から継続）
+        function saveData() {
+            try {
+                productData.lastUpdated = new Date().toISOString();
+                localStorage.setItem('productCardData_v4', JSON.stringify(productData));
+                localStorage.setItem('productCardHistory_v4', JSON.stringify(actionHistory));
+            } catch (error) {
+                showNotification('データ保存に失敗しました', 'error');
+            }
+        }
+
+        function loadData() {
+            try {
+                const savedData = localStorage.getItem('productCardData_v4');
+                if (savedData) {
+                    productData = JSON.parse(savedData);
+                    showNotification('保存データを復元しました', 'success');
+                }
+
+                const savedHistory = localStorage.getItem('productCardHistory_v4');
+                if (savedHistory) {
+                    actionHistory = JSON.parse(savedHistory);
+                }
+            } catch (error) {
+                showNotification('データ読み込みエラー', 'error');
+                resetToDefaults();
+            }
+        }
+
+        // 7. 履歴記録
+        function addToHistory(action) {
+            const timestamp = new Date().toLocaleTimeString();
+            actionHistory.unshift(`${timestamp}: ${action}`);
+            if (actionHistory.length > 5) {
+                actionHistory = actionHistory.slice(0, 5);
+            }
+        }
+
+        // 8. 表示更新
+        function updateDisplay() {
+            likeCount.textContent = productData.likes;
+            
+            if (productData.isLiked) {
+                likeBtn.classList.add('liked');
+            } else {
+                likeBtn.classList.remove('liked');
+            }
+            
+            if (productData.showDetails) {
+                productDetails.classList.add('show');
+                detailsBtn.innerHTML = '<span>📝 閉じる</span>';
+            } else {
+                productDetails.classList.remove('show');
+                detailsBtn.innerHTML = '<span>📝 詳細</span>';
+            }
+            
+            if (productData.inCart) {
+                cartBtn.classList.add('in-cart');
+                cartBtn.innerHTML = '<span>🛒 削除</span>';
+            } else {
+                cartBtn.classList.remove('in-cart');
+                cartBtn.innerHTML = '<span>🛒 カート</span>';
+            }
+
+            // 統計更新
+            totalLikes.textContent = productData.likes;
+            totalViews.textContent = productData.detailViews;
+            totalCart.textContent = productData.cartActions;
+            totalImageChanges.textContent = productData.imageChanges;
+
+            // オブジェクト表示更新
+            objectDisplay.innerHTML = `
+                likes: ${productData.likes}<br>
+                currentImage: ${productData.currentImage}<br>
+                inCart: ${productData.inCart}<br>
+                imageChanges: ${productData.imageChanges}
+            `;
+
+            // 画像状態の復元
+            changeImage(productData.currentImage);
+        }
+
+        // 9. いいね機能（アニメーション強化）
+        function handleLike() {
+            productData.isLiked = !productData.isLiked;
+            productData.likes += productData.isLiked ? 1 : -1;
+            
+            addToHistory(productData.isLiked ? 'いいねしました' : 'いいねを取り消し');
+            logAnimation(productData.isLiked ? 'ハートアニメーション実行' : 'ハート通常状態');
+            showNotification(productData.isLiked ? '❤️ いいねしました！' : '💔 いいねを取り消しました');
+            
+            updateDisplay();
+            saveData();
+        }
+
+        // 10. 詳細表示機能（アニメーション強化）
+        function handleDetailsToggle() {
+            productData.showDetails = !productData.showDetails;
+            if (productData.showDetails) {
+                productData.detailViews += 1;
+                addToHistory('詳細情報を表示');
+                logAnimation('詳細パネル スライドダウン');
+                showNotification('📝 詳細情報を表示しました');
+            } else {
+                addToHistory('詳細情報を閉じる');
+                logAnimation('詳細パネル スライドアップ');
+                showNotification('📝 詳細情報を閉じました');
+            }
+            
+            updateDisplay();
+            saveData();
+        }
+
+        // 11. カート機能（アニメーション強化）
+        function handleCart() {
+            productData.inCart = !productData.inCart;
+            productData.cartActions += 1;
+            
+            addToHistory(productData.inCart ? 'カートに追加' : 'カートから削除');
+            logAnimation(productData.inCart ? 'カートボタン バウンス' : 'カートボタン 通常');
+            showNotification(productData.inCart ? '🛒 カートに追加しました！' : '🗑️ カートから削除しました');
+            
+            updateDisplay();
+            saveData();
+        }
+
+        // 12. デモ実行機能（新機能）
+        function runDemo() {
+            showNotification('✨ デモを開始します', 'info');
+            logAnimation('自動デモ開始');
+            
+            // 連続アニメーション実行
+            setTimeout(() => changeImage(2), 1000);
+            setTimeout(() => handleLike(), 2000);
+            setTimeout(() => handleDetailsToggle(), 3000);
+            setTimeout(() => handleCart(), 4000);
+            setTimeout(() => changeImage(3), 5000);
+            setTimeout(() => {
+                showNotification('🎉 デモ完了！', 'success');
+                logAnimation('自動デモ完了');
+            }, 6000);
+        }
+
+        // 13. リセット機能
+        function handleReset() {
+            if (confirm('全てのデータとアニメーション状態をリセットしますか？')) {
+                localStorage.removeItem('productCardData_v4');
+                localStorage.removeItem('productCardHistory_v4');
+                resetToDefaults();
+                updateDisplay();
+                showNotification('🔄 データをリセットしました', 'info');
+                logAnimation('システムをリセット');
+            }
+        }
+
+        function resetToDefaults() {
+            productData = {
+                name: "プレミアム Tシャツ",
+                price: 2980,
+                likes: 0,
+                isLiked: false,
+                showDetails: false,
+                inCart: false,
+                detailViews: 0,
+                cartActions: 0,
+                imageChanges: 0,
+                currentImage: 1,
+                lastUpdated: new Date().toISOString()
+            };
+            actionHistory = [];
+        }
+
+        // 14. イベントリスナーの設定
+        likeBtn.addEventListener('click', handleLike);
+        detailsBtn.addEventListener('click', handleDetailsToggle);
+        cartBtn.addEventListener('click', handleCart);
+        resetBtn.addEventListener('click', handleReset);
+        demoBtn.addEventListener('click', runDemo);
+
+        // 画像切替ボタンのイベント設定
+        imageButtons.forEach((btn, index) => {
+            btn.addEventListener('click', () => changeImage(index + 1));
+        });
+
+        // 15. 初期化処理
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== 19.4 アニメーション学習モード開始 ===');
+            console.log('新しい学習テーマ: CSS アニメーションとJavaScript制御');
+            console.log('重要ポイント: 視覚的に魅力的なUIインタラクション');
+            
+            loadData();
+            updateDisplay();
+            
+            addToHistory('システム開始');
+            logAnimation('初期アニメーション完了');
+            showNotification('🎨 アニメーション学習モードへようこそ！', 'success');
+            
+            console.log('🌟 各機能を試してアニメーション効果を楽しんでください！');
+        });
+    </script>
+</body>
+</html>

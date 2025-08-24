@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18.3 科学計算機 - 本格計算機能習得</title>
+    <!-- 外部CSSファイルの読み込み -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="main-calculator">
+            <div class="calculator-header">
+                <h1>🧮 高度な計算機</h1>
+                <p>関数電卓・括弧計算・キーボード完全対応</p>
+            </div>
+            
+            <div class="display-section">
+                <div class="expression-display" id="expression-display">準備完了</div>
+                <div class="main-display" id="main-display">0</div>
+            </div>
+            
+            <div class="angle-mode" id="angle-mode" onclick="toggleAngleMode()">角度モード: DEG</div>
+            
+            <div class="buttons-section">
+                <div class="basic-buttons">
+                    <!-- 第1行：関数とクリア -->
+                    <button class="btn btn-function" onclick="inputFunction('sin')">sin</button>
+                    <button class="btn btn-function" onclick="inputFunction('cos')">cos</button>
+                    <button class="btn btn-function" onclick="inputFunction('tan')">tan</button>
+                    <button class="btn btn-clear" onclick="clearAll()">C</button>
+                    <button class="btn btn-clear" onclick="clearEntry()">CE</button>
+                    
+                    <!-- 第2行：高級関数 -->
+                    <button class="btn btn-function" onclick="inputFunction('log')">log</button>
+                    <button class="btn btn-function" onclick="inputFunction('ln')">ln</button>
+                    <button class="btn btn-function" onclick="inputFunction('sqrt')">√</button>
+                    <button class="btn btn-bracket" onclick="inputBracket('(')">(</button>
+                    <button class="btn btn-bracket" onclick="inputBracket(')')">)</button>
+                    
+                    <!-- 第3行：数字と演算子 -->
+                    <button class="btn btn-function" onclick="inputFunction('pow')" title="べき乗">x^y</button>
+                    <button class="btn btn-function" onclick="inputFunction('square')" title="2乗">x²</button>
+                    <button class="btn btn-operator" onclick="inputOperator('/')" title="割り算">÷</button>
+                    <button class="btn btn-number" onclick="inputNumber(7)">7</button>
+                    <button class="btn btn-number" onclick="inputNumber(8)">8</button>
+                    
+                    <!-- 第4行 -->
+                    <button class="btn btn-number" onclick="inputNumber(9)">9</button>
+                    <button class="btn btn-operator" onclick="inputOperator('*')" title="掛け算">×</button>
+                    <button class="btn btn-number" onclick="inputNumber(4)">4</button>
+                    <button class="btn btn-number" onclick="inputNumber(5)">5</button>
+                    <button class="btn btn-number" onclick="inputNumber(6)">6</button>
+                    
+                    <!-- 第5行 -->
+                    <button class="btn btn-operator" onclick="inputOperator('-')" title="引き算">-</button>
+                    <button class="btn btn-number" onclick="inputNumber(1)">1</button>
+                    <button class="btn btn-number" onclick="inputNumber(2)">2</button>
+                    <button class="btn btn-number" onclick="inputNumber(3)">3</button>
+                    <button class="btn btn-operator" onclick="inputOperator('+')" title="足し算">+</button>
+                    
+                    <!-- 第6行 -->
+                    <button class="btn btn-number" onclick="toggleSign()">±</button>
+                    <button class="btn btn-number" onclick="inputNumber(0)">0</button>
+                    <button class="btn btn-number" onclick="inputDecimal()">.</button>
+                    <button class="btn btn-function" onclick="inputConstant('pi')">π</button>
+                    <button class="btn btn-equals" onclick="calculate()">=</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="side-panel">
+            <div class="function-help">
+                <div class="section-title">🔧 関数一覧</div>
+                <div class="function-grid">
+                    <div class="function-item" onclick="inputFunction('sin')">
+                        <div class="function-name">sin(x)</div>
+                        <div class="function-desc">正弦</div>
+                    </div>
+                    <div class="function-item" onclick="inputFunction('cos')">
+                        <div class="function-name">cos(x)</div>
+                        <div class="function-desc">余弦</div>
+                    </div>
+                    <div class="function-item" onclick="inputFunction('tan')">
+                        <div class="function-name">tan(x)</div>
+                        <div class="function-desc">正接</div>
+                    </div>
+                    <div class="function-item" onclick="inputFunction('sqrt')">
+                        <div class="function-name">√x</div>
+                        <div class="function-desc">平方根</div>
+                    </div>
+                    <div class="function-item" onclick="inputFunction('log')">
+                        <div class="function-name">log(x)</div>
+                        <div class="function-desc">常用対数</div>
+                    </div>
+                    <div class="function-item" onclick="inputFunction('ln')">
+                        <div class="function-name">ln(x)</div>
+                        <div class="function-desc">自然対数</div>
+                    </div>
+                </div>
+                <div class="shortcut-help">
+                    <strong>キーボードショートカット:</strong><br>
+                    S:sin, C:cos, T:tan, Q:√, L:log<br>
+                    P:π, ^:x^y, Shift+2:x²
+                </div>
+            </div>
+            
+            <div class="expression-builder">
+                <div class="section-title">📝 数式入力</div>
+                <input type="text" class="expression-input" id="custom-expression" 
+                       placeholder="例: sin(30) + cos(60) * sqrt(4)">
+                <button class="btn-evaluate" onclick="evaluateCustomExpression()">計算実行</button>
+            </div>
+            
+            <div class="history-section">
+                <div class="section-title">📚 計算履歴</div>
+                <div class="history-list" id="history-list">
+                    <div class="history-item">
+                        <div class="history-expression">履歴が表示されます</div>
+                    </div>
+                </div>
+                <button class="btn btn-clear" onclick="clearHistory()" style="width: 100%; margin-top: 10px; padding: 8px; font-size: 12px;">履歴クリア</button>
+            </div>
+            
+            <div class="stats-section">
+                <div class="section-title">📊 使用統計</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="calculation-count">0</div>
+                        <div class="stat-label">計算回数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="function-count">0</div>
+                        <div class="stat-label">関数使用</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="bracket-count">0</div>
+                        <div class="stat-label">括弧使用</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="error-count">0</div>
+                        <div class="stat-label">エラー回数</div>
+                    </div>
+                </div>
+                <div class="current-status" id="current-status">
+                    高度計算機が起動しました
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 外部JavaScriptファイルの読み込み -->
+    <script src="script.js"></script>
+</body>
+</html>

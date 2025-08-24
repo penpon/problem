@@ -1,0 +1,20 @@
+{
+  "categories": [
+    {
+      "id": "html-basics",
+      "name": "HTML基礎",
+      "description": "HTMLの基本的なタグと構造を学習します",
+      "icon": "🏗️",
+      "problems": [
+        "practice01",
+        "practice02", 
+        "practice03",
+        "practice04",
+        "practice05"
+      ]
+    }
+  ],
+  "totalProblems": 5,
+  "lastUpdated": "2024-01-01",
+  "version": "1.0.0"
+}

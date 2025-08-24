@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20.3 フィルタリングシステム - 商品絞り込み学習</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ギャラリーメインエリア -->
+        <div class="gallery-main">
+            <div class="gallery-header">
+                <h1 class="gallery-title">🔍 フィルタリング商品ギャラリー</h1>
+                <p class="gallery-subtitle">条件による商品絞り込みシステム</p>
+                <div class="filter-status" id="filterStatus">
+                    8商品を表示中（フィルタ：なし）
+                </div>
+            </div>
+            
+            <!-- フィルタコントロールエリア（新機能！） -->
+            <div class="filter-controls">
+                <div class="filter-section">
+                    <label class="filter-label">📂 カテゴリで絞り込み</label>
+                    <div class="filter-buttons" id="categoryFilters">
+                        <button class="filter-btn active" data-category="all">すべて</button>
+                        <button class="filter-btn" data-category="fashion">👕 ファッション</button>
+                        <button class="filter-btn" data-category="electronics">📱 電子機器</button>
+                        <button class="filter-btn" data-category="sports">⚽ スポーツ</button>
+                        <button class="filter-btn" data-category="accessories">👜 アクセサリー</button>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <label class="filter-label">💰 価格帯で絞り込み</label>
+                    <div class="filter-buttons" id="priceFilters">
+                        <button class="filter-btn active" data-price="all">すべて</button>
+                        <button class="filter-btn" data-price="low">〜 ¥5,000</button>
+                        <button class="filter-btn" data-price="mid">¥5,000 〜 ¥10,000</button>
+                        <button class="filter-btn" data-price="high">¥10,000 〜</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- フィルタ結果表示 -->
+            <div class="filter-results" id="filterResults">
+                8商品中 8商品を表示しています
+            </div>
+            
+            <!-- 商品グリッド（動的生成される） -->
+            <div class="products-grid" id="productsGrid">
+                <!-- ここに商品カードが動的に生成されます -->
+            </div>
+            
+            <!-- ギャラリー統計 */
+            <div class="gallery-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="displayedProducts">8</div>
+                    <div class="stat-label">表示商品数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalProducts">8</div>
+                    <div class="stat-label">総商品数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalLikes">0</div>
+                    <div class="stat-label">総いいね</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="activeFilters">0</div>
+                    <div class="stat-label">適用フィルタ</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学習パネル -->
+        <div class="learning-panel">
+            <!-- フィルタプロセス -->
+            <div class="panel-section">
+                <h2 class="section-title">🔄 フィルタプロセス</h2>
+                <div class="filter-process">
+                    <div class="process-title">filter() メソッドのステップ:</div>
+                    <div id="filterSteps">
+                        <div class="process-step">1. 元配列から条件関数を実行</div>
+                        <div class="process-step">2. 条件に合う要素のみ選択</div>
+                        <div class="process-step">3. 新しい配列として返却</div>
+                        <div class="process-step">4. UI に結果を反映</div>
+                        <div class="process-step">5. 統計情報を更新</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- フィルタ統計 -->
+            <div class="panel-section">
+                <h2 class="section-title">📊 フィルタ統計</h2>
+                <div class="filter-stats" id="filterStats">
+                    <!-- 動的に生成 -->
+                </div>
+            </div>
+            
+            <!-- フィルタ学習情報 */
+            <div class="panel-section">
+                <h2 class="section-title">🎓 フィルタ学習</h2>
+                <div class="filter-info" id="filterInfo">
+                    <div class="info-title">filter() の仕組み:</div>
+                    今回学習する filter() メソッド:<br><br>
+                    • 配列から条件に合う要素だけ抽出<br>
+                    • 元の配列は変更せず新配列を作成<br>
+                    • 条件関数で柔軟な絞り込みが可能<br>
+                    • 実際のECサイトでも必須の技術
+                </div>
+            </div>
+            
+            <!-- コントロール -->
+            <div class="panel-section">
+                <h2 class="section-title">🎮 コントロール</h2>
+                <div class="control-area">
+                    <button class="btn-control btn-reset" id="resetFilters">
+                        🗑️ フィルタリセット
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
