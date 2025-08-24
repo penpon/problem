@@ -272,6 +272,31 @@
   color: #3182ce;
 }
 
+.current-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.current-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-view {
+  flex: 1;
+  background: #f8f9fa;
+  border: 2px solid #4299e1;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  min-height: 250px;
+  position: relative;
+  overflow: auto;
+}
+
 /* プレビューのレスポンシブ調整 */
 .preview-iframe {
   transform: scale(0.85);

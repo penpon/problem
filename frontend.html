@@ -106,19 +106,28 @@
 
             <!-- 右下: 現在のプレビューと結果エリア -->
             <div class="current-panel">
-                <h2 class="section-title">🖼️ あなた</h2>
-                <div class="preview-container">
-                    <iframe id="current-preview" class="preview-iframe" title="現在のプレビュー">
-                    </iframe>
+                <div class="current-header">
+                    <h2 class="section-title">🖼️ あなた</h2>
+                    <div class="view-toggle">
+                        <button id="current-preview-tab" class="toggle-button active">プレビュー</button>
+                        <button id="current-result-tab" class="toggle-button">採点結果</button>
+                    </div>
                 </div>
-                
-                <!-- 採点結果エリア -->
-                <div id="result-area" style="display: none;">
-                    <!-- 採点結果がここに表示されます -->
-                </div>
-                
-                <div id="no-result" class="no-result-text" style="text-align: center; padding: 20px;">
-                    <p>🎯 問題を選択してコードを書くと、結果がここに表示されます</p>
+                <div class="current-content">
+                    <div id="current-preview-view" class="preview-container">
+                        <iframe id="current-preview" class="preview-iframe" title="現在のプレビュー">
+                        </iframe>
+                    </div>
+                    <div id="current-result-view" class="result-view" style="display: none;">
+                        <!-- 採点結果エリア -->
+                        <div id="result-area">
+                            <!-- 採点結果がここに表示されます -->
+                        </div>
+                        
+                        <div id="no-result" class="no-result-text" style="text-align: center; padding: 20px;">
+                            <p>🎯 問題を選択してコードを書くと、結果がここに表示されます</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
