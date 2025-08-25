@@ -54,11 +54,11 @@
 }
 
 .problem-tab.active {
-    background: linear-gradient(135deg, #4338ca, #3730a3);
-    border-color: #3730a3;
+    background: linear-gradient(135deg, #059669, #047857);
+    border-color: #047857;
     color: white;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
 }
 
 .problem-details-area {
@@ -480,13 +480,15 @@
 }
 
 .result-content-wrapper {
-    background: #f8fafc;
-    border: 2px solid #7c3aed;
-    border-radius: 10px;
-    padding: 20px;
-    min-height: 150px;
-    overflow-y: auto;
-    max-height: 400px;
+    background: #f8fafc !important;
+    border: 2px solid #7c3aed !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+    min-height: 150px !important;
+    overflow-y: visible !important;
+    overflow: visible !important;
+    max-height: none !important;
+    flex: none !important;
 }
 
 .no-result-text {
