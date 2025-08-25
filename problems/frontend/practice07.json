@@ -1,0 +1,39 @@
+{
+  "id": "practice07",
+  "title": "07: 余白の設定",
+  "description": "marginとpaddingを使って余白を調整する",
+  "category": "css-foundation",
+  "difficulty": 2,
+  "instructions": [
+    "marginとpaddingの違いを理解してください",
+    ".box1クラスに背景色lightblue、margin: 20px、padding: 15pxを設定してください",
+    ".box2クラスに背景色lightgreen、margin: 10px 0px、padding: 20px 10pxを設定してください",
+    "h1タグにmargin-bottom: 30px、h2タグにmargin-top: 40px、margin-bottom: 20pxを設定してください"
+  ],
+  "files": {
+    "html": {
+      "filename": "index.html",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>余白の設定</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <h1>余白のテスト</h1>\n    <p class=\"box1\">この段落にはmarginとpaddingがあります</p>\n    <p class=\"box2\">こちらの段落は別のスタイルです</p>\n    <p>普通の段落です（比較用）</p>\n    \n    <h2>余白の違いを見てみましょう</h2>\n    <p class=\"box1\">背景色があると余白がよく分かります</p>\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>余白の設定</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <h1>余白のテスト</h1>\n    <p class=\"box1\">この段落にはmarginとpaddingがあります</p>\n    <p class=\"box2\">こちらの段落は別のスタイルです</p>\n    <p>普通の段落です（比較用）</p>\n    \n    <h2>余白の違いを見てみましょう</h2>\n    <p class=\"box1\">背景色があると余白がよく分かります</p>\n</body>\n</html>"
+    },
+    "css": {
+      "filename": "style.css",
+      "template": "/* 余白の設定 - marginとpaddingの基本 */\n\n/* 基本スタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 20px;\n}\n\nh1 {\n    color: blue;\n    /* ここにmargin-bottomを追加してください */\n}\n\nh2 {\n    color: purple;\n    /* ここにmargin-topとmargin-bottomを追加してください */\n}\n\n/* box1クラスのスタイル */\n.box1 {\n    /* ここに背景色、margin、padding、文字色を追加してください */\n}\n\n/* box2クラスのスタイル */\n.box2 {\n    /* ここに背景色、margin、padding、文字色を追加してください */\n}",
+      "expected": "/* 余白の設定 - marginとpaddingの基本 */\n\n/* 基本スタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 20px;\n}\n\nh1 {\n    color: blue;\n    margin-bottom: 30px;\n}\n\nh2 {\n    color: purple;\n    margin-top: 40px;\n    margin-bottom: 20px;\n}\n\n/* box1クラスのスタイル */\n.box1 {\n    background-color: lightblue;\n    margin: 20px;\n    padding: 15px;\n    color: darkblue;\n}\n\n/* box2クラスのスタイル */\n.box2 {\n    background-color: lightgreen;\n    margin: 10px 0px;\n    padding: 20px 10px;\n    color: darkgreen;\n}"
+    }
+  },
+  "checks": [
+    { "id": "box1-background", "name": "box1背景色", "type": "style", "message": ".box1にbackground-color: lightblueが必要です" },
+    { "id": "box1-margin", "name": "box1外側余白", "type": "style", "message": ".box1にmargin: 20pxが必要です" },
+    { "id": "box1-padding", "name": "box1内側余白", "type": "style", "message": ".box1にpadding: 15pxが必要です" },
+    { "id": "box2-background", "name": "box2背景色", "type": "style", "message": ".box2にbackground-color: lightgreenが必要です" },
+    { "id": "h1-margin", "name": "見出し余白", "type": "style", "message": "h1にmargin-bottom: 30pxが必要です" }
+  ],
+  "hints": [
+    "marginは要素の外側の余白",
+    "paddingは要素の内側の余白",
+    "classセレクタは.で始める（例：.box1）",
+    "background-colorで背景色を設定",
+    "margin: 10px 0pxは上下10px、左右0pxの意味"
+  ]
+}

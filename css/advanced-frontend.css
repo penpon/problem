@@ -10,8 +10,8 @@
     padding: 20px;
 }
 
-/* 問題選択タブセクション（上部全幅） */
-.problem-tab-section {
+/* 問題選択エリア */
+.problem-section {
     background: white;
     border-radius: 12px;
     padding: 25px;
@@ -21,44 +21,104 @@
     min-height: 200px;
 }
 
-.tab-navigation .section-title {
-    color: #4338ca;
-    margin-bottom: 20px;
-}
-
-.problem-tabs {
+/* タブナビゲーション */
+.tab-navigation {
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
     margin-bottom: 20px;
+    border-bottom: 2px solid #e2e8f0;
+    overflow-x: auto;
 }
 
-.problem-tab {
+.tab-button {
     padding: 12px 20px;
-    background: #f8fafc;
+    background: transparent;
+    border: none;
+    color: #718096;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tab-button:hover {
+    color: #4a5568;
+    background: #f7fafc;
+}
+
+.tab-button.active {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #667eea;
+}
+
+.problem-count {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-left: 4px;
+}
+
+/* タブコンテンツ */
+.tab-content {
+    min-height: 200px;
+}
+
+/* 問題リスト */
+.problem-list {
+    display: grid;
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    z-index: 1;
+}
+
+.problem-item {
+    padding: 12px 16px;
+    background: #f7fafc;
     border: 2px solid transparent;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: left;
     font-size: 14px;
-    font-weight: 500;
-    color: #64748b;
-    min-width: 120px;
-    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.problem-tab:hover {
-    background: #e2e8f0;
+.problem-item:hover {
+    background: #edf2f7;
     border-color: #cbd5e0;
     transform: translateY(-1px);
 }
 
-.problem-tab.active {
-    background: linear-gradient(135deg, #059669, #047857);
-    border-color: #047857;
+.problem-item.selected {
+    background: linear-gradient(135deg, #3182ce, #2c5aa0);
+    border-color: #2c5aa0;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(49, 130, 206, 0.4);
     color: white;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
 }
 
 .problem-details-area {
@@ -635,8 +695,12 @@
         justify-content: center;
     }
     
-    .problem-tabs {
-        justify-content: center;
+    .problem-list {
+        max-height: 350px;
+    }
+    
+    .tab-navigation {
+        flex-wrap: wrap;
     }
 }
 
@@ -645,7 +709,7 @@
         padding: 15px;
     }
     
-    .problem-tab-section,
+    .problem-section,
     .code-editor-section,
     .expected-panel,
     .current-panel,
@@ -677,13 +741,14 @@
         min-height: 180px;
     }
     
-    .problem-tabs {
-        flex-direction: column;
-        align-items: stretch;
+    .problem-list {
+        max-height: 300px;
     }
     
-    .problem-tab {
+    .tab-button {
         min-width: auto;
+        padding: 8px 12px;
+        font-size: 12px;
     }
     
     .tab-name {
@@ -705,7 +770,7 @@
         padding: 10px;
     }
     
-    .problem-tab-section,
+    .problem-section,
     .code-editor-section,
     .expected-panel,
     .current-panel,
@@ -747,7 +812,7 @@
 
 /* ダークモード対応 */
 @media (prefers-color-scheme: dark) {
-    .problem-tab-section,
+    .problem-section,
     .code-editor-section,
     .expected-panel,
     .current-panel,
@@ -757,14 +822,27 @@
         color: #e5e7eb;
     }
     
-    .problem-tab {
+    .problem-item {
         background: #374151;
         color: #e5e7eb;
     }
     
-    .problem-tab:hover {
+    .problem-item:hover {
         background: #4b5563;
         border-color: #6b7280;
+    }
+    
+    .tab-button {
+        color: #9ca3af;
+    }
+    
+    .tab-button:hover {
+        color: #e5e7eb;
+        background: #374151;
+    }
+    
+    .tab-button.active {
+        color: #60a5fa;
     }
     
     .code-editor {
@@ -1028,7 +1106,7 @@
     }
 }
 
-.problem-tab-section,
+.problem-section,
 .code-editor-section,
 .expected-panel,
 .current-panel,

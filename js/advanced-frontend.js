@@ -35,7 +35,8 @@ class AdvancedFrontendLearning {
     
     initializeElements() {
         // 問題選択関連
-        this.problemTabs = document.getElementById('problem-tabs');
+        this.tabNavigation = document.querySelector('.tab-navigation');
+        this.problemList = document.getElementById('problem-list');
         this.problemDetails = document.getElementById('problem-details');
         
         // コードエディタ関連
@@ -102,13 +103,6 @@ class AdvancedFrontendLearning {
             }
         });
         
-        // 問題タブのクリック
-        this.problemTabs.addEventListener('click', (e) => {
-            const problemTab = e.target.closest('.problem-tab');
-            if (problemTab) {
-                this.selectProblem(problemTab.dataset.problemId);
-            }
-        });
         
         // 正解表示の切り替え
         if (this.expectedPreviewTab) {
@@ -176,11 +170,28 @@ class AdvancedFrontendLearning {
                 this.closeFullscreen();
             }
         });
+        
+        // タブナビゲーションのクリックイベント（イベント委譲）
+        this.tabNavigation.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tab-button')) {
+                this.switchTab(e.target.dataset.category);
+            }
+        });
+        
+        // 問題リストのクリックイベント（イベント委譲）
+        this.problemList.addEventListener('click', (e) => {
+            const problemItem = e.target.closest('.problem-item');
+            if (problemItem) {
+                this.selectProblem(problemItem.dataset.problemId);
+            }
+        });
     }
     
     async loadProblems() {
         try {
-            this.problemTabs.innerHTML = '<div style="padding: 20px; text-align: center; color: #64748b;">問題を読み込み中...</div>';
+            // ローディング表示
+            this.tabNavigation.innerHTML = '<div style="padding: 20px; text-align: center; color: #64748b;">問題を読み込み中...</div>';
+            this.problemList.innerHTML = '';
             
             // ProblemLoaderを使用してフロントエンド問題を読み込み
             const problems = await getFrontendProblemList();
@@ -189,46 +200,131 @@ class AdvancedFrontendLearning {
                 throw new Error('フロントエンド問題データが見つかりません');
             }
             
-            this.displayProblems(problems);
+            // カテゴリごとに問題をグループ化
+            const problemsByCategory = {};
+            problems.forEach(problem => {
+                if (!problemsByCategory[problem.category]) {
+                    problemsByCategory[problem.category] = [];
+                }
+                problemsByCategory[problem.category].push(problem);
+            });
+            
+            // タブナビゲーションを生成
+            this.createTabs(problemsByCategory);
+            
+            // 最初のカテゴリを選択
+            const firstCategory = Object.keys(problemsByCategory)[0];
+            if (firstCategory) {
+                this.currentCategory = firstCategory;
+                this.showProblemsForCategory(firstCategory, problemsByCategory[firstCategory]);
+                
+                // 最初のタブをアクティブにする
+                const firstTab = this.tabNavigation.querySelector('.tab-button');
+                if (firstTab) {
+                    firstTab.classList.add('active');
+                }
+            }
+            
+            // 全問題データをキャッシュ
+            this.problemsByCategory = problemsByCategory;
             this.allProblems = problems;
             
-            console.log(`${problems.length}問の読み込み完了`);
+            console.log(`${problems.length}問の読み込み完了（${Object.keys(problemsByCategory).length}カテゴリ）`);
         } catch (error) {
             console.error('問題の読み込みに失敗しました:', error);
-            this.problemTabs.innerHTML = '<div class="error-message" style="padding: 20px; color: #ef4444;">問題の読み込みに失敗しました。ページを再読み込みしてください。</div>';
+            this.tabNavigation.innerHTML = '<div class="error-message" style="padding: 20px; color: #ef4444;">問題の読み込みに失敗しました。ページを再読み込みしてください。</div>';
         }
     }
     
-    displayProblems(problems) {
-        this.problemTabs.innerHTML = '';
+    /**
+     * タブナビゲーションを生成
+     */
+    createTabs(problemsByCategory) {
+        const categoryInfo = {
+            'html-basics': { name: 'HTML基礎', icon: '🏗️' },
+            'css-foundation': { name: 'CSS基本・レイアウト', icon: '🎨' },
+            'css-advanced': { name: 'CSS応用・モダン', icon: '✨' },
+            'javascript-foundation': { name: 'JavaScript基礎', icon: '⚡' },
+            'javascript-dom': { name: 'JavaScript応用', icon: '🎯' }
+        };
+        
+        this.tabNavigation.innerHTML = '';
+        
+        Object.entries(problemsByCategory).forEach(([category, problems]) => {
+            const tabButton = document.createElement('button');
+            tabButton.className = 'tab-button';
+            tabButton.dataset.category = category;
+            
+            const info = categoryInfo[category] || { name: category, icon: '📝' };
+            tabButton.innerHTML = `
+                ${info.icon} ${info.name}
+                <span class="problem-count">(${problems.length}問)</span>
+            `;
+            
+            this.tabNavigation.appendChild(tabButton);
+        });
+    }
+    
+    /**
+     * カテゴリの問題リストを表示
+     */
+    showProblemsForCategory(category, problems) {
+        this.problemList.innerHTML = '';
         
         problems.forEach(problem => {
-            const problemTab = document.createElement('button');
-            problemTab.className = 'problem-tab';
-            problemTab.dataset.problemId = problem.id;
+            const problemItem = document.createElement('button');
+            problemItem.className = 'problem-item';
+            problemItem.dataset.problemId = problem.id;
             
             // 問題番号を取得（practice01 -> 01 形式）
-            const problemNumber = problem.id.replace('practice', '');
+            const problemNumber = problem.id.replace('practice', '').replace('_', '.');
             
-            problemTab.innerHTML = `
-                <span class="problem-number">#${problemNumber}</span>
-                <span class="problem-title">${problem.title}</span>
+            problemItem.innerHTML = `
+                <div class="problem-info">
+                    <span class="problem-number">#${problemNumber}</span>
+                    <span class="problem-title">${problem.title}</span>
+                </div>
+                <div class="problem-difficulty">
+                    ${'★'.repeat(problem.difficulty || 1)}
+                </div>
             `;
-            this.problemTabs.appendChild(problemTab);
+            
+            this.problemList.appendChild(problemItem);
         });
+    }
+    
+    /**
+     * タブを切り替える
+     */
+    switchTab(category) {
+        // アクティブなタブボタンを切り替え
+        this.tabNavigation.querySelectorAll('.tab-button').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        const activeTab = this.tabNavigation.querySelector(`[data-category="${category}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+        
+        // カテゴリの問題を表示
+        const problems = this.problemsByCategory[category];
+        if (problems) {
+            this.currentCategory = category;
+            this.showProblemsForCategory(category, problems);
+        }
     }
     
     async selectProblem(problemId) {
         try {
             // 現在選択中の問題のハイライトを削除
-            this.problemTabs.querySelectorAll('.problem-tab').forEach(tab => {
-                tab.classList.remove('active');
+            this.problemList.querySelectorAll('.problem-item').forEach(item => {
+                item.classList.remove('selected');
             });
             
             // 新しい問題をハイライト
-            const selectedTab = this.problemTabs.querySelector(`[data-problem-id="${problemId}"]`);
-            if (selectedTab) {
-                selectedTab.classList.add('active');
+            const selectedItem = this.problemList.querySelector(`[data-problem-id="${problemId}"]`);
+            if (selectedItem) {
+                selectedItem.classList.add('selected');
             }
             
             // ProblemLoaderから詳細な問題データを取得

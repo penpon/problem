@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本格ショッピングカート機能</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ヘッダー部分 -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🛍️ MyShop</h1>
+            
+            <!-- カートボタン（バッジ付き） -->
+            <div class="cart-button" onclick="toggleCart()">
+                🛒 カート <span class="cart-badge" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <h2>商品一覧</h2>
+            
+            <!-- 商品一覧エリア -->
+            <div class="products" id="products">
+                <!-- 商品は JavaScriptで動的に生成されます -->
+            </div>
+
+            <!-- カート表示エリア -->
+            <div class="cart-area" id="cart-area">
+                <div class="cart-header">
+                    <h3>🛒 ショッピングカート</h3>
+                    <button class="close-cart" onclick="toggleCart()">×</button>
+                </div>
+                
+                <div class="cart-items" id="cart-items">
+                    <!-- カート内の商品がここに表示されます -->
+                </div>
+                
+                <div class="cart-empty" id="cart-empty">
+                    <p>カートは空です</p>
+                    <p>商品を追加してください</p>
+                </div>
+                
+                <div class="cart-summary" id="cart-summary">
+                    <div class="summary-row">
+                        <span>小計:</span>
+                        <span id="subtotal">¥0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>消費税（10%）:</span>
+                        <span id="tax">¥0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>合計:</span>
+                        <span id="total">¥0</span>
+                    </div>
+                    
+                    <button class="checkout-btn" onclick="checkout()">
+                        🛒 レジに進む
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 成功メッセージ表示用 -->
+    <div class="success-message" id="success-message">
+        <div class="message-content">
+            <span class="message-text"></span>
+            <button class="message-close" onclick="hideMessage()">×</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

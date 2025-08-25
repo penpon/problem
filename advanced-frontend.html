@@ -17,19 +17,24 @@
     </div>
 
     <div class="container">
-        <!-- 問題選択タブエリア -->
-        <div class="problem-tab-section">
+        <!-- 問題選択エリア -->
+        <div class="problem-section">
+            <h2 class="section-title">📚 問題選択</h2>
+            
+            <!-- タブナビゲーション -->
             <div class="tab-navigation">
-                <h2 class="section-title">📚 問題選択</h2>
-                <div class="problem-tabs" id="problem-tabs">
-                    <!-- 動的に問題タブが追加される -->
+                <!-- タブボタンがJavaScriptで動的に追加されます -->
+            </div>
+            
+            <!-- タブコンテンツ（問題リスト） -->
+            <div class="tab-content">
+                <div class="problem-list" id="problem-list">
+                    <!-- 動的に問題ボタンが追加される -->
                 </div>
             </div>
             
-            <div class="problem-details-area">
-                <div id="problem-details" style="display: none;">
-                    <!-- 問題の詳細がここに表示されます -->
-                </div>
+            <div id="problem-details" style="display: none;">
+                <!-- 問題の詳細がここに表示されます -->
             </div>
         </div>
 
