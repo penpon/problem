@@ -4,114 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ステップ15.4 - 要素取得入門</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            min-height: 100vh;
-        }
-        
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            color: #FFE135;
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .step-info {
-            text-align: center;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .demo-box {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 25px 0;
-            border: 2px solid #FFE135;
-        }
-        
-        .highlight-element {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            color: #2c3e50;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 15px 0;
-            font-weight: bold;
-            text-align: center;
-            font-size: 1.2rem;
-        }
-        
-        .info-box {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border-left: 5px solid #FFE135;
-        }
-        
-        .highlight {
-            color: #FFE135;
-            font-weight: bold;
-        }
-        
-        .code-example {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            margin: 15px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .instruction {
-            background: rgba(255, 193, 7, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #FFE135;
-            margin: 20px 0;
-        }
-        
-        .celebration {
-            font-size: 2.5rem;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .before-after {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .before-after > div {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .arrow {
-            font-size: 2rem;
-            text-align: center;
-            color: #FFE135;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -200,30 +93,6 @@ welcomeElement.textContent = "ようこそ！要素取得の世界へ！";
         </div>
     </div>
     
-    <script>
-        console.log("🎯 ステップ15.4: 要素取得入門を開始します！");
-        console.log("==================================");
-        
-        // 1. 要素を取得
-        console.log("📍 要素を取得中...");
-        let demoElement = document.getElementById("demo-element");
-        let welcomeElement = document.getElementById("welcome-message");
-        
-        // 2. 取得できたか確認
-        console.log("取得した要素:", demoElement);
-        console.log("要素の元の内容:", demoElement.textContent);
-        
-        // 3. 内容を変更
-        console.log("🔄 内容を変更中...");
-        demoElement.textContent = "🎉 JavaScriptで変更されました！";
-        welcomeElement.textContent = "ようこそ！要素取得の世界へ！";
-        
-        // 4. 変更後の確認
-        console.log("変更後の内容:", demoElement.textContent);
-        console.log("✅ 要素の内容変更が完了しました！");
-        
-        console.log("");
-        console.log("🌟 HTMLとJavaScriptが連携できるようになりました！");
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

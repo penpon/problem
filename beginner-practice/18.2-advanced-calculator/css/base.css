@@ -1,0 +1,42 @@
+/* base.css - 基本スタイルとリセット */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* 基本的なテキストスタイル */
+h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+p {
+    font-size: 14px;
+}
+
+/* ボタンの基本スタイル */
+.btn {
+    border: none;
+    border-radius: 8px;
+    padding: 18px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}

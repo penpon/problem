@@ -1,0 +1,52 @@
+/* animations.css - アニメーション、ホバー効果、トランジション */
+
+/* ボタンのアニメーション効果 */
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-small {
+    transition: all 0.2s;
+}
+
+/* 各種ボタンのホバー効果 */
+.btn-number:hover {
+    background: #e9ecef;
+}
+
+.btn-operator:hover {
+    background: #0056b3;
+}
+
+.btn-equals:hover {
+    background: #1e7e34;
+}
+
+.btn-clear:hover {
+    background: #c82333;
+}
+
+.btn-clear-entry:hover {
+    background: #e0a800;
+}
+
+.btn-memory:hover {
+    background: #5a2d91;
+}
+
+.btn-percent:hover {
+    background: #138496;
+}
+
+.btn-clear-history:hover {
+    background: #c82333;
+}

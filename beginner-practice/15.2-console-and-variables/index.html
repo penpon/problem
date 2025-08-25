@@ -4,75 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ステップ15.2 - コンソールと変数</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-            min-height: 100vh;
-        }
-        
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            color: #FFE135;
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .step-info {
-            text-align: center;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .info-box {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border-left: 5px solid #FFE135;
-        }
-        
-        .highlight {
-            color: #FFE135;
-            font-weight: bold;
-        }
-        
-        .code-example {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            margin: 15px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .instruction {
-            background: rgba(255, 193, 7, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #FFE135;
-            margin: 20px 0;
-        }
-        
-        .celebration {
-            font-size: 2rem;
-            text-align: center;
-            margin: 20px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -149,18 +81,6 @@ console.log("現在のステップ：" + stepNumber);
         </div>
     </div>
     
-    <script>
-        // ようこそメッセージ
-        let message = "ステップ15.2へようこそ！";
-        console.log(message);
-        
-        // 名前を変数に保存
-        let studentName = "未来のプログラマー";
-        console.log("こんにちは、" + studentName + "さん！");
-        
-        // 学習の進捗
-        let stepNumber = 15.2;
-        console.log("現在のステップ：" + stepNumber);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
