@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステップ17.5-1 - 関数の基本</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ 関数の基本</h1>
+        <div class="step-info">
+            <strong>ステップ17.5-1 - 関数の定義と呼び出しの基礎</strong>
+        </div>
+        
+        <div class="celebration">⚡ 🔧 ✨</div>
+        
+        <div class="info-box">
+            <h3>🎯 このステップで学ぶこと</h3>
+            <ul>
+                <li><strong>function宣言</strong>の基本構文</li>
+                <li><strong>関数の呼び出し</strong>方法</li>
+                <li>関数を使った<strong>コードの整理</strong></li>
+                <li>関数と<strong>ボタンクリック</strong>の連携</li>
+            </ul>
+        </div>
+        
+        <div class="demo-section">
+            <h3>🔧 関数実行デモ</h3>
+            <p>ボタンをクリックして、関数がどのように動作するか体験しましょう！</p>
+            
+            <div class="content-display" id="content-display">
+                <h3 style="color: #3498db; margin-top: 0;">🎯 関数実行結果</h3>
+                <p>下のボタンをクリックすると、定義した関数が実行されます。</p>
+            </div>
+            
+            <div class="button-grid">
+                <button class="func-btn btn-hello" id="hello-btn">
+                    👋 挨拶関数
+                </button>
+                <button class="func-btn btn-time" id="time-btn">
+                    🕐 時刻表示関数
+                </button>
+                <button class="func-btn btn-message" id="message-btn">
+                    💬 メッセージ関数
+                </button>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>💡 関数の基本構造</h3>
+            <p>関数は「処理をまとめて名前を付けたもの」です：</p>
+            
+            <div class="code-example">
+// 1. 関数を定義（処理をまとめる）
+function sayHello() {
+    console.log("こんにちは！");
+    console.log("関数が実行されました");
+}
+
+// 2. 関数を呼び出し（実際に実行する）
+sayHello(); // "こんにちは！" と "関数が実行されました" が出力される
+
+// 何度でも呼び出せます
+sayHello();
+sayHello();
+            </div>
+        </div>
+        
+        <div class="function-info">
+            <h4>🔧 このページで定義されている関数</h4>
+            <div class="function-list">
+                <div class="function-card">
+                    <h4>👋 showGreeting()</h4>
+                    <p>挨拶メッセージを表示する関数</p>
+                </div>
+                <div class="function-card">
+                    <h4>🕐 showCurrentTime()</h4>
+                    <p>現在の時刻を表示する関数</p>
+                </div>
+                <div class="function-card">
+                    <h4>💬 showMessage()</h4>
+                    <p>励ましメッセージを表示する関数</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instruction">
+            <h3>🚀 関数の基本を体験してみよう！</h3>
+            <p>3つのボタンをクリックして、それぞれ異なる関数がどのように実行されるか確認してください。</p>
+            <p>同じボタンを何度もクリックして、関数が再利用できることも確かめましょう！</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

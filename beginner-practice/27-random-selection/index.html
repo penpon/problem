@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステップ17.3b - ランダム選択システム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎲 ランダム選択システム</h1>
+        <div class="step-info">
+            <strong>ステップ17.3b - Math.randomとランダム選択の実装</strong>
+        </div>
+        
+        <div class="celebration">🎲 🎯 ⚡</div>
+        
+        <div class="info-box">
+            <h3>📚 このステップで学ぶこと</h3>
+            <ul>
+                <li><strong>Math.random()</strong>による乱数生成の仕組み</li>
+                <li><strong>ランダムインデックス</strong>の計算方法</li>
+                <li>配列からの<strong>ランダム選択</strong>システム</li>
+                <li>前ステップの<strong>配列知識の実践活用</strong></li>
+            </ul>
+        </div>
+        
+        <div class="demo-section">
+            <h3>🎪 ランダム選択デモ</h3>
+            <p>ボタンをクリックして、配列からランダムに要素を選択してみましょう！</p>
+            
+            <div class="content-display" id="content-display">
+                <h3 style="color: #3498db; margin-top: 0;">🎯 ランダム選択結果表示エリア</h3>
+                <p>下のボタンをクリックして、Math.random()がどのように動作するか確認してください。</p>
+                <div class="random-result" id="random-result" style="display: none;">
+                    選択された要素がここに表示されます
+                </div>
+            </div>
+            
+            <div class="button-grid">
+                <button class="random-btn btn-fruit" id="fruit-btn">
+                    🍎 果物ランダム
+                </button>
+                
+                <button class="random-btn btn-color" id="color-btn">
+                    🎨 色ランダム
+                </button>
+                
+                <button class="random-btn btn-music" id="music-btn">
+                    🎵 音楽ランダム
+                </button>
+                
+                <button class="random-btn btn-mixed" id="mixed-btn">
+                    🎯 全混合ランダム
+                </button>
+            </div>
+            
+            <div class="process-details" id="process-details">
+                ランダム処理の詳細がここに表示されます...
+            </div>
+        </div>
+        
+        <div class="data-section">
+            <h4>📊 使用中のデータ配列</h4>
+            <div class="data-grid">
+                <div class="data-card">
+                    <h4>🍎 果物配列</h4>
+                    <div class="data-content" id="fruits-data">読み込み中...</div>
+                    <div class="data-stats">要素数: <span id="fruits-count">5</span>個</div>
+                </div>
+                <div class="data-card">
+                    <h4>🎨 色配列</h4>
+                    <div class="data-content" id="colors-data">読み込み中...</div>
+                    <div class="data-stats">要素数: <span id="colors-count">6</span>個</div>
+                </div>
+                <div class="data-card">
+                    <h4>🎵 音楽配列</h4>
+                    <div class="data-content" id="music-data">読み込み中...</div>
+                    <div class="data-stats">要素数: <span id="music-count">5</span>個</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <h4>📈 ランダム選択統計</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-selections">0</div>
+                    <div class="stat-label">総選択回数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="fruit-count">0</div>
+                    <div class="stat-label">果物選択</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="color-count">0</div>
+                    <div class="stat-label">色選択</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="music-count">0</div>
+                    <div class="stat-label">音楽選択</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="mixed-count">0</div>
+                    <div class="stat-label">混合選択</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>🎯 ランダム選択の仕組み</h3>
+            <p>配列からランダムに要素を選択する基本的なプロセス：</p>
+            
+            <div class="code-example">
+// ステップ1: 配列を準備
+let fruits = ["りんご", "バナナ", "オレンジ", "ぶどう"];
+
+// ステップ2: 0以上1未満のランダムな小数を生成
+let randomFloat = Math.random(); // 例: 0.6789
+
+// ステップ3: 配列の長さと掛け算
+let scaled = randomFloat * fruits.length; // 例: 0.6789 × 4 = 2.7156
+
+// ステップ4: 整数のインデックスを取得
+let randomIndex = Math.floor(scaled); // 例: Math.floor(2.7156) = 2
+
+// ステップ5: ランダムな要素を取得
+let randomFruit = fruits[randomIndex]; // 例: fruits[2] = "オレンジ"
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>🔧 実装されている機能</h3>
+            <ul>
+                <li><strong>🍎 果物ランダム</strong>: 5種類の果物からランダム選択</li>
+                <li><strong>🎨 色ランダム</strong>: 6色からランダム選択（背景色も変更）</li>
+                <li><strong>🎵 音楽ランダム</strong>: 5つの音楽ジャンルからランダム選択</li>
+                <li><strong>🎯 全混合ランダム</strong>: 全配列（16要素）から1つをランダム選択</li>
+            </ul>
+        </div>
+        
+        <div class="instruction">
+            <h3>🚀 すべてのランダム機能を試してみよう！</h3>
+            <p>4つのボタンをすべてクリックして、ランダム選択がどのように動作するか確認してください。特に「ランダム処理の詳細」で内部計算を理解しましょう。</p>
+            <p><strong>同じボタンを何度もクリック</strong>して、毎回異なる結果が出ることも確認してください。</p>
+            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブでランダム処理のログも確認できます！</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

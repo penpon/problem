@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステップ17.3-1 - 配列基本</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 配列の基本</h1>
+        <div class="step-info">
+            <strong>ステップ17.3-1 - 配列の基本操作を学習</strong>
+        </div>
+        
+        <div class="celebration">📚 🎯 ✨</div>
+        
+        <div class="info-box">
+            <h3>🎯 このステップで学ぶこと</h3>
+            <ul>
+                <li><strong>配列（Array）</strong>の基本的な定義方法</li>
+                <li><strong>インデックス</strong>を使った要素へのアクセス</li>
+                <li><strong>lengthプロパティ</strong>で配列の長さを取得</li>
+                <li>配列の<strong>基本表示</strong>と操作</li>
+            </ul>
+        </div>
+        
+        <div class="demo-section">
+            <h3>🔍 配列表示デモ</h3>
+            <p>ボタンをクリックして、配列の基本操作を体験しましょう！</p>
+            
+            <div class="content-display" id="content-display">
+                <h3 style="color: #3498db; margin-top: 0;">📊 配列表示エリア</h3>
+                <p>下のボタンをクリックして、配列がどのように動作するか確認してください。</p>
+            </div>
+            
+            <div class="button-grid">
+                <button class="demo-btn btn-fruits" id="fruits-btn">
+                    🍎 果物配列
+                </button>
+                <button class="demo-btn btn-colors" id="colors-btn">
+                    🌈 色配列
+                </button>
+                <button class="demo-btn btn-numbers" id="numbers-btn">
+                    🔢 数字配列
+                </button>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>💡 配列の基本構造</h3>
+            <p>配列は複数のデータを1つの変数にまとめて保存する仕組みです：</p>
+            
+            <div class="code-example">
+// 1. 配列を作成
+let fruits = ["りんご", "バナナ", "オレンジ"];
+
+// 2. 配列の長さを確認
+console.log(fruits.length); // 3
+
+// 3. 特定の要素にアクセス（インデックスは0から始まる）
+console.log(fruits[0]); // "りんご"
+console.log(fruits[1]); // "バナナ"
+console.log(fruits[2]); // "オレンジ"
+            </div>
+        </div>
+        
+        <div class="instruction">
+            <h3>🚀 配列の基本を体験してみよう！</h3>
+            <p>3つのボタンをクリックして、配列の基本的な動作を確認してください。</p>
+            <p><strong>F12</strong>で開発者ツールを開き、<strong>Console</strong>タブで配列の詳細も確認できます！</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
