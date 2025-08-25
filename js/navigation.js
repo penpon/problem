@@ -16,7 +16,6 @@ class NavigationManager {
         if (filename === 'grader.html') return 'grader';
         if (filename === 'visualizer.html') return 'visualizer';
         if (filename === 'frontend.html') return 'frontend';
-        if (filename === 'advanced-frontend.html') return 'advanced-frontend';
         if (filename === 'memory-state-transition.html') return 'memory';
         if (filename === 'sequence-diagram.html') return 'sequence';
         if (filename === 'quiz.html') return 'quiz';
@@ -52,12 +51,8 @@ class NavigationManager {
                             <span class="link-text">採点システム</span>
                         </a>
                         <a href="frontend.html" class="nav-link ${this.currentPage === 'frontend' ? 'active' : ''}">
-                            <span class="link-icon">🎨</span>
-                            <span class="link-text">フロントエンド</span>
-                        </a>
-                        <a href="advanced-frontend.html" class="nav-link ${this.currentPage === 'advanced-frontend' ? 'active' : ''}">
                             <span class="link-icon">🚀</span>
-                            <span class="link-text">アドバンスド フロントエンド</span>
+                            <span class="link-text">フロントエンド入門</span>
                         </a>
                         <a href="quiz.html" class="nav-link ${this.currentPage === 'quiz' ? 'active' : ''}">
                             <span class="link-icon">📱</span>

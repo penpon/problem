@@ -1,9 +1,9 @@
 /**
  * フロントエンド入門 - メインアプリケーション
- * HTML/CSSリアルタイムプレビューと採点システム
+ * 新レイアウト対応: HTML/CSS学習システム
  */
 
-class FrontendLearning {
+class AdvancedFrontendLearning {
     constructor() {
         this.currentProblem = null;
         this.isUpdating = false;
@@ -17,43 +17,77 @@ class FrontendLearning {
             js: ''
         };
         
+        // 正解データ管理
+        this.expectedFiles = {
+            html: '',
+            css: '',
+            js: ''
+        };
+        
+        // 全画面表示管理
+        this.fullscreenActive = false;
+        this.fullscreenType = '';
+        
+        // 結果表示タブ管理
+        this.activeResultTab = 'summary';  // 'summary' または 'comparison'
+        this.activeComparisonFile = 'html';  // 'html', 'css', 'js'
+        
         this.initializeElements();
         this.setupEventListeners();
         this.loadProblems();
     }
     
     initializeElements() {
+        // 問題選択関連
+        this.tabNavigation = document.querySelector('.tab-navigation');
         this.problemList = document.getElementById('problem-list');
         this.problemDetails = document.getElementById('problem-details');
+        
+        // コードエディタ関連
         this.codeEditor = document.getElementById('code-editor');
         this.formatButton = document.getElementById('format-button');
         this.gradeButton = document.getElementById('grade-button');
-        this.expectedPreview = document.getElementById('expected-preview');
-        this.currentPreview = document.getElementById('current-preview');
-        this.resultArea = document.getElementById('result-area');
-        this.noResult = document.getElementById('no-result');
-        this.loading = document.getElementById('loading');
-        
-        // 正解パネルの切り替え機能の要素
-        this.previewTab = document.getElementById('preview-tab');
-        this.codeTab = document.getElementById('code-tab');
-        this.expectedPreviewView = document.getElementById('expected-preview-view');
-        this.expectedCodeView = document.getElementById('expected-code-view');
-        this.expectedCodeDisplay = document.getElementById('expected-code-display');
-        this.previewInfoText = document.getElementById('preview-info-text');
-        
-        // 現在は使用しない（タブ機能削除済み）
-        // this.currentPreviewTab = document.getElementById('current-preview-tab');
-        // this.currentResultTab = document.getElementById('current-result-tab');
-        // this.currentPreviewView = document.getElementById('current-preview-view');
-        // this.currentResultView = document.getElementById('current-result-view');
-        
-        // ファイルタブ関連の要素
         this.fileTabList = document.getElementById('file-tab-list');
         this.editorLabel = document.getElementById('editor-label');
-        this.htmlTabName = document.getElementById('html-tab-name');
-        this.cssTabName = document.getElementById('css-tab-name');
-        this.jsTabName = document.getElementById('js-tab-name');
+        this.loading = document.getElementById('loading');
+        
+        // 正解パネル関連
+        this.expectedPreviewTab = document.getElementById('expected-preview-tab');
+        this.expectedCodeTab = document.getElementById('expected-code-tab');
+        this.expectedPreviewView = document.getElementById('expected-preview-view');
+        this.expectedCodeView = document.getElementById('expected-code-view');
+        this.expectedPreview = document.getElementById('expected-preview');
+        this.expectedFullscreenBtn = document.getElementById('expected-fullscreen-btn');
+        
+        // 正解コード表示関連
+        this.expectedHtmlDisplay = document.getElementById('expected-html-display');
+        this.expectedCssDisplay = document.getElementById('expected-css-display');
+        this.expectedJsDisplay = document.getElementById('expected-js-display');
+        
+        // あなたパネル関連
+        this.currentPreview = document.getElementById('current-preview');
+        this.currentFullscreenBtn = document.getElementById('current-fullscreen-btn');
+        
+        // 採点結果関連
+        this.resultArea = document.getElementById('result-area');
+        this.noResult = document.getElementById('no-result');
+        
+        // コード比較関連
+        this.resultTabNavigation = document.getElementById('result-tab-navigation');
+        this.resultSummaryView = document.getElementById('result-summary-view');
+        this.resultComparisonView = document.getElementById('result-comparison-view');
+        this.comparisonFileTabs = document.querySelector('.comparison-file-tabs');
+        this.expectedComparisonCode = document.getElementById('expected-comparison-code');
+        this.userComparisonCode = document.getElementById('user-comparison-code');
+        
+        // 全画面モーダル関連
+        this.fullscreenModal = document.getElementById('fullscreen-modal');
+        this.fullscreenTitle = document.getElementById('fullscreen-title');
+        this.fullscreenBody = document.getElementById('fullscreen-body');
+        this.fullscreenClose = document.getElementById('fullscreen-close');
+        
+        // 現在アクティブな正解コード表示ファイル
+        this.activeExpectedCodeFile = 'html';
     }
     
     setupEventListeners() {
@@ -73,31 +107,27 @@ class FrontendLearning {
             this.gradeCode();
         });
         
-        // 問題リストのクリック
-        this.problemList.addEventListener('click', (e) => {
-            const problemItem = e.target.closest('.problem-item');
-            if (problemItem) {
-                this.selectProblem(problemItem.dataset.problemId);
+        // Ctrl+Enter で採点実行
+        this.codeEditor.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                this.gradeCode();
             }
         });
         
+        
         // 正解表示の切り替え
-        this.previewTab.addEventListener('click', () => {
-            this.showPreviewView();
-        });
+        if (this.expectedPreviewTab) {
+            this.expectedPreviewTab.addEventListener('click', () => {
+                this.showExpectedPreviewView();
+            });
+        }
         
-        this.codeTab.addEventListener('click', () => {
-            this.showCodeView();
-        });
-        
-        // あなたパネルのタブ切り替え機能は削除済み
-        // this.currentPreviewTab.addEventListener('click', () => {
-        //     this.showCurrentPreviewView();
-        // });
-        // 
-        // this.currentResultTab.addEventListener('click', () => {
-        //     this.showCurrentResultView();
-        // });
+        if (this.expectedCodeTab) {
+            this.expectedCodeTab.addEventListener('click', () => {
+                this.showExpectedCodeView();
+            });
+        }
         
         // ファイルタブの切り替え
         this.fileTabList.addEventListener('click', (e) => {
@@ -107,11 +137,93 @@ class FrontendLearning {
                 this.switchFileTab(fileType);
             }
         });
+        
+        // 正解コードファイルタブの切り替え
+        document.addEventListener('click', (e) => {
+            const codeFileTab = e.target.closest('.code-file-tab');
+            if (codeFileTab) {
+                const fileType = codeFileTab.dataset.codeFile;
+                this.switchExpectedCodeFile(fileType);
+            }
+        });
+        
+        // 全画面表示ボタン
+        if (this.expectedFullscreenBtn) {
+            this.expectedFullscreenBtn.addEventListener('click', () => {
+                this.openFullscreen('expected');
+            });
+        }
+        
+        if (this.currentFullscreenBtn) {
+            this.currentFullscreenBtn.addEventListener('click', () => {
+                this.openFullscreen('current');
+            });
+        }
+        
+        // 全画面モーダル閉じる
+        if (this.fullscreenClose) {
+            this.fullscreenClose.addEventListener('click', () => {
+                this.closeFullscreen();
+            });
+        }
+        
+        // モーダル背景クリックで閉じる
+        if (this.fullscreenModal) {
+            this.fullscreenModal.addEventListener('click', (e) => {
+                if (e.target === this.fullscreenModal) {
+                    this.closeFullscreen();
+                }
+            });
+        }
+        
+        // ESCキーで全画面モーダルを閉じる
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.fullscreenActive) {
+                this.closeFullscreen();
+            }
+        });
+        
+        // タブナビゲーションのクリックイベント（イベント委譲）
+        this.tabNavigation.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tab-button')) {
+                this.switchTab(e.target.dataset.category);
+            }
+        });
+        
+        // 問題リストのクリックイベント（イベント委譲）
+        this.problemList.addEventListener('click', (e) => {
+            const problemItem = e.target.closest('.problem-item');
+            if (problemItem) {
+                this.selectProblem(problemItem.dataset.problemId);
+            }
+        });
+        
+        // 結果タブナビゲーションのクリックイベント（イベント委譲）
+        if (this.resultTabNavigation) {
+            this.resultTabNavigation.addEventListener('click', (e) => {
+                const resultTabButton = e.target.closest('.result-tab-button');
+                if (resultTabButton) {
+                    this.switchResultTab(resultTabButton.dataset.resultTab);
+                }
+            });
+        }
+        
+        // コード比較ファイルタブのクリックイベント（イベント委譲）
+        if (this.comparisonFileTabs) {
+            this.comparisonFileTabs.addEventListener('click', (e) => {
+                const comparisonTab = e.target.closest('.comparison-file-tab');
+                if (comparisonTab) {
+                    this.switchComparisonFile(comparisonTab.dataset.comparisonFile);
+                }
+            });
+        }
     }
     
     async loadProblems() {
         try {
-            this.problemList.innerHTML = '<div style="padding: 20px; text-align: center;">問題を読み込み中...</div>';
+            // ローディング表示
+            this.tabNavigation.innerHTML = '<div style="padding: 20px; text-align: center; color: #64748b;">問題を読み込み中...</div>';
+            this.problemList.innerHTML = '';
             
             // ProblemLoaderを使用してフロントエンド問題を読み込み
             const problems = await getFrontendProblemList();
@@ -120,17 +232,75 @@ class FrontendLearning {
                 throw new Error('フロントエンド問題データが見つかりません');
             }
             
-            this.displayProblems(problems);
+            // カテゴリごとに問題をグループ化
+            const problemsByCategory = {};
+            problems.forEach(problem => {
+                if (!problemsByCategory[problem.category]) {
+                    problemsByCategory[problem.category] = [];
+                }
+                problemsByCategory[problem.category].push(problem);
+            });
+            
+            // タブナビゲーションを生成
+            this.createTabs(problemsByCategory);
+            
+            // 最初のカテゴリを選択
+            const firstCategory = Object.keys(problemsByCategory)[0];
+            if (firstCategory) {
+                this.currentCategory = firstCategory;
+                this.showProblemsForCategory(firstCategory, problemsByCategory[firstCategory]);
+                
+                // 最初のタブをアクティブにする
+                const firstTab = this.tabNavigation.querySelector('.tab-button');
+                if (firstTab) {
+                    firstTab.classList.add('active');
+                }
+            }
+            
+            // 全問題データをキャッシュ
+            this.problemsByCategory = problemsByCategory;
             this.allProblems = problems;
             
-            console.log(`${problems.length}問の読み込み完了`);
+            console.log(`${problems.length}問の読み込み完了（${Object.keys(problemsByCategory).length}カテゴリ）`);
         } catch (error) {
             console.error('問題の読み込みに失敗しました:', error);
-            this.problemList.innerHTML = '<div class="error-message">問題の読み込みに失敗しました。ページを再読み込みしてください。</div>';
+            this.tabNavigation.innerHTML = '<div class="error-message" style="padding: 20px; color: #ef4444;">問題の読み込みに失敗しました。ページを再読み込みしてください。</div>';
         }
     }
     
-    displayProblems(problems) {        
+    /**
+     * タブナビゲーションを生成
+     */
+    createTabs(problemsByCategory) {
+        const categoryInfo = {
+            'html-basics': { name: 'HTML基礎', icon: '🏗️' },
+            'css-foundation': { name: 'CSS基本・レイアウト', icon: '🎨' },
+            'css-advanced': { name: 'CSS応用・モダン', icon: '✨' },
+            'javascript-foundation': { name: 'JavaScript基礎', icon: '⚡' },
+            'javascript-dom': { name: 'JavaScript応用', icon: '🎯' }
+        };
+        
+        this.tabNavigation.innerHTML = '';
+        
+        Object.entries(problemsByCategory).forEach(([category, problems]) => {
+            const tabButton = document.createElement('button');
+            tabButton.className = 'tab-button';
+            tabButton.dataset.category = category;
+            
+            const info = categoryInfo[category] || { name: category, icon: '📝' };
+            tabButton.innerHTML = `
+                ${info.icon} ${info.name}
+                <span class="problem-count">(${problems.length}問)</span>
+            `;
+            
+            this.tabNavigation.appendChild(tabButton);
+        });
+    }
+    
+    /**
+     * カテゴリの問題リストを表示
+     */
+    showProblemsForCategory(category, problems) {
         this.problemList.innerHTML = '';
         
         problems.forEach(problem => {
@@ -139,14 +309,41 @@ class FrontendLearning {
             problemItem.dataset.problemId = problem.id;
             
             // 問題番号を取得（practice01 -> 01 形式）
-            const problemNumber = problem.id.replace('practice', '');
+            const problemNumber = problem.id.replace('practice', '').replace('_', '.');
             
             problemItem.innerHTML = `
-                <span class="problem-number">#${problemNumber}</span>
-                <span class="problem-title">${problem.title}</span>
+                <div class="problem-info">
+                    <span class="problem-number">#${problemNumber}</span>
+                    <span class="problem-title">${problem.title}</span>
+                </div>
+                <div class="problem-difficulty">
+                    ${'★'.repeat(problem.difficulty || 1)}
+                </div>
             `;
+            
             this.problemList.appendChild(problemItem);
         });
+    }
+    
+    /**
+     * タブを切り替える
+     */
+    switchTab(category) {
+        // アクティブなタブボタンを切り替え
+        this.tabNavigation.querySelectorAll('.tab-button').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        const activeTab = this.tabNavigation.querySelector(`[data-category="${category}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+        
+        // カテゴリの問題を表示
+        const problems = this.problemsByCategory[category];
+        if (problems) {
+            this.currentCategory = category;
+            this.showProblemsForCategory(category, problems);
+        }
     }
     
     async selectProblem(problemId) {
@@ -168,7 +365,7 @@ class FrontendLearning {
             if (this.currentProblem) {
                 this.displayProblemDetails(this.currentProblem);
                 this.loadProblemTemplate(this.currentProblem);
-                this.loadExpectedPreview(this.currentProblem);
+                this.loadExpectedData(this.currentProblem);
                 this.clearResults();
                 
                 console.log(`問題 ${problemId} を選択しました`);
@@ -185,7 +382,9 @@ class FrontendLearning {
         const cleanTitle = problem.title?.replace(/^問題\d+：?\s*/, '') || '無題';
         
         this.problemDetails.innerHTML = `
-            <div class="problem-title">${cleanTitle}</div>
+            <div class="problem-title-display">
+                <h3>${cleanTitle}</h3>
+            </div>
             <div class="problem-description">${problem.description || ''}</div>
             <div class="problem-instructions">
                 <div class="instructions-header">💡 実装のポイント</div>
@@ -213,19 +412,71 @@ class FrontendLearning {
         this.schedulePreviewUpdate();
     }
     
-    async loadExpectedPreview(problem) {
-        // 期待される結果をJSONデータから取得
-        const expectedHtml = problem.files?.html?.expected || '<html><body><p>期待される結果</p></body></html>';
-        this.displayPreview(this.expectedPreview, expectedHtml);
+    async loadExpectedData(problem) {
+        // 期待される結果を複数ファイルで取得
+        this.expectedFiles = {
+            html: problem.files?.html?.expected || '<html><body><p>期待される結果</p></body></html>',
+            css: problem.files?.css?.expected || '',
+            js: problem.files?.js?.expected || ''
+        };
         
-        // コード表示用にも保存
-        this.currentExpectedHtml = expectedHtml;
-        this.expectedCodeDisplay.textContent = expectedHtml.trim();
+        // 統合HTML生成してプレビュー表示
+        const combinedExpectedHtml = this.generateExpectedCombinedHtml();
+        this.displayPreview(this.expectedPreview, combinedExpectedHtml);
+        
+        // 正解コード表示を更新
+        this.updateExpectedCodeDisplays();
         
         // デフォルトでプレビュー表示
-        this.showPreviewView();
+        this.showExpectedPreviewView();
     }
     
+    generateExpectedCombinedHtml() {
+        const htmlContent = this.expectedFiles.html || '';
+        const cssContent = this.expectedFiles.css || '';
+        const jsContent = this.expectedFiles.js || '';
+        
+        // HTMLが空の場合はデフォルトテンプレート
+        if (!htmlContent.trim()) {
+            return this.getDefaultTemplate();
+        }
+        
+        // CSS と JS を HTML に挿入
+        let combinedHtml = htmlContent;
+        
+        // CSS を <style> タグとして挿入
+        if (cssContent.trim()) {
+            const styleTag = `\n<style>\n${cssContent}\n</style>`;
+            
+            if (combinedHtml.includes('</head>')) {
+                combinedHtml = combinedHtml.replace('</head>', `${styleTag}\n</head>`);
+            } else {
+                combinedHtml = `<head>${styleTag}\n</head>\n${combinedHtml}`;
+            }
+        }
+        
+        // JavaScript を <script> タグとして挿入
+        if (jsContent.trim()) {
+            const scriptTag = `\n<script>\n${jsContent}\n</script>`;
+            
+            if (combinedHtml.includes('</body>')) {
+                combinedHtml = combinedHtml.replace('</body>', `${scriptTag}\n</body>`);
+            } else {
+                combinedHtml = `${combinedHtml}\n${scriptTag}`;
+            }
+        }
+        
+        return combinedHtml;
+    }
+    
+    updateExpectedCodeDisplays() {
+        this.expectedHtmlDisplay.textContent = this.expectedFiles.html || '';
+        this.expectedCssDisplay.textContent = this.expectedFiles.css || '';
+        this.expectedJsDisplay.textContent = this.expectedFiles.js || '';
+        
+        // 初期表示はHTML
+        this.switchExpectedCodeFile('html');
+    }
     
     getDefaultTemplate() {
         return `<!DOCTYPE html>
@@ -258,18 +509,34 @@ class FrontendLearning {
         this.schedulePreviewUpdate();
     }
     
+    switchExpectedCodeFile(fileType) {
+        this.activeExpectedCodeFile = fileType;
+        
+        // コードファイルタブの切り替え
+        document.querySelectorAll('.code-file-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        const activeTab = document.querySelector(`.code-file-tab[data-code-file="${fileType}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+        
+        // コード表示の切り替え
+        this.expectedHtmlDisplay.style.display = fileType === 'html' ? 'block' : 'none';
+        this.expectedCssDisplay.style.display = fileType === 'css' ? 'block' : 'none';
+        this.expectedJsDisplay.style.display = fileType === 'js' ? 'block' : 'none';
+    }
+    
     updateCurrentFileContent() {
-        // 現在エディタにある内容を対応するファイルに保存
         this.fileContents[this.activeFileType] = this.codeEditor.value;
     }
     
     updateTabActiveState() {
-        // すべてのタブからactiveクラスを削除
         this.fileTabList.querySelectorAll('.file-tab').forEach(tab => {
             tab.classList.remove('active');
         });
         
-        // アクティブなタブにactiveクラスを追加
         const activeTab = this.fileTabList.querySelector(`[data-file-type="${this.activeFileType}"]`);
         if (activeTab) {
             activeTab.classList.add('active');
@@ -277,12 +544,10 @@ class FrontendLearning {
     }
     
     updateEditorContent() {
-        // アクティブなファイルの内容をエディタに表示
         this.codeEditor.value = this.fileContents[this.activeFileType] || '';
     }
     
     updateEditorLabel() {
-        // エディタのラベルを更新
         const labels = {
             html: 'HTMLを入力してください：',
             css: 'CSSを入力してください：',
@@ -299,14 +564,11 @@ class FrontendLearning {
         
         this.previewUpdateTimeout = setTimeout(() => {
             this.updateCurrentPreview();
-        }, 500); // 0.5秒の遅延
+        }, 500);
     }
     
     updateCurrentPreview() {
-        // 現在編集中の内容を保存
         this.updateCurrentFileContent();
-        
-        // 複数ファイルを統合したHTMLを生成
         const combinedHtml = this.generateCombinedHtml();
         this.displayPreview(this.currentPreview, combinedHtml);
     }
@@ -316,23 +578,19 @@ class FrontendLearning {
         const cssContent = this.fileContents.css || '';
         const jsContent = this.fileContents.js || '';
         
-        // HTMLが空の場合はデフォルトテンプレート
         if (!htmlContent.trim()) {
             return this.getDefaultTemplate();
         }
         
-        // CSS と JS を HTML に挿入
         let combinedHtml = htmlContent;
         
         // CSS を <style> タグとして挿入
         if (cssContent.trim()) {
             const styleTag = `\n<style>\n${cssContent}\n</style>`;
             
-            // </head> の前に CSS を挿入
             if (combinedHtml.includes('</head>')) {
                 combinedHtml = combinedHtml.replace('</head>', `${styleTag}\n</head>`);
             } else {
-                // head タグがない場合は HTML の先頭に追加
                 combinedHtml = `<head>${styleTag}\n</head>\n${combinedHtml}`;
             }
         }
@@ -341,11 +599,9 @@ class FrontendLearning {
         if (jsContent.trim()) {
             const scriptTag = `\n<script>\n${jsContent}\n</script>`;
             
-            // </body> の前に JavaScript を挿入
             if (combinedHtml.includes('</body>')) {
                 combinedHtml = combinedHtml.replace('</body>', `${scriptTag}\n</body>`);
             } else {
-                // body タグがない場合は HTML の末尾に追加
                 combinedHtml = `${combinedHtml}\n${scriptTag}`;
             }
         }
@@ -368,13 +624,27 @@ class FrontendLearning {
     
     formatCode() {
         const code = this.codeEditor.value;
-        const formatted = this.formatHtml(code);
+        
+        let formatted;
+        switch (this.activeFileType) {
+            case 'html':
+                formatted = this.formatHtml(code);
+                break;
+            case 'css':
+                formatted = this.formatCss(code);
+                break;
+            case 'js':
+                formatted = this.formatJs(code);
+                break;
+            default:
+                formatted = code;
+        }
+        
         this.codeEditor.value = formatted;
         this.schedulePreviewUpdate();
     }
     
     formatHtml(html) {
-        // シンプルなHTML整形
         let formatted = html
             .replace(/></g, '>\n<')
             .replace(/^\s+|\s+$/gm, '');
@@ -401,16 +671,86 @@ class FrontendLearning {
         }).join('\n');
     }
     
+    formatCss(css) {
+        return css
+            .replace(/\{/g, ' {\n    ')
+            .replace(/\}/g, '\n}\n')
+            .replace(/;/g, ';\n    ')
+            .replace(/,/g, ',\n')
+            .replace(/\n\s*\n/g, '\n')
+            .trim();
+    }
+    
+    formatJs(js) {
+        // 簡単なJavaScript整形
+        return js
+            .replace(/\{/g, ' {\n    ')
+            .replace(/\}/g, '\n}\n')
+            .replace(/;/g, ';\n    ')
+            .replace(/\n\s*\n/g, '\n')
+            .trim();
+    }
+    
+    // 正解表示切り替え
+    showExpectedPreviewView() {
+        this.expectedPreviewTab.classList.add('active');
+        this.expectedCodeTab.classList.remove('active');
+        this.expectedPreviewView.style.display = 'block';
+        this.expectedCodeView.style.display = 'none';
+    }
+    
+    showExpectedCodeView() {
+        this.expectedPreviewTab.classList.remove('active');
+        this.expectedCodeTab.classList.add('active');
+        this.expectedPreviewView.style.display = 'none';
+        this.expectedCodeView.style.display = 'block';
+    }
+    
+    // 全画面表示機能
+    openFullscreen(type) {
+        this.fullscreenActive = true;
+        this.fullscreenType = type;
+        
+        if (type === 'expected') {
+            this.fullscreenTitle.textContent = '正解プレビュー - 全画面表示';
+            
+            // 期待されるHTMLを全画面表示
+            const expectedCombined = this.generateExpectedCombinedHtml();
+            this.fullscreenBody.innerHTML = `<iframe style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>`;
+            const iframe = this.fullscreenBody.querySelector('iframe');
+            this.displayPreview(iframe, expectedCombined);
+            
+        } else if (type === 'current') {
+            this.fullscreenTitle.textContent = 'あなたのプレビュー - 全画面表示';
+            
+            // 現在のHTMLを全画面表示
+            const currentCombined = this.generateCombinedHtml();
+            this.fullscreenBody.innerHTML = `<iframe style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>`;
+            const iframe = this.fullscreenBody.querySelector('iframe');
+            this.displayPreview(iframe, currentCombined);
+        }
+        
+        this.fullscreenModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    closeFullscreen() {
+        this.fullscreenActive = false;
+        this.fullscreenType = '';
+        this.fullscreenModal.classList.remove('show');
+        document.body.style.overflow = '';
+        this.fullscreenBody.innerHTML = '';
+    }
+    
+    // 採点機能（grader.html の結果表示ロジックを統合）
     async gradeCode() {
         if (!this.currentProblem) {
             this.showError('問題を選択してください。');
             return;
         }
         
-        // 現在編集中の内容を保存
         this.updateCurrentFileContent();
         
-        // すべてのファイルが空でないかチェック
         const hasContent = Object.values(this.fileContents).some(content => content.trim());
         if (!hasContent) {
             this.showError('コードを入力してください。');
@@ -431,7 +771,6 @@ class FrontendLearning {
     }
     
     async analyzeCode() {
-        // 複数ファイルの解析と採点ロジック
         const combinedHtml = this.generateCombinedHtml();
         const parser = new DOMParser();
         const doc = parser.parseFromString(combinedHtml, 'text/html');
@@ -483,7 +822,6 @@ class FrontendLearning {
                 message: 'CSSが記述されています'
             });
             
-            // 基本的なCSS構文チェック
             const hasValidCss = this.validateCssBasics(cssContent);
             additionalChecks.push({
                 id: 'css-syntax',
@@ -505,7 +843,6 @@ class FrontendLearning {
                 message: 'JavaScriptが記述されています'
             });
             
-            // 基本的なJavaScript構文チェック
             const hasValidJs = this.validateJsBasics(jsContent);
             additionalChecks.push({
                 id: 'js-syntax',
@@ -521,8 +858,6 @@ class FrontendLearning {
     
     validateCssBasics(cssContent) {
         try {
-            // 基本的なCSS構文チェック
-            // セレクタと波括弧のペアがあるかチェック
             const hasSelector = /[a-zA-Z#.\-_\[\]:\s]+\s*\{[\s\S]*?\}/.test(cssContent);
             return hasSelector;
         } catch (error) {
@@ -532,8 +867,6 @@ class FrontendLearning {
     
     validateJsBasics(jsContent) {
         try {
-            // 基本的なJavaScript構文チェック
-            // 簡単な構文解析（完全ではないが基本的なエラーを検出）
             const hasFunction = /function\s+\w+\s*\([\s\S]*?\)\s*\{/.test(jsContent) ||
                               /\w+\s*=\s*function\s*\([\s\S]*?\)\s*\{/.test(jsContent) ||
                               /\w+\s*=\s*\([\s\S]*?\)\s*=>\s*\{/.test(jsContent) ||
@@ -541,7 +874,6 @@ class FrontendLearning {
                               /let\s+\w+\s*=/.test(jsContent) ||
                               /var\s+\w+\s*=/.test(jsContent);
             
-            // 基本的な制御構造
             const hasControl = /if\s*\([\s\S]*?\)\s*\{/.test(jsContent) ||
                              /for\s*\([\s\S]*?\)\s*\{/.test(jsContent) ||
                              /while\s*\([\s\S]*?\)\s*\{/.test(jsContent);
@@ -553,12 +885,10 @@ class FrontendLearning {
     }
     
     getChecksForProblem(problemId) {
-        // 現在の問題からチェック項目を取得
         if (this.currentProblem && this.currentProblem.checks) {
             return this.currentProblem.checks;
         }
         
-        // フォールバック: 基本的なチェック項目
         return [
             { id: 'doctype', name: 'DOCTYPE宣言', type: 'structure', message: 'DOCTYPE html宣言が必要です' },
             { id: 'html', name: '<html>タグ', type: 'structure', message: '<html>タグが必要です' },
@@ -570,11 +900,8 @@ class FrontendLearning {
     
     async runCheck(doc, check, originalHtml = '') {
         try {
-            const htmlString = doc.documentElement.outerHTML;
-            
             switch (check.id) {
                 case 'doctype':
-                    // 元のHTML文字列で直接チェック
                     const hasDoctype = originalHtml.toLowerCase().includes('<!doctype html>') || 
                                      originalHtml.toLowerCase().includes('<!doctype html ') ||
                                      /<!doctype\s+html\s*>/i.test(originalHtml);
@@ -621,59 +948,6 @@ class FrontendLearning {
                         message: '<h1>見出しと内容が必要です'
                     };
                     
-                case 'img':
-                    return {
-                        ...check,
-                        passed: doc.querySelector('img') !== null,
-                        message: '<img>タグが必要です'
-                    };
-                    
-                case 'img-alt':
-                    const img = doc.querySelector('img');
-                    return {
-                        ...check,
-                        passed: img !== null && img.hasAttribute('alt'),
-                        message: '画像にalt属性が必要です'
-                    };
-                    
-                case 'a':
-                    const a = doc.querySelector('a');
-                    return {
-                        ...check,
-                        passed: a !== null && a.textContent.trim() !== '',
-                        message: '<a>リンクと内容が必要です'
-                    };
-                    
-                case 'a-href':
-                    const link = doc.querySelector('a');
-                    return {
-                        ...check,
-                        passed: link !== null && link.hasAttribute('href'),
-                        message: 'リンクにhref属性が必要です'
-                    };
-                    
-                case 'ul':
-                    return {
-                        ...check,
-                        passed: doc.querySelector('ul') !== null,
-                        message: '<ul>順序なしリストが必要です'
-                    };
-                    
-                case 'ol':
-                    return {
-                        ...check,
-                        passed: doc.querySelector('ol') !== null,
-                        message: '<ol>順序付きリストが必要です'
-                    };
-                    
-                case 'li':
-                    const li = doc.querySelectorAll('li');
-                    return {
-                        ...check,
-                        passed: li.length >= 2,
-                        message: '最低2つの<li>項目が必要です'
-                    };
-                    
                 default:
                     return {
                         ...check,
@@ -690,15 +964,8 @@ class FrontendLearning {
         }
     }
     
-    // HTMLエスケープ用ヘルパー関数を追加
-    escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
+    // grader.html スタイルの採点結果表示（強化版）
     displayResults(result) {
-        // パーセンテージ計算
         const percentage = Math.round((result.score / result.maxScore) * 100);
         
         const statusClass = result.status === 'PERFECT' ? 'status-accepted' : 
@@ -710,11 +977,8 @@ class FrontendLearning {
         const statusText = result.status === 'PERFECT' ? '完璧です！' : 
                           result.status === 'PARTIAL' ? '部分的に正解' : '要改善';
         
-        // 各チェック項目の配点を動的に計算（10点ずつ均等配分）
-        const checkCount = result.checks.length;
-        const baseScore = 10; // 各項目10点固定
+        const baseScore = 10;
         
-        // 青枠内に直接表示するレイアウト
         let resultHtml = `
             <div class="result-content">
                 <div class="result-header ${statusClass}">
@@ -737,6 +1001,9 @@ class FrontendLearning {
                             <div class="progress-fill ${statusClass}" style="width: ${percentage}%"></div>
                         </div>
                     </div>
+                    <div class="progress-text">
+                        ${result.checks.filter(c => c.passed).length}/${result.checks.length} チェック項目通過
+                    </div>
                 </div>
                 
                 <div class="detailed-results">
@@ -750,7 +1017,6 @@ class FrontendLearning {
             const itemClass = check.passed ? 'test-case-passed' : 'test-case-failed';
             const icon = check.passed ? '✅' : '❌';
             
-            // チェック項目名をHTMLエスケープして表示
             const displayName = this.escapeHtml(check.name);
             const displayMessage = this.escapeHtml(check.message);
             
@@ -769,6 +1035,29 @@ class FrontendLearning {
                     <div class="test-message">
                         ${displayMessage}
                     </div>
+                    
+                    <!-- 詳細なエラー情報 -->
+                    ${!check.passed && check.details ? `
+                        <div class="error-details">
+                            <div class="error-details-header">🔍 詳細な解析結果</div>
+                            <div class="error-details-content">${this.escapeHtml(check.details)}</div>
+                        </div>
+                    ` : ''}
+                    
+                    <!-- 期待値と実際の値の比較 -->
+                    ${!check.passed && check.expected && check.actual ? `
+                        <div class="output-comparison">
+                            <div class="output-box expected-output">
+                                <h4>期待される結果</h4>
+                                <div class="output-content">${this.escapeHtml(check.expected)}</div>
+                            </div>
+                            <div class="output-box actual-output">
+                                <h4>実際の結果</h4>
+                                <div class="output-content">${this.escapeHtml(check.actual)}</div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
                     <div class="test-progress">
                         <div class="test-progress-bar">
                             <div class="test-progress-fill ${itemClass}" style="width: ${checkPercentage}%"></div>
@@ -778,7 +1067,66 @@ class FrontendLearning {
             `;
         });
         
+        // ファイル別サマリー表示
+        const fileTypeCounts = {
+            html: { total: 0, passed: 0 },
+            css: { total: 0, passed: 0 },
+            js: { total: 0, passed: 0 },
+            structure: { total: 0, passed: 0 }
+        };
+        
+        result.checks.forEach(check => {
+            const type = check.type || 'structure';
+            if (fileTypeCounts[type]) {
+                fileTypeCounts[type].total++;
+                if (check.passed) {
+                    fileTypeCounts[type].passed++;
+                }
+            }
+        });
+        
         resultHtml += `
+                    </div>
+                    
+                    <!-- ファイル別サマリー -->
+                    <div class="file-summary">
+                        <div class="results-title">📁 ファイル別結果</div>
+                        <div class="file-summary-grid">
+        `;
+        
+        Object.entries(fileTypeCounts).forEach(([type, counts]) => {
+            if (counts.total > 0) {
+                const typePercentage = Math.round((counts.passed / counts.total) * 100);
+                const typeClass = typePercentage === 100 ? 'summary-perfect' : 
+                                typePercentage > 0 ? 'summary-partial' : 'summary-zero';
+                const typeIcon = type === 'html' ? '🌐' : 
+                               type === 'css' ? '🎨' : 
+                               type === 'js' ? '⚙️' : '🏗️';
+                const typeName = type === 'html' ? 'HTML' : 
+                               type === 'css' ? 'CSS' : 
+                               type === 'js' ? 'JavaScript' : '構造';
+                
+                resultHtml += `
+                    <div class="file-summary-item ${typeClass}">
+                        <div class="file-summary-header">
+                            <span class="file-summary-icon">${typeIcon}</span>
+                            <span class="file-summary-name">${typeName}</span>
+                        </div>
+                        <div class="file-summary-score">
+                            ${counts.passed}/${counts.total} (${typePercentage}%)
+                        </div>
+                        <div class="file-summary-progress">
+                            <div class="file-summary-progress-bar">
+                                <div class="file-summary-progress-fill ${typeClass}" style="width: ${typePercentage}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+        
+        resultHtml += `
+                        </div>
                     </div>
                 </div>
             </div>
@@ -788,8 +1136,8 @@ class FrontendLearning {
         this.resultArea.style.display = 'block';
         this.noResult.style.display = 'none';
         
-        // 採点結果の自動タブ切り替えは削除済み（獨立パネル化）
-        // this.showCurrentResultView();
+        // 結果エリアにスムーズスクロール
+        this.resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
         // プレビューにハイライト効果
         const previewContainer = this.currentPreview.closest('.preview-container');
@@ -800,6 +1148,18 @@ class FrontendLearning {
             previewContainer.classList.add('preview-error');
             setTimeout(() => previewContainer.classList.remove('preview-error'), 2000);
         }
+        
+        // 結果通知音（オプション）
+        this.playNotificationSound(result.status);
+        
+        // コード比較機能を初期化
+        this.initializeCodeComparison();
+    }
+    
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
     
     startGrading() {
@@ -830,55 +1190,299 @@ class FrontendLearning {
         this.noResult.style.display = 'none';
     }
     
-    showPreviewView() {
-        // ボタンの状態を切り替え
-        this.previewTab.classList.add('active');
-        this.codeTab.classList.remove('active');
+    // 結果通知音（オプション機能）
+    playNotificationSound(status) {
+        if (!window.speechSynthesis) return;
         
-        // 表示を切り替え
-        this.expectedPreviewView.style.display = 'block';
-        this.expectedCodeView.style.display = 'none';
-        
-        // 情報テキストを更新
-        this.previewInfoText.textContent = '📌 この見た目を目指してコードを書いてください';
+        try {
+            let message = '';
+            switch (status) {
+                case 'PERFECT':
+                    message = '採点完了。完璧です！';
+                    break;
+                case 'PARTIAL':
+                    message = '採点完了。部分的に正解です。';
+                    break;
+                default:
+                    message = '採点完了。要改善です。';
+            }
+            
+            // 簡単な音声通知（ユーザー設定で無効化可能）
+            const utterance = new SpeechSynthesisUtterance(message);
+            utterance.lang = 'ja-JP';
+            utterance.volume = 0.3;
+            utterance.rate = 1.2;
+            
+            // ユーザーの設定で音声通知が有効な場合のみ再生
+            const soundEnabled = localStorage.getItem('advancedFrontend.soundEnabled');
+            if (soundEnabled !== 'false') {
+                window.speechSynthesis.speak(utterance);
+            }
+        } catch (error) {
+            console.log('音声通知の再生に失敗しました:', error);
+        }
     }
     
-    showCodeView() {
-        // ボタンの状態を切り替え
-        this.previewTab.classList.remove('active');
-        this.codeTab.classList.add('active');
+    // ==========================================
+    // コード比較機能
+    // ==========================================
+    
+    /**
+     * 結果タブを切り替え（採点結果 ↔ コード比較）
+     * @param {string} resultTab - 'summary' または 'comparison'
+     */
+    switchResultTab(resultTab) {
+        if (resultTab === this.activeResultTab) return;
         
-        // 表示を切り替え
-        this.expectedPreviewView.style.display = 'none';
-        this.expectedCodeView.style.display = 'block';
+        this.activeResultTab = resultTab;
+        this.updateResultTabState();
+        this.updateResultView();
         
-        // 情報テキストを更新
-        this.previewInfoText.textContent = '📋 正解のHTMLコードを参考にしてください';
+        // コード比較タブがアクティブになった時にコード比較を更新
+        if (resultTab === 'comparison') {
+            this.updateCodeComparison();
+        }
     }
     
-    // あなたパネルのタブ切り替え機能は削除済み（獨立パネル化）
-    // showCurrentPreviewView() {
-    //     // ボタンの状態を切り替え
-    //     this.currentPreviewTab.classList.add('active');
-    //     this.currentResultTab.classList.remove('active');
-    //     
-    //     // 表示を切り替え
-    //     this.currentPreviewView.style.display = 'block';
-    //     this.currentResultView.style.display = 'none';
-    // }
-    // 
-    // showCurrentResultView() {
-    //     // ボタンの状態を切り替え
-    //     this.currentPreviewTab.classList.remove('active');
-    //     this.currentResultTab.classList.add('active');
-    //     
-    //     // 表示を切り替え
-    //     this.currentPreviewView.style.display = 'none';
-    //     this.currentResultView.style.display = 'block';
-    // }
+    /**
+     * コード比較ファイルタブを切り替え（HTML/CSS/JS）
+     * @param {string} fileType - 'html', 'css', 'js'
+     */
+    switchComparisonFile(fileType) {
+        if (fileType === this.activeComparisonFile) return;
+        
+        this.activeComparisonFile = fileType;
+        this.updateComparisonFileTabState();
+        this.updateCodeComparison();
+    }
+    
+    /**
+     * 結果タブの表示状態を更新
+     */
+    updateResultTabState() {
+        if (!this.resultTabNavigation) return;
+        
+        // 全てのタブからactiveクラスを削除
+        const tabs = this.resultTabNavigation.querySelectorAll('.result-tab-button');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // アクティブなタブにactiveクラスを追加
+        const activeTab = this.resultTabNavigation.querySelector(
+            `.result-tab-button[data-result-tab="${this.activeResultTab}"]`
+        );
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+    }
+    
+    /**
+     * 結果ビューの表示切り替え
+     */
+    updateResultView() {
+        if (this.resultSummaryView) {
+            this.resultSummaryView.style.display = 
+                this.activeResultTab === 'summary' ? 'block' : 'none';
+        }
+        
+        if (this.resultComparisonView) {
+            this.resultComparisonView.style.display = 
+                this.activeResultTab === 'comparison' ? 'block' : 'none';
+        }
+    }
+    
+    /**
+     * コード比較ファイルタブの表示状態を更新
+     */
+    updateComparisonFileTabState() {
+        if (!this.comparisonFileTabs) return;
+        
+        // 全てのタブからactiveクラスを削除
+        const tabs = this.comparisonFileTabs.querySelectorAll('.comparison-file-tab');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // アクティブなタブにactiveクラスを追加
+        const activeTab = this.comparisonFileTabs.querySelector(
+            `.comparison-file-tab[data-comparison-file="${this.activeComparisonFile}"]`
+        );
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+    }
+    
+    /**
+     * コード比較表示を更新
+     */
+    updateCodeComparison() {
+        if (!this.expectedComparisonCode || !this.userComparisonCode) return;
+        
+        const expectedCode = this.getExpectedCodeForFile(this.activeComparisonFile);
+        const userCode = this.getUserCodeForFile(this.activeComparisonFile);
+        
+        if (!expectedCode && !userCode) {
+            // 両方とも空の場合
+            this.displayEmptyComparison();
+            return;
+        }
+        
+        // 差分ハイライト付きでコードを表示
+        const expectedHtml = this.generateCodeWithDiff(expectedCode || '', userCode || '', 'expected');
+        const userHtml = this.generateCodeWithDiff(userCode || '', expectedCode || '', 'user');
+        
+        this.expectedComparisonCode.innerHTML = expectedHtml;
+        this.userComparisonCode.innerHTML = userHtml;
+        
+        // 行番号クラスを追加
+        this.expectedComparisonCode.classList.add('with-line-numbers');
+        this.userComparisonCode.classList.add('with-line-numbers');
+    }
+    
+    /**
+     * 指定ファイルタイプの正解コードを取得
+     * @param {string} fileType - 'html', 'css', 'js'
+     * @returns {string} 正解コード
+     */
+    getExpectedCodeForFile(fileType) {
+        if (!this.expectedFiles || !this.expectedFiles[fileType]) {
+            return '';
+        }
+        return this.expectedFiles[fileType];
+    }
+    
+    /**
+     * 指定ファイルタイプのユーザーコードを取得
+     * @param {string} fileType - 'html', 'css', 'js'
+     * @returns {string} ユーザーコード
+     */
+    getUserCodeForFile(fileType) {
+        if (!this.fileContents || !this.fileContents[fileType]) {
+            return '';
+        }
+        return this.fileContents[fileType];
+    }
+    
+    /**
+     * 差分ハイライト付きのコードHTMLを生成
+     * @param {string} code - 表示するコード
+     * @param {string} compareCode - 比較対象のコード
+     * @param {string} type - 'expected' または 'user'
+     * @returns {string} ハイライト付きのHTML
+     */
+    generateCodeWithDiff(code, compareCode, type) {
+        const codeLines = code.split('\n');
+        const compareLines = compareCode.split('\n');
+        
+        let html = '<div class="line-numbers">';
+        for (let i = 1; i <= codeLines.length; i++) {
+            html += `<div>${i}</div>`;
+        }
+        html += '</div><div class="code-content">';
+        
+        for (let i = 0; i < codeLines.length; i++) {
+            const line = codeLines[i];
+            const compareLine = compareLines[i] || '';
+            
+            let lineClass = '';
+            let processedLine = this.escapeHtml(line);
+            
+            if (i >= compareLines.length) {
+                // 比較対象にない行 = 追加された行
+                lineClass = type === 'expected' ? 'added' : 'added';
+            } else if (line !== compareLine) {
+                // 内容が異なる行 = 変更された行
+                lineClass = 'modified';
+                processedLine = this.highlightCharDifferences(line, compareLine, type);
+            }
+            
+            html += `<div class="code-line ${lineClass}">${processedLine}</div>`;
+        }
+        
+        // 比較対象の方が長い場合（削除された行）
+        if (compareLines.length > codeLines.length) {
+            for (let i = codeLines.length; i < compareLines.length; i++) {
+                const deletedLine = this.escapeHtml(compareLines[i]);
+                html += `<div class="code-line removed">${deletedLine}</div>`;
+            }
+        }
+        
+        html += '</div>';
+        return html;
+    }
+    
+    /**
+     * 文字レベルの差分をハイライト
+     * @param {string} line - 現在の行
+     * @param {string} compareLine - 比較対象の行
+     * @param {string} type - 'expected' または 'user'
+     * @returns {string} ハイライト付きの行HTML
+     */
+    highlightCharDifferences(line, compareLine, type) {
+        if (line === compareLine) return this.escapeHtml(line);
+        
+        // 簡単な文字差分実装（完全一致チェック）
+        let result = '';
+        const maxLength = Math.max(line.length, compareLine.length);
+        
+        for (let i = 0; i < maxLength; i++) {
+            const char = line[i] || '';
+            const compareChar = compareLine[i] || '';
+            
+            if (char === compareChar) {
+                result += this.escapeHtml(char);
+            } else {
+                if (char && !compareChar) {
+                    // 追加された文字
+                    result += `<span class="diff-char added">${this.escapeHtml(char)}</span>`;
+                } else if (!char && compareChar) {
+                    // 削除された文字（比較対象にのみ存在）
+                    if (type === 'expected') {
+                        result += `<span class="diff-char removed">${this.escapeHtml(compareChar)}</span>`;
+                    }
+                } else {
+                    // 変更された文字
+                    result += `<span class="diff-char modified">${this.escapeHtml(char)}</span>`;
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    /**
+     * 空のコード比較状態を表示
+     */
+    displayEmptyComparison() {
+        const emptyMessage = `
+            <div class="comparison-empty-state">
+                <h3>コード比較</h3>
+                <p>問題を選択して採点を実行すると、<br>正解コードとあなたのコードを比較できます。</p>
+            </div>
+        `;
+        
+        this.expectedComparisonCode.innerHTML = emptyMessage;
+        this.userComparisonCode.innerHTML = emptyMessage;
+    }
+    
+    /**
+     * コード比較機能を初期化
+     * displayResults()から呼び出される
+     */
+    initializeCodeComparison() {
+        if (!this.resultTabNavigation) return;
+        
+        // 採点結果がある時のみタブナビゲーションを表示
+        this.resultTabNavigation.style.display = 'flex';
+        
+        // デフォルトは採点結果タブを表示
+        this.switchResultTab('summary');
+        this.switchComparisonFile('html');
+    }
 }
 
 // アプリケーション初期化
 document.addEventListener('DOMContentLoaded', () => {
-    window.frontendLearning = new FrontendLearning();
+    window.advancedFrontendLearning = new AdvancedFrontendLearning();
 });

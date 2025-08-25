@@ -6,7 +6,7 @@
     <title>フロントエンド入門 - HTML/CSS学習システム</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/frontend.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
 </head>
 <body>
     <div class="header">
@@ -17,23 +17,30 @@
     </div>
 
     <div class="container">
-        <!-- 5パネルレイアウト -->
-        <div class="frontend-layout">
-            <!-- 左上: 問題選択エリア -->
-            <div class="problem-panel">
-                <h2 class="section-title">📚 問題選択</h2>
-                
+        <!-- 問題選択エリア -->
+        <div class="problem-section">
+            <h2 class="section-title">📚 問題選択</h2>
+            
+            <!-- タブナビゲーション -->
+            <div class="tab-navigation">
+                <!-- タブボタンがJavaScriptで動的に追加されます -->
+            </div>
+            
+            <!-- タブコンテンツ（問題リスト） -->
+            <div class="tab-content">
                 <div class="problem-list" id="problem-list">
                     <!-- 動的に問題ボタンが追加される -->
                 </div>
-                
-                <div id="problem-details" style="display: none;">
-                    <!-- 問題の詳細がここに表示されます -->
-                </div>
             </div>
+            
+            <div id="problem-details" style="display: none;">
+                <!-- 問題の詳細がここに表示されます -->
+            </div>
+        </div>
 
-            <!-- 右上: コードエディタエリア -->
-            <div class="editor-panel">
+        <!-- コードエディタエリア（大画面） -->
+        <div class="code-editor-section">
+            <div class="editor-header">
                 <h2 class="section-title">💻 コードエディタ</h2>
                 <div class="editor-controls">
                     <button id="format-button" class="format-button">
@@ -43,25 +50,27 @@
                         📊 採点実行
                     </button>
                 </div>
-                
-                <!-- マルチファイルタブ -->
-                <div class="file-tabs">
-                    <div class="tab-list" id="file-tab-list">
-                        <button class="file-tab active" data-file-type="html">
-                            <span class="tab-icon">🌐</span>
-                            <span class="tab-name" id="html-tab-name">index.html</span>
-                        </button>
-                        <button class="file-tab" data-file-type="css">
-                            <span class="tab-icon">🎨</span>
-                            <span class="tab-name" id="css-tab-name">style.css</span>
-                        </button>
-                        <button class="file-tab" data-file-type="js">
-                            <span class="tab-icon">⚙️</span>
-                            <span class="tab-name" id="js-tab-name">script.js</span>
-                        </button>
-                    </div>
+            </div>
+            
+            <!-- マルチファイルタブ -->
+            <div class="file-tabs">
+                <div class="tab-list" id="file-tab-list">
+                    <button class="file-tab active" data-file-type="html">
+                        <span class="tab-icon">🌐</span>
+                        <span class="tab-name" id="html-tab-name">index.html</span>
+                    </button>
+                    <button class="file-tab" data-file-type="css">
+                        <span class="tab-icon">🎨</span>
+                        <span class="tab-name" id="css-tab-name">style.css</span>
+                    </button>
+                    <button class="file-tab" data-file-type="js">
+                        <span class="tab-icon">⚙️</span>
+                        <span class="tab-name" id="js-tab-name">script.js</span>
+                    </button>
                 </div>
-                
+            </div>
+            
+            <div class="editor-container">
                 <div class="form-group">
                     <label for="code-editor" id="editor-label">
                         HTMLを入力してください：
@@ -69,7 +78,7 @@
                     <textarea 
                         id="code-editor" 
                         class="code-editor" 
-                        placeholder="問題を選択すると、ここにテンプレートが表示されます。"
+                        placeholder="問題を選択すると、ここにテンプレートが表示されます。&#10;&#10;// HTML例：&#10;&lt;div class=&quot;container&quot;&gt;&#10;  &lt;h1&gt;Hello World&lt;/h1&gt;&#10;&lt;/div&gt;"
                         spellcheck="false"
                     ></textarea>
                 </div>
@@ -79,53 +88,143 @@
                     <p>採点中...</p>
                 </div>
             </div>
+        </div>
 
-            <!-- 左下: 正解プレビューエリア -->
+        <!-- 下段: 正解とあなたのプレビュー -->
+        <div class="preview-section">
+            <!-- 正解エリア（左50%） -->
             <div class="expected-panel">
                 <div class="expected-header">
                     <h2 class="section-title">✅ 正解</h2>
-                    <div class="view-toggle">
-                        <button id="preview-tab" class="toggle-button active">見た目</button>
-                        <button id="code-tab" class="toggle-button">コード</button>
+                    <div class="panel-controls">
+                        <div class="view-toggle">
+                            <button id="expected-preview-tab" class="toggle-button active">見た目</button>
+                            <button id="expected-code-tab" class="toggle-button">コード</button>
+                        </div>
+                        <button id="expected-fullscreen-btn" class="fullscreen-btn" title="全画面表示">
+                            🔍
+                        </button>
                     </div>
                 </div>
+                
                 <div class="expected-content">
+                    <!-- プレビュー表示 -->
                     <div id="expected-preview-view" class="preview-container">
                         <iframe id="expected-preview" class="preview-iframe" title="正解プレビュー">
                         </iframe>
                     </div>
+                    
+                    <!-- コード表示 -->
                     <div id="expected-code-view" class="code-view" style="display: none;">
-                        <pre class="code-display" id="expected-code-display">
-                        </pre>
+                        <!-- 複数ファイル対応タブ -->
+                        <div class="code-file-tabs">
+                            <button class="code-file-tab active" data-code-file="html">HTML</button>
+                            <button class="code-file-tab" data-code-file="css">CSS</button>
+                            <button class="code-file-tab" data-code-file="js">JavaScript</button>
+                        </div>
+                        
+                        <div class="code-display-container">
+                            <pre class="code-display" id="expected-html-display">
+                                <!-- HTML正解コード -->
+                            </pre>
+                            <pre class="code-display" id="expected-css-display" style="display: none;">
+                                <!-- CSS正解コード -->
+                            </pre>
+                            <pre class="code-display" id="expected-js-display" style="display: none;">
+                                <!-- JavaScript正解コード -->
+                            </pre>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="preview-info">
-                    <p id="preview-info-text">📌 この見た目を目指してコードを書いてください</p>
+                    <p id="expected-preview-info-text">📌 この見た目を目指してコードを書いてください</p>
                 </div>
             </div>
 
-            <!-- 右下: あなたのプレビュー -->
+            <!-- あなたのプレビューエリア（右50%） -->
             <div class="current-panel">
-                <h2 class="section-title">🖼️ あなた</h2>
+                <div class="current-header">
+                    <h2 class="section-title">🖼️ あなた</h2>
+                    <div class="panel-controls">
+                        <button id="current-fullscreen-btn" class="fullscreen-btn" title="全画面表示">
+                            🔍
+                        </button>
+                    </div>
+                </div>
+                
                 <div class="preview-container">
                     <iframe id="current-preview" class="preview-iframe" title="現在のプレビュー">
                     </iframe>
                 </div>
+                
+                <div class="preview-info">
+                    <p id="current-preview-info-text">🎯 あなたのコードの結果がここに表示されます</p>
+                </div>
+            </div>
+        </div>
+            
+        <!-- 採点結果パネル -->
+        <div class="result-section">
+            <h2 class="section-title">📊 採点結果</h2>
+            
+            <!-- 結果表示タブナビゲーション -->
+            <div class="result-tab-navigation" id="result-tab-navigation" style="display: none;">
+                <button class="result-tab-button active" data-result-tab="summary">📊 採点結果</button>
+                <button class="result-tab-button" data-result-tab="comparison">🔍 コード比較</button>
             </div>
             
-            <!-- 採点結果パネル -->
-            <div class="result-panel">
-                <h2 class="section-title">📊 採点結果</h2>
-                <div class="result-content-wrapper">
-                    <!-- 採点結果エリア -->
-                    <div id="result-area">
+            <div class="result-content-wrapper">
+                <!-- 採点結果表示 -->
+                <div id="result-summary-view" class="result-tab-content">
+                    <div id="result-area" style="display: none;">
                         <!-- 採点結果がここに表示されます -->
                     </div>
                     
-                    <div id="no-result" class="no-result-text" style="text-align: center; padding: 20px;">
-                        <p>🎯 問題を選択してコードを書くと、結果がここに表示されます</p>
+                    <div id="no-result" class="no-result-text">
+                        <p>🎯 問題を選択してコードを書くと、採点結果がここに表示されます</p>
+                        <p style="font-size: 0.9em; margin-top: 10px;">
+                            ヒント: コードエディタで <kbd>Ctrl</kbd> + <kbd>Enter</kbd> でも採点実行できます
+                        </p>
                     </div>
                 </div>
+                
+                <!-- コード比較表示 -->
+                <div id="result-comparison-view" class="result-tab-content" style="display: none;">
+                    <div class="comparison-file-tabs">
+                        <button class="comparison-file-tab active" data-comparison-file="html">🌐 HTML</button>
+                        <button class="comparison-file-tab" data-comparison-file="css">🎨 CSS</button>
+                        <button class="comparison-file-tab" data-comparison-file="js">⚙️ JavaScript</button>
+                    </div>
+                    
+                    <div class="code-comparison-container">
+                        <div class="expected-code-panel">
+                            <h3 class="comparison-panel-title">✅ 正解コード</h3>
+                            <pre class="code-display" id="expected-comparison-code">
+                                <!-- 正解コードがここに表示されます -->
+                            </pre>
+                        </div>
+                        <div class="user-code-panel">
+                            <h3 class="comparison-panel-title">🖼️ あなたのコード</h3>
+                            <pre class="code-display" id="user-comparison-code">
+                                <!-- ユーザーコードがここに表示されます -->
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全画面表示モーダル -->
+    <div id="fullscreen-modal" class="fullscreen-modal">
+        <div class="fullscreen-content">
+            <div class="fullscreen-header">
+                <h3 id="fullscreen-title">全画面表示</h3>
+                <button id="fullscreen-close" class="fullscreen-close">&times;</button>
+            </div>
+            <div class="fullscreen-body" id="fullscreen-body">
+                <!-- 全画面表示コンテンツ -->
             </div>
         </div>
     </div>
