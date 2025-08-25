@@ -7,9 +7,8 @@
 .frontend-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: minmax(300px, 800px) minmax(400px, 500px) minmax(400px, 500px);
+  grid-template-rows: minmax(250px, auto) minmax(300px, auto) minmax(300px, auto);
   gap: 20px;
-  min-height: 100vh;
   margin-bottom: 30px;
   grid-template-areas: 
     "problem problem"
