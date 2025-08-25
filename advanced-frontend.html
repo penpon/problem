@@ -167,16 +167,50 @@
         <!-- 採点結果パネル -->
         <div class="result-section">
             <h2 class="section-title">📊 採点結果</h2>
+            
+            <!-- 結果表示タブナビゲーション -->
+            <div class="result-tab-navigation" id="result-tab-navigation" style="display: none;">
+                <button class="result-tab-button active" data-result-tab="summary">📊 採点結果</button>
+                <button class="result-tab-button" data-result-tab="comparison">🔍 コード比較</button>
+            </div>
+            
             <div class="result-content-wrapper">
-                <div id="result-area" style="display: none;">
-                    <!-- 採点結果がここに表示されます -->
+                <!-- 採点結果表示 -->
+                <div id="result-summary-view" class="result-tab-content">
+                    <div id="result-area" style="display: none;">
+                        <!-- 採点結果がここに表示されます -->
+                    </div>
+                    
+                    <div id="no-result" class="no-result-text">
+                        <p>🎯 問題を選択してコードを書くと、採点結果がここに表示されます</p>
+                        <p style="font-size: 0.9em; margin-top: 10px;">
+                            ヒント: コードエディタで <kbd>Ctrl</kbd> + <kbd>Enter</kbd> でも採点実行できます
+                        </p>
+                    </div>
                 </div>
                 
-                <div id="no-result" class="no-result-text">
-                    <p>🎯 問題を選択してコードを書くと、採点結果がここに表示されます</p>
-                    <p style="font-size: 0.9em; margin-top: 10px;">
-                        ヒント: コードエディタで <kbd>Ctrl</kbd> + <kbd>Enter</kbd> でも採点実行できます
-                    </p>
+                <!-- コード比較表示 -->
+                <div id="result-comparison-view" class="result-tab-content" style="display: none;">
+                    <div class="comparison-file-tabs">
+                        <button class="comparison-file-tab active" data-comparison-file="html">🌐 HTML</button>
+                        <button class="comparison-file-tab" data-comparison-file="css">🎨 CSS</button>
+                        <button class="comparison-file-tab" data-comparison-file="js">⚙️ JavaScript</button>
+                    </div>
+                    
+                    <div class="code-comparison-container">
+                        <div class="expected-code-panel">
+                            <h3 class="comparison-panel-title">✅ 正解コード</h3>
+                            <pre class="code-display" id="expected-comparison-code">
+                                <!-- 正解コードがここに表示されます -->
+                            </pre>
+                        </div>
+                        <div class="user-code-panel">
+                            <h3 class="comparison-panel-title">🖼️ あなたのコード</h3>
+                            <pre class="code-display" id="user-comparison-code">
+                                <!-- ユーザーコードがここに表示されます -->
+                            </pre>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -28,6 +28,10 @@ class AdvancedFrontendLearning {
         this.fullscreenActive = false;
         this.fullscreenType = '';
         
+        // 結果表示タブ管理
+        this.activeResultTab = 'summary';  // 'summary' または 'comparison'
+        this.activeComparisonFile = 'html';  // 'html', 'css', 'js'
+        
         this.initializeElements();
         this.setupEventListeners();
         this.loadProblems();
@@ -67,6 +71,14 @@ class AdvancedFrontendLearning {
         // 採点結果関連
         this.resultArea = document.getElementById('result-area');
         this.noResult = document.getElementById('no-result');
+        
+        // コード比較関連
+        this.resultTabNavigation = document.getElementById('result-tab-navigation');
+        this.resultSummaryView = document.getElementById('result-summary-view');
+        this.resultComparisonView = document.getElementById('result-comparison-view');
+        this.comparisonFileTabs = document.querySelector('.comparison-file-tabs');
+        this.expectedComparisonCode = document.getElementById('expected-comparison-code');
+        this.userComparisonCode = document.getElementById('user-comparison-code');
         
         // 全画面モーダル関連
         this.fullscreenModal = document.getElementById('fullscreen-modal');
@@ -185,6 +197,26 @@ class AdvancedFrontendLearning {
                 this.selectProblem(problemItem.dataset.problemId);
             }
         });
+        
+        // 結果タブナビゲーションのクリックイベント（イベント委譲）
+        if (this.resultTabNavigation) {
+            this.resultTabNavigation.addEventListener('click', (e) => {
+                const resultTabButton = e.target.closest('.result-tab-button');
+                if (resultTabButton) {
+                    this.switchResultTab(resultTabButton.dataset.resultTab);
+                }
+            });
+        }
+        
+        // コード比較ファイルタブのクリックイベント（イベント委譲）
+        if (this.comparisonFileTabs) {
+            this.comparisonFileTabs.addEventListener('click', (e) => {
+                const comparisonTab = e.target.closest('.comparison-file-tab');
+                if (comparisonTab) {
+                    this.switchComparisonFile(comparisonTab.dataset.comparisonFile);
+                }
+            });
+        }
     }
     
     async loadProblems() {
@@ -1119,6 +1151,9 @@ class AdvancedFrontendLearning {
         
         // 結果通知音（オプション）
         this.playNotificationSound(result.status);
+        
+        // コード比較機能を初期化
+        this.initializeCodeComparison();
     }
     
     escapeHtml(text) {
@@ -1186,6 +1221,264 @@ class AdvancedFrontendLearning {
         } catch (error) {
             console.log('音声通知の再生に失敗しました:', error);
         }
+    }
+    
+    // ==========================================
+    // コード比較機能
+    // ==========================================
+    
+    /**
+     * 結果タブを切り替え（採点結果 ↔ コード比較）
+     * @param {string} resultTab - 'summary' または 'comparison'
+     */
+    switchResultTab(resultTab) {
+        if (resultTab === this.activeResultTab) return;
+        
+        this.activeResultTab = resultTab;
+        this.updateResultTabState();
+        this.updateResultView();
+        
+        // コード比較タブがアクティブになった時にコード比較を更新
+        if (resultTab === 'comparison') {
+            this.updateCodeComparison();
+        }
+    }
+    
+    /**
+     * コード比較ファイルタブを切り替え（HTML/CSS/JS）
+     * @param {string} fileType - 'html', 'css', 'js'
+     */
+    switchComparisonFile(fileType) {
+        if (fileType === this.activeComparisonFile) return;
+        
+        this.activeComparisonFile = fileType;
+        this.updateComparisonFileTabState();
+        this.updateCodeComparison();
+    }
+    
+    /**
+     * 結果タブの表示状態を更新
+     */
+    updateResultTabState() {
+        if (!this.resultTabNavigation) return;
+        
+        // 全てのタブからactiveクラスを削除
+        const tabs = this.resultTabNavigation.querySelectorAll('.result-tab-button');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // アクティブなタブにactiveクラスを追加
+        const activeTab = this.resultTabNavigation.querySelector(
+            `.result-tab-button[data-result-tab="${this.activeResultTab}"]`
+        );
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+    }
+    
+    /**
+     * 結果ビューの表示切り替え
+     */
+    updateResultView() {
+        if (this.resultSummaryView) {
+            this.resultSummaryView.style.display = 
+                this.activeResultTab === 'summary' ? 'block' : 'none';
+        }
+        
+        if (this.resultComparisonView) {
+            this.resultComparisonView.style.display = 
+                this.activeResultTab === 'comparison' ? 'block' : 'none';
+        }
+    }
+    
+    /**
+     * コード比較ファイルタブの表示状態を更新
+     */
+    updateComparisonFileTabState() {
+        if (!this.comparisonFileTabs) return;
+        
+        // 全てのタブからactiveクラスを削除
+        const tabs = this.comparisonFileTabs.querySelectorAll('.comparison-file-tab');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // アクティブなタブにactiveクラスを追加
+        const activeTab = this.comparisonFileTabs.querySelector(
+            `.comparison-file-tab[data-comparison-file="${this.activeComparisonFile}"]`
+        );
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+    }
+    
+    /**
+     * コード比較表示を更新
+     */
+    updateCodeComparison() {
+        if (!this.expectedComparisonCode || !this.userComparisonCode) return;
+        
+        const expectedCode = this.getExpectedCodeForFile(this.activeComparisonFile);
+        const userCode = this.getUserCodeForFile(this.activeComparisonFile);
+        
+        if (!expectedCode && !userCode) {
+            // 両方とも空の場合
+            this.displayEmptyComparison();
+            return;
+        }
+        
+        // 差分ハイライト付きでコードを表示
+        const expectedHtml = this.generateCodeWithDiff(expectedCode || '', userCode || '', 'expected');
+        const userHtml = this.generateCodeWithDiff(userCode || '', expectedCode || '', 'user');
+        
+        this.expectedComparisonCode.innerHTML = expectedHtml;
+        this.userComparisonCode.innerHTML = userHtml;
+        
+        // 行番号クラスを追加
+        this.expectedComparisonCode.classList.add('with-line-numbers');
+        this.userComparisonCode.classList.add('with-line-numbers');
+    }
+    
+    /**
+     * 指定ファイルタイプの正解コードを取得
+     * @param {string} fileType - 'html', 'css', 'js'
+     * @returns {string} 正解コード
+     */
+    getExpectedCodeForFile(fileType) {
+        if (!this.expectedFiles || !this.expectedFiles[fileType]) {
+            return '';
+        }
+        return this.expectedFiles[fileType];
+    }
+    
+    /**
+     * 指定ファイルタイプのユーザーコードを取得
+     * @param {string} fileType - 'html', 'css', 'js'
+     * @returns {string} ユーザーコード
+     */
+    getUserCodeForFile(fileType) {
+        if (!this.fileContents || !this.fileContents[fileType]) {
+            return '';
+        }
+        return this.fileContents[fileType];
+    }
+    
+    /**
+     * 差分ハイライト付きのコードHTMLを生成
+     * @param {string} code - 表示するコード
+     * @param {string} compareCode - 比較対象のコード
+     * @param {string} type - 'expected' または 'user'
+     * @returns {string} ハイライト付きのHTML
+     */
+    generateCodeWithDiff(code, compareCode, type) {
+        const codeLines = code.split('\n');
+        const compareLines = compareCode.split('\n');
+        
+        let html = '<div class="line-numbers">';
+        for (let i = 1; i <= codeLines.length; i++) {
+            html += `<div>${i}</div>`;
+        }
+        html += '</div><div class="code-content">';
+        
+        for (let i = 0; i < codeLines.length; i++) {
+            const line = codeLines[i];
+            const compareLine = compareLines[i] || '';
+            
+            let lineClass = '';
+            let processedLine = this.escapeHtml(line);
+            
+            if (i >= compareLines.length) {
+                // 比較対象にない行 = 追加された行
+                lineClass = type === 'expected' ? 'added' : 'added';
+            } else if (line !== compareLine) {
+                // 内容が異なる行 = 変更された行
+                lineClass = 'modified';
+                processedLine = this.highlightCharDifferences(line, compareLine, type);
+            }
+            
+            html += `<div class="code-line ${lineClass}">${processedLine}</div>`;
+        }
+        
+        // 比較対象の方が長い場合（削除された行）
+        if (compareLines.length > codeLines.length) {
+            for (let i = codeLines.length; i < compareLines.length; i++) {
+                const deletedLine = this.escapeHtml(compareLines[i]);
+                html += `<div class="code-line removed">${deletedLine}</div>`;
+            }
+        }
+        
+        html += '</div>';
+        return html;
+    }
+    
+    /**
+     * 文字レベルの差分をハイライト
+     * @param {string} line - 現在の行
+     * @param {string} compareLine - 比較対象の行
+     * @param {string} type - 'expected' または 'user'
+     * @returns {string} ハイライト付きの行HTML
+     */
+    highlightCharDifferences(line, compareLine, type) {
+        if (line === compareLine) return this.escapeHtml(line);
+        
+        // 簡単な文字差分実装（完全一致チェック）
+        let result = '';
+        const maxLength = Math.max(line.length, compareLine.length);
+        
+        for (let i = 0; i < maxLength; i++) {
+            const char = line[i] || '';
+            const compareChar = compareLine[i] || '';
+            
+            if (char === compareChar) {
+                result += this.escapeHtml(char);
+            } else {
+                if (char && !compareChar) {
+                    // 追加された文字
+                    result += `<span class="diff-char added">${this.escapeHtml(char)}</span>`;
+                } else if (!char && compareChar) {
+                    // 削除された文字（比較対象にのみ存在）
+                    if (type === 'expected') {
+                        result += `<span class="diff-char removed">${this.escapeHtml(compareChar)}</span>`;
+                    }
+                } else {
+                    // 変更された文字
+                    result += `<span class="diff-char modified">${this.escapeHtml(char)}</span>`;
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    /**
+     * 空のコード比較状態を表示
+     */
+    displayEmptyComparison() {
+        const emptyMessage = `
+            <div class="comparison-empty-state">
+                <h3>コード比較</h3>
+                <p>問題を選択して採点を実行すると、<br>正解コードとあなたのコードを比較できます。</p>
+            </div>
+        `;
+        
+        this.expectedComparisonCode.innerHTML = emptyMessage;
+        this.userComparisonCode.innerHTML = emptyMessage;
+    }
+    
+    /**
+     * コード比較機能を初期化
+     * displayResults()から呼び出される
+     */
+    initializeCodeComparison() {
+        if (!this.resultTabNavigation) return;
+        
+        // 採点結果がある時のみタブナビゲーションを表示
+        this.resultTabNavigation.style.display = 'flex';
+        
+        // デフォルトは採点結果タブを表示
+        this.switchResultTab('summary');
+        this.switchComparisonFile('html');
     }
 }
 

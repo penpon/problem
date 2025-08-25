@@ -1193,3 +1193,322 @@
         transform: translateX(0);
     }
 }
+
+/* ==========================================
+   コード比較機能のスタイル
+   ========================================== */
+
+/* 結果タブナビゲーション */
+.result-tab-navigation {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e2e8f0;
+    overflow-x: auto;
+}
+
+.result-tab-button {
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: #718096;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.result-tab-button:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.result-tab-button.active {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.result-tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #667eea;
+}
+
+/* 結果タブコンテンツ */
+.result-tab-content {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* コード比較ファイルタブ */
+.comparison-file-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    padding: 4px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.comparison-file-tab {
+    padding: 8px 16px;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.comparison-file-tab:hover {
+    background: rgba(255, 255, 255, 0.7);
+    color: #475569;
+}
+
+.comparison-file-tab.active {
+    background: white;
+    color: #374151;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* コード比較コンテナ */
+.code-comparison-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    min-height: 400px;
+}
+
+.expected-code-panel,
+.user-code-panel {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.comparison-panel-title {
+    margin: 0;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #f1f5f9;
+    border-bottom: 1px solid #e2e8f0;
+    color: #374151;
+}
+
+.expected-code-panel .comparison-panel-title {
+    background: #f0fdf4;
+    color: #15803d;
+    border-bottom-color: #bbf7d0;
+}
+
+.user-code-panel .comparison-panel-title {
+    background: #fef3f2;
+    color: #dc2626;
+    border-bottom-color: #fecaca;
+}
+
+/* コード表示エリア */
+.code-comparison-container .code-display {
+    flex: 1;
+    margin: 0;
+    padding: 16px;
+    background: #ffffff;
+    border: none;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #374151;
+    overflow: auto;
+    white-space: pre;
+    word-wrap: break-word;
+    border-radius: 0;
+}
+
+/* シンタックスハイライト風のスタイリング */
+.code-display .html-tag {
+    color: #dc2626;
+    font-weight: 500;
+}
+
+.code-display .html-attr {
+    color: #059669;
+}
+
+.code-display .html-value {
+    color: #2563eb;
+}
+
+.code-display .css-property {
+    color: #7c3aed;
+}
+
+.code-display .css-value {
+    color: #dc2626;
+}
+
+.code-display .js-keyword {
+    color: #7c3aed;
+    font-weight: 500;
+}
+
+.code-display .js-string {
+    color: #059669;
+}
+
+.code-display .comment {
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* 差分ハイライト */
+.code-line {
+    position: relative;
+    display: block;
+    padding: 2px 4px;
+    margin: 0 -4px;
+    border-radius: 3px;
+}
+
+.code-line.added {
+    background-color: #dcfce7;
+    border-left: 3px solid #22c55e;
+}
+
+.code-line.removed {
+    background-color: #fee2e2;
+    border-left: 3px solid #ef4444;
+}
+
+.code-line.modified {
+    background-color: #fef3c7;
+    border-left: 3px solid #f59e0b;
+}
+
+.diff-char {
+    padding: 1px 2px;
+    border-radius: 2px;
+}
+
+.diff-char.added {
+    background-color: #bbf7d0;
+    color: #166534;
+}
+
+.diff-char.removed {
+    background-color: #fecaca;
+    color: #991b1b;
+    text-decoration: line-through;
+}
+
+.diff-char.modified {
+    background-color: #fed7aa;
+    color: #9a3412;
+}
+
+/* 行番号 */
+.line-numbers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: #f8fafc;
+    border-right: 1px solid #e2e8f0;
+    padding: 16px 8px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #9ca3af;
+    user-select: none;
+    overflow: hidden;
+}
+
+.code-display.with-line-numbers {
+    padding-left: 56px;
+    position: relative;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 1024px) {
+    .code-comparison-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .result-tab-navigation {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .result-tab-button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-file-tabs {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .comparison-file-tab {
+        justify-content: center;
+        padding: 10px;
+    }
+    
+    .code-display {
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    .comparison-panel-title {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}
+
+/* 空の状態表示 */
+.comparison-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: #6b7280;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px dashed #d1d5db;
+    min-height: 200px;
+}
+
+.comparison-empty-state h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.comparison-empty-state p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
