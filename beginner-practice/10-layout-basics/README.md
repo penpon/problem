@@ -1,4 +1,4 @@
-# ステップ10: レイアウト基礎
+# レイアウト基礎
 
 ## 🎯 学習目標
 
@@ -457,7 +457,7 @@ inline-block要素は高さが違うとずれるため、vertical-alignで揃え
 }
 ```
 
-## ✅ このステップでできるようになること
+## ✅ この学習でできるようになること
 
 - [ ] displayプロパティ（block、inline、inline-block）を使い分けられる
 - [ ] inline-blockで要素を横並びにできる
@@ -466,9 +466,9 @@ inline-block要素は高さが違うとずれるため、vertical-alignで揃え
 - [ ] clearfixで回り込みを解除できる
 - [ ] 中央寄せコンテナでレスポンシブなレイアウトを作れる
 
-## 📚 次のステップ
+## 📚 次の学習
 
-次は **ステップ11: 影と角丸** で `box-shadow` と `border-radius` を学びます！
+次は **影と角丸** で `box-shadow` と `border-radius` を学びます！
 
 ---
 

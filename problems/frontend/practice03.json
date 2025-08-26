@@ -13,20 +13,49 @@
   ],
   "files": {
     "html": {
-      "filename": "index.html",
-      "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>画像のページ</title>\n</head>\n<body>\n    <h1>画像表示</h1>\n    <!-- 画像（img）を追加してください -->\n    <!-- src=\"../shared/images/simple-product.svg\" を使用 -->\n    <p>商品の説明テキスト</p>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html>\n<head>\n    <title>画像のページ</title>\n</head>\n<body>\n    <h1>画像表示</h1>\n    <img src=\"../shared/images/simple-product.svg\" alt=\"商品画像\">\n    <p>商品の説明テキスト</p>\n</body>\n</html>"
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>画像のあるページ</title>\n</head>\n<body>\n    <h1>私のホームページ</h1>\n    <img src=\"../shared/images/simple-product.svg\" alt=\"シンプルな商品の画像\">\n    <p>はじめまして！</p>\n    <p>このページは私が作った初めてのWebサイトです。</p>\n    <p>上の画像も表示できるようになりました！</p>\n    <p>HTMLを学ぶのは楽しいですね。</p>\n</body>\n</html>"
+    },
+    "css": {
+      "template": "",
+      "expected": ""
+    },
+    "js": {
+      "template": "",
+      "expected": ""
     }
   },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
-    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
-    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
-    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
-    { "id": "h1", "name": "見出し(h1)", "type": "content", "message": "<h1>見出しと内容が必要です" },
-    { "id": "img", "name": "画像(img)", "type": "content", "message": "<img>タグが必要です" },
-    { "id": "img-alt", "name": "画像のalt属性", "type": "attribute", "message": "画像にalt属性が必要です" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    }
   ],
   "hints": [
     "imgタグは自己完結タグ（閉じタグが不要）です",

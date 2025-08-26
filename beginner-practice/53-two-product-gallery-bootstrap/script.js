@@ -62,7 +62,7 @@ let elements = {};
 
 // アプリケーション初期化
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 ステップ20: 2商品ギャラリーシステム起動中...');
+    console.log('🚀 2商品ギャラリーシステム起動中...');
     
     initializeElements();
     initializeEventListeners();

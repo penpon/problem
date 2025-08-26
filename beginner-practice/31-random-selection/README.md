@@ -1,4 +1,4 @@
-# ステップ17.3b - ランダム選択システム
+# ランダム選択システム
 
 ## 🎯 学習目標
 
@@ -10,7 +10,7 @@
 - ランダムシステムの実用例を体験する
 - 前ステップ（17.3a）の配列知識を活用する
 
-## 📖 このステップの内容
+## 📖 この学習の内容
 
 ### 🎲 ランダム選択システムとは？
 
@@ -48,16 +48,16 @@ console.log(`選ばれた色: ${randomColor}`); // "赤", "青", "緑", "黄色"
 #### 3. ランダム選択の内部処理
 ```javascript
 function getRandomElement(array) {
-    // ステップ1: 0以上1未満の小数生成
+    //  0以上1未満の小数生成
     let random = Math.random(); // 例: 0.6789
     
-    // ステップ2: 配列の長さを掛ける
+    //  配列の長さを掛ける
     let scaled = random * array.length; // 例: 0.6789 × 4 = 2.7156
     
-    // ステップ3: 整数に切り下げ
+    //  整数に切り下げ
     let index = Math.floor(scaled); // 例: floor(2.7156) = 2
     
-    // ステップ4: 要素を取得
+    //  要素を取得
     return array[index]; // 例: array[2]
 }
 ```
@@ -109,16 +109,16 @@ console.log(`カテゴリ: ${randomCategory}, アイテム: ${randomItem}`);
 ### ランダム選択の共通処理
 ```javascript
 function performRandomSelection(array, displayName) {
-    // ステップ1: 0以上1未満の小数生成
+    //  0以上1未満の小数生成
     let randomFloat = Math.random();
     
-    // ステップ2: 配列長との掛け算
+    //  配列長との掛け算
     let scaledValue = randomFloat * array.length;
     
-    // ステップ3: 整数インデックス取得
+    //  整数インデックス取得
     let randomIndex = Math.floor(scaledValue);
     
-    // ステップ4: 要素選択
+    //  要素選択
     let selectedItem = array[randomIndex];
     
     // 処理詳細の表示
@@ -169,7 +169,7 @@ function createMixedArray() {
 
 ## ✅ 完成チェックリスト
 
-このステップが完了したら、以下を確認してください：
+この学習が完了したら、以下を確認してください：
 
 - [ ] Math.random()が0以上1未満の小数を生成することを理解した
 - [ ] ランダムインデックスの計算方法を理解した
@@ -253,11 +253,11 @@ function createMixedArray() {
 - **カラーバリエーション**: 色配列からランダム表示
 - **レビュー表示**: レビュー配列からランダムに数個選択
 
-## 📈 次のステップへ
+## 📈 次の学習へ
 
 素晴らしい！ランダム選択システムをマスターしました！🎉
 
-次のステップ（17.4-timer-and-animation）では、**タイマーとアニメーション**を学び、時間の経過に合わせた動的なコンテンツ変化を実装します。
+次の学習では、**タイマーとアニメーション**を学び、時間の経過に合わせた動的なコンテンツ変化を実装します。
 
 配列の知識とランダム選択の技術を組み合わせて、さらに魅力的な動的システムを作成していきます。
 

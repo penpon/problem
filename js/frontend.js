@@ -83,6 +83,11 @@ class AdvancedFrontendLearning {
         this.expectedComparisonCode = document.getElementById('expected-comparison-code');
         this.userComparisonCode = document.getElementById('user-comparison-code');
         
+        // プレビュー差分関連
+        this.resultPreviewDiffView = document.getElementById('result-preview-diff-view');
+        this.expectedDiffPreview = document.getElementById('expected-diff-preview');
+        this.userDiffPreview = document.getElementById('user-diff-preview');
+        
         // 全画面モーダル関連
         this.fullscreenModal = document.getElementById('fullscreen-modal');
         this.fullscreenTitle = document.getElementById('fullscreen-title');
@@ -1327,6 +1332,11 @@ class AdvancedFrontendLearning {
         if (resultTab === 'comparison') {
             this.updateCodeComparison();
         }
+        
+        // プレビュー差分タブがアクティブになった時にプレビュー差分を更新
+        if (resultTab === 'preview-diff') {
+            this.updatePreviewDiff();
+        }
     }
     
     /**
@@ -1374,6 +1384,11 @@ class AdvancedFrontendLearning {
         if (this.resultComparisonView) {
             this.resultComparisonView.style.display = 
                 this.activeResultTab === 'comparison' ? 'block' : 'none';
+        }
+        
+        if (this.resultPreviewDiffView) {
+            this.resultPreviewDiffView.style.display = 
+                this.activeResultTab === 'preview-diff' ? 'block' : 'none';
         }
     }
     
@@ -1549,6 +1564,260 @@ class AdvancedFrontendLearning {
         
         this.expectedComparisonCode.innerHTML = emptyMessage;
         this.userComparisonCode.innerHTML = emptyMessage;
+    }
+    
+    /**
+     * プレビュー差分表示を更新
+     */
+    updatePreviewDiff() {
+        if (!this.expectedDiffPreview || !this.userDiffPreview) return;
+        
+        // 正解のプレビューを生成・表示
+        const expectedCombinedHtml = this.generateExpectedCombinedHtml();
+        this.displayPreview(this.expectedDiffPreview, expectedCombinedHtml);
+        
+        // ユーザーのプレビューを生成・表示
+        const userCombinedHtml = this.generateCombinedHtml();
+        this.displayPreview(this.userDiffPreview, userCombinedHtml);
+        
+        // プレビュー表示後、差分を強調表示
+        setTimeout(() => {
+            this.highlightPreviewDifferences();
+        }, 200); // iframeの読み込み完了を待つ
+    }
+    
+    /**
+     * プレビュー差分を強調表示
+     */
+    highlightPreviewDifferences() {
+        try {
+            const expectedDoc = this.expectedDiffPreview.contentDocument;
+            const userDoc = this.userDiffPreview.contentDocument;
+            
+            if (!expectedDoc || !userDoc) {
+                console.warn('iframe document not available');
+                return;
+            }
+            
+            // 差分強調用スタイルを両方のiframeに注入
+            this.injectDiffStyles(expectedDoc);
+            this.injectDiffStyles(userDoc);
+            
+            // DOM構造を比較して差分を検出
+            const differences = this.compareDOMElements(
+                expectedDoc.body,
+                userDoc.body
+            );
+            
+            // 検出した差分を強調表示
+            this.markDifferences(expectedDoc, userDoc, differences);
+            
+        } catch (error) {
+            console.error('差分強調表示エラー:', error);
+        }
+    }
+    
+    /**
+     * iframe内に差分強調用CSSを注入
+     */
+    injectDiffStyles(doc) {
+        const styleElement = doc.createElement('style');
+        styleElement.innerHTML = `
+            .diff-missing {
+                border: 2px dashed #ef4444 !important;
+                background: rgba(239, 68, 68, 0.1) !important;
+                animation: diffPulse 2s infinite;
+                position: relative;
+            }
+            
+            .diff-missing::before {
+                content: "不足";
+                position: absolute;
+                top: -20px;
+                left: -1px;
+                background: #ef4444;
+                color: white;
+                padding: 2px 6px;
+                font-size: 11px;
+                border-radius: 3px;
+                font-weight: bold;
+                z-index: 1000;
+            }
+            
+            .diff-extra {
+                border: 2px solid #22c55e !important;
+                background: rgba(34, 197, 94, 0.1) !important;
+                animation: diffPulse 2s infinite;
+                position: relative;
+            }
+            
+            .diff-extra::before {
+                content: "余分";
+                position: absolute;
+                top: -20px;
+                left: -1px;
+                background: #22c55e;
+                color: white;
+                padding: 2px 6px;
+                font-size: 11px;
+                border-radius: 3px;
+                font-weight: bold;
+                z-index: 1000;
+            }
+            
+            .diff-changed {
+                border: 2px solid #fbbf24 !important;
+                background: rgba(251, 191, 36, 0.1) !important;
+                animation: diffPulse 2s infinite;
+                position: relative;
+            }
+            
+            .diff-changed::before {
+                content: "変更";
+                position: absolute;
+                top: -20px;
+                left: -1px;
+                background: #fbbf24;
+                color: white;
+                padding: 2px 6px;
+                font-size: 11px;
+                border-radius: 3px;
+                font-weight: bold;
+                z-index: 1000;
+            }
+            
+            @keyframes diffPulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.7; }
+            }
+        `;
+        doc.head.appendChild(styleElement);
+    }
+    
+    /**
+     * DOM要素を再帰的に比較
+     */
+    compareDOMElements(expectedElement, userElement) {
+        const differences = {
+            missing: [], // 正解にあってユーザーにない
+            extra: [],   // ユーザーにあって正解にない
+            changed: []  // 内容が異なる
+        };
+        
+        this.compareElementsRecursive(expectedElement, userElement, differences, 'expected');
+        this.compareElementsRecursive(userElement, expectedElement, differences, 'user');
+        
+        return differences;
+    }
+    
+    /**
+     * 要素を再帰的に比較（内部関数）
+     */
+    compareElementsRecursive(sourceElement, targetElement, differences, type) {
+        if (!sourceElement || !targetElement) return;
+        
+        // テキストノードの比較
+        if (sourceElement.nodeType === Node.TEXT_NODE) {
+            if (sourceElement.textContent.trim() !== targetElement.textContent.trim()) {
+                if (type === 'expected') {
+                    differences.changed.push({
+                        element: sourceElement.parentElement,
+                        type: 'text',
+                        expected: sourceElement.textContent,
+                        actual: targetElement.textContent
+                    });
+                }
+            }
+            return;
+        }
+        
+        // 要素ノードの比較
+        if (sourceElement.nodeType === Node.ELEMENT_NODE) {
+            const sourceChildren = Array.from(sourceElement.children);
+            const targetChildren = Array.from(targetElement.children);
+            
+            // 子要素の比較
+            sourceChildren.forEach((sourceChild, index) => {
+                const targetChild = targetChildren[index];
+                const matchingChild = this.findMatchingElement(sourceChild, targetChildren);
+                
+                if (!matchingChild) {
+                    // マッチする要素が見つからない = 不足または余分
+                    if (type === 'expected') {
+                        differences.missing.push({
+                            element: sourceChild,
+                            parent: sourceElement,
+                            index: index
+                        });
+                    } else {
+                        differences.extra.push({
+                            element: sourceChild,
+                            parent: sourceElement,
+                            index: index
+                        });
+                    }
+                } else {
+                    // 要素は存在するが内容が異なるかチェック
+                    if (!this.elementsEqual(sourceChild, matchingChild)) {
+                        differences.changed.push({
+                            element: type === 'expected' ? sourceChild : matchingChild,
+                            type: 'element'
+                        });
+                    }
+                    
+                    // 再帰的に子要素をチェック
+                    this.compareElementsRecursive(sourceChild, matchingChild, differences, type);
+                }
+            });
+        }
+    }
+    
+    /**
+     * 対応する要素を検索
+     */
+    findMatchingElement(sourceElement, targetElements) {
+        return targetElements.find(target => 
+            target.tagName === sourceElement.tagName &&
+            target.className === sourceElement.className &&
+            target.id === sourceElement.id
+        );
+    }
+    
+    /**
+     * 要素が等しいかチェック
+     */
+    elementsEqual(element1, element2) {
+        if (element1.tagName !== element2.tagName) return false;
+        if (element1.className !== element2.className) return false;
+        if (element1.id !== element2.id) return false;
+        if (element1.textContent.trim() !== element2.textContent.trim()) return false;
+        return true;
+    }
+    
+    /**
+     * 検出した差分を要素にマーク
+     */
+    markDifferences(expectedDoc, userDoc, differences) {
+        // 不足要素（正解側に表示）
+        differences.missing.forEach(diff => {
+            if (diff.element) {
+                diff.element.classList.add('diff-missing');
+            }
+        });
+        
+        // 余分要素（ユーザー側に表示）
+        differences.extra.forEach(diff => {
+            if (diff.element) {
+                diff.element.classList.add('diff-extra');
+            }
+        });
+        
+        // 変更要素（両方に表示）
+        differences.changed.forEach(diff => {
+            if (diff.element) {
+                diff.element.classList.add('diff-changed');
+            }
+        });
     }
     
     /**

@@ -62,7 +62,7 @@ let elements = {};
 
 // アプリケーション初期化
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 ステップ20: 2商品ギャラリーシステム起動中...');
+    console.log('🚀 2商品ギャラリーシステム起動中...');
     
     initializeElements();
     initializeEventListeners();
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateStatistics();
     
     // 初期化完了メッセージ
-    showNotification('🎉 20ステップ学習の集大成へようこそ！', 'success');
+    showNotification('🎉 JavaScript学習の集大成へようこそ！', 'success');
     
     console.log('✨ システム初期化完了');
     console.log('📊 商品データ:', appState.products);
@@ -962,7 +962,7 @@ window.productGallery = {
 
 // 初期化完了とヘルプ情報
 console.log(`
-🎊 20ステップ学習完了おめでとうございます！ 🎊
+🎊 JavaScript学習完了おめでとうございます！ 🎊
 
 ✨ あなたが習得したスキル:
   • HTML5: セマンティック構造設計

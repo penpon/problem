@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSavedData();
     updateAllDisplays();
     
-    console.log('🛍️ ステップ19: 商品カードシステム（Bootstrap版）が読み込まれました！');
+    console.log('🛍️ 商品カードシステム（Bootstrap版）が読み込まれました！');
     console.log('💡 Bootstrap 5のコンポーネントを活用した実用的なECサイトコンポーネントを体験してください！');
 });
 

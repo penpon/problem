@@ -270,5 +270,5 @@ function updateHistoryDisplay() {
 }
 
 // 初期メッセージ
-console.log('🧮 ステップ18: 簡単計算機（Bootstrap版）が読み込まれました！');
+console.log('🧮 簡単計算機（Bootstrap版）が読み込まれました！');
 console.log('💡 Bootstrapのレスポンシブデザインで計算してみましょう！');

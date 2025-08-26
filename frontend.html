@@ -172,6 +172,7 @@
             <div class="result-tab-navigation" id="result-tab-navigation" style="display: none;">
                 <button class="result-tab-button active" data-result-tab="summary">📊 採点結果</button>
                 <button class="result-tab-button" data-result-tab="comparison">🔍 コード比較</button>
+                <button class="result-tab-button" data-result-tab="preview-diff">👁️ プレビュー差分</button>
             </div>
             
             <div class="result-content-wrapper">
@@ -209,6 +210,47 @@
                             <pre class="code-display" id="user-comparison-code">
                                 <!-- ユーザーコードがここに表示されます -->
                             </pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- プレビュー差分表示 -->
+                <div id="result-preview-diff-view" class="result-tab-content" style="display: none;">
+                    <div class="preview-diff-container">
+                        <div class="expected-preview-panel">
+                            <h3 class="comparison-panel-title">✅ 正解の見た目</h3>
+                            <div class="preview-diff-wrapper">
+                                <iframe id="expected-diff-preview" class="preview-diff-iframe" title="正解プレビュー（差分用）">
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="user-preview-panel">
+                            <h3 class="comparison-panel-title">🖼️ あなたの見た目</h3>
+                            <div class="preview-diff-wrapper">
+                                <iframe id="user-diff-preview" class="preview-diff-iframe" title="ユーザープレビュー（差分用）">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-diff-info">
+                        <p>👁️ 正解とあなたのコードの見た目を比較して、違いを確認できます</p>
+                        <div class="diff-legend">
+                            <h4>差分の見方：</h4>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <span class="legend-color diff-missing-legend"></span>
+                                    <span class="legend-text">🔴 不足要素（正解にあってあなたのコードにない）</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color diff-extra-legend"></span>
+                                    <span class="legend-text">🟢 余分要素（あなたのコードにあって正解にない）</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color diff-changed-legend"></span>
+                                    <span class="legend-text">🟡 変更要素（内容や属性が異なる）</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

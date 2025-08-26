@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 最初のメッセージを表示
     showMessage('ページが読み込まれました！ボタンを試してみてください');
     
-    console.log('=== ステップ44: 基本的なページ交互作用 ===');
+    console.log('=== 基本的なページ交互作用 ===');
     console.log('学習ポイント：');
     console.log('1. ボタンクリックで表示・非表示を切り替え');
     console.log('2. CSSクラスの追加・削除で見た目を変更');

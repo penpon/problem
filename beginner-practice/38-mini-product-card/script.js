@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSavedData();
     updateAllDisplays();
     
-    console.log('🛍️ ステップ19: 商品カードシステムが読み込まれました！');
+    console.log('🛍️ 商品カードシステムが読み込まれました！');
     console.log('💡 各機能を試して、実用的なECサイトコンポーネントを体験してください！');
 });
 

@@ -1,4 +1,4 @@
-console.log("🔧 ステップ17.5-2: 関数の実用応用を開始します！");
+console.log("🔧 関数の実用応用を開始します！");
 
 // DOM要素を取得
 let contentDisplay = document.getElementById("content-display");

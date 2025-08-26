@@ -1,4 +1,4 @@
-console.log("📝 ステップ17.1: テキスト内容変更を開始します！");
+console.log("📝 テキスト内容変更を開始します！");
 console.log("========================================");
 
 // 統計用変数
@@ -105,12 +105,12 @@ document.getElementById("learning-btn").addEventListener("click", function() {
 
 // 進捗ボタン
 document.getElementById("progress-btn").addEventListener("click", function() {
-    let stepNumber = "17.1";
+    let currentLesson = "テキスト内容変更";
     let progressMessages = [
-        `📊 現在のステップ: ${stepNumber} - textContentマスターまであと少し！`,
-        `🎯 学習進捗: 順調です！${stepNumber}ステップを着実にクリア中！`,
-        `📈 スキルアップ中！ステップ${stepNumber}でさらに成長しています！`,
-        `✨ 素晴らしい進捗です！ステップ${stepNumber}を楽しく学習中！`
+        `📊 現在の学習: ${currentLesson} - textContentマスターまであと少し！`,
+        `🎯 学習進捗: 順調です！${currentLesson}を着実にクリア中！`,
+        `📈 スキルアップ中！${currentLesson}でさらに成長しています！`,
+        `✨ 素晴らしい進捗です！${currentLesson}を楽しく学習中！`
     ];
     let randomProgress = progressMessages[Math.floor(Math.random() * progressMessages.length)];
     changeText(randomProgress, "progress", "進捗ボタン");

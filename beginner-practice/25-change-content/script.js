@@ -159,5 +159,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ページ読み込み完了時の初期メッセージ
-console.log('🎯 ステップ17: 画面内容変更のスクリプトが読み込まれました！');
+console.log('🎯 画面内容変更のスクリプトが読み込まれました！');
 console.log('💡 F12でコンソールを開いて、DOM操作の様子を確認してみましょう！');
