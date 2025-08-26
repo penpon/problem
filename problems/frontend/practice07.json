@@ -2,7 +2,7 @@
   "id": "practice07",
   "title": "07: 余白の設定",
   "description": "marginとpaddingを使って余白を調整する",
-  "category": "css-foundation",
+  "category": "html-css-basics",
   "difficulty": 2,
   "instructions": [
     "marginとpaddingの違いを理解してください",

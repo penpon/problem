@@ -1,0 +1,31 @@
+{
+  "id": "practice26",
+  "title": "テキスト内容変更",
+  "description": "textContentを使った動的テキスト操作を学び、時刻表示や複数メッセージの切り替えシステムを実装します",
+  "category": "javascript-dom",
+  "difficulty": 3,
+  "instructions": [
+    "textContentプロパティを使ったテキスト操作を習得する",
+    "配列を使ったランダムメッセージ表示を実装する",
+    "現在時刻の動的生成と表示を行う",
+    "テキスト変更の統計管理システムを構築する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "テキスト変更デモのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "高度なテキスト操作を行うJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "randomMessages": "複数のメッセージからランダムに表示される",
+    "timeDisplay": "現在時刻がリアルタイムで表示される",
+    "statistics": "テキスト変更の統計情報が管理される",
+    "behavior": "6つのテキスト変更機能が正しく動作する"
+  }
+}

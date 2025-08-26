@@ -1,0 +1,38 @@
+{
+  "id": "practice49",
+  "title": "クリアボタン付き計算機",
+  "description": "四則演算計算機にクリアボタンを追加し、計算結果と入力欄をリセットできる使いやすい計算機を完成させます",
+  "category": "practical-projects",
+  "difficulty": 3,
+  "instructions": [
+    "四則演算機能に加えてクリア機能を実装する",
+    "入力欄を空にする（.value = ''）処理を学ぶ",
+    "計算結果をリセットする機能を追加する",
+    "ユーザーが使いやすいUIを構築する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "クリア機能付き計算機のHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "クリアボタンを含むスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "クリア機能付き計算機のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "clearFunction": "クリアボタンで入力と結果がリセットされる",
+    "inputReset": "数値入力フィールドが空になる",
+    "resultReset": "計算結果表示が初期状態に戻る",
+    "operatorReset": "選択した演算子が初期値に戻る",
+    "usability": "ミスしても簡単にやり直せる使いやすい計算機が完成する",
+    "behavior": "全機能が統合された実用的な計算機が完成する"
+  }
+}

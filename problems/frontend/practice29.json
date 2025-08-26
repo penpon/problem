@@ -1,0 +1,31 @@
+{
+  "id": "practice29",
+  "title": "配列とランダムの組み合わせ応用",
+  "description": "複数の配列を管理し、統計機能付きのランダム選択システムを構築して実用的なデータ管理技術を習得します",
+  "category": "javascript-dom",
+  "difficulty": 3,
+  "instructions": [
+    "複数の配列を同時に管理する方法を学ぶ",
+    "ランダム選択機能と統計機能の連携を実装する",
+    "選択回数のカウントと表示システムを構築する",
+    "オブジェクト配列を操作して複雑なデータ構造を扱う"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "複数配列管理デモのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "高度な配列管理と統計システムのJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "multiArrays": "名言、色、食べ物の3つの配列が管理される",
+    "statistics": "カテゴリ別と全体の選択回数が統計される",
+    "objectHandling": "色オブジェクト（名前と色コード）が正しく処理される",
+    "behavior": "3つのカテゴリでランダム選択と統計が動作する"
+  }
+}

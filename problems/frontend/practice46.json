@@ -1,0 +1,38 @@
+{
+  "id": "practice46",
+  "title": "統合システム完成",
+  "description": "シンプル統合システムにマイナス機能を追加して、完成した統合システムを作成します",
+  "category": "practical-projects",
+  "difficulty": 3,
+  "instructions": [
+    "前回の3つの機能（カウンター、データ保存、リセット）を確認する",
+    "マイナスボタンでカウントを1減らす機能を追加する",
+    "カウントが0以下にならないよう制限を実装する",
+    "4つの機能が連携して動作する完成システムを構築する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "完成統合システムのHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "完成システムのスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "統合システム完成版のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "incrementFunction": "プラスボタンでカウンターが増加する",
+    "decrementFunction": "マイナスボタンでカウンターが減少する",
+    "limitControl": "カウントが0以下にならない制限が動作する",
+    "dataStorage": "すべての変更がlocalStorageに保存される",
+    "resetFunction": "リセット機能ですべてが初期状態に戻る",
+    "behavior": "4つの機能が完全に連携した統合システムが完成する"
+  }
+}

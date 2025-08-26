@@ -2,7 +2,7 @@
   "id": "practice10",
   "title": "10: レイアウト基礎",
   "description": "displayプロパティと基本的なレイアウト手法を学ぶ",
-  "category": "css-foundation",
+  "category": "html-css-basics",
   "difficulty": 3,
   "instructions": [
     ".flex-containerクラスにdisplay: flexを設定してください",

@@ -1,0 +1,31 @@
+{
+  "id": "practice25",
+  "title": "内容変更",
+  "description": "JavaScriptを使ってHTML要素の内容を動的に変更し、textContentとinnerHTMLの違いを理解します",
+  "category": "javascript-dom",
+  "difficulty": 2,
+  "instructions": [
+    "textContentでテキスト内容を変更する",
+    "innerHTMLでHTML構造を含む内容を変更する",
+    "ボタンクリックで要素の内容を動的に更新する",
+    "複数の要素の内容を連動して変更する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "内容変更対象の要素を配置したHTML"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "要素内容を動的に変更するJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "textContent": "テキスト内容が正しく変更される",
+    "innerHTML": "HTML構造を含む内容が変更される",
+    "dynamicUpdate": "ボタンクリックで内容がリアルタイム更新される",
+    "behavior": "複数要素の内容が連動して変更される"
+  }
+}

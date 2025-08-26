@@ -1,0 +1,37 @@
+{
+  "id": "practice33",
+  "title": "タイマーアニメーション",
+  "description": "タイマーとCSSアニメーションを組み合わせて、視覚的なアニメーション効果を実現する動的システムを構築します",
+  "category": "javascript-advanced",
+  "difficulty": 4,
+  "instructions": [
+    "CSS transitionとJavaScriptを連携させる",
+    "動的スタイル変更（色・位置・形状）を実装する",
+    "複数要素の同期アニメーションを制御する",
+    "バウンス・移動・色変化・統合アニメーションを構築する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "アニメーション要素のHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "CSS transitionとアニメーション定義"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "タイマーアニメーション制御のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "bounceAnimation": "要素が上下にバウンスアニメーションする",
+    "moveAnimation": "要素がランダムな位置に滑らかに移動する",
+    "colorAnimation": "背景色がグラデーションで変化する",
+    "comboAnimation": "複数のアニメーション効果が同時実行される",
+    "behavior": "4つのアニメーションパターンが統計と共に動作する"
+  }
+}

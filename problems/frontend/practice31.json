@@ -1,0 +1,31 @@
+{
+  "id": "practice31",
+  "title": "ランダム選択システム",
+  "description": "Math.randomとランダム選択の実装を学び、配列からのランダム要素選択と詳細な処理可視化システムを構築します",
+  "category": "javascript-advanced",
+  "difficulty": 3,
+  "instructions": [
+    "Math.random()の仕組みとランダムインデックス生成を理解する",
+    "配列からのランダム選択アルゴリズムを実装する",
+    "ランダム処理の内部計算過程を可視化する",
+    "統計システムと組み合わせた実用的なランダム機能を構築する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "ランダム選択システムのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "高度なランダム選択システムのJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "randomSelection": "果物・色・音楽から要素がランダム選択される",
+    "processVisualization": "ランダム数値・計算過程・選択統計が表示される",
+    "mixedArray": "全配列統合での複合ランダム選択が動作する",
+    "behavior": "4つのランダム選択システムが統計と共に動作する"
+  }
+}

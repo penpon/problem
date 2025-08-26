@@ -1,0 +1,34 @@
+{
+  "id": "practice37",
+  "title": "オブジェクトとデータ構造",
+  "description": "オブジェクト指向プログラミングの入門として、オブジェクトリテラル・プロパティアクセス・メソッドを学習します",
+  "category": "javascript-advanced",
+  "difficulty": 4,
+  "instructions": [
+    "オブジェクトリテラルの基本構文と作成方法を学ぶ",
+    "プロパティアクセス（ドット記法とブラケット記法）を習得する",
+    "メソッド（オブジェクトに属する関数）の定義と実行を理解する",
+    "thisの基本概念と使い方を理解する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "オブジェクト操作デモのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "オブジェクト指向プログラミングのJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "basicObject": "基本オブジェクトでプロパティアクセスが動作する",
+    "methodObject": "メソッド付きオブジェクトでthisが正しく動作する",
+    "nestedObject": "ネストしたオブジェクトで階層アクセスが動作する",
+    "objectArray": "オブジェクト配列でチーム管理が動作する",
+    "dynamicCreation": "入力値に基づく動的オブジェクト生成が動作する",
+    "classSystem": "ES6クラスを使った図書管理システムが動作する",
+    "behavior": "6つのオブジェクト学習システムが統計と共に動作する"
+  }
+}

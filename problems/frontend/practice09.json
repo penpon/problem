@@ -2,7 +2,7 @@
   "id": "practice09",
   "title": "09: 中央寄せ",
   "description": "text-alignとmargin autoを使って要素を中央に配置する",
-  "category": "css-foundation", 
+  "category": "html-css-basics", 
   "difficulty": 2,
   "instructions": [
     "h1タグをtext-align: centerで中央に配置してください",

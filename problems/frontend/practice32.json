@@ -1,0 +1,31 @@
+{
+  "id": "practice32",
+  "title": "タイマー基礎",
+  "description": "setTimeout と setInterval の基本概念と操作を学習し、JavaScript の時間制御機能を習得します",
+  "category": "javascript-advanced",
+  "difficulty": 3,
+  "instructions": [
+    "setTimeout()で指定時間後の単発実行を実装する",
+    "setInterval()で繰り返し実行を実装する",
+    "clearTimeout()/clearInterval()でタイマーを停止する",
+    "基本的なタイマー管理（開始・停止・リセット）を実装する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "タイマー機能デモのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "タイマー制御システムのJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "timerControl": "開始・停止・リセットボタンでタイマー制御ができる",
+    "timeFormat": "時:分:秒の形式で時間が表示される",
+    "delayedExecution": "3秒遅延実行でカウントダウンと完了メッセージが表示される",
+    "behavior": "基本タイマー機能がすべて正しく動作する"
+  }
+}

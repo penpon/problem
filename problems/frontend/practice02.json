@@ -2,7 +2,7 @@
   "id": "practice02",
   "title": "02: 見出しの追加",
   "description": "見出しタグ（h1）を使用して、ページに構造を持たせましょう。",
-  "category": "html-basics",
+  "category": "html-css-basics",
   "difficulty": 1,
   "instructions": [
     "h1タグを使用してメインタイトルを追加してください",

@@ -1,0 +1,38 @@
+{
+  "id": "practice41",
+  "title": "カード機能拡張 - DOM操作とイベント処理入門",
+  "description": "オブジェクト管理を基礎として、DOM操作とイベント処理を習得し、よりインタラクティブな商品カードを実装します",
+  "category": "practical-projects",
+  "difficulty": 3,
+  "instructions": [
+    "DOM操作とイベント処理の基本概念を理解する",
+    "ボタンクリックで画面要素の表示・非表示を制御する",
+    "基本カート機能で商品追加・削除操作を実装する",
+    "複数の機能を連携させる技術を習得する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "拡張機能付き商品カードのHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "拡張機能のスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "DOM操作とイベント処理のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "domManipulation": "DOM要素の表示・非表示制御が動作する",
+    "eventHandling": "複数ボタンのイベント処理が動作する",
+    "detailsToggle": "詳細表示切替機能が動作する",
+    "cartFunctionality": "基本カート機能が動作する",
+    "multiFunction": "複数機能が連携して動作する",
+    "behavior": "オブジェクト管理+DOM操作の統合システムが完成する"
+  }
+}

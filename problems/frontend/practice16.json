@@ -1,0 +1,30 @@
+{
+  "id": "practice16",
+  "title": "はじめてのJavaScript",
+  "description": "JavaScriptの基本構文を理解し、初めてのスクリプトを書いて動的なWebページを作成します",
+  "category": "css-advanced",
+  "difficulty": 1,
+  "instructions": [
+    "HTMLファイルにJavaScriptのscriptタグを追加する",
+    "console.logで「Hello JavaScript!」を表示する",
+    "alert()でメッセージボックスを表示する",
+    "開発者ツールでコンソール出力を確認する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "JavaScriptを含む基本的なHTMLページ"
+    },
+    {
+      "filename": "script.js", 
+      "type": "template",
+      "description": "JavaScriptファイル（外部読み込み用）"
+    }
+  ],
+  "expectedResult": {
+    "console": "Hello JavaScript!",
+    "alert": "JavaScriptが動作しています！",
+    "behavior": "ページ読み込み時にアラートが表示される"
+  }
+}

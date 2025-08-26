@@ -1,24 +1,16 @@
 {
   "categories": [
     {
-      "id": "html-basics",
-      "name": "HTML基礎",
-      "description": "HTMLの基本的なタグと構造を学習します",
-      "icon": "🏗️",
+      "id": "html-css-basics",
+      "name": "HTML/CSS基礎",
+      "description": "HTMLの基本タグからCSSの基礎スタイリングまでを学習します",
+      "icon": "🌐",
       "problems": [
         "practice01",
-        "practice02", 
+        "practice02",
         "practice03",
         "practice04",
-        "practice05"
-      ]
-    },
-    {
-      "id": "css-foundation",
-      "name": "CSS基本・レイアウト",
-      "description": "CSSの基本とレイアウト設計を学習します",
-      "icon": "🎨",
-      "problems": [
+        "practice05",
         "practice06",
         "practice07",
         "practice08",
@@ -28,40 +20,78 @@
     },
     {
       "id": "css-advanced",
-      "name": "CSS応用・モダン",
-      "description": "高度なCSS表現と現代的な手法を学習します",
-      "icon": "✨",
+      "name": "CSS応用・モダンCSS",
+      "description": "高度なCSS表現とJavaScript導入まで学習します",
+      "icon": "🎨",
       "problems": [
         "practice11",
         "practice12",
         "practice13",
         "practice14",
-        "practice15"
-      ]
-    },
-    {
-      "id": "javascript-foundation",
-      "name": "JavaScript基礎",
-      "description": "JavaScriptの基本から変数・計算まで学習します",
-      "icon": "⚡",
-      "problems": [
-        "practice15_1",
-        "practice15_2",
-        "practice15_3"
+        "practice15",
+        "practice16",
+        "practice17",
+        "practice18",
+        "practice19",
+        "practice20"
       ]
     },
     {
       "id": "javascript-dom",
-      "name": "JavaScript応用",
-      "description": "DOM操作とイベント処理を学習します",
-      "icon": "🎯",
+      "name": "JavaScript DOM操作",
+      "description": "DOM操作、イベント処理、配列・ランダム処理を学習します",
+      "icon": "⚡",
       "problems": [
-        "practice15_4",
-        "practice15_5"
+        "practice21",
+        "practice22",
+        "practice23",
+        "practice24",
+        "practice25",
+        "practice26",
+        "practice27",
+        "practice28",
+        "practice29",
+        "practice30"
+      ]
+    },
+    {
+      "id": "javascript-advanced",
+      "name": "JavaScript応用",
+      "description": "タイマー、関数、オブジェクト、商品カード基礎まで学習します",
+      "icon": "🔧",
+      "problems": [
+        "practice31",
+        "practice32",
+        "practice33",
+        "practice34",
+        "practice35",
+        "practice36",
+        "practice37",
+        "practice38",
+        "practice39",
+        "practice40"
+      ]
+    },
+    {
+      "id": "practical-projects",
+      "name": "実践プロジェクト",
+      "description": "商品カード応用、高度なインタラクション、計算機制作を学習します",
+      "icon": "🚀",
+      "problems": [
+        "practice41",
+        "practice42",
+        "practice43",
+        "practice44",
+        "practice45",
+        "practice46",
+        "practice47",
+        "practice48",
+        "practice49",
+        "practice50"
       ]
     }
   ],
-  "totalProblems": 20,
-  "lastUpdated": "2024-01-01",
-  "version": "3.0.0"
+  "totalProblems": 50,
+  "lastUpdated": "2025-08-26",
+  "version": "5.0.0"
 }

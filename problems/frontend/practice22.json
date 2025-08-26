@@ -1,0 +1,30 @@
+{
+  "id": "practice22",
+  "title": "複数ボタン",
+  "description": "複数のボタンを同時に管理し、それぞれに異なる機能を実装してDOM操作の応用を学習します",
+  "category": "javascript-dom",
+  "difficulty": 2,
+  "instructions": [
+    "複数のボタンにそれぞれ異なるイベントを設定する",
+    "ボタンごとに異なるメッセージや処理を実行する",
+    "共通の処理と個別の処理を使い分ける",
+    "ボタンの状態管理を実装する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "機能別ボタンを配置したHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "複数ボタンの個別処理を管理するJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "individualFunctions": "各ボタンが独立した機能を実行する",
+    "stateManagement": "ボタンの状態が適切に管理される",
+    "behavior": "複数のボタンが連携して動作する"
+  }
+}

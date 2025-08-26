@@ -1,0 +1,30 @@
+{
+  "id": "practice17",
+  "title": "JavaScriptで「Hello」",
+  "description": "JavaScriptを使ってHTML要素の内容を動的に変更し、「Hello」メッセージを表示する方法を学習します",
+  "category": "css-advanced",
+  "difficulty": 1,
+  "instructions": [
+    "getElementById()でHTML要素を取得する",
+    "textContentを使って要素の内容を変更する",
+    "「Hello」から「Hello JavaScript!」へ動的に変更する",
+    "ボタンクリックで挨拶メッセージを表示する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "挨拶を表示するHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template", 
+      "description": "DOM操作で挨拶を変更するJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "initial": "Hello",
+    "afterClick": "Hello JavaScript!",
+    "behavior": "ボタンクリックで挨拶メッセージが変更される"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "practice47",
+  "title": "はじめての計算機（足し算のみ）",
+  "description": "2つの数字を足し算する簡単な計算機を作り、inputタグからの数値取得とJavaScriptでの計算処理を学習します",
+  "category": "practical-projects",
+  "difficulty": 2,
+  "instructions": [
+    "inputタグから数字を取得する方法を学ぶ",
+    "JavaScriptで足し算を実行する",
+    "計算結果を画面に表示する",
+    "Number()を使った文字から数字への変換を理解する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "足し算計算機のHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "計算機の基本スタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "足し算機能のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "numberInput": "2つの数値入力フィールドが動作する",
+    "addition": "足し算計算が正しく実行される",
+    "resultDisplay": "計算結果が画面に表示される",
+    "dataConversion": "文字列から数値への変換が正しく行われる",
+    "behavior": "シンプルな足し算計算機が完成する"
+  }
+}

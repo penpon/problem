@@ -1,0 +1,32 @@
+{
+  "id": "practice34",
+  "title": "関数の実用応用",
+  "description": "パラメータと戻り値を活用した実用的な関数を作成し、フォーム入力との連携を通じて本格的なプログラミングスキルを習得します",
+  "category": "javascript-advanced",
+  "difficulty": 3,
+  "instructions": [
+    "関数のパラメータ（引数）を使ったデータ受け渡しを実装する",
+    "戻り値（return）を使った計算結果の返却を学ぶ",
+    "フォーム入力値と関数の連携システムを構築する",
+    "BMI計算・文字列処理などの実用的な処理を実装する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "フォーム入力と関数連携のHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "実用的な関数群とフォーム処理のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "parameterPassing": "関数にパラメータが正しく渡される",
+    "returnValues": "関数から戻り値が正しく返される",
+    "formIntegration": "フォーム入力値が関数で処理される",
+    "practicalFunctions": "足し算・BMI計算・挨拶生成の関数が動作する",
+    "behavior": "3つの実用的な関数がフォームと連携して動作する"
+  }
+}

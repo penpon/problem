@@ -1,0 +1,31 @@
+{
+  "id": "practice30",
+  "title": "配列基礎",
+  "description": "JavaScript配列の基本概念と基本操作を学習し、配列の作成・アクセス・操作方法を習得します",
+  "category": "javascript-dom",
+  "difficulty": 2,
+  "instructions": [
+    "配列の作成方法と要素へのアクセス方法を学ぶ",
+    "インデックス（0から開始）の概念を理解する",
+    "push()とpop()を使った要素の追加・削除を実装する",
+    "lengthプロパティを使った配列情報の取得を習得する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "配列操作デモのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "配列の基本操作を行うJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "arrayCreation": "配列が正しく作成される",
+    "indexAccess": "インデックスでの要素アクセスが動作する",
+    "pushPop": "push()とpop()での要素追加・削除が動作する",
+    "behavior": "果物・色・数字の3つの配列で操作デモが動作する"
+  }
+}

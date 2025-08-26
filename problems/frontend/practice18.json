@@ -1,0 +1,30 @@
+{
+  "id": "practice18",
+  "title": "コンソールと変数",
+  "description": "JavaScriptの変数の基本的な使い方を学び、コンソールでの出力と変数操作を習得します",
+  "category": "css-advanced",
+  "difficulty": 1,
+  "instructions": [
+    "let、const、varの違いを理解する",
+    "文字列、数値、真偽値の変数を作成する",
+    "console.logで変数の内容を確認する",
+    "変数の値を変更してコンソールで確認する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "変数操作のデモページ"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "各種変数の宣言と操作を行うJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "console": "変数の値がコンソールに正しく表示される",
+    "variables": "文字列、数値、真偽値の変数が正しく動作する",
+    "behavior": "変数の宣言と値の変更ができる"
+  }
+}

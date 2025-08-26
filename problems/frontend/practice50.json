@@ -1,0 +1,38 @@
+{
+  "id": "practice50",
+  "title": "基本計算機の完成",
+  "description": "これまでの計算機機能をまとめ、きれいなデザインとエラーハンドリングを追加した完成版の基本計算機を作成します",
+  "category": "practical-projects",
+  "difficulty": 4,
+  "instructions": [
+    "これまでの機能（四則演算、クリアボタン）をまとめる",
+    "CSSできれいで使いやすいデザインを追加する",
+    "エラーハンドリング（0で割り算など）を実装する",
+    "選択中の演算子をハイライト表示する機能を追加する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "完成計算機のHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "プロフェッショナルなデザインのスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "完成版計算機のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "professionalDesign": "プロレベルの美しいデザインが適用される",
+    "operatorHighlight": "選択中の演算子がハイライト表示される",
+    "errorHandling": "0で割り算などのエラーが適切に処理される",
+    "completeFeatures": "すべての基本機能が統合されて動作する",
+    "userExperience": "優れたユーザーエクスペリエンスを提供する",
+    "behavior": "実用性とデザイン性を兼ね備えた完成版計算機が完成する"
+  }
+}

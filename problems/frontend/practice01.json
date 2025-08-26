@@ -2,7 +2,7 @@
   "id": "practice01",
   "title": "01: 基本的なHTML",
   "description": "HTMLの基本構造を学習し、最初のWebページを作成しましょう。",
-  "category": "html-basics",
+  "category": "html-css-basics",
   "difficulty": 1,
   "instructions": [
     "DOCTYPE宣言を追加してください",

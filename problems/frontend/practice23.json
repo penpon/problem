@@ -1,0 +1,31 @@
+{
+  "id": "practice23",
+  "title": "カウンター基本",
+  "description": "基本的なカウンター機能を実装し、ボタンクリックで数値を増減させる仕組みを学習します",
+  "category": "javascript-dom",
+  "difficulty": 2,
+  "instructions": [
+    "カウンター変数を初期化する",
+    "増加ボタンでカウンターを+1する",
+    "減少ボタンでカウンターを-1する",
+    "現在のカウント値をHTML要素に表示する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "カウンター表示とボタンのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "カウンター機能を実装するJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "increment": "増加ボタンでカウンターが+1される",
+    "decrement": "減少ボタンでカウンターが-1される",
+    "display": "現在のカウント値がリアルタイムで表示される",
+    "behavior": "カウンターが正しく動作する"
+  }
+}

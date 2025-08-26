@@ -1,0 +1,38 @@
+{
+  "id": "practice42",
+  "title": "基本データ管理",
+  "description": "配列とオブジェクトを組み合わせた本格的なデータ管理システムを構築し、商品お気に入り機能を通じて実用的なWebアプリケーション開発技術を習得します",
+  "category": "practical-projects",
+  "difficulty": 4,
+  "instructions": [
+    "配列とオブジェクトを組み合わせたデータ構造を理解する",
+    "データの追加・削除・表示の基本的なCRUD操作を学ぶ",
+    "配列データから統計情報を計算・表示する方法を習得する",
+    "重複チェック機能など実用的なデータ検証を実装する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "データ管理システムのHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "データ管理UIのスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "配列+オブジェクトデータ管理のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "dataStructure": "配列とオブジェクトの組み合わせデータ構造が動作する",
+    "crudOperations": "Create、Read、Delete操作が正しく動作する",
+    "statistics": "合計金額・平均価格・商品数の統計が計算される",
+    "duplicateCheck": "同じ商品の重複追加が防止される",
+    "favorites": "お気に入り機能でデータ管理が動作する",
+    "behavior": "本格的なデータ管理システムが完成する"
+  }
+}

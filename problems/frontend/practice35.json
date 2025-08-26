@@ -1,0 +1,32 @@
+{
+  "id": "practice35",
+  "title": "関数基礎",
+  "description": "JavaScript関数の基本概念と定義方法を理解し、シンプルな関数を作成できるようになります",
+  "category": "javascript-advanced",
+  "difficulty": 2,
+  "instructions": [
+    "function宣言の基本構文と使い方を学ぶ",
+    "関数の呼び出し方法を習得する",
+    "パラメータ（引数）の基本的な使い方を理解する",
+    "戻り値（return）の基本概念を学ぶ"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "関数デモのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "基本的な関数定義と呼び出しのJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "basicFunction": "パラメータなし、戻り値なしの関数が動作する",
+    "parameterFunction": "名前を受け取って挨拶する関数が動作する",
+    "returnFunction": "計算結果を返す関数が動作する",
+    "simpleCalculation": "数値を使った基本的な計算関数が動作する",
+    "behavior": "4つの基本関数パターンが正しく動作する"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "practice28",
+  "title": "ランダム基本",
+  "description": "Math.random()とMath.floor()を使ったランダム数生成の基本を理解し、配列からのランダム選択を実装します",
+  "category": "javascript-dom",
+  "difficulty": 2,
+  "instructions": [
+    "Math.random()でランダム数を生成する",
+    "Math.floor()で小数点以下を切り捨てる",
+    "配列のインデックスを使ったランダム選択を実装する",
+    "ランダム処理の詳細分析システムを構築する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "ランダム選択デモのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "ランダム数生成と配列選択を行うJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "randomGeneration": "0以上1未満のランダム数が生成される",
+    "arraySelection": "配列から要素がランダムに選択される",
+    "processAnalysis": "ランダム選択の計算過程が表示される",
+    "behavior": "動物と数字の配列からランダム選択が動作する"
+  }
+}

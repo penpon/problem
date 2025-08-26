@@ -1,0 +1,31 @@
+{
+  "id": "practice24",
+  "title": "カウンター拡張",
+  "description": "基本カウンターに追加機能を実装し、リセット・制限・統計機能付きの高度なカウンターを作成します",
+  "category": "javascript-dom",
+  "difficulty": 3,
+  "instructions": [
+    "基本的なカウンター機能に追加機能を実装する",
+    "リセットボタンでカウンターを0に戻す",
+    "カウンターの最小値・最大値制限を設定する",
+    "カウンター操作の統計情報を表示する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "拡張カウンター機能のHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "高度なカウンター機能を実装するJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "basicCounter": "増減・リセット機能が正しく動作する",
+    "limits": "最小値・最大値制限が適用される",
+    "statistics": "操作回数などの統計情報が表示される",
+    "behavior": "拡張された全機能が連携して動作する"
+  }
+}

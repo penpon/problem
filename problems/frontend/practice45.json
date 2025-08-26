@@ -1,0 +1,38 @@
+{
+  "id": "practice45",
+  "title": "シンプル統合システム",
+  "description": "これまで学んだ基本機能を組み合わせて、シンプルで使いやすい統合システムを作成します",
+  "category": "practical-projects",
+  "difficulty": 3,
+  "instructions": [
+    "カウンター機能でボタンを押すと数字が増える仕組みを実装する",
+    "データ保存機能でリロードしても数字が残る仕組みを構築する",
+    "リセット機能で数字を0に戻す機能を実装する",
+    "3つの機能を組み合わせて便利なアプリを完成させる"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "統合システムのHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "統合システムのスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "シンプル統合システムのJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "counterFunction": "カウンター機能が正しく動作する",
+    "dataStorage": "localStorageでデータが永続化される",
+    "resetFunction": "リセット機能で初期状態に戻る",
+    "integration": "3つの機能がうまく組み合わさって動作する",
+    "simplicity": "シンプルで使いやすいシステムが完成する",
+    "behavior": "基本機能の組み合わせによる便利なアプリが完成する"
+  }
+}

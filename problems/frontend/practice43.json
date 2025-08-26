@@ -1,0 +1,38 @@
+{
+  "id": "practice43",
+  "title": "データ管理強化 - localStorage による永続化入門",
+  "description": "オブジェクト管理とDOM操作の技術を基盤として、localStorage によるデータ永続化技術を習得します",
+  "category": "practical-projects",
+  "difficulty": 4,
+  "instructions": [
+    "localStorageによるデータ永続化の仕組みを理解する",
+    "ブラウザ閉鎖後もデータを保持する機能を実装する",
+    "ページ再読み込み時にデータを復元する自動読み込み機能を構築する",
+    "操作記録をタイムスタンプ付きで保存する履歴機能を実装する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "永続化対応商品カードのHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "永続化機能UIのスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "localStorage永続化システムのJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "dataPersistence": "ブラウザ閉鎖後もデータが保持される",
+    "autoRestore": "ページ再読み込み時にデータが自動復元される",
+    "historyTracking": "操作履歴がタイムスタンプ付きで記録される",
+    "dataValidation": "破損したデータの検出と修復が動作する",
+    "continuousExperience": "継続的なユーザー体験が提供される",
+    "behavior": "永続化により本格的なWebアプリケーションレベルの機能が完成する"
+  }
+}

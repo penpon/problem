@@ -2,7 +2,7 @@
   "id": "practice06",
   "title": "06: 初めてのCSS",
   "description": "CSSを使って文字に色とスタイルをつける",
-  "category": "css-foundation",
+  "category": "html-css-basics",
   "difficulty": 2,
   "instructions": [
     "CSSファイルを新しく作成してください",

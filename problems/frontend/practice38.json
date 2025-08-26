@@ -1,0 +1,39 @@
+{
+  "id": "practice38",
+  "title": "商品カード",
+  "description": "これまでの全技術（HTML/CSS/JavaScript）を統合し、実用的な商品カードシステムを作成します",
+  "category": "javascript-advanced",
+  "difficulty": 4,
+  "instructions": [
+    "HTML、CSS、JavaScriptの知識を組み合わせた実用的なコンポーネントを作成する",
+    "商品情報の動的な表示・変更システムを実装する",
+    "「いいね」ボタンやカウンター機能などのユーザーインタラクションを実装する",
+    "商品詳細の表示切替、価格表示、在庫管理などのECサイトレベルの機能を実装する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "商品カードのHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "商品カードのスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "商品カード機能のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "productDisplay": "商品情報が美しく表示される",
+    "likeSystem": "いいねボタンでいいね数が増減する",
+    "cartSystem": "カートに追加・削除機能が動作する",
+    "detailsToggle": "商品詳細の表示・非表示が切り替えられる",
+    "stockManagement": "在庫数の動的更新が動作する",
+    "imageGallery": "複数商品画像の切り替えが動作する",
+    "behavior": "実用的なECサイトレベルの商品カードが完成する"
+  }
+}

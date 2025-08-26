@@ -1,0 +1,39 @@
+{
+  "id": "practice39",
+  "title": "商品カード（Bootstrap版）",
+  "description": "Bootstrap 5を活用して実用的な商品カードシステムを構築し、Bootstrapコンポーネントの統合とレスポンシブ開発手法を習得します",
+  "category": "javascript-advanced",
+  "difficulty": 4,
+  "instructions": [
+    "Bootstrap 5を活用した実用的な商品カードシステムを構築する",
+    "Bootstrapコンポーネント（Card、Badge、Button、Toast、Accordion等）を統合する",
+    "Bootstrap APIとカスタムJavaScriptを組み合わせる",
+    "Vanilla版とBootstrap版の比較により最適な開発手法を理解する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "Bootstrap商品カードのHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "Bootstrapカスタマイズのスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "Bootstrap API統合のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "bootstrapComponents": "Bootstrap Cardコンポーネントが適用される",
+    "toastNotifications": "Bootstrap Toast通知システムが動作する",
+    "accordionDetails": "Bootstrap Accordion詳細情報が動作する",
+    "progressBars": "Bootstrap Progress Bar在庫表示が動作する",
+    "responsiveGrid": "Bootstrapグリッドシステムでレスポンシブ対応される",
+    "badgeSystem": "Bootstrap Badge動的表示が動作する",
+    "behavior": "Bootstrap統合による効率的な商品カードが完成する"
+  }
+}

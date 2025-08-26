@@ -1,0 +1,31 @@
+{
+  "id": "practice27",
+  "title": "HTML内容変更基本",
+  "description": "innerHTMLを使った構造的コンテンツ操作を学び、見出し・リスト・カード・テーブルなどの複雑なHTML構造を動的生成します",
+  "category": "javascript-dom",
+  "difficulty": 3,
+  "instructions": [
+    "innerHTMLプロパティで複雑なHTML構造を生成する",
+    "textContentとinnerHTMLの違いと使い分けを理解する",
+    "テンプレートリテラルを活用したHTML生成を実装する",
+    "セキュリティを考慮した安全なHTML操作を学ぶ"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "HTML生成デモのHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "複雑なHTML構造を生成するJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "htmlGeneration": "見出し、リスト、カード、テーブルが動的生成される",
+    "templateLiterals": "バッククォートを使ったHTML生成が動作する",
+    "securityAware": "安全なHTML操作が実装される",
+    "behavior": "6種類のHTML生成パターンが正しく動作する"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "practice20",
+  "title": "要素の取得",
+  "description": "getElementById、querySelector等を使ってHTML要素を取得し、DOM操作の基礎を学習します",
+  "category": "css-advanced",
+  "difficulty": 2,
+  "instructions": [
+    "getElementById()でID指定要素を取得する",
+    "querySelector()でCSS指定要素を取得する",
+    "取得した要素の内容を変更する",
+    "複数の要素取得方法を実践する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "様々なセレクタで要素を配置したHTML"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "各種セレクタで要素を取得・操作するJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "elementAccess": "ID、クラス、タグ名で要素が正しく取得される",
+    "contentChange": "取得した要素の内容が変更される",
+    "behavior": "複数の要素取得方法が動作する"
+  }
+}

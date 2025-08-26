@@ -266,6 +266,9 @@ class AdvancedFrontendLearning {
             this.tabNavigation.innerHTML = '<div style="padding: 20px; text-align: center; color: #64748b;">問題を読み込み中...</div>';
             this.problemList.innerHTML = '';
             
+            // フロントエンドインデックス情報を取得（カテゴリ詳細のため）
+            this.frontendIndex = await problemLoader.loadFrontendIndex();
+            
             // ProblemLoaderを使用してフロントエンド問題を読み込み
             const problems = await getFrontendProblemList();
             
@@ -313,29 +316,66 @@ class AdvancedFrontendLearning {
      * タブナビゲーションを生成
      */
     createTabs(problemsByCategory) {
-        const categoryInfo = {
-            'html-basics': { name: 'HTML基礎', icon: '🏗️' },
-            'css-foundation': { name: 'CSS基本・レイアウト', icon: '🎨' },
-            'css-advanced': { name: 'CSS応用・モダン', icon: '✨' },
-            'javascript-foundation': { name: 'JavaScript基礎', icon: '⚡' },
-            'javascript-dom': { name: 'JavaScript応用', icon: '🎯' }
-        };
-        
         this.tabNavigation.innerHTML = '';
         
-        Object.entries(problemsByCategory).forEach(([category, problems]) => {
-            const tabButton = document.createElement('button');
-            tabButton.className = 'tab-button';
-            tabButton.dataset.category = category;
-            
-            const info = categoryInfo[category] || { name: category, icon: '📝' };
-            tabButton.innerHTML = `
-                ${info.icon} ${info.name}
-                <span class="problem-count">(${problems.length}問)</span>
-            `;
-            
-            this.tabNavigation.appendChild(tabButton);
-        });
+        // カテゴリ情報の定義（順序も含めて明確に）
+        const categoryInfo = {
+            'html-css-basics': { name: 'HTML/CSS基礎', icon: '🌐', order: 1 },
+            'css-advanced': { name: 'CSS応用・モダンCSS', icon: '🎨', order: 2 },
+            'javascript-dom': { name: 'JavaScript DOM操作', icon: '⚡', order: 3 },
+            'javascript-advanced': { name: 'JavaScript応用', icon: '🔧', order: 4 },
+            'practical-projects': { name: '実践プロジェクト', icon: '🚀', order: 5 }
+        };
+        
+        // フロントエンドインデックスからカテゴリ情報を取得（優先）
+        if (this.frontendIndex && this.frontendIndex.categories) {
+            console.log('インデックスからカテゴリ情報を取得:', this.frontendIndex.categories);
+            // index.jsonの順序でタブを作成
+            this.frontendIndex.categories.forEach(categoryData => {
+                const categoryId = categoryData.id;
+                const problems = problemsByCategory[categoryId];
+                
+                console.log(`カテゴリ ${categoryId}: 問題数 ${problems ? problems.length : 0}`);
+                
+                if (problems && problems.length > 0) {
+                    const tabButton = document.createElement('button');
+                    tabButton.className = 'tab-button';
+                    tabButton.dataset.category = categoryId;
+                    
+                    tabButton.innerHTML = `
+                        ${categoryData.icon} ${categoryData.name}
+                        <span class="problem-count">(${problems.length}問)</span>
+                    `;
+                    
+                    this.tabNavigation.appendChild(tabButton);
+                }
+            });
+        } else {
+            console.log('フォールバック: 固定カテゴリ情報を使用');
+            // フォールバック: 固定のカテゴリ情報を順序通りに使用
+            Object.entries(categoryInfo)
+                .sort(([,a], [,b]) => a.order - b.order)
+                .forEach(([categoryId, info]) => {
+                    const problems = problemsByCategory[categoryId];
+                    
+                    if (problems && problems.length > 0) {
+                        const tabButton = document.createElement('button');
+                        tabButton.className = 'tab-button';
+                        tabButton.dataset.category = categoryId;
+                        
+                        tabButton.innerHTML = `
+                            ${info.icon} ${info.name}
+                            <span class="problem-count">(${problems.length}問)</span>
+                        `;
+                        
+                        this.tabNavigation.appendChild(tabButton);
+                    }
+                });
+        }
+        
+        // デバッグ: 作成されたタブ数を確認
+        const tabCount = this.tabNavigation.querySelectorAll('.tab-button').length;
+        console.log(`作成されたタブ数: ${tabCount}`);
     }
     
     /**

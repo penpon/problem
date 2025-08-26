@@ -2,7 +2,7 @@
   "id": "practice08",
   "title": "08: 境界線と背景",
   "description": "borderで枠線を作り、backgroundで背景をカスタマイズする",
-  "category": "css-foundation",
+  "category": "html-css-basics",
   "difficulty": 2,
   "instructions": [
     "borderプロパティで要素に枠線をつけてください",

@@ -1,0 +1,32 @@
+{
+  "id": "practice36",
+  "title": "関数実用システム",
+  "description": "複数の関数を組み合わせた実用的なシステムを構築し、関数の再利用性と連携について理解します",
+  "category": "javascript-advanced",
+  "difficulty": 3,
+  "instructions": [
+    "複数関数の連携方法を学ぶ",
+    "実用的な計算システム（BMI計算等）を構築する",
+    "関数の再利用性の理解を深める",
+    "アロー関数の基本的な使い方を習得する"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "関数システム統合のHTML構造"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "複数関数の連携システムのJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "bmiSystem": "身長・体重からBMI値と判定が計算される",
+    "arrowFunctions": "ES6のアロー関数が正しく動作する",
+    "functionChaining": "関数同士が連携して動作する",
+    "comprehensiveCalculation": "総合計算システムで複数の計算が実行される",
+    "behavior": "BMI・アロー関数・総合計算・関数連携の4システムが動作する"
+  }
+}

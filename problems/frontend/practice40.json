@@ -1,0 +1,38 @@
+{
+  "id": "practice40",
+  "title": "基本商品カード - オブジェクトでデータ管理入門",
+  "description": "JavaScriptの「オブジェクト」を使った効果的なデータ管理方法を学習し、実用的な商品カードを通じて理解を深めます",
+  "category": "javascript-advanced",
+  "difficulty": 3,
+  "instructions": [
+    "オブジェクトを使った商品データの構造化管理を学ぶ",
+    "オブジェクトの値を更新してUIに反映する方法を習得する",
+    "関連する情報をひとまとめにして管理する仕組みを理解する",
+    "データ整理術とデバッグ習慣を身につける"
+  ],
+  "files": [
+    {
+      "filename": "index.html",
+      "type": "template",
+      "description": "オブジェクト管理商品カードのHTML構造"
+    },
+    {
+      "filename": "style.css",
+      "type": "template",
+      "description": "商品カードのプロフェッショナルなスタイリング"
+    },
+    {
+      "filename": "script.js",
+      "type": "template",
+      "description": "オブジェクトデータ管理のJavaScript"
+    }
+  ],
+  "expectedResult": {
+    "objectManagement": "商品データがオブジェクトで管理される",
+    "dataStructure": "関連情報がひとまとめに整理される",
+    "uiSync": "オブジェクトの値変更がUIに反映される",
+    "likeSystem": "いいね機能でオブジェクトが更新される",
+    "statistics": "基本統計表示が動作する",
+    "behavior": "オブジェクトによるデータ管理の基礎が完成する"
+  }
+}
