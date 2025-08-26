@@ -1,107 +1,136 @@
-# Fashion ECサイト制作のための段階的学習サイト
+# Web開発総合学習プラットフォーム
 
 ## 📋 概要
 
-このプロジェクトは、本格的なECサイト制作に必要な技術を段階的に学ぶための練習用サイト集です。10個の練習サイトを通じて、HTML/CSS/JavaScriptの基礎から高度なEC機能の実装まで、体系的に学習できます。
+初心者から中級者まで対応した、Web開発スキルを体系的に身につけるための総合学習システムです。HTML/CSSの基礎から実用的なWebアプリケーション開発まで、段階的に学習できる3つの専門システムを統合しています。
 
-## 🎯 目標
+## 🎯 プロジェクトの特色
 
-`fashion-ec-site/` ディレクトリにある本格的なECサイトと同等の技術レベルに到達すること
+### 💡 3つの学習システム
+1. **70段階学習システム** - 超初心者対応の段階的学習コンテンツ
+2. **自動採点問題集** - JavaScript実践力を鍛える自動採点システム
+3. **多分野クイズ** - 技術知識を確認するモバイル対応クイズ
 
-## 📚 学習の進め方
+### 🌟 教育設計の強み
+- **挫折ポイントを回避**: 細かく設計された学習ステップ
+- **実践重視**: 目に見える成果を重視した構成
+- **完全自動化**: リアルタイム採点・フィードバック機能
+- **モバイル対応**: タッチデバイス完全対応
 
-### 基礎編（1-3週目）
-1. **01-simple-product-card** - HTML/CSS基礎、商品カードコンポーネント
-2. **02-responsive-grid** - Bootstrap Grid、レスポンシブデザイン
-3. **03-interactive-navigation** - JavaScript基礎、動的ナビゲーション
+## 🏗️ システム構成
 
-### 動的機能編（4-6週目）
-4. **04-product-data-system** - JavaScript配列、動的HTML生成
-5. **05-search-gallery** - フィルター機能、リアルタイム検索
-6. **06-modal-details** - Bootstrap Modal、データ連携
+### 1. 70段階学習システム (`beginner-practice/`)
 
-### 高度機能編（7-9週目）
-7. **07-favorites-feature** - LocalStorage、データ永続化
-8. **08-simple-cart** - ショッピングカート基本機能
-9. **09-price-sort-filter** - 複合フィルター、ソート機能
+HTML/CSSの基礎から実用的なECサイト制作まで、70のステップで段階的にスキルを習得：
 
-### 統合編（10週目）
-10. **10-mini-ecommerce** - 全機能統合、UX改善
+**📚 学習フェーズ**
+- **フェーズ1 (01-15)**: HTML/CSS基礎
+  - HTMLタグの基本から始まる超初心者対応
+  - CSSレイアウト、デザインの基礎
+- **フェーズ2 (16-21)**: JavaScript基礎
+  - DOM操作、イベント処理の基本
+- **フェーズ3 (22-37)**: JavaScript応用
+  - 関数、配列、オブジェクトの実践活用
+- **フェーズ4 (38-54)**: 実用システム構築
+  - Bootstrap統合、レスポンシブデザイン
+- **フェーズ5 (55-70)**: 高度なWeb開発
+  - 完全なECサイト構築まで
 
-## 🛠 技術スタック
+**✨ 特徴**
+- 各ステップが完全独立（個別に動作確認可能）
+- 理解度に応じて自由にペース調整
+- 実践的なプロジェクト中心の学習
 
-- **HTML5** - セマンティックマークアップ
-- **CSS3** - Flexbox、Grid、CSS変数、アニメーション
-- **Bootstrap 5** - レスポンシブデザイン、UIコンポーネント
-- **JavaScript ES6** - モダンな構文、DOM操作、状態管理
-- **LocalStorage** - データ永続化
+### 2. 自動採点問題集システム
+
+**主要アプリケーション**
+- `grader.html` - JavaScript問題の自動採点システム
+- `frontend.html` - フロントエンド問題専用システム
+
+**📊 問題構成**
+- **配列操作** (10問) - `problems/array/`
+- **関数応用** (20問) - `problems/function/`
+- **オブジェクト** (5問) - `problems/object/`
+- **総合問題** (5問) - `problems/general/`
+- **フロントエンド** (50問) - `problems/frontend/`
+
+**🔧 技術的特色**
+- Web Worker による安全なコード実行環境
+- リアルタイムフィードバック
+- プログラム実行結果の可視化
+
+### 3. 多分野クイズシステム (`quiz.html`)
+
+**📱 対応分野**
+- **JavaScript** (60問) - 基礎から応用まで3レベル
+- **Linux** (20問) - コマンドライン操作の基礎
+- **ネットワーク** (40問) - Web開発に必要なネットワーク知識
+
+**📚 レベル構成**
+- **Basic**: 基礎概念の理解
+- **Intermediate**: 実践的な応用
+- **Advanced**: 専門的な深い知識
 
 ## 📁 ディレクトリ構造
 
 ```
-practice-sites/
-├── README.md                    # このファイル
-├── shared/                      # 共通リソース
-│   └── images/                  # 練習用画像（SVG形式）
-├── 01-simple-product-card/      # 練習1: 商品カード
-│   ├── css/style.css           # 完全独立のCSS
-│   ├── js/script.js            # JavaScript機能
-│   └── index.html              # メインHTML
-├── 02-responsive-grid/          # 練習2: レスポンシブグリッド
-│   ├── css/style.css           # 完全独立のCSS（Bootstrap統合）
-│   ├── js/script.js            # JavaScript機能
-│   └── index.html              # メインHTML
-├── 03-interactive-navigation/   # 練習3: インタラクティブナビ
-│   ├── css/style.css           # 完全独立のCSS（Bootstrap統合）
-│   ├── js/script.js            # JavaScript機能
-│   └── index.html              # メインHTML
-├── 04-product-data-system/      # 練習4: データ管理システム
-├── 05-search-gallery/           # 練習5: 検索ギャラリー
-├── 06-modal-details/            # 練習6: モーダル詳細表示
-├── 07-favorites-feature/        # 練習7: お気に入り機能
-├── 08-simple-cart/              # 練習8: シンプルカート
-├── 09-price-sort-filter/        # 練習9: ソート・フィルター
-└── 10-mini-ecommerce/           # 練習10: 統合ECサイト
+project/
+├── README.md                           # このファイル
+├── index.html                          # プロジェクトメインページ
+│
+├── beginner-practice/                   # 70段階学習システム
+│   ├── 01-basic-html/                  # HTML基礎
+│   ├── 02-add-heading/                 # 見出し追加
+│   ├── ...                            # 段階的学習コンテンツ
+│   └── 70-complete-ec-site/            # 完全なECサイト制作
+│
+├── problems/                           # 問題データ（JSON形式）
+│   ├── array/                          # 配列操作問題
+│   ├── function/                       # 関数応用問題
+│   ├── frontend/                       # フロントエンド問題
+│   ├── object/                         # オブジェクト操作問題
+│   └── general/                        # 総合問題
+│
+├── quiz-data/                          # クイズデータ
+│   └── categories/
+│       ├── javascript/                 # JavaScript分野
+│       ├── linux/                      # Linux分野
+│       └── network/                    # ネットワーク分野
+│
+├── practice-problems-review/           # 追加練習問題とレビュー
+│   ├── problems/                       # 練習問題
+│   ├── solutions/                      # 解答例
+│   └── haysato/                        # レビュー用問題
+│
+├── js/                                 # JavaScript
+│   ├── main.js                         # 自動採点メインロジック
+│   ├── frontend.js                     # フロントエンド問題処理
+│   ├── quiz-app.js                     # クイズアプリケーション
+│   └── worker.js                       # Web Worker（安全実行環境）
+│
+├── css/                                # スタイルシート
+│   ├── style.css                       # 共通デザインシステム
+│   ├── frontend.css                    # フロントエンド専用
+│   └── quiz-mobile.css                 # モバイル対応クイズ
+│
+└── [その他のHTMLアプリケーション]
+    ├── grader.html                     # 自動採点システム
+    ├── frontend.html                   # フロントエンド問題
+    ├── quiz.html                       # クイズアプリ
+    ├── visualizer.html                 # 学習支援ツール
+    └── sequence-diagram.html           # システム図解ツール
 ```
 
-### 💡 独立構成の特徴
+## 🛠 技術仕様
 
-各練習問題は**完全に独立**して動作します：
-- ✅ **個別CSS**: 各練習のstyle.cssに必要なスタイルを全て含有
-- ✅ **独立学習**: 他の練習問題に依存せず単体で学習可能
-- ✅ **移植性**: ファイル一式をコピーすれば他の環境でも動作
-- ✅ **学習効率**: 一つのファイルで学習内容を完結して把握可能
+### 基盤技術
+- **HTML5** - モダンなセマンティックマークアップ
+- **CSS3** - Flexbox、Grid、CSS Variables、アニメーション
+- **JavaScript ES6+** - モダンな構文、非同期処理
+- **Bootstrap 5** - レスポンシブデザインフレームワーク
 
-## 🚀 開始方法
-
-1. まず `01-simple-product-card/` から始めてください
-2. 各ディレクトリの `README.md` で学習目標を確認
-3. `index.html` でサイトを確認
-4. コードを分析して理解を深める
-5. 次の練習サイトに進む
-
-## ✅ 学習チェックポイント
-
-各練習サイト完了後、以下を確認してください：
-- [ ] HTMLの構造を理解できた
-- [ ] CSSのスタイリング手法を把握できた  
-- [ ] JavaScriptの動作を説明できる
-- [ ] レスポンシブ対応を確認できた
-- [ ] 目標サイトとの関連性を理解できた
-
-## 🎓 修了後の次のステップ
-
-全10サイトを完了したら：
-1. `fashion-ec-site/` の実装に挑戦
-2. 独自機能の追加
-3. 他のフレームワーク（React、Vue.js等）への移行
-
-## 📖 参考資料
-
-- [MDN Web Docs](https://developer.mozilla.org/)
-- [Bootstrap 5 Documentation](https://getbootstrap.com/docs/5.0/)
-- [JavaScript.info](https://javascript.info/)
-
----
-
-**がんばって学習を進めましょう！各ステップで確実にスキルを身につけていけば、必ず目標サイトを制作できるようになります。**
+### システム特色
+- **完全静的サイト**: GitHub Pages完全対応
+- **モバイルファースト**: タッチデバイス最適化
+- **オフライン対応**: ローカル実行可能
+- **安全実行環境**: Web Workerによるコード分離実行
