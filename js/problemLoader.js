@@ -199,6 +199,209 @@ class ProblemLoader {
   }
 
   /**
+   * 問題IDからREADMEファイルパスに変換
+   * @param {string} problemId 問題ID（例: practice01, practice15_1）
+   * @returns {string} READMEファイルパス
+   */
+  problemIdToReadmePath(problemId) {
+    const directoryMap = this.getProblemDirectoryMap();
+    
+    if (directoryMap[problemId]) {
+      return `beginner-practice/${directoryMap[problemId]}/README.md`;
+    }
+    
+    throw new Error(`Problem directory not found for ID: ${problemId}`);
+  }
+
+  /**
+   * 問題IDからディレクトリ名への完全マッピングテーブル
+   * @returns {Object} 問題IDとディレクトリ名のマッピング
+   */
+  getProblemDirectoryMap() {
+    return {
+      'practice01': '01-basic-html',
+      'practice02': '02-add-heading',
+      'practice03': '03-add-image',
+      'practice04': '04-add-link',
+      'practice05': '05-add-list',
+      'practice06': '06-first-css',
+      'practice07': '07-spacing',
+      'practice08': '08-borders',
+      'practice09': '09-centering',
+      'practice10': '10-layout-basics',
+      'practice11': '11-shadows-corners',
+      'practice12': '12-simple-animation',
+      'practice13': '13-flexbox-intro',
+      'practice14': '14-simple-card',
+      'practice15': '15-hover-effects',
+      'practice15_1': '15.1-javascript-hello',
+      'practice15_2': '15.2-console-and-variables',
+      'practice15_3': '15.3-basic-math',
+      'practice15_4': '15.4-get-element',
+      'practice15_5': '15.5-button-click',
+      'practice16': '16-first-javascript',
+      'practice16_1': '16.1-multiple-buttons',
+      'practice16_2': '16.2-counter-basic',
+      'practice16_3': '16.3-counter-enhanced',
+      'practice17': '17-change-content',
+      'practice17_1': '17.1-text-content-change',
+      'practice17_2': '17.2-html-content-basic',
+      'practice17_3': '17.3-array-and-random',
+      'practice17_4': '17.4-timer-and-animation',
+      'practice17_5': '17.5-function-basics',
+      'practice17_6': '17.6-object-basics',
+      'practice18': '18-simple-calculator',
+      'practice18_1': '18.1-basic-calculator',
+      'practice18_2': '18.2-advanced-calculator',
+      'practice18_3': '18.3-scientific-calculator',
+      'practice19': '19-mini-product-card',
+      'practice19_1': '19.1-basic-product-card',
+      'practice19_2': '19.2-card-expansion',
+      'practice19_3': '19.3-data-management',
+      'practice19_4': '19.4-advanced-interaction',
+      'practice19_5': '19.5-ui-ux-completion',
+      'practice19_6': '19.6-integrated-system',
+      'practice20': '20-two-product-gallery',
+      'practice20_1': '20.1-multiple-products-basics',
+      'practice20_2': '20.2-dynamic-display-system',
+      'practice20_3': '20.3-filtering-system',
+      'practice20_4': '20.4-sort-functionality-system',
+      'practice20_5': '20.5-search-functionality-system',
+      'practice20_6': '20.6-integrated-gallery-system',
+      'practice21': '21-responsive-basics',
+      'practice22': '22-shopping-cart-advanced',
+      'practice23': '23-product-detail-page'
+    };
+  }
+
+  /**
+   * 問題IDから実際のREADMEファイルパスを特定
+   * @param {string} problemId 問題ID
+   * @returns {Promise<string>} 実際のREADMEファイルパス
+   */
+  async findReadmePath(problemId) {
+    const cacheKey = `readme_path_${problemId}`;
+    
+    if (this.loadedProblems.has(cacheKey)) {
+      return this.loadedProblems.get(cacheKey);
+    }
+
+    try {
+      // 直接的なマッピングを使用してパスを取得
+      const readmePath = this.problemIdToReadmePath(problemId);
+      
+      // ファイルの存在確認（軽量なHEADリクエストではなくGETで確認）
+      const response = await fetch(readmePath, { 
+        method: 'GET',
+        // キャッシュを避けるためのヘッダー
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      });
+      
+      if (response.ok) {
+        this.loadedProblems.set(cacheKey, readmePath);
+        console.log(`README path found for ${problemId}: ${readmePath}`);
+        return readmePath;
+      } else {
+        throw new Error(`README file not accessible: ${response.status} ${response.statusText}`);
+      }
+      
+    } catch (error) {
+      console.error(`Failed to find README path for ${problemId}:`, error);
+      throw new Error(`README file not found for problem ${problemId}. Error: ${error.message}`);
+    }
+  }
+
+  /**
+   * 問題のREADME.mdファイルを読み込み
+   * @param {string} problemId 問題ID
+   * @returns {Promise<string>} README.mdの内容（Markdownテキスト）
+   */
+  async loadProblemReadme(problemId) {
+    const cacheKey = `readme_${problemId}`;
+    
+    // キャッシュから取得
+    if (this.loadedProblems.has(cacheKey)) {
+      console.log(`README cache hit for ${problemId}`);
+      return this.loadedProblems.get(cacheKey);
+    }
+
+    try {
+      console.log(`Loading README for problem: ${problemId}`);
+      const readmePath = await this.findReadmePath(problemId);
+      console.log(`README path resolved: ${readmePath}`);
+      
+      const response = await fetch(readmePath, {
+        method: 'GET',
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const markdownContent = await response.text();
+      
+      if (!markdownContent || markdownContent.trim().length === 0) {
+        throw new Error('README file is empty or contains no content');
+      }
+      
+      // キャッシュに保存
+      this.loadedProblems.set(cacheKey, markdownContent);
+      
+      console.log(`README.md successfully loaded for problem ${problemId} (${markdownContent.length} characters)`);
+      return markdownContent;
+      
+    } catch (error) {
+      console.error(`Failed to load README for ${problemId}:`, error);
+      
+      // フォールバック: 問題JSONからヒント情報を取得
+      try {
+        console.log(`Attempting fallback hint for ${problemId}`);
+        const fallbackHint = await this.getFallbackHint(problemId);
+        if (fallbackHint) {
+          return fallbackHint;
+        }
+      } catch (fallbackError) {
+        console.warn(`Fallback hint also failed for ${problemId}:`, fallbackError);
+      }
+      
+      throw new Error(`README読み込みに失敗しました: ${error.message}`);
+    }
+  }
+
+  /**
+   * フォールバックヒント取得（問題JSONからヒント情報を取得）
+   * @param {string} problemId 問題ID
+   * @returns {Promise<string|null>} フォールバックヒントまたはnull
+   */
+  async getFallbackHint(problemId) {
+    try {
+      const problemData = await this.loadFrontendProblem(problemId);
+      
+      if (problemData && problemData.hints) {
+        // 問題データにヒント情報がある場合
+        return `# ${problemData.title} - ヒント\n\n${problemData.hints.join('\n\n')}`;
+      }
+      
+      if (problemData && problemData.description) {
+        // 説明をヒントとして使用
+        return `# ${problemData.title} - ヒント\n\n${problemData.description}`;
+      }
+      
+      return null;
+    } catch (error) {
+      console.warn(`Fallback hint failed for ${problemId}:`, error);
+      return null;
+    }
+  }
+
+  /**
    * 読み込み状況の統計を取得
    * @returns {Object} 統計情報
    */
@@ -249,6 +452,16 @@ async function getFrontendProblem(problemId) {
     return await problemLoader.loadFrontendProblem(problemId);
   } catch (error) {
     console.error(`getFrontendProblem(${problemId}) error:`, error);
+    return null;
+  }
+}
+
+// README読み込み用の関数
+async function loadProblemReadme(problemId) {
+  try {
+    return await problemLoader.loadProblemReadme(problemId);
+  } catch (error) {
+    console.error(`loadProblemReadme(${problemId}) error:`, error);
     return null;
   }
 }

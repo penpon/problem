@@ -28,6 +28,9 @@ class AdvancedFrontendLearning {
         this.fullscreenActive = false;
         this.fullscreenType = '';
         
+        // ヒントモーダル管理
+        this.hintModalActive = false;
+        
         // 結果表示タブ管理
         this.activeResultTab = 'summary';  // 'summary' または 'comparison'
         this.activeComparisonFile = 'html';  // 'html', 'css', 'js'
@@ -85,6 +88,15 @@ class AdvancedFrontendLearning {
         this.fullscreenTitle = document.getElementById('fullscreen-title');
         this.fullscreenBody = document.getElementById('fullscreen-body');
         this.fullscreenClose = document.getElementById('fullscreen-close');
+        
+        // ヒントモーダル関連
+        this.hintModal = document.getElementById('hint-modal');
+        this.hintModalTitle = document.getElementById('hint-modal-title');
+        this.hintModalClose = document.getElementById('hint-modal-close');
+        this.hintContent = document.getElementById('hint-content');
+        this.hintLoading = document.getElementById('hint-loading');
+        this.hintError = document.getElementById('hint-error');
+        this.hintRetry = document.getElementById('hint-retry');
         
         // 現在アクティブな正解コード表示ファイル
         this.activeExpectedCodeFile = 'html';
@@ -176,12 +188,41 @@ class AdvancedFrontendLearning {
             });
         }
         
-        // ESCキーで全画面モーダルを閉じる
+        // ESCキーでモーダルを閉じる
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.fullscreenActive) {
-                this.closeFullscreen();
+            if (e.key === 'Escape') {
+                if (this.fullscreenActive) {
+                    this.closeFullscreen();
+                } else if (this.hintModalActive) {
+                    this.closeHintModal();
+                }
             }
         });
+        
+        // ヒントモーダル関連のイベントリスナー
+        if (this.hintModalClose) {
+            this.hintModalClose.addEventListener('click', () => {
+                this.closeHintModal();
+            });
+        }
+        
+        // ヒントモーダル背景クリックで閉じる
+        if (this.hintModal) {
+            this.hintModal.addEventListener('click', (e) => {
+                if (e.target === this.hintModal) {
+                    this.closeHintModal();
+                }
+            });
+        }
+        
+        // ヒント再試行ボタン
+        if (this.hintRetry) {
+            this.hintRetry.addEventListener('click', () => {
+                if (this.currentProblem) {
+                    this.loadHintContent(this.currentProblem.id);
+                }
+            });
+        }
         
         // タブナビゲーションのクリックイベント（イベント委譲）
         this.tabNavigation.addEventListener('click', (e) => {
@@ -384,6 +425,7 @@ class AdvancedFrontendLearning {
         this.problemDetails.innerHTML = `
             <div class="problem-title-display">
                 <h3>${cleanTitle}</h3>
+                <button id="hint-button" class="hint-button">💡 ヒントを見る</button>
             </div>
             <div class="problem-description">${problem.description || ''}</div>
             <div class="problem-instructions">
@@ -396,6 +438,9 @@ class AdvancedFrontendLearning {
             </div>
         `;
         this.problemDetails.style.display = 'block';
+        
+        // ヒントボタンの動的イベントリスナーを設定
+        this.initializeHintButton();
     }
     
     loadProblemTemplate(problem) {
@@ -1479,6 +1524,302 @@ class AdvancedFrontendLearning {
         // デフォルトは採点結果タブを表示
         this.switchResultTab('summary');
         this.switchComparisonFile('html');
+    }
+    
+    // ===== ヒント機能関連メソッド =====
+    
+    /**
+     * ヒントボタンの動的イベントリスナーを初期化
+     */
+    initializeHintButton() {
+        const hintButton = document.getElementById('hint-button');
+        if (hintButton) {
+            hintButton.addEventListener('click', () => {
+                this.openHintModal();
+            });
+        }
+    }
+    
+    /**
+     * ヒントモーダルを開く
+     */
+    async openHintModal() {
+        if (!this.currentProblem || !this.hintModal) return;
+        
+        this.hintModalActive = true;
+        this.hintModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // モーダルのタイトルを設定
+        if (this.hintModalTitle) {
+            this.hintModalTitle.textContent = `💡 ${this.currentProblem.title} - ヒント`;
+        }
+        
+        // ローディング表示
+        this.showHintLoading();
+        
+        try {
+            await this.loadHintContent(this.currentProblem.id);
+        } catch (error) {
+            console.error('ヒントの読み込みに失敗:', error);
+            this.showHintError();
+        }
+    }
+    
+    /**
+     * ヒントモーダルを閉じる
+     */
+    closeHintModal() {
+        if (!this.hintModal) return;
+        
+        this.hintModalActive = false;
+        this.hintModal.classList.remove('show');
+        document.body.style.overflow = '';
+        
+        // コンテンツをクリア
+        if (this.hintContent) {
+            this.hintContent.innerHTML = '';
+        }
+    }
+    
+    /**
+     * ヒントコンテンツを読み込み
+     */
+    async loadHintContent(problemId) {
+        try {
+            console.log(`ヒント読み込み開始: ${problemId}`);
+            const markdownContent = await loadProblemReadme(problemId);
+            
+            if (markdownContent && markdownContent.trim()) {
+                console.log(`Markdown取得成功 (${markdownContent.length}文字): ${problemId}`);
+                const htmlContent = this.renderMarkdown(markdownContent);
+                this.showHintContent(htmlContent);
+                console.log(`ヒント表示完了: ${problemId}`);
+            } else {
+                throw new Error('ヒントが見つかりませんでした。');
+            }
+        } catch (error) {
+            console.error(`ヒント読み込みエラー (${problemId}):`, error);
+            
+            // より詳細なエラーメッセージでユーザーに通知
+            const errorMessage = this.getDetailedErrorMessage(error, problemId);
+            this.showDetailedHintError(errorMessage, problemId);
+            throw error;
+        }
+    }
+
+    /**
+     * 詳細なエラーメッセージを生成
+     * @param {Error} error - エラーオブジェクト
+     * @param {string} problemId - 問題ID
+     * @returns {string} 詳細なエラーメッセージ
+     */
+    getDetailedErrorMessage(error, problemId) {
+        if (error.message.includes('HTTP 404')) {
+            return `問題「${problemId}」のヒントファイルが見つかりませんでした。\n\n考えられる原因:\n• ファイルが存在しない\n• パスの指定に誤りがある`;
+        } else if (error.message.includes('Failed to fetch') || error.message.includes('Network')) {
+            return `ヒントファイルの読み込みに失敗しました。\n\nネットワーク接続を確認してください。\n\n技術的詳細: ${error.message}`;
+        } else if (error.message.includes('Empty') || error.message.includes('no content')) {
+            return `問題「${problemId}」のヒントファイルは空です。\n\n管理者にお問い合わせください。`;
+        } else {
+            return `予期しないエラーが発生しました。\n\n問題ID: ${problemId}\nエラー: ${error.message}`;
+        }
+    }
+
+    /**
+     * 詳細なエラー表示（改良版）
+     * @param {string} message - エラーメッセージ
+     * @param {string} problemId - 問題ID
+     */
+    showDetailedHintError(message, problemId) {
+        if (this.hintError) {
+            this.hintError.innerHTML = `
+                <div class="detailed-error-content">
+                    <h4>⚠️ ヒント取得エラー</h4>
+                    <div class="error-message">${message.replace(/\n/g, '<br>')}</div>
+                    <div class="error-actions">
+                        <button id="hint-retry-detailed" class="hint-retry-btn">🔄 再試行</button>
+                        <button id="hint-fallback" class="hint-fallback-btn">📝 基本情報を表示</button>
+                    </div>
+                    <div class="error-technical-details">
+                        <details>
+                            <summary>技術的詳細</summary>
+                            <p>問題ID: <code>${problemId}</code></p>
+                            <p>タイムスタンプ: ${new Date().toLocaleString('ja-JP')}</p>
+                        </details>
+                    </div>
+                </div>
+            `;
+            this.hintError.style.display = 'block';
+            
+            // 再試行ボタンのイベント設定
+            const retryBtn = document.getElementById('hint-retry-detailed');
+            if (retryBtn) {
+                retryBtn.addEventListener('click', () => {
+                    this.loadHintContent(problemId);
+                });
+            }
+            
+            // フォールバック表示ボタンのイベント設定
+            const fallbackBtn = document.getElementById('hint-fallback');
+            if (fallbackBtn) {
+                fallbackBtn.addEventListener('click', () => {
+                    this.showFallbackHint(problemId);
+                });
+            }
+        }
+        
+        if (this.hintLoading) this.hintLoading.style.display = 'none';
+        if (this.hintContent) this.hintContent.style.display = 'none';
+    }
+
+    /**
+     * フォールバックヒント表示
+     * @param {string} problemId - 問題ID
+     */
+    async showFallbackHint(problemId) {
+        try {
+            this.showHintLoading();
+            
+            const fallbackContent = `
+# ${this.currentProblem?.title || problemId} - 基本情報
+
+## 問題について
+${this.currentProblem?.description || '問題の詳細情報を確認してください。'}
+
+## 実装のポイント
+${(this.currentProblem?.instructions || []).map((instruction, index) => `${index + 1}. ${instruction}`).join('\n') || '• 問題の要件を満たすコードを書いてください'}
+
+## ヒント
+- エディタでコードを書いて、プレビューで結果を確認しましょう
+- 正解と見比べながら実装してください
+- エラーが発生したら、採点結果を参考に修正してください
+
+---
+*詳細なヒントが利用できない場合の基本情報です*
+            `;
+            
+            const htmlContent = this.renderMarkdown(fallbackContent);
+            this.showHintContent(htmlContent);
+            
+        } catch (error) {
+            console.error('フォールバックヒント表示エラー:', error);
+            this.showHintError();
+        }
+    }
+    
+    /**
+     * MarkdownをHTMLに変換
+     */
+    renderMarkdown(markdown) {
+        try {
+            // marked.jsがロードされているかチェック
+            if (typeof marked !== 'undefined') {
+                // marked.jsを使用してレンダリング
+                return marked.parse(markdown);
+            } else {
+                // フォールバック: 簡易Markdownレンダリング
+                return this.simpleMarkdownRenderer(markdown);
+            }
+        } catch (error) {
+            console.error('Markdownレンダリングエラー:', error);
+            return this.simpleMarkdownRenderer(markdown);
+        }
+    }
+    
+    /**
+     * 簡易Markdownレンダラー（フォールバック）
+     */
+    simpleMarkdownRenderer(markdown) {
+        return markdown
+            .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+            .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+            .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/`([^`]+)`/g, '<code>$1</code>')
+            .replace(/```([^`]+)```/gs, '<pre><code>$1</code></pre>')
+            .replace(/^\- (.+)$/gm, '<li>$1</li>')
+            .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+            .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/^(.+)$/gm, '<p>$1</p>')
+            .replace(/<p><h/g, '<h')
+            .replace(/<\/h(\d)><\/p>/g, '</h$1>')
+            .replace(/<p><ul>/g, '<ul>')
+            .replace(/<\/ul><\/p>/g, '</ul>')
+            .replace(/<p><pre>/g, '<pre>')
+            .replace(/<\/pre><\/p>/g, '</pre>');
+    }
+    
+    /**
+     * ローディング表示
+     */
+    showHintLoading() {
+        if (this.hintLoading) this.hintLoading.style.display = 'block';
+        if (this.hintContent) this.hintContent.style.display = 'none';
+        if (this.hintError) this.hintError.style.display = 'none';
+    }
+    
+    /**
+     * ヒントコンテンツ表示
+     */
+    showHintContent(htmlContent) {
+        if (this.hintContent) {
+            this.hintContent.innerHTML = htmlContent;
+            this.hintContent.style.display = 'block';
+            
+            // シンタックスハイライト適用
+            this.applySyntaxHighlight();
+        }
+        
+        if (this.hintLoading) this.hintLoading.style.display = 'none';
+        if (this.hintError) this.hintError.style.display = 'none';
+    }
+    
+    /**
+     * エラー表示（シンプル版 - 後方互換性のため保持）
+     */
+    showHintError() {
+        if (this.hintError) {
+            // デフォルトのシンプルなエラーメッセージ
+            this.hintError.innerHTML = `
+                <div class="simple-error-content">
+                    <h4>⚠️ ヒントの読み込みに失敗しました</h4>
+                    <p>しばらく時間をおいて再試行してください。</p>
+                    <button id="hint-retry-simple" class="hint-retry-btn">再試行</button>
+                </div>
+            `;
+            this.hintError.style.display = 'block';
+            
+            // 再試行ボタンのイベント設定
+            const retryBtn = document.getElementById('hint-retry-simple');
+            if (retryBtn) {
+                retryBtn.addEventListener('click', () => {
+                    if (this.currentProblem) {
+                        this.loadHintContent(this.currentProblem.id);
+                    }
+                });
+            }
+        }
+        if (this.hintLoading) this.hintLoading.style.display = 'none';
+        if (this.hintContent) this.hintContent.style.display = 'none';
+    }
+    
+    /**
+     * シンタックスハイライト適用
+     */
+    applySyntaxHighlight() {
+        if (typeof hljs !== 'undefined') {
+            try {
+                // コードブロックにシンタックスハイライトを適用
+                this.hintContent.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+            } catch (error) {
+                console.warn('シンタックスハイライトの適用に失敗:', error);
+            }
+        }
     }
 }
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステップ50: 基本的な計算機</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <div class="header">
+                <h1>🧮 基本計算機</h1>
+                <p>四則演算の基本を学ぼう</p>
+            </div>
+            
+            <!-- 表示画面 -->
+            <div class="display" id="display">0</div>
+            
+            <!-- ボタン配置（4×4のグリッド） -->
+            <div class="buttons">
+                <!-- 1行目：クリア、÷ -->
+                <button class="btn btn-clear" onclick="clearAll()">C</button>
+                <button class="btn btn-function" onclick="clearEntry()">CE</button>
+                <button class="btn btn-function" onclick="percentage()">%</button>
+                <button class="btn btn-operator" onclick="setOperator('/')" title="割り算">÷</button>
+                
+                <!-- 2行目：7, 8, 9, × -->
+                <button class="btn btn-number" onclick="inputNumber(7)">7</button>
+                <button class="btn btn-number" onclick="inputNumber(8)">8</button>
+                <button class="btn btn-number" onclick="inputNumber(9)">9</button>
+                <button class="btn btn-operator" onclick="setOperator('*')" title="掛け算">×</button>
+                
+                <!-- 3行目：4, 5, 6, - -->
+                <button class="btn btn-number" onclick="inputNumber(4)">4</button>
+                <button class="btn btn-number" onclick="inputNumber(5)">5</button>
+                <button class="btn btn-number" onclick="inputNumber(6)">6</button>
+                <button class="btn btn-operator" onclick="setOperator('-')" title="引き算">-</button>
+                
+                <!-- 4行目：1, 2, 3, + -->
+                <button class="btn btn-number" onclick="inputNumber(1)">1</button>
+                <button class="btn btn-number" onclick="inputNumber(2)">2</button>
+                <button class="btn btn-number" onclick="inputNumber(3)">3</button>
+                <button class="btn btn-operator" onclick="setOperator('+')" title="足し算">+</button>
+                
+                <!-- 5行目：±, 0, ., = -->
+                <button class="btn btn-function" onclick="toggleSign()">±</button>
+                <button class="btn btn-number" onclick="inputNumber(0)">0</button>
+                <button class="btn btn-function" onclick="inputDecimal()">.</button>
+                <button class="btn btn-equals" onclick="calculate()" title="計算実行">=</button>
+            </div>
+        </div>
+        
+        <!-- 説明パネル -->
+        <div class="info-panel">
+            <div class="info-section">
+                <h3>🎯 使い方</h3>
+                <p><strong>基本操作:</strong></p>
+                <ul>
+                    <li>数字ボタンで数字を入力</li>
+                    <li>+、-、×、÷ で演算子を選択</li>
+                    <li>= ボタンで計算実行</li>
+                    <li>C ボタンでリセット</li>
+                </ul>
+            </div>
+            
+            <div class="info-section">
+                <h3>📝 計算例</h3>
+                <p><strong>基本計算:</strong></p>
+                <ul>
+                    <li>5 + 3 = 8</li>
+                    <li>10 - 4 = 6</li>
+                    <li>6 × 7 = 42</li>
+                    <li>15 ÷ 3 = 5</li>
+                </ul>
+            </div>
+            
+            <div class="info-section">
+                <h3>⚠️ 注意点</h3>
+                <p><strong>エラーについて:</strong></p>
+                <ul>
+                    <li>0で割るとエラーが表示されます</li>
+                    <li>C ボタンで初期状態に戻ります</li>
+                    <li>小数点は1つまで入力可能です</li>
+                </ul>
+            </div>
+            
+            <!-- 現在の操作状況 -->
+            <div class="status" id="status">
+                基本計算機が起動しました
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

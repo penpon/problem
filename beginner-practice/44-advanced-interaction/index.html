@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ステップ44: 基本的なページ交互作用</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 商品カード -->
+        <div class="product-card">
+            <!-- 商品画像 -->
+            <div class="product-image">👕</div>
+            
+            <!-- 商品情報 -->
+            <h2>おしゃれなTシャツ</h2>
+            <p class="price">¥1,980</p>
+            
+            <!-- ボタン群 -->
+            <div class="buttons">
+                <button class="like-btn" id="likeBtn">
+                    ❤️ いいね <span id="likeCount">0</span>
+                </button>
+                
+                <button class="detail-btn" id="detailBtn">
+                    詳細を見る
+                </button>
+            </div>
+            
+            <!-- 商品詳細（最初は隠れている） -->
+            <div class="product-details" id="productDetails" style="display: none;">
+                <h3>商品詳細</h3>
+                <p><strong>素材:</strong> コットン100%</p>
+                <p><strong>サイズ:</strong> S / M / L</p>
+                <p><strong>色:</strong> 白、黒、グレー</p>
+                <p><strong>特徴:</strong> 着心地が良く洗濯しやすい</p>
+            </div>
+        </div>
+        
+        <!-- メッセージ表示エリア -->
+        <div class="message-area">
+            <h3>📝 操作メッセージ</h3>
+            <div class="message-display" id="messageDisplay">
+                ボタンを押すとメッセージが表示されます
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

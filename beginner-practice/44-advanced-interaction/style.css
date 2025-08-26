@@ -1,0 +1,172 @@
+/* 基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hiragino Sans', sans-serif;
+    background-color: #f0f2f5;
+    padding: 20px;
+}
+
+/* メインレイアウト */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* 商品カード */
+.product-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 350px;
+}
+
+/* 商品画像 */
+.product-image {
+    width: 100px;
+    height: 100px;
+    background-color: #e3f2fd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin: 0 auto 20px auto;
+}
+
+/* マウスを乗せると少し大きくなる */
+.product-image:hover {
+    transform: scale(1.1);
+    background-color: #bbdefb;
+}
+
+/* 商品タイトル */
+h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* 価格 */
+.price {
+    font-size: 24px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/* ボタン群 */
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* いいねボタン */
+.like-btn {
+    background-color: #f8f9fa;
+    color: #666;
+    border: 2px solid #ddd;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* いいねボタン: マウスを乗せた時 */
+.like-btn:hover {
+    background-color: #ffebee;
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+/* いいねボタン: 押した時 */
+.like-btn.liked {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+}
+
+/* 詳細ボタン */
+.detail-btn {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 詳細ボタン: マウスを乗せた時 */
+.detail-btn:hover {
+    background-color: #1976d2;
+    transform: translateY(-2px);
+}
+
+/* 商品詳細エリア */
+.product-details {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.product-details h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.product-details p {
+    color: #666;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* メッセージ表示エリア */
+.message-area {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 300px;
+}
+
+.message-area h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.message-display {
+    background-color: #e8f5e8;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+    color: #2e7d2e;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* すべてのボタンにスムーズな変化を追加 */
+button {
+    transition: all 0.3s ease;
+}
+
+/* 商品画像にもスムーズな変化を追加 */
+.product-image {
+    transition: all 0.3s ease;
+}
