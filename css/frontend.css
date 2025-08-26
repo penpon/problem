@@ -1638,6 +1638,65 @@
     max-height: calc(85vh - 80px);
     overflow-y: auto;
     position: relative;
+    /* スクロールバーの幅とスタイル（Firefox対応） */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+    /* スムーズスクロールとタッチデバイス対応 */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* iOS Safari用の慣性スクロール */
+    overscroll-behavior: contain; /* スクロール境界での動作を制限 */
+}
+
+/* WebKit系ブラウザ用のカスタムスクロールバー */
+.hint-modal-body::-webkit-scrollbar {
+    width: 12px;
+}
+
+.hint-modal-body::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 6px;
+}
+
+.hint-modal-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 6px;
+    border: 2px solid #f1f5f9;
+    transition: background-color 0.2s ease;
+}
+
+.hint-modal-body::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.hint-modal-body::-webkit-scrollbar-thumb:active {
+    background: #64748b;
+}
+
+
+/* スクロール指標 */
+.hint-scroll-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+    padding: 20px 0 10px 0;
+    text-align: center;
+    pointer-events: none;
+    z-index: 1;
+    animation: pulseIndicator 2s ease-in-out infinite;
+}
+
+.scroll-indicator-text {
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+}
+
+@keyframes pulseIndicator {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
 /* ヒントローディング */

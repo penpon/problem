@@ -1616,6 +1616,12 @@ class AdvancedFrontendLearning {
         this.hintModal.classList.remove('show');
         document.body.style.overflow = '';
         
+        // スクロール指標を非表示
+        const scrollIndicator = document.getElementById('hint-scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.style.display = 'none';
+        }
+        
         // コンテンツをクリア
         if (this.hintContent) {
             this.hintContent.innerHTML = '';
@@ -1811,6 +1817,11 @@ ${(this.currentProblem?.instructions || []).map((instruction, index) => `${index
             
             // シンタックスハイライト適用
             this.applySyntaxHighlight();
+            
+            // スクロール指標の表示制御
+            setTimeout(() => {
+                this.updateScrollIndicator();
+            }, 100); // DOM更新完了を待つ
         }
         
         if (this.hintLoading) this.hintLoading.style.display = 'none';
@@ -1859,6 +1870,43 @@ ${(this.currentProblem?.instructions || []).map((instruction, index) => `${index
             } catch (error) {
                 console.warn('シンタックスハイライトの適用に失敗:', error);
             }
+        }
+    }
+    
+    /**
+     * スクロール指標の表示制御
+     */
+    updateScrollIndicator() {
+        const modalBody = document.querySelector('.hint-modal-body');
+        const scrollIndicator = document.getElementById('hint-scroll-indicator');
+        
+        if (!modalBody || !scrollIndicator) return;
+        
+        // スクロール可能かチェック
+        const isScrollable = modalBody.scrollHeight > modalBody.clientHeight;
+        
+        if (isScrollable) {
+            scrollIndicator.style.display = 'block';
+            
+            // スクロール位置を監視して指標を制御
+            const handleScroll = () => {
+                const scrollTop = modalBody.scrollTop;
+                const scrollHeight = modalBody.scrollHeight;
+                const clientHeight = modalBody.clientHeight;
+                
+                // 下部に近づいたら指標を非表示
+                if (scrollTop + clientHeight >= scrollHeight - 50) {
+                    scrollIndicator.style.display = 'none';
+                } else {
+                    scrollIndicator.style.display = 'block';
+                }
+            };
+            
+            // スクロールイベントリスナーを追加（重複を避けるため一度削除）
+            modalBody.removeEventListener('scroll', handleScroll);
+            modalBody.addEventListener('scroll', handleScroll);
+        } else {
+            scrollIndicator.style.display = 'none';
         }
     }
 }
