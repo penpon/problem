@@ -1,73 +1,52 @@
 {
   "id": "practice15",
-  "title": "15: ホバー効果",
-  "description": ":hoverセレクタを使った高度なインタラクションでユーザビリティを向上させる",
+  "title": "基本的なTransition - インタラクティブな変化を学ぼう",
+  "description": "CSSのtransitionプロパティを使って、色・サイズ・背景の滑らかな変化を実装し、実用的なUI要素への応用を学習します。",
+  "difficulty": "intermediate",
   "category": "css-advanced",
-  "difficulty": 3,
-  "instructions": [
-    ".hover-itemクラスにtransition: all 0.3s easeを設定してください",
-    ".scale-up:hoverクラスにtransform: scale(1.1)、box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3)を設定してください",
-    ".rotate:hoverクラスにtransform: rotate(5deg)、background: linear-gradient(45deg, #ff6b6b, #4ecdc4)、color: whiteを設定してください",
-    ".slide-right:hoverクラスにtransform: translateX(10px)、background: #2ecc71、color: whiteを設定してください",
-    ".complex-1:hoverクラスにtransform: scale(1.1) rotate(-2deg)、background: linear-gradient(45deg, #667eea, #764ba2)、color: whiteを設定してください"
-  ],
-  "files": {
-    "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <title>ホバー効果</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <h1>ホバー効果サンプル</h1>\n    \n    <h2>1. 基本的なホバー効果</h2>\n    <div class=\"demo-section\">\n        <div class=\"hover-item scale-up\">拡大効果</div>\n        <div class=\"hover-item rotate\">回転効果</div>\n        <div class=\"hover-item slide-right\">スライド効果</div>\n        <div class=\"hover-item fade-opacity\">フェード効果</div>\n    </div>\n    \n    <h2>2. 色変化効果</h2>\n    <div class=\"demo-section\">\n        <div class=\"hover-item color-change\">背景色変化</div>\n        <div class=\"hover-item text-color\">文字色変化</div>\n        <div class=\"hover-item gradient-bg\">グラデーション</div>\n    </div>\n    \n    <h2>3. 複合効果</h2>\n    <div class=\"demo-section\">\n        <div class=\"hover-item complex-1\">拡大+回転</div>\n        <div class=\"hover-item complex-2\">移動+色変化</div>\n        <div class=\"hover-item complex-3\">立体的効果</div>\n    </div>\n    \n    <h2>4. ボタンホバー効果</h2>\n    <div class=\"demo-section button-section\">\n        <button class=\"btn btn-primary\">プライマリー</button>\n        <button class=\"btn btn-secondary\">セカンダリー</button>\n        <button class=\"btn btn-outline\">アウトライン</button>\n        <button class=\"btn btn-gradient\">グラデーション</button>\n    </div>\n    \n    <h2>5. カードホバー効果</h2>\n    <div class=\"card-section\">\n        <div class=\"card lift-card\">\n            <h3>リフトカード</h3>\n            <p>ホバーで浮き上がります</p>\n        </div>\n        <div class=\"card tilt-card\">\n            <h3>チルトカード</h3>\n            <p>ホバーで少し傾きます</p>\n        </div>\n        <div class=\"card glow-card\">\n            <h3>グローカード</h3>\n            <p>ホバーで光ります</p>\n        </div>\n    </div>\n</body>\n</html>"
-    },
-    "css": {
-      "template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n/* ここに実装してください */",
-      "expected": "/* ホバー効果 - :hoverセレクタによる高度なインタラクション */\n\n/* 基本スタイル */\nbody {\n    font-family: 'Arial', sans-serif;\n    margin: 0;\n    padding: 20px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    min-height: 100vh;\n    color: white;\n}\n\nh1 {\n    text-align: center;\n    color: white;\n    background: rgba(255, 255, 255, 0.1);\n    backdrop-filter: blur(10px);\n    padding: 30px;\n    margin: 0 0 40px 0;\n    border-radius: 20px;\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);\n    font-size: 28px;\n}\n\nh2 {\n    color: white;\n    margin: 50px 0 30px 0;\n    padding: 15px 20px;\n    background: rgba(255, 255, 255, 0.1);\n    border-radius: 12px;\n    backdrop-filter: blur(5px);\n    font-size: 22px;\n}\n\n/* デモセクション */\n.demo-section {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 20px;\n    justify-content: center;\n    margin-bottom: 40px;\n}\n\n.button-section {\n    gap: 15px;\n}\n\n/* 1. 基本的なホバー効果 */\n.hover-item {\n    background: rgba(255, 255, 255, 0.9);\n    color: #333;\n    padding: 20px 30px;\n    border-radius: 12px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    font-weight: bold;\n    text-align: center;\n    min-width: 120px;\n    user-select: none;\n}\n\n/* 拡大効果 */\n.scale-up:hover {\n    transform: scale(1.1);\n    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);\n}\n\n/* 回転効果 */\n.rotate:hover {\n    transform: rotate(5deg);\n    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);\n    color: white;\n}\n\n/* スライド効果 */\n.slide-right:hover {\n    transform: translateX(10px);\n    background: #2ecc71;\n    color: white;\n}\n\n/* フェード効果 */\n.fade-opacity:hover {\n    opacity: 0.6;\n    transform: scale(0.95);\n}\n\n/* 2. 色変化効果 */\n.color-change:hover {\n    background: linear-gradient(135deg, #667eea, #764ba2);\n    color: white;\n    transform: translateY(-3px);\n}\n\n.text-color:hover {\n    color: #e74c3c;\n    background: #fff;\n    border: 2px solid #e74c3c;\n}\n\n.gradient-bg:hover {\n    background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);\n    background-size: 400% 400%;\n    animation: gradientShift 1s ease infinite;\n}\n\n@keyframes gradientShift {\n    0% { background-position: 0% 50%; }\n    50% { background-position: 100% 50%; }\n    100% { background-position: 0% 50%; }\n}\n\n/* 3. 複合効果 */\n.complex-1:hover {\n    transform: scale(1.1) rotate(-2deg);\n    background: linear-gradient(45deg, #667eea, #764ba2);\n    color: white;\n    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);\n}\n\n.complex-2:hover {\n    transform: translateY(-8px) scale(1.05);\n    background: #f39c12;\n    color: white;\n    box-shadow: 0 12px 24px rgba(243, 156, 18, 0.4);\n}\n\n.complex-3:hover {\n    transform: perspective(1000px) rotateX(10deg);\n    background: linear-gradient(135deg, #667eea, #764ba2);\n    color: white;\n    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);\n}\n\n/* 4. ボタンホバー効果 */\n.btn {\n    padding: 12px 25px;\n    border: none;\n    border-radius: 25px;\n    font-size: 16px;\n    font-weight: bold;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    min-width: 140px;\n    position: relative;\n    overflow: hidden;\n}\n\n.btn-primary {\n    background: linear-gradient(135deg, #667eea, #764ba2);\n    color: white;\n}\n\n.btn-primary:hover {\n    background: linear-gradient(135deg, #5a6fd8, #6a4190);\n    transform: translateY(-2px);\n    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);\n}\n\n.btn-secondary {\n    background: #95a5a6;\n    color: white;\n}\n\n.btn-secondary:hover {\n    background: #7f8c8d;\n    transform: scale(1.05);\n    box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);\n}\n\n.btn-outline {\n    background: transparent;\n    color: white;\n    border: 2px solid white;\n}\n\n.btn-outline:hover {\n    background: white;\n    color: #667eea;\n    transform: translateY(-2px);\n    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);\n}\n\n.btn-gradient {\n    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);\n    color: white;\n    position: relative;\n}\n\n.btn-gradient:hover {\n    transform: scale(1.05);\n    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);\n}\n\n.btn-gradient:hover::before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: -100%;\n    width: 100%;\n    height: 100%;\n    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);\n    transition: left 0.5s;\n    left: 100%;\n}\n\n/* 5. カードホバー効果 */\n.card-section {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 30px;\n    justify-content: center;\n    margin-top: 30px;\n}\n\n.card {\n    background: white;\n    color: #333;\n    padding: 25px;\n    border-radius: 15px;\n    max-width: 250px;\n    text-align: center;\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);\n    transition: all 0.4s ease;\n    cursor: pointer;\n}\n\n.card h3 {\n    margin: 0 0 15px 0;\n    color: #2c3e50;\n}\n\n.card p {\n    margin: 0;\n    color: #7f8c8d;\n    line-height: 1.6;\n}\n\n/* リフトカード */\n.lift-card:hover {\n    transform: translateY(-15px);\n    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);\n}\n\n/* チルトカード */\n.tilt-card:hover {\n    transform: rotate(2deg) scale(1.05);\n    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);\n}\n\n/* グローカード */\n.glow-card:hover {\n    transform: translateY(-5px);\n    box-shadow: \n        0 10px 30px rgba(102, 126, 234, 0.3),\n        0 0 50px rgba(102, 126, 234, 0.2);\n    border: 2px solid rgba(102, 126, 234, 0.3);\n}\n\n/* レスポンシブデザイン */\n@media (max-width: 768px) {\n    body {\n        padding: 15px;\n    }\n    \n    .demo-section,\n    .card-section {\n        flex-direction: column;\n        align-items: center;\n    }\n    \n    .hover-item,\n    .btn {\n        width: 200px;\n        margin: 5px 0;\n    }\n    \n    h1 {\n        font-size: 24px;\n        padding: 20px;\n    }\n    \n    h2 {\n        font-size: 18px;\n        padding: 12px 15px;\n    }\n}"
-    },
-    "js": {
-      "template": "",
-      "expected": ""
-    }
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    }
-  ],
+  "estimatedTime": 30,
+  "keywords": ["transition", "hover", "transform", "easing", "インタラクティブ"],
+  
+  "expectedHtml": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>基本的なTransition - Practice 15</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>✨ 基本的なTransition学習</h1>\n        \n        <div class=\"intro\">\n            <p>🎯 マウスを乗せて（ホバー）して、滑らかな変化を体験しよう！</p>\n        </div>\n        \n        <div class=\"section\">\n            <h2>🎨 色の変化（Color Transition）</h2>\n            <div class=\"demo-grid\">\n                <div class=\"transition-demo color-change\">\n                    <h3>背景色の変化</h3>\n                    <p>マウスを乗せてみよう</p>\n                </div>\n                \n                <div class=\"transition-demo text-color-change\">\n                    <h3>文字色の変化</h3>\n                    <p>マウスを乗せてみよう</p>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"section\">\n            <h2>📏 サイズの変化（Scale Transition）</h2>\n            <div class=\"demo-grid\">\n                <div class=\"transition-demo size-change\">\n                    <h3>拡大効果</h3>\n                    <p>1.2倍に拡大</p>\n                </div>\n                \n                <div class=\"transition-demo size-bounce\">\n                    <h3>弾むような効果</h3>\n                    <p>少し小さく→大きく</p>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"section\">\n            <h2>⚡ 速度の違い（Easing Functions）</h2>\n            <div class=\"easing-comparison\">\n                <div class=\"easing-demo ease-linear\">\n                    <h3>Linear</h3>\n                    <p>一定の速度</p>\n                </div>\n                \n                <div class=\"easing-demo ease-ease\">\n                    <h3>Ease</h3>\n                    <p>滑らかな加速・減速</p>\n                </div>\n                \n                <div class=\"easing-demo ease-ease-in\">\n                    <h3>Ease-in</h3>\n                    <p>ゆっくり始まる</p>\n                </div>\n                \n                <div class=\"easing-demo ease-ease-out\">\n                    <h3>Ease-out</h3>\n                    <p>ゆっくり終わる</p>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"section\">\n            <h2>🚀 実用的な例</h2>\n            <div class=\"practical-examples\">\n                <button class=\"animated-button\">\n                    クリックできるボタン\n                </button>\n                \n                <div class=\"animated-card\">\n                    <h3>📝 インタラクティブカード</h3>\n                    <p>ホバーすると浮き上がります</p>\n                    <div class=\"card-tag\">NEW</div>\n                </div>\n                \n                <div class=\"nav-item\">\n                    <a href=\"#\" class=\"nav-link\">ナビゲーション項目</a>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"section\">\n            <h2>🎪 複数の効果を組み合わせ</h2>\n            <div class=\"combination-demo\">\n                <div class=\"multi-effect\">\n                    <h3>🌟 マルチエフェクト</h3>\n                    <p>色・サイズ・影・回転が同時に変化</p>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n</html>",
+  
+  "expectedCss": "/* 基本的なTransition - 段階的難易度設計に基づく実装 */\n\n/* 基本レイアウト */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 20px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    min-height: 100vh;\n}\n\n.container {\n    max-width: 1200px;\n    margin: 0 auto;\n    background: white;\n    padding: 30px;\n    border-radius: 15px;\n    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);\n}\n\n/* メインタイトル */\nh1 {\n    color: #4a5568;\n    font-size: 32px;\n    text-align: center;\n    margin-bottom: 20px;\n    border-bottom: 3px solid #667eea;\n    padding-bottom: 15px;\n}\n\n/* イントロセクション */\n.intro {\n    text-align: center;\n    margin-bottom: 40px;\n    padding: 20px;\n    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);\n    color: white;\n    border-radius: 10px;\n    font-size: 18px;\n}\n\n/* セクション */\n.section {\n    margin-bottom: 50px;\n}\n\nh2 {\n    color: #2d3748;\n    font-size: 24px;\n    margin-bottom: 25px;\n    border-left: 4px solid #667eea;\n    padding-left: 15px;\n}\n\n/* 共通デモスタイル */\n.transition-demo {\n    background: white;\n    padding: 25px;\n    border-radius: 12px;\n    text-align: center;\n    cursor: pointer;\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);\n    min-height: 100px;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n\n.transition-demo h3 {\n    margin: 0 0 10px 0;\n    color: #2d3748;\n    font-size: 18px;\n}\n\n.transition-demo p {\n    margin: 0;\n    color: #718096;\n    font-size: 14px;\n}\n\n/* デモグリッド */\n.demo-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n    gap: 25px;\n    margin-bottom: 30px;\n}\n\n/* 1. 色の変化 */\n.color-change {\n    background: linear-gradient(135deg, #667eea, #764ba2);\n    color: white;\n    transition: all 0.4s ease;\n}\n\n.color-change:hover {\n    background: linear-gradient(135deg, #f093fb, #f5576c);\n    transform: translateY(-5px);\n}\n\n.text-color-change {\n    background: #f7fafc;\n    color: #667eea;\n    transition: color 0.4s ease, background-color 0.4s ease;\n}\n\n.text-color-change:hover {\n    color: #f5576c;\n    background: #fff5f5;\n}\n\n/* 2. サイズの変化 */\n.size-change {\n    background: linear-gradient(135deg, #4facfe, #00f2fe);\n    color: white;\n    transition: transform 0.3s ease;\n}\n\n.size-change:hover {\n    transform: scale(1.1);\n}\n\n.size-bounce {\n    background: linear-gradient(135deg, #43e97b, #38f9d7);\n    color: white;\n    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);\n}\n\n.size-bounce:hover {\n    transform: scale(1.15) rotate(2deg);\n}",
+  
+  "templateHtml": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>フォントの基本</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <h1>フォントの練習</h1>\n    <p>この段落は基本のフォントです。</p>\n    <p class=\"arial-font\">この段落はArialフォントです。</p>\n    <p class=\"times-font\">この段落はTimes New Romanフォントです。</p>\n    <p class=\"large-text\">この段落は大きなサイズです。</p>\n    <p class=\"small-text\">この段落は小さなサイズです。</p>\n</body>\n</html>",
+  
+  "templateCss": "/* フォントの基本 - フォントファミリーとサイズ */\n\n/* 見出しのスタイル */\nh1 {\n    color: darkblue;\n    font-family: Arial, sans-serif;\n    font-size: 28px;\n}\n\n/* 基本段落 */\np {\n    color: #333;\n    font-size: 16px;\n}\n\n/* TODO: ここに各クラスのフォント設定を追加してください */\n\n/* .arial-font クラス: Arial フォントを設定 */\n\n\n/* .times-font クラス: Times New Roman フォントを設定 */\n\n\n/* .large-text クラス: 24px の大きなフォントサイズを設定 */\n\n\n/* .small-text クラス: 12px の小さなフォントサイズを設定 */",
+  
   "hints": [
-    ":hoverで要素にマウスが乗った時の状態を定義",
-    "transform: scale(1.1)で1.1倍に拡大",
-    "transform: rotate(5deg)で5度回転",
-    "transform: translateX(10px)で右に10px移動",
-    "複数のtransformは空白区切りで組み合わせ可能"
+    "font-family プロパティでフォントの種類を指定できます",
+    "Arial は sans-serif フォント、Times New Roman は serif フォントです",
+    "font-size プロパティで文字サイズを px 単位で指定できます",
+    "フォント名に空白がある場合は、クォーテーション（\"）で囲みます",
+    "複数のフォントを指定することで、フォールバックが可能になります"
+  ],
+  
+  "checkPoints": [
+    {
+      "selector": ".arial-font",
+      "property": "font-family",
+      "expected": ["Arial", "sans-serif"],
+      "description": "Arialフォントが設定されている"
+    },
+    {
+      "selector": ".times-font", 
+      "property": "font-family",
+      "expected": ["Times New Roman", "serif"],
+      "description": "Times New Romanフォントが設定されている"
+    },
+    {
+      "selector": ".large-text",
+      "property": "font-size",
+      "expected": "24px",
+      "description": "大きな文字サイズが設定されている"
+    },
+    {
+      "selector": ".small-text",
+      "property": "font-size", 
+      "expected": "12px",
+      "description": "小さな文字サイズが設定されている"
+    }
   ]
 }

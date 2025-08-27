@@ -1,0 +1,213 @@
+/* 影の基本 - 段階的難易度設計に基づく実装 */
+
+/* 基本レイアウト */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* メインタイトル */
+h1 {
+    color: #4a5568;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 15px;
+}
+
+/* セクション */
+.section {
+    margin-bottom: 50px;
+}
+
+h2 {
+    color: #2d3748;
+    font-size: 24px;
+    margin-bottom: 25px;
+    border-left: 4px solid #667eea;
+    padding-left: 15px;
+}
+
+/* 影のデモンストレーション共通スタイル */
+.shadow-demo {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.shadow-demo h3 {
+    margin: 0 0 8px 0;
+    color: #2d3748;
+    font-size: 16px;
+}
+
+.shadow-demo p {
+    margin: 0;
+    color: #718096;
+    font-size: 14px;
+}
+
+/* 基本的な影の種類 */
+.shadow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.no-shadow {
+    box-shadow: none;
+    border: 2px dashed #e2e8f0;
+}
+
+.basic-shadow {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.soft-shadow {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark-shadow {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* 透明度の比較 */
+.alpha-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.alpha-light {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.alpha-medium {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.alpha-strong {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* 内側の影の比較 */
+.inset-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.normal-shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inset-shadow {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: #f7fafc;
+}
+
+/* 実用的なカードデザイン */
+.card-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.card h3 {
+    margin: 0 0 15px 0;
+    color: #2d3748;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 0 0 15px 0;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.card-info {
+    background: #f7fafc;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #2d3748;
+    margin-top: 15px;
+}
+
+.simple-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.floating-card {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.pressed-card {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+}
+
+/* ホバー効果 */
+.card:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.card.pressed-card:hover {
+    transform: translateY(0px);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .shadow-grid,
+    .alpha-comparison,
+    .inset-comparison {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-examples {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+}
