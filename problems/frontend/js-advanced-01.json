@@ -1,77 +1,37 @@
 {
   "id": "js-advanced-01",
   "title": "テキスト内容変更",
-  "description": "textContentを使った動的テキスト操作を学び、時刻表示や複数メッセージの切り替えシステムを実装します",
-  "category": "javascript-dom",
+  "description": "textContentで要素のテキストを変更する最小の実装を行います",
+  "category": "javascript-advanced",
   "difficulty": 3,
   "instructions": [
-    "textContentプロパティを使ったテキスト操作を習得する",
-    "配列を使ったランダムメッセージ表示を実装する",
-    "現在時刻の動的生成と表示を行う",
-    "テキスト変更の統計管理システムを構築する"
+    "ボタンのクリックイベントを設定する",
+    "クリック時に要素のtextContentを書き換える"
   ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>ステップ17.1 - テキスト内容変更</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>📝 テキスト内容変更</h1>\n        <div class=\"step-info\">\n            <strong>ステップ17.1 - textContentを使った動的テキスト操作</strong>\n        </div>\n        \n        <div class=\"celebration\">📝 ✏️ 📄</div>\n        \n        <div class=\"info-box\">\n            <h3>📚 このステップで学ぶこと</h3>\n            <ul>\n                <li><strong>textContent</strong>プロパティの完全理解</li>\n                <li>複数の<strong>異なるテキスト</strong>の動的切り替え</li>\n                <li><strong>時刻表示</strong>などの動的コンテンツ生成</li>\n                <li>テキスト操作の<strong>統計管理</strong>と履歴追跡</li>\n            </ul>\n        </div>\n        \n        <div class=\"demo-section\">\n            <h3>🎪 動的テキスト変更デモ</h3>\n            <p>ボタンをクリックして、テキスト表示エリアの内容を変更してみましょう！</p>\n            \n            <div class=\"text-display\" id=\"main-display\">\n                🌟 ここにテキストが表示されます。ボタンをクリックして変更してみてください！\n            </div>\n            \n            <div class=\"button-grid\">\n                <button class=\"text-btn btn-greeting\" id=\"greeting-btn\">\n                    👋 挨拶メッセージ\n                </button>\n                \n                <button class=\"text-btn btn-time\" id=\"time-btn\">\n                    🕐 現在時刻表示\n                </button>\n                \n                <button class=\"text-btn btn-motivation\" id=\"motivation-btn\">\n                    💪 やる気メッセージ\n                </button>\n                \n                <button class=\"text-btn btn-learning\" id=\"learning-btn\">\n                    📖 学習メッセージ\n                </button>\n                \n                <button class=\"text-btn btn-progress\" id=\"progress-btn\">\n                    📊 進捗メッセージ\n                </button>\n                \n                <button class=\"text-btn btn-clear\" id=\"clear-btn\">\n                    🧹 クリア\n                </button>\n            </div>\n            \n            <div class=\"current-text\" id=\"current-text\">\n                現在のテキスト: \"🌟 ここにテキストが表示されます。ボタンをクリックして変更してみてください！\"\n            </div>\n        </div>\n        \n        <div class=\"stats-section\">\n            <h4>📊 テキスト変更統計</h4>\n            <div class=\"stats-grid\">\n                <div class=\"stat-item\">\n                    <div>総変更回数</div>\n                    <div class=\"stat-number\" id=\"total-changes\">0</div>\n                </div>\n                <div class=\"stat-item\">\n                    <div>挨拶回数</div>\n                    <div class=\"stat-number\" id=\"greeting-count\">0</div>\n                </div>\n                <div class=\"stat-item\">\n                    <div>時刻表示回数</div>\n                    <div class=\"stat-number\" id=\"time-count\">0</div>\n                </div>\n                <div class=\"stat-item\">\n                    <div>やる気回数</div>\n                    <div class=\"stat-number\" id=\"motivation-count\">0</div>\n                </div>\n                <div class=\"stat-item\">\n                    <div>学習回数</div>\n                    <div class=\"stat-number\" id=\"learning-count\">0</div>\n                </div>\n                <div class=\"stat-item\">\n                    <div>進捗回数</div>\n                    <div class=\"stat-number\" id=\"progress-count\">0</div>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"feature-list\">\n            <div class=\"feature-card\">\n                <div class=\"feature-icon\">📝</div>\n                <h4>textContent操作</h4>\n                <p>要素のテキスト内容を安全に変更</p>\n            </div>\n            <div class=\"feature-card\">\n                <div class=\"feature-icon\">🕐</div>\n                <h4>動的コンテンツ</h4>\n                <p>現在時刻などのリアルタイム情報生成</p>\n            </div>\n            <div class=\"feature-card\">\n                <div class=\"feature-icon\">📊</div>\n                <h4>操作履歴</h4>\n                <p>各操作の回数を統計として記録</p>\n            </div>\n            <div class=\"feature-card\">\n                <div class=\"feature-icon\">🔄</div>\n                <h4>即座の更新</h4>\n                <p>クリック即座にテキスト内容が変更</p>\n            </div>\n        </div>\n        \n        <div class=\"info-box\">\n            <h3>🎯 textContentとは？</h3>\n            <p><strong>textContent</strong>は、HTML要素の中のテキスト内容を取得・設定するプロパティです。</p>\n            \n            <div class=\"code-example\">\n// 要素を取得\nlet element = document.getElementById(\"my-element\");\n\n// 現在のテキストを取得\nlet currentText = element.textContent;\n\n// 新しいテキストを設定\nelement.textContent = \"新しいテキスト内容\";\n\n// 時刻を動的に生成\nlet now = new Date();\nlet timeString = now.getHours() + \":\" + now.getMinutes();\nelement.textContent = \"現在時刻: \" + timeString;\n            </div>\n        </div>\n        \n        <div class=\"info-box\">\n            <h3>🔧 実装されている機能</h3>\n            <ul>\n                <li><strong>👋 挨拶メッセージ</strong>: 親しみやすい挨拶を表示</li>\n                <li><strong>🕐 現在時刻表示</strong>: リアルタイムの時刻情報を生成</li>\n                <li><strong>💪 やる気メッセージ</strong>: モチベーション向上メッセージ</li>\n                <li><strong>📖 学習メッセージ</strong>: 学習に関する励ましメッセージ</li>\n                <li><strong>📊 進捗メッセージ</strong>: 学習進捗に関するメッセージ</li>\n                <li><strong>🧹 クリア機能</strong>: 表示エリアをクリア</li>\n            </ul>\n        </div>\n        \n        <div class=\"instruction\">\n            <h3>🚀 すべてのテキスト変更を試してみよう！</h3>\n            <p>6つのボタンをすべてクリックして、どのようにテキストが変更されるか確認してください。特に時刻表示ボタンを複数回クリックして、時刻が更新されることを確認しましょう。</p>\n            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブで変更ログも確認できます！</p>\n        </div>\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>テキスト内容変更</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>テキスト内容変更</h1>\n  <p id=\"text\">初期テキスト</p>\n  <button id=\"change\">変更</button>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
     },
     "css": {
       "template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n/* ここに実装してください */",
-      "expected": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    max-width: 1000px;\n    margin: 40px auto;\n    padding: 20px;\n    line-height: 1.6;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n    min-height: 100vh;\n}\n\n.container {\n    background: rgba(255, 255, 255, 0.1);\n    backdrop-filter: blur(10px);\n    border-radius: 20px;\n    padding: 40px;\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);\n}\n\nh1 {\n    color: #FFE135;\n    text-align: center;\n    font-size: 2.5rem;\n    margin-bottom: 10px;\n}\n\n.step-info {\n    text-align: center;\n    margin-bottom: 30px;\n    opacity: 0.9;\n}\n\n.demo-section {\n    background: rgba(255, 255, 255, 0.15);\n    padding: 30px;\n    border-radius: 20px;\n    margin: 25px 0;\n}\n\n.text-display {\n    background: rgba(255, 255, 255, 0.9);\n    color: #2c3e50;\n    padding: 25px;\n    border-radius: 15px;\n    margin: 20px 0;\n    font-size: 1.3rem;\n    font-weight: bold;\n    text-align: center;\n    min-height: 60px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border: 3px solid rgba(255, 255, 255, 0.3);\n    transition: all 0.3s ease;\n}\n\n.button-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 15px;\n    margin: 25px 0;\n}\n\n.text-btn {\n    background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);\n    color: white;\n    border: none;\n    padding: 15px 20px;\n    font-size: 1rem;\n    border-radius: 12px;\n    cursor: pointer;\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);\n    transition: all 0.3s ease;\n    font-weight: bold;\n}\n\n.text-btn:hover {\n    transform: translateY(-3px);\n    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);\n}\n\n.text-btn:active {\n    transform: translateY(0);\n}\n\n.btn-greeting { background: linear-gradient(135deg, #56ab2f, #a8e6cf); }\n.btn-time { background: linear-gradient(135deg, #667eea, #764ba2); }\n.btn-motivation { background: linear-gradient(135deg, #fa709a, #fee140); }\n.btn-learning { background: linear-gradient(135deg, #ff9a9e, #fecfef); }\n.btn-progress { background: linear-gradient(135deg, #a8edea, #fed6e3); }\n.btn-clear { background: linear-gradient(135deg, #6c757d, #495057); }\n\n.info-box {\n    background: rgba(255, 255, 255, 0.15);\n    padding: 25px;\n    border-radius: 15px;\n    margin: 20px 0;\n    border-left: 5px solid #FFE135;\n}\n\n.highlight {\n    color: #FFE135;\n    font-weight: bold;\n}\n\n.code-example {\n    background: rgba(0, 0, 0, 0.3);\n    padding: 15px;\n    border-radius: 8px;\n    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;\n    margin: 15px 0;\n    border: 1px solid rgba(255, 255, 255, 0.2);\n}\n\n.instruction {\n    background: rgba(255, 193, 7, 0.2);\n    padding: 20px;\n    border-radius: 10px;\n    border: 2px solid #FFE135;\n    margin: 20px 0;\n}\n\n.celebration {\n    font-size: 3rem;\n    text-align: center;\n    margin: 20px 0;\n}\n\n.stats-section {\n    background: rgba(0, 0, 0, 0.2);\n    padding: 20px;\n    border-radius: 15px;\n    margin: 20px 0;\n}\n\n.stats-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));\n    gap: 15px;\n    margin: 15px 0;\n}\n\n.stat-item {\n    background: rgba(255, 255, 255, 0.1);\n    padding: 15px;\n    border-radius: 10px;\n    text-align: center;\n}\n\n.stat-number {\n    font-size: 1.8rem;\n    font-weight: bold;\n    color: #FFE135;\n}\n\n.current-text {\n    background: rgba(255, 255, 255, 0.1);\n    padding: 15px;\n    border-radius: 10px;\n    margin: 15px 0;\n    font-style: italic;\n}\n\n.feature-list {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n    gap: 15px;\n    margin: 20px 0;\n}\n\n.feature-card {\n    background: rgba(0, 0, 0, 0.2);\n    padding: 20px;\n    border-radius: 15px;\n    text-align: center;\n}\n\n.feature-icon {\n    font-size: 2rem;\n    margin-bottom: 10px;\n}"
+      "expected": "body {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  margin: 20px;\n}\nbutton {\n  margin-right: 8px;\n}"
     },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "console.log(\"📝 ステップ17.1: テキスト内容変更を開始します！\");\nconsole.log(\"========================================\");\n\n// 統計用変数\nlet totalChanges = 0;\nlet buttonCounts = {\n    greeting: 0,\n    time: 0,\n    motivation: 0,\n    learning: 0,\n    progress: 0\n};\n\n// DOM要素の取得\nlet mainDisplay = document.getElementById(\"main-display\");\nlet currentTextDisplay = document.getElementById(\"current-text\");\n\n// テキスト変更を処理する共通関数\nfunction changeText(newText, buttonType, buttonName) {\n    // 古いテキストを保存\n    let oldText = mainDisplay.textContent;\n    \n    // 新しいテキストを設定\n    mainDisplay.textContent = newText;\n    \n    // 現在のテキスト表示を更新\n    currentTextDisplay.textContent = `現在のテキスト: \"${newText}\"`;\n    \n    // 統計を更新\n    totalChanges++;\n    if (buttonType && buttonCounts.hasOwnProperty(buttonType)) {\n        buttonCounts[buttonType]++;\n    }\n    \n    updateStats();\n    \n    // ログ出力\n    console.log(`${buttonName}: テキストを変更しました`);\n    console.log(`旧: \"${oldText}\"`);\n    console.log(`新: \"${newText}\"`);\n    console.log(`総変更回数: ${totalChanges}`);\n}\n\n// 統計表示を更新する関数\nfunction updateStats() {\n    document.getElementById(\"total-changes\").textContent = totalChanges;\n    document.getElementById(\"greeting-count\").textContent = buttonCounts.greeting;\n    document.getElementById(\"time-count\").textContent = buttonCounts.time;\n    document.getElementById(\"motivation-count\").textContent = buttonCounts.motivation;\n    document.getElementById(\"learning-count\").textContent = buttonCounts.learning;\n    document.getElementById(\"progress-count\").textContent = buttonCounts.progress;\n}\n\n// 現在時刻を取得する関数\nfunction getCurrentTime() {\n    let now = new Date();\n    let hours = String(now.getHours()).padStart(2, '0');\n    let minutes = String(now.getMinutes()).padStart(2, '0');\n    let seconds = String(now.getSeconds()).padStart(2, '0');\n    return `${hours}:${minutes}:${seconds}`;\n}\n\n// 挨拶ボタン\ndocument.getElementById(\"greeting-btn\").addEventListener(\"click\", function() {\n    let greetings = [\n        \"👋 こんにちは！JavaScriptの学習お疲れ様です！\",\n        \"😊 素晴らしい一日ですね！一緒に頑張りましょう！\",\n        \"🌟 あなたの学習への取り組みは本当に素晴らしいです！\",\n        \"🎉 プログラミングの世界へようこそ！楽しんでいきましょう！\"\n    ];\n    let randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];\n    changeText(randomGreeting, \"greeting\", \"挨拶ボタン\");\n});\n\n// 時刻ボタン\ndocument.getElementById(\"time-btn\").addEventListener(\"click\", function() {\n    let currentTime = getCurrentTime();\n    let timeMessage = `🕐 現在時刻: ${currentTime} - 今この瞬間も学習中！`;\n    changeText(timeMessage, \"time\", \"時刻ボタン\");\n});\n\n// やる気ボタン\ndocument.getElementById(\"motivation-btn\").addEventListener(\"click\", function() {\n    let motivations = [\n        \"💪 あなたは必ずできます！一歩一歩前進していきましょう！\",\n        \"🔥 情熱を持って取り組めば、どんな困難も乗り越えられます！\",\n        \"⚡ エネルギー全開で頑張りましょう！今日も最高の一日に！\",\n        \"🚀 目標に向かって飛び立ちましょう！あなたの可能性は無限大！\"\n    ];\n    let randomMotivation = motivations[Math.floor(Math.random() * motivations.length)];\n    changeText(randomMotivation, \"motivation\", \"やる気ボタン\");\n});\n\n// 学習ボタン\ndocument.getElementById(\"learning-btn\").addEventListener(\"click\", function() {\n    let learningMessages = [\n        \"📖 知識は人生最大の財産です。今日も新しいことを学びましょう！\",\n        \"🧠 脳は使えば使うほど発達します。プログラミングで脳を鍛えましょう！\",\n        \"💡 理解できない時は休憩も大切。焦らず着実に進歩しましょう！\",\n        \"🔬 実験するように学習しましょう。失敗も大切な学びの一部です！\"\n    ];\n    let randomLearning = learningMessages[Math.floor(Math.random() * learningMessages.length)];\n    changeText(randomLearning, \"learning\", \"学習ボタン\");\n});\n\n// 進捗ボタン\ndocument.getElementById(\"progress-btn\").addEventListener(\"click\", function() {\n    let stepNumber = \"17.1\";\n    let progressMessages = [\n        `📊 現在のステップ: ${stepNumber} - textContentマスターまであと少し！`,\n        `🎯 学習進捗: 順調です！${stepNumber}ステップを着実にクリア中！`,\n        `📈 スキルアップ中！ステップ${stepNumber}でさらに成長しています！`,\n        `✨ 素晴らしい進捗です！ステップ${stepNumber}を楽しく学習中！`\n    ];\n    let randomProgress = progressMessages[Math.floor(Math.random() * progressMessages.length)];\n    changeText(randomProgress, \"progress\", \"進捗ボタン\");\n});\n\n// クリアボタン\ndocument.getElementById(\"clear-btn\").addEventListener(\"click\", function() {\n    changeText(\"🧹 表示エリアがクリアされました。新たなスタートです！\", null, \"クリアボタン\");\n});\n\n// 初期統計表示\nupdateStats();\n\nconsole.log(\"✅ テキスト変更システムが初期化されました！\");\nconsole.log(\"💡 各ボタンをクリックして、テキストがどのように変化するか確認してください！\");"
+      "expected": "const text = document.getElementById('text');\nconst btn = document.getElementById('change');\nbtn.addEventListener('click', () => {\n  text.textContent = '変更されました';\n});"
     }
   },
   "expectedResult": {
-    "randomMessages": "複数のメッセージからランダムに表示される",
-    "timeDisplay": "現在時刻がリアルタイムで表示される",
-    "statistics": "テキスト変更の統計情報が管理される",
-    "behavior": "6つのテキスト変更機能が正しく動作する"
+    "behavior": "ボタンをクリックすると #text のテキストが '変更されました' に変わる"
   },
   "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
-      "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
-    }
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
+    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
   ]
 }
