@@ -2,7 +2,7 @@
   "id": "js-basic-08",
   "title": "カウンター基本",
   "description": "基本的なカウンター機能を実装し、ボタンクリックで数値を増減させる仕組みを学習します",
-  "category": "javascript-dom",
+  "category": "javascript-basics",
   "difficulty": 2,
   "instructions": [
     "カウンター変数を初期化する",

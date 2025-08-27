@@ -2,7 +2,7 @@
   "id": "html-css-19",
   "title": "19: 要素取得入門",
   "description": "HTMLとJavaScriptをつなぐ - document.getElementById()で要素を取得し内容を変更する",
-  "category": "javascript-dom",
+  "category": "html-css-basics",
   "difficulty": 2,
   "instructions": [
     "let demoElement = document.getElementById(\"demo-element\");を追加して要素を取得してください",

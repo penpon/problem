@@ -1,28 +1,6 @@
 {
-  "id": "ec-project-EOF
-echo "$(printf "%02d" $i)\"," >> "ec-project-$(printf "%02d" $i).json"
-cat >> "ec-project-$(printf "%02d" $i).json" << 'EOF'
-  "title": "EOF
-
-# 各ファイルのタイトルを設定
-case $i in
-  2) echo "  \"title\": \"57: 動的商品表示システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  3) echo "  \"title\": \"58: 高度なフィルタリングシステム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  4) echo "  \"title\": \"59: ソート機能統合システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  5) echo "  \"title\": \"60: 検索機能システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  6) echo "  \"title\": \"61: 商品ギャラリー統合システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  7) echo "  \"title\": \"62: ユーザー認証システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  8) echo "  \"title\": \"63: プロフィール管理システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  9) echo "  \"title\": \"64: 注文管理システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  10) echo "  \"title\": \"65: 決済統合システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  11) echo "  \"title\": \"66: レビューシステム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  12) echo "  \"title\": \"67: 推奨システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  13) echo "  \"title\": \"68: 在庫管理システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  14) echo "  \"title\": \"69: 管理者パネルシステム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  15) echo "  \"title\": \"70: 完全ECサイト統合\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-esac
-
-cat >> "ec-project-$(printf "%02d" $i).json" << 'EOF'
+  "id": "ec-project-05",
+  "title": "60: 検索機能システム",
   "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
   "category": "ec-project",
   "difficulty": 5,
@@ -35,51 +13,45 @@ cat >> "ec-project-$(printf "%02d" $i).json" << 'EOF'
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>ECプロジェクト高度機能</title>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container-fluid\">\n        <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"#\">EC Pro System</a>\n            </div>\n        </nav>\n        <main class=\"py-4\">\n            <div class=\"container\">\n                <h1 class=\"display-4\">高度なEC機能実装</h1>\n                <div id=\"mainContent\">\n                    <!-- JavaScript で動的に生成される高度なコンテンツ -->\n                </div>\n            </div>\n        </main>\n    </div>\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n    <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>検索機能システム</title>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container-fluid\">\n        <nav class=\"navbar navbar-expand-lg navbar-dark bg-info\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"#\">Advanced Search System</a>\n            </div>\n        </nav>\n        <main class=\"py-4\">\n            <div class=\"container\">\n                <h1 class=\"display-4\">検索機能システム</h1>\n                <div id=\"searchContainer\">\n                    <!-- JavaScript で動的に生成される検索機能 -->\n                </div>\n                <div id=\"searchResults\">\n                    <!-- 検索結果表示エリア -->\n                </div>\n            </div>\n        </main>\n    </div>\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n    <script src=\"script.js\"></script>\n</body>\n</html>"
     },
     "css": {
       "template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n/* ここに実装してください */",
-      "expected": "/* ECプロジェクト高度機能 CSS */\nbody {\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);\n    min-height: 100vh;\n}\n\n.navbar {\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n.card {\n    border: none;\n    border-radius: 15px;\n    box-shadow: 0 5px 15px rgba(0,0,0,0.1);\n    transition: all 0.3s ease;\n}\n\n.card:hover {\n    transform: translateY(-5px);\n    box-shadow: 0 15px 30px rgba(0,0,0,0.15);\n}\n\n.btn {\n    border-radius: 25px;\n    font-weight: 600;\n    transition: all 0.3s ease;\n}\n\n.btn:hover {\n    transform: translateY(-2px);\n}\n\n@media (max-width: 768px) {\n    .container {\n        padding: 15px;\n    }\n}"
+      "expected": "/* 検索機能システム CSS */\nbody {\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    min-height: 100vh;\n}\n\n.navbar {\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n.search-container {\n    background: white;\n    border-radius: 15px;\n    padding: 25px;\n    box-shadow: 0 5px 15px rgba(0,0,0,0.1);\n    margin-bottom: 25px;\n}\n\n.search-input {\n    border-radius: 25px;\n    border: 2px solid #e9ecef;\n    padding: 12px 20px;\n    font-size: 16px;\n    transition: all 0.3s ease;\n}\n\n.search-input:focus {\n    border-color: #17a2b8;\n    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);\n}\n\n.search-result-item {\n    background: white;\n    border-radius: 10px;\n    padding: 20px;\n    margin: 15px 0;\n    box-shadow: 0 2px 5px rgba(0,0,0,0.1);\n    transition: all 0.3s ease;\n}\n\n.search-result-item:hover {\n    box-shadow: 0 5px 15px rgba(0,0,0,0.2);\n    transform: translateY(-2px);\n}\n\n@media (max-width: 768px) {\n    .container {\n        padding: 15px;\n    }\n    .search-container {\n        padding: 20px;\n    }\n}"
     },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "// ECプロジェクト高度機能 JavaScript\n\ndocument.addEventListener('DOMContentLoaded', function() {\n    console.log('ECプロジェクト高度機能システム開始');\n    \n    initializeAdvancedSystem();\n    \n    console.log('高度機能システム初期化完了');\n});\n\nfunction initializeAdvancedSystem() {\n    // 高度な機能の初期化処理\n    const mainContent = document.getElementById('mainContent');\n    \n    if (mainContent) {\n        mainContent.innerHTML = `\n            <div class=\"row\">\n                <div class=\"col-lg-8\">\n                    <div class=\"card mb-4\">\n                        <div class=\"card-body\">\n                            <h2 class=\"card-title\">高度なEC機能</h2>\n                            <p class=\"card-text\">プロフェッショナルレベルのWebアプリケーション機能を実装しています。</p>\n                            <div class=\"progress mb-3\">\n                                <div class=\"progress-bar bg-success\" style=\"width: 85%\"></div>\n                            </div>\n                            <button class=\"btn btn-primary\">機能を実行</button>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-lg-4\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <h5 class=\"card-title\">システム状態</h5>\n                            <div class=\"text-success\">\n                                <i class=\"bi bi-check-circle\"></i> 正常動作中\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        `;\n    }\n    \n    // 高度な機能のデモ実装\n    setupAdvancedFeatures();\n}\n\nfunction setupAdvancedFeatures() {\n    // データ管理システム\n    const advancedData = {\n        users: [],\n        products: [],\n        orders: [],\n        analytics: {}\n    };\n    \n    // API 模擬システム\n    const mockAPI = {\n        getData: (endpoint) => {\n            return new Promise(resolve => {\n                setTimeout(() => {\n                    resolve(advancedData[endpoint] || []);\n                }, 500);\n            });\n        },\n        postData: (endpoint, data) => {\n            return new Promise(resolve => {\n                setTimeout(() => {\n                    if (advancedData[endpoint]) {\n                        advancedData[endpoint].push(data);\n                    }\n                    resolve({ success: true, data });\n                }, 300);\n            });\n        }\n    };\n    \n    // リアルタイム機能シミュレーション\n    setInterval(() => {\n        console.log('リアルタイムデータ更新...');\n        updateSystemStatus();\n    }, 10000);\n    \n    console.log('高度機能セットアップ完了');\n}\n\nfunction updateSystemStatus() {\n    const statusElements = document.querySelectorAll('.text-success');\n    statusElements.forEach(el => {\n        el.style.opacity = '0.7';\n        setTimeout(() => {\n            el.style.opacity = '1';\n        }, 200);\n    });\n}\n\n// エクスポート（モジュールシステム対応）\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { initializeAdvancedSystem };\n}"
+      "expected": "// 検索機能システム JavaScript\n\ndocument.addEventListener('DOMContentLoaded', function() {\n    console.log('検索機能システム開始');\n    \n    initializeSearchSystem();\n    \n    console.log('検索システム初期化完了');\n});\n\n// 検索対象データベース\nconst searchDatabase = [\n    {\n        id: 1,\n        title: 'プレミアムワイヤレスイヤホン',\n        description: '最新のノイズキャンセリング技術を搭載した高品質なワイヤレスイヤホン。長時間の使用でも快適な装着感を実現。',\n        category: 'electronics',\n        brand: 'TechCorp',\n        price: 29800,\n        tags: ['ワイヤレス', 'ノイズキャンセリング', '高品質', '音楽'],\n        keywords: ['イヤホン', 'ヘッドホン', 'オーディオ', '音響']\n    },\n    {\n        id: 2,\n        title: 'オーガニックコーヒー豆セット',\n        description: 'エチオピア産の厳選されたオーガニックコーヒー豆。深いコクと豊かな香りが特徴の贅沢なコーヒー体験。',\n        category: 'food',\n        brand: 'CoffeeVille',\n        price: 3980,\n        tags: ['オーガニック', 'エチオピア', '厳選', 'コーヒー'],\n        keywords: ['豆', 'ドリンク', '飲み物', 'カフェイン']\n    },\n    {\n        id: 3,\n        title: 'モダンデザインチェア',\n        description: '北欧風のモダンなデザインと快適な座り心地を兼ね備えたプレミアムチェア。リビングやオフィスに最適。',\n        category: 'furniture',\n        brand: 'ModernHome',\n        price: 58000,\n        tags: ['北欧', 'モダン', 'デザイナーズ', '快適'],\n        keywords: ['椅子', 'インテリア', '家具', 'デザイン']\n    }\n];\n\nlet searchHistory = [];\nlet currentSearchQuery = '';\n\nfunction initializeSearchSystem() {\n    const searchContainer = document.getElementById('searchContainer');\n    const resultsContainer = document.getElementById('searchResults');\n    \n    if (!searchContainer || !resultsContainer) {\n        console.error('必要な要素が見つかりません');\n        return;\n    }\n    \n    // 検索UIの構築\n    buildSearchInterface(searchContainer);\n    \n    // 初期表示（全商品）\n    displaySearchResults(searchDatabase, resultsContainer);\n    \n    // 検索機能の設定\n    setupSearchFunctionality();\n}\n\nfunction buildSearchInterface(container) {\n    container.innerHTML = `\n        <div class=\"search-container\">\n            <h3>高度な検索システム</h3>\n            <div class=\"input-group mb-3\">\n                <input type=\"text\" class=\"form-control search-input\" id=\"searchInput\" \n                       placeholder=\"商品名、説明、タグで検索...\" autocomplete=\"off\">\n                <button class=\"btn btn-info\" id=\"searchButton\">検索</button>\n                <button class=\"btn btn-outline-secondary\" id=\"clearButton\">クリア</button>\n            </div>\n        </div>\n    `;\n}\n\nfunction setupSearchFunctionality() {\n    const searchInput = document.getElementById('searchInput');\n    const searchButton = document.getElementById('searchButton');\n    const clearButton = document.getElementById('clearButton');\n    \n    searchInput.addEventListener('input', function() {\n        const query = this.value.trim();\n        performSearch(query);\n    });\n    \n    searchButton.addEventListener('click', function() {\n        const query = searchInput.value.trim();\n        performSearch(query);\n    });\n    \n    clearButton.addEventListener('click', function() {\n        searchInput.value = '';\n        displaySearchResults(searchDatabase, document.getElementById('searchResults'));\n    });\n}\n\nfunction performSearch(query) {\n    currentSearchQuery = query;\n    const results = executeAdvancedSearch(query);\n    displaySearchResults(results, document.getElementById('searchResults'));\n    console.log(`検索実行: \"${query}\" - ${results.length}件の結果`);\n}\n\nfunction executeAdvancedSearch(query) {\n    if (!query) return searchDatabase;\n    \n    const queryLower = query.toLowerCase();\n    return searchDatabase.filter(item =>\n        item.title.toLowerCase().includes(queryLower) ||\n        item.description.toLowerCase().includes(queryLower) ||\n        item.tags.some(tag => tag.toLowerCase().includes(queryLower))\n    );\n}\n\nfunction displaySearchResults(results, container) {\n    if (results.length === 0) {\n        container.innerHTML = '<div class=\"text-center py-5\"><h4>検索結果が見つかりません</h4></div>';\n        return;\n    }\n    \n    const resultsHtml = results.map(item => `\n        <div class=\"search-result-item\">\n            <h5>${item.title}</h5>\n            <p class=\"text-muted\">${item.description}</p>\n            <p><strong>¥${item.price.toLocaleString()}</strong></p>\n        </div>\n    `).join('');\n    \n    container.innerHTML = resultsHtml;\n}\n\n// エクスポート（モジュールシステム対応）\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { initializeSearchSystem, performSearch };\n}"
     }
   },
   "expectedResult": {
-    "console": "高度機能システム初期化完了",
-    "behavior": "ECプロジェクトの高度な機能が統合されたプロフェッショナルシステムが動作する"
+    "console": "検索システム初期化完了",
+    "behavior": "高度な検索機能により様々な条件でデータを検索できるシステムが動作する"
   },
   "checks": [
     {
-      "id": "advanced-functionality",
-      "name": "高度機能実装",
+      "id": "advanced-search",
+      "name": "高度検索機能",
       "type": "js",
-      "message": "プロフェッショナルレベルの高度な機能が実装されている必要があります"
+      "message": "複数の検索条件を組み合わせた高度な検索機能が実装されている必要があります"
     },
     {
-      "id": "system-integration",
-      "name": "システム統合",
+      "id": "real-time-search",
+      "name": "リアルタイム検索",
       "type": "js",
-      "message": "各機能が統合されたシステムとして動作する必要があります"
+      "message": "入力中にリアルタイムで検索結果が更新される機能が実装されている必要があります"
     },
     {
-      "id": "performance-optimization",
-      "name": "パフォーマンス最適化",
+      "id": "search-suggestions",
+      "name": "検索候補",
       "type": "js",
-      "message": "高いパフォーマンスを維持する必要があります"
-    },
-    {
-      "id": "user-experience",
-      "name": "ユーザーエクスペリエンス",
-      "type": "structure",
-      "message": "優れたユーザーエクスペリエンスを提供する必要があります"
+      "message": "検索候補を表示する機能が実装されている必要があります"
     }
   ],
   "hints": [
-    "模擬APIを実装してデータベース連携をシミュレートしましょう",
-    "Promise と async/await を活用して非同期処理を適切に実装しましょう",
-    "エラーハンドリングとローディング状態を適切に処理しましょう",
-    "セキュリティ対策を考慮した実装を心がけましょう"
+    "文字列の検索にはincludes()メソッドや正規表現を活用しましょう",
+    "リアルタイム検索にはdebounce（デバウンス）技術を使用しましょう",
+    "検索候補は配列のfilter()とslice()で効率的に実装しましょう",
+    "キーワードハイライトは正規表現のreplace()メソッドを使いましょう"
   ]
 }

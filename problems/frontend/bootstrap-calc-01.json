@@ -2,7 +2,7 @@
   "id": "bootstrap-calc-01",
   "title": "統合システム完成",
   "description": "シンプル統合システムにマイナス機能を追加して、完成した統合システムを作成します",
-  "category": "practical-projects",
+  "category": "bootstrap-calculator",
   "difficulty": 3,
   "instructions": [
     "前回の3つの機能（カウンター、データ保存、リセット）を確認する",

@@ -2,7 +2,7 @@
   "id": "js-basic-06",
   "title": "ボタンクリック",
   "description": "ボタンのクリックイベントを処理し、JavaScriptでインタラクティブな動作を実装する方法を学習します",
-  "category": "javascript-dom",
+  "category": "javascript-basics",
   "difficulty": 2,
   "instructions": [
     "ボタン要素にclickイベントリスナーを追加する",

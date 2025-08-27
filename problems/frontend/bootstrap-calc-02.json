@@ -2,7 +2,7 @@
   "id": "bootstrap-calc-02",
   "title": "はじめての計算機（足し算のみ）",
   "description": "2つの数字を足し算する簡単な計算機を作り、inputタグからの数値取得とJavaScriptでの計算処理を学習します",
-  "category": "practical-projects",
+  "category": "bootstrap-calculator",
   "difficulty": 2,
   "instructions": [
     "inputタグから数字を取得する方法を学ぶ",

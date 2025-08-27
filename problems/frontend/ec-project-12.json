@@ -1,28 +1,6 @@
 {
-  "id": "ec-project-EOF
-echo "$(printf "%02d" $i)\"," >> "ec-project-$(printf "%02d" $i).json"
-cat >> "ec-project-$(printf "%02d" $i).json" << 'EOF'
-  "title": "EOF
-
-# 各ファイルのタイトルを設定
-case $i in
-  2) echo "  \"title\": \"57: 動的商品表示システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  3) echo "  \"title\": \"58: 高度なフィルタリングシステム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  4) echo "  \"title\": \"59: ソート機能統合システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  5) echo "  \"title\": \"60: 検索機能システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  6) echo "  \"title\": \"61: 商品ギャラリー統合システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  7) echo "  \"title\": \"62: ユーザー認証システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  8) echo "  \"title\": \"63: プロフィール管理システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  9) echo "  \"title\": \"64: 注文管理システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  10) echo "  \"title\": \"65: 決済統合システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  11) echo "  \"title\": \"66: レビューシステム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  12) echo "  \"title\": \"67: 推奨システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  13) echo "  \"title\": \"68: 在庫管理システム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  14) echo "  \"title\": \"69: 管理者パネルシステム\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-  15) echo "  \"title\": \"70: 完全ECサイト統合\"," >> "ec-project-$(printf "%02d" $i).json" ;;
-esac
-
-cat >> "ec-project-$(printf "%02d" $i).json" << 'EOF'
+  "id": "ec-project-12",
+  "title": "67: 推奨システム",
   "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
   "category": "ec-project",
   "difficulty": 5,
@@ -43,7 +21,7 @@ cat >> "ec-project-$(printf "%02d" $i).json" << 'EOF'
     },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "// ECプロジェクト高度機能 JavaScript\n\ndocument.addEventListener('DOMContentLoaded', function() {\n    console.log('ECプロジェクト高度機能システム開始');\n    \n    initializeAdvancedSystem();\n    \n    console.log('高度機能システム初期化完了');\n});\n\nfunction initializeAdvancedSystem() {\n    // 高度な機能の初期化処理\n    const mainContent = document.getElementById('mainContent');\n    \n    if (mainContent) {\n        mainContent.innerHTML = `\n            <div class=\"row\">\n                <div class=\"col-lg-8\">\n                    <div class=\"card mb-4\">\n                        <div class=\"card-body\">\n                            <h2 class=\"card-title\">高度なEC機能</h2>\n                            <p class=\"card-text\">プロフェッショナルレベルのWebアプリケーション機能を実装しています。</p>\n                            <div class=\"progress mb-3\">\n                                <div class=\"progress-bar bg-success\" style=\"width: 85%\"></div>\n                            </div>\n                            <button class=\"btn btn-primary\">機能を実行</button>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-lg-4\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <h5 class=\"card-title\">システム状態</h5>\n                            <div class=\"text-success\">\n                                <i class=\"bi bi-check-circle\"></i> 正常動作中\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        `;\n    }\n    \n    // 高度な機能のデモ実装\n    setupAdvancedFeatures();\n}\n\nfunction setupAdvancedFeatures() {\n    // データ管理システム\n    const advancedData = {\n        users: [],\n        products: [],\n        orders: [],\n        analytics: {}\n    };\n    \n    // API 模擬システム\n    const mockAPI = {\n        getData: (endpoint) => {\n            return new Promise(resolve => {\n                setTimeout(() => {\n                    resolve(advancedData[endpoint] || []);\n                }, 500);\n            });\n        },\n        postData: (endpoint, data) => {\n            return new Promise(resolve => {\n                setTimeout(() => {\n                    if (advancedData[endpoint]) {\n                        advancedData[endpoint].push(data);\n                    }\n                    resolve({ success: true, data });\n                }, 300);\n            });\n        }\n    };\n    \n    // リアルタイム機能シミュレーション\n    setInterval(() => {\n        console.log('リアルタイムデータ更新...');\n        updateSystemStatus();\n    }, 10000);\n    \n    console.log('高度機能セットアップ完了');\n}\n\nfunction updateSystemStatus() {\n    const statusElements = document.querySelectorAll('.text-success');\n    statusElements.forEach(el => {\n        el.style.opacity = '0.7';\n        setTimeout(() => {\n            el.style.opacity = '1';\n        }, 200);\n    });\n}\n\n// エクスポート（モジュールシステム対応）\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { initializeAdvancedSystem };\n}"
+      "expected": "// ECプロジェクト高度機能 JavaScript\n\ndocument.addEventListener('DOMContentLoaded', function() {\n    console.log('ECプロジェクト高度機能システム開始');\n    \n    initializeAdvancedSystem();\n    \n    console.log('高度機能システム初期化完了');\n});\n\nfunction initializeAdvancedSystem() {\n    const mainContent = document.getElementById('mainContent');\n    \n    if (mainContent) {\n        mainContent.innerHTML = `\n            <div class=\"row\">\n                <div class=\"col-lg-8\">\n                    <div class=\"card mb-4\">\n                        <div class=\"card-body\">\n                            <h2 class=\"card-title\">高度なEC機能</h2>\n                            <p class=\"card-text\">プロフェッショナルレベルのWebアプリケーション機能を実装しています。</p>\n                            <div class=\"progress mb-3\">\n                                <div class=\"progress-bar bg-success\" style=\"width: 85%\"></div>\n                            </div>\n                            <button class=\"btn btn-primary\">機能を実行</button>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-lg-4\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <h5 class=\"card-title\">システム状態</h5>\n                            <div class=\"text-success\">\n                                <i class=\"bi bi-check-circle\"></i> 正常動作中\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        `;\n    }\n}\n\n// エクスポート（モジュールシステム対応）\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { initializeAdvancedSystem };\n}"
     }
   },
   "expectedResult": {
@@ -62,18 +40,6 @@ cat >> "ec-project-$(printf "%02d" $i).json" << 'EOF'
       "name": "システム統合",
       "type": "js",
       "message": "各機能が統合されたシステムとして動作する必要があります"
-    },
-    {
-      "id": "performance-optimization",
-      "name": "パフォーマンス最適化",
-      "type": "js",
-      "message": "高いパフォーマンスを維持する必要があります"
-    },
-    {
-      "id": "user-experience",
-      "name": "ユーザーエクスペリエンス",
-      "type": "structure",
-      "message": "優れたユーザーエクスペリエンスを提供する必要があります"
     }
   ],
   "hints": [

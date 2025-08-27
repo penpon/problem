@@ -2,7 +2,7 @@
   "id": "html-css-17",
   "title": "17: コンソールと変数",
   "description": "プログラマーの重要な道具 - console.log()でメッセージを出力し、変数でデータを保存する",
-  "category": "javascript-foundation",
+  "category": "html-css-basics",
   "difficulty": 1,
   "instructions": [
     "scriptタグ内にlet message = \"ステップ17へようこそ！\";を追加してください",

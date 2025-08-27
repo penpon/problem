@@ -2,7 +2,7 @@
   "id": "js-basic-09",
   "title": "カウンター拡張",
   "description": "基本カウンターに追加機能を実装し、リセット・制限・統計機能付きの高度なカウンターを作成します",
-  "category": "javascript-dom",
+  "category": "javascript-basics",
   "difficulty": 3,
   "instructions": [
     "基本的なカウンター機能に追加機能を実装する",

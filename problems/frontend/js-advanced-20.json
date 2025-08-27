@@ -2,7 +2,7 @@
   "id": "js-advanced-20",
   "title": "シンプル統合システム",
   "description": "これまで学んだ基本機能を組み合わせて、シンプルで使いやすい統合システムを作成します",
-  "category": "practical-projects",
+  "category": "javascript-advanced",
   "difficulty": 3,
   "instructions": [
     "カウンター機能でボタンを押すと数字が増える仕組みを実装する",

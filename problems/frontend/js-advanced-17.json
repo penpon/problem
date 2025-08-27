@@ -2,7 +2,7 @@
   "id": "js-advanced-17",
   "title": "基本データ管理",
   "description": "配列とオブジェクトを組み合わせた本格的なデータ管理システムを構築し、商品お気に入り機能を通じて実用的なWebアプリケーション開発技術を習得します",
-  "category": "practical-projects",
+  "category": "javascript-advanced",
   "difficulty": 4,
   "instructions": [
     "配列とオブジェクトを組み合わせたデータ構造を理解する",

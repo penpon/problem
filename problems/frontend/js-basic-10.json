@@ -2,7 +2,7 @@
   "id": "js-basic-10",
   "title": "内容変更",
   "description": "JavaScriptを使ってHTML要素の内容を動的に変更し、textContentとinnerHTMLの違いを理解します",
-  "category": "javascript-dom",
+  "category": "javascript-basics",
   "difficulty": 2,
   "instructions": [
     "textContentでテキスト内容を変更する",

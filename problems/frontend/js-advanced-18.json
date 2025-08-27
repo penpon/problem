@@ -2,7 +2,7 @@
   "id": "js-advanced-18",
   "title": "データ管理強化 - localStorage による永続化入門",
   "description": "オブジェクト管理とDOM操作の技術を基盤として、localStorage によるデータ永続化技術を習得します",
-  "category": "practical-projects",
+  "category": "javascript-advanced",
   "difficulty": 4,
   "instructions": [
     "localStorageによるデータ永続化の仕組みを理解する",

@@ -2,7 +2,7 @@
   "id": "js-advanced-16",
   "title": "カード機能拡張 - DOM操作とイベント処理入門",
   "description": "オブジェクト管理を基礎として、DOM操作とイベント処理を習得し、よりインタラクティブな商品カードを実装します",
-  "category": "practical-projects",
+  "category": "javascript-advanced",
   "difficulty": 3,
   "instructions": [
     "DOM操作とイベント処理の基本概念を理解する",

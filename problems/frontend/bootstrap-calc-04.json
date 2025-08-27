@@ -2,7 +2,7 @@
   "id": "bootstrap-calc-04",
   "title": "クリアボタン付き計算機",
   "description": "四則演算計算機にクリアボタンを追加し、計算結果と入力欄をリセットできる使いやすい計算機を完成させます",
-  "category": "practical-projects",
+  "category": "bootstrap-calculator",
   "difficulty": 3,
   "instructions": [
     "四則演算機能に加えてクリア機能を実装する",

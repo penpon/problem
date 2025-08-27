@@ -2,7 +2,7 @@
   "id": "js-basic-07",
   "title": "複数ボタン",
   "description": "複数のボタンを同時に管理し、それぞれに異なる機能を実装してDOM操作の応用を学習します",
-  "category": "javascript-dom",
+  "category": "javascript-basics",
   "difficulty": 2,
   "instructions": [
     "複数のボタンにそれぞれ異なるイベントを設定する",

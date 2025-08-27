@@ -2,7 +2,7 @@
   "id": "js-advanced-19",
   "title": "基本的なページ交互作用",
   "description": "ボタンをクリックしたときの簡単な動きを作り、色の変化やホバー効果でページをより楽しくインタラクティブにします",
-  "category": "practical-projects",
+  "category": "javascript-advanced",
   "difficulty": 2,
   "instructions": [
     "商品詳細の表示・非表示切り替え機能を実装する",

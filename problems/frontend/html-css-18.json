@@ -2,7 +2,7 @@
   "id": "html-css-18",
   "title": "18: 基本計算",
   "description": "JavaScriptで数学をしよう - 数値変数の作成と四則演算",
-  "category": "javascript-foundation",
+  "category": "html-css-basics",
   "difficulty": 1,
   "instructions": [
     "let number1 = 10;を追加してください",

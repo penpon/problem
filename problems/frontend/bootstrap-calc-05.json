@@ -2,7 +2,7 @@
   "id": "bootstrap-calc-05",
   "title": "基本計算機の完成",
   "description": "これまでの計算機機能をまとめ、きれいなデザインとエラーハンドリングを追加した完成版の基本計算機を作成します",
-  "category": "practical-projects",
+  "category": "bootstrap-calculator",
   "difficulty": 4,
   "instructions": [
     "これまでの機能（四則演算、クリアボタン）をまとめる",

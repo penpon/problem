@@ -2,7 +2,7 @@
   "id": "html-css-20",
   "title": "20: 最初のクリック",
   "description": "インタラクティブWebページの誕生 - ボタンクリックでJavaScript関数を実行し、ユーザーの操作に応答する",
-  "category": "javascript-dom",
+  "category": "html-css-basics",
   "difficulty": 2,
   "instructions": [
     "let helloButton = document.getElementById(\"hello-button\");を追加してボタンを取得してください",

@@ -2,7 +2,7 @@
   "id": "bootstrap-calc-03",
   "title": "四則演算の計算機",
   "description": "足し算計算機に引き算・掛け算・割り算を追加し、演算選択機能と条件分岐を使った本格的な計算機を作成します",
-  "category": "practical-projects",
+  "category": "bootstrap-calculator",
   "difficulty": 3,
   "instructions": [
     "足し算に加えて引き算、掛け算、割り算を実装する",

@@ -2,7 +2,7 @@
   "id": "html-css-16",
   "title": "16: JavaScript超入門",
   "description": "完全初心者がJavaScriptの第一歩を踏み出す - alert()で最初のメッセージを表示",
-  "category": "javascript-foundation",
+  "category": "html-css-basics",
   "difficulty": 1,
   "instructions": [
     "HTMLの<head>セクション内に<meta charset=\"UTF-8\">と<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">を追加してください",
