@@ -20,12 +20,7 @@
         "html-css-12",
         "html-css-13",
         "html-css-14",
-        "html-css-15",
-        "html-css-16",
-        "html-css-17",
-        "html-css-18",
-        "html-css-19",
-        "html-css-20"
+        "html-css-15"
       ]
     },
     {
@@ -116,7 +111,7 @@
       ]
     }
   ],
-  "totalProblems": 75,
-  "lastUpdated": "2025-08-27",
+  "totalProblems": 70,
+  "lastUpdated": "2025-08-28",
   "version": "6.0.0"
 }

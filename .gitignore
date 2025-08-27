@@ -104,3 +104,9 @@ tmp/
 
 # Project specific
 update-expected-codes.js
+
+# Temporary JavaScript problems directory
+temp-js-problems/
+
+# Backup files
+*.backup
