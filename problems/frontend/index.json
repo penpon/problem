@@ -17,10 +17,10 @@
         "html-css-09",
         "html-css-10",
         "html-css-11",
-        "html-css-12",
         "html-css-13",
-        "html-css-14",
-        "html-css-15"
+        "html-css-15",
+        "html-css-12",
+        "html-css-14"
       ]
     },
     {
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "bootstrap-calculator",
+      "id": "bootstrap",
       "name": "Bootstrap",
       "description": "フレームワーク活用と実用的な計算システム構築を学習します",
       "icon": "🔧",

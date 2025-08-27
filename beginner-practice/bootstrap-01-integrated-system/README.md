@@ -9,6 +9,6 @@ Bootstrap の CSS/JS をCDNで読み込み、container > row > col-6 ×2 の最�
 - .container 内に .row と .col-6 を2つ配置。
 
 ## ヒント
-- CSS: https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css
-- JS:  https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js
+- CSS: https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css
+- JS:  https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js
 - 余白をつける場合は .py-4 などユーティリティを使う。
