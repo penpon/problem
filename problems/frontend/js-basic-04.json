@@ -1,0 +1,76 @@
+{
+  "id": "js-basic-04",
+  "title": "基本計算",
+  "description": "JavaScriptで基本的な四則演算を行い、計算結果をWebページに表示する方法を学習します",
+  "category": "javascript-basics",
+  "difficulty": 2,
+  "instructions": [
+    "四則演算（+、-、*、/）の基本操作を理解する",
+    "数値型の変数を作成して計算を実行する",
+    "計算結果をHTML要素に表示する",
+    "複数の計算例を実装する"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>基本計算</title>\n    <style>\n        body {\n            font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n            max-width: 900px;\n            margin: 40px auto;\n            padding: 20px;\n            line-height: 1.6;\n            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);\n            color: #2c3e50;\n            min-height: 100vh;\n        }\n        \n        .container {\n            background: rgba(255, 255, 255, 0.9);\n            backdrop-filter: blur(10px);\n            border-radius: 20px;\n            padding: 40px;\n            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);\n        }\n        \n        h1 {\n            color: #e74c3c;\n            text-align: center;\n            font-size: 2.5rem;\n            margin-bottom: 10px;\n        }\n        \n        .step-info {\n            text-align: center;\n            margin-bottom: 30px;\n            opacity: 0.8;\n            color: #7f8c8d;\n        }\n        \n        .info-box {\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            color: white;\n            padding: 25px;\n            border-radius: 15px;\n            margin: 20px 0;\n            border-left: 5px solid #e74c3c;\n        }\n        \n        .calculation-box {\n            background: #f8f9fa;\n            padding: 20px;\n            border-radius: 10px;\n            border: 2px solid #3498db;\n            margin: 15px 0;\n        }\n        \n        .highlight {\n            color: #e74c3c;\n            font-weight: bold;\n        }\n        \n        .code-example {\n            background: #2c3e50;\n            color: #ecf0f1;\n            padding: 15px;\n            border-radius: 8px;\n            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;\n            margin: 15px 0;\n            border: 1px solid #34495e;\n        }\n        \n        .instruction {\n            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);\n            color: white;\n            padding: 20px;\n            border-radius: 10px;\n            margin: 20px 0;\n        }\n        \n        .celebration {\n            font-size: 2.5rem;\n            text-align: center;\n            margin: 20px 0;\n        }\n        \n        .math-symbol {\n            font-size: 1.5rem;\n            color: #e74c3c;\n            font-weight: bold;\n        }\n        \n        .result-display {\n            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);\n            padding: 15px;\n            border-radius: 10px;\n            text-align: center;\n            margin: 10px 0;\n            font-weight: bold;\n            color: #2c3e50;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>🧮 基本計算</h1>\n        <div class=\"step-info\">\n            <strong>基本計算 - JavaScriptで数学をしよう</strong>\n        </div>\n        \n        <div class=\"celebration\">🔢 ➕ ➖ ✖️ ➗</div>\n        \n        <div class=\"info-box\">\n            <h3>📚 この学習で学ぶこと</h3>\n            <ul>\n                <li><strong>数値変数</strong>の作成と使用方法</li>\n                <li>JavaScriptでの<strong>四則演算</strong>（+ - * /）</li>\n                <li>計算結果を<strong>コンソール</strong>に表示する方法</li>\n            </ul>\n        </div>\n        \n        <div class=\"instruction\">\n            <h3>🚀 開発者ツールを開いて学習効果UP！</h3>\n            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブで計算結果を確認しましょう！</p>\n        </div>\n        \n        <div class=\"info-box\">\n            <h3>🔢 JavaScriptの四則演算</h3>\n            <div class=\"calculation-box\">\n                <p><span class=\"math-symbol\">+</span> 足し算（たしざん）</p>\n                <div class=\"code-example\">let result = 5 + 3; // 結果: 8</div>\n            </div>\n            <div class=\"calculation-box\">\n                <p><span class=\"math-symbol\">-</span> 引き算（ひきざん）</p>\n                <div class=\"code-example\">let result = 10 - 4; // 結果: 6</div>\n            </div>\n            <div class=\"calculation-box\">\n                <p><span class=\"math-symbol\">*</span> 掛け算（かけざん）</p>\n                <div class=\"code-example\">let result = 6 * 7; // 結果: 42</div>\n            </div>\n            <div class=\"calculation-box\">\n                <p><span class=\"math-symbol\">/</span> 割り算（わりざん）</p>\n                <div class=\"code-example\">let result = 15 / 3; // 結果: 5</div>\n            </div>\n        </div>\n        \n        <div class=\"info-box\">\n            <h3>👀 実際の計算を見てみよう</h3>\n            <p>このページでは、以下の計算が実行されています：</p>\n            \n            <div id=\"calculation-results\">\n                <!-- ここに計算結果が動的に表示されます -->\n            </div>\n        </div>\n        \n        <div class=\"instruction\">\n            <h3>✅ コンソールで確認</h3>\n            <p>開発者ツールのコンソールに、すべての計算結果とメッセージが表示されることを確認してください！</p>\n        </div>\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>"
+    },
+    "css": {
+      "template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n/* ここに実装してください */",
+      "expected": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    max-width: 900px;\n    margin: 40px auto;\n    padding: 20px;\n    line-height: 1.6;\n    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);\n    color: #2c3e50;\n    min-height: 100vh;\n}\n\n.container {\n    background: rgba(255, 255, 255, 0.9);\n    backdrop-filter: blur(10px);\n    border-radius: 20px;\n    padding: 40px;\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);\n}\n\nh1 {\n    color: #e74c3c;\n    text-align: center;\n    font-size: 2.5rem;\n    margin-bottom: 10px;\n}\n\n.step-info {\n    text-align: center;\n    margin-bottom: 30px;\n    opacity: 0.8;\n    color: #7f8c8d;\n}\n\n.info-box {\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n    padding: 25px;\n    border-radius: 15px;\n    margin: 20px 0;\n    border-left: 5px solid #e74c3c;\n}\n\n.calculation-box {\n    background: #f8f9fa;\n    padding: 20px;\n    border-radius: 10px;\n    border: 2px solid #3498db;\n    margin: 15px 0;\n}\n\n.highlight {\n    color: #e74c3c;\n    font-weight: bold;\n}\n\n.code-example {\n    background: #2c3e50;\n    color: #ecf0f1;\n    padding: 15px;\n    border-radius: 8px;\n    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;\n    margin: 15px 0;\n    border: 1px solid #34495e;\n}\n\n.instruction {\n    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);\n    color: white;\n    padding: 20px;\n    border-radius: 10px;\n    margin: 20px 0;\n}\n\n.celebration {\n    font-size: 2.5rem;\n    text-align: center;\n    margin: 20px 0;\n}\n\n.math-symbol {\n    font-size: 1.5rem;\n    color: #e74c3c;\n    font-weight: bold;\n}\n\n.result-display {\n    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);\n    padding: 15px;\n    border-radius: 10px;\n    text-align: center;\n    margin: 10px 0;\n    font-weight: bold;\n    color: #2c3e50;\n}"
+    },
+    "js": {
+      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
+      "expected": "console.log(\"🧮 基本計算を開始します！\");\nconsole.log(\"================================\");\n\n// 基本の四則演算\nlet number1 = 10;\nlet number2 = 3;\n\nconsole.log(\"使用する数値:\");\nconsole.log(\"number1 = \" + number1);\nconsole.log(\"number2 = \" + number2);\nconsole.log(\"\");\n\n// 足し算\nlet addition = number1 + number2;\nconsole.log(\"足し算: \" + number1 + \" + \" + number2 + \" = \" + addition);\n\n// 引き算\nlet subtraction = number1 - number2;\nconsole.log(\"引き算: \" + number1 + \" - \" + number2 + \" = \" + subtraction);\n\n// 掛け算\nlet multiplication = number1 * number2;\nconsole.log(\"掛け算: \" + number1 + \" × \" + number2 + \" = \" + multiplication);\n\n// 割り算\nlet division = number1 / number2;\nconsole.log(\"割り算: \" + number1 + \" ÷ \" + number2 + \" = \" + division.toFixed(2));\n\nconsole.log(\"\");\nconsole.log(\"🎉 すべての計算が完了しました！\");\n\n// 計算結果をページにも表示\ndocument.getElementById('calculation-results').innerHTML = `\n    <div class=\"result-display\">足し算: ${number1} + ${number2} = ${addition}</div>\n    <div class=\"result-display\">引き算: ${number1} - ${number2} = ${subtraction}</div>\n    <div class=\"result-display\">掛け算: ${number1} × ${number2} = ${multiplication}</div>\n    <div class=\"result-display\">割り算: ${number1} ÷ ${number2} = ${division.toFixed(2)}</div>\n`;"
+    }
+  },
+  "expectedResult": {
+    "calculations": "足し算、引き算、掛け算、割り算の結果が表示される",
+    "display": "計算結果がHTML要素に正しく表示される",
+    "behavior": "複数の計算が正しく実行される"
+  },
+  "checks": [
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    },
+    {
+      "id": "css-content",
+      "name": "CSSスタイル",
+      "type": "css",
+      "message": "CSSでスタイルを設定してください"
+    },
+    {
+      "id": "js-content",
+      "name": "JavaScript",
+      "type": "js",
+      "message": "JavaScriptで動的な動作を実装してください"
+    }
+  ]
+}

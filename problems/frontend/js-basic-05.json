@@ -1,0 +1,76 @@
+{
+  "id": "js-basic-05",
+  "title": "要素取得入門",
+  "description": "getElementById、querySelector等を使ってHTML要素を取得し、DOM操作の基礎を学習します",
+  "category": "javascript-basics",
+  "difficulty": 2,
+  "instructions": [
+    "getElementById()でID指定要素を取得する",
+    "querySelector()でCSS指定要素を取得する",
+    "取得した要素の内容を変更する",
+    "複数の要素取得方法を実践する"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>要素取得入門</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>🎯 要素取得入門</h1>\n        <div class=\"step-info\">\n            <strong>要素取得入門 - HTMLとJavaScriptをつなぐ</strong>\n        </div>\n        \n        <div class=\"celebration\">🔗 📄 💻</div>\n        \n        <div class=\"info-box\">\n            <h3>📚 この学習で学ぶこと</h3>\n            <ul>\n                <li><strong>document.getElementById()</strong>で要素を取得する</li>\n                <li><strong>textContent</strong>で要素の内容を変更する</li>\n                <li>HTMLとJavaScriptを連携させる基礎</li>\n            </ul>\n        </div>\n        \n        <div class=\"demo-box\">\n            <h3>🎪 実際の変化を見てみよう！</h3>\n            \n            <div class=\"before-after\">\n                <div>\n                    <h4>変更前</h4>\n                    <div style=\"background: #e74c3c; padding: 10px; border-radius: 5px; color: white;\">\n                        ここは元のテキストです\n                    </div>\n                </div>\n                <div>\n                    <h4>変更後（自動実行）</h4>\n                    <div class=\"highlight-element\" id=\"demo-element\">\n                        ここは元のテキストです\n                    </div>\n                </div>\n            </div>\n            \n            <div class=\"arrow\">⬇️ JavaScript実行後 ⬇️</div>\n            \n            <div class=\"highlight-element\" id=\"welcome-message\">\n                読み込み中...\n            </div>\n        </div>\n        \n        <div class=\"info-box\">\n            <h3>🎯 document.getElementById() とは？</h3>\n            <p><strong>document.getElementById()</strong>は、HTMLの要素を「ID」で探して取得するJavaScriptの機能です。</p>\n            \n            <div class=\"code-example\">\n// HTMLの要素を取得\nlet element = document.getElementById(\"要素のID名\");\n\n// 要素の内容を変更\nelement.textContent = \"新しいテキスト\";\n            </div>\n        </div>\n        \n        <div class=\"info-box\">\n            <h3>🔧 IDとは？</h3>\n            <p>HTMLの要素に付ける「名札」のようなものです：</p>\n            <div class=\"code-example\">\n&lt;div id=\"my-element\"&gt;ここが変更されます&lt;/div&gt;\n            </div>\n            <p>この例では、<code>\"my-element\"</code>がIDです。</p>\n        </div>\n        \n        <div class=\"info-box\">\n            <h3>👀 実際のコードを見てみよう</h3>\n            <p>このページで実行されているコード：</p>\n            <div class=\"code-example\">\n// 1. 要素を取得\nlet demoElement = document.getElementById(\"demo-element\");\n\n// 2. 内容を変更\ndemoElement.textContent = \"🎉 JavaScriptで変更されました！\";\n\n// 3. ウェルカムメッセージも変更\nlet welcomeElement = document.getElementById(\"welcome-message\");\nwelcomeElement.textContent = \"ようこそ！要素取得の世界へ！\";\n            </div>\n        </div>\n        \n        <div class=\"instruction\">\n            <h3>🚀 開発者ツールで確認しよう</h3>\n            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブで実行過程を確認してください！</p>\n        </div>\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>"
+    },
+    "css": {
+      "template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n/* ここに実装してください */",
+      "expected": "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n    max-width: 900px;\n    margin: 40px auto;\n    padding: 20px;\n    line-height: 1.6;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n    min-height: 100vh;\n}\n\n.container {\n    background: rgba(255, 255, 255, 0.1);\n    backdrop-filter: blur(10px);\n    border-radius: 20px;\n    padding: 40px;\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);\n}\n\nh1 {\n    color: #FFE135;\n    text-align: center;\n    font-size: 2.5rem;\n    margin-bottom: 10px;\n}\n\n.step-info {\n    text-align: center;\n    margin-bottom: 30px;\n    opacity: 0.9;\n}\n\n.demo-box {\n    background: rgba(255, 255, 255, 0.2);\n    padding: 30px;\n    border-radius: 15px;\n    margin: 25px 0;\n    border: 2px solid #FFE135;\n}\n\n.highlight-element {\n    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);\n    color: #2c3e50;\n    padding: 20px;\n    border-radius: 10px;\n    margin: 15px 0;\n    font-weight: bold;\n    text-align: center;\n    font-size: 1.2rem;\n}\n\n.info-box {\n    background: rgba(255, 255, 255, 0.15);\n    padding: 25px;\n    border-radius: 15px;\n    margin: 20px 0;\n    border-left: 5px solid #FFE135;\n}\n\n.highlight {\n    color: #FFE135;\n    font-weight: bold;\n}\n\n.code-example {\n    background: rgba(0, 0, 0, 0.3);\n    padding: 15px;\n    border-radius: 8px;\n    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;\n    margin: 15px 0;\n    border: 1px solid rgba(255, 255, 255, 0.2);\n}\n\n.instruction {\n    background: rgba(255, 193, 7, 0.2);\n    padding: 20px;\n    border-radius: 10px;\n    border: 2px solid #FFE135;\n    margin: 20px 0;\n}\n\n.celebration {\n    font-size: 2.5rem;\n    text-align: center;\n    margin: 20px 0;\n}\n\n.before-after {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 20px;\n    margin: 20px 0;\n}\n\n.before-after > div {\n    background: rgba(0, 0, 0, 0.2);\n    padding: 15px;\n    border-radius: 10px;\n    text-align: center;\n}\n\n.arrow {\n    font-size: 2rem;\n    text-align: center;\n    color: #FFE135;\n}"
+    },
+    "js": {
+      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
+      "expected": "console.log(\"🎯 要素取得入門を開始します！\");\nconsole.log(\"==================================\");\n\n// 1. 要素を取得\nconsole.log(\"📍 要素を取得中...\");\nlet demoElement = document.getElementById(\"demo-element\");\nlet welcomeElement = document.getElementById(\"welcome-message\");\n\n// 2. 取得できたか確認\nconsole.log(\"取得した要素:\", demoElement);\nconsole.log(\"要素の元の内容:\", demoElement.textContent);\n\n// 3. 内容を変更\nconsole.log(\"🔄 内容を変更中...\");\ndemoElement.textContent = \"🎉 JavaScriptで変更されました！\";\nwelcomeElement.textContent = \"ようこそ！要素取得の世界へ！\";\n\n// 4. 変更後の確認\nconsole.log(\"変更後の内容:\", demoElement.textContent);\nconsole.log(\"✅ 要素の内容変更が完了しました！\");\n\nconsole.log(\"\");\nconsole.log(\"🌟 HTMLとJavaScriptが連携できるようになりました！\");"
+    }
+  },
+  "expectedResult": {
+    "elementAccess": "ID、クラス、タグ名で要素が正しく取得される",
+    "contentChange": "取得した要素の内容が変更される",
+    "behavior": "複数の要素取得方法が動作する"
+  },
+  "checks": [
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    },
+    {
+      "id": "css-content",
+      "name": "CSSスタイル",
+      "type": "css",
+      "message": "CSSでスタイルを設定してください"
+    },
+    {
+      "id": "js-content",
+      "name": "JavaScript",
+      "type": "js",
+      "message": "JavaScriptで動的な動作を実装してください"
+    }
+  ]
+}

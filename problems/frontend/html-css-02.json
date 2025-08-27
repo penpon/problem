@@ -1,0 +1,62 @@
+{
+  "id": "html-css-02",
+  "title": "02: 見出しの追加",
+  "description": "見出しタグ（h1）を使用して、ページに構造を持たせましょう。",
+  "category": "html-css-basics",
+  "difficulty": 1,
+  "instructions": [
+    "h1タグを使用してメインタイトルを追加してください",
+    "見出しは「メインタイトル」にしてください",
+    "既存のpタグは残しておいてください"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>見出しのあるページ</title>\n</head>\n<body>\n    <h1>私のホームページ</h1>\n    <p>はじめまして！</p>\n    <p>このページは私が作った初めてのWebサイトです。</p>\n    <p>これからHTMLを覚えて、素敵なサイトを作りたいと思います。</p>\n</body>\n</html>"
+    },
+    "css": {
+      "template": "",
+      "expected": ""
+    },
+    "js": {
+      "template": "",
+      "expected": ""
+    }
+  },
+  "checks": [
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    }
+  ],
+  "hints": [
+    "h1タグは最重要な見出しを表します",
+    "見出しタグには適切な階層構造があります（h1 > h2 > h3...）"
+  ]
+}

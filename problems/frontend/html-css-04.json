@@ -1,0 +1,65 @@
+{
+  "id": "html-css-04",
+  "title": "04: リンクの作成",
+  "description": "aタグを使用してリンクを作成する方法を学習しましょう。",
+  "category": "html-css-basics",
+  "difficulty": 2,
+  "instructions": [
+    "h1タグで「リンクの練習」の見出しを追加してください",
+    "aタグを使用してリンクを作成してください",
+    "href属性に「https://www.example.com」を設定してください",
+    "リンクテキストは「外部リンク」にしてください",
+    "pタグでリンクを囲んでください"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>リンクのあるページ</title>\n</head>\n<body>\n    <h1>私のホームページ</h1>\n    <img src=\"../shared/images/simple-product.svg\" alt=\"シンプルな商品の画像\">\n    <p>はじめまして！</p>\n    <p>このページは私が作った初めてのWebサイトです。</p>\n    \n    <p>他のページも見てみましょう：</p>\n    <p><a href=\"../01-basic-html/index.html\">最初のページ</a>を見る</p>\n    <p><a href=\"../02-add-heading/index.html\">見出しのページ</a>を見る</p>\n    <p><a href=\"../03-add-image/index.html\">画像のページ</a>を見る</p>\n    \n    <p>外部サイトも見てみましょう：</p>\n    <p><a href=\"https://developer.mozilla.org/ja/\" target=\"_blank\">MDN Web Docs</a>（新しいタブで開く）</p>\n    \n    <p>リンクをクリックして、いろいろなページを見てみてください！</p>\n</body>\n</html>"
+    },
+    "css": {
+      "template": "",
+      "expected": ""
+    },
+    "js": {
+      "template": "",
+      "expected": ""
+    }
+  },
+  "checks": [
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    }
+  ],
+  "hints": [
+    "aタグのhref属性にはリンク先のURLを指定します",
+    "外部サイトへのリンクには完全なURLを使用します",
+    "リンクテキストは分かりやすい名前にしましょう"
+  ]
+}
