@@ -384,23 +384,62 @@ class AdvancedFrontendLearning {
     }
     
     /**
+     * 問題IDから適切な番号を抽出する
+     */
+    extractProblemNumber(problemId, categoryId) {
+        // 各カテゴリごとのプレフィックスを定義
+        const prefixMap = {
+            'html-css-basics': 'html-css-',
+            'javascript-basics': 'js-basic-',
+            'javascript-advanced': 'js-advanced-',
+            'bootstrap-calculator': 'bootstrap-calc-',
+            'ec-project': 'ec-project-'
+        };
+        
+        const prefix = prefixMap[categoryId];
+        if (prefix && problemId.startsWith(prefix)) {
+            const numberPart = problemId.replace(prefix, '');
+            return numberPart.padStart(2, '0'); // 01, 02 形式にする
+        }
+        
+        // フォールバック: 最後のハイフン以降の部分を抽出
+        const lastDashIndex = problemId.lastIndexOf('-');
+        if (lastDashIndex !== -1) {
+            const numberPart = problemId.substring(lastDashIndex + 1);
+            return numberPart.padStart(2, '0');
+        }
+        
+        return problemId;
+    }
+    
+    /**
+     * 問題タイトルから古い番号形式を除去する
+     */
+    cleanProblemTitle(title) {
+        // 「番号: タイトル」形式から番号部分を除去
+        return title.replace(/^\d+:\s*/, '');
+    }
+    
+    /**
      * カテゴリの問題リストを表示
      */
     showProblemsForCategory(category, problems) {
         this.problemList.innerHTML = '';
         
-        problems.forEach(problem => {
+        problems.forEach((problem, index) => {
             const problemItem = document.createElement('button');
             problemItem.className = 'problem-item';
             problemItem.dataset.problemId = problem.id;
             
-            // 問題番号を取得（practice01 -> 01 形式）
-            const problemNumber = problem.id.replace('practice', '').replace('_', '.');
+            // カテゴリ内での順番に基づいて番号を生成（index + 1）
+            const problemNumber = String(index + 1).padStart(2, '0');
+            // タイトルから古い番号を除去
+            const cleanTitle = this.cleanProblemTitle(problem.title);
             
             problemItem.innerHTML = `
                 <div class="problem-info">
                     <span class="problem-number">#${problemNumber}</span>
-                    <span class="problem-title">${problem.title}</span>
+                    <span class="problem-title">${problemNumber}: ${cleanTitle}</span>
                 </div>
                 <div class="problem-difficulty">
                     ${'★'.repeat(problem.difficulty || 1)}
