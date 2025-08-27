@@ -382,24 +382,24 @@ class AdvancedFrontendLearning {
         const tabCount = this.tabNavigation.querySelectorAll('.tab-button').length;
         console.log(`作成されたタブ数: ${tabCount}`);
     }
-    
-    /**
-     * 問題IDから適切な番号を抽出する
-     */
-    extractProblemNumber(problemId, categoryId) {
-        // 各カテゴリごとのプレフィックスを定義
-        const prefixMap = {
-            'html-css-basics': 'html-css-',
-            'javascript-basics': 'js-basic-',
-            'javascript-advanced': 'js-advanced-',
-            'bootstrap-calculator': 'bootstrap-calc-',
-            'ec-project': 'ec-project-'
-        };
-        
-        const prefix = prefixMap[categoryId];
-        if (prefix && problemId.startsWith(prefix)) {
-            const numberPart = problemId.replace(prefix, '');
-            return numberPart.padStart(2, '0'); // 01, 02 形式にする
+
+/**
+ * 問題IDから適切な番号を抽出する
+ */
+extractProblemNumber(problemId, categoryId) {
+    // 各カテゴリごとのプレフィックスを定義
+    const prefixMap = {
+        'html-css-basics': 'html-css-',
+        'javascript-basics': 'js-basic-',
+        'javascript-advanced': 'js-advanced-',
+        'bootstrap-calculator': 'bootstrap-',
+        'ec-project': 'ec-project-'
+    };
+
+    const prefix = prefixMap[categoryId];
+    if (prefix && problemId.startsWith(prefix)) {
+        const numberPart = problemId.replace(prefix, '');
+        return numberPart.padStart(2, '0'); // 01, 02 形式にする
         }
         
         // フォールバック: 最後のハイフン以降の部分を抽出

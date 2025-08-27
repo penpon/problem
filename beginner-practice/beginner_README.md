@@ -129,7 +129,7 @@
 ### 1. カテゴリの明確化
 - **HTML/CSS基礎**: HTML/CSSのみを使用（JavaScriptを含まない）
 - **JavaScript基礎**: Bootstrapを含まない、オブジェクト指向を含まない基本的なJavaScript構文とDOM操作
-- **JavaScript応用・データ操作**: Bootstrapを含まない、オブジェクト指向を含まない配列、関数、イベント処理などの応用
+- **JavaScript応用**: Bootstrapを含まない、オブジェクト指向を含まない配列、関数、イベント処理などの応用
 
 ### 2. 問題構成の統一
 - expected HTML/CSSはシンプルな実装例とし、解説ページ形式を避ける

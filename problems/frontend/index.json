@@ -43,7 +43,7 @@
     },
     {
       "id": "javascript-advanced",
-      "name": "JavaScript応用・データ操作",
+      "name": "JavaScript応用",
       "description": "配列、関数、オブジェクトを使った動的システム構築を学習します",
       "icon": "⚡",
       "problems": [
@@ -56,35 +56,25 @@
         "js-advanced-07",
         "js-advanced-08",
         "js-advanced-09",
-        "js-advanced-10",
-        "js-advanced-11",
-        "js-advanced-12",
-        "js-advanced-13",
-        "js-advanced-14",
-        "js-advanced-15",
-        "js-advanced-16",
-        "js-advanced-17",
-        "js-advanced-18",
-        "js-advanced-19",
-        "js-advanced-20"
+        "js-advanced-10"
       ]
     },
     {
       "id": "bootstrap-calculator",
-      "name": "Bootstrap・計算機プロジェクト",
+      "name": "Bootstrap",
       "description": "フレームワーク活用と実用的な計算システム構築を学習します",
       "icon": "🔧",
       "problems": [
-        "bootstrap-calc-01",
-        "bootstrap-calc-02",
-        "bootstrap-calc-03",
-        "bootstrap-calc-04",
-        "bootstrap-calc-05",
-        "bootstrap-calc-06",
-        "bootstrap-calc-07",
-        "bootstrap-calc-08",
-        "bootstrap-calc-09",
-        "bootstrap-calc-10"
+        "bootstrap-01",
+        "bootstrap-02",
+        "bootstrap-03",
+        "bootstrap-04",
+        "bootstrap-05",
+        "bootstrap-06",
+        "bootstrap-07",
+        "bootstrap-08",
+        "bootstrap-09",
+        "bootstrap-10"
       ]
     },
     {
@@ -111,7 +101,7 @@
       ]
     }
   ],
-  "totalProblems": 70,
+  "totalProblems": 60,
   "lastUpdated": "2025-08-28",
   "version": "6.0.0"
 }

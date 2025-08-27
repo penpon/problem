@@ -253,7 +253,7 @@ class ProblemLoader {
       'js-basic-09': 'js-basic-09-counter-enhanced',
       'js-basic-10': 'js-basic-10-change-content',
       
-      // JavaScript応用・データ操作 (js-advanced-01 → js-advanced-20)
+      // JavaScript応用(js-advanced-01 → js-advanced-20)
       'js-advanced-01': 'js-advanced-01-text-content-change',
       'js-advanced-02': 'js-advanced-02-html-content-basic',
       'js-advanced-03': 'js-advanced-03-random-basic',
@@ -264,28 +264,18 @@ class ProblemLoader {
       'js-advanced-08': 'js-advanced-08-timer-animation',
       'js-advanced-09': 'js-advanced-09-function-practical',
       'js-advanced-10': 'js-advanced-10-function-basics',
-      'js-advanced-11': 'js-advanced-11-function-systems',
-      'js-advanced-12': 'js-advanced-12-object-basics',
-      'js-advanced-13': 'js-advanced-13-mini-product-card',
-      'js-advanced-14': 'js-advanced-14-mini-product-card-bootstrap',
-      'js-advanced-15': 'js-advanced-15-basic-product-card',
-      'js-advanced-16': 'js-advanced-16-card-expansion',
-      'js-advanced-17': 'js-advanced-17-data-basic',
-      'js-advanced-18': 'js-advanced-18-data-management',
-      'js-advanced-19': 'js-advanced-19-advanced-interaction',
-      'js-advanced-20': 'js-advanced-20-ui-ux-completion',
       
-      // Bootstrap・計算機プロジェクト (bootstrap-calc-01 → bootstrap-calc-10)
-      'bootstrap-calc-01': 'bootstrap-calc-01-integrated-system',
-      'bootstrap-calc-02': 'bootstrap-calc-02-simple-calculator',
-      'bootstrap-calc-03': 'bootstrap-calc-03-simple-calculator-bootstrap',
-      'bootstrap-calc-04': 'bootstrap-calc-04-basic-calculator',
-      'bootstrap-calc-05': 'bootstrap-calc-05-advanced-calculator',
-      'bootstrap-calc-06': 'bootstrap-calc-06-scientific-calculator',
-      'bootstrap-calc-07': 'bootstrap-calc-07-two-product-gallery',
-      'bootstrap-calc-08': 'bootstrap-calc-08-two-product-gallery-bootstrap',
-      'bootstrap-calc-09': 'bootstrap-calc-09-bootstrap-basics',
-      'bootstrap-calc-10': 'bootstrap-calc-10-component-intro-bootstrap',
+      // Bootstrap・最小課題（bootstrap-01 → bootstrap-10）
+      'bootstrap-01': 'bootstrap-01-integrated-system',
+      'bootstrap-02': 'bootstrap-02-simple-calculator',
+      'bootstrap-03': 'bootstrap-03-simple-calculator-bootstrap',
+      'bootstrap-04': 'bootstrap-04-basic-calculator',
+      'bootstrap-05': 'bootstrap-05-advanced-calculator',
+      'bootstrap-06': 'bootstrap-06-scientific-calculator',
+      'bootstrap-07': 'bootstrap-07-two-product-gallery',
+      'bootstrap-08': 'bootstrap-08-two-product-gallery-bootstrap',
+      'bootstrap-09': 'bootstrap-09-bootstrap-basics',
+      'bootstrap-10': 'bootstrap-10-component-intro-bootstrap',
       
       // 総合ECサイト構築 (ec-project-01 → ec-project-15)
       'ec-project-01': 'ec-project-01-responsive-system',

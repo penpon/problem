@@ -11,12 +11,13 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>課題を実装してください</h1>\n  <!-- ここに実装してください -->\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>クラス切替</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>クラス切替</h1>\n  <div id=\"box\" class=\"\">Box</div>\n  <button id=\"toggle\">切替</button>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>クラス切替</title>\n</head>\n<body>\n  <h1>クラス切替</h1>\n  <div id=\"box\" class=\"\">Box</div>\n  <button id=\"toggle\">切替</button>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
     },
     "css": {
-      "template": "/* ここに実装してください */",
-      "expected": "body {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  margin: 20px;\n}\n#box {\n  padding: 8px 12px;\n  border: 1px solid #ccc;\n  display: inline-block;\n  margin-right: 8px;\n}\n.active {\n  background: #e6f4ff;\n  border-color: #60a5fa;\n}\nbutton { margin-right: 8px; }"
-    },
+      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#box { padding: 8px 12px; border: 1px solid #ccc; display: inline-block; margin-right: 8px; }\n.active { background: #e6f4ff; border-color: #60a5fa; }\nbutton { margin-right: 8px; }",
+      "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#box { padding: 8px 12px; border: 1px solid #ccc; display: inline-block; margin-right: 8px; }\n.active { background: #e6f4ff; border-color: #60a5fa; }\nbutton { margin-right: 8px; }"
+    }
+,
     "js": {
       "template": "// ここに実装してください",
       "expected": "const box = document.getElementById('box');\ndocument.getElementById('toggle').addEventListener('click', () => {\n  box.classList.toggle('active');\n});"
