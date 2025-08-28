@@ -6,10 +6,37 @@
 
   // ================== データと状態 ==================
   const PRODUCTS = [
+    // dresses (6 items)
     { id: 'p1', name: 'フリルドレス', category: 'dresses', price: 4800, stock: true, tags: ['frill'], sale: false, isNew: true, img: 'https://picsum.photos/seed/d1/400/260' },
+    { id: 'p5', name: 'リボンドレス', category: 'dresses', price: 5200, stock: true, tags: ['ribbon'], sale: true, isNew: false, img: 'https://picsum.photos/seed/d2/400/260' },
+    { id: 'p6', name: 'サマードレス', category: 'dresses', price: 6500, stock: true, tags: ['summer'], sale: false, isNew: true, img: 'https://picsum.photos/seed/d3/400/260' },
+    { id: 'p7', name: 'フラワードレス', category: 'dresses', price: 7000, stock: false, tags: ['flower'], sale: false, isNew: false, img: 'https://picsum.photos/seed/d4/400/260' },
+    { id: 'p8', name: 'シンプルドレス', category: 'dresses', price: 4300, stock: true, tags: ['simple'], sale: true, isNew: false, img: 'https://picsum.photos/seed/d5/400/260' },
+    { id: 'p9', name: 'エレガントドレス', category: 'dresses', price: 8800, stock: true, tags: ['elegant'], sale: false, isNew: false, img: 'https://picsum.photos/seed/d6/400/260' },
+
+    // tops (6 items)
     { id: 'p2', name: 'レーストップス', category: 'tops', price: 3200, stock: true, tags: ['lace'], sale: true, isNew: false, img: 'https://picsum.photos/seed/t1/400/260' },
+    { id: 'p10', name: 'コットントップス', category: 'tops', price: 2800, stock: true, tags: ['cotton'], sale: false, isNew: true, img: 'https://picsum.photos/seed/t2/400/260' },
+    { id: 'p11', name: 'ボーダートップス', category: 'tops', price: 3100, stock: true, tags: ['border'], sale: false, isNew: false, img: 'https://picsum.photos/seed/t3/400/260' },
+    { id: 'p12', name: 'シアートップス', category: 'tops', price: 3600, stock: false, tags: ['sheer'], sale: true, isNew: false, img: 'https://picsum.photos/seed/t4/400/260' },
+    { id: 'p13', name: 'カットソー', category: 'tops', price: 2400, stock: true, tags: ['cutsew'], sale: false, isNew: false, img: 'https://picsum.photos/seed/t5/400/260' },
+    { id: 'p14', name: 'ニットトップス', category: 'tops', price: 5400, stock: true, tags: ['knit'], sale: false, isNew: true, img: 'https://picsum.photos/seed/t6/400/260' },
+
+    // skirts (6 items)
     { id: 'p3', name: 'シフォンスカート', category: 'skirts', price: 6200, stock: false, tags: ['chiffon'], sale: false, isNew: true, img: 'https://picsum.photos/seed/s1/400/260' },
-    { id: 'p4', name: 'アクセサリーA', category: 'accessories', price: 1800, stock: true, tags: [], sale: true, isNew: false, img: 'https://picsum.photos/seed/a1/400/260' }
+    { id: 'p15', name: 'プリーツスカート', category: 'skirts', price: 5900, stock: true, tags: ['pleats'], sale: true, isNew: false, img: 'https://picsum.photos/seed/s2/400/260' },
+    { id: 'p16', name: 'Aラインスカート', category: 'skirts', price: 5300, stock: true, tags: ['aline'], sale: false, isNew: false, img: 'https://picsum.photos/seed/s3/400/260' },
+    { id: 'p17', name: 'デニムスカート', category: 'skirts', price: 4500, stock: true, tags: ['denim'], sale: false, isNew: true, img: 'https://picsum.photos/seed/s4/400/260' },
+    { id: 'p18', name: 'チェック柄スカート', category: 'skirts', price: 6100, stock: false, tags: ['check'], sale: false, isNew: false, img: 'https://picsum.photos/seed/s5/400/260' },
+    { id: 'p19', name: 'ミニスカート', category: 'skirts', price: 4200, stock: true, tags: ['mini'], sale: true, isNew: false, img: 'https://picsum.photos/seed/s6/400/260' },
+
+    // accessories (6 items)
+    { id: 'p4', name: 'アクセサリーA', category: 'accessories', price: 1800, stock: true, tags: [], sale: true, isNew: false, img: 'https://picsum.photos/seed/a1/400/260' },
+    { id: 'p20', name: 'アクセサリーB', category: 'accessories', price: 1500, stock: true, tags: [], sale: false, isNew: true, img: 'https://picsum.photos/seed/a2/400/260' },
+    { id: 'p21', name: 'アクセサリーC', category: 'accessories', price: 2100, stock: false, tags: [], sale: false, isNew: false, img: 'https://picsum.photos/seed/a3/400/260' },
+    { id: 'p22', name: 'アクセサリーD', category: 'accessories', price: 2300, stock: true, tags: [], sale: true, isNew: false, img: 'https://picsum.photos/seed/a4/400/260' },
+    { id: 'p23', name: 'アクセサリーE', category: 'accessories', price: 1700, stock: true, tags: [], sale: false, isNew: false, img: 'https://picsum.photos/seed/a5/400/260' },
+    { id: 'p24', name: 'アクセサリーF', category: 'accessories', price: 2600, stock: true, tags: [], sale: false, isNew: true, img: 'https://picsum.photos/seed/a6/400/260' }
   ];
 
   // localStorage キー
