@@ -22,47 +22,85 @@
       <div class="col-12 col-lg-9">
         <!-- カタログビュー -->
         <section id="viewCatalog">
-          <div class="row g-3 align-items-end mb-3">
-            <div class="col-12 col-md-3">
-              <label for="category" class="form-label">カテゴリ</label>
-              <select id="category" class="form-select">
-                <option value="all">すべて</option>
-                <option value="dresses">dresses</option>
-                <option value="tops">tops</option>
-                <option value="skirts">skirts</option>
-                <option value="accessories">accessories</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-3">
-              <label for="sort" class="form-label">並び替え</label>
-              <select id="sort" class="form-select">
-                <option value="new">新着</option>
-                <option value="price_asc">価格(安い順)</option>
-                <option value="price_desc">価格(高い順)</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-3">
-              <div class="form-check mt-4">
-                <input class="form-check-input" type="checkbox" id="inStock">
-                <label class="form-check-label" for="inStock">在庫ありのみ</label>
+          <div class="row g-4">
+            <!-- 左サイド: フィルター -->
+            <aside class="col-12 col-lg-3">
+              <div class="position-sticky" style="top: 1rem;">
+                <div class="mb-3">
+                  <label for="category" class="form-label">カテゴリ</label>
+                  <select id="category" class="form-select">
+                    <option value="all">すべて</option>
+                    <option value="dresses">dresses</option>
+                    <option value="tops">tops</option>
+                    <option value="skirts">skirts</option>
+                    <option value="accessories">accessories</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="sort" class="form-label">並び替え</label>
+                  <select id="sort" class="form-select">
+                    <option value="new">新着</option>
+                    <option value="price_asc">価格(安い順)</option>
+                    <option value="price_desc">価格(高い順)</option>
+                  </select>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="inStock">
+                  <label class="form-check-label" for="inStock">在庫ありのみ</label>
+                </div>
+                <hr>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="freeShip">
+                  <label class="form-check-label" for="freeShip">送料無料(¥5,000以上)</label>
+                </div>
+                <div class="row g-2 mb-3">
+                  <div class="col-6">
+                    <label for="priceMin" class="form-label">最低価格</label>
+                    <input id="priceMin" type="number" min="0" step="100" class="form-control" placeholder="0">
+                  </div>
+                  <div class="col-6">
+                    <label for="priceMax" class="form-label">最高価格</label>
+                    <input id="priceMax" type="number" min="0" step="100" class="form-control" placeholder="10000">
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <!-- 右側: ヒーローのみ（下段でリストはフル幅表示） -->
+            <div class="col-12 col-lg-9">
+              <!-- シーズナル・ヒーローバナー（右側上部） -->
+              <div class="mb-3">
+                <div class="position-relative overflow-hidden rounded" style="background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat; min-height: 180px;">
+                  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,.35);"></div>
+                  <div class="position-relative p-4 p-md-5 text-white">
+                    <h2 class="h3 fw-bold mb-2">Autumn Collection</h2>
+                    <p class="mb-3">トレンドの新作で、毎日をもっと素敵に。</p>
+                    <div class="d-flex gap-2">
+                      <button id="heroShowNew" class="btn btn-light btn-sm">新着を見る</button>
+                      <button id="heroShowDresses" class="btn btn-outline-light btn-sm">ドレス特集</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                <div class="mb-2">
+                  <span id="badgeNew" class="badge text-bg-primary me-2" role="button">新着</span>
+                  <span id="badgeDresses" class="badge text-bg-secondary me-2" role="button">dresses</span>
+                  <span id="badgeTops" class="badge text-bg-secondary me-2" role="button">tops</span>
+                  <span id="badgeSkirts" class="badge text-bg-secondary me-2" role="button">skirts</span>
+                  <span id="badgeAccessories" class="badge text-bg-secondary me-2" role="button">accessories</span>
+                </div>
+                <div class="ms-auto text-end">
+                  <div class="small mb-1">合計: <span id="total">¥0</span></div>
+                  <button id="checkoutBtn" class="btn btn-primary btn-sm">レジへ</button>
+                </div>
+              </div>
+
+              <div id="list" class="row g-3">
+                <!-- 商品カードが追加されます -->
               </div>
             </div>
-            <div class="col-12 col-md-3 text-md-end">
-              <div class="mb-2">合計: <span id="total">¥0</span></div>
-              <button id="checkoutBtn" class="btn btn-primary btn-sm">レジへ</button>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <span id="badgeNew" class="badge text-bg-primary me-2" role="button">新着</span>
-            <span id="badgeDresses" class="badge text-bg-secondary me-2" role="button">dresses</span>
-            <span id="badgeTops" class="badge text-bg-secondary me-2" role="button">tops</span>
-            <span id="badgeSkirts" class="badge text-bg-secondary me-2" role="button">skirts</span>
-            <span id="badgeAccessories" class="badge text-bg-secondary me-2" role="button">accessories</span>
-          </div>
-
-          <div id="list" class="row g-3">
-            <!-- 商品カードが追加されます -->
           </div>
         </section>
 

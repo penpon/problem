@@ -62,6 +62,9 @@
   const completeBtn = $('#completeBtn');
   const backHome = $('#backHome');
   const orderNoEl = $('#orderNo');
+  // ヒーローバナー CTA
+  const heroShowNew = $('#heroShowNew');
+  const heroShowDresses = $('#heroShowDresses');
 
   const viewCatalog = $('#viewCatalog');
   const viewCheckout = $('#viewCheckout');
@@ -75,6 +78,9 @@
   const categorySel = $('#category');
   const sortSel = $('#sort');
   const inStockCb = $('#inStock');
+  const freeShipCb = $('#freeShip'); // 送料無料（しきい値で判定）
+  const priceMinInput = $('#priceMin');
+  const priceMaxInput = $('#priceMax');
 
   // 認証フォーム
   const loginEmail = $('#loginEmail');
@@ -131,11 +137,18 @@
     const cat = categorySel ? categorySel.value : 'all';
     const sort = sortSel ? sortSel.value : 'new';
     const onlyStock = inStockCb ? inStockCb.checked : false;
+    const freeShip = freeShipCb ? freeShipCb.checked : false;
+    const priceMin = priceMinInput && priceMinInput.value !== '' ? Number(priceMinInput.value) : null;
+    const priceMax = priceMaxInput && priceMaxInput.value !== '' ? Number(priceMaxInput.value) : null;
+    const FREE_SHIP_THRESHOLD = 5000;
 
     let arr = PRODUCTS.slice();
 
     if (cat !== 'all') arr = arr.filter(p => p.category === cat);
     if (onlyStock) arr = arr.filter(p => p.stock);
+    if (freeShip) arr = arr.filter(p => p.price >= FREE_SHIP_THRESHOLD);
+    if (priceMin != null && !Number.isNaN(priceMin)) arr = arr.filter(p => p.price >= priceMin);
+    if (priceMax != null && !Number.isNaN(priceMax)) arr = arr.filter(p => p.price <= priceMax);
 
     if (sort === 'price_asc') arr.sort((a,b)=>a.price-b.price);
     if (sort === 'price_desc') arr.sort((a,b)=>b.price-a.price);
@@ -397,6 +410,9 @@
     if (categorySel) categorySel.addEventListener('change', renderCatalog);
     if (sortSel) sortSel.addEventListener('change', renderCatalog);
     if (inStockCb) inStockCb.addEventListener('change', renderCatalog);
+    if (freeShipCb) freeShipCb.addEventListener('change', renderCatalog);
+    if (priceMinInput) priceMinInput.addEventListener('input', renderCatalog);
+    if (priceMaxInput) priceMaxInput.addEventListener('input', renderCatalog);
 
     // バッジでカテゴリ切り替え
     if (badgeNew) badgeNew.addEventListener('click', () => { if (sortSel) sortSel.value='new'; renderCatalog(); });
@@ -404,6 +420,24 @@
     if (badgeTops) badgeTops.addEventListener('click', () => { if (categorySel) categorySel.value='tops'; renderCatalog(); });
     if (badgeSkirts) badgeSkirts.addEventListener('click', () => { if (categorySel) categorySel.value='skirts'; renderCatalog(); });
     if (badgeAccessories) badgeAccessories.addEventListener('click', () => { if (categorySel) categorySel.value='accessories'; renderCatalog(); });
+
+    // ヒーローバナー CTA
+    if (heroShowNew){
+      heroShowNew.addEventListener('click', () => {
+        if (sortSel) sortSel.value = 'new';
+        renderCatalog();
+        const listEl = document.getElementById('list');
+        if (listEl) listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+    if (heroShowDresses){
+      heroShowDresses.addEventListener('click', () => {
+        if (categorySel) categorySel.value = 'dresses';
+        renderCatalog();
+        const listEl = document.getElementById('list');
+        if (listEl) listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
 
     // チェックアウト/完了
     if (checkoutBtn) checkoutBtn.addEventListener('click', () => doCheckout());
