@@ -3,7 +3,6 @@
   "title": "初めてのJavaScript",
   "description": "初めてのJavaScriptでボタンをクリックしてalert()を表示する基本的なインタラクションを学習します",
   "category": "javascript-basics",
-  "difficulty": 1,
   "instructions": [
     "JavaScriptファイルの作成とHTMLへの読み込み方法を理解する",
     "ボタンクリック時にalert()ダイアログを表示する方法を学ぶ",

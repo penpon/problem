@@ -3,7 +3,6 @@
   "title": "配列ランダム組み合わせ",
   "description": "2つの配列からランダムに1つずつ取り、結合して表示します",
   "category": "javascript-advanced",
-  "difficulty": 2,
   "instructions": [
     "形容詞配列と名詞配列を用意する",
     "ボタンのクリックで両配列からランダムに1つずつ選ぶ",
@@ -17,8 +16,7 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#combo { margin: 12px 0; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#combo { margin: 12px 0; }\nbutton { margin-right: 8px; }"
-    }
-,
+    },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
       "expected": "const adjs = ['速い','楽しい','小さな','新しい'];\nconst nouns = ['犬','ゲーム','本','道具'];\nconst out = document.getElementById('combo');\nfunction pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }\ndocument.getElementById('gen').addEventListener('click', () => {\n  out.textContent = pick(adjs) + ' ' + pick(nouns);\n});"
@@ -28,12 +26,47 @@
     "behavior": "ボタンをクリックすると 形容詞+名詞 の組み合わせが表示される"
   },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
-    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
-    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
-    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
-    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
-    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    },
+    {
+      "id": "css-content",
+      "name": "CSSスタイル",
+      "type": "css",
+      "message": "CSSでスタイルを設定してください"
+    },
+    {
+      "id": "js-content",
+      "name": "JavaScript",
+      "type": "js",
+      "message": "JavaScriptで動的な動作を実装してください"
+    }
   ]
 }

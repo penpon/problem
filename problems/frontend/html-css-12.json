@@ -3,7 +3,6 @@
   "title": "12: 簡単なアニメーション",
   "description": "transitionとkeyframesを使った基本的なアニメーション効果",
   "category": "html-css-basics",
-  "difficulty": 2,
   "instructions": [
     ".basic-hoverクラスにtransition: all 0.3s easeを設定してください",
     ".basic-hover:hoverにtransform: scale(1.1)とbackground-color: #3498dbを設定してください",

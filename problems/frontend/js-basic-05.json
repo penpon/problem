@@ -3,7 +3,6 @@
   "title": "要素取得入門",
   "description": "getElementById、querySelector等を使ってHTML要素を取得し、DOM操作の基礎を学習します",
   "category": "javascript-basics",
-  "difficulty": 2,
   "instructions": [
     "getElementById()でID指定要素を取得する",
     "querySelector()でCSS指定要素を取得する",
@@ -18,8 +17,7 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#demo-element { margin-top: 8px; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#demo-element { margin-top: 8px; }"
-    }
-,
+    },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
       "expected": "const el = document.getElementById('demo-element');\nel.textContent = 'JavaScriptで変更されました';"

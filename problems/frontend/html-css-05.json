@@ -3,7 +3,6 @@
   "title": "05: リストの作成",
   "description": "ulとolタグを使用してリストを作成する方法を学習しましょう。",
   "category": "html-css-basics",
-  "difficulty": 3,
   "instructions": [
     "h1タグで「リスト表示」のメインタイトルを追加してください",
     "h2タグで「順序なしリスト」のサブタイトルを追加してください",

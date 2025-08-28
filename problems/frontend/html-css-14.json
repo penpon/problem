@@ -3,7 +3,6 @@
   "title": "14: シンプルカード",
   "description": "Flexbox、影、角丸を組み合わせて美しいカードを作る",
   "category": "html-css-basics",
-  "difficulty": 3,
   "instructions": [
     ".cardクラスにbackground: white、border-radius: 16px、box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1)、transition: all 0.3s ease、overflow: hiddenを設定してください",
     ".card:hoverクラスにtransform: translateY(-8px)、box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15)を設定してください",

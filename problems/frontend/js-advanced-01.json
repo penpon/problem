@@ -3,7 +3,6 @@
   "title": "テキスト内容変更",
   "description": "textContentで要素のテキストを変更する最小の実装を行います",
   "category": "javascript-advanced",
-  "difficulty": 3,
   "instructions": [
     "ボタンのクリックイベントを設定する",
     "クリック時に要素のtextContentを書き換える"
@@ -26,12 +25,47 @@
     "behavior": "ボタンをクリックすると #text のテキストが '変更されました' に変わる"
   },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
-    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
-    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
-    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
-    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
-    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    },
+    {
+      "id": "css-content",
+      "name": "CSSスタイル",
+      "type": "css",
+      "message": "CSSでスタイルを設定してください"
+    },
+    {
+      "id": "js-content",
+      "name": "JavaScript",
+      "type": "js",
+      "message": "JavaScriptで動的な動作を実装してください"
+    }
   ]
 }

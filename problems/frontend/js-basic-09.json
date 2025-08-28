@@ -3,7 +3,6 @@
   "title": "カウンター拡張",
   "description": "基本カウンターに追加機能を実装し、リセット・制限・統計機能付きの高度なカウンターを作成します",
   "category": "javascript-basics",
-  "difficulty": 3,
   "instructions": [
     "基本的なカウンター機能に追加機能を実装する",
     "リセットボタンでカウンターを0に戻す",
@@ -18,8 +17,7 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#counter-display { margin: 8px 0; font-size: 2rem; }\nbutton { margin-right: 6px; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#counter-display { margin: 8px 0; font-size: 2rem; }\nbutton { margin-right: 6px; }"
-    }
-,
+    },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
       "expected": "let value = 0;\nconst MIN = -10;\nconst MAX = 10;\n\nconst display = document.getElementById('counter-display');\n\nfunction clamp(n) {\n  return Math.max(MIN, Math.min(MAX, n));\n}\n\nfunction update() {\n  display.textContent = String(value);\n}\n\ndocument.getElementById('minus10-btn').addEventListener('click', () => {\n  value = clamp(value - 10);\n  update();\n});\n\ndocument.getElementById('minus1-btn').addEventListener('click', () => {\n  value = clamp(value - 1);\n  update();\n});\n\ndocument.getElementById('plus1-btn').addEventListener('click', () => {\n  value = clamp(value + 1);\n  update();\n});\n\ndocument.getElementById('plus10-btn').addEventListener('click', () => {\n  value = clamp(value + 10);\n  update();\n});\n\ndocument.getElementById('reset-btn').addEventListener('click', () => {\n  value = 0;\n  update();\n});\n\nupdate();"

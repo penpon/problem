@@ -3,7 +3,6 @@
   "title": "11: 影と角丸",
   "description": "box-shadowとborder-radiusで美しいデザインを作る",
   "category": "html-css-basics",
-  "difficulty": 3,
   "instructions": [
     ".basic-shadowクラスにbox-shadow: 2px 2px 5px rgba(0,0,0,0.2)を設定してください",
     ".small-radiusクラスにborder-radius: 8pxを設定してください",

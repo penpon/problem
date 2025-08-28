@@ -3,7 +3,6 @@
   "title": "入力値の合計",
   "description": "2つの数値入力の合計を計算して表示します",
   "category": "javascript-advanced",
-  "difficulty": 2,
   "instructions": [
     "number入力を2つ用意する",
     "ボタンで2値の合計を計算し表示する",
@@ -17,21 +16,57 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\ninput { width: 100px; margin-right: 6px; }\n#sum { margin-top: 12px; }\nbutton { margin-right: 8px; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\ninput { width: 100px; margin-right: 6px; }\n#sum { margin-top: 12px; }\nbutton { margin-right: 8px; }"
-    }
-,
+    },
     "js": {
       "template": "// ここに実装してください",
       "expected": "const a = document.getElementById('a');\nconst b = document.getElementById('b');\nconst out = document.getElementById('sum');\ndocument.getElementById('calc').addEventListener('click', () => {\n  const n1 = Number(a.value || 0);\n  const n2 = Number(b.value || 0);\n  out.textContent = String(n1 + n2);\n});"
     }
   },
-  "expectedResult": { "behavior": "入力欄の数値の和がボタンクリックで #sum に表示される" },
+  "expectedResult": {
+    "behavior": "入力欄の数値の和がボタンクリックで #sum に表示される"
+  },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
-    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
-    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
-    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
-    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
-    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    },
+    {
+      "id": "css-content",
+      "name": "CSSスタイル",
+      "type": "css",
+      "message": "CSSでスタイルを設定してください"
+    },
+    {
+      "id": "js-content",
+      "name": "JavaScript",
+      "type": "js",
+      "message": "JavaScriptで動的な動作を実装してください"
+    }
   ]
 }

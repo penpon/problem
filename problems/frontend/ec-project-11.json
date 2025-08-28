@@ -3,10 +3,9 @@
   "title": "66: レビューシステム",
   "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
   "category": "ec-project",
-  "difficulty": 5,
   "instructions": [
     "高度なJavaScript機能を実装してください",
-    "データベース連携を模擬してください", 
+    "データベース連携を模擬してください",
     "ユーザビリティを最優先に設計してください",
     "セキュリティ対策を考慮してください"
   ],
@@ -25,27 +24,25 @@
     }
   },
   "expectedResult": {
-    "console": "高度機能システム初期化完了",
-    "behavior": "ECプロジェクトの高度な機能が統合されたプロフェッショナルシステムが動作する"
+    "console": "",
+    "behavior": "商品カードが表示され、1〜3列でレスポンシブに並ぶ"
   },
   "checks": [
     {
-      "id": "advanced-functionality",
-      "name": "高度機能実装",
+      "id": "js-map",
+      "name": "map() による生成",
       "type": "js",
-      "message": "プロフェッショナルレベルの高度な機能が実装されている必要があります"
+      "message": "配列の map() でカードHTMLを生成し、コンテナへ挿入していること"
     },
     {
-      "id": "system-integration",
-      "name": "システム統合",
-      "type": "js",
-      "message": "各機能が統合されたシステムとして動作する必要があります"
+      "id": "bootstrap-grid",
+      "name": "Bootstrapグリッド",
+      "type": "css",
+      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
     }
   ],
   "hints": [
-    "模擬APIを実装してデータベース連携をシミュレートしましょう",
-    "Promise と async/await を活用して非同期処理を適切に実装しましょう",
-    "エラーハンドリングとローディング状態を適切に処理しましょう",
-    "セキュリティ対策を考慮した実装を心がけましょう"
+    "products.map(...) を .join('') で連結し innerHTML へ代入",
+    ".container > .row > .col-12 col-sm-6 col-lg-4 の列指定でレイアウト"
   ]
 }

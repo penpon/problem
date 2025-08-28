@@ -3,10 +3,9 @@
   "title": "61: 商品ギャラリー統合システム",
   "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
   "category": "ec-project",
-  "difficulty": 5,
   "instructions": [
     "高度なJavaScript機能を実装してください",
-    "データベース連携を模擬してください", 
+    "データベース連携を模擬してください",
     "ユーザビリティを最優先に設計してください",
     "セキュリティ対策を考慮してください"
   ],
@@ -25,25 +24,25 @@
     }
   },
   "expectedResult": {
-    "console": "ギャラリーシステム初期化完了",
-    "behavior": "商品ギャラリーが表示され、フィルタリング、ソート、ライトボックス機能が動作する"
+    "console": "",
+    "behavior": "商品カードが表示され、1〜3列でレスポンシブに並ぶ"
   },
   "checks": [
     {
-      "id": "gallery-display",
-      "name": "ギャラリー表示",
-      "type": "structure",
-      "message": "商品がギャラリー形式で表示される必要があります"
+      "id": "js-map",
+      "name": "map() による生成",
+      "type": "js",
+      "message": "配列の map() でカードHTMLを生成し、コンテナへ挿入していること"
     },
     {
-      "id": "filter-sort",
-      "name": "フィルタリング・ソート",
-      "type": "js",
-      "message": "カテゴリフィルターとソート機能が実装されている必要があります"
+      "id": "bootstrap-grid",
+      "name": "Bootstrapグリッド",
+      "type": "css",
+      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
     }
   ],
   "hints": [
-    "CSSグリッドやBootstrapのグリッドシステムを活用してレスポンシブなギャラリーを作成しましょう",
-    "ライトボックス機能は固定位置要素（position: fixed）を使用して実装しましょう"
+    "products.map(...) を .join('') で連結し innerHTML へ代入",
+    ".container > .row > .col-12 col-sm-6 col-lg-4 の列指定でレイアウト"
   ]
 }

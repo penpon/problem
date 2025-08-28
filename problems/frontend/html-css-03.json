@@ -3,7 +3,6 @@
   "title": "03: 画像の表示",
   "description": "imgタグを使用して画像を表示する方法を学習しましょう。",
   "category": "html-css-basics",
-  "difficulty": 2,
   "instructions": [
     "h1タグで「画像表示」の見出しを追加してください",
     "imgタグを使用して画像を表示してください",

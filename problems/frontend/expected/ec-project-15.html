@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Expected EC Project 15</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar navbar-expand-lg navbar-light bg-light px-3 mb-3">
+    <a class="navbar-brand" href="#">🛍️ サンプルショップ</a>
+    <div class="ms-auto d-flex align-items-center gap-2">
+      <a id="goAdmin" class="btn btn-outline-secondary btn-sm" href="#">管理</a>
+      <button id="goCart" class="btn btn-dark btn-sm">🛒 カート (<span id="cartCount">0</span>)</button>
+      <div id="authArea" class="ms-2"></div>
+    </div>
+  </header>
+
+  <main class="container mb-5">
+    <!-- カタログビュー -->
+    <section id="viewCatalog">
+      <div class="row g-3 align-items-end mb-3">
+        <div class="col-12 col-md-3">
+          <label for="category" class="form-label">カテゴリ</label>
+          <select id="category" class="form-select">
+            <option value="all">すべて</option>
+            <option value="dresses">dresses</option>
+            <option value="tops">tops</option>
+            <option value="skirts">skirts</option>
+            <option value="accessories">accessories</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-3">
+          <label for="sort" class="form-label">並び替え</label>
+          <select id="sort" class="form-select">
+            <option value="new">新着</option>
+            <option value="price_asc">価格(安い順)</option>
+            <option value="price_desc">価格(高い順)</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check mt-4">
+            <input class="form-check-input" type="checkbox" id="inStock">
+            <label class="form-check-label" for="inStock">在庫ありのみ</label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 text-md-end">
+          <div class="mb-2">合計: <span id="total">¥0</span></div>
+          <button id="checkoutBtn" class="btn btn-primary btn-sm">レジへ</button>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <span id="badgeNew" class="badge text-bg-primary me-2" role="button">新着</span>
+        <span id="badgeDresses" class="badge text-bg-secondary me-2" role="button">dresses</span>
+        <span id="badgeTops" class="badge text-bg-secondary me-2" role="button">tops</span>
+        <span id="badgeSkirts" class="badge text-bg-secondary me-2" role="button">skirts</span>
+        <span id="badgeAccessories" class="badge text-bg-secondary me-2" role="button">accessories</span>
+      </div>
+
+      <div id="list" class="row g-3">
+        <!-- 商品カードが追加されます -->
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <strong>ミニカート</strong>
+          <div>小計: <span id="miniCartTotal">¥0</span></div>
+        </div>
+        <ul id="miniCartList" class="list-group list-group-flush">
+          <!-- ミニカートアイテム -->
+        </ul>
+        <div class="card-body text-end">
+          <button id="goCheckoutMini" class="btn btn-success">チェックアウトへ</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- チェックアウトビュー -->
+    <section id="viewCheckout" class="d-none">
+      <h2 class="h4 mb-3">チェックアウト</h2>
+      <ul id="cartList" class="list-group mb-3"></ul>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <strong>合計:</strong>
+        <span id="totalCheckout">¥0</span>
+      </div>
+      <div class="d-flex gap-2">
+        <button id="backToCatalog" class="btn btn-outline-secondary">カタログに戻る</button>
+        <button id="completeBtn" class="btn btn-primary">購入を確定</button>
+      </div>
+    </section>
+
+    <!-- 完了ビュー -->
+    <section id="viewComplete" class="d-none">
+      <div class="alert alert-success" role="alert">
+        ご購入ありがとうございました！ 注文番号: <strong id="orderNo">-</strong>
+      </div>
+      <button id="backHome" class="btn btn-outline-primary">トップへ</button>
+    </section>
+
+    <!-- 認証ビュー -->
+    <section id="viewAuth" class="d-none">
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
+          <h3 class="h5">ログイン</h3>
+          <div class="mb-2">
+            <label class="form-label" for="loginEmail">メール</label>
+            <input id="loginEmail" class="form-control" type="email">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="loginPassword">パスワード</label>
+            <input id="loginPassword" class="form-control" type="password">
+          </div>
+          <button id="loginBtn" class="btn btn-dark">ログイン</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <h3 class="h5">新規登録</h3>
+          <div class="mb-2">
+            <label class="form-label" for="registerEmail">メール</label>
+            <input id="registerEmail" class="form-control" type="email">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="registerPassword">パスワード</label>
+            <input id="registerPassword" class="form-control" type="password">
+          </div>
+          <button id="registerBtn" class="btn btn-outline-dark">登録</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 管理ビュー -->
+    <section id="viewAdmin" class="d-none">
+      <h2 class="h5 mb-3">購入ログ</h2>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>ユーザー</th>
+              <th>アイテム</th>
+              <th>合計</th>
+              <th>注文番号</th>
+              <th>日時</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center text-muted py-4">
+    <small>&copy; Sample EC</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- script.js は学習システムが自動で注入します -->
+</body>
+</html>

@@ -3,7 +3,6 @@
   "title": "複数ボタン",
   "description": "複数のボタンを同時に管理し、それぞれに異なる機能を実装してDOM操作の応用を学習します",
   "category": "javascript-basics",
-  "difficulty": 2,
   "instructions": [
     "複数のボタンにそれぞれ異なるイベントを設定する",
     "ボタンごとに異なるメッセージや処理を実行する",
@@ -18,8 +17,7 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#message-display { margin: 8px 0; }\nbutton { margin-right: 6px; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#message-display { margin: 8px 0; }\nbutton { margin-right: 6px; }"
-    }
-,
+    },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
       "expected": "const display = document.getElementById('message-display');\n\ndocument.getElementById('welcome-btn').addEventListener('click', () => {\n  display.textContent = 'ようこそ！';\n});\n\ndocument.getElementById('happy-btn').addEventListener('click', () => {\n  display.textContent = 'うれしい！';\n});\n\ndocument.getElementById('rocket-btn').addEventListener('click', () => {\n  display.textContent = '発進！';\n});"

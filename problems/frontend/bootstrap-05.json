@@ -3,7 +3,6 @@
   "title": "画像のレスポンシブ（.img-fluid）",
   "description": "画像をレスポンシブ表示する最小例（.img-fluid）",
   "category": "bootstrap",
-  "difficulty": 1,
   "instructions": [
     "Bootstrap CDNを読み込む",
     "container内に画像(img)を1枚配置し、.img-fluid を付与",
@@ -14,14 +13,30 @@
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>課題を実装してください</h1>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>レスポンシブ画像</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <img src=\"https://via.placeholder.com/800x400?text=Product+Image\" alt=\"商品画像\" class=\"img-fluid\">\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>"
     },
-    "css": { "template": "/* ここに実装してください */", "expected": "" },
-    "js": { "template": "// ここに実装してください", "expected": "" }
+    "css": {
+      "template": "/* ここに実装してください */",
+      "expected": ""
+    },
+    "js": {
+      "template": "// ここに実装してください",
+      "expected": ""
+    }
   },
   "expectedResult": {
     "responsiveImage": ".img-fluid により画像が親幅で縮小される"
   },
   "checks": [
-    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "img-fluid", "name": ".img-fluid", "type": "structure", "message": ".img-fluid を付けてください" }
+    {
+      "id": "bootstrap-css",
+      "name": "Bootstrap CSS",
+      "type": "structure",
+      "message": "Bootstrap CSS CDNを読み込んでください"
+    },
+    {
+      "id": "img-fluid",
+      "name": ".img-fluid",
+      "type": "structure",
+      "message": ".img-fluid を付けてください"
+    }
   ]
 }

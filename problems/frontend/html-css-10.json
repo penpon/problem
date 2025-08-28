@@ -3,7 +3,6 @@
   "title": "10: レイアウト基礎",
   "description": "displayプロパティと基本的なレイアウト手法を学ぶ",
   "category": "html-css-basics",
-  "difficulty": 3,
   "instructions": [
     ".flex-containerクラスにdisplay: flexを設定してください",
     ".inline-block-itemクラスにdisplay: inline-block、width: 120px、height: 80pxを設定してください",

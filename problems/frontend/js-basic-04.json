@@ -3,7 +3,6 @@
   "title": "基本計算",
   "description": "JavaScriptで基本的な四則演算を行い、計算結果をWebページに表示する方法を学習します",
   "category": "javascript-basics",
-  "difficulty": 2,
   "instructions": [
     "四則演算（+、-、*、/）の基本操作を理解する",
     "数値型の変数を作成して計算を実行する",

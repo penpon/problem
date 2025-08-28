@@ -3,7 +3,6 @@
   "title": "カウンター基本",
   "description": "基本的なカウンター機能を実装し、ボタンクリックで数値を増減させる仕組みを学習します",
   "category": "javascript-basics",
-  "difficulty": 2,
   "instructions": [
     "カウンター変数を初期化する",
     "増加ボタンでカウンターを+1する",
@@ -18,8 +17,7 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#counter-display { margin: 8px 0; font-size: 2rem; }\nbutton { margin-right: 6px; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#counter-display { margin: 8px 0; font-size: 2rem; }\nbutton { margin-right: 6px; }"
-    }
-,
+    },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
       "expected": "let counter = 0;\nconst display = document.getElementById('counter-display');\n\nfunction update() {\n  display.textContent = String(counter);\n}\n\ndocument.getElementById('plus-btn').addEventListener('click', () => {\n  counter += 1;\n  update();\n});\n\ndocument.getElementById('minus-btn').addEventListener('click', () => {\n  counter -= 1;\n  update();\n});\n\ndocument.getElementById('reset-btn').addEventListener('click', () => {\n  counter = 0;\n  update();\n});\n\nupdate();"

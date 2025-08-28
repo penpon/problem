@@ -3,7 +3,6 @@
   "title": "スペーシングとグリッド（ユーティリティ）",
   "description": "row/colとg系ユーティリティで余白を取りつつ2ブロックを並べる",
   "category": "bootstrap",
-  "difficulty": 2,
   "instructions": [
     "Bootstrap CDNを読み込む",
     "container内にrow gy-3を作成し、col-12 col-md-6のブロックを2つ配置",
@@ -14,18 +13,49 @@
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>課題を実装してください</h1>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>スペーシングとグリッド</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <div class=\"row gy-3\">\n      <div class=\"col-12 col-md-6\">人気商品ランキング</div>\n      <div class=\"col-12 col-md-6\">新着商品一覧</div>\n    </div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>"
     },
-    "css": { "template": "/* ここに実装してください */", "expected": "" },
-    "js": { "template": "// ここに実装してください", "expected": "" }
+    "css": {
+      "template": "/* ここに実装してください */",
+      "expected": ""
+    },
+    "js": {
+      "template": "// ここに実装してください",
+      "expected": ""
+    }
   },
   "expectedResult": {
     "gridResponsive": "md以上で2列、未満で1列になる",
     "spacing": "gy-3 により行間に余白ができている"
   },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "row", "name": ".row", "type": "structure", "message": ".row を使ってください" },
-    { "id": "cols", "name": "col-12 col-md-6", "type": "structure", "message": "col-12 col-md-6 を2つ配置してください" },
-    { "id": "gap", "name": "gy-3", "type": "structure", "message": "gy-3 などg系ユーティリティを使ってください" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "bootstrap-css",
+      "name": "Bootstrap CSS",
+      "type": "structure",
+      "message": "Bootstrap CSS CDNを読み込んでください"
+    },
+    {
+      "id": "row",
+      "name": ".row",
+      "type": "structure",
+      "message": ".row を使ってください"
+    },
+    {
+      "id": "cols",
+      "name": "col-12 col-md-6",
+      "type": "structure",
+      "message": "col-12 col-md-6 を2つ配置してください"
+    },
+    {
+      "id": "gap",
+      "name": "gy-3",
+      "type": "structure",
+      "message": "gy-3 などg系ユーティリティを使ってください"
+    }
   ]
 }

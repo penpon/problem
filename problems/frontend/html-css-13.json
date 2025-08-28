@@ -3,7 +3,6 @@
   "title": "13: Flexbox基礎",
   "description": "display: flexで現代的なレイアウトを作り、要素の配置を自由自在にコントロールする",
   "category": "html-css-basics",
-  "difficulty": 2,
   "instructions": [
     ".flex-containerクラスにdisplay: flexを設定してください",
     ".justify-centerクラスにjustify-content: centerを設定してください",

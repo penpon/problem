@@ -3,7 +3,6 @@
   "title": "01: 基本的なHTML",
   "description": "HTMLの基本構造を学習し、最初のWebページを作成しましょう。",
   "category": "html-css-basics",
-  "difficulty": 1,
   "instructions": [
     "DOCTYPE宣言を追加してください",
     "html、head、bodyタグを使用してください",
@@ -12,7 +11,7 @@
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>課題実装</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
       "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>はじめてのHTML</title>\n</head>\n<body>\n    <p>こんにちは！HTMLの世界へようこそ！</p>\n</body>\n</html>"
     },
     "css": {

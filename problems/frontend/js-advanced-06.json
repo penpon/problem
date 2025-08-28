@@ -3,7 +3,6 @@
   "title": "クラス切替 (classList.toggle)",
   "description": "ボタンで要素のクラスをトグルして見た目を切り替えます",
   "category": "javascript-advanced",
-  "difficulty": 2,
   "instructions": [
     "対象要素とボタンを用意する",
     "クリックで classList.toggle を使ってクラスを付け外しする"
@@ -16,21 +15,57 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#box { padding: 8px 12px; border: 1px solid #ccc; display: inline-block; margin-right: 8px; }\n.active { background: #e6f4ff; border-color: #60a5fa; }\nbutton { margin-right: 8px; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#box { padding: 8px 12px; border: 1px solid #ccc; display: inline-block; margin-right: 8px; }\n.active { background: #e6f4ff; border-color: #60a5fa; }\nbutton { margin-right: 8px; }"
-    }
-,
+    },
     "js": {
       "template": "// ここに実装してください",
       "expected": "const box = document.getElementById('box');\ndocument.getElementById('toggle').addEventListener('click', () => {\n  box.classList.toggle('active');\n});"
     }
   },
-  "expectedResult": { "behavior": "ボタンクリックごとに #box に active クラスが付いたり外れたりする" },
+  "expectedResult": {
+    "behavior": "ボタンクリックごとに #box に active クラスが付いたり外れたりする"
+  },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
-    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
-    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
-    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
-    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
-    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    },
+    {
+      "id": "css-content",
+      "name": "CSSスタイル",
+      "type": "css",
+      "message": "CSSでスタイルを設定してください"
+    },
+    {
+      "id": "js-content",
+      "name": "JavaScript",
+      "type": "js",
+      "message": "JavaScriptで動的な動作を実装してください"
+    }
   ]
 }

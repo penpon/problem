@@ -3,7 +3,6 @@
   "title": "商品一覧グリッド（sm:1列 / md:2列）",
   "description": "グリッドで商品を並べる最小例",
   "category": "bootstrap",
-  "difficulty": 2,
   "instructions": [
     "Bootstrap CDNを読み込む",
     "container内に row g-3 を作成し、col-12 col-md-6 のアイテムを4つ配置",
@@ -14,15 +13,36 @@
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>課題を実装してください</h1>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>商品一覧グリッド</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <div class=\"row g-3\">\n      <div class=\"col-12 col-md-6\">商品1</div>\n      <div class=\"col-12 col-md-6\">商品2</div>\n      <div class=\"col-12 col-md-6\">商品3</div>\n      <div class=\"col-12 col-md-6\">商品4</div>\n    </div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>"
     },
-    "css": { "template": "/* ここに実装してください */", "expected": "" },
-    "js": { "template": "// ここに実装してください", "expected": "" }
+    "css": {
+      "template": "/* ここに実装してください */",
+      "expected": ""
+    },
+    "js": {
+      "template": "// ここに実装してください",
+      "expected": ""
+    }
   },
   "expectedResult": {
     "gridSimple": "smで1列、mdで2列にレイアウトされる"
   },
   "checks": [
-    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "row", "name": ".row.g-3", "type": "structure", "message": ".row.g-3 を使ってください" },
-    { "id": "cols", "name": "col-12 col-md-6", "type": "structure", "message": "col-12 col-md-6 を4つ配置してください" }
+    {
+      "id": "bootstrap-css",
+      "name": "Bootstrap CSS",
+      "type": "structure",
+      "message": "Bootstrap CSS CDNを読み込んでください"
+    },
+    {
+      "id": "row",
+      "name": ".row.g-3",
+      "type": "structure",
+      "message": ".row.g-3 を使ってください"
+    },
+    {
+      "id": "cols",
+      "name": "col-12 col-md-6",
+      "type": "structure",
+      "message": "col-12 col-md-6 を4つ配置してください"
+    }
   ]
 }

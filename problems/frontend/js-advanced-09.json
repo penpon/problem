@@ -3,7 +3,6 @@
   "title": "タイマー基本 (setInterval)",
   "description": "setIntervalでカウントを開始・停止する最小の実装を行います",
   "category": "javascript-advanced",
-  "difficulty": 3,
   "instructions": [
     "カウント表示要素と開始/停止ボタンを用意する",
     "開始で setInterval により一定間隔で数値を+1する",
@@ -17,21 +16,57 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#count { margin: 12px 0; font-size: 20px; }\nbutton { margin-right: 8px; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#count { margin: 12px 0; font-size: 20px; }\nbutton { margin-right: 8px; }"
-    }
-,
+    },
     "js": {
       "template": "// ここに実装してください",
       "expected": "let n = 0;\nlet timer = null;\nconst out = document.getElementById('count');\ndocument.getElementById('start').addEventListener('click', () => {\n  if (timer) return;\n  timer = setInterval(() => {\n    n += 1;\n    out.textContent = String(n);\n  }, 500);\n});\ndocument.getElementById('stop').addEventListener('click', () => {\n  if (timer) {\n    clearInterval(timer);\n    timer = null;\n  }\n});"
     }
   },
-  "expectedResult": { "behavior": "開始で0から0.5秒ごとに1ずつ増え、停止で増加が止まる" },
+  "expectedResult": {
+    "behavior": "開始で0から0.5秒ごとに1ずつ増え、停止で増加が止まる"
+  },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
-    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
-    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
-    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
-    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
-    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "html",
+      "name": "<html>タグ",
+      "type": "structure",
+      "message": "<html>タグが必要です"
+    },
+    {
+      "id": "head",
+      "name": "<head>セクション",
+      "type": "structure",
+      "message": "<head>セクションが必要です"
+    },
+    {
+      "id": "body",
+      "name": "<body>セクション",
+      "type": "structure",
+      "message": "<body>セクションが必要です"
+    },
+    {
+      "id": "title",
+      "name": "<title>タグ",
+      "type": "structure",
+      "message": "<title>タグと内容が必要です"
+    },
+    {
+      "id": "css-content",
+      "name": "CSSスタイル",
+      "type": "css",
+      "message": "CSSでスタイルを設定してください"
+    },
+    {
+      "id": "js-content",
+      "name": "JavaScript",
+      "type": "js",
+      "message": "JavaScriptで動的な動作を実装してください"
+    }
   ]
 }

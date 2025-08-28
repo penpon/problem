@@ -3,8 +3,6 @@
   "title": "07: 余白の設定",
   "description": "marginとpaddingを使って余白を調整し、読みやすいレイアウトを作成しましょう。",
   "category": "html-css-basics",
-  "difficulty": 3,
-  
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
@@ -21,7 +19,7 @@
   },
   "instructions": [
     "h1タグで「余白のテスト」の見出しを追加してください",
-    "class=\"box1\"のpタグを作成し、背景色lightblue、margin 20px、padding 15pxを設定してください", 
+    "class=\"box1\"のpタグを作成し、背景色lightblue、margin 20px、padding 15pxを設定してください",
     "class=\"box2\"のpタグを作成し、背景色lightgreen、margin上下10px左右0px、padding上下20px左右10pxを設定してください",
     "比較用の普通のpタグも追加してください",
     "h2タグで「余白の違いを見てみましょう」を追加してください"
@@ -36,7 +34,7 @@
     {
       "id": "html",
       "name": "<html>タグ",
-      "type": "structure", 
+      "type": "structure",
       "message": "<html>タグが必要です"
     },
     {
@@ -46,7 +44,7 @@
       "message": "<head>セクションが必要です"
     },
     {
-      "id": "body", 
+      "id": "body",
       "name": "<body>セクション",
       "type": "structure",
       "message": "<body>セクションが必要です"
@@ -54,7 +52,7 @@
     {
       "id": "title",
       "name": "<title>タグ",
-      "type": "structure", 
+      "type": "structure",
       "message": "<title>タグと内容が必要です"
     },
     {
@@ -64,7 +62,7 @@
       "message": "marginプロパティで外側余白を設定してください"
     },
     {
-      "id": "css-padding", 
+      "id": "css-padding",
       "name": "padding設定",
       "type": "css",
       "message": "paddingプロパティで内側余白を設定してください"
@@ -72,7 +70,7 @@
   ],
   "hints": [
     "marginは要素の外側の余白を設定します",
-    "paddingは要素の内側の余白を設定します", 
+    "paddingは要素の内側の余白を設定します",
     "background-colorで背景色を設定すると余白が見やすくなります",
     "クラスセレクタは .クラス名 で指定します",
     "marginやpaddingは上下左右別々に指定できます（margin: 上下 左右）"

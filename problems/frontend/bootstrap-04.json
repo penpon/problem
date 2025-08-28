@@ -3,7 +3,6 @@
   "title": "ボタン（色・サイズ・配置の最小）",
   "description": "Bootstrapのボタンを最小で使う（色/サイズ/配置）",
   "category": "bootstrap",
-  "difficulty": 1,
   "instructions": [
     "Bootstrap CDNを読み込む",
     "container内にボタンを3つ配置（.btn-primary/.btn-secondary/.btn-danger）",
@@ -14,17 +13,48 @@
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>課題を実装してください</h1>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>ボタン最小</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4 text-center\">\n    <button class=\"btn btn-primary\">購入</button>\n    <button class=\"btn btn-secondary btn-sm\">詳細</button>\n    <button class=\"btn btn-danger\">削除</button>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>"
     },
-    "css": { "template": "/* ここに実装してください */", "expected": "" },
-    "js": { "template": "// ここに実装してください", "expected": "" }
+    "css": {
+      "template": "/* ここに実装してください */",
+      "expected": ""
+    },
+    "js": {
+      "template": "// ここに実装してください",
+      "expected": ""
+    }
   },
   "expectedResult": {
     "buttons": "3種のボタンが表示され、1つは小サイズで中央寄せ"
   },
   "checks": [
-    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "primary", "name": ".btn-primary", "type": "structure", "message": ".btn-primary を配置してください" },
-    { "id": "secondary-sm", "name": ".btn-secondary.btn-sm", "type": "structure", "message": ".btn-secondary に .btn-sm を付けてください" },
-    { "id": "danger", "name": ".btn-danger", "type": "structure", "message": ".btn-danger を配置してください" },
-    { "id": "text-center", "name": ".text-center", "type": "structure", "message": ".text-center で中央寄せしてください" }
+    {
+      "id": "bootstrap-css",
+      "name": "Bootstrap CSS",
+      "type": "structure",
+      "message": "Bootstrap CSS CDNを読み込んでください"
+    },
+    {
+      "id": "primary",
+      "name": ".btn-primary",
+      "type": "structure",
+      "message": ".btn-primary を配置してください"
+    },
+    {
+      "id": "secondary-sm",
+      "name": ".btn-secondary.btn-sm",
+      "type": "structure",
+      "message": ".btn-secondary に .btn-sm を付けてください"
+    },
+    {
+      "id": "danger",
+      "name": ".btn-danger",
+      "type": "structure",
+      "message": ".btn-danger を配置してください"
+    },
+    {
+      "id": "text-center",
+      "name": ".text-center",
+      "type": "structure",
+      "message": ".text-center で中央寄せしてください"
+    }
   ]
 }

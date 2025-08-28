@@ -3,7 +3,6 @@
   "title": "09: 中央寄せ",
   "description": "text-alignとmargin autoを使って要素を中央に配置する",
   "category": "html-css-basics",
-  "difficulty": 2,
   "instructions": [
     "h1タグをtext-align: centerで中央に配置してください",
     ".center-textクラスにtext-align: centerを設定してください",

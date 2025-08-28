@@ -1,57 +1,46 @@
 {
   "id": "ec-project-05",
-  "title": "60: 検索機能システム",
-  "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
+  "title": "60: 基本検索",
+  "description": "ECプロジェクトの基本機能 - 文字列検索と表示",
   "category": "ec-project",
-  "difficulty": 5,
   "instructions": [
-    "高度なJavaScript機能を実装してください",
-    "データベース連携を模擬してください", 
-    "ユーザビリティを最優先に設計してください",
-    "セキュリティ対策を考慮してください"
+    "入力欄（#searchInput）の文字列に基づき products を filter() + includes() で絞り込み、#productList にカード表示する",
+    "Bootstrap グリッド（.container > .row > .col-*-*）でレスポンシブ表示にする"
   ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>検索機能システム</title>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container-fluid\">\n        <nav class=\"navbar navbar-expand-lg navbar-dark bg-info\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"#\">Advanced Search System</a>\n            </div>\n        </nav>\n        <main class=\"py-4\">\n            <div class=\"container\">\n                <h1 class=\"display-4\">検索機能システム</h1>\n                <div id=\"searchContainer\">\n                    <!-- JavaScript で動的に生成される検索機能 -->\n                </div>\n                <div id=\"searchResults\">\n                    <!-- 検索結果表示エリア -->\n                </div>\n            </div>\n        </main>\n    </div>\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n    <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>基本検索（最小）</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <h1 class=\"h4 mb-3\">検索</h1>\n    <div class=\"row g-3 mb-3\">\n      <div class=\"col-12 col-sm-8 col-lg-4\">\n        <input id=\"searchInput\" class=\"form-control\" type=\"text\" placeholder=\"商品名で検索\">\n      </div>\n    </div>\n    <div id=\"productList\" class=\"row g-3\"><!-- JSで挿入 --></div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
     },
     "css": {
       "template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n/* ここに実装してください */",
-      "expected": "/* 検索機能システム CSS */\nbody {\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    min-height: 100vh;\n}\n\n.navbar {\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n.search-container {\n    background: white;\n    border-radius: 15px;\n    padding: 25px;\n    box-shadow: 0 5px 15px rgba(0,0,0,0.1);\n    margin-bottom: 25px;\n}\n\n.search-input {\n    border-radius: 25px;\n    border: 2px solid #e9ecef;\n    padding: 12px 20px;\n    font-size: 16px;\n    transition: all 0.3s ease;\n}\n\n.search-input:focus {\n    border-color: #17a2b8;\n    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);\n}\n\n.search-result-item {\n    background: white;\n    border-radius: 10px;\n    padding: 20px;\n    margin: 15px 0;\n    box-shadow: 0 2px 5px rgba(0,0,0,0.1);\n    transition: all 0.3s ease;\n}\n\n.search-result-item:hover {\n    box-shadow: 0 5px 15px rgba(0,0,0,0.2);\n    transform: translateY(-2px);\n}\n\n@media (max-width: 768px) {\n    .container {\n        padding: 15px;\n    }\n    .search-container {\n        padding: 20px;\n    }\n}"
+      "expected": "/* 最小スタイル（装飾なし） */\n.card-img-top { width: 100%; height: auto; display: block; }"
     },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "// 検索機能システム JavaScript\n\ndocument.addEventListener('DOMContentLoaded', function() {\n    console.log('検索機能システム開始');\n    \n    initializeSearchSystem();\n    \n    console.log('検索システム初期化完了');\n});\n\n// 検索対象データベース\nconst searchDatabase = [\n    {\n        id: 1,\n        title: 'プレミアムワイヤレスイヤホン',\n        description: '最新のノイズキャンセリング技術を搭載した高品質なワイヤレスイヤホン。長時間の使用でも快適な装着感を実現。',\n        category: 'electronics',\n        brand: 'TechCorp',\n        price: 29800,\n        tags: ['ワイヤレス', 'ノイズキャンセリング', '高品質', '音楽'],\n        keywords: ['イヤホン', 'ヘッドホン', 'オーディオ', '音響']\n    },\n    {\n        id: 2,\n        title: 'オーガニックコーヒー豆セット',\n        description: 'エチオピア産の厳選されたオーガニックコーヒー豆。深いコクと豊かな香りが特徴の贅沢なコーヒー体験。',\n        category: 'food',\n        brand: 'CoffeeVille',\n        price: 3980,\n        tags: ['オーガニック', 'エチオピア', '厳選', 'コーヒー'],\n        keywords: ['豆', 'ドリンク', '飲み物', 'カフェイン']\n    },\n    {\n        id: 3,\n        title: 'モダンデザインチェア',\n        description: '北欧風のモダンなデザインと快適な座り心地を兼ね備えたプレミアムチェア。リビングやオフィスに最適。',\n        category: 'furniture',\n        brand: 'ModernHome',\n        price: 58000,\n        tags: ['北欧', 'モダン', 'デザイナーズ', '快適'],\n        keywords: ['椅子', 'インテリア', '家具', 'デザイン']\n    }\n];\n\nlet searchHistory = [];\nlet currentSearchQuery = '';\n\nfunction initializeSearchSystem() {\n    const searchContainer = document.getElementById('searchContainer');\n    const resultsContainer = document.getElementById('searchResults');\n    \n    if (!searchContainer || !resultsContainer) {\n        console.error('必要な要素が見つかりません');\n        return;\n    }\n    \n    // 検索UIの構築\n    buildSearchInterface(searchContainer);\n    \n    // 初期表示（全商品）\n    displaySearchResults(searchDatabase, resultsContainer);\n    \n    // 検索機能の設定\n    setupSearchFunctionality();\n}\n\nfunction buildSearchInterface(container) {\n    container.innerHTML = `\n        <div class=\"search-container\">\n            <h3>高度な検索システム</h3>\n            <div class=\"input-group mb-3\">\n                <input type=\"text\" class=\"form-control search-input\" id=\"searchInput\" \n                       placeholder=\"商品名、説明、タグで検索...\" autocomplete=\"off\">\n                <button class=\"btn btn-info\" id=\"searchButton\">検索</button>\n                <button class=\"btn btn-outline-secondary\" id=\"clearButton\">クリア</button>\n            </div>\n        </div>\n    `;\n}\n\nfunction setupSearchFunctionality() {\n    const searchInput = document.getElementById('searchInput');\n    const searchButton = document.getElementById('searchButton');\n    const clearButton = document.getElementById('clearButton');\n    \n    searchInput.addEventListener('input', function() {\n        const query = this.value.trim();\n        performSearch(query);\n    });\n    \n    searchButton.addEventListener('click', function() {\n        const query = searchInput.value.trim();\n        performSearch(query);\n    });\n    \n    clearButton.addEventListener('click', function() {\n        searchInput.value = '';\n        displaySearchResults(searchDatabase, document.getElementById('searchResults'));\n    });\n}\n\nfunction performSearch(query) {\n    currentSearchQuery = query;\n    const results = executeAdvancedSearch(query);\n    displaySearchResults(results, document.getElementById('searchResults'));\n    console.log(`検索実行: \"${query}\" - ${results.length}件の結果`);\n}\n\nfunction executeAdvancedSearch(query) {\n    if (!query) return searchDatabase;\n    \n    const queryLower = query.toLowerCase();\n    return searchDatabase.filter(item =>\n        item.title.toLowerCase().includes(queryLower) ||\n        item.description.toLowerCase().includes(queryLower) ||\n        item.tags.some(tag => tag.toLowerCase().includes(queryLower))\n    );\n}\n\nfunction displaySearchResults(results, container) {\n    if (results.length === 0) {\n        container.innerHTML = '<div class=\"text-center py-5\"><h4>検索結果が見つかりません</h4></div>';\n        return;\n    }\n    \n    const resultsHtml = results.map(item => `\n        <div class=\"search-result-item\">\n            <h5>${item.title}</h5>\n            <p class=\"text-muted\">${item.description}</p>\n            <p><strong>¥${item.price.toLocaleString()}</strong></p>\n        </div>\n    `).join('');\n    \n    container.innerHTML = resultsHtml;\n}\n\n// エクスポート（モジュールシステム対応）\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { initializeSearchSystem, performSearch };\n}"
+      "expected": "// 基本検索（最小）\n// 入力値に応じて products を filter() + includes() で絞り込み、#productList に表示\n\nconst products = [\n  { name: 'Phone', price: 50000, image: 'https://via.placeholder.com/600x400?text=Phone' },\n  { name: 'T-Shirt', price: 2000, image: 'https://via.placeholder.com/600x400?text=T-Shirt' },\n  { name: 'Coffee', price: 800, image: 'https://via.placeholder.com/600x400?text=Coffee' },\n  { name: 'Headphones', price: 12000, image: 'https://via.placeholder.com/600x400?text=Headphones' }\n];\n\nfunction render(list, items) {\n  list.innerHTML = items.map(p => `\n    <div class=\"col-12 col-sm-6 col-lg-4\">\n      <div class=\"card\">\n        <img class=\"card-img-top\" src=\"${p.image}\" alt=\"${p.name}\">\n        <div class=\"card-body\">\n          <h2 class=\"h6 mb-1\">${p.name}</h2>\n          <p class=\"mb-0\">¥${p.price.toLocaleString()}</p>\n        </div>\n      </div>\n    </div>\n  `).join('');\n}\n\nfunction filterProducts(query) {\n  const q = query.trim().toLowerCase();\n  if (!q) return products;\n  return products.filter(p => p.name.toLowerCase().includes(q));\n}\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  const input = document.getElementById('searchInput');\n  const list = document.getElementById('productList');\n  render(list, products);\n  input.addEventListener('input', () => {\n    render(list, filterProducts(input.value));\n  });\n});"
     }
   },
   "expectedResult": {
-    "console": "検索システム初期化完了",
-    "behavior": "高度な検索機能により様々な条件でデータを検索できるシステムが動作する"
+    "console": "",
+    "behavior": "入力に応じて商品カードが絞り込まれ、1〜3列で表示される"
   },
   "checks": [
     {
-      "id": "advanced-search",
-      "name": "高度検索機能",
+      "id": "js-search",
+      "name": "includes() による検索",
       "type": "js",
-      "message": "複数の検索条件を組み合わせた高度な検索機能が実装されている必要があります"
+      "message": "入力値に応じて配列を filter() + includes() で絞り込み、#productList を更新していること"
     },
     {
-      "id": "real-time-search",
-      "name": "リアルタイム検索",
-      "type": "js",
-      "message": "入力中にリアルタイムで検索結果が更新される機能が実装されている必要があります"
-    },
-    {
-      "id": "search-suggestions",
-      "name": "検索候補",
-      "type": "js",
-      "message": "検索候補を表示する機能が実装されている必要があります"
+      "id": "bootstrap-grid",
+      "name": "Bootstrapグリッド",
+      "type": "css",
+      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
     }
   ],
   "hints": [
-    "文字列の検索にはincludes()メソッドや正規表現を活用しましょう",
-    "リアルタイム検索にはdebounce（デバウンス）技術を使用しましょう",
-    "検索候補は配列のfilter()とslice()で効率的に実装しましょう",
-    "キーワードハイライトは正規表現のreplace()メソッドを使いましょう"
+    "input.value.toLowerCase() を使い、p.name.toLowerCase().includes(q) で照合",
+    ".container > .row > .col-12 col-sm-6 col-lg-4 の列指定でレスポンシブ配置"
   ]
 }

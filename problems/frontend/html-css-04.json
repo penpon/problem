@@ -3,7 +3,6 @@
   "title": "04: リンクの作成",
   "description": "aタグを使用してリンクを作成する方法を学習しましょう。",
   "category": "html-css-basics",
-  "difficulty": 2,
   "instructions": [
     "h1タグで「リンクの練習」の見出しを追加してください",
     "aタグを使用してリンクを作成してください",

@@ -3,7 +3,6 @@
   "title": "内容変更",
   "description": "JavaScriptを使ってHTML要素の内容を動的に変更し、textContentとinnerHTMLの違いを理解します",
   "category": "javascript-basics",
-  "difficulty": 2,
   "instructions": [
     "textContentでテキスト内容を変更する",
     "innerHTMLでHTML構造を含む内容を変更する",
@@ -18,8 +17,7 @@
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#html-content { margin-top: 8px; }\nbutton { margin-right: 6px; }",
       "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#html-content { margin-top: 8px; }\nbutton { margin-right: 6px; }"
-    }
-,
+    },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
       "expected": "const textEl = document.getElementById('text');\nconst htmlEl = document.getElementById('html-content');\n\ndocument.getElementById('text-btn').addEventListener('click', () => {\n  textEl.textContent = 'テキストが変更されました';\n});\n\ndocument.getElementById('html-btn').addEventListener('click', () => {\n  htmlEl.innerHTML = '<strong>太字になりました</strong>';\n});"

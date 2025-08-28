@@ -441,9 +441,6 @@ extractProblemNumber(problemId, categoryId) {
                     <span class="problem-number">#${problemNumber}</span>
                     <span class="problem-title">${problemNumber}: ${cleanTitle}</span>
                 </div>
-                <div class="problem-difficulty">
-                    ${'★'.repeat(problem.difficulty || 1)}
-                </div>
             `;
             
             this.problemList.appendChild(problemItem);
@@ -542,22 +539,50 @@ extractProblemNumber(problemId, categoryId) {
     }
     
     async loadExpectedData(problem) {
-        // 期待される結果を複数ファイルで取得
+        // 期待される結果を複数ファイルで取得（__INCLUDE__: パス 対応）
+        const rawHtml = problem.files?.html?.expected || '';
+        const rawCss = problem.files?.css?.expected || '';
+        const rawJs = problem.files?.js?.expected || '';
+
+        // __INCLUDE__ ディレクティブを解決
+        const [resolvedHtml, resolvedCss, resolvedJs] = await Promise.all([
+            this.loadExpectedContent(rawHtml),
+            this.loadExpectedContent(rawCss),
+            this.loadExpectedContent(rawJs)
+        ]);
+
         this.expectedFiles = {
-            html: problem.files?.html?.expected || '<html><body><p>期待される結果</p></body></html>',
-            css: problem.files?.css?.expected || '',
-            js: problem.files?.js?.expected || ''
+            html: resolvedHtml || '<html><body><p>期待される結果</p></body></html>',
+            css: resolvedCss || '',
+            js: resolvedJs || ''
         };
-        
+
         // 統合HTML生成してプレビュー表示
         const combinedExpectedHtml = this.generateExpectedCombinedHtml();
         this.displayPreview(this.expectedPreview, combinedExpectedHtml);
-        
+
         // 正解コード表示を更新
         this.updateExpectedCodeDisplays();
-        
+
         // デフォルトでプレビュー表示
         this.showExpectedPreviewView();
+    }
+
+    async loadExpectedContent(content) {
+        const str = content || '';
+        if (typeof str === 'string' && str.trim().startsWith('__INCLUDE__:')) {
+            const path = str.split(':')[1]?.trim() || '';
+            if (!path) return '';
+            try {
+                const res = await fetch(path, { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`Failed to fetch include: ${path} (${res.status})`);
+                return await res.text();
+            } catch (e) {
+                console.error('expected include の読み込みに失敗:', e);
+                return '';
+            }
+        }
+        return str;
     }
     
     generateExpectedCombinedHtml() {

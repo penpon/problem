@@ -3,55 +3,44 @@
   "title": "57: 動的商品表示システム",
   "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
   "category": "ec-project",
-  "difficulty": 5,
   "instructions": [
-    "高度なJavaScript機能を実装してください",
-    "データベース連携を模擬してください", 
-    "ユーザビリティを最優先に設計してください",
-    "セキュリティ対策を考慮してください"
+    "JavaScriptの配列から商品カードを生成して #productList に表示する",
+    "Bootstrapのグリッド（.container > .row > .col-*-*）でレスポンシブ配置にする"
   ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>動的商品表示システム</title>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container-fluid\">\n        <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"#\">Dynamic Product System</a>\n            </div>\n        </nav>\n        <main class=\"py-4\">\n            <div class=\"container\">\n                <h1 class=\"display-4\">動的商品表示システム</h1>\n                <div id=\"productContainer\">\n                    <!-- JavaScript で動的に生成される商品一覧 -->\n                </div>\n            </div>\n        </main>\n    </div>\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n    <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>動的商品表示（最小）</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <h1 class=\"h4 mb-3\">商品一覧</h1>\n    <div id=\"productList\" class=\"row g-3\"><!-- JSで挿入 --></div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
     },
     "css": {
       "template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n/* ここに実装してください */",
-      "expected": "/* 動的商品表示システム CSS */\nbody {\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);\n    min-height: 100vh;\n}\n\n.navbar {\n    box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n}\n\n.product-card {\n    border: none;\n    border-radius: 15px;\n    box-shadow: 0 5px 15px rgba(0,0,0,0.1);\n    transition: all 0.3s ease;\n    height: 100%;\n}\n\n.product-card:hover {\n    transform: translateY(-5px);\n    box-shadow: 0 15px 30px rgba(0,0,0,0.15);\n}\n\n.product-image {\n    width: 100%;\n    height: 200px;\n    object-fit: cover;\n    border-radius: 15px 15px 0 0;\n}\n\n.btn {\n    border-radius: 25px;\n    font-weight: 600;\n    transition: all 0.3s ease;\n}\n\n.btn:hover {\n    transform: translateY(-2px);\n}\n\n.loading {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 200px;\n}\n\n@media (max-width: 768px) {\n    .container {\n        padding: 15px;\n    }\n}"
+      "expected": "/* 最小スタイル（装飾なし） */\n.card-img-top { width: 100%; height: auto; display: block; }"
     },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "// 動的商品表示システム JavaScript\n\ndocument.addEventListener('DOMContentLoaded', function() {\n    console.log('動的商品表示システム開始');\n    \n    initializeProductSystem();\n    \n    console.log('動的商品表示システム初期化完了');\n});\n\n// 商品データ（実際のシステムではAPIから取得）\nconst productData = [\n    {\n        id: 1,\n        name: 'プレミアム商品A',\n        price: 2980,\n        image: 'https://via.placeholder.com/300x200/007bff/ffffff?text=Product+A',\n        description: '高品質な商品Aです'\n    },\n    {\n        id: 2,\n        name: 'スタンダード商品B',\n        price: 1980,\n        image: 'https://via.placeholder.com/300x200/28a745/ffffff?text=Product+B',\n        description: '人気の商品Bです'\n    },\n    {\n        id: 3,\n        name: 'エコノミー商品C',\n        price: 980,\n        image: 'https://via.placeholder.com/300x200/ffc107/000000?text=Product+C',\n        description: 'お手頃な商品Cです'\n    }\n];\n\nfunction initializeProductSystem() {\n    const container = document.getElementById('productContainer');\n    \n    if (!container) {\n        console.error('商品コンテナが見つかりません');\n        return;\n    }\n    \n    // ローディング表示\n    showLoading(container);\n    \n    // 商品データ取得をシミュレート（実際のAPIコール）\n    fetchProductData()\n        .then(products => {\n            displayProducts(products, container);\n        })\n        .catch(error => {\n            console.error('商品データの取得に失敗しました:', error);\n            showError(container);\n        });\n}\n\nfunction fetchProductData() {\n    return new Promise((resolve) => {\n        // APIコールをシミュレート\n        setTimeout(() => {\n            resolve(productData);\n        }, 1000);\n    });\n}\n\nfunction showLoading(container) {\n    container.innerHTML = `\n        <div class=\"loading\">\n            <div class=\"spinner-border text-primary\" role=\"status\">\n                <span class=\"visually-hidden\">Loading...</span>\n            </div>\n        </div>\n    `;\n}\n\nfunction displayProducts(products, container) {\n    const productsHtml = products.map(product => `\n        <div class=\"col-md-4 mb-4\">\n            <div class=\"card product-card\">\n                <img src=\"${product.image}\" class=\"card-img-top product-image\" alt=\"${product.name}\">\n                <div class=\"card-body\">\n                    <h5 class=\"card-title\">${product.name}</h5>\n                    <p class=\"card-text\">${product.description}</p>\n                    <p class=\"card-text\"><strong>¥${product.price.toLocaleString()}</strong></p>\n                    <button class=\"btn btn-primary w-100\" onclick=\"addToCart(${product.id})\">\n                        カートに追加\n                    </button>\n                </div>\n            </div>\n        </div>\n    `).join('');\n    \n    container.innerHTML = `\n        <div class=\"row\">\n            ${productsHtml}\n        </div>\n    `;\n    \n    // アニメーション効果\n    animateProductCards();\n}\n\nfunction showError(container) {\n    container.innerHTML = `\n        <div class=\"alert alert-danger\" role=\"alert\">\n            商品データの読み込みに失敗しました。再度お試しください。\n        </div>\n    `;\n}\n\nfunction addToCart(productId) {\n    const product = productData.find(p => p.id === productId);\n    if (product) {\n        console.log('カートに追加:', product.name);\n        \n        // 成功メッセージ表示\n        showSuccessMessage(`${product.name} をカートに追加しました！`);\n    }\n}\n\nfunction showSuccessMessage(message) {\n    // Bootstrap Toast を使用した通知\n    const toast = document.createElement('div');\n    toast.className = 'toast position-fixed top-0 end-0 m-3';\n    toast.setAttribute('role', 'alert');\n    toast.innerHTML = `\n        <div class=\"toast-header\">\n            <strong class=\"me-auto\">通知</strong>\n            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\"></button>\n        </div>\n        <div class=\"toast-body\">\n            ${message}\n        </div>\n    `;\n    \n    document.body.appendChild(toast);\n    \n    const bsToast = new bootstrap.Toast(toast);\n    bsToast.show();\n    \n    // 3秒後に自動削除\n    setTimeout(() => {\n        if (toast.parentNode) {\n            toast.parentNode.removeChild(toast);\n        }\n    }, 3000);\n}\n\nfunction animateProductCards() {\n    const cards = document.querySelectorAll('.product-card');\n    cards.forEach((card, index) => {\n        card.style.opacity = '0';\n        card.style.transform = 'translateY(20px)';\n        \n        setTimeout(() => {\n            card.style.transition = 'all 0.5s ease';\n            card.style.opacity = '1';\n            card.style.transform = 'translateY(0)';\n        }, index * 100);\n    });\n}\n\n// エクスポート（モジュールシステム対応）\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { initializeProductSystem, addToCart };\n}"
+      "expected": "// 動的商品表示（最小）\n// 配列から生成して #productList に挿入\n\nconst products = [\n  { name: 'Item 1', price: 1000, image: 'https://via.placeholder.com/600x400?text=Item+1' },\n  { name: 'Item 2', price: 2000, image: 'https://via.placeholder.com/600x400?text=Item+2' },\n  { name: 'Item 3', price: 3000, image: 'https://via.placeholder.com/600x400?text=Item+3' }\n];\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  const list = document.getElementById('productList');\n  list.innerHTML = products.map(p => `\n    <div class=\"col-12 col-sm-6 col-lg-4\">\n      <div class=\"card\">\n        <img class=\"card-img-top\" src=\"${p.image}\" alt=\"${p.name}\">\n        <div class=\"card-body\">\n          <h2 class=\"h6 mb-1\">${p.name}</h2>\n          <p class=\"mb-0\">¥${p.price.toLocaleString()}</p>\n        </div>\n      </div>\n    </div>\n  `).join('');\n});"
     }
   },
   "expectedResult": {
-    "console": "動的商品表示システム初期化完了",
-    "behavior": "動的に商品が表示され、カートに追加できる機能が動作する"
+    "console": "",
+    "behavior": "配列データから生成された商品カードが画面幅に応じて1〜3列で表示される"
   },
   "checks": [
     {
-      "id": "dynamic-display",
-      "name": "動的表示",
+      "id": "js-dynamic-list",
+      "name": "配列からの動的生成",
       "type": "js",
-      "message": "商品が動的に表示される必要があります"
+      "message": "配列を map などで展開し、#productList に商品カードHTMLを挿入していること"
     },
     {
-      "id": "cart-functionality",
-      "name": "カート機能",
-      "type": "js",
-      "message": "カートに追加する機能が実装されている必要があります"
-    },
-    {
-      "id": "responsive-design",
-      "name": "レスポンシブデザイン",
-      "type": "structure",
-      "message": "レスポンシブなデザインが実装されている必要があります"
+      "id": "bootstrap-grid",
+      "name": "Bootstrapグリッド",
+      "type": "css",
+      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
     }
   ],
   "hints": [
-    "商品データを配列で管理し、動的にHTML要素を生成しましょう",
-    "map()メソッドを使って商品リストを効率的に表示しましょう",
-    "ローディング状態とエラーハンドリングを実装しましょう",
-    "Bootstrap のグリッドシステムを活用しましょう"
+    "配列 products を map() して文字列連結 → innerHTML で #productList に挿入",
+    ".container > .row > .col-12 col-sm-6 col-lg-4 のようにブレークポイント指定で列数調整"
   ]
 }

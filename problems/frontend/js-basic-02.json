@@ -3,7 +3,6 @@
   "title": "JavaScript超入門",
   "description": "完全初心者がJavaScriptの第一歩を踏み出し、alert()で最初のメッセージを表示する方法を学習します",
   "category": "javascript-basics",
-  "difficulty": 1,
   "instructions": [
     "JavaScriptとは何かを理解する",
     "alert()で最初のメッセージを表示する",
