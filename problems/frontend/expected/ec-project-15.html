@@ -88,32 +88,24 @@
           <button id="backHome" class="btn btn-outline-primary">トップへ</button>
         </section>
 
-        <!-- 認証ビュー -->
+        <!-- 認証ビュー（入力欄を共通化） -->
         <section id="viewAuth" class="d-none">
-          <div class="row g-4">
+          <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-              <h3 class="h5">ログイン</h3>
+              <h3 class="h5">ログイン / 新規登録</h3>
               <div class="mb-2">
                 <label class="form-label" for="loginEmail">メール</label>
-                <input id="loginEmail" class="form-control" type="email">
+                <input id="loginEmail" class="form-control" type="email" placeholder="you@example.com">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="loginPassword">パスワード</label>
-                <input id="loginPassword" class="form-control" type="password">
+                <input id="loginPassword" class="form-control" type="password" placeholder="••••••••">
               </div>
-              <button id="loginBtn" class="btn btn-dark">ログイン</button>
-            </div>
-            <div class="col-12 col-md-6">
-              <h3 class="h5">新規登録</h3>
-              <div class="mb-2">
-                <label class="form-label" for="registerEmail">メール</label>
-                <input id="registerEmail" class="form-control" type="email">
+              <div class="d-flex gap-2">
+                <button id="loginBtn" class="btn btn-dark flex-fill">ログイン</button>
+                <button id="registerBtn" class="btn btn-outline-dark flex-fill">登録</button>
               </div>
-              <div class="mb-3">
-                <label class="form-label" for="registerPassword">パスワード</label>
-                <input id="registerPassword" class="form-control" type="password">
-              </div>
-              <button id="registerBtn" class="btn btn-outline-dark">登録</button>
+              <div class="form-text mt-2">管理者: admin@example.com / password</div>
             </div>
           </div>
         </section>

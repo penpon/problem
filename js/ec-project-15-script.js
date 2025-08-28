@@ -42,9 +42,7 @@
   // localStorage キー
   const LS_USERS = 'wf_users'; // {email, password, isAdmin}
   const LS_CURRENT = 'wf_current_user'; // string email or ''
-  const LS_FAVS = 'wf_favs'; // { [email or __guest__]: string[] }
   const LS_LOGS = 'wf_purchase_logs'; // 購入ログ配列
-  const GUEST = '__guest__';
 
   let cart = []; // {id, qty}
   let pendingPurchase = false;
@@ -105,11 +103,6 @@
   function getCurrent(){ return localStorage.getItem(LS_CURRENT) || ''; }
   function setCurrent(email){ localStorage.setItem(LS_CURRENT, email || ''); }
 
-  function getFavs(){
-    try { return JSON.parse(localStorage.getItem(LS_FAVS) || '{}'); } catch { return {}; }
-  }
-  function setFavs(obj){ localStorage.setItem(LS_FAVS, JSON.stringify(obj)); }
-
   function getLogs(){
     try { return JSON.parse(localStorage.getItem(LS_LOGS) || '[]'); } catch { return []; }
   }
@@ -117,9 +110,17 @@
 
   function ensureAdminSeed(){
     const users = getUsers();
-    if (!users.find(u => u.email === 'admin@example.com')){
-      users.push({ email: 'admin@example.com', password: 'admin123', isAdmin: true });
+    const idx = users.findIndex(u => u.email === 'admin@example.com');
+    if (idx === -1){
+      users.push({ email: 'admin@example.com', password: 'password', isAdmin: true });
       setUsers(users);
+    } else {
+      // 既存の管理者アカウントがある場合も仕様に合わせてパスワードと権限を整合
+      const u = users[idx];
+      let changed = false;
+      if (u.password !== 'password'){ u.password = 'password'; changed = true; }
+      if (!u.isAdmin){ u.isAdmin = true; changed = true; }
+      if (changed) setUsers(users);
     }
   }
 
@@ -151,7 +152,6 @@
               <p class="text-${p.stock?'success':'danger'} small mb-3">${p.stock?'在庫あり':'在庫切れ'}</p>
               <div class="mt-auto d-flex gap-2">
                 <button class="btn btn-dark btn-sm add-to-cart" data-id="${p.id}" ${p.stock?'':'disabled'}>カートに追加</button>
-                <button class="btn btn-outline-secondary btn-sm toggle-fav" data-id="${p.id}">★</button>
               </div>
             </div>
           </div>
@@ -255,23 +255,22 @@
   }
 
   function tryLogin(){
-    const email = (loginEmail?.value || '').trim();
-    const password = (loginPass?.value || '').trim();
+    const email = (loginEmail?.value || regEmail?.value || '').trim();
+    const password = (loginPass?.value || regPass?.value || '').trim();
     if (!email || !password) return alert('メールとパスワードを入力してください');
 
     const users = getUsers();
     const u = users.find(x=>x.email===email && x.password===password);
     if (!u) return alert('メールまたはパスワードが違います');
 
-    migrateGuestFavs(email);
     setCurrent(email);
     updateAuthArea();
     showView('catalog');
   }
 
   function tryRegister(){
-    const email = (regEmail?.value || '').trim();
-    const password = (regPass?.value || '').trim();
+    const email = (regEmail?.value || loginEmail?.value || '').trim();
+    const password = (regPass?.value || loginPass?.value || '').trim();
     if (!email || !password) return alert('メールとパスワードを入力してください');
 
     const users = getUsers();
@@ -279,30 +278,12 @@
 
     users.push({ email, password, isAdmin: false });
     setUsers(users);
-
-    migrateGuestFavs(email);
     setCurrent(email);
     updateAuthArea();
     showView('catalog');
   }
 
-  function migrateGuestFavs(email){
-    const favs = getFavs();
-    const guest = new Set(favs[GUEST] || []);
-    const me = new Set(favs[email] || []);
-    favs[email] = Array.from(new Set([...guest, ...me]));
-    favs[GUEST] = [];
-    setFavs(favs);
-  }
-
-  function toggleFav(id){
-    const email = getCurrent() || GUEST;
-    const favs = getFavs();
-    const arr = new Set(favs[email] || []);
-    if (arr.has(id)) arr.delete(id); else arr.add(id);
-    favs[email] = Array.from(arr);
-    setFavs(favs);
-  }
+  // お気に入り機能は除外
 
   function renderAdmin(){
     if (!adminTableBody) return;
@@ -347,6 +328,12 @@
   // ================== 購入処理 ==================
   function doCheckout(){
     if (cart.length === 0) return alert('カートが空です');
+    const email = getCurrent();
+    if (!email){
+      alert('購入手続きにはログインが必要です');
+      showView('auth');
+      return;
+    }
     pendingPurchase = true;
     showView('checkout');
   }
@@ -387,9 +374,7 @@
     if (list){
       list.addEventListener('click', (e) => {
         const btnAdd = e.target.closest('.add-to-cart');
-        const btnFav = e.target.closest('.toggle-fav');
         if (btnAdd){ addToCart(btnAdd.dataset.id); }
-        if (btnFav){ toggleFav(btnFav.dataset.id); }
       });
     }
 
@@ -432,7 +417,17 @@
 
     // 管理画面表示切替（管理者のみ想定：UI側でリンクがあるとき）
     const adminLink = $('#goAdmin');
-    if (adminLink){ adminLink.addEventListener('click', () => showView('admin')); }
+    if (adminLink){
+      adminLink.addEventListener('click', () => {
+        const users = getUsers();
+        const me = users.find(u=>u.email===getCurrent());
+        if (!me?.isAdmin){
+          alert('管理画面は管理者のみが閲覧できます');
+          return;
+        }
+        showView('admin');
+      });
+    }
   }
 
   // ================== 初期化 ==================
