@@ -1,0 +1,7 @@
+const a = 10;
+const b = 3;
+
+document.getElementById('add').textContent = `足し算: ${a + b}`;
+document.getElementById('sub').textContent = `引き算: ${a - b}`;
+document.getElementById('mul').textContent = `掛け算: ${a * b}`;
+document.getElementById('div').textContent = `割り算: ${(a / b).toFixed(2)}`;

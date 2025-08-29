@@ -1,0 +1,8 @@
+const ul = document.getElementById('list');
+let n = 0;
+document.getElementById('add').addEventListener('click', () => {
+  const li = document.createElement('li');
+  n += 1;
+  li.textContent = 'Item ' + n;
+  ul.appendChild(li);
+});

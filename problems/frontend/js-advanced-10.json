@@ -11,15 +11,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>課題を実装してください</h1>\n  <!-- ここに実装してください -->\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>配列のフィルタ表示</title>\n</head>\n<body>\n  <h1>配列のフィルタ表示</h1>\n  <input id=\"min\" type=\"number\" value=\"3\" /> 文字以上\n  <button id=\"apply\">抽出</button>\n  <ul id=\"list\"></ul>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.html.expected"
     },
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#list { margin-top: 12px; padding-left: 20px; }\ninput { width: 80px; margin-right: 6px; }\nbutton { margin-right: 8px; }",
-      "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#list { margin-top: 12px; padding-left: 20px; }\ninput { width: 80px; margin-right: 6px; }\nbutton { margin-right: 8px; }"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.css.expected"
     },
     "js": {
       "template": "// ここに実装してください",
-      "expected": "const data = ['apple','banana','kiwi','grape','orange'];\nconst ul = document.getElementById('list');\nconst input = document.getElementById('min');\nfunction render(items){\n  ul.innerHTML = '';\n  for (const s of items) {\n    const li = document.createElement('li');\n    li.textContent = s;\n    ul.appendChild(li);\n  }\n}\ndocument.getElementById('apply').addEventListener('click', () => {\n  const n = Number(input.value || 0);\n  const filtered = data.filter(s => s.length >= n);\n  render(filtered);\n});\nrender(data);"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.js.expected"
     }
   },
   "expectedResult": {

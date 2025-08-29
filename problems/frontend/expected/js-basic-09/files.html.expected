@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カウンター拡張</title>
+</head>
+<body>
+  <h1>カウンター拡張</h1>
+  <div id="counter-display">0</div>
+  <button id="minus10-btn">-10</button>
+  <button id="minus1-btn">-1</button>
+  <button id="reset-btn">リセット</button>
+  <button id="plus1-btn">+1</button>
+  <button id="plus10-btn">+10</button>
+  <small>範囲: -10 〜 10</small>
+  <script src="script.js"></script>
+</body>
+</html>

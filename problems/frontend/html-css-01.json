@@ -12,15 +12,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>課題実装</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>はじめてのHTML</title>\n</head>\n<body>\n    <p>こんにちは！HTMLの世界へようこそ！</p>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-01/files.html.expected"
     },
     "css": {
       "template": "",
-      "expected": ""
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-01/files.css.expected"
     },
     "js": {
       "template": "",
-      "expected": ""
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-01/files.js.expected"
     }
   },
   "checks": [

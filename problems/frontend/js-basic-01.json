@@ -12,15 +12,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>初めてのJavaScript</title>\n</head>\n<body>\n  <h1>初めてのJavaScript</h1>\n  <button id=\"helloButton\">こんにちは</button>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-01/files.html.expected"
     },
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n/* 必要があればここに最小の追記 */",
-      "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\nbutton { padding: 8px 12px; }"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-01/files.css.expected"
     },
     "js": {
       "template": "// JavaScript実装エリア（最小）\n// ここに実装してください",
-      "expected": "const btn = document.getElementById('helloButton');\nbtn.addEventListener('click', () => {\n  alert('こんにちは');\n});"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-01/files.js.expected"
     }
   },
   "expectedResult": {

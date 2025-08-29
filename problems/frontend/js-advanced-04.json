@@ -11,15 +11,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>配列ランダム組み合わせ</title>\n</head>\n<body>\n  <h1>配列ランダム組み合わせ</h1>\n  <div id=\"combo\">-</div>\n  <button id=\"gen\">生成</button>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-04/files.html.expected"
     },
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#combo { margin: 12px 0; }",
-      "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#combo { margin: 12px 0; }\nbutton { margin-right: 8px; }"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-04/files.css.expected"
     },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "const adjs = ['速い','楽しい','小さな','新しい'];\nconst nouns = ['犬','ゲーム','本','道具'];\nconst out = document.getElementById('combo');\nfunction pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }\ndocument.getElementById('gen').addEventListener('click', () => {\n  out.textContent = pick(adjs) + ' ' + pick(nouns);\n});"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-04/files.js.expected"
     }
   },
   "expectedResult": {

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>入力値の合計</title>
+</head>
+<body>
+  <h1>入力値の合計</h1>
+  <input id="a" type="number" /> +
+  <input id="b" type="number" />
+  <button id="calc">計算</button>
+  <div id="sum">0</div>
+  <script src="script.js"></script>
+</body>
+</html>

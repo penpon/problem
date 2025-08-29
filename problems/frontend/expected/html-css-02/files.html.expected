@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>見出しのあるページ</title>
+</head>
+<body>
+    <h1>私のホームページ</h1>
+    <p>はじめまして！</p>
+    <p>このページは私が作った初めてのWebサイトです。</p>
+    <p>これからHTMLを覚えて、素敵なサイトを作りたいと思います。</p>
+</body>
+</html>

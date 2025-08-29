@@ -12,15 +12,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>カウンター拡張</title>\n</head>\n<body>\n  <h1>カウンター拡張</h1>\n  <div id=\"counter-display\">0</div>\n  <button id=\"minus10-btn\">-10</button>\n  <button id=\"minus1-btn\">-1</button>\n  <button id=\"reset-btn\">リセット</button>\n  <button id=\"plus1-btn\">+1</button>\n  <button id=\"plus10-btn\">+10</button>\n  <small>範囲: -10 〜 10</small>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.html.expected"
     },
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#counter-display { margin: 8px 0; font-size: 2rem; }\nbutton { margin-right: 6px; }",
-      "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#counter-display { margin: 8px 0; font-size: 2rem; }\nbutton { margin-right: 6px; }"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.css.expected"
     },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "let value = 0;\nconst MIN = -10;\nconst MAX = 10;\n\nconst display = document.getElementById('counter-display');\n\nfunction clamp(n) {\n  return Math.max(MIN, Math.min(MAX, n));\n}\n\nfunction update() {\n  display.textContent = String(value);\n}\n\ndocument.getElementById('minus10-btn').addEventListener('click', () => {\n  value = clamp(value - 10);\n  update();\n});\n\ndocument.getElementById('minus1-btn').addEventListener('click', () => {\n  value = clamp(value - 1);\n  update();\n});\n\ndocument.getElementById('plus1-btn').addEventListener('click', () => {\n  value = clamp(value + 1);\n  update();\n});\n\ndocument.getElementById('plus10-btn').addEventListener('click', () => {\n  value = clamp(value + 10);\n  update();\n});\n\ndocument.getElementById('reset-btn').addEventListener('click', () => {\n  value = 0;\n  update();\n});\n\nupdate();"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.js.expected"
     }
   },
   "expectedResult": {

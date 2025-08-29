@@ -11,15 +11,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>課題を実装してください</h1>\n  <!-- ここに実装してください -->\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>タイマー基本</title>\n</head>\n<body>\n  <h1>タイマー基本</h1>\n  <div id=\"count\">0</div>\n  <button id=\"start\">開始</button>\n  <button id=\"stop\">停止</button>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.html.expected"
     },
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#count { margin: 12px 0; font-size: 20px; }\nbutton { margin-right: 8px; }",
-      "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#count { margin: 12px 0; font-size: 20px; }\nbutton { margin-right: 8px; }"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.css.expected"
     },
     "js": {
       "template": "// ここに実装してください",
-      "expected": "let n = 0;\nlet timer = null;\nconst out = document.getElementById('count');\ndocument.getElementById('start').addEventListener('click', () => {\n  if (timer) return;\n  timer = setInterval(() => {\n    n += 1;\n    out.textContent = String(n);\n  }, 500);\n});\ndocument.getElementById('stop').addEventListener('click', () => {\n  if (timer) {\n    clearInterval(timer);\n    timer = null;\n  }\n});"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.js.expected"
     }
   },
   "expectedResult": {

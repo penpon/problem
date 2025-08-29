@@ -1,0 +1,4 @@
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 16px; }
+input { width: 100px; margin-right: 6px; }
+#sum { margin-top: 12px; }
+button { margin-right: 8px; }

@@ -1,0 +1,13 @@
+const display = document.getElementById('message-display');
+
+document.getElementById('welcome-btn').addEventListener('click', () => {
+  display.textContent = 'ようこそ！';
+});
+
+document.getElementById('happy-btn').addEventListener('click', () => {
+  display.textContent = 'うれしい！';
+});
+
+document.getElementById('rocket-btn').addEventListener('click', () => {
+  display.textContent = '発進！';
+});

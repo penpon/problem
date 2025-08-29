@@ -6,15 +6,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>ホバー効果</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"hover-item scale\">scale</div>\n    <div class=\"hover-item rotate\">rotate</div>\n    <button class=\"btn\">button</button>\n    <div class=\"card\">card</div>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-15/files.html.expected"
     },
     "css": {
       "template": "",
-      "expected": "/* ホバー効果の最小実装 */\n/* 基本: hover + transition */\n.hover-item {\n  transition: all 0.3s ease;\n}\n.scale:hover {\n  transform: scale(1.1);\n}\n.rotate:hover {\n  transform: rotate(5deg);\n}\n\n/* 実用例: ボタン */\n.btn {\n  transition: all 0.3s ease;\n}\n.btn:hover {\n  transform: translateY(-2px);\n}\n\n/* 実用例: カード */\n.card {\n  transition: all 0.3s ease;\n}\n.card:hover {\n  transform: translateY(-4px);\n}"
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-15/files.css.expected"
     },
     "js": {
       "template": "",
-      "expected": ""
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-15/files.js.expected"
     }
   },
   "instructions": [

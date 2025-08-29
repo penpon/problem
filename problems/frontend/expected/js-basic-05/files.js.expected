@@ -1,0 +1,2 @@
+const el = document.getElementById('demo-element');
+el.textContent = 'JavaScriptで変更されました';

@@ -1,0 +1,29 @@
+/* シンプルカードの最小実装 */
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.image-card {
+  max-width: 280px;
+  overflow: hidden;
+}
+.action-card {
+  max-width: 300px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}

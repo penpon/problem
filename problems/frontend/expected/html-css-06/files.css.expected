@@ -1,0 +1,22 @@
+/* 初めてのCSS - 色とフォントの基本 */
+
+/* 見出しのスタイル */
+h1 {
+    color: blue;
+    font-family: Arial, sans-serif;
+    font-size: 32px;
+}
+
+/* 段落のスタイル */
+p {
+    color: green;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+/* リストのスタイル */
+li {
+    color: red;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}

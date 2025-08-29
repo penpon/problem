@@ -1,0 +1,2 @@
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 16px; }
+#demo-element { margin-top: 8px; }

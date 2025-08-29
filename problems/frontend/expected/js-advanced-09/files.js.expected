@@ -1,0 +1,16 @@
+let n = 0;
+let timer = null;
+const out = document.getElementById('count');
+document.getElementById('start').addEventListener('click', () => {
+  if (timer) return;
+  timer = setInterval(() => {
+    n += 1;
+    out.textContent = String(n);
+  }, 500);
+});
+document.getElementById('stop').addEventListener('click', () => {
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+  }
+});

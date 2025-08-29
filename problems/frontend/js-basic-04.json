@@ -12,15 +12,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>基本計算</title>\n</head>\n<body>\n  <h1>基本計算</h1>\n  <div id=\"add\"></div>\n  <div id=\"sub\"></div>\n  <div id=\"mul\"></div>\n  <div id=\"div\"></div>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.html.expected"
     },
     "css": {
       "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#add, #sub, #mul, #div { margin: 6px 0; }",
-      "expected": "body { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#add, #sub, #mul, #div { margin: 6px 0; }"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.css.expected"
     },
     "js": {
       "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "const a = 10;\nconst b = 3;\n\ndocument.getElementById('add').textContent = `足し算: ${a + b}`;\ndocument.getElementById('sub').textContent = `引き算: ${a - b}`;\ndocument.getElementById('mul').textContent = `掛け算: ${a * b}`;\ndocument.getElementById('div').textContent = `割り算: ${(a / b).toFixed(2)}`;"
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.js.expected"
     }
   },
   "expectedResult": {

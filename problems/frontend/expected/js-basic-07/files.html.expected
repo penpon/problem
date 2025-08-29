@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>複数ボタン</title>
+</head>
+<body>
+  <h1>複数ボタン</h1>
+  <div id="message-display">ボタンをクリックしてください</div>
+  <button id="welcome-btn">ようこそ</button>
+  <button id="happy-btn">幸せ</button>
+  <button id="rocket-btn">ロケット</button>
+  <script src="script.js"></script>
+</body>
+</html>

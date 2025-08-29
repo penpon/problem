@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カウンター</title>
+</head>
+<body>
+  <h1>カウンター</h1>
+  <div id="counter-display">0</div>
+  <button id="minus-btn">-1</button>
+  <button id="reset-btn">リセット</button>
+  <button id="plus-btn">+1</button>
+  <script src="script.js"></script>
+</body>
+</html>

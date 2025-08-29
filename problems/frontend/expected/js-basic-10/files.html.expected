@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内容変更</title>
+</head>
+<body>
+  <h1>内容変更</h1>
+  <p id="text">初期テキスト</p>
+  <div id="html-content"><em>初期HTML</em></div>
+  <button id="text-btn">テキスト変更</button>
+  <button id="html-btn">HTML変更</button>
+  <script src="script.js"></script>
+</body>
+</html>

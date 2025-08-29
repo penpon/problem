@@ -1,0 +1,6 @@
+const data = ['犬','猫','鳥','うさぎ'];
+const out = document.getElementById('result');
+document.getElementById('pick').addEventListener('click', () => {
+  const i = Math.floor(Math.random() * data.length);
+  out.textContent = data[i];
+});

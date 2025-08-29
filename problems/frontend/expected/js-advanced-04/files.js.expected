@@ -1,0 +1,7 @@
+const adjs = ['速い','楽しい','小さな','新しい'];
+const nouns = ['犬','ゲーム','本','道具'];
+const out = document.getElementById('combo');
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+document.getElementById('gen').addEventListener('click', () => {
+  out.textContent = pick(adjs) + ' ' + pick(nouns);
+});

@@ -1,0 +1,3 @@
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 16px; }
+#counter-display { margin: 8px 0; font-size: 2rem; }
+button { margin-right: 6px; }

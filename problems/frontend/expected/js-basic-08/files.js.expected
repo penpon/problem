@@ -1,0 +1,23 @@
+let counter = 0;
+const display = document.getElementById('counter-display');
+
+function update() {
+  display.textContent = String(counter);
+}
+
+document.getElementById('plus-btn').addEventListener('click', () => {
+  counter += 1;
+  update();
+});
+
+document.getElementById('minus-btn').addEventListener('click', () => {
+  counter -= 1;
+  update();
+});
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  counter = 0;
+  update();
+});
+
+update();

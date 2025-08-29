@@ -1,0 +1,14 @@
+const display = document.getElementById('message-display');
+
+document.getElementById('hello-button').addEventListener('click', () => {
+  display.textContent = 'こんにちは！';
+});
+
+document.getElementById('color-button').addEventListener('click', () => {
+  display.textContent = '色が変わりました';
+});
+
+document.getElementById('time-button').addEventListener('click', () => {
+  const now = new Date();
+  display.textContent = '現在時刻: ' + now.getHours() + ':' + now.getMinutes();
+});

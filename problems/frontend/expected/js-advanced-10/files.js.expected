@@ -1,0 +1,17 @@
+const data = ['apple','banana','kiwi','grape','orange'];
+const ul = document.getElementById('list');
+const input = document.getElementById('min');
+function render(items){
+  ul.innerHTML = '';
+  for (const s of items) {
+    const li = document.createElement('li');
+    li.textContent = s;
+    ul.appendChild(li);
+  }
+}
+document.getElementById('apply').addEventListener('click', () => {
+  const n = Number(input.value || 0);
+  const filtered = data.filter(s => s.length >= n);
+  render(filtered);
+});
+render(data);

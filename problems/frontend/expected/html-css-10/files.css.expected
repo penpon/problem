@@ -1,0 +1,7 @@
+/* 最小要件CSS */
+
+.flex-container { display: flex; }
+.inline-block-item { display: inline-block; width: 120px; height: 80px; }
+.sidebar { width: 200px; float: left; }
+.main-content { margin-left: 241px; }
+.column { width: 30%; float: left; margin: 1.5%; }

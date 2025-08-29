@@ -1,0 +1,12 @@
+const arr = [];
+const out = document.getElementById('arr');
+function render(){ out.textContent = '[' + arr.join(', ') + ']'; }
+document.getElementById('add').addEventListener('click', () => {
+  arr.push('item' + (arr.length + 1));
+  render();
+});
+document.getElementById('remove').addEventListener('click', () => {
+  if (arr.length > 0) arr.pop();
+  render();
+});
+render();

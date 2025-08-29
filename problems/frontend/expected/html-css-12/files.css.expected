@@ -1,0 +1,38 @@
+/* 簡単なアニメーションの最小実装 */
+
+/* 1. transition */
+.basic-hover {
+  transition: all 0.3s ease;
+}
+.basic-hover:hover {
+  transform: scale(1.1);
+  background-color: #3498db;
+}
+
+/* 2. keyframes */
+.bounce-box {
+  animation: bounce 2s infinite ease;
+}
+.fade-box {
+  animation: fade 1.5s infinite ease-in-out;
+}
+.slide-box {
+  position: relative;
+  animation: slide 3s infinite linear;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes slide {
+  0% { left: 0; }
+  50% { left: 20px; }
+  100% { left: 0; }
+}

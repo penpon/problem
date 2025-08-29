@@ -11,15 +11,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>課題を実装してください</h1>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>検索フォーム最小</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <div class=\"row g-2\">\n      <div class=\"col-12 col-md-8\">\n        <input type=\"text\" class=\"form-control\" placeholder=\"商品を検索\">\n      </div>\n      <div class=\"col-12 col-md-4\">\n        <button class=\"btn btn-primary w-100\">検索</button>\n      </div>\n    </div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-07/files.html.expected"
     },
     "css": {
       "template": "/* ここに実装してください */",
-      "expected": ""
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-07/files.css.expected"
     },
     "js": {
       "template": "// ここに実装してください",
-      "expected": ""
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-07/files.js.expected"
     }
   },
   "expectedResult": {

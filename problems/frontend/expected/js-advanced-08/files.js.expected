@@ -1,0 +1,8 @@
+const a = document.getElementById('a');
+const b = document.getElementById('b');
+const out = document.getElementById('sum');
+document.getElementById('calc').addEventListener('click', () => {
+  const n1 = Number(a.value || 0);
+  const n2 = Number(b.value || 0);
+  out.textContent = String(n1 + n2);
+});

@@ -1,0 +1,40 @@
+let value = 0;
+const MIN = -10;
+const MAX = 10;
+
+const display = document.getElementById('counter-display');
+
+function clamp(n) {
+  return Math.max(MIN, Math.min(MAX, n));
+}
+
+function update() {
+  display.textContent = String(value);
+}
+
+document.getElementById('minus10-btn').addEventListener('click', () => {
+  value = clamp(value - 10);
+  update();
+});
+
+document.getElementById('minus1-btn').addEventListener('click', () => {
+  value = clamp(value - 1);
+  update();
+});
+
+document.getElementById('plus1-btn').addEventListener('click', () => {
+  value = clamp(value + 1);
+  update();
+});
+
+document.getElementById('plus10-btn').addEventListener('click', () => {
+  value = clamp(value + 10);
+  update();
+});
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  value = 0;
+  update();
+});
+
+update();
