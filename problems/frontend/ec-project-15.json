@@ -12,11 +12,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <!-- ここに実装してください -->\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <!-- script.js は学習システムが自動で注入します -->\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15.html"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.html.expected"
+    },
+    "css": {
+      "template": "/* 任意で調整 */",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.css.expected"
     },
     "js": {
       "template": "// ここに実装してください",
-      "expected": "__INCLUDE__: js/ec-project-15-script.js"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.js.expected"
     }
   },
   "expectedResult": {
@@ -25,7 +29,7 @@
   "checks": [
     { "id": "layout-header-footer", "name": "ヘッダー/フッター", "type": "html", "message": "<header> と <footer> が存在すること" },
     { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewCatalog, #viewCheckout, #viewComplete が存在すること" },
-    { "id": "controls", "name": "操作UI", "type": "html", "message": "#category, #sort, #inStock, #total, #list, #checkoutBtn が存在すること" },
+    { "id": "controls", "name": "操作UI", "type": "html", "message": "#category, #sort, #inStock, #miniCartTotal, #list, #goCheckoutMini が存在すること" },
     { "id": "uses-array-methods", "name": "配列処理", "type": "js", "message": "filter/sort/map のいずれかを用いて一覧生成していること" },
     { "id": "grid-classes", "name": "グリッド", "type": "css", "message": "#list 直下に col-12 col-sm-6 col-lg-4 のクラスを持つ要素が並ぶこと" },
     { "id": "cart-and-checkout", "name": "カート/決済", "type": "js", "message": "カートに追加で件数(#cartCount)と合計が更新され、チェックアウト画面で一覧と合計が表示され、完了ボタンで完了ビューに遷移すること" }

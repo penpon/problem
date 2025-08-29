@@ -12,15 +12,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <!-- ここに実装してください -->\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>プロフィール管理</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <h1 class=\"h3 mb-3\">プロフィール編集</h1>\n    <form id=\"profileForm\" class=\"vstack gap-3\">\n      <div>\n        <label for=\"name\" class=\"form-label\">名前</label>\n        <input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"山田太郎\">\n      </div>\n      <div>\n        <label for=\"email\" class=\"form-label\">メール</label>\n        <input id=\"email\" type=\"email\" class=\"form-control\" placeholder=\"you@example.com\">\n      </div>\n      <div id=\"msg\" class=\"small\"></div>\n      <button type=\"submit\" class=\"btn btn-primary\">保存</button>\n    </form>\n    <div class=\"mt-3\">\n      <strong>プレビュー:</strong> <span id=\"preview\"></span>\n    </div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-08/files.html.expected"
     },
     "css": {
       "template": "/* ここに実装してください（最小） */",
-      "expected": "/* 最小: 追加スタイル不要 */"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-08/files.css.expected"
     },
     "js": {
       "template": "// ここに実装してください",
-      "expected": "const form = document.getElementById('profileForm');\nconst nameInput = document.getElementById('name');\nconst emailInput = document.getElementById('email');\nconst msg = document.getElementById('msg');\nconst preview = document.getElementById('preview');\n\nfunction renderPreview(){\n  const n = nameInput.value.trim() || '(未設定)';\n  const e = emailInput.value.trim() || '(未設定)';\n  preview.textContent = `${n} / ${e}`;\n}\n\nnameInput.addEventListener('input', renderPreview);\nemailInput.addEventListener('input', renderPreview);\nrenderPreview();\n\nform.addEventListener('submit', (e)=>{\n  e.preventDefault();\n  msg.className = 'small';\n  msg.textContent = '';\n\n  const n = nameInput.value.trim();\n  const eVal = emailInput.value.trim();\n  const emailOk = /.+@.+\\..+/.test(eVal);\n\n  if(!n){\n    msg.classList.add('text-danger');\n    msg.textContent = '名前を入力してください';\n    return;\n  }\n  if(!emailOk){\n    msg.classList.add('text-danger');\n    msg.textContent = 'メールの形式が正しくありません';\n    return;\n  }\n\n  msg.classList.add('text-success');\n  msg.textContent = '保存しました（疑似）';\n});"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-08/files.js.expected"
     }
   },
   "expectedResult": {

@@ -12,15 +12,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <!-- ここに実装してください -->\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>推奨システム</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <div id=\"products\" class=\"row g-3\"></div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-12/files.html.expected"
     },
     "css": {
       "template": "/* ここに実装してください（最小） */",
-      "expected": ".card-img-top{ object-fit: cover; height: 160px; }"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-12/files.css.expected"
     },
     "js": {
       "template": "// ここに実装してください",
-      "expected": "const products = [\n  { id: 1, name: '商品A', price: 1000, img: 'https://picsum.photos/seed/a/400/240' },\n  { id: 2, name: '商品B', price: 2000, img: 'https://picsum.photos/seed/b/400/240' },\n  { id: 3, name: '商品C', price: 1500, img: 'https://picsum.photos/seed/c/400/240' },\n  { id: 4, name: '商品D', price: 1800, img: 'https://picsum.photos/seed/d/400/240' }\n];\n\nconst container = document.getElementById('products');\nconst sorted = products\n  .slice()\n  .sort((a,b) => a.price - b.price); // 価格昇順\n\ncontainer.innerHTML = sorted.map(p => `\n  <div class=\"col-12 col-sm-6 col-lg-4\">\n    <div class=\"card h-100\">\n      <img class=\"card-img-top\" src=\"${p.img}\" alt=\"${p.name}\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">${p.name}</h5>\n        <p class=\"card-text\">¥${p.price.toLocaleString()}</p>\n      </div>\n    </div>\n  </div>\n`).join('');"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-12/files.js.expected"
     }
   },
   "expectedResult": {

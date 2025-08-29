@@ -1,0 +1,42 @@
+// 基本ソート（最小）
+// select の値に応じて products を sort() し、#productList に描画
+
+const products = [
+  { name: 'Phone', price: 50000, image: 'https://via.placeholder.com/600x400?text=Phone' },
+  { name: 'T-Shirt', price: 2000, image: 'https://via.placeholder.com/600x400?text=T-Shirt' },
+  { name: 'Coffee', price: 800, image: 'https://via.placeholder.com/600x400?text=Coffee' },
+  { name: 'Headphones', price: 12000, image: 'https://via.placeholder.com/600x400?text=Headphones' }
+];
+
+function render(list, items) {
+  list.innerHTML = items.map(p => `
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card">
+        <img class="card-img-top" src="${p.image}" alt="${p.name}">
+        <div class="card-body">
+          <h2 class="h6 mb-1">${p.name}</h2>
+          <p class="mb-0">¥${p.price.toLocaleString()}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function sortProducts(value) {
+  const [key, dir] = value.split('-');
+  return [...products].sort((a, b) => {
+    let va = a[key], vb = b[key];
+    if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+    const cmp = va < vb ? -1 : va > vb ? 1 : 0;
+    return dir === 'desc' ? -cmp : cmp;
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const select = document.getElementById('sortSelect');
+  const list = document.getElementById('productList');
+  render(list, sortProducts(select.value));
+  select.addEventListener('change', () => {
+    render(list, sortProducts(select.value));
+  });
+});

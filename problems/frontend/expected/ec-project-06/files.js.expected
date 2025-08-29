@@ -1,0 +1,22 @@
+// ギャラリー（最小）
+// galleryData を map() でカードHTMLにして #galleryContainer へ挿入
+
+document.addEventListener('DOMContentLoaded', function() {
+  const galleryData = [
+    { id: 1, title: 'プレミアムノートPC', image: 'https://via.placeholder.com/600x400?text=Premium+Laptop', price: 198000 },
+    { id: 2, title: 'デザイナーズソファ', image: 'https://via.placeholder.com/600x400?text=Designer+Sofa', price: 158000 }
+  ];
+  const container = document.getElementById('galleryContainer');
+  const cols = galleryData.map(item => `
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card">
+        <img class="card-img-top gallery-image" src="${item.image}" alt="${item.title}">
+        <div class="card-body">
+          <h2 class="h6 mb-1">${item.title}</h2>
+          <p class="mb-0">¥${item.price.toLocaleString()}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  container.innerHTML = `<div class="row g-3">${cols}</div>`;
+});

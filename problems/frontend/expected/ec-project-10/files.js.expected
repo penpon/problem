@@ -1,0 +1,23 @@
+// 最小商品一覧：map()でカード生成し#listへ
+const products = [
+  { name: 'Prod 1', price: 2200, image: 'https://via.placeholder.com/600x400?text=Prod+1' },
+  { name: 'Prod 2', price: 4400, image: 'https://via.placeholder.com/600x400?text=Prod+2' },
+  { name: 'Prod 3', price: 8800, image: 'https://via.placeholder.com/600x400?text=Prod+3' }
+];
+
+function render(items){
+  const html = items.map(p => `
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card">
+        <img class="card-img-top" src="${p.image}" alt="${p.name}">
+        <div class="card-body">
+          <h2 class="h6 mb-1">${p.name}</h2>
+          <p class="mb-0">¥${p.price.toLocaleString()}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('list').innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', () => render(products));

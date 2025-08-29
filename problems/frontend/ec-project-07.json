@@ -12,15 +12,15 @@
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <!-- ここに実装してください -->\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>ログイン</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container py-4\">\n    <h1 class=\"h3 mb-3\">ログイン</h1>\n    <form id=\"loginForm\" class=\"vstack gap-3\">\n      <div>\n        <label for=\"email\" class=\"form-label\">メールアドレス</label>\n        <input id=\"email\" type=\"email\" class=\"form-control\" placeholder=\"you@example.com\">\n      </div>\n      <div>\n        <label for=\"password\" class=\"form-label\">パスワード</label>\n        <input id=\"password\" type=\"password\" class=\"form-control\" placeholder=\"••••••\">\n      </div>\n      <div id=\"error\" class=\"text-danger small\"></div>\n      <button type=\"submit\" class=\"btn btn-primary\">ログイン</button>\n      <div id=\"status\" class=\"mt-2\"></div>\n    </form>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-07/files.html.expected"
     },
     "css": {
       "template": "/* ここに実装してください（最小） */",
-      "expected": "/* 最小: 追加スタイル不要 */"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-07/files.css.expected"
     },
     "js": {
       "template": "// ここに実装してください",
-      "expected": "const form = document.getElementById('loginForm');\nconst email = document.getElementById('email');\nconst password = document.getElementById('password');\nconst error = document.getElementById('error');\nconst status = document.getElementById('status');\n\nform.addEventListener('submit', (e) => {\n  e.preventDefault();\n  error.textContent = '';\n  status.textContent = '';\n\n  const emailVal = email.value.trim();\n  const passVal = password.value.trim();\n  const emailOk = /.+@.+\\..+/.test(emailVal);\n  const passOk = passVal.length >= 6;\n\n  if (!emailOk || !passOk) {\n    error.textContent = !emailOk ? 'メールアドレスの形式が正しくありません' : 'パスワードは6文字以上にしてください';\n    return;\n  }\n\n  status.textContent = 'ログイン成功（疑似）';\n});"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-07/files.js.expected"
     }
   },
   "expectedResult": {

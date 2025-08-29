@@ -1,0 +1,39 @@
+const form = document.getElementById('profileForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const msg = document.getElementById('msg');
+const preview = document.getElementById('preview');
+
+function renderPreview(){
+  const n = nameInput.value.trim() || '(未設定)';
+  const e = emailInput.value.trim() || '(未設定)';
+  preview.textContent = `${n} / ${e}`;
+}
+
+nameInput.addEventListener('input', renderPreview);
+emailInput.addEventListener('input', renderPreview);
+renderPreview();
+
+form.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  msg.className = 'small';
+  msg.textContent = '';
+
+  const n = nameInput.value.trim();
+  const eVal = emailInput.value.trim();
+  const emailOk = /.+@.+\..+/.test(eVal);
+
+  if(!n){
+    msg.classList.add('text-danger');
+    msg.textContent = '名前を入力してください';
+    return;
+  }
+  if(!emailOk){
+    msg.classList.add('text-danger');
+    msg.textContent = 'メールの形式が正しくありません';
+    return;
+  }
+
+  msg.classList.add('text-success');
+  msg.textContent = '保存しました（疑似）';
+});

@@ -1,0 +1,23 @@
+// 動的商品表示（最小）
+// 配列から生成して #productList に挿入
+
+const products = [
+  { name: 'Item 1', price: 1000, image: 'https://via.placeholder.com/600x400?text=Item+1' },
+  { name: 'Item 2', price: 2000, image: 'https://via.placeholder.com/600x400?text=Item+2' },
+  { name: 'Item 3', price: 3000, image: 'https://via.placeholder.com/600x400?text=Item+3' }
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const list = document.getElementById('productList');
+  list.innerHTML = products.map(p => `
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card">
+        <img class="card-img-top" src="${p.image}" alt="${p.name}">
+        <div class="card-body">
+          <h2 class="h6 mb-1">${p.name}</h2>
+          <p class="mb-0">¥${p.price.toLocaleString()}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+});

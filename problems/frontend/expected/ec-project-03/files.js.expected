@@ -1,0 +1,40 @@
+// カテゴリフィルタ（最小）
+// products からカテゴリを抽出し、select で選択→ filter() で絞り込み表示
+
+const products = [
+  { name: 'Phone', category: 'electronics', price: 50000, image: 'https://via.placeholder.com/600x400?text=Phone' },
+  { name: 'T-Shirt', category: 'fashion', price: 2000, image: 'https://via.placeholder.com/600x400?text=T-Shirt' },
+  { name: 'Coffee', category: 'food', price: 800, image: 'https://via.placeholder.com/600x400?text=Coffee' },
+  { name: 'Headphones', category: 'electronics', price: 12000, image: 'https://via.placeholder.com/600x400?text=Headphones' }
+];
+
+function render(list, items) {
+  list.innerHTML = items.map(p => `
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card">
+        <img class="card-img-top" src="${p.image}" alt="${p.name}">
+        <div class="card-body">
+          <h2 class="h6 mb-1">${p.name}</h2>
+          <p class="mb-0">${p.category} / ¥${p.price.toLocaleString()}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function populateCategories(select) {
+  const cats = ['all', ...new Set(products.map(p => p.category))];
+  select.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const select = document.getElementById('categoryFilter');
+  const list = document.getElementById('productList');
+  populateCategories(select);
+  render(list, products);
+  select.addEventListener('change', () => {
+    const v = select.value;
+    const filtered = v === 'all' ? products : products.filter(p => p.category === v);
+    render(list, filtered);
+  });
+});

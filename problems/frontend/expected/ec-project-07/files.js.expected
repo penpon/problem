@@ -1,0 +1,23 @@
+const form = document.getElementById('loginForm');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const error = document.getElementById('error');
+const status = document.getElementById('status');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  error.textContent = '';
+  status.textContent = '';
+
+  const emailVal = email.value.trim();
+  const passVal = password.value.trim();
+  const emailOk = /.+@.+\..+/.test(emailVal);
+  const passOk = passVal.length >= 6;
+
+  if (!emailOk || !passOk) {
+    error.textContent = !emailOk ? 'メールアドレスの形式が正しくありません' : 'パスワードは6文字以上にしてください';
+    return;
+  }
+
+  status.textContent = 'ログイン成功（疑似）';
+});
