@@ -4,9 +4,20 @@
   "description": "ボタンクリック時のイベントリスナーでDOMを更新します",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "#message-display を取得し、表示テキストの更新に使用する",
+    "#hello-button / #color-button / #time-button に click イベントを登録する",
+    "クリックに応じて #message-display.textContent を変更する（時刻は Date を使用）"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "message-display", "name": "#message-display", "type": "html", "message": "#message-display 要素を用意してください" },
+    { "id": "hello-button", "name": "#hello-button", "type": "html", "message": "#hello-button ボタンを用意してください" },
+    { "id": "color-button", "name": "#color-button", "type": "html", "message": "#color-button ボタンを用意してください" },
+    { "id": "time-button", "name": "#time-button", "type": "html", "message": "#time-button ボタンを用意してください" }
+  ]
 }

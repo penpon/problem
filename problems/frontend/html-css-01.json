@@ -54,9 +54,5 @@
       "type": "structure",
       "message": "<title>タグと内容が必要です"
     }
-  ],
-  "hints": [
-    "HTMLの基本構造は <!DOCTYPE html>から始まります",
-    "すべてのHTMLタグは開始タグと終了タグが必要です"
   ]
 }

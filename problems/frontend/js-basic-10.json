@@ -4,9 +4,20 @@
   "description": "ボタン操作で要素のtextContentを変更します（安全なテキスト更新）",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "#text と #html-content を取得する",
+    "#text-btn クリックで #text.textContent を変更（安全なテキスト更新）",
+    "#html-btn クリックで #html-content.innerHTML を変更（用途を理解して使用）"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-10/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-10/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-10/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "text", "name": "#text", "type": "html", "message": "#text 要素を用意してください" },
+    { "id": "html-content", "name": "#html-content", "type": "html", "message": "#html-content 要素を用意してください" },
+    { "id": "text-btn", "name": "#text-btn", "type": "html", "message": "#text-btn ボタンを用意してください" },
+    { "id": "html-btn", "name": "#html-btn", "type": "html", "message": "#html-btn ボタンを用意してください" }
+  ]
 }

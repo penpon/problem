@@ -4,9 +4,21 @@
   "description": "JavaScriptで簡単なテキスト表示を行います",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "HTML に <script src=\"script.js\"></script> を読み込む（body閉じタグ直前）",
+    "ページ読み込み時に alert('こんにちは') を表示する",
+    "動作確認用に console.log を出しても良い（任意）"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" }
+  ]
 }

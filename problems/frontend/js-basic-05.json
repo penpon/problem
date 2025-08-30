@@ -4,9 +4,17 @@
   "description": "DOMから要素を取得して操作の基本を学びます",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "#demo-element を getElementById で取得する",
+    "取得した要素の textContent を 'JavaScriptで変更されました' に変更する",
+    "DOM 取得は1回だけ行い、変数に保持して再利用する"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-05/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-05/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-05/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "demo-element", "name": "#demo-element", "type": "html", "message": "#demo-element 要素を用意してください" }
+  ]
 }

@@ -4,9 +4,22 @@
   "description": "リセットや複数ボタンなど改善要素を加えたカウンターを作成します",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "現在値 value を用意し、最小/最大 MIN/MAX を定義する",
+    "#minus10-btn / #minus1-btn / #reset-btn / #plus1-btn / #plus10-btn に click イベントを登録する",
+    "更新時は clamp() で範囲 [-10,10] に収め、#counter-display に表示する"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "counter-display", "name": "#counter-display", "type": "html", "message": "#counter-display 要素を用意してください" },
+    { "id": "minus10-btn", "name": "#minus10-btn", "type": "html", "message": "#minus10-btn ボタンを用意してください" },
+    { "id": "minus1-btn", "name": "#minus1-btn", "type": "html", "message": "#minus1-btn ボタンを用意してください" },
+    { "id": "reset-btn", "name": "#reset-btn", "type": "html", "message": "#reset-btn ボタンを用意してください" },
+    { "id": "plus1-btn", "name": "#plus1-btn", "type": "html", "message": "#plus1-btn ボタンを用意してください" },
+    { "id": "plus10-btn", "name": "#plus10-btn", "type": "html", "message": "#plus10-btn ボタンを用意してください" }
+  ]
 }

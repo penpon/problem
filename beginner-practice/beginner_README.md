@@ -133,6 +133,15 @@
 - **Bootstrap基礎（bootstrap-\*)**: BootstrapのCSSユーティリティ中心（JSプラグインは必要回のみ最小導入）
 - **ECプロジェクト（ec-project-\*)**: 実用ミニアプリ構築（複数回を横断して段階的に拡張）
 
+### 2. 問題JSONの必須項目（全問題共通）
+- `id`
+- `title`
+- `description`
+- `category`
+- `instructions`
+- `files`
+- `checks`
+
 ---
 
 ## 🧭 共通運用原則（全カテゴリ）

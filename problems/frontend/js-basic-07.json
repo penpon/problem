@@ -4,9 +4,20 @@
   "description": "複数のボタンにイベントを設定し、それぞれ別の動作を実行します",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "#message-display を取得し、表示用に利用する",
+    "#welcome-btn / #happy-btn / #rocket-btn に click イベントを登録する",
+    "各ボタンクリックで #message-display.textContent を異なる文言に更新する"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "message-display", "name": "#message-display", "type": "html", "message": "#message-display 要素を用意してください" },
+    { "id": "welcome-btn", "name": "#welcome-btn", "type": "html", "message": "#welcome-btn ボタンを用意してください" },
+    { "id": "happy-btn", "name": "#happy-btn", "type": "html", "message": "#happy-btn ボタンを用意してください" },
+    { "id": "rocket-btn", "name": "#rocket-btn", "type": "html", "message": "#rocket-btn ボタンを用意してください" }
+  ]
 }

@@ -4,9 +4,20 @@
   "description": "JavaScriptで四則演算を行い、結果を画面に表示します",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "a と b の数値を用意し、四則演算の結果を計算する",
+    "#add/#sub/#mul/#div の各要素に textContent で結果を表示する",
+    "割り算は小数点以下を toFixed(2) で整形する"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "add", "name": "#add", "type": "html", "message": "#add 要素を用意してください" },
+    { "id": "sub", "name": "#sub", "type": "html", "message": "#sub 要素を用意してください" },
+    { "id": "mul", "name": "#mul", "type": "html", "message": "#mul 要素を用意してください" },
+    { "id": "div", "name": "#div", "type": "html", "message": "#div 要素を用意してください" }
+  ]
 }

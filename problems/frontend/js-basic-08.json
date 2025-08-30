@@ -4,9 +4,20 @@
   "description": "ボタンで数値を増減する基本的なカウンターを作成します",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "数値用の変数 counter を用意し、#counter-display に表示する",
+    "#plus-btn / #minus-btn / #reset-btn に click イベントを登録する",
+    "各操作後に表示更新関数 update() を呼び出す"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-08/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-08/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-08/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "counter-display", "name": "#counter-display", "type": "html", "message": "#counter-display 要素を用意してください" },
+    { "id": "minus-btn", "name": "#minus-btn", "type": "html", "message": "#minus-btn ボタンを用意してください" },
+    { "id": "reset-btn", "name": "#reset-btn", "type": "html", "message": "#reset-btn ボタンを用意してください" },
+    { "id": "plus-btn", "name": "#plus-btn", "type": "html", "message": "#plus-btn ボタンを用意してください" }
+  ]
 }

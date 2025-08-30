@@ -4,9 +4,21 @@
   "description": "console.log と 変数宣言（let/const）の基本を学びます",
   "category": "javascript-basics",
   "difficulty": "初級",
+  "instructions": [
+    "script を読み込み、ページ読み込み時に実行する",
+    "let/const で変数を宣言し、文字列を代入する",
+    "console.log で複数行のメッセージを出力する（テンプレートリテラル推奨）"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.css.expected" },
     "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.js.expected" }
-  }
+  },
+  "checks": [
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" }
+  ]
 }
