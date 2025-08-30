@@ -133,13 +133,6 @@
 - **Bootstrap基礎（bootstrap-\*)**: BootstrapのCSSユーティリティ中心（JSプラグインは必要回のみ最小導入）
 - **ECプロジェクト（ec-project-\*)**: 実用ミニアプリ構築（複数回を横断して段階的に拡張）
 
-### 2. 問題構成の統一
-- 各回は「files.html / files.css / files.js」の3分割を原則（html-css-* は `files.js` を原則空/未使用）
-- expected は解説ページではなく、ユーザーが作るべき最小の完成例を示す
-
-### 3. ECサイト制作との関連性
-- 各カテゴリともECサイト制作で必要な基礎/応用を段階的に学べる内容にする
-
 ---
 
 ## 🧭 共通運用原則（全カテゴリ）
@@ -184,34 +177,30 @@
 
 ---
 
-## 🛠️ カテゴリ別運用ガイド
+## 🛠️ カテゴリ別運用ガイド（重複排除版）
 
 ### ■ HTML/CSS基礎（html-css-\*）
 - **ファイル**: `files.html`, `files.css` のみ（`files.js` は空/未使用）
 - **禁止**: `<script>` の挿入、JavaScriptによる動作
-- **expected**: `.expected` は実体HTML/CSSを直接格納（`__INCLUDE__` の二重参照禁止）
 - **checks**: セレクタ構造・クラス付与・レスポンシブ指定などを明確化
 
 ### ■ JavaScript基礎（js-basic-\*）
 - **範囲**: 変数/条件/反復/DOM基本操作/イベント基本
-- **expected**: `.expected` は最終テキストを直接格納（beginner-practice からのコピー可、二重参照禁止）
-- **checks**: `textContent` での安全な反映、`id/class` の一致、イベントの発火確認
+- **checks**: `textContent` の使用、`id/class` の一致、イベント発火確認
 
 ### ■ JavaScript応用（js-advanced-\*）
 - **範囲**: 配列/関数の分割、モジュール的分割（OOP/フレームワークなし）
-- **expected**: 実体テキストを直接格納。ユーティリティ関数は最小・読みやすく
-- **checks**: 配列処理結果、条件分岐、イベントデリゲーション等の動作を明文化
+- **checks**: 配列処理結果、条件分岐、イベントデリゲーション等の動作観点
 
 ### ■ Bootstrap基礎（bootstrap-\*）
 - **範囲**: レイアウト/ユーティリティ/フォーム/コンポーネント（CSS中心）
 - **依存**: CDNは最小。JSプラグインは必要回のみ（導入理由を明記）
-- **expected**: クラス構成と表示結果が一意に分かる最小HTML/CSS/JS（JSは不要なら空）
+- **備考**: JSは不要なら空でも可
 - **checks**: クラス名と構造の一致、レスポンシブ振る舞いの確認観点
 
 ### ■ ECプロジェクト（ec-project-\*）
 - **範囲**: ミニカート→チェックアウト→履歴等、段階的に機能追加
 - **構成**: 可能な限り3分割を維持。複数ページになる場合はテンプレを明確化
-- **expected**: 実体テキストのみ。モックデータは安定値で固定
 - **checks**: UI更新、計算結果、状態遷移、アクセシビリティの要件を明記
 
 ---
@@ -225,7 +214,7 @@
 
 ---
 
-## ❗ expected 作成ルール（重要・再掲）
+## ❗ expected 作成ルール（重要）
 - **二重参照禁止**: `.expected` 内で `beginner-practice/...` への再 `__INCLUDE__` を禁止
 - **実体化**: `.expected` は最終テキストを直接格納（必要なら `beginner-practice` からコピー）
 - **対象**: `files.html.expected`, `files.css.expected`, `files.js.expected`
@@ -284,5 +273,3 @@
 - [ ] `category` のスペル/IDミスマッチ
 - [ ] `checks` とテンプレDOM/仕様がズレている
 - [ ] `index.json` の合計数や日付の未更新
-
----
