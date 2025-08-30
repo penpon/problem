@@ -1955,6 +1955,20 @@ extractProblemNumber(problemId, categoryId) {
         this.hintModalActive = true;
         this.hintModal.classList.add('show');
         document.body.style.overflow = 'hidden';
+        // ヒントモーダル内のスクロール対象要素にフォーカスを当ててスクロールを有効化
+        const modalBody = this.hintModal.querySelector('.hint-modal-body');
+        if (modalBody) {
+            // 明示的に縦スクロールを許可
+            modalBody.style.overflowY = 'auto';
+            // キーボード/ホイールスクロールを有効にするためフォーカス可能に
+            if (!modalBody.hasAttribute('tabindex')) {
+                modalBody.setAttribute('tabindex', '-1');
+            }
+            // 少し遅らせてからフォーカス（描画完了後）
+            setTimeout(() => {
+                try { modalBody.focus({ preventScroll: true }); } catch (_) { modalBody.focus(); }
+            }, 0);
+        }
         
         // モーダルのタイトルを設定
         if (this.hintModalTitle) {
@@ -1981,6 +1995,13 @@ extractProblemNumber(problemId, categoryId) {
         this.hintModalActive = false;
         this.hintModal.classList.remove('show');
         document.body.style.overflow = '';
+        // フォーカス/スタイルの後始末
+        const modalBody = this.hintModal.querySelector('.hint-modal-body');
+        if (modalBody) {
+            // スタイルは他用途に影響しないよう残しても良いが、明示的にクリア
+            // modalBody.style.overflowY = '';
+            // 必要なら tabindex は残して問題なし（将来のオープンでも利用）
+        }
         
         // スクロール指標を非表示
         const scrollIndicator = document.getElementById('hint-scroll-indicator');
@@ -2184,6 +2205,19 @@ ${(this.currentProblem?.instructions || []).map((instruction, index) => `${index
             // シンタックスハイライト適用
             this.applySyntaxHighlight();
             
+            // ヒント描画直後にスクロール対象を再設定
+            const modalBody = this.hintModal?.querySelector('.hint-modal-body');
+            if (modalBody) {
+                // 念のためoverflowを明示し、先頭から開始
+                modalBody.style.overflowY = 'auto';
+                modalBody.scrollTop = 0;
+                if (!modalBody.hasAttribute('tabindex')) {
+                    modalBody.setAttribute('tabindex', '-1');
+                }
+                // フォーカスしてキーボード/ホイール/タッチスクロールを確実に有効化
+                try { modalBody.focus({ preventScroll: true }); } catch (_) { modalBody.focus(); }
+            }
+
             // スクロール指標の表示制御
             setTimeout(() => {
                 this.updateScrollIndicator();
