@@ -282,10 +282,10 @@ class ProblemLoader {
       // JavaScript応用(js-advanced-01 → js-advanced-20)
       'js-advanced-01': 'js-advanced-01-text-content-change',
       'js-advanced-02': 'js-advanced-02-html-content-basic',
-      'js-advanced-03': 'js-advanced-03-random-basic',
-      'js-advanced-04': 'js-advanced-04-array-random-combo',
+      'js-advanced-03': 'js-advanced-03-search-filter',
+      'js-advanced-04': 'js-advanced-04-price-sort',
       'js-advanced-05': 'js-advanced-05-array-basics',
-      'js-advanced-06': 'js-advanced-06-random-selection',
+      'js-advanced-06': 'js-advanced-06-product-find',
       'js-advanced-07': 'js-advanced-07-timer-basics',
       'js-advanced-08': 'js-advanced-08-timer-animation',
       'js-advanced-09': 'js-advanced-09-function-practical',

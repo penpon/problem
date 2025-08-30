@@ -1,29 +1,39 @@
 {
   "id": "js-advanced-20",
-  "title": "入力バリデーション（最小・必須）",
-  "description": "テキスト入力が空の場合にエラーメッセージを表示します（最小）",
+  "title": "基本バリデーション（名前とメール）",
+  "description": "名前の未入力とメール形式の最小チェックを行い、エラーを一覧表示し状態を更新します",
   "category": "javascript-advanced",
   "instructions": [
-    "#name の入力が空（trim）なら #error にメッセージを表示",
-    "送信（submit）時に preventDefault でページ遷移を防止",
-    "成功時は #error を空にし、#result に名前を表示（任意）"
+    "#submitBtn クリックでバリデーションを実行",
+    "名前は trim 後に非空であること",
+    "メールは /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/ に一致すること",
+    "エラーは #errorList に li 要素として列挙",
+    "成功時は #statusText を『送信成功』にして .success を付与、エラー時は『エラーあり』にして .success を外す"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>最小バリデーション</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <form id=\"form\">\n      <input id=\"name\" type=\"text\" placeholder=\"名前\">\n      <button type=\"submit\">送信</button>\n    </form>\n    <div id=\"error\" style=\"color:red;margin-top:8px\"></div>\n    <div id=\"result\" style=\"margin-top:8px\"></div>\n  </main>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>js-advanced-20 基本バリデーション</title>\n  <link rel=\"stylesheet\" href=\"style.css\" />\n</head>\n<body>\n  <div class=\"container\">\n    <h1>基本バリデーション（名前とメール）</h1>\n\n    <div class=\"form\">\n      <label for=\"nameInput\">名前</label>\n      <input id=\"nameInput\" type=\"text\" placeholder=\"山田太郎\" />\n\n      <label for=\"emailInput\">メール</label>\n      <input id=\"emailInput\" type=\"email\" placeholder=\"taro@example.com\" />\n\n      <button id=\"submitBtn\" type=\"button\">送信</button>\n      <div class=\"meta\">状態: <span id=\"statusText\">未送信</span></div>\n    </div>\n\n    <ul id=\"errorList\" class=\"errors\" aria-live=\"polite\"></ul>\n  </div>\n\n  <script src=\"script.js\"></script>\n</body>\n</html>\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-20/files.html.expected"
     },
-    "css": { "template": "/* なし（最小） */", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-20/files.css.expected" },
+    "css": {
+      "template": "body{font-family:system-ui,-apple-system,\"Segoe UI\",sans-serif;margin:16px}\n.container{max-width:640px;margin:auto}\n.form{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}\ninput{padding:8px 10px;border:1px solid #ccc;border-radius:6px}\nbutton{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}\n.meta{color:#666}\n.errors{margin-top:10px;color:#d00;padding-left:18px}\n.errors li{margin:2px 0}\n.success{color:#0a7}\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-20/files.css.expected"
+    },
     "js": {
-      "template": "// 最小バリデーション\nconst form = document.getElementById('form');\nconst nameInput = document.getElementById('name');\nconst errorEl = document.getElementById('error');\nconst resultEl = document.getElementById('result');\nform.addEventListener('submit', (e) => {\n  e.preventDefault();\n  // TODO: nameInput.value.trim() が空なら errorEl に文言、そうでなければ resultEl に表示\n});\n",
+      "template": "const $name = document.getElementById('nameInput');\nconst $email = document.getElementById('emailInput');\nconst $submit = document.getElementById('submitBtn');\nconst $status = document.getElementById('statusText');\nconst $errors = document.getElementById('errorList');\n\nfunction validate() {\n  const errs = [];\n  const name = ($name.value || '').trim();\n  const email = ($email.value || '').trim();\n\n  if (name.length === 0) {\n    errs.push('名前を入力してください');\n  }\n  // 簡易メール判定（@ と . を含む程度の最小チェック）\n  if (!/^[^\\\\s@]+@[^\\\\s@]+\\\\.[^\\\\s@]+$/.test(email)) {\n    errs.push('メールアドレスの形式が正しくありません');\n  }\n  return errs;\n}\n\nfunction renderErrors(errs) {\n  $errors.innerHTML = '';\n  for (const msg of errs) {\n    const li = document.createElement('li');\n    li.textContent = msg;\n    $errors.appendChild(li);\n  }\n}\n\n$submit.addEventListener('click', () => {\n  const errs = validate();\n  renderErrors(errs);\n  if (errs.length === 0) {\n    $status.textContent = '送信成功';\n    $status.classList.add('success');\n  } else {\n    $status.textContent = 'エラーあり';\n    $status.classList.remove('success');\n  }\n});\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-20/files.js.expected"
     }
   },
+  "expectedResult": {
+    "behavior": "送信で名前が非空・メール形式OKなら成功、問題があればエラーを列挙して状態は『エラーあり』になる"
+  },
   "checks": [
-    { "id": "form-el", "name": "#form", "type": "html", "message": "#form が必要です" },
-    { "id": "name-el", "name": "#name", "type": "html", "message": "#name が必要です" },
-    { "id": "prevent-default", "name": "preventDefault", "type": "js", "message": "submit 時に preventDefault を使ってください" },
-    { "id": "trim-check", "name": "trim()", "type": "js", "message": "空判定には trim() を使ってください" }
-  ],
-  "expectedResult": { "behavior": "未入力で送信するとエラー表示、入力ありで結果表示" }
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
+    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+  ]
 }

@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>入力値の合計</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>js-advanced-08 タイマーアニメーション</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>入力値の合計</h1>
-  <input id="a" type="number" /> +
-  <input id="b" type="number" />
-  <button id="calc">計算</button>
-  <div id="sum">0</div>
+  <div class="container">
+    <h1>タイマーアニメーション</h1>
+
+    <div class="controls">
+      <button id="startBtn" type="button">開始</button>
+      <button id="stopBtn" type="button">停止</button>
+      <div class="meta">状態: <span id="statusText">停止中</span></div>
+    </div>
+
+    <div id="stage" class="stage" aria-label="アニメーション領域">
+      <div id="box" class="box" aria-hidden="true"></div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

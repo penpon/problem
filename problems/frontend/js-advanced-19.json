@@ -1,29 +1,38 @@
 {
   "id": "js-advanced-19",
-  "title": "カード描画関数（テンプレ文字列）",
-  "description": "テンプレート文字列でカードHTMLを生成する関数を作り、一覧描画します",
+  "title": "カードテンプレ（配列→カード生成）",
+  "description": "配列の商品データからカード要素を動的生成し、タイトルと価格を安全に表示します",
   "category": "javascript-advanced",
   "instructions": [
-    "createCard(item) 関数で1枚分のHTML文字列を返す（テンプレ文字列）",
-    "map→join→#list.innerHTML に代入",
-    "最小：画像は省略可。タイトルと価格のみでOK"
+    "#generateBtn クリックで products 配列からカード要素を生成",
+    ".card 内に .card-title と .card-price を作成し textContent で挿入",
+    "生成後 #statusText を『生成済み』に更新",
+    "innerHTML 連結は避け、createElement/appendChild を使う"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>カード描画関数</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <div id=\"list\"></div>\n  </main>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>js-advanced-19 カードテンプレ</title>\n  <link rel=\"stylesheet\" href=\"style.css\" />\n</head>\n<body>\n  <div class=\"container\">\n    <h1>カードテンプレ（配列→カード生成）</h1>\n\n    <div class=\"controls\">\n      <button id=\"generateBtn\" type=\"button\">生成</button>\n      <div class=\"meta\">状態: <span id=\"statusText\">未生成</span></div>\n    </div>\n\n    <div id=\"cardList\" class=\"card-list\" aria-live=\"polite\"></div>\n  </div>\n\n  <script src=\"script.js\"></script>\n</body>\n</html>\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-19/files.html.expected"
     },
-    "css": { "template": "#list{display:grid;gap:8px}.card{border:1px solid #ddd;border-radius:6px;padding:8px}", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-19/files.css.expected" },
+    "css": {
+      "template": "body{font-family:system-ui,-apple-system,\"Segoe UI\",sans-serif;margin:16px}\n.container{max-width:900px;margin:auto}\n.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}\nbutton{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}\n.meta{color:#666}\n.card-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:12px}\n.card{border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fff}\n.card-title{font-weight:600;margin-bottom:4px}\n.card-price{color:#0a7}\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-19/files.css.expected"
+    },
     "js": {
-      "template": "const items = [\n  { id:1, title:'Item A', price:100 },\n  { id:2, title:'Item B', price:200 }\n];\nfunction createCard(item){\n  // TODO: テンプレ文字列で .card を返す\n}\nfunction render(){\n  const html = items.map(createCard).join('');\n  document.getElementById('list').innerHTML = html;\n}\nrender();\n",
+      "template": "// 商品データ（最小サンプル）\nconst products = [\n  { id: 1, title: 'Pro Camera', price: 49800 },\n  { id: 2, title: 'Light Stand', price: 3200 },\n  { id: 3, title: 'Mini Tripod', price: 1800 },\n  { id: 4, title: 'Pro Light', price: 9800 }\n];\n\nconst $btn = document.getElementById('generateBtn');\nconst $list = document.getElementById('cardList');\nconst $status = document.getElementById('statusText');\n\nfunction renderCards(items) {\n  $list.innerHTML = '';\n  for (const item of items) {\n    const card = document.createElement('div');\n    card.className = 'card';\n\n    const t = document.createElement('div');\n    t.className = 'card-title';\n    t.textContent = item.title;\n\n    const p = document.createElement('div');\n    p.className = 'card-price';\n    p.textContent = `¥${item.price.toLocaleString()}`;\n\n    card.appendChild(t);\n    card.appendChild(p);\n    $list.appendChild(card);\n  }\n}\n\n$btn.addEventListener('click', () => {\n  renderCards(products);\n  $status.textContent = '生成済み';\n});\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-19/files.js.expected"
     }
   },
+  "expectedResult": {
+    "behavior": "生成ボタンで products の件数分カードが作成され、各カードにタイトルと価格が表示される。状態は『生成済み』に更新される"
+  },
   "checks": [
-    { "id": "list", "name": "#list", "type": "html", "message": "#list が必要です" },
-    { "id": "createCard", "name": "createCard()", "type": "js", "message": "createCard 関数を定義してください" },
-    { "id": "template-string", "name": "テンプレート文字列", "type": "js", "message": "テンプレート文字列でHTMLを生成してください" },
-    { "id": "assign-innerHTML", "name": "innerHTML 代入", "type": "js", "message": "innerHTML に代入してください" }
-  ],
-  "expectedResult": { "rendering": "カードが2枚描画される（タイトル・価格）" }
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
+    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+  ]
 }

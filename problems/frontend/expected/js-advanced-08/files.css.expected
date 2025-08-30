@@ -1,4 +1,7 @@
-body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 16px; }
-input { width: 100px; margin-right: 6px; }
-#sum { margin-top: 12px; }
-button { margin-right: 8px; }
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;margin:16px}
+.container{max-width:800px;margin:auto}
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}
+button{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}
+.meta{color:#666}
+.stage{position:relative;border:1px solid #e5e7eb;border-radius:8px;height:120px;margin-top:12px;overflow:hidden;background:#fafafa}
+.box{position:absolute;width:40px;height:40px;background:#4f46e5;border-radius:6px;left:0;top:40px;transform:translateX(0)}

@@ -1,28 +1,30 @@
 {
   "id": "js-advanced-07",
-  "title": "要素の作成と追加",
-  "description": "createElement と appendChild でリスト項目を追加します",
+  "title": "タイマー基礎（setInterval）",
+  "description": "開始/停止ボタンで setInterval を使って 1 秒ごとにカウンターを増やす基礎を学びます",
   "category": "javascript-advanced",
   "instructions": [
-    "ul 要素とボタンを用意する",
-    "クリックで li を生成し ul に追加する"
+    "#startBtn クリックで setInterval を開始し、1 秒ごとにカウンターを +1",
+    "#stopBtn クリックで clearInterval を実行して停止",
+    "多重起動防止のため、実行中は新たな setInterval を作らない",
+    "#statusText に『計測中/停止中』を表示する"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>課題を実装してください</h1>\n  <!-- ここに実装してください -->\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>js-advanced-07 タイマー基礎（setInterval）</title>\n  <link rel=\"stylesheet\" href=\"style.css\" />\n</head>\n<body>\n  <div class=\"container\">\n    <h1>タイマー基礎</h1>\n\n    <div class=\"controls\">\n      <button id=\"startBtn\" type=\"button\">開始</button>\n      <button id=\"stopBtn\" type=\"button\">停止</button>\n      <div class=\"meta\">状態: <span id=\"statusText\">停止中</span></div>\n    </div>\n\n    <div class=\"counter\" aria-live=\"polite\">\n      経過秒: <span id=\"counter\">0</span>\n    </div>\n  </div>\n\n  <script src=\"script.js\"></script>\n</body>\n</html>\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.html.expected"
     },
     "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\nul { margin: 12px 0; padding-left: 20px; }\nbutton { margin-right: 8px; }",
+      "template": "body{font-family:system-ui,-apple-system,\"Segoe UI\",sans-serif;margin:16px}\n.container{max-width:800px;margin:auto}\n.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}\nbutton{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}\n.meta{color:#666}\n.counter{border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-top:12px;min-height:56px;font-size:18px}\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.css.expected"
     },
     "js": {
-      "template": "// ここに実装してください",
+      "template": "let timerId = null;\nlet seconds = 0;\n\nconst $start = document.getElementById('startBtn');\nconst $stop = document.getElementById('stopBtn');\nconst $counter = document.getElementById('counter');\nconst $status = document.getElementById('statusText');\n\nfunction updateCounter() {\n  seconds += 1;\n  $counter.textContent = String(seconds);\n}\n\nfunction startTimer() {\n  if (timerId !== null) return; // 重複開始防止\n  $status.textContent = '計測中';\n  timerId = setInterval(updateCounter, 1000);\n}\n\nfunction stopTimer() {\n  if (timerId !== null) {\n    clearInterval(timerId);\n    timerId = null;\n  }\n  $status.textContent = '停止中';\n}\n\n$start.addEventListener('click', startTimer);\n$stop.addEventListener('click', stopTimer);\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "ボタンを押すたびに li が1つずつ ul に追加されていく"
+    "behavior": "開始で毎秒カウントが増え、停止で止まる。重複開始は発生しない"
   },
   "checks": [
     {

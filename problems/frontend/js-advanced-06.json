@@ -1,71 +1,38 @@
 {
   "id": "js-advanced-06",
-  "title": "クラス切替 (classList.toggle)",
-  "description": "ボタンで要素のクラスをトグルして見た目を切り替えます",
+  "title": "単一商品詳細表示（find）",
+  "description": "入力された商品IDで配列から1件を find し、詳細（名前/価格）を安全に表示します",
   "category": "javascript-advanced",
   "instructions": [
-    "対象要素とボタンを用意する",
-    "クリックで classList.toggle を使ってクラスを付け外しする"
+    "#productIdInput の値を Number に変換し妥当性を確認する",
+    "products.find で一致する id の商品を取得する（無ければ null）",
+    "#productDetail に名前/価格を textContent で表示する",
+    "#statusText に見つかった/見つからないの状態を表示する"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>課題を実装してください</h1>\n  <!-- ここに実装してください -->\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>js-advanced-06 単一商品詳細表示（find）</title>\n  <link rel=\"stylesheet\" href=\"style.css\" />\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品詳細</h1>\n\n    <div class=\"controls\">\n      <label for=\"productIdInput\">商品ID</label>\n      <input id=\"productIdInput\" type=\"number\" min=\"1\" step=\"1\" placeholder=\"例: 1\" />\n      <button id=\"showBtn\" type=\"button\">表示</button>\n      <div class=\"meta\">該当: <span id=\"statusText\">未検索</span></div>\n    </div>\n\n    <div id=\"productDetail\" class=\"product-detail\" aria-live=\"polite\">\n      <!-- 商品名/価格を表示 -->\n    </div>\n  </div>\n\n  <script src=\"script.js\"></script>\n</body>\n</html>\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-06/files.html.expected"
     },
     "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#box { padding: 8px 12px; border: 1px solid #ccc; display: inline-block; margin-right: 8px; }\n.active { background: #e6f4ff; border-color: #60a5fa; }\nbutton { margin-right: 8px; }",
+      "template": "body{font-family:system-ui,-apple-system,\"Segoe UI\",sans-serif;margin:16px}\n.container{max-width:800px;margin:auto}\n.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}\n#productIdInput{padding:8px 10px;border:1px solid #ccc;border-radius:6px;width:120px}\n#showBtn{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}\n.meta{color:#666}\n.product-detail{border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-top:12px;min-height:56px}\n.product-name{font-weight:600}\n.product-price{color:#0a7;}\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-06/files.css.expected"
     },
     "js": {
-      "template": "// ここに実装してください",
+      "template": "// 商品データ（最小サンプル）\nconst products = [\n  { id: 1, name: 'Pro Camera', price: 49800 },\n  { id: 2, name: 'Light Stand', price: 3200 },\n  { id: 3, name: 'Mini Tripod', price: 1800 },\n  { id: 4, name: 'Pro Light', price: 9800 },\n  { id: 5, name: 'Simple Bag', price: 2500 }\n];\n\nconst $input = document.getElementById('productIdInput');\nconst $btn = document.getElementById('showBtn');\nconst $detail = document.getElementById('productDetail');\nconst $status = document.getElementById('statusText');\n\nfunction renderDetail(product) {\n  $detail.innerHTML = '';\n  if (!product) {\n    $status.textContent = '見つかりません';\n    return;\n  }\n\n  const name = document.createElement('div');\n  name.className = 'product-name';\n  name.textContent = product.name;\n\n  const price = document.createElement('div');\n  price.className = 'product-price';\n  price.textContent = `¥${product.price.toLocaleString()}`;\n\n  $detail.appendChild(name);\n  $detail.appendChild(price);\n  $status.textContent = '見つかりました';\n}\n\nfunction findProductById(id) {\n  return products.find(p => p.id === id) || null;\n}\n\n$btn.addEventListener('click', () => {\n  const id = Number($input.value);\n  if (!Number.isInteger(id) || id <= 0) {\n    renderDetail(null);\n    return;\n  }\n  const product = findProductById(id);\n  renderDetail(product);\n});\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-06/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "ボタンクリックごとに #box に active クラスが付いたり外れたりする"
+    "behavior": "ボタン押下で該当IDの商品があれば詳細を表示し、見つからなければステータスに未検出を表示する"
   },
   "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
-      "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
-    }
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
+    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
   ]
 }

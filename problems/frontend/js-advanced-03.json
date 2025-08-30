@@ -1,72 +1,39 @@
 {
   "id": "js-advanced-03",
-  "title": "ランダム基本",
-  "description": "Math.random と Math.floor で配列からランダムに1つ選んで表示します",
+  "title": "商品名検索（filter + includes）",
+  "description": "入力キーワードで商品配列を filter/includes で絞り込み、DOMに安全に表示します",
   "category": "javascript-advanced",
   "instructions": [
-    "配列を用意する",
-    "ボタンのクリックで配列からランダムに1つ選ぶ",
-    "選んだ要素を画面に表示する"
+    "#searchInput に input イベントを設定する",
+    "入力値を trim().toLowerCase() で正規化する",
+    "products 配列を filter + includes で絞り込む",
+    "#productList にカードを生成して textContent で表示する",
+    "#resultCount に該当件数を表示する"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>js-advanced-03 商品名検索（filter + includes）</title>\n  <link rel=\"stylesheet\" href=\"style.css\" />\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品名検索</h1>\n\n    <div class=\"controls\">\n      <label for=\"searchInput\">検索キーワード</label>\n      <input id=\"searchInput\" type=\"text\" placeholder=\"例: pro / light / mini\" />\n      <div class=\"meta\">該当件数: <span id=\"resultCount\">0</span> 件</div>\n    </div>\n\n    <ul id=\"productList\" class=\"product-list\"></ul>\n  </div>\n\n  <script src=\"script.js\"></script>\n</body>\n</html>\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.html.expected"
     },
     "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#result { margin: 12px 0; }",
+      "template": "body{font-family:system-ui,-apple-system,\"Segoe UI\",sans-serif;margin:16px}\n.container{max-width:800px;margin:auto}\n.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}\n#searchInput{padding:8px 10px;border:1px solid #ccc;border-radius:6px;min-width:240px}\n.meta{color:#666}\n.product-list{list-style:none;padding:0;margin:16px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}\n.product-card{border:1px solid #e5e7eb;border-radius:8px;padding:12px}\n.product-name{font-weight:600}\n.product-price{color:#0a7;}\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.css.expected"
     },
     "js": {
-      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
+      "template": "// 商品データ（js-basic を下地にした最小サンプル）\nconst products = [\n  { id: 1, name: 'Pro Camera', price: 49800 },\n  { id: 2, name: 'Light Stand', price: 3200 },\n  { id: 3, name: 'Mini Tripod', price: 1800 },\n  { id: 4, name: 'Pro Light', price: 9800 },\n  { id: 5, name: 'Simple Bag', price: 2500 }\n];\n\nconst $input = document.getElementById('searchInput');\nconst $list = document.getElementById('productList');\nconst $count = document.getElementById('resultCount');\n\nfunction render(list) {\n  // 安全のため textContent で反映\n  $list.innerHTML = '';\n  list.forEach(p => {\n    const li = document.createElement('li');\n    li.className = 'product-card';\n\n    const name = document.createElement('div');\n    name.className = 'product-name';\n    name.textContent = p.name;\n\n    const price = document.createElement('div');\n    price.className = 'product-price';\n    price.textContent = `¥${p.price.toLocaleString()}`;\n\n    li.appendChild(name);\n    li.appendChild(price);\n    $list.appendChild(li);\n  });\n  $count.textContent = String(list.length);\n}\n\nfunction filterProducts(keyword) {\n  const k = keyword.trim().toLowerCase();\n  if (!k) return products;\n  return products.filter(p => p.name.toLowerCase().includes(k));\n}\n\n$input.addEventListener('input', () => {\n  const filtered = filterProducts($input.value);\n  render(filtered);\n});\n\n// 初期表示\nrender(products);\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "ボタンをクリックすると配列からランダムに1つ表示される"
+    "behavior": "入力すると #productList がキーワードに一致する要素のみになり、#resultCount が一致件数を表示する"
   },
   "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
-      "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
-    }
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
+    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
   ]
 }

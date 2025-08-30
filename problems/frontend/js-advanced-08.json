@@ -1,29 +1,30 @@
 {
   "id": "js-advanced-08",
-  "title": "入力値の合計",
-  "description": "2つの数値入力の合計を計算して表示します",
+  "title": "タイマーアニメーション（setInterval）",
+  "description": "setInterval と transform を使い、ボックスをステージ内で水平に移動させるアニメーションを実装します",
   "category": "javascript-advanced",
   "instructions": [
-    "number入力を2つ用意する",
-    "ボタンで2値の合計を計算し表示する",
-    "未入力やNaNを避けるため、空文字なら0として扱う"
+    "#startBtn クリックで setInterval を開始し、一定ピクセルずつ水平方向に移動",
+    "#stopBtn クリックで clearInterval で停止",
+    "端に到達したら位置を 0 に戻してループ",
+    "#statusText に『再生中/停止中』を表示する"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>課題を実装してください</h1>\n  <!-- ここに実装してください -->\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>js-advanced-08 タイマーアニメーション</title>\n  <link rel=\"stylesheet\" href=\"style.css\" />\n</head>\n<body>\n  <div class=\"container\">\n    <h1>タイマーアニメーション</h1>\n\n    <div class=\"controls\">\n      <button id=\"startBtn\" type=\"button\">開始</button>\n      <button id=\"stopBtn\" type=\"button\">停止</button>\n      <div class=\"meta\">状態: <span id=\"statusText\">停止中</span></div>\n    </div>\n\n    <div id=\"stage\" class=\"stage\" aria-label=\"アニメーション領域\">\n      <div id=\"box\" class=\"box\" aria-hidden=\"true\"></div>\n    </div>\n  </div>\n\n  <script src=\"script.js\"></script>\n</body>\n</html>\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.html.expected"
     },
     "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\ninput { width: 100px; margin-right: 6px; }\n#sum { margin-top: 12px; }\nbutton { margin-right: 8px; }",
+      "template": "body{font-family:system-ui,-apple-system,\"Segoe UI\",sans-serif;margin:16px}\n.container{max-width:800px;margin:auto}\n.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}\nbutton{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}\n.meta{color:#666}\n.stage{position:relative;border:1px solid #e5e7eb;border-radius:8px;height:120px;margin-top:12px;overflow:hidden;background:#fafafa}\n.box{position:absolute;width:40px;height:40px;background:#4f46e5;border-radius:6px;left:0;top:40px;transform:translateX(0)}\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.css.expected"
     },
     "js": {
-      "template": "// ここに実装してください",
+      "template": "let timerId = null;\nlet x = 0;\n\nconst $start = document.getElementById('startBtn');\nconst $stop = document.getElementById('stopBtn');\nconst $status = document.getElementById('statusText');\nconst $box = document.getElementById('box');\nconst $stage = document.getElementById('stage');\n\nfunction step() {\n  const stageWidth = $stage.clientWidth;\n  const boxWidth = $box.clientWidth;\n  x += 4; // 1 ステップの移動量\n  if (x > stageWidth - boxWidth) {\n    x = 0; // 端まで行ったらリセット\n  }\n  $box.style.transform = `translateX(${x}px)`;\n}\n\nfunction startAnim() {\n  if (timerId !== null) return; // 多重開始防止\n  $status.textContent = '再生中';\n  timerId = setInterval(step, 16); // 約60fps\n}\n\nfunction stopAnim() {\n  if (timerId !== null) {\n    clearInterval(timerId);\n    timerId = null;\n  }\n  $status.textContent = '停止中';\n}\n\n$start.addEventListener('click', startAnim);\n$stop.addEventListener('click', stopAnim);\n",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "入力欄の数値の和がボタンクリックで #sum に表示される"
+    "behavior": "開始でボックスが水平方向に動き続け、端で0に戻る。停止で動作が止まる。重複開始は発生しない"
   },
   "checks": [
     {
