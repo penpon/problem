@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>検索（includes）</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}</style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <input id="search" type="text" placeholder="検索" />
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple' },
+      { id: 2, name: 'Banana' },
+      { id: 3, name: 'Cherry' },
+      { id: 4, name: 'Grape' }
+    ];
+    const input = document.getElementById('search');
+    function render(){
+      const q = input.value.toLowerCase();
+      const filtered = items.filter(it => it.name.toLowerCase().includes(q));
+      const html = filtered.map(it => `<div class=\"item\">${it.name}</div>`).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    input.addEventListener('input', render);
+    render();
+  </script>
+</body>
+</html>

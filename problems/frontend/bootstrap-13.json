@@ -1,0 +1,25 @@
+{
+  "id": "bootstrap-13",
+  "title": "ナビバー（ブランド左・メニュー右）",
+  "description": "最小のナビバーを作成します。ブランドは左、メニューは右寄せです",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CSS を CDN(@latest)で読み込み",
+    ".navbar .container-fluid 内に .navbar-brand と .navbar-nav",
+    ".navbar-nav は ms-auto で右寄せ、.nav-link を2つ以上配置"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Navbar</title>\n</head>\n<body>\n  <nav class=\"navbar navbar-light bg-light\">\n    <div class=\"container-fluid\">\n      <a class=\"navbar-brand\" href=\"#\">Brand</a>\n      <ul class=\"navbar-nav flex-row ms-auto\">\n        <li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Menu</a></li>\n      </ul>\n    </div>\n  </nav>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-13/files.html.expected"
+    },
+    "css": { "template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-13/files.css.expected" },
+    "js": { "template": "// JS不要（最小）", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-13/files.js.expected" }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "navbar-structure", "name": ".navbar 内構造", "type": "structure", "message": ".navbar .container-fluid .navbar-brand .navbar-nav .nav-link を使ってください" },
+    { "id": "nav-right", "name": "ms-auto", "type": "structure", "message": ".navbar-nav を ms-auto で右寄せしてください" }
+  ],
+  "expectedResult": { "layout": "ブランドが左、メニューが右に配置される" }
+}

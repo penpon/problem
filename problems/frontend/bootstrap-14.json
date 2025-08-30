@@ -1,0 +1,27 @@
+{
+  "id": "bootstrap-14",
+  "title": "ユーティリティ（余白・背景・テキスト整形）",
+  "description": "Bootstrapユーティリティクラスで最小の整形を行います",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CSS を CDN(@latest)で読み込み",
+    ".container 内に .row .col-12 を用意",
+    "見出しに text-center と mb-3",
+    "ボックスに bg-light p-3 rounded border"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>ユーティリティ</title>\n</head>\n<body>\n  <div class=\"container my-3\">\n    <h1 class=\"text-center mb-3\">タイトル</h1>\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"bg-light p-3 rounded border\">ボックス</div>\n      </div>\n    </div>\n  </div>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-14/files.html.expected"
+    },
+    "css": { "template": "/* なし（最小） */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-14/files.css.expected" },
+    "js": { "template": "// JS不要", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-14/files.js.expected" }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "grid-structure", "name": ".container .row .col-12", "type": "structure", "message": ".container .row .col-12 を配置してください" },
+    { "id": "heading-utilities", "name": "text-center mb-3", "type": "structure", "message": "見出しに text-center と mb-3 を付けてください" },
+    { "id": "box-utilities", "name": "bg-light p-3 rounded border", "type": "structure", "message": "ボックスに bg-light p-3 rounded border を付けてください" }
+  ],
+  "expectedResult": { "layout": "ユーティリティで整形された見出しとボックスが表示される" }
+}

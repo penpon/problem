@@ -1,0 +1,26 @@
+{
+  "id": "bootstrap-20",
+  "title": "応用グリッド（カード + 12/6/4 レイアウト）",
+  "description": "カード3枚を 12/6/4 のレスポンシブグリッドで配置します",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CSS を CDN(@latest)で読み込み",
+    ".container 内に .row.g-3 と .col-12 .col-sm-6 .col-lg-4 のカード3枚",
+    "最小の .card を使用（.card-body 内にタイトルと本文）"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>応用グリッド</title>\n</head>\n<body>\n  <div class=\"container my-3\">\n    <div class=\"row g-3\">\n      <div class=\"col-12 col-sm-6 col-lg-4\">\n        <div class=\"card\"><div class=\"card-body\"><h5 class=\"card-title\">A</h5><p class=\"card-text\">本文A</p></div></div>\n      </div>\n      <div class=\"col-12 col-sm-6 col-lg-4\">\n        <div class=\"card\"><div class=\"card-body\"><h5 class=\"card-title\">B</h5><p class=\"card-text\">本文B</p></div></div>\n      </div>\n      <div class=\"col-12 col-sm-6 col-lg-4\">\n        <div class=\"card\"><div class=\"card-body\"><h5 class=\"card-title\">C</h5><p class=\"card-text\">本文C</p></div></div>\n      </div>\n    </div>\n  </div>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-20/files.html.expected"
+    },
+    "css": { "template": "/* なし（最小） */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-20/files.css.expected" },
+    "js": { "template": "// JS不要（最小）", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-20/files.js.expected" }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "row-g3", "name": ".row.g-3", "type": "structure", "message": ".row.g-3 を用意してください" },
+    { "id": "cols-12-6-4", "name": "col-12 col-sm-6 col-lg-4", "type": "structure", "message": "col-12 col-sm-6 col-lg-4 を3枚配置してください" },
+    { "id": "card-structure", "name": ".card .card-body", "type": "structure", "message": ".card と .card-body を使ってください" }
+  ],
+  "expectedResult": { "layout": "幅に応じて 1/2/3 列に変化するカード3枚が表示される" }
+}

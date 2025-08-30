@@ -1,0 +1,15 @@
+const items = [
+  { id: 1, name: 'Apple' },
+  { id: 2, name: 'Banana' },
+  { id: 3, name: 'Cherry' },
+  { id: 4, name: 'Grape' }
+];
+const input = document.getElementById('search');
+function render(){
+  const q = input.value.toLowerCase();
+  const filtered = items.filter(it => it.name.toLowerCase().includes(q));
+  const html = filtered.map(it => `<div class="item">${it.name}</div>`).join('');
+  document.getElementById('list').innerHTML = html;
+}
+input.addEventListener('input', render);
+render();

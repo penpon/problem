@@ -5,12 +5,12 @@
   "category": "html-css-basics",
   "instructions": [
     "h1タグを使用してメインタイトルを追加してください",
-    "見出しは「メインタイトル」にしてください",
+    "見出しは「私のホームページ」にしてください",
     "既存のpタグは残しておいてください"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/html-css-02/files.html.expected"
     },
     "css": {
@@ -52,6 +52,12 @@
       "name": "<title>タグ",
       "type": "structure",
       "message": "<title>タグと内容が必要です"
+    },
+    {
+      "id": "h1",
+      "name": "<h1>見出し",
+      "type": "structure",
+      "message": "<h1>見出しを追加してください"
     }
   ],
   "hints": [

@@ -1,0 +1,29 @@
+{
+  "id": "js-advanced-19",
+  "title": "カード描画関数（テンプレ文字列）",
+  "description": "テンプレート文字列でカードHTMLを生成する関数を作り、一覧描画します",
+  "category": "javascript-advanced",
+  "instructions": [
+    "createCard(item) 関数で1枚分のHTML文字列を返す（テンプレ文字列）",
+    "map→join→#list.innerHTML に代入",
+    "最小：画像は省略可。タイトルと価格のみでOK"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>カード描画関数</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <div id=\"list\"></div>\n  </main>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-19/files.html.expected"
+    },
+    "css": { "template": "#list{display:grid;gap:8px}.card{border:1px solid #ddd;border-radius:6px;padding:8px}", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-19/files.css.expected" },
+    "js": {
+      "template": "const items = [\n  { id:1, title:'Item A', price:100 },\n  { id:2, title:'Item B', price:200 }\n];\nfunction createCard(item){\n  // TODO: テンプレ文字列で .card を返す\n}\nfunction render(){\n  const html = items.map(createCard).join('');\n  document.getElementById('list').innerHTML = html;\n}\nrender();\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-19/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "list", "name": "#list", "type": "html", "message": "#list が必要です" },
+    { "id": "createCard", "name": "createCard()", "type": "js", "message": "createCard 関数を定義してください" },
+    { "id": "template-string", "name": "テンプレート文字列", "type": "js", "message": "テンプレート文字列でHTMLを生成してください" },
+    { "id": "assign-innerHTML", "name": "innerHTML 代入", "type": "js", "message": "innerHTML に代入してください" }
+  ],
+  "expectedResult": { "rendering": "カードが2枚描画される（タイトル・価格）" }
+}

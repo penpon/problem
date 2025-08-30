@@ -470,33 +470,51 @@ extractProblemNumber(problemId, categoryId) {
     
     async selectProblem(problemId) {
         try {
-            // 現在選択中の問題のハイライトを削除
+            console.groupCollapsed(`[selectProblem] start problemId=${problemId}`);
             this.problemList.querySelectorAll('.problem-item').forEach(item => {
                 item.classList.remove('selected');
             });
             
-            // 新しい問題をハイライト
             const selectedItem = this.problemList.querySelector(`[data-problem-id="${problemId}"]`);
             if (selectedItem) {
                 selectedItem.classList.add('selected');
             }
             
             // ProblemLoaderから詳細な問題データを取得
+            console.debug('[selectProblem] fetching problem via getFrontendProblem()', { problemId });
             this.currentProblem = await getFrontendProblem(problemId);
+            console.debug('[selectProblem] fetch completed', {
+                problemId,
+                hasProblem: !!this.currentProblem,
+                type: typeof this.currentProblem,
+                keys: this.currentProblem ? Object.keys(this.currentProblem) : null
+            });
             
             if (this.currentProblem) {
+                console.debug('[selectProblem] displaying problem details');
                 this.displayProblemDetails(this.currentProblem);
+                console.debug('[selectProblem] loading templates');
                 this.loadProblemTemplate(this.currentProblem);
+                console.debug('[selectProblem] loading expected data');
                 this.loadExpectedData(this.currentProblem);
                 this.clearResults();
                 
                 console.log(`問題 ${problemId} を選択しました`);
             } else {
+                console.warn('[selectProblem] currentProblem is null/undefined', { problemId });
                 throw new Error(`問題 ${problemId} が見つかりませんでした`);
             }
         } catch (error) {
             console.error(`問題 ${problemId} の選択に失敗:`, error);
+            if (error && error.stack) {
+                console.error('[selectProblem] stack:', error.stack);
+            }
+            console.groupEnd?.();
             this.showError('問題の選択に失敗しました。');
+        }
+        finally {
+            // ensure group ends in success path as well
+            console.groupEnd?.();
         }
     }
     
@@ -595,8 +613,12 @@ extractProblemNumber(problemId, categoryId) {
             return this.getDefaultTemplate();
         }
         
-        // CSS と JS を HTML に挿入
-        let combinedHtml = htmlContent;
+        // 期待プレビュー時は外部参照<link rel="stylesheet">や<script src>を除去（404防止）
+        let combinedHtml = htmlContent
+            // 外部CSSリンクを除去
+            .replace(/<link[^>]*rel=["']stylesheet["'][^>]*>/gi, '')
+            // 外部JS読み込みを除去
+            .replace(/<script[^>]*src=[^>]*><\s*\/script>/gi, '');
         
         // CSS を <style> タグとして挿入
         if (cssContent.trim()) {
@@ -736,7 +758,10 @@ extractProblemNumber(problemId, categoryId) {
             return this.getDefaultTemplate();
         }
         
-        let combinedHtml = htmlContent;
+        // 外部<link rel="stylesheet">や<script src>は除去（ローカル404防止）
+        let combinedHtml = htmlContent
+            .replace(/<link[^>]*rel=["']stylesheet["'][^>]*>/gi, '')
+            .replace(/<script[^>]*src=[^>]*><\s*\/script>/gi, '');
         
         // CSS を <style> タグとして挿入
         if (cssContent.trim()) {
@@ -1055,66 +1080,81 @@ extractProblemNumber(problemId, categoryId) {
     async runCheck(doc, check, originalHtml = '') {
         try {
             switch (check.id) {
-                case 'doctype':
-                    const hasDoctype = originalHtml.toLowerCase().includes('<!doctype html>') || 
-                                     originalHtml.toLowerCase().includes('<!doctype html ') ||
-                                     /<!doctype\s+html\s*>/i.test(originalHtml);
-                    return {
-                        ...check,
-                        passed: hasDoctype,
-                        message: 'DOCTYPE html宣言が必要です'
-                    };
-                    
+                case 'doctype': {
+                    const hasDoctype = originalHtml.toLowerCase().includes('<!doctype html>') ||
+                        originalHtml.toLowerCase().includes('<!doctype html ') ||
+                        /<!doctype\s+html\s*>/i.test(originalHtml);
+                    return { ...check, passed: hasDoctype, message: 'DOCTYPE html宣言が必要です' };
+                }
+
                 case 'html':
-                    return {
-                        ...check,
-                        passed: doc.querySelector('html') !== null,
-                        message: '<html>タグが必要です'
-                    };
-                    
+                    return { ...check, passed: doc.querySelector('html') !== null, message: '<html>タグが必要です' };
+
                 case 'head':
-                    return {
-                        ...check,
-                        passed: doc.querySelector('head') !== null,
-                        message: '<head>セクションが必要です'
-                    };
-                    
+                    return { ...check, passed: doc.querySelector('head') !== null, message: '<head>セクションが必要です' };
+
                 case 'body':
-                    return {
-                        ...check,
-                        passed: doc.querySelector('body') !== null,
-                        message: '<body>セクションが必要です'
-                    };
-                    
-                case 'title':
+                    return { ...check, passed: doc.querySelector('body') !== null, message: '<body>セクションが必要です' };
+
+                case 'title': {
                     const title = doc.querySelector('title');
-                    return {
-                        ...check,
-                        passed: title !== null && title.textContent.trim() !== '',
-                        message: '<title>タグと内容が必要です'
-                    };
-                    
-                case 'h1':
+                    return { ...check, passed: title !== null && title.textContent.trim() !== '', message: '<title>タグと内容が必要です' };
+                }
+
+                case 'h1': {
                     const h1 = doc.querySelector('h1');
-                    return {
-                        ...check,
-                        passed: h1 !== null && h1.textContent.trim() !== '',
-                        message: '<h1>見出しと内容が必要です'
-                    };
-                    
+                    return { ...check, passed: h1 !== null && h1.textContent.trim() !== '', message: '<h1>見出しと内容が必要です' };
+                }
+
+                // CSS 基本
+                case 'css-content': {
+                    const cssContent = (this.fileContents.css || '').trim();
+                    const hasCss = cssContent.length > 0;
+                    return { ...check, passed: hasCss, message: hasCss ? 'CSSが記述されています' : (check.message || 'CSSでスタイルを設定してください') };
+                }
+
+                case 'css-syntax': {
+                    const cssContent = (this.fileContents.css || '').trim();
+                    const hasValidCss = this.validateCssBasics(cssContent);
+                    return { ...check, passed: hasValidCss, message: hasValidCss ? 'CSS構文が正常です' : 'CSS構文にエラーがあります' };
+                }
+
+                case 'css-margin': {
+                    const css = (this.fileContents.css || '').toLowerCase();
+                    const hasMargin = /\bmargin\s*:/i.test(css) || /\bmargin-(top|right|bottom|left)\s*:/i.test(css);
+                    return { ...check, passed: hasMargin, message: hasMargin ? 'marginが設定されています' : (check.message || 'marginプロパティで外側余白を設定してください') };
+                }
+
+                case 'css-padding': {
+                    const css = (this.fileContents.css || '').toLowerCase();
+                    const hasPadding = /\bpadding\s*:/i.test(css) || /\bpadding-(top|right|bottom|left)\s*:/i.test(css);
+                    return { ...check, passed: hasPadding, message: hasPadding ? 'paddingが設定されています' : (check.message || 'paddingプロパティで内側余白を設定してください') };
+                }
+
+                // CSS 応用（#15）
+                case 'hover-effects': {
+                    const css = (this.fileContents.css || '');
+                    const hasHover = /:\s*hover\s*\{/i.test(css) || /:\s*hover\b/i.test(css);
+                    return { ...check, passed: !!hasHover, message: hasHover ? ':hover セレクタが実装されています' : (check.message || ':hover セレクタでホバー時のスタイルを設定してください') };
+                }
+
+                case 'transform-properties': {
+                    const css = (this.fileContents.css || '').toLowerCase();
+                    const hasTransform = /\btransform\s*:/i.test(css) || /\b(scale|rotate|translate|skew)\s*\(/i.test(css);
+                    return { ...check, passed: !!hasTransform, message: hasTransform ? 'transformが設定されています' : (check.message || 'transform: scale()/rotate()/translate() などを設定してください') };
+                }
+
+                case 'transition-animations': {
+                    const css = (this.fileContents.css || '').toLowerCase();
+                    const hasTransition = /\btransition\s*:/i.test(css) || /\btransition-(property|duration|timing-function|delay)\s*:/i.test(css);
+                    return { ...check, passed: !!hasTransition, message: hasTransition ? 'transitionが設定されています' : (check.message || 'transitionプロパティで変化のアニメーションを設定してください') };
+                }
+
                 default:
-                    return {
-                        ...check,
-                        passed: false,
-                        message: 'チェック項目が不明です'
-                    };
+                    return { ...check, passed: false, message: 'チェック項目が不明です' };
             }
         } catch (error) {
-            return {
-                ...check,
-                passed: false,
-                message: `チェック中にエラーが発生: ${error.message}`
-            };
+            return { ...check, passed: false, message: `チェック中にエラーが発生: ${error.message}` };
         }
     }
     
@@ -1666,13 +1706,6 @@ extractProblemNumber(problemId, categoryId) {
             // 差分強調用スタイルを両方のiframeに注入
             this.injectDiffStyles(expectedDoc);
             this.injectDiffStyles(userDoc);
-            
-            // DOM構造を比較して差分を検出
-            const differences = this.compareDOMElements(
-                expectedDoc.body,
-                userDoc.body
-            );
-            
             // 検出した差分を強調表示
             this.markDifferences(expectedDoc, userDoc, differences);
             
@@ -2242,9 +2275,151 @@ ${(this.currentProblem?.instructions || []).map((instruction, index) => `${index
             scrollIndicator.style.display = 'none';
         }
     }
+    
+    // ==========================================
+    // 自動化ユーティリティ: expected自動貼付→採点 / 404チェック
+    // ==========================================
+    
+    /**
+     * 現在問題のユーザーコードを正解コードに置き換える
+     */
+    setUserCodeToExpected() {
+        if (!this.expectedFiles) return;
+        this.fileContents.html = this.expectedFiles.html || '';
+        this.fileContents.css = this.expectedFiles.css || '';
+        this.fileContents.js = this.expectedFiles.js || '';
+        this.updateEditorContent();
+        this.schedulePreviewUpdate();
+    }
+    
+    /**
+     * 指定IDの問題を開き、expectedを貼付して採点
+     */
+    async autoPasteExpectedAndGradeById(problemId) {
+        await this.selectProblem(problemId);
+        if (this.currentProblem && this.currentProblem.id === problemId) {
+            await this.loadExpectedData(this.currentProblem);
+        }
+        this.setUserCodeToExpected();
+        await this.gradeCode();
+    }
+    
+    /**
+     * 現在カテゴリの問題インデックス範囲で一括実行（1始まり）
+     */
+    async autoPasteExpectedAndGradeRange(startIndex, endIndex) {
+        const list = this.problemsByCategory?.[this.currentCategory] || [];
+        const s = Math.max(1, startIndex|0);
+        const e = Math.min(list.length, endIndex|0);
+        for (let i = s; i <= e; i++) {
+            const p = list[i - 1];
+            if (!p) continue;
+            console.log(`[auto-grade] ${i}/${list.length}: ${p.id}`);
+            await this.autoPasteExpectedAndGradeById(p.id);
+        }
+        console.log('[auto-grade] 完了');
+    }
+    
+    /**
+     * 問題ID配列で一括実行
+     */
+    async autoPasteExpectedAndGradeIds(ids = []) {
+        for (const id of ids) {
+            console.log(`[auto-grade] ${id}`);
+            await this.autoPasteExpectedAndGradeById(id);
+        }
+        console.log('[auto-grade] 完了');
+    }
+    
+    /**
+     * HTMLから外部リソースのURLを抽出
+     */
+    extractResourceUrlsFromHtml(html) {
+        const urls = new Set();
+        try {
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            const add = (u) => { if (u) urls.add(u); };
+            doc.querySelectorAll('[src]').forEach(el => add(el.getAttribute('src')));
+            doc.querySelectorAll('link[rel="stylesheet"]').forEach(el => add(el.getAttribute('href')));
+            doc.querySelectorAll('a[href]').forEach(el => add(el.getAttribute('href')));
+        } catch (e) {
+            console.warn('extractResourceUrlsFromHtml failed:', e);
+        }
+        return Array.from(urls);
+    }
+    
+    /**
+     * 相対URLをページ基準で解決
+     */
+    resolveUrl(u) {
+        try {
+            return new URL(u, window.location.href).toString();
+        } catch {
+            return u;
+        }
+    }
+    
+    /**
+     * 指定HTMLの参照リソースに対してHTTP存在確認を行う
+     */
+    async checkResourceLinks(html) {
+        const urls = this.extractResourceUrlsFromHtml(html)
+            .map(u => this.resolveUrl(u))
+            .filter(u => /^https?:\/\//.test(u));
+        const results = [];
+        await Promise.all(urls.map(async (url) => {
+            try {
+                const res = await fetch(url, { method: 'HEAD' });
+                results.push({ url, ok: res.ok, status: res.status });
+            } catch (e) {
+                results.push({ url, ok: false, status: 0, error: String(e) });
+            }
+        }));
+        return results;
+    }
+    
+    /**
+     * 現在問題のexpected結合HTMLで404健全性チェック
+     */
+    async checkExpectedResourcesForCurrent() {
+        const html = this.generateExpectedCombinedHtml();
+        const results = await this.checkResourceLinks(html);
+        const missing = results.filter(r => !r.ok);
+        console.table(results);
+        if (missing.length) {
+            console.warn('[resource-check] 参照不整合があります:', missing);
+        } else {
+            console.log('[resource-check] 参照は全て到達可能です');
+        }
+        return { results, missing };
+    }
+    
+    /**
+     * 現在のユーザー結合HTMLで404健全性チェック
+     */
+    async checkUserResourcesForCurrent() {
+        const html = this.generateCombinedHtml();
+        const results = await this.checkResourceLinks(html);
+        const missing = results.filter(r => !r.ok);
+        console.table(results);
+        if (missing.length) {
+            console.warn('[resource-check] 参照不整合があります:', missing);
+        } else {
+            console.log('[resource-check] 参照は全て到達可能です');
+        }
+        return { results, missing };
+    }
 }
 
 // アプリケーション初期化
 document.addEventListener('DOMContentLoaded', () => {
     window.advancedFrontendLearning = new AdvancedFrontendLearning();
+    // 開発者向けユーティリティ公開（UI非侵襲）
+    window.aflTools = {
+        gradeRange: (s, e) => window.advancedFrontendLearning.autoPasteExpectedAndGradeRange(s, e),
+        gradeIds: (ids) => window.advancedFrontendLearning.autoPasteExpectedAndGradeIds(ids),
+        checkExpected: () => window.advancedFrontendLearning.checkExpectedResourcesForCurrent(),
+        checkUser: () => window.advancedFrontendLearning.checkUserResourcesForCurrent(),
+        pasteExpected: () => window.advancedFrontendLearning.setUserCodeToExpected(),
+    };
 });

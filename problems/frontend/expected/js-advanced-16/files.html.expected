@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>イベント委譲</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}.buy{margin-left:8px}</style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <div id="list"></div>
+    <div id="log" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple' },
+      { id: 2, name: 'Banana' },
+      { id: 3, name: 'Cherry' }
+    ];
+    function render(){
+      const html = items.map(it => `<div class=\"item\">${it.name}<button class=\"buy\" data-id=\"${it.id}\">購入</button></div>`).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    function setup(){
+      const list = document.getElementById('list');
+      list.addEventListener('click', (event) => {
+        if (event.target.matches('.buy')) {
+          const id = Number(event.target.dataset.id);
+          const found = items.find(it => it.id === id);
+          document.getElementById('log').textContent = `${found.name} を購入`;
+        }
+      });
+    }
+    render();
+    setup();
+  </script>
+</body>
+</html>

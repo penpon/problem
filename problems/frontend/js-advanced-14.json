@@ -1,0 +1,30 @@
+{
+  "id": "js-advanced-14",
+  "title": "複合条件フィルタ（カテゴリ + 在庫）",
+  "description": "カテゴリ選択と在庫チェックの両方で配列を絞り込んで表示します",
+  "category": "javascript-advanced",
+  "instructions": [
+    "#category セレクトと #inStock チェックを用意",
+    "選択カテゴリ（allは全件）と inStock(true) を同時に満たす要素のみ表示",
+    "filter→map→join で #list.innerHTML に代入"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>複合条件フィルタ</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <select id=\"category\">\n      <option value=\"all\">すべて</option>\n      <option value=\"fruit\">果物</option>\n      <option value=\"drink\">飲料</option>\n    </select>\n    <label style=\"margin-left:8px\"><input id=\"inStock\" type=\"checkbox\"> 在庫のみ</label>\n    <div id=\"list\" style=\"margin-top:8px\"></div>\n  </main>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.html.expected"
+    },
+    "css": { "template": "#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.css.expected" },
+    "js": {
+      "template": "// カテゴリ + 在庫の複合条件で filter\nconst items = [\n  { id: 1, name: 'Apple', price: 120, inStock: true, category: 'fruit' },\n  { id: 2, name: 'Tea', price: 150, inStock: true, category: 'drink' },\n  { id: 3, name: 'Banana', price: 80, inStock: false, category: 'fruit' }\n];\nfunction render(){\n  const list = document.getElementById('list');\n  list.textContent='';\n}\nrender();\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "list-container", "name": "#list", "type": "html", "message": "#list が必要です" },
+    { "id": "category-select", "name": "#category", "type": "html", "message": "#category を用意してください" },
+    { "id": "inStock-checkbox", "name": "#inStock", "type": "html", "message": "#inStock を用意してください" },
+    { "id": "uses-filter", "name": "filter 使用", "type": "js", "message": "filter で配列を絞り込んでください" },
+    { "id": "assign-innerHTML", "name": "innerHTML 代入", "type": "js", "message": "innerHTML に代入してください" }
+  ],
+  "expectedResult": { "rendering": "カテゴリと在庫に応じて表示が変わる" }
+}

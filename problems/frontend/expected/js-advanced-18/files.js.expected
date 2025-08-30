@@ -1,0 +1,10 @@
+function toggleView(targetId){
+  const a = document.getElementById('viewA');
+  const b = document.getElementById('viewB');
+  if (targetId === 'viewA') { a.classList.remove('d-none'); b.classList.add('d-none'); }
+  else { b.classList.remove('d-none'); a.classList.add('d-none'); }
+}
+const btnA = document.getElementById('btnA');
+const btnB = document.getElementById('btnB');
+btnA.addEventListener('click', () => toggleView('viewA'));
+btnB.addEventListener('click', () => toggleView('viewB'));

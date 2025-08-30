@@ -1,0 +1,29 @@
+{
+  "id": "js-advanced-17",
+  "title": "reduce で件数と合計を計算",
+  "description": "配列から件数と合計金額を reduce で算出して表示します",
+  "category": "javascript-advanced",
+  "instructions": [
+    "items 配列の件数と price の合計を reduce で計算",
+    "#count と #total に表示（￥表記は任意）",
+    "一覧は map→join→#list.innerHTML（最小でOK）"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>reduce で合計</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <div>件数: <span id=\"count\">0</span></div>\n    <div>合計: <span id=\"total\">0</span></div>\n    <div id=\"list\" style=\"margin-top:8px\"></div>\n  </main>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-17/files.html.expected"
+    },
+    "css": { "template": "#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-17/files.css.expected" },
+    "js": {
+      "template": "// reduce で件数と合計\nconst items = [\n  { id: 1, name: 'Apple', price: 120 },\n  { id: 2, name: 'Banana', price: 80 },\n  { id: 3, name: 'Cherry', price: 200 }\n];\nfunction render(){\n  // TODO: 件数と合計を reduce で計算し、#count と #total に反映\n  // 一覧も #list に描画（map→join→innerHTML）\n}\nrender();\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-17/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "count-el", "name": "#count", "type": "html", "message": "#count が必要です" },
+    { "id": "total-el", "name": "#total", "type": "html", "message": "#total が必要です" },
+    { "id": "uses-reduce", "name": "reduce 使用", "type": "js", "message": "reduce で合計を計算してください" },
+    { "id": "assign-innerHTML", "name": "innerHTML 代入", "type": "js", "message": "一覧を innerHTML に代入してください" }
+  ],
+  "expectedResult": { "rendering": "件数と合計が正しく表示され、一覧も描画される" }
+}

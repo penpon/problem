@@ -1,1 +1,3 @@
-__INCLUDE__: problems/frontend/expected/bootstrap-01/files.js.expected
+document.addEventListener('DOMContentLoaded', () => {
+  // Bootstrap 01 expected: no dynamic JS required
+});

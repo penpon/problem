@@ -158,18 +158,29 @@ class ProblemLoader {
   async getFrontendProblemList() {
     const index = await this.loadFrontendIndex();
     const problems = [];
+    const seen = new Set();
     
     for (const category of index.categories) {
+      const categoryId = category.id;
       for (const problemId of category.problems) {
+        if (seen.has(problemId)) {
+          console.warn(`Duplicate problem ID detected in frontend index and will be skipped: ${problemId}`);
+          continue;
+        }
         try {
           const problem = await this.loadFrontendProblem(problemId);
+          // フォールバック: 問題JSONにcategoryが無い/不一致の場合はインデックス側のカテゴリIDを使用
+          const problemCategory = problem.category && typeof problem.category === 'string'
+            ? problem.category
+            : categoryId;
           problems.push({
             id: problem.id,
             title: problem.title,
             description: problem.description,
-            category: problem.category,
+            category: problemCategory,
             difficulty: problem.difficulty
           });
+          seen.add(problemId);
         } catch (error) {
           console.warn(`Failed to load frontend problem ${problemId}:`, error);
         }
@@ -252,6 +263,7 @@ class ProblemLoader {
       'js-basic-08': 'js-basic-08-counter-basic',
       'js-basic-09': 'js-basic-09-counter-enhanced',
       'js-basic-10': 'js-basic-10-change-content',
+      'js-basic-11': 'js-basic-11-classlist-toggle',
       
       // JavaScript応用(js-advanced-01 → js-advanced-20)
       'js-advanced-01': 'js-advanced-01-text-content-change',
@@ -264,6 +276,16 @@ class ProblemLoader {
       'js-advanced-08': 'js-advanced-08-timer-animation',
       'js-advanced-09': 'js-advanced-09-function-practical',
       'js-advanced-10': 'js-advanced-10-function-basics',
+      'js-advanced-11': 'js-advanced-11-array-to-html',
+      'js-advanced-12': 'js-advanced-12-filter-basics',
+      'js-advanced-13': 'js-advanced-13-sort-toggle',
+      'js-advanced-14': 'js-advanced-14-multi-conditions',
+      'js-advanced-15': 'js-advanced-15-search-input',
+      'js-advanced-16': 'js-advanced-16-event-delegation',
+      'js-advanced-17': 'js-advanced-17-reduce-totals',
+      'js-advanced-18': 'js-advanced-18-view-toggle',
+      'js-advanced-19': 'js-advanced-19-card-template',
+      'js-advanced-20': 'js-advanced-20-basic-validation',
       
       // Bootstrap・最小課題（bootstrap-01 → bootstrap-10）
       'bootstrap-01': 'bootstrap-01-integrated-system',
@@ -276,6 +298,17 @@ class ProblemLoader {
       'bootstrap-08': 'bootstrap-08-two-product-gallery-bootstrap',
       'bootstrap-09': 'bootstrap-09-bootstrap-basics',
       'bootstrap-10': 'bootstrap-10-component-intro-bootstrap',
+      // 追加: Bootstrap 11以降（EC橋渡し用）
+      'bootstrap-11': 'bootstrap-11-grid-12-6-4',
+      'bootstrap-12': 'bootstrap-12-card-3-items',
+      'bootstrap-13': 'bootstrap-13-navbar-basic',
+      'bootstrap-14': 'bootstrap-14-utility-classes',
+      'bootstrap-15': 'bootstrap-15-form-controls',
+      'bootstrap-16': 'bootstrap-16-button-states',
+      'bootstrap-17': 'bootstrap-17-modal-minimal',
+      'bootstrap-18': 'bootstrap-18-badges',
+      'bootstrap-19': 'bootstrap-19-table-minimal',
+      'bootstrap-20': 'bootstrap-20-advanced-grid',
       
       // 総合ECサイト構築 (ec-project-01 → ec-project-15)
       'ec-project-01': 'ec-project-01-responsive-system',
@@ -292,7 +325,7 @@ class ProblemLoader {
       'ec-project-12': 'ec-project-12-category-filter',
       'ec-project-13': 'ec-project-13-sort-feature',
       'ec-project-14': 'ec-project-14-form-validation',
-      'ec-project-15': 'ec-project-15-complete-ec-site',
+      'ec-project-15': 'ec-project-15-mini-cart',
       // 追加: EC-16〜19（README参照用ディレクトリ）
       'ec-project-16': 'ec-project-16-checkout-separation',
       'ec-project-17': 'ec-project-17-complete-screen',

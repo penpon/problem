@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>sort の昇順/降順</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}</style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <select id="sort">
+      <option value="price-asc">価格昇順</option>
+      <option value="price-desc">価格降順</option>
+    </select>
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple', price: 120 },
+      { id: 2, name: 'Banana', price: 80 },
+      { id: 3, name: 'Cherry', price: 200 }
+    ];
+    const sortSelect = document.getElementById('sort');
+    function render(){
+      const val = sortSelect.value;
+      const sorted = [...items].sort((a,b) => val==='price-asc' ? a.price-b.price : b.price-a.price);
+      const html = sorted.map(it => `<div class=\"item\">${it.name} - ￥${it.price}</div>`).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    sortSelect.addEventListener('change', render);
+    render();
+  </script>
+</body>
+</html>

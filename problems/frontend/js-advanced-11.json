@@ -1,0 +1,33 @@
+{
+  "id": "js-advanced-11",
+  "title": "map().join('') でHTML生成",
+  "description": "配列からテンプレート文字列でHTML文字列を作り、innerHTMLに代入して一覧を描画します",
+  "category": "javascript-advanced",
+  "instructions": [
+    "items配列を map().join('') でHTMLに変換",
+    "生成した文字列を #list の innerHTML に代入",
+    "カード1枚は最小のdivでOK（画像不要）"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>map().join('') でHTML生成</title>\n</head>\n<body>\n  <main class=\"container\" style=\"padding:16px\">\n    <h1 style=\"font-size:20px;margin:0 0 12px\">商品一覧</h1>\n    <div id=\"list\"></div>\n  </main>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-11/files.html.expected"
+    },
+    "css": {
+      "template": "#list{display:grid;gap:8px} .item{padding:8px;border:1px solid #ddd;border-radius:6px}",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-11/files.css.expected"
+    },
+    "js": {
+      "template": "// items配列をHTMLにして #list に描画してください\nconst items = [\n  { id: 1, name: 'Apple', price: 120 },\n  { id: 2, name: 'Banana', price: 80 },\n  { id: 3, name: 'Cherry', price: 200 }\n];\n\nfunction render(){\n  // TODO: items.map(...).join('') を使ってHTMLを生成し、#list に代入\n  const list = document.getElementById('list');\n  list.textContent = ''; // 未実装でもエラーにならない初期化\n}\n\nrender();",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-11/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "list-container", "name": "#list", "type": "html", "message": "#list が必要です" },
+    { "id": "uses-map-join", "name": "map/join", "type": "js", "message": "map().join('') でHTMLを生成してください" },
+    { "id": "assign-innerHTML", "name": "innerHTML 代入", "type": "js", "message": "innerHTML に代入してください" }
+  ],
+  "expectedResult": {
+    "rendering": "配列の要素数分の .item が #list に描画される"
+  }
+}

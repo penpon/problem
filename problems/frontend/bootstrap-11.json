@@ -1,0 +1,26 @@
+{
+  "id": "bootstrap-11",
+  "title": "CDN + コンテナ/行/列（12/6/4）",
+  "description": "Bootstrap CDNを導入し、container 内に row と col-12 col-sm-6 col-lg-4 を配置します",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CSS/JS を CDN(@latest)で読み込み",
+    ".container 内に .row.g-3",
+    ".col-12.col-sm-6.col-lg-4 を3つ配置"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Bootstrap Grid</title>\n</head>\n<body>\n  <div class=\"container\">\n    <h1 class=\"my-3\">グリッド</h1>\n    <div class=\"row g-3\" id=\"grid\"></div>\n  </div>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-11/files.html.expected"
+    },
+    "css": { "template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-11/files.css.expected" },
+    "js": { "template": "// 任意", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-11/files.js.expected" }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "bootstrap-js", "name": "Bootstrap JS", "type": "structure", "message": "Bootstrap JS CDNを読み込んでください" },
+    { "id": "row", "name": ".row.g-3", "type": "structure", "message": ".row.g-3 を使ってください" },
+    { "id": "cols", "name": "col-12 col-sm-6 col-lg-4", "type": "structure", "message": "col-12 col-sm-6 col-lg-4 を3つ配置してください" }
+  ],
+  "expectedResult": { "layout": "sm:1列, sm以上:2列, lg以上:3列" }
+}

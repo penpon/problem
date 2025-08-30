@@ -1,0 +1,16 @@
+const items = [
+  { id: 1, name: 'Apple', price: 120, inStock: true, category: 'fruit' },
+  { id: 2, name: 'Tea', price: 150, inStock: true, category: 'drink' },
+  { id: 3, name: 'Banana', price: 80, inStock: false, category: 'fruit' }
+];
+const cat = document.getElementById('category');
+const stock = document.getElementById('inStock');
+function render(){
+  const c = cat.value; const s = stock.checked;
+  const filtered = items.filter(it => (c==='all'||it.category===c) && (!s || it.inStock));
+  const html = filtered.map(it => `<div class="item">${it.name}</div>`).join('');
+  document.getElementById('list').innerHTML = html;
+}
+cat.addEventListener('change', render);
+stock.addEventListener('change', render);
+render();

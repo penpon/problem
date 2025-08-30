@@ -1,1 +1,3 @@
-__INCLUDE__: problems/frontend/expected/js-advanced-01/files.js.expected
+document.getElementById('change').addEventListener('click', () => {
+  document.getElementById('text').textContent = '変更されました';
+});

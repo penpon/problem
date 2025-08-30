@@ -1,0 +1,24 @@
+{
+  "id": "bootstrap-18",
+  "title": "バッジ（在庫・送料無料）",
+  "description": "バッジを用いてステータス（在庫・送料無料）を表示します",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CSS を CDN(@latest)で読み込み",
+    ".badge を使って在庫（success）・送料無料（info）を表示",
+    "最小構成でOK（テキスト + バッジ2種）"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>バッジ</title>\n</head>\n<body>\n  <div class=\"container my-3\">\n    <div>商品A\n      <span class=\"badge bg-success\">在庫あり</span>\n      <span class=\"badge bg-info text-dark\">送料無料</span>\n    </div>\n  </div>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-18/files.html.expected"
+    },
+    "css": { "template": "/* なし（最小） */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-18/files.css.expected" },
+    "js": { "template": "// JS不要（最小）", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-18/files.js.expected" }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "badges", "name": ".badge", "type": "structure", "message": ".badge を使ってステータスを表示してください" }
+  ],
+  "expectedResult": { "layout": "在庫・送料無料バッジが表示される" }
+}

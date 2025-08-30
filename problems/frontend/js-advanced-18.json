@@ -1,0 +1,29 @@
+{
+  "id": "js-advanced-18",
+  "title": "ビュー切替（d-none・関数化）",
+  "description": "2つのボックスをボタンで表示/非表示切替。切替処理を関数化します",
+  "category": "javascript-advanced",
+  "instructions": [
+    "#viewA と #viewB を用意。最初は #viewA を表示、#viewB は d-none",
+    "#btnA / #btnB クリックで対応するビューを表示し、他方は d-none",
+    "切替処理は関数 toggleView(targetId) にまとめる"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>ビュー切替</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <div class=\"buttons\">\n      <button id=\"btnA\">A</button>\n      <button id=\"btnB\">B</button>\n    </div>\n    <div id=\"viewA\" class=\"view\">ビューA</div>\n    <div id=\"viewB\" class=\"view d-none\">ビューB</div>\n  </main>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-18/files.html.expected"
+    },
+    "css": { "template": ".view{padding:8px;border:1px solid #ddd;border-radius:6px;margin-top:8px}.d-none{display:none}", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-18/files.css.expected" },
+    "js": {
+      "template": "// toggleView 関数で d-none を切替\nfunction toggleView(targetId){\n  // TODO: #viewA と #viewB のどちらか一方だけ表示\n}\nconst btnA = document.getElementById('btnA');\nconst btnB = document.getElementById('btnB');\nbtnA.addEventListener('click', () => toggleView('viewA'));\nbtnB.addEventListener('click', () => toggleView('viewB'));\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-18/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "views", "name": "#viewA/#viewB", "type": "html", "message": "#viewA と #viewB を用意してください" },
+    { "id": "buttons", "name": "#btnA/#btnB", "type": "html", "message": "#btnA と #btnB が必要です" },
+    { "id": "toggleView", "name": "toggleView()", "type": "js", "message": "切替処理を toggleView 関数にまとめてください" },
+    { "id": "d-none", "name": "d-none", "type": "html", "message": "非表示には d-none を使ってください" }
+  ],
+  "expectedResult": { "behavior": "A/B ボタンでビューが切り替わる" }
+}

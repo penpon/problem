@@ -1,0 +1,14 @@
+const items = [
+  { id: 1, name: 'Apple', price: 120 },
+  { id: 2, name: 'Banana', price: 80 },
+  { id: 3, name: 'Cherry', price: 200 }
+];
+function render(){
+  const count = items.length;
+  const total = items.reduce((sum, it) => sum + it.price, 0);
+  document.getElementById('count').textContent = String(count);
+  document.getElementById('total').textContent = String(total);
+  const html = items.map(it => `<div class="item">${it.name} - ￥${it.price}</div>`).join('');
+  document.getElementById('list').innerHTML = html;
+}
+render();

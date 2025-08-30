@@ -1,0 +1,32 @@
+{
+  "id": "js-basic-11",
+  "title": "classList + d-none 切替（最小）",
+  "description": "ボタンでボックスの表示/非表示を切り替えます（classList と d-none を使用）",
+  "category": "javascript-basic",
+  "instructions": [
+    "#box 要素を用意（最初は表示）",
+    "#toggleBtn クリックで #box に d-none を付け外し（classList.toggle）",
+    "CSS に .d-none { display: none } を定義（最小）"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>classList 切替</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <button id=\"toggleBtn\">表示/非表示</button>\n    <div id=\"box\" class=\"box\" style=\"margin-top:8px; padding:8px; border:1px solid #ddd; border-radius:6px;\">ボックス</div>\n  </main>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-11/files.html.expected"
+    },
+    "css": {
+      "template": ".d-none{display:none}",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-11/files.css.expected"
+    },
+    "js": {
+      "template": "// ボタンで d-none を切替\n// const btn = document.getElementById('toggleBtn');\n// const box = document.getElementById('box');\n// btn.addEventListener('click', () => {\n//   box.classList.toggle('d-none');\n// });\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-11/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "box-el", "name": "#box", "type": "html", "message": "#box を用意してください" },
+    { "id": "toggle-btn", "name": "#toggleBtn", "type": "html", "message": "#toggleBtn を用意してください" },
+    { "id": "d-none-css", "name": ".d-none CSS", "type": "css", "message": ".d-none { display:none } を定義してください" },
+    { "id": "classlist-toggle", "name": "classList.toggle", "type": "js", "message": "classList.toggle で d-none を切り替えてください" }
+  ],
+  "expectedResult": { "behavior": "ボタン押下でボックスが表示/非表示に切り替わる" }
+}

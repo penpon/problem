@@ -1,0 +1,29 @@
+{
+  "id": "js-advanced-20",
+  "title": "入力バリデーション（最小・必須）",
+  "description": "テキスト入力が空の場合にエラーメッセージを表示します（最小）",
+  "category": "javascript-advanced",
+  "instructions": [
+    "#name の入力が空（trim）なら #error にメッセージを表示",
+    "送信（submit）時に preventDefault でページ遷移を防止",
+    "成功時は #error を空にし、#result に名前を表示（任意）"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>最小バリデーション</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <form id=\"form\">\n      <input id=\"name\" type=\"text\" placeholder=\"名前\">\n      <button type=\"submit\">送信</button>\n    </form>\n    <div id=\"error\" style=\"color:red;margin-top:8px\"></div>\n    <div id=\"result\" style=\"margin-top:8px\"></div>\n  </main>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-20/files.html.expected"
+    },
+    "css": { "template": "/* なし（最小） */", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-20/files.css.expected" },
+    "js": {
+      "template": "// 最小バリデーション\nconst form = document.getElementById('form');\nconst nameInput = document.getElementById('name');\nconst errorEl = document.getElementById('error');\nconst resultEl = document.getElementById('result');\nform.addEventListener('submit', (e) => {\n  e.preventDefault();\n  // TODO: nameInput.value.trim() が空なら errorEl に文言、そうでなければ resultEl に表示\n});\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-20/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "form-el", "name": "#form", "type": "html", "message": "#form が必要です" },
+    { "id": "name-el", "name": "#name", "type": "html", "message": "#name が必要です" },
+    { "id": "prevent-default", "name": "preventDefault", "type": "js", "message": "submit 時に preventDefault を使ってください" },
+    { "id": "trim-check", "name": "trim()", "type": "js", "message": "空判定には trim() を使ってください" }
+  ],
+  "expectedResult": { "behavior": "未入力で送信するとエラー表示、入力ありで結果表示" }
+}

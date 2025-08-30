@@ -1,0 +1,26 @@
+{
+  "id": "bootstrap-15",
+  "title": "フォーム最小（form-control + バリデーション）",
+  "description": "フォーム入力を最小構成で作成し、送信時にバリデーション表示（was-validated）を行います",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CSS/JS を CDN(@latest)で読み込み",
+    "<form novalidate> 内に .form-control（required）を1つ以上",
+    "送信時に .was-validated をフォームに付与（最小JS）"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>フォーム最小</title>\n</head>\n<body>\n  <div class=\"container my-3\">\n    <form id=\"form\" class=\"needs-validation\" novalidate>\n      <div class=\"mb-3\">\n        <label for=\"email\" class=\"form-label\">メール</label>\n        <input id=\"email\" type=\"email\" class=\"form-control\" required>\n        <div class=\"invalid-feedback\">メールを入力してください</div>\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\">送信</button>\n    </form>\n  </div>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-15/files.html.expected"
+    },
+    "css": { "template": "/* なし（最小） */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-15/files.css.expected" },
+    "js": { "template": "// 送信時に was-validated を付与\n// const form = document.getElementById('form');\n// form.addEventListener('submit', (e) => {\n//   e.preventDefault();\n//   form.classList.add('was-validated');\n// });\n", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-15/files.js.expected" }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "bootstrap-js", "name": "Bootstrap JS", "type": "structure", "message": "Bootstrap JS CDNを読み込んでください" },
+    { "id": "form-control", "name": ".form-control(required)", "type": "structure", "message": "required な .form-control を用意してください" },
+    { "id": "was-validated", "name": "was-validated 付与", "type": "js", "message": "送信時に was-validated を付与してください" }
+  ],
+  "expectedResult": { "behavior": "未入力で送信すると invalid が表示される（最小）" }
+}

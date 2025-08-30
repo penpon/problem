@@ -1,0 +1,32 @@
+{
+  "id": "js-advanced-12",
+  "title": "filter で在庫のみ表示",
+  "description": "配列を filter で絞り込み、在庫のみを一覧表示します。チェックボックスのオン/オフで更新します",
+  "category": "javascript-advanced",
+  "instructions": [
+    "#inStock チェック時は inStock === true のみ",
+    "items.filter(...).map(...).join('') を innerHTML に代入",
+    "change イベントで再描画"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>filter で在庫のみ</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <label><input id=\"inStock\" type=\"checkbox\"> 在庫のみ</label>\n    <div id=\"list\" style=\"margin-top:8px\"></div>\n  </main>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.html.expected"
+    },
+    "css": {
+      "template": "#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.css.expected"
+    },
+    "js": {
+      "template": "// inStockチェックで filter して描画\nconst items = [\n  { id: 1, name: 'Apple', price: 120, inStock: true },\n  { id: 2, name: 'Banana', price: 80, inStock: false },\n  { id: 3, name: 'Cherry', price: 200, inStock: true }\n];\nfunction render(){\n  const list = document.getElementById('list');\n  list.textContent='';\n}\nrender();\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "list-container", "name": "#list", "type": "html", "message": "#list が必要です" },
+    { "id": "inStock-checkbox", "name": "#inStock", "type": "html", "message": "#inStock チェックボックスを用意してください" },
+    { "id": "uses-filter", "name": "filter 使用", "type": "js", "message": "filter で配列を絞り込んでください" },
+    { "id": "assign-innerHTML", "name": "innerHTML 代入", "type": "js", "message": "innerHTML に代入してください" }
+  ],
+  "expectedResult": { "rendering": "チェックONで在庫trueのみ表示、OFFで全件表示" }
+}

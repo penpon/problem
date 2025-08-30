@@ -1,0 +1,25 @@
+{
+  "id": "bootstrap-16",
+  "title": "ボタン状態（btn / btn-outline / active）",
+  "description": "ボタンの基本スタイルと active 状態を最小で確認します",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CSS を CDN(@latest)で読み込み",
+    ".btn と .btn-outline-* を配置",
+    "クリックで active クラスを付与/切替（最小JS）"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>ボタン状態</title>\n</head>\n<body>\n  <div class=\"container my-3\">\n    <div class=\"d-flex gap-2\">\n      <button class=\"btn btn-primary\" id=\"btnA\">A</button>\n      <button class=\"btn btn-outline-secondary\" id=\"btnB\">B</button>\n    </div>\n  </div>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-16/files.html.expected"
+    },
+    "css": { "template": "/* なし（最小） */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-16/files.css.expected" },
+    "js": { "template": "// クリックで active 切替\n// const a = document.getElementById('btnA');\n// const b = document.getElementById('btnB');\n// [a,b].forEach(el => el.addEventListener('click', () => {\n//   [a,b].forEach(x => x.classList.remove('active'));\n//   el.classList.add('active');\n// }));\n", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-16/files.js.expected" }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "btn", "name": ".btn / .btn-outline-*", "type": "structure", "message": ".btn と .btn-outline-* を配置してください" },
+    { "id": "active-toggle", "name": "active 切替", "type": "js", "message": "クリックで active クラスを切り替えてください" }
+  ],
+  "expectedResult": { "behavior": "ボタンをクリックするとそのボタンに active が付く" }
+}

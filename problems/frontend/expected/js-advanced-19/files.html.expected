@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>カード描画関数</title>
+  <style>#list{display:grid;gap:8px}.card{border:1px solid #ddd;border-radius:6px;padding:8px}</style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <div id="list"></div>
+  </main>
+  <script>
+    const items = [
+      { id:1, title:'Item A', price:100 },
+      { id:2, title:'Item B', price:200 }
+    ];
+    function createCard(item){
+      return `<div class=\"card\"><div>${item.title}</div><div>￥${item.price}</div></div>`;
+    }
+    function render(){
+      const html = items.map(createCard).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    render();
+  </script>
+</body>
+</html>

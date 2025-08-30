@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>複合条件フィルタ</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}</style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <select id="category">
+      <option value="all">すべて</option>
+      <option value="fruit">果物</option>
+      <option value="drink">飲料</option>
+    </select>
+    <label style="margin-left:8px"><input id="inStock" type="checkbox"> 在庫のみ</label>
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple', price: 120, inStock: true, category: 'fruit' },
+      { id: 2, name: 'Tea', price: 150, inStock: true, category: 'drink' },
+      { id: 3, name: 'Banana', price: 80, inStock: false, category: 'fruit' }
+    ];
+    const cat = document.getElementById('category');
+    const stock = document.getElementById('inStock');
+    function render(){
+      const c = cat.value; const s = stock.checked;
+      const filtered = items.filter(it => (c==='all'||it.category===c) && (!s || it.inStock));
+      const html = filtered.map(it => `<div class=\"item\">${it.name}</div>`).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    cat.addEventListener('change', render);
+    stock.addEventListener('change', render);
+    render();
+  </script>
+</body>
+</html>

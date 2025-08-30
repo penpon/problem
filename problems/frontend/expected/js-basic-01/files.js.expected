@@ -1,1 +1,4 @@
-__INCLUDE__: problems/frontend/expected/js-basic-01/files.js.expected
+document.getElementById('alertBtn').addEventListener('click', () => {
+  console.log('ボタンがクリックされました');
+  alert('こんにちは');
+});

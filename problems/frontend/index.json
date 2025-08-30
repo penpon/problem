@@ -17,10 +17,10 @@
         "html-css-09",
         "html-css-10",
         "html-css-11",
-        "html-css-13",
-        "html-css-15",
         "html-css-12",
-        "html-css-14"
+        "html-css-13",
+        "html-css-14",
+        "html-css-15"
       ]
     },
     {
@@ -38,7 +38,8 @@
         "js-basic-07",
         "js-basic-08",
         "js-basic-09",
-        "js-basic-10"
+        "js-basic-10",
+        "js-basic-11"
       ]
     },
     {
@@ -56,7 +57,17 @@
         "js-advanced-07",
         "js-advanced-08",
         "js-advanced-09",
-        "js-advanced-10"
+        "js-advanced-10",
+        "js-advanced-11",
+        "js-advanced-12",
+        "js-advanced-13",
+        "js-advanced-14",
+        "js-advanced-15",
+        "js-advanced-16",
+        "js-advanced-17",
+        "js-advanced-18",
+        "js-advanced-19",
+        "js-advanced-20"
       ]
     },
     {
@@ -74,7 +85,17 @@
         "bootstrap-07",
         "bootstrap-08",
         "bootstrap-09",
-        "bootstrap-10"
+        "bootstrap-10",
+        "bootstrap-11",
+        "bootstrap-12",
+        "bootstrap-13",
+        "bootstrap-14",
+        "bootstrap-15",
+        "bootstrap-16",
+        "bootstrap-17",
+        "bootstrap-18",
+        "bootstrap-19",
+        "bootstrap-20"
       ]
     },
     {

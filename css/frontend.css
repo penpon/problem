@@ -1766,12 +1766,13 @@
 
 .hint-modal-body {
     max-height: calc(85vh - 80px);
-    overflow-y: auto;
+    overflow-y: auto !important;
     position: relative;
-    /* スクロールバーの幅とスタイル（Firefox対応） */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
     scrollbar-width: thin;
     scrollbar-color: #cbd5e1 #f1f5f9;
-    /* スムーズスクロールとタッチデバイス対応 */
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch; /* iOS Safari用の慣性スクロール */
     overscroll-behavior: contain; /* スクロール境界での動作を制限 */
