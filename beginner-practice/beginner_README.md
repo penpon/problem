@@ -151,8 +151,7 @@
 - 文言・トーンは命令形・簡潔・用語統一
 
 ### ✅ チェック整合性
-- 問題JSONの `checks` とテンプレDOM/仕様を一致させる
-- 検証対象のID/クラス/要件はテンプレ側で必ず用意
+- 詳細は「✅ 最小チェックリスト」の checks 項目を参照（重複記載を避けるため集約）
 
 ### 🔒 セキュリティ・教育観点
 - 入力値の反映は `textContent` を基本（XSS回避）
@@ -171,46 +170,37 @@
 - 既存の流れに自然に橋渡し（例: js-basic → js-advanced → ec-project）
 - 各README冒頭に「学習目標・チェックリスト」を明記
 
+### 🔄 同期運用（problems ↔ beginner-practice）
+- 追加・更新の原則:
+  - `problems/frontend/<id>.json`（例: `html-css-20` 以降）を作成/更新したら、同一IDに対応する `beginner-practice/<id>-<slug>/` を同時に作成/更新する。
+  - HTML/CSS テンプレートは JSON の `files.html.template` / `files.css.template` をそのまま `index.html` / `style.css` に反映する（JS は空なら作成不要）。
+  - ディレクトリ構成・ファイル名は完全同期（ズレ禁止）。slug を変更したら両方に反映。
+- README 生成ルール（必須）:
+  - 全課題で `README.md` は「絵文字＋太字の9セクション」固定。
+    - 🧩 学ぶタグ/プロパティ
+    - 🔁 前回の復習
+    - 📌 重要なポイント
+    - 🧪 例題（課題とは別題材）
+    - ✨ 新しく追加された部分
+    - 🔍 コードの説明
+    - 📖 豆知識
+    - ⚠️ 注意点
+    - 🛒 ECサイト制作で繋がるポイント
+  - セクション見出しは絵文字＋太字。箇条書きの強調は太字を用いる。
+- 同期チェック項目:
+  - [ ] `beginner-practice/<id>-<slug>/index.html` が JSON `files.html.template` と一致
+  - [ ] `beginner-practice/<id>-<slug>/style.css` が JSON `files.css.template` と一致
+  - [ ] `problems/frontend/expected/<id>/files.*.expected` は「実体テキスト」で二重 `__INCLUDE__` なし
+  - [ ] `README.md` が9セクション形式に準拠
+
 ### 🔗 依存関係
 - 原則フレームワーク不使用。使用時は理由と最小CDN（例: Bootstrapは `@latest`）
 - 外部画像等は安定ソース（placeholder / picsum）
 
----
-
-## 🛠️ カテゴリ別運用ガイド（重複排除版）
-
-### ■ HTML/CSS基礎（html-css-\*）
-- **ファイル**: `files.html`, `files.css` のみ（`files.js` は空/未使用）
-- **禁止**: `<script>` の挿入、JavaScriptによる動作
-- **checks**: セレクタ構造・クラス付与・レスポンシブ指定などを明確化
-
-### ■ JavaScript基礎（js-basic-\*）
-- **範囲**: 変数/条件/反復/DOM基本操作/イベント基本
-- **checks**: `textContent` の使用、`id/class` の一致、イベント発火確認
-
-### ■ JavaScript応用（js-advanced-\*）
-- **範囲**: 配列/関数の分割、モジュール的分割（OOP/フレームワークなし）
-- **checks**: 配列処理結果、条件分岐、イベントデリゲーション等の動作観点
-
-### ■ Bootstrap基礎（bootstrap-\*）
-- **範囲**: レイアウト/ユーティリティ/フォーム/コンポーネント（CSS中心）
-- **依存**: CDNは最小。JSプラグインは必要回のみ（導入理由を明記）
-- **備考**: JSは不要なら空でも可
-- **checks**: クラス名と構造の一致、レスポンシブ振る舞いの確認観点
-
-### ■ ECプロジェクト（ec-project-\*）
-- **範囲**: ミニカート→チェックアウト→履歴等、段階的に機能追加
-- **構成**: 可能な限り3分割を維持。複数ページになる場合はテンプレを明確化
-- **checks**: UI更新、計算結果、状態遷移、アクセシビリティの要件を明記
-
----
-
 ## 🔧 フロント統合（共通）
-- **一覧**: `problems/frontend/index.json` の該当カテゴリ `problems` 配列にIDを並び順で追加
-- **合計数**: `totalProblems` をカテゴリ合算に合わせて更新
-- **問題JSON**: `problems/frontend/<id>.json` を作成し、`files.*.expected` は
-  `__INCLUDE__: problems/frontend/expected/<id>/files.<ext>.expected` を参照
-- **日付**: `index.json.lastUpdated` を最新日に更新（例: `2025-08-30`）
+以下は要点の概要です。詳細の作成手順・検証観点は「✅ 最小チェックリスト」と「🧾 一連の流れチェックリスト」を参照してください（重複排除のため集約）。
+- `problems/frontend/index.json` の `problems` 並び順・`totalProblems`・`lastUpdated` を更新
+- 問題JSONは `problems/frontend/<id>.json` に作成し、`files.*.expected` は `problems/frontend/expected/<id>/files.<ext>.expected` を参照
 
 ---
 
@@ -223,7 +213,7 @@
 
 ## ✅ 最小チェックリスト（提出前・全カテゴリ共通）
 - [ ] `<id>.json` が存在し、カテゴリIDと一致
-- [ ] `files.html/css/js.expected` は「実体テキスト」。`__INCLUDE__` の二重参照なし
+- [ ] `files.html/css/js.expected` は「実体テキスト」。`__INCLUDE__` の二重参照なし（詳細は「❗ expected 作成ルール（重要）」参照）
 - [ ] `checks` とテンプレDOM/仕様が一致（必要なID/クラスがテンプレに存在）
 - [ ] `index.json` の並び・合計数・最終更新日を更新
 - [ ] 表示・正解プレビュー・採点が通る（12〜15で発生した種の不具合が再発しない）

@@ -1,44 +1,54 @@
-# Flexboxの基本 - practice12
+# 改訂版ヒント（16 Flexboxの基礎）
 
-## 🎯 学習目標
-CSS Flexboxの基本的な使い方と、要素の横並び・中央寄せの実装方法を学習します。
+## 🧩 今回学ぶプロパティ
+- コンテナ：`display: flex`, `gap`, `justify-content`, `align-items`, `flex-wrap`
+- アイテム：`flex`, `flex-grow`, `flex-shrink`, `flex-basis`
 
-## 📋 問題内容
-以下のFlexboxレイアウトを実装してください：
+## 🔁 前回の復習
+- シンプルなトランジション/アニメーションの考え方
 
-### 実装する要素
-1. **横並び（display: flex）**
-   - 複数の要素を横並びに配置
-   - `display: flex` の基本動作を理解
+## 📌 重要なポイント
+- Flexは**1次元レイアウト**（行または列）
+- 余白は`gap`、伸縮は`flex`で管理
 
-2. **中央寄せ（justify-content）**
-   - `justify-content: center` で要素を中央配置
-   - 主軸方向の配置制御
+## 🧪 例題
+別テーマ：「ボタン横並びの整列」。
 
-3. **間隔をあける（gap）**
-   - `gap` プロパティで要素間の間隔を設定
-   - モダンなスペーシング手法
+```html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Flexboxの基礎</title>
+    <style>
+      .toolbar { display: flex; gap: 8px; justify-content: space-between; }
+      .group { display: flex; gap: 8px; }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <div class="group">
+        <button>戻る</button><button>次へ</button>
+      </div>
+      <div class="group">
+        <button>保存</button>
+      </div>
+    </div>
+  </body>
+</html>
+```
 
-## 🔧 必要なCSS知識
-- `display: flex` プロパティ
-- `justify-content` プロパティ
-- `gap` プロパティ
-- Flexboxの主軸・交差軸の概念
+## ✨ 新しく追加された部分
+- `justify-content: space-between` で**端揃え**
 
-## 💡 実装のヒント
-1. Flexboxコンテナには `display: flex` を設定
-2. `justify-content` で主軸方向の配置を制御
-3. `gap` で間隔設定（margin不要）
-4. 子要素は自動で横並びになる
+## 🔍 コードの説明
+- ネストしたFlexで**左右グループ**を構成
 
-## ✅ 完成の確認ポイント
-- [ ] 要素が横並びに表示される
-- [ ] 中央寄せが正しく動作する
-- [ ] 要素間の間隔が適切である
-- [ ] レイアウトが整然としている
+## 📖 豆知識
+- `align-items: baseline` で**文字基準揃え**ができる
 
-## 📚 関連する学習項目
-- Flexboxの応用（align-items, flex-direction）
-- CSS Gridとの比較
-- レスポンシブデザインでの活用
-- モダンレイアウト技術
+## ⚠️ 注意点
+- アイテムの**最小幅**で折り返しが変わる
+
+## 🛒 ECサイト制作で繋がるポイント
+- 商品カードのフッター（価格＋ボタン）の**整列**に活用

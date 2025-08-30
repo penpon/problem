@@ -1,45 +1,47 @@
-# 基本的なTransition - practice15
+# 改訂版ヒント（19 トランジションの基礎）
 
-## 🎯 学習目標
-CSSトランジションの基本概念と、色・サイズ・背景の滑らかな変化の実装方法を学習します。
+## 🧩 今回学ぶプロパティ
+- `transition-property`, `transition-duration`, `transition-timing-function`
 
-## 📋 問題内容
-以下のトランジション効果を実装してください：
+## 🔁 前回の復習
+- カードの構造化（見出し/画像/本文/フッター）
 
-### 実装する要素
-1. **色の変化**
-   - ホバー時にテキスト色が滑らかに変化
-   - `transition` プロパティでアニメーション時間を設定
+## 📌 重要なポイント
+- 変化するプロパティだけを**明示**する
+- イージングで**動きの印象**が変わる（`ease`, `ease-in-out` など）
 
-2. **サイズの変化**
-   - ホバー時にボックスサイズが滑らかに拡大
-   - `transform: scale()` を使用
+## 🧪 例題
+別テーマ：「ボタンのホバー効果」。
 
-3. **背景の変化**
-   - ホバー時に背景色が滑らかに変化
-   - グラデーション効果も含める
+```html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>トランジションの基礎</title>
+    <style>
+      .btn { padding: 10px 14px; background: #1971c2; color: #fff; border-radius: 6px; transition: background-color .25s ease, transform .15s ease; }
+      .btn:hover { background: #1c7ed6; }
+      .btn:active { transform: translateY(1px); }
+    </style>
+  </head>
+  <body>
+    <button class="btn">購入する</button>
+  </body>
+</html>
+```
 
-## 🔧 必要なCSS知識
-- `transition` プロパティ
-- `:hover` 疑似クラス
-- `transform: scale()` プロパティ
-- `background-color` プロパティ
-- アニメーション時間の設定
+## ✨ 新しく追加された部分
+- 複数プロパティの**個別時間/イージング**指定
 
-## 💡 実装のヒント
-1. `transition: all 0.3s ease` で全プロパティにアニメーションを適用
-2. 特定のプロパティのみアニメーションしたい場合は個別指定
-3. `ease`, `linear`, `ease-in-out` などのイージング関数を試す
-4. 適切なアニメーション時間（0.3s推奨）を設定
+## 🔍 コードの説明
+- `:active` で押下感を**微小移動**で表現
 
-## ✅ 完成の確認ポイント
-- [ ] ホバー時に滑らかな色変化が発生する
-- [ ] サイズ変更がスムーズに動作する
-- [ ] 背景変化が自然に見える
-- [ ] アニメーション時間が適切である
+## 📖 豆知識
+- `cubic-bezier()` で**細かな動き**を設計
 
-## 📚 関連する学習項目
-- CSSアニメーションの基礎
-- トランジション関数
-- パフォーマンスを考慮したアニメーション
-- ユーザーエクスペリエンスの向上
+## ⚠️ 注意点
+- すべてにトランジションをかけると**重く/もっさり**感じる
+
+## 🛒 ECサイト制作で繋がるポイント
+- ボタンやナビの**手触り**を改善し、操作性向上
