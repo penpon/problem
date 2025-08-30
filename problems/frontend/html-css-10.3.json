@@ -1,0 +1,37 @@
+{
+  "id": "html-css-10.3",
+  "title": "10.3: レイアウト基礎（floatで二列レイアウト）",
+  "description": "float を用いてサイドバー + メインの二列レイアウトを作ります",
+  "category": "html-css-basics",
+  "instructions": [
+    ".sidebar に width: 200px と float: left を設定してください",
+    ".content に margin-left: 220px を設定してください",
+    ".two-column に overflow: auto を設定して高さを確保してください"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>html-css-10.3 floatで二列レイアウト</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>floatで二列レイアウト</h1>\n    <div class=\"two-column\">\n      <div class=\"sidebar\">サイドバー</div>\n      <div class=\"content\">メインコンテンツ。本文が入ります。</div>\n    </div>\n  </div>\n</body>\n</html>\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.3/files.html.expected"
+    },
+    "css": {
+      "template": "/* 基本スタイル */\nbody { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }\n.container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n\n/* 課題実装 */\n.two-column { overflow: auto; }\n.sidebar {\n  width: 200px;\n  float: left;\n  background: #fff3e0;\n  border: 1px solid #ffb74d;\n  border-radius: 8px;\n  padding: 12px;\n}\n.content {\n  margin-left: 220px;\n  background: #e1f5fe;\n  border: 1px solid #4fc3f7;\n  border-radius: 8px;\n  padding: 12px;\n}\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.3/files.css.expected"
+    },
+    "js": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.3/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" }
+  ],
+  "hints": [
+    "clearfloat の代替として overflow: auto を使うと親の高さが確保できます",
+    "float した要素の横に本文を置く場合、本文側に margin-left を付けます"
+  ]
+}

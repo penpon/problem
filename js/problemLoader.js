@@ -241,6 +241,10 @@ class ProblemLoader {
       'html-css-08': 'html-css-08-spacing',
       'html-css-09': 'html-css-09-borders',
       'html-css-10': 'html-css-10-centering',
+      // 10の派生問題（レイアウト基礎の補助）
+      'html-css-10.1': 'html-css-10.1-flex-align-gap',
+      'html-css-10.2': 'html-css-10.2-inline-block-align',
+      'html-css-10.3': 'html-css-10.3-float-two-column',
       'html-css-11': 'html-css-11-layout-basics',
       'html-css-12': 'html-css-12-text-centering',
       'html-css-13': 'html-css-13-shadows-corners',

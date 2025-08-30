@@ -1,0 +1,37 @@
+{
+  "id": "html-css-10.2",
+  "title": "10.2: レイアウト基礎（inline-blockの整列）",
+  "description": "inline-block 要素の縦揃えと隙間処理を学びます",
+  "category": "html-css-basics",
+  "instructions": [
+    ".item に display: inline-block、width: 120px、height: 80px、vertical-align: top を設定してください",
+    ".inline-list に font-size: 0 を設定して inline-block の隙間をなくしてください",
+    ".item + .item に margin-left: 10px を設定してください"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>html-css-10.2 inline-blockの整列</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>inline-blockの整列</h1>\n    <div class=\"inline-list\">\n      <div class=\"item\">1</div>\n      <div class=\"item\">2<br>高い要素</div>\n      <div class=\"item\">3</div>\n    </div>\n  </div>\n</body>\n</html>\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.2/files.html.expected"
+    },
+    "css": {
+      "template": "/* 基本スタイル */\nbody { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }\n.container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n\n/* 課題実装 */\n.inline-list { font-size: 0; }\n.item {\n  display: inline-block;\n  width: 120px;\n  height: 80px;\n  background: #f1f8e9;\n  border: 1px solid #aed581;\n  border-radius: 8px;\n  vertical-align: top;\n  margin-left: 0;\n  font-size: 14px; /* 子でフォントサイズ復帰 */\n  text-align: center;\n  padding: 8px;\n}\n.item + .item { margin-left: 10px; }\n",
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.2/files.css.expected"
+    },
+    "js": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.2/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
+    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
+    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
+    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
+    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
+    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" }
+  ],
+  "hints": [
+    "inline-block の隙間は font-size:0 で抑制できます",
+    "高さが異なる要素は vertical-align: top で上端を揃えます"
+  ]
+}

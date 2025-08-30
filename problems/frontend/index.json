@@ -16,6 +16,9 @@
         "html-css-08",
         "html-css-09",
         "html-css-10",
+        "html-css-10.1",
+        "html-css-10.2",
+        "html-css-10.3",
         "html-css-11",
         "html-css-12",
         "html-css-13",
@@ -161,7 +164,7 @@
       ]
     }
   ],
-  "totalProblems": 120,
-  "lastUpdated": "2025-08-30",
+  "totalProblems": 123,
+  "lastUpdated": "2025-08-31",
   "version": "6.0.0"
 }
