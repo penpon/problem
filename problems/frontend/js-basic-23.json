@@ -1,0 +1,26 @@
+{
+  "id": "js-basic-23",
+  "title": "まとめ練習 - クーポン適用で割引計算",
+  "description": "小計と送料にクーポン割引を適用して最終合計を更新します。submitとpreventDefault、trim、条件分岐、textContent更新を総合適用します。",
+  "category": "javascript-basics",
+  "difficulty": "初級+",
+  "instructions": [
+    "#coupon-form の submit を監視し、preventDefault() する",
+    "コードを trim() して比較。適用時は割引率を保持",
+    "#subtotal, #shipping-fee を元に #total を再計算（割引反映）",
+    "#status に適用結果メッセージを表示（textContent）"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-23/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-23/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-23/files.js.expected" }
+  },
+  "checks": [
+    { "id": "coupon-form", "name": "#coupon-form", "type": "html", "message": "#coupon-form を用意してください" },
+    { "id": "coupon", "name": "#coupon", "type": "html", "message": "#coupon 入力を用意してください" },
+    { "id": "status", "name": "#status", "type": "html", "message": "#status 要素を用意してください" },
+    { "id": "subtotal", "name": "#subtotal", "type": "html", "message": "#subtotal を用意してください" },
+    { "id": "shipping-fee", "name": "#shipping-fee", "type": "html", "message": "#shipping-fee を用意してください" },
+    { "id": "total", "name": "#total", "type": "html", "message": "#total を用意してください" }
+  ]
+}

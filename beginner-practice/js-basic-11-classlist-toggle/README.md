@@ -1,18 +1,42 @@
-# 🧪 js-basic-11: classList.toggle で見た目を切り替え
+# まとめ練習 - classListで表示の切替
 
-## 🎯 学習目標
-- クリックイベントで `element.classList.toggle('active')` を使い、見た目（スタイル）を切り替えられる。
+## 🧩 **学ぶタグ/プロパティ**
+- `classList.add/remove/toggle/contains`
+- `textContent`
 
-## 📖 内容
-- ボタンを押すたびに強調/通常を交互に切り替える
+## 🔁 **前回の復習**
+- ボタンクリックでの表示更新
 
-## 📝 学習ポイント
-- 1ステップ1概念: 新規は `classList.toggle` のみ
-- CSSクラスで見た目をまとめて変更（JSはクラスの付け外しに専念）
+## 📌 **重要なポイント**
+- 見た目のON/OFFはクラス操作で行う
 
-## 🔍 詳細解説
-- ECの「お気に入り」や「開閉トグル」など、状態を視覚的に表現する基本
+## 🧪 **例題（コピペで実行可）**
+```html
+<p id="panel" class="hidden">ここはパネルです</p>
+<button id="btn">表示/非表示</button>
+<style>
+  .hidden{ display:none; }
+  #panel{ padding:8px; border:1px solid #ccc; }
+</style>
+<script>
+  const panel = document.getElementById('panel');
+  document.getElementById('btn').addEventListener('click', ()=>{
+    panel.classList.toggle('hidden');
+  });
+</script>
+```
 
----
+## ✨ **新しく追加された部分**
+- `classList.toggle` でワンアクション切替
 
-files.html / files.css / files.js を同じディレクトリに配置して実行してください。
+## 🔍 **コードの説明**
+- `.hidden` クラスの有無で表示を制御
+
+## 📖 **豆知識**
+- `classList.contains` で状態判定可能
+
+## ⚠️ **注意点**
+- クラス名の衝突に注意（命名規則を統一）
+
+## 🛒 **ECサイト制作で繋がるポイント**
+- モーダルやドロップダウンの開閉制御

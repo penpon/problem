@@ -1,0 +1,15 @@
+<div>単価: <span id="unit-price">1000</span> 円</div>
+<div>
+  <button id="minus-btn">−</button>
+  <input id="qty-input" type="number" value="1" min="0">
+  <button id="plus-btn">＋</button>
+</div>
+<div>
+  <label><input type="radio" name="ship" id="ship-standard" checked> 通常便（送料 300円）</label>
+  <label><input type="radio" name="ship" id="ship-express"> 速達便（送料 800円）</label>
+</div>
+<form id="coupon-form">
+  <label>クーポン: <input id="coupon" type="text" placeholder="EC2025"></label>
+  <button type="submit">適用</button>
+</form>
+<pre id="summary" aria-live="polite">未計算</pre>

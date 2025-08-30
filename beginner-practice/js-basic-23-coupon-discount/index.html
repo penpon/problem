@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まとめ練習 - クーポン適用で割引計算</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>小計: <span id="subtotal">5000</span> 円</div>
+  <div>送料: <span id="shipping-fee">300</span> 円</div>
+  <div>合計: <span id="total">5300</span> 円</div>
+  <form id="coupon-form">
+    <label>クーポン: <input id="coupon" type="text" placeholder="EC2025"></label>
+    <button type="submit">適用</button>
+  </form>
+  <p id="status">未適用</p>
+  <script src="script.js"></script>
+</body>
+</html>

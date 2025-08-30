@@ -1,19 +1,46 @@
-# 🧪 js-basic-13: 入力ライブプレビュー
+# まとめ練習 - ライブプレビュー（名前と価格）
 
-## 🎯 学習目標
-- `input`イベントでタイピングに合わせて`textContent`を更新できる。
+## 🧩 **学ぶタグ/プロパティ**
+- 複数入力の同時反映
+- `Number()`、`toLocaleString()`
 
-## 📖 内容
-- `addEventListener('input', ...)` を使ったリアルタイム反映
-- プレースホルダ表示から入力に応じて置き換え
+## 🔁 **前回の復習**
+- 入力の即時反映
 
-## 📝 学習ポイント
-- 1ステップ1概念: 新規は`input`イベントのみ
-- `textContent`で安全に表示
+## 📌 **重要なポイント**
+- 数値は数値化し、表示時に整形可能
 
-## 🔍 詳細解説
-- ECの検索窓やフォームの即時フィードバックでよく使う
+## 🧪 **例題（コピペで実行可）**
+```html
+<label>商品名: <input id="name" type="text" placeholder="サンプル"></label>
+<label>価格: <input id="price" type="number" value="1200"></label>
+<div id="card">商品: — / 価格: — 円</div>
+<script>
+  const n = document.getElementById('name');
+  const p = document.getElementById('price');
+  const card = document.getElementById('card');
+  function render(){
+    const name = n.value.trim() || '（未入力）';
+    const price = Number(p.value)||0;
+    card.textContent = `商品: ${name} / 価格: ${price.toLocaleString()} 円`;
+  }
+  n.addEventListener('input', render);
+  p.addEventListener('input', render);
+  render();
+</script>
+```
 
----
+## ✨ **新しく追加された部分**
+- 数値整形で読みやすく
 
-files.html / files.css / files.js を同じディレクトリに配置して実行してください。
+## 🔍 **コードの説明**
+- 文字列/数値の扱いを分ける
+
+## 📖 **豆知識**
+- ロケールに応じた桁区切りは `toLocaleString`
+
+## ⚠️ **注意点**
+- NaNガードに `Number(...)||0`
+
+## 🛒 **ECサイト制作で繋がるポイント**
+- 商品カードのライブ更新

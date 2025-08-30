@@ -1,0 +1,30 @@
+const unit = Number(document.getElementById('unit-price').textContent)||0;
+const qty = document.getElementById('qty-input');
+const minus = document.getElementById('minus-btn');
+const plus = document.getElementById('plus-btn');
+const std = document.getElementById('ship-standard');
+const exp = document.getElementById('ship-express');
+const form = document.getElementById('coupon-form');
+const coup = document.getElementById('coupon');
+const summary = document.getElementById('summary');
+let discount = 0; // 0..1
+function clamp(n){ return Math.max(0, n|0); }
+function sub(){ return (Number(qty.value)||0) * unit; }
+function fee(){ return exp.checked ? 800 : 300; }
+function total(){ return Math.floor((sub() + fee()) * (1 - discount)); }
+function render(){
+  const s = `数量: ${qty.value}\n小計: ${sub()} 円\n送料: ${fee()} 円\n割引: ${Math.round(discount*100)}%\n合計: ${total()} 円`;
+  summary.textContent = s;
+}
+minus.addEventListener('click', ()=>{ qty.value = String(clamp((Number(qty.value)||0)-1)); render(); });
+plus.addEventListener('click', ()=>{ qty.value = String(clamp((Number(qty.value)||0)+1)); render(); });
+qty.addEventListener('input', ()=>{ qty.value = String(clamp(Number(qty.value)||0)); render(); });
+std.addEventListener('change', render);
+exp.addEventListener('change', render);
+form.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const code = coup.value.trim();
+  discount = (code === 'EC2025') ? 0.1 : 0;
+  render();
+});
+render();

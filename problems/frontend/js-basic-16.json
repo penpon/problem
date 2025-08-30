@@ -1,0 +1,21 @@
+{
+  "id": "js-basic-16",
+  "title": "カートに追加（クリックで個数加算）",
+  "description": "商品ページの「カートに追加」ボタンをクリックすると、カート内数量が1ずつ増えます",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#cart-count を取得して現在の点数を表示する",
+    "#add-btn に click イベントを登録する",
+    "クリック毎に内部の count を +1 し、#cart-count.textContent を更新する"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-16/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-16/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-16/files.js.expected" }
+  },
+  "checks": [
+    { "id": "cart-count", "name": "#cart-count", "type": "html", "message": "#cart-count 要素を用意してください" },
+    { "id": "add-btn", "name": "#add-btn", "type": "html", "message": "#add-btn ボタンを用意してください" }
+  ]
+}

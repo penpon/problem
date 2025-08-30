@@ -1,18 +1,42 @@
-# 🧪 js-basic-15: フォーカス/ブラーで見た目を変える
+# まとめ練習 - フォーカス/ブラーでUI補助
 
-## 🎯 学習目標
-- `focus` と `blur` イベントで、入力中の視覚的フィードバックを与えられる。
+## 🧩 **学ぶタグ/プロパティ**
+- `focus` / `blur` イベント
+- ヘルプ表示の制御
 
-## 📖 内容
-- 入力がフォーカスされたら強調、外れたら元に戻す
+## 🔁 **前回の復習**
+- `preventDefault` と検証
 
-## 📝 学習ポイント
-- 1ステップ1概念: 新規は`focus/blur`のみ
-- クラスの付け外し（`classList.add/remove`）は補助的に使用
+## 📌 **重要なポイント**
+- 入力中のみ補助文を出すなどUX向上
 
-## 🔍 詳細解説
-- 入力フォームの使い勝手向上。ECの住所/カード入力での強調に有効
+## 🧪 **例題（コピペで実行可）**
+```html
+<label>ユーザー名: <input id="user" type="text"></label>
+<small id="help" class="hide">英数字で入力してください</small>
+<style>
+  .hide{ opacity:0; transition:opacity .2s; }
+  .show{ opacity:1; }
+</style>
+<script>
+  const i = document.getElementById('user');
+  const h = document.getElementById('help');
+  i.addEventListener('focus', ()=>{ h.classList.remove('hide'); h.classList.add('show'); });
+  i.addEventListener('blur', ()=>{ h.classList.remove('show'); h.classList.add('hide'); });
+</script>
+```
 
----
+## ✨ **新しく追加された部分**
+- フォーカス状態での補助表示
 
-files.html / files.css / files.js を同じディレクトリに配置して実行してください。
+## 🔍 **コードの説明**
+- クラスの付け替えで視覚変化
+
+## 📖 **豆知識**
+- キーボード操作ユーザーへの配慮が重要
+
+## ⚠️ **注意点**
+- 過剰なアニメは可読性を損ねる場合あり
+
+## 🛒 **ECサイト制作で繋がるポイント**
+- 入力フォームのUX改善

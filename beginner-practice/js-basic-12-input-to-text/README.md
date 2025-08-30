@@ -1,24 +1,39 @@
-# 🧪 js-basic-12: 入力値をテキストに反映
+# まとめ練習 - 入力をそのまま表示
 
-## 🎯 学習目標
-- ボタンクリックイベントで、`input.value` を取得し、要素の `textContent` を更新できる。
+## 🧩 **学ぶタグ/プロパティ**
+- `<input>` の `input` イベント
+- `textContent`、`trim()`
 
-## 📖 内容
-- HTMLの`<input>`から文字列を取得
-- `addEventListener('click', ...)`でイベントを登録
-- `textContent`で安全に表示（`innerHTML`は使わない）
+## 🔁 **前回の復習**
+- classList による見た目操作
 
-## 📝 学習ポイント
-- `document.getElementById()` で要素取得
-- 入力は文字列であること（数値計算はしない）
-- 空文字のときの簡単な分岐表示
+## 📌 **重要なポイント**
+- 入力を都度反映、空時はプレースホルダ表示
 
-## 🔍 詳細解説
-- DOM構築後に実行されるよう`defer`もしくは`DOMContentLoaded`を使用
-- ECサイトでの検索窓や名前入力の即時反映の基礎
+## 🧪 **例題（コピペで実行可）**
+```html
+<label>お名前: <input id="name" type="text" placeholder="山田太郎"></label>
+<p id="out">（ここに表示）</p>
+<script>
+  const i = document.getElementById('name');
+  const o = document.getElementById('out');
+  function update(){ o.textContent = i.value.trim() || '（ここに表示）'; }
+  i.addEventListener('input', update);
+  update();
+</script>
+```
 
----
+## ✨ **新しく追加された部分**
+- 空文字のとき既定文言
 
-## テンプレ（コピペでOK）
+## 🔍 **コードの説明**
+- `trim()` で前後空白を除去してから反映
 
-files.html / files.css / files.js を同じディレクトリに配置して実行してください。
+## 📖 **豆知識**
+- 見た目変更はCSSに寄せるのが保守的
+
+## ⚠️ **注意点**
+- `innerHTML` ではなく `textContent`
+
+## 🛒 **ECサイト制作で繋がるポイント**
+- フォームプレビューの基本

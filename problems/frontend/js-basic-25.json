@@ -1,0 +1,27 @@
+{
+  "id": "js-basic-25",
+  "title": "まとめ練習 - チェックアウト要約",
+  "description": "数量・小計・配送・クーポン適用をまとめ、送信時に要約を表示します。preventDefaultと複数要素の統合更新、textContentの安全更新を総合します。",
+  "category": "javascript-basics",
+  "difficulty": "初級+",
+  "instructions": [
+    "数量と単価から小計を算出し表示（input/click対応）",
+    "配送はラジオで送料を切替し合計更新",
+    "クーポンを submit で適用（preventDefault, trim）",
+    "#summary に最終的な数量・小計・送料・割引・合計の要約を表示（textContent）"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-25/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-25/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-25/files.js.expected" }
+  },
+  "checks": [
+    { "id": "unit-price", "name": "#unit-price", "type": "html", "message": "#unit-price を用意してください" },
+    { "id": "qty-input", "name": "#qty-input", "type": "html", "message": "#qty-input を用意してください" },
+    { "id": "ship-standard", "name": "#ship-standard", "type": "html", "message": "#ship-standard を用意してください" },
+    { "id": "ship-express", "name": "#ship-express", "type": "html", "message": "#ship-express を用意してください" },
+    { "id": "coupon-form", "name": "#coupon-form", "type": "html", "message": "#coupon-form を用意してください" },
+    { "id": "coupon", "name": "#coupon", "type": "html", "message": "#coupon を用意してください" },
+    { "id": "summary", "name": "#summary", "type": "html", "message": "#summary を用意してください" }
+  ]
+}

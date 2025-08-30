@@ -1,0 +1,25 @@
+{
+  "id": "js-basic-21",
+  "title": "まとめ練習 - 数量加減＋入力で小計更新",
+  "description": "単価表示、数量の加減ボタンと直接入力の両方で小計を更新します。クリック/入力、数値化、防御的実装、textContent更新まで総合的に扱います。",
+  "category": "javascript-basics",
+  "difficulty": "初級+",
+  "instructions": [
+    "#unit-price の数値を取得して保持する（Numberで数値化）",
+    "#qty-input の input で数量変更時に小計を更新する",
+    "#minus-btn / #plus-btn の click で数量を-1/+1（0未満にしない）",
+    "#subtotal.textContent に単価×数量を反映する（文字列化）"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-21/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-21/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-21/files.js.expected" }
+  },
+  "checks": [
+    { "id": "unit-price", "name": "#unit-price", "type": "html", "message": "#unit-price 要素を用意してください" },
+    { "id": "qty-input", "name": "#qty-input", "type": "html", "message": "#qty-input 要素を用意してください" },
+    { "id": "minus-btn", "name": "#minus-btn", "type": "html", "message": "#minus-btn ボタンを用意してください" },
+    { "id": "plus-btn", "name": "#plus-btn", "type": "html", "message": "#plus-btn ボタンを用意してください" },
+    { "id": "subtotal", "name": "#subtotal", "type": "html", "message": "#subtotal 要素を用意してください" }
+  ]
+}

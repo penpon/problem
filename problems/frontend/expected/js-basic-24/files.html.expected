@@ -1,0 +1,3 @@
+<label>お名前: <input id="name-input" type="text" placeholder="山田太郎"></label>
+<p id="preview">（ここにプレビュー）</p>
+<button id="color-btn">色切替</button>

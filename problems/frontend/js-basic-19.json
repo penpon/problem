@@ -1,0 +1,23 @@
+{
+  "id": "js-basic-19",
+  "title": "クーポンコード適用（フォーム送信）",
+  "description": "クーポンコードをフォームで送信し、適用可否に応じてメッセージを表示します",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#coupon-form の submit を監視し、e.preventDefault() でページ遷移を防ぐ",
+    "#coupon の値を取得してトリムし、判定する（例: 'SAVE10'）",
+    "結果を #status.textContent に表示する"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-19/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-19/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-19/files.js.expected" }
+  },
+  "checks": [
+    { "id": "coupon-form", "name": "#coupon-form", "type": "html", "message": "#coupon-form 要素を用意してください" },
+    { "id": "coupon", "name": "#coupon", "type": "html", "message": "#coupon 入力を用意してください" },
+    { "id": "apply-btn", "name": "#apply-btn", "type": "html", "message": "#apply-btn ボタンを用意してください" },
+    { "id": "status", "name": "#status", "type": "html", "message": "#status 要素を用意してください" }
+  ]
+}

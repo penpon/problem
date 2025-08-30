@@ -1,0 +1,15 @@
+const unit = Number(document.getElementById('unit-price').textContent) || 0;
+const qtyInput = document.getElementById('qty-input');
+const subEl = document.getElementById('subtotal');
+const minus = document.getElementById('minus-btn');
+const plus = document.getElementById('plus-btn');
+function clamp(n){ return Math.max(0, n|0); }
+function update(){
+  const n = clamp(Number(qtyInput.value) || 0);
+  qtyInput.value = String(n);
+  subEl.textContent = String(unit * n);
+}
+minus.addEventListener('click', ()=>{ qtyInput.value = String(clamp((Number(qtyInput.value)||0) - 1)); update(); });
+plus.addEventListener('click', ()=>{ qtyInput.value = String(clamp((Number(qtyInput.value)||0) + 1)); update(); });
+qtyInput.addEventListener('input', update);
+update();

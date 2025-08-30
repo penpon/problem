@@ -1,0 +1,22 @@
+{
+  "id": "js-basic-17",
+  "title": "数量入力で小計更新",
+  "description": "単価と数量から小計を計算して表示します",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#unit-price の数値と #qty-input の値を取得する",
+    "input イベントで数量変更時に計算用関数 update() を呼ぶ",
+    "小計を #subtotal.textContent に反映する（0未満にならないように安全に数値化）"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-17/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-17/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-17/files.js.expected" }
+  },
+  "checks": [
+    { "id": "unit-price", "name": "#unit-price", "type": "html", "message": "#unit-price 要素を用意してください" },
+    { "id": "qty-input", "name": "#qty-input", "type": "html", "message": "#qty-input 入力を用意してください" },
+    { "id": "subtotal", "name": "#subtotal", "type": "html", "message": "#subtotal 要素を用意してください" }
+  ]
+}

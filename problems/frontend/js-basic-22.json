@@ -1,0 +1,26 @@
+{
+  "id": "js-basic-22",
+  "title": "まとめ練習 - 小計＋配送オプションで合計更新",
+  "description": "数量による小計と配送方法による送料を組み合わせて合計金額を表示します。入力・クリック・ラジオ選択・数値化・textContent更新を総合適用します。",
+  "category": "javascript-basics",
+  "difficulty": "初級+",
+  "instructions": [
+    "#unit-price と #qty-input から小計を算出",
+    "#ship-standard / #ship-express の選択で送料を切替",
+    "#shipping-fee と #total を textContent で更新",
+    "update() を用意して各イベントから再利用"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-22/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-22/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-22/files.js.expected" }
+  },
+  "checks": [
+    { "id": "unit-price", "name": "#unit-price", "type": "html", "message": "#unit-price 要素を用意してください" },
+    { "id": "qty-input", "name": "#qty-input", "type": "html", "message": "#qty-input 要素を用意してください" },
+    { "id": "ship-standard", "name": "#ship-standard", "type": "html", "message": "#ship-standard を用意してください" },
+    { "id": "ship-express", "name": "#ship-express", "type": "html", "message": "#ship-express を用意してください" },
+    { "id": "shipping-fee", "name": "#shipping-fee", "type": "html", "message": "#shipping-fee 要素を用意してください" },
+    { "id": "total", "name": "#total", "type": "html", "message": "#total 要素を用意してください" }
+  ]
+}

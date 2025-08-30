@@ -1,0 +1,24 @@
+{
+  "id": "js-basic-20",
+  "title": "配送オプションと合計更新",
+  "description": "配送方法を選択して送料と合計金額を更新します",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#base の金額、#shipping-fee、#total を取得する",
+    "#ship-standard と #ship-express の change イベントで update() を呼ぶ",
+    "選択に応じて送料(300/800)を設定し、合計を #total.textContent に反映する"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-20/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-20/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-20/files.js.expected" }
+  },
+  "checks": [
+    { "id": "base", "name": "#base", "type": "html", "message": "#base 要素を用意してください" },
+    { "id": "ship-standard", "name": "#ship-standard", "type": "html", "message": "#ship-standard ラジオを用意してください" },
+    { "id": "ship-express", "name": "#ship-express", "type": "html", "message": "#ship-express ラジオを用意してください" },
+    { "id": "shipping-fee", "name": "#shipping-fee", "type": "html", "message": "#shipping-fee 要素を用意してください" },
+    { "id": "total", "name": "#total", "type": "html", "message": "#total 要素を用意してください" }
+  ]
+}

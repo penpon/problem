@@ -1,0 +1,21 @@
+{
+  "id": "js-basic-18",
+  "title": "お気に入りトグル（クラス操作）",
+  "description": "お気に入りボタンのクリックでハート表示のスタイルをトグルします",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#favorite-btn と #heart を取得する",
+    "#favorite-btn の click で #heart.classList.toggle('active') を呼び出す",
+    "状態に応じて見た目が変わることを確認する"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-18/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-18/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-18/files.js.expected" }
+  },
+  "checks": [
+    { "id": "favorite-btn", "name": "#favorite-btn", "type": "html", "message": "#favorite-btn ボタンを用意してください" },
+    { "id": "heart", "name": "#heart", "type": "html", "message": "#heart 要素を用意してください" }
+  ]
+}

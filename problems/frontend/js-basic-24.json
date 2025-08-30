@@ -1,0 +1,22 @@
+{
+  "id": "js-basic-24",
+  "title": "まとめ練習 - プレビュー更新＋色切替",
+  "description": "入力テキストをプレビューへ反映し、ボタンで色を切り替えます。inputイベント、click、classList.toggle、textContentなどを総合適用します。",
+  "category": "javascript-basics",
+  "difficulty": "初級+",
+  "instructions": [
+    "#name-input の input で #preview.textContent を更新",
+    "#color-btn の click で #preview に .active を toggle",
+    "初期表示も関数で統一（update()）"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-24/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-24/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-24/files.js.expected" }
+  },
+  "checks": [
+    { "id": "name-input", "name": "#name-input", "type": "html", "message": "#name-input を用意してください" },
+    { "id": "preview", "name": "#preview", "type": "html", "message": "#preview を用意してください" },
+    { "id": "color-btn", "name": "#color-btn", "type": "html", "message": "#color-btn ボタンを用意してください" }
+  ]
+}

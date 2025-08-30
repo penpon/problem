@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まとめ練習 - 小計＋配送オプションで合計更新</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>単価: <span id="unit-price">1500</span> 円</div>
+  <label>数量: <input id="qty-input" type="number" value="2" min="0"></label>
+  <div>小計: <span id="subtotal">3000</span> 円</div>
+  <label><input type="radio" name="ship" id="ship-standard" checked> 通常便（送料 300円）</label>
+  <label><input type="radio" name="ship" id="ship-express"> 速達便（送料 800円）</label>
+  <div>送料: <span id="shipping-fee">300</span> 円</div>
+  <div>合計: <span id="total">3300</span> 円</div>
+  <script src="script.js"></script>
+</body>
+</html>

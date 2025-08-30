@@ -268,6 +268,16 @@ class ProblemLoader {
       'js-basic-13': 'js-basic-13-live-preview',
       'js-basic-14': 'js-basic-14-prevent-default',
       'js-basic-15': 'js-basic-15-focus-blur',
+      'js-basic-16': 'js-basic-16-add-to-cart',
+      'js-basic-17': 'js-basic-17-qty-subtotal',
+      'js-basic-18': 'js-basic-18-favorite-toggle',
+      'js-basic-19': 'js-basic-19-coupon-apply',
+      'js-basic-20': 'js-basic-20-shipping-option',
+      'js-basic-21': 'js-basic-21-qty-plus-input-subtotal',
+      'js-basic-22': 'js-basic-22-shipping-total',
+      'js-basic-23': 'js-basic-23-coupon-discount',
+      'js-basic-24': 'js-basic-24-preview-and-color',
+      'js-basic-25': 'js-basic-25-checkout-summary',
       
       // JavaScript応用(js-advanced-01 → js-advanced-20)
       'js-advanced-01': 'js-advanced-01-text-content-change',
