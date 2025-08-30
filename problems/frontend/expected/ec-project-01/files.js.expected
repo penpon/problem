@@ -1,0 +1,49 @@
+(function(){
+  'use strict';
+  const products = [
+    { id: 1, name: 'ベーシックTシャツ', price: 2980, img: 'https://picsum.photos/seed/01/400/260' },
+    { id: 2, name: 'スニーカー', price: 4980, img: 'https://picsum.photos/seed/02/400/260' },
+    { id: 3, name: 'レザーバッグ', price: 8980, img: 'https://picsum.photos/seed/03/400/260' },
+    { id: 4, name: 'シャツワンピース', price: 6580, img: 'https://picsum.photos/seed/04/400/260' }
+  ];
+
+  const productsEl = document.querySelector('#products');
+  const cartCount = document.querySelector('#cartCount');
+  let count = 0;
+
+  function currency(n){ return '¥' + n.toLocaleString(); }
+
+  function render(){
+    if (!productsEl) return;
+    const html = products
+      .map(p => `
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img class="card-img-top" src="${p.img}" alt="${p.name}">
+            <div class="card-body">
+              <h5 class="card-title">${p.name}</h5>
+              <p class="card-text mb-2">${currency(p.price)}</p>
+              <button class="btn btn-primary btn-sm add" data-id="${p.id}">カートに追加</button>
+            </div>
+          </div>
+        </div>
+      `)
+      .join('');
+    productsEl.innerHTML = html;
+  }
+
+  function bind(){
+    if (!productsEl) return;
+    productsEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.add');
+      if (!btn) return;
+      count += 1;
+      if (cartCount) cartCount.textContent = String(count);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    render();
+    bind();
+  });
+})();

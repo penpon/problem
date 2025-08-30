@@ -97,11 +97,16 @@
         "ec-project-12",
         "ec-project-13",
         "ec-project-14",
-        "ec-project-15"
+        "ec-project-15",
+        "ec-project-16",
+        "ec-project-17",
+        "ec-project-18",
+        "ec-project-19",
+        "ec-project-20"
       ]
     }
   ],
-  "totalProblems": 60,
-  "lastUpdated": "2025-08-28",
+  "totalProblems": 65,
+  "lastUpdated": "2025-08-29",
   "version": "6.0.0"
 }

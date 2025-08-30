@@ -292,7 +292,13 @@ class ProblemLoader {
       'ec-project-12': 'ec-project-12-category-filter',
       'ec-project-13': 'ec-project-13-sort-feature',
       'ec-project-14': 'ec-project-14-form-validation',
-      'ec-project-15': 'ec-project-15-complete-ec-site'
+      'ec-project-15': 'ec-project-15-complete-ec-site',
+      // 追加: EC-16〜19（README参照用ディレクトリ）
+      'ec-project-16': 'ec-project-16-checkout-separation',
+      'ec-project-17': 'ec-project-17-complete-screen',
+      'ec-project-18': 'ec-project-18-auth-mock',
+      'ec-project-19': 'ec-project-19-admin-logs',
+      'ec-project-20': 'ec-project-20-complete-ec-site'
     };
   }
 

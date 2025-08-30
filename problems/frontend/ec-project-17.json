@@ -1,0 +1,33 @@
+{
+  "id": "ec-project-17",
+  "title": "17: 完了画面と注文番号表示",
+  "description": "チェックアウト後に完了画面へ遷移し、注文番号を表示します。",
+  "category": "ec-project",
+  "instructions": [
+    "カタログ→チェックアウト→完了の3ビューを用意",
+    "完了画面でユニークな注文番号を表示",
+    "完了後にトップへ戻るとカートをクリア"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-17/files.html.expected"
+    },
+    "css": {
+      "template": "/* 任意で調整 */",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-17/files.css.expected"
+    },
+    "js": {
+      "template": "// ここに実装してください",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-17/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewCatalog, #viewCheckout, #viewComplete が存在すること" },
+    { "id": "cart-flow", "name": "フロー", "type": "js", "message": "カート追加→チェックアウト→完了で注文番号が表示されること" }
+  ],
+  "hints": [
+    "Date.now().toString(36) などで注文番号を作る",
+    "showView('catalog'|'checkout'|'complete') で画面遷移"
+  ]
+}

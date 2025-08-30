@@ -1,13 +1,11 @@
 {
   "id": "ec-project-01",
-  "title": "56: レスポンシブECシステム基盤",
+  "title": "01: レスポンシブECグリッド基礎",
   "description": "レスポンシブデザインを基盤とした本格的なECシステムの構築を開始します。モバイルファーストアプローチで設計します。",
   "category": "ec-project",
   "instructions": [
-    "モバイルファーストのレスポンシブデザインを実装してください",
-    "Bootstrap 5のグリッドシステムを最大限活用してください",
-    "複数デバイスでの表示確認を行ってください",
-    "基本的なECサイト構造を構築してください"
+    ".container > .row > .col を使って商品カードをレスポンシブ配置する",
+    "画面幅に応じて 1列(モバイル)/2列(タブレット)/3列(デスクトップ) になるようにする"
   ],
   "files": {
     "html": {
@@ -32,11 +30,11 @@
       "id": "bootstrap-grid",
       "name": "Bootstrapグリッド",
       "type": "css",
-      "message": ".container/.row/.col-*-* を用いたレスポンシブグリッドが実装されていること"
+      "message": ".container > .row > .col-12.col-md-6.col-lg-4 のような構成でレスポンシブ配置されていること"
     }
   ],
   "hints": [
     "Bootstrapのcol-*-*ブレークポイント（col-12, col-md-6, col-lg-4など）を使う",
-    ".container > .row > .col の基本構造でカードを2〜6個程度並べる"
+    "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
   ]
 }

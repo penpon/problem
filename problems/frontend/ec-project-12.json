@@ -1,21 +1,19 @@
 {
   "id": "ec-project-12",
-  "title": "67: 推奨システム",
-  "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
+  "title": "12: 昇順ソート基礎",
+  "description": "価格昇順に並べた配列からカードHTMLを生成し #products に表示する基礎を学びます。",
   "category": "ec-project",
   "instructions": [
-    "高度なJavaScript機能を実装してください",
-    "データベース連携を模擬してください",
-    "ユーザビリティを最優先に設計してください",
-    "セキュリティ対策を考慮してください"
+    "products.slice().sort((a,b)=>a.price-b.price) で昇順にし map(...).join('') を #products.innerHTML に代入",
+    "#products 直下に .col-12 .col-sm-6 .col-lg-4 を付与してグリッド表示"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <!-- ここに実装してください -->\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container my-3\">\n    <div id=\"products\" class=\"row\"></div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-12/files.html.expected"
     },
     "css": {
-      "template": "/* ここに実装してください（最小） */",
+      "template": "/* ここに実装してください */",
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-12/files.css.expected"
     },
     "js": {
@@ -42,6 +40,6 @@
   ],
   "hints": [
     "products.slice().sort((a,b)=>a.price-b.price) で昇順",
-    "sorted.map(...).join('') を #products.innerHTML に代入"
+    "sorted.map(...).join('') を innerHTML に代入"
   ]
 }

@@ -1,2 +1,8 @@
-/* 最小スタイル（装飾なし） */
-.card-img-top { width: 100%; height: auto; display: block; }
+/* 最小スタイル（カード画像の視認性） */
+.card-img-top {
+  object-fit: cover;
+  height: 160px;
+}
+
+/* レイアウト余白（任意最小） */
+body { background: #fafafa; }

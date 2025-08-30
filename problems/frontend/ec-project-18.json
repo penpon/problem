@@ -1,0 +1,33 @@
+{
+  "id": "ec-project-18",
+  "title": "18: 認証モック（ログイン/ログアウトでUI切替）",
+  "description": "簡易認証モックを導入し、ログイン状態でヘッダーの表示を切り替えます。admin ログインは次課題の管理機能に備えます。",
+  "category": "ec-project",
+  "instructions": [
+    "ヘッダーにログイン/ログアウト UI を実装",
+    "ログインフォーム(viewAuth)でユーザー名を入力し、状態を保持",
+    "admin ユーザーは role=admin として扱う"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-18/files.html.expected"
+    },
+    "css": {
+      "template": "/* 任意で調整 */",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-18/files.css.expected"
+    },
+    "js": {
+      "template": "// ここに実装してください",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-18/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewAuth が存在しログインフォームがあること" },
+    { "id": "auth-toggle", "name": "認証UI切替", "type": "js", "message": "ログイン/ログアウトでヘッダーの表示が切り替わること" }
+  ],
+  "hints": [
+    "authUser のオブジェクトを保持し、null/非nullでUI分岐",
+    "admin という名前なら role=admin とする"
+  ]
+}
