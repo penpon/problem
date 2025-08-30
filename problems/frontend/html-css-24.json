@@ -1,0 +1,30 @@
+{
+  "id": "html-css-24",
+  "title": "24: まとめ練習 - 手順リスト",
+  "description": "順序付きリストとボックスデザインを組み合わせ、ステップ形式の解説を作成します。",
+  "category": "html-css-basics",
+  "instructions": [
+    "h2でセクションタイトルを追加してください",
+    "ol/liで3〜5ステップを作成してください",
+    "liにborder-leftや背景色、padding、marginを設定して読みやすくしてください",
+    "ステップ番号と見出し、説明文(p)を組み合わせてください"
+  ],
+  "files": {
+    "html": {"template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <section class=\"steps\">\n            <!-- ここに実装してください -->\n        </section>\n    </div>\n\n</body>\n</html>", "expected": "__INCLUDE__: problems/frontend/expected/html-css-24/files.html.expected"},
+    "css": {"template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 28px;\n    border-radius: 12px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}\n\n/* ここに実装してください */", "expected": "__INCLUDE__: problems/frontend/expected/html-css-24/files.css.expected"},
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/html-css-24/files.js.expected"}
+  },
+  "checks": [
+    {"id":"doctype","name":"DOCTYPE宣言","type":"structure","message":"DOCTYPE html宣言が必要です"},
+    {"id":"html","name":"<html>タグ","type":"structure","message":"<html>タグが必要です"},
+    {"id":"head","name":"<head>セクション","type":"structure","message":"<head>セクションが必要です"},
+    {"id":"body","name":"<body>セクション","type":"structure","message":"<body>セクションが必要です"},
+    {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
+    {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"}
+  ],
+  "hints": [
+    "liに背景色と角丸を付けるとカード風に",
+    "margin-bottomでステップ間に十分な余白を",
+    "strongやh3でステップ見出しを強調"
+  ]
+}

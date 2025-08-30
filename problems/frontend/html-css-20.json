@@ -1,0 +1,31 @@
+{
+  "id": "html-css-20",
+  "title": "20: まとめ練習 - 画像とテキストのレイアウト",
+  "description": "画像とテキストを横並びに配置するメディアオブジェクト風レイアウトを作成します。",
+  "category": "html-css-basics",
+  "instructions": [
+    "左に画像、右にテキストの2カラムを作成してください (.media)",
+    ".mediaをdisplay: flexにしてgapを設定してください",
+    "画像は幅固定やmax-width: 100%でレイアウトに収めてください",
+    "テキスト側にh2とpを配置し、行間や余白を整えてください",
+    "狭い幅では縦並びにしてもOKです（任意）"
+  ],
+  "files": {
+    "html": {"template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"media\">\n            <!-- ここに実装してください -->\n        </div>\n    </div>\n\n</body>\n</html>", "expected": "__INCLUDE__: problems/frontend/expected/html-css-20/files.html.expected"},
+    "css": {"template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 900px;\n    margin: 0 auto;\n    background: white;\n    padding: 28px;\n    border-radius: 12px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}\n\n/* ここに実装してください */", "expected": "__INCLUDE__: problems/frontend/expected/html-css-20/files.css.expected"},
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/html-css-20/files.js.expected"}
+  },
+  "checks": [
+    {"id":"doctype","name":"DOCTYPE宣言","type":"structure","message":"DOCTYPE html宣言が必要です"},
+    {"id":"html","name":"<html>タグ","type":"structure","message":"<html>タグが必要です"},
+    {"id":"head","name":"<head>セクション","type":"structure","message":"<head>セクションが必要です"},
+    {"id":"body","name":"<body>セクション","type":"structure","message":"<body>セクションが必要です"},
+    {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
+    {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"}
+  ],
+  "hints": [
+    "画像の固定幅は例えばwidth: 200px;など",
+    "object-fit: coverでトリミング風の見せ方も可能",
+    "flex: 1でテキスト側を広げると読みやすい"
+  ]
+}

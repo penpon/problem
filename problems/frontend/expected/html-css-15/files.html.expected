@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホバー効果</title>
+    <title>課題実装</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="hover-item scale">scale</div>
-    <div class="hover-item rotate">rotate</div>
-    <button class="btn">button</button>
-    <div class="card">card</div>
+    <div class="container">
+        <div class="hover-item scale">scale</div>
+        <div class="hover-item rotate">rotate</div>
+        <button class="btn">button</button>
+        <div class="card">card</div>
+    </div>
 </body>
 </html>

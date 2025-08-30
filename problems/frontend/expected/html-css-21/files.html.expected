@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課題実装</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="gallery">
+      <a class="thumb" href="#"><img src="https://picsum.photos/300/200?11" alt="thumb1"></a>
+      <a class="thumb" href="#"><img src="https://picsum.photos/300/200?12" alt="thumb2"></a>
+      <a class="thumb" href="#"><img src="https://picsum.photos/300/200?13" alt="thumb3"></a>
+      <a class="thumb" href="#"><img src="https://picsum.photos/300/200?14" alt="thumb4"></a>
+      <a class="thumb" href="#"><img src="https://picsum.photos/300/200?15" alt="thumb5"></a>
+    </div>
+  </div>
+</body>
+</html>

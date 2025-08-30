@@ -8,11 +8,14 @@
 </head>
 <body>
   <div class="container">
-    <div class="basic-shadow">基本的な影</div>
-    <div class="small-radius">小さな角丸</div>
-    <div class="large-radius">大きな角丸</div>
-    <div class="circle">円</div>
-    <div class="card-basic">カード</div>
+    <p>本文ダミー</p>
   </div>
+  <footer class="footer">
+    <ul>
+      <li><a href="#">利用規約</a></li>
+      <li><a href="#">プライバシー</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+  </footer>
 </body>
 </html>

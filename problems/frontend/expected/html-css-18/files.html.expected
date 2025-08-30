@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課題実装</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card-list">
+      <article class="card">
+        <img src="https://picsum.photos/400/240?1" alt="プロフィール1">
+        <h3>山田 太郎</h3>
+        <p>フロントエンドエンジニア。UIとアニメーションが好き。</p>
+      </article>
+      <article class="card">
+        <img src="https://picsum.photos/400/240?2" alt="プロフィール2">
+        <h3>佐藤 花子</h3>
+        <p>デザイナー。タイポグラフィと配色研究が趣味。</p>
+      </article>
+      <article class="card">
+        <img src="https://picsum.photos/400/240?3" alt="プロフィール3">
+        <h3>鈴木 次郎</h3>
+        <p>フルスタック。小さく作って素早く改善。</p>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

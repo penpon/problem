@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課題実装</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container hero">
+    <h1>あなたのアイデアを形に</h1>
+    <p>シンプルで美しいWeb体験を今すぐ始めましょう。</p>
+    <a class="cta-button" href="#">はじめる</a>
+  </div>
+</body>
+</html>

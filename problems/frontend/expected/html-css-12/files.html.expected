@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>簡単なアニメーション</title>
+    <title>課題実装</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="basic-hover">hover</div>
-    <div class="bounce-box">bounce</div>
-    <div class="fade-box">fade</div>
-    <div class="slide-box">slide</div>
+    <div class="container">
+        <div class="basic-hover">hover</div>
+        <div class="bounce-box">bounce</div>
+        <div class="fade-box">fade</div>
+        <div class="slide-box">slide</div>
+    </div>
 </body>
 </html>

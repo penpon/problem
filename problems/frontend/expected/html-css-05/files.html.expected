@@ -3,37 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>リストのあるページ</title>
+    <title>課題実装</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>私のホームページ</h1>
-    <img src="../shared/images/simple-product.svg" alt="シンプルな商品の画像">
+    <div class="container">
+        <h1>リスト表示</h1>
+        <h2>順序なしリスト</h2>
+        <ul>
+            <li>項目1</li>
+            <li>項目2</li>
+            <li>項目3</li>
+        </ul>
+        <h2>順序付きリスト</h2>
+        <ol>
+            <li>手順1</li>
+            <li>手順2</li>
+            <li>手順3</li>
+        </ol>
+    </div>
     
-    <h2>今まで学んだこと</h2>
-    <ul>
-        <li>HTMLの基本構造</li>
-        <li>見出しの作り方</li>
-        <li>画像の表示方法</li>
-        <li>リンクの作り方</li>
-        <li>リストの作り方</li>
-    </ul>
-    
-    <h2>学習手順</h2>
-    <ol>
-        <li>ファイルを開く</li>
-        <li>コードを確認する</li>
-        <li>変更してみる</li>
-        <li>保存して表示する</li>
-    </ol>
-    
-    <h2>他のページ</h2>
-    <ul>
-        <li><a href="../01-basic-html/index.html">基本HTML構造</a></li>
-        <li><a href="../02-add-heading/index.html">見出し追加</a></li>
-        <li><a href="../03-add-image/index.html">画像表示</a></li>
-        <li><a href="../04-add-link/index.html">リンク作成</a></li>
-    </ul>
-    
-    <p>HTML基礎編が完了しました！次はCSSを学びましょう。</p>
 </body>
 </html>

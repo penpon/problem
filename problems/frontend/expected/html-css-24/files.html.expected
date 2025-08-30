@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課題実装</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <section class="steps">
+      <h2>セットアップ手順</h2>
+      <ol>
+        <li>
+          <h3>1. リポジトリを取得</h3>
+          <p>Gitでプロジェクトをクローンします。</p>
+        </li>
+        <li>
+          <h3>2. 依存をインストール</h3>
+          <p>パッケージマネージャで依存を導入します。</p>
+        </li>
+        <li>
+          <h3>3. サーバを起動</h3>
+          <p>開発用サーバを立ち上げて動作確認します。</p>
+        </li>
+      </ol>
+    </section>
+  </div>
+</body>
+</html>

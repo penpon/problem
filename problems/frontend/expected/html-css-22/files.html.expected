@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課題実装</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <section class="pricing">
+      <article class="card">
+        <h3>Basic</h3>
+        <p class="price">¥0/月</p>
+        <ul>
+          <li>1プロジェクト</li>
+          <li>基本サポート</li>
+        </ul>
+      </article>
+      <article class="card card--featured">
+        <h3>Pro</h3>
+        <p class="price">¥980/月</p>
+        <ul>
+          <li>無制限プロジェクト</li>
+          <li>優先サポート</li>
+          <li>高度な機能</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Team</h3>
+        <p class="price">¥2,980/月</p>
+        <ul>
+          <li>チームコラボ</li>
+          <li>権限管理</li>
+        </ul>
+      </article>
+    </section>
+  </div>
+</body>
+</html>

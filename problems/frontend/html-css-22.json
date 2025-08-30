@@ -1,0 +1,31 @@
+{
+  "id": "html-css-22",
+  "title": "22: まとめ練習 - 価格表カード",
+  "description": "3つの価格カードを作成し、中央のカードを強調表示します。",
+  "category": "html-css-basics",
+  "instructions": [
+    ".pricingをdisplay: flexにして3枚の.cardを横並びにしてください",
+    ".cardにborder-radius, box-shadow, padding, text-align: centerを設定してください",
+    ".card--featuredにtransformや色で強調を付けてください",
+    ".card:hoverで浮き上がりと影の強調をしてください",
+    "リスト(ul/li)でプランの特徴を記述してください"
+  ],
+  "files": {
+    "html": {"template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <section class=\"pricing\">\n            <!-- ここに実装してください -->\n        </section>\n    </div>\n\n</body>\n</html>", "expected": "__INCLUDE__: problems/frontend/expected/html-css-22/files.html.expected"},
+    "css": {"template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 1000px;\n    margin: 0 auto;\n    background: white;\n    padding: 28px;\n    border-radius: 12px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}\n\n/* ここに実装してください */", "expected": "__INCLUDE__: problems/frontend/expected/html-css-22/files.css.expected"},
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/html-css-22/files.js.expected"}
+  },
+  "checks": [
+    {"id":"doctype","name":"DOCTYPE宣言","type":"structure","message":"DOCTYPE html宣言が必要です"},
+    {"id":"html","name":"<html>タグ","type":"structure","message":"<html>タグが必要です"},
+    {"id":"head","name":"<head>セクション","type":"structure","message":"<head>セクションが必要です"},
+    {"id":"body","name":"<body>セクション","type":"structure","message":"<body>セクションが必要です"},
+    {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
+    {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"}
+  ],
+  "hints": [
+    "中央のカードにscale(1.03)や強い色で視線誘導",
+    "ul/liで特徴を箇条書き",
+    "hover時のbox-shadow強化でクリック可能感を演出"
+  ]
+}

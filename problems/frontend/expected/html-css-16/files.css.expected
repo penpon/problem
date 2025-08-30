@@ -1,0 +1,7 @@
+body{font-family:Arial, sans-serif;margin:40px;background:#f5f5f5}
+.container{max-width:900px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.hero{text-align:center;padding:40px 20px}
+.hero h1{font-size:40px;margin:0 0 12px}
+.hero p{color:#555;margin:0 0 20px}
+.cta-button{display:inline-block;background:#2d7ef7;color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;box-shadow:0 6px 14px rgba(45,126,247,.25);transition:.25s ease}
+.cta-button:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(45,126,247,.35)}

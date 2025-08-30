@@ -1,0 +1,32 @@
+{
+  "id": "html-css-21",
+  "title": "21: まとめ練習 - ギャラリー",
+  "description": "サムネイルを複数並べるギャラリーを作成し、ホバーで拡大・影を表示します。",
+  "category": "html-css-basics",
+  "instructions": [
+    ".galleryをflexやinline-blockで横並び・折り返しレイアウトにしてください",
+    ".thumbにwidth固定または%指定でグリッド風にしてください",
+    "画像にはborder-radiusを適用し、ホバーでtransform: scale()とbox-shadowを付けてください",
+    "中央寄せと均等な間隔を意識してください"
+  ],
+  "files": {
+    "html": {"template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"gallery\">\n            <!-- ここに実装してください -->\n        </div>\n    </div>\n\n</body>\n</html>", "expected": "__INCLUDE__: problems/frontend/expected/html-css-21/files.html.expected"},
+    "css": {"template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 1000px;\n    margin: 0 auto;\n    background: white;\n    padding: 28px;\n    border-radius: 12px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}\n\n/* ここに実装してください */", "expected": "__INCLUDE__: problems/frontend/expected/html-css-21/files.css.expected"},
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/html-css-21/files.js.expected"}
+  },
+  "checks": [
+    {"id":"doctype","name":"DOCTYPE宣言","type":"structure","message":"DOCTYPE html宣言が必要です"},
+    {"id":"html","name":"<html>タグ","type":"structure","message":"<html>タグが必要です"},
+    {"id":"head","name":"<head>セクション","type":"structure","message":"<head>セクションが必要です"},
+    {"id":"body","name":"<body>セクション","type":"structure","message":"<body>セクションが必要です"},
+    {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
+    {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"},
+    {"id":"hover-effects","name":"ホバー効果","type":"css","message":":hoverセレクタでホバー効果を設定してください"},
+    {"id":"transform-properties","name":"transformプロパティ","type":"css","message":"transformで要素の変形や移動を設定してください"}
+  ],
+  "hints": [
+    "画像はdisplay: block; width: 100%;で枠にフィット",
+    "gapやmarginで均等な間隔を作る",
+    "scale(1.05)程度の拡大が自然"
+  ]
+}

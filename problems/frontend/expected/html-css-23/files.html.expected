@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課題実装</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container hero">
+    <h1>小さく作り、大きく育てる</h1>
+    <p>短い開発サイクルで価値を届け、継続的に改善していくための土台を整えます。</p>
+    <a class="cta" href="#">今すぐ始める</a>
+  </div>
+</body>
+</html>
