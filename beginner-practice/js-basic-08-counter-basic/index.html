@@ -1,114 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>カウンター基礎</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カウンター基本</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🔢 カウンター基礎</h1>
-        <div class="step-info">
-            <strong>カウンター基礎 - 数値の増減をマスターする</strong>
-        </div>
-        
-        <div class="celebration">➕ 🔢 ➖</div>
-        
-        <div class="info-box">
-            <h3>📚 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>数値変数</strong>をボタンで増減させる方法</li>
-                <li><strong>DOM要素</strong>に数値を動的に表示する方法</li>
-                <li>ユーザーの操作で<strong>データの状態</strong>を変更する基礎</li>
-            </ul>
-        </div>
-        
-        <div class="counter-section">
-            <h3>🎪 インタラクティブカウンター</h3>
-            <p>ボタンをクリックして数値を変更してみましょう！</p>
-            
-            <div class="counter-display" id="counter-display">0</div>
-            
-            <div class="counter-buttons">
-                <button class="counter-btn minus" id="minus-btn">➖ -1</button>
-                <button class="counter-btn reset" id="reset-btn">🔄 リセット</button>
-                <button class="counter-btn plus" id="plus-btn">➕ +1</button>
-            </div>
-            
-            <div class="counter-status" id="counter-status">カウンター開始！数値を変更してみてください。</div>
-        </div>
-        
-        <div class="stats-section">
-            <h4>📊 カウンター統計</h4>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div>プラス回数</div>
-                    <div class="stat-number" id="plus-count">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>マイナス回数</div>
-                    <div class="stat-number" id="minus-count">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>リセット回数</div>
-                    <div class="stat-number" id="reset-count">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>合計操作数</div>
-                    <div class="stat-number" id="total-operations">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>最高値</div>
-                    <div class="stat-number" id="max-value">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>最低値</div>
-                    <div class="stat-number" id="min-value">0</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🎯 カウンターの仕組み</h3>
-            <p>カウンターは<strong>変数</strong>を使って数値を記憶し、ボタンクリックで変数を変更します：</p>
-            
-            <div class="code-example">
-// カウンター変数を宣言
-let counter = 0;
-
-// プラスボタンの処理
-document.getElementById("plus-btn").addEventListener("click", function() {
-    counter = counter + 1;  // または counter++
-    document.getElementById("counter-display").textContent = counter;
-});
-
-// マイナスボタンの処理
-document.getElementById("minus-btn").addEventListener("click", function() {
-    counter = counter - 1;  // または counter--
-    document.getElementById("counter-display").textContent = counter;
-});
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🔍 実装されている機能</h3>
-            <ul>
-                <li><strong>➕ボタン</strong>: 数値を1増加させる</li>
-                <li><strong>➖ボタン</strong>: 数値を1減少させる</li>
-                <li><strong>🔄リセットボタン</strong>: 数値を0に戻す</li>
-                <li><strong>状態表示</strong>: 数値が正・負・ゼロで表示を変更</li>
-                <li><strong>統計機能</strong>: 操作回数、最高値・最低値を記録</li>
-            </ul>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 カウンターを操作してみよう！</h3>
-            <p>すべてのボタンを使って、数値がどのように変化するか確認してください。</p>
-            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブで操作ログも確認できます！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <h1>カウンター</h1>
+  <div id="counter-display">0</div>
+  <button id="minus-btn">-1</button>
+  <button id="reset-btn">リセット</button>
+  <button id="plus-btn">+1</button>
+  <script src="script.js"></script>
 </body>
 </html>

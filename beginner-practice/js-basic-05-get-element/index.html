@@ -1,98 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>要素取得入門</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>要素取得入門</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🎯 要素取得入門</h1>
-        <div class="step-info">
-            <strong>要素取得入門 - HTMLとJavaScriptをつなぐ</strong>
-        </div>
-        
-        <div class="celebration">🔗 📄 💻</div>
-        
-        <div class="info-box">
-            <h3>📚 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>document.getElementById()</strong>で要素を取得する</li>
-                <li><strong>textContent</strong>で要素の内容を変更する</li>
-                <li>HTMLとJavaScriptを連携させる基礎</li>
-            </ul>
-        </div>
-        
-        <div class="demo-box">
-            <h3>🎪 実際の変化を見てみよう！</h3>
-            
-            <div class="before-after">
-                <div>
-                    <h4>変更前</h4>
-                    <div style="background: #e74c3c; padding: 10px; border-radius: 5px; color: white;">
-                        ここは元のテキストです
-                    </div>
-                </div>
-                <div>
-                    <h4>変更後（自動実行）</h4>
-                    <div class="highlight-element" id="demo-element">
-                        ここは元のテキストです
-                    </div>
-                </div>
-            </div>
-            
-            <div class="arrow">⬇️ JavaScript実行後 ⬇️</div>
-            
-            <div class="highlight-element" id="welcome-message">
-                読み込み中...
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🎯 document.getElementById() とは？</h3>
-            <p><strong>document.getElementById()</strong>は、HTMLの要素を「ID」で探して取得するJavaScriptの機能です。</p>
-            
-            <div class="code-example">
-// HTMLの要素を取得
-let element = document.getElementById("要素のID名");
-
-// 要素の内容を変更
-element.textContent = "新しいテキスト";
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🔧 IDとは？</h3>
-            <p>HTMLの要素に付ける「名札」のようなものです：</p>
-            <div class="code-example">
-&lt;div id="my-element"&gt;ここが変更されます&lt;/div&gt;
-            </div>
-            <p>この例では、<code>"my-element"</code>がIDです。</p>
-        </div>
-        
-        <div class="info-box">
-            <h3>👀 実際のコードを見てみよう</h3>
-            <p>このページで実行されているコード：</p>
-            <div class="code-example">
-// 1. 要素を取得
-let demoElement = document.getElementById("demo-element");
-
-// 2. 内容を変更
-demoElement.textContent = "🎉 JavaScriptで変更されました！";
-
-// 3. ウェルカムメッセージも変更
-let welcomeElement = document.getElementById("welcome-message");
-welcomeElement.textContent = "ようこそ！要素取得の世界へ！";
-            </div>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 開発者ツールで確認しよう</h3>
-            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブで実行過程を確認してください！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <h1>要素取得入門</h1>
+  <div id="demo-element">ここは元のテキストです</div>
+  <script src="script.js"></script>
 </body>
 </html>

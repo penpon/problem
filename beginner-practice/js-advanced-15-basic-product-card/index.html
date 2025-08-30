@@ -1,53 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>19.1 基本商品カード - オブジェクト学習</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>検索（includes）</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- 商品カード -->
-        <div class="product-card">
-            <div class="product-image">👕</div>
-            
-            <div class="product-info">
-                <h2 id="productName">プレミアム Tシャツ</h2>
-                <div class="product-price">¥<span id="productPrice">2,980</span></div>
-            </div>
-            
-            <button class="btn-like" id="likeBtn">
-                ❤️ いいね <span id="likeCount">0</span>
-            </button>
-        </div>
-        
-        <!-- 学習パネル -->
-        <div class="learning-panel">
-            <h2 class="panel-title">📚 オブジェクト学習モード</h2>
-            
-            <!-- 統計表示 -->
-            <div class="stats-section">
-                <div class="stats-title">📊 いいね統計</div>
-                <div class="stat-display">
-                    <div class="stat-number" id="totalLikes">0</div>
-                    <div class="stat-label">合計いいね数</div>
-                </div>
-            </div>
-            
-            <!-- オブジェクト表示 -->
-            <div class="object-display">
-                <div class="object-title">🔍 productData オブジェクトの中身</div>
-                <div class="object-content" id="objectDisplay">
-                    読み込み中...
-                </div>
-            </div>
-            
-            <!-- リセットボタン -->
-            <button class="btn-reset" id="resetBtn">🔄 リセット</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <main style="padding:16px">
+    <input id="search" type="text" placeholder="検索" />
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple' },
+      { id: 2, name: 'Banana' },
+      { id: 3, name: 'Cherry' },
+      { id: 4, name: 'Grape' }
+    ];
+    const input = document.getElementById('search');
+    function render(){
+      const q = input.value.toLowerCase();
+      const filtered = items.filter(it => it.name.toLowerCase().includes(q));
+      const html = filtered.map(it => `<div class=\"item\">${it.name}</div>`).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    input.addEventListener('input', render);
+    render();
+  </script>
 </body>
 </html>

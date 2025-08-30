@@ -1,106 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最初のクリック</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ボタンクリック</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🖱️ 最初のクリック</h1>
-        <div class="step-info">
-            <strong>最初のクリック - インタラクティブWebページの誕生</strong>
-        </div>
-        
-        <div class="celebration">🎉 🖱️ ✨</div>
-        
-        <div class="info-box">
-            <h3>📚 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>ボタンクリック</strong>でJavaScript関数を実行する</li>
-                <li><strong>addEventListener</strong>でイベントを設定する</li>
-                <li>ユーザーの操作に<strong>応答</strong>するWebページの作成</li>
-            </ul>
-        </div>
-        
-        <div class="demo-section">
-            <h3>🎪 インタラクティブデモ</h3>
-            <p>下のボタンをクリックして、JavaScriptの魔法を体験しましょう！</p>
-            
-            <div class="message-display" id="message-display">
-                👋 ボタンをクリックしてみてください！
-            </div>
-            
-            <button class="click-button" id="hello-button">
-                🌟 Hello ボタン 🌟
-            </button>
-            
-            <button class="click-button" id="color-button">
-                🎨 色変更ボタン 🎨
-            </button>
-            
-            <button class="click-button" id="time-button">
-                🕐 時間表示ボタン 🕐
-            </button>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <div>クリック回数</div>
-                    <div id="click-count" style="font-size: 2rem; font-weight: bold; color: #feca57;">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>最後にクリックしたボタン</div>
-                    <div id="last-button" style="font-size: 1.2rem; font-weight: bold;">まだありません</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🎯 addEventListener とは？</h3>
-            <p><strong>addEventListener</strong>は、HTML要素に「イベント」を設定するJavaScriptの機能です。</p>
-            
-            <div class="code-example">
-// ボタンを取得
-let button = document.getElementById("my-button");
-
-// クリック時の動作を設定
-button.addEventListener("click", function() {
-    alert("ボタンがクリックされました！");
-});
-            </div>
-            
-            <p>この設定により、ボタンがクリックされた時に指定した処理が実行されます。</p>
-        </div>
-        
-        <div class="info-box">
-            <h3>👀 実際のコードを見てみよう</h3>
-            <p>このページで使用されているコード（一部抜粋）：</p>
-            <div class="code-example">
-// Helloボタンの処理
-let helloButton = document.getElementById("hello-button");
-helloButton.addEventListener("click", function() {
-    let display = document.getElementById("message-display");
-    display.textContent = "🌟 こんにちは！ JavaScriptの世界へようこそ！";
-});
-
-// 色変更ボタンの処理
-let colorButton = document.getElementById("color-button");
-colorButton.addEventListener("click", function() {
-    let display = document.getElementById("message-display");
-    display.textContent = "🎨 色が変わりました！";
-    display.style.background = "linear-gradient(135deg, #ff6b6b, #4ecdc4)";
-});
-            </div>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 体験してみよう！</h3>
-            <p>上の3つのボタンをそれぞれクリックして、どんな変化が起こるか確認してみてください。</p>
-            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブでクリック時のメッセージも確認できます！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <h1>ボタンクリック</h1>
+  <div id="message-display">ボタンをクリックしてください</div>
+  <button id="hello-button">Hello</button>
+  <button id="color-button">色変更</button>
+  <button id="time-button">時間表示</button>
+  <script src="script.js"></script>
 </body>
 </html>

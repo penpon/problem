@@ -1,122 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>配列とランダムの応用</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>配列ランダム組み合わせ</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🎯 配列とランダムの応用</h1>
-        <div class="step-info">
-            <strong>配列とランダムの応用 - 複数配列からのランダム選択と基本統計</strong>
-        </div>
-        
-        <div class="celebration">🎯 📊 ⚡</div>
-        
-        <div class="info-box">
-            <h3>🎯 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>複数の配列</strong>を管理する方法</li>
-                <li>異なる配列から<strong>ランダム選択</strong>を行う</li>
-                <li>選択回数の<strong>基本的な統計</strong>を取る</li>
-                <li>配列とランダム機能の<strong>実用的な組み合わせ</strong></li>
-            </ul>
-        </div>
-        
-        <div class="demo-section">
-            <h3>🎪 多彩なランダム選択</h3>
-            <p>3種類の配列からランダムに要素を選択してみましょう！</p>
-            
-            <div class="content-display" id="content-display">
-                <h3 style="color: #3498db; margin-top: 0;">🎯 選択結果表示エリア</h3>
-                <p>下のボタンをクリックして、様々な配列からのランダム選択を体験してください。</p>
-            </div>
-            
-            <div class="button-grid">
-                <button class="select-btn btn-quote" id="quote-btn">
-                    💬 名言を選ぶ
-                </button>
-                <button class="select-btn btn-color" id="color-btn">
-                    🎨 色を選ぶ
-                </button>
-                <button class="select-btn btn-food" id="food-btn">
-                    🍕 食べ物を選ぶ
-                </button>
-            </div>
-        </div>
-        
-        <div class="stats-section">
-            <h4>📊 選択回数の統計</h4>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">名言選択</div>
-                    <div class="stat-number" id="quote-count">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">色選択</div>
-                    <div class="stat-number" id="color-count">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">食べ物選択</div>
-                    <div class="stat-number" id="food-count">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">総選択回数</div>
-                    <div class="stat-number" id="total-count">0</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="arrays-display">
-            <h4>📋 使用している配列データ</h4>
-            <div class="array-list">
-                <div class="array-info">
-                    <h4>💬 名言配列</h4>
-                    <div id="quotes-info">読み込み中...</div>
-                </div>
-                <div class="array-info">
-                    <h4>🎨 色配列</h4>
-                    <div id="colors-info">読み込み中...</div>
-                </div>
-                <div class="array-info">
-                    <h4>🍕 食べ物配列</h4>
-                    <div id="foods-info">読み込み中...</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>💡 複数配列管理の基本</h3>
-            <p>複数の配列を効率的に管理する方法：</p>
-            
-            <div class="code-example">
-// 1. 複数の配列を定義
-let quotes = ["努力は必ず報われる", "継続は力なり"];
-let colors = ["赤", "青", "緑"];
-let foods = ["ピザ", "ハンバーガー", "寿司"];
-
-// 2. ランダム選択関数を作成
-function randomSelect(array) {
-    let index = Math.floor(Math.random() * array.length);
-    return array[index];
-}
-
-// 3. 各配列から選択
-let randomQuote = randomSelect(quotes);
-let randomColor = randomSelect(colors);
-let randomFood = randomSelect(foods);
-            </div>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 配列とランダムの応用を体験しよう！</h3>
-            <p>3つのボタンを色々な組み合わせでクリックして、統計がどう変化するか確認してください。</p>
-            <p>複数の配列を使った実用的なランダム選択システムの動作を学びましょう！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <h1>配列ランダム組み合わせ</h1>
+  <div id="combo">-</div>
+  <button id="gen">生成</button>
+  <script src="script.js"></script>
 </body>
 </html>

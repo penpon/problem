@@ -1,128 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>カウンター機能強化</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カウンター拡張</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>⚡ カウンター機能強化</h1>
-        <div class="step-info">
-            <strong>カウンター機能強化 - 制限付きカウンターとバリデーション</strong>
-        </div>
-        
-        <div class="celebration">⚡ 🚀 🎯</div>
-        
-        <div class="info-box">
-            <h3>📚 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>制限付きカウンター</strong>（最小値・最大値の設定）</li>
-                <li><strong>複数の増減値</strong>（+1, +5, +10など）</li>
-                <li><strong>バリデーション</strong>（値の妥当性チェック）</li>
-                <li><strong>動的ボタン制御</strong>（有効・無効の切り替え）</li>
-            </ul>
-        </div>
-        
-        <div class="counter-section">
-            <h3>🎪 高機能カウンター</h3>
-            <p>制限付きカウンター（-50から+100まで）</p>
-            
-            <div class="counter-display" id="counter-display">0</div>
-            
-            <div class="limit-display" id="limit-display">
-                範囲: -50 ≤ カウンター ≤ 100
-            </div>
-            
-            <div class="progress-section">
-                <div>進捗: <span id="progress-text">50/150 (33%)</span></div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill" style="width: 33%"></div>
-                </div>
-            </div>
-            
-            <div class="counter-buttons">
-                <button class="counter-btn btn-minus10" id="minus10-btn">-10</button>
-                <button class="counter-btn btn-minus5" id="minus5-btn">-5</button>
-                <button class="counter-btn btn-minus1" id="minus1-btn">-1</button>
-                <button class="counter-btn btn-plus1" id="plus1-btn">+1</button>
-                <button class="counter-btn btn-plus5" id="plus5-btn">+5</button>
-                <button class="counter-btn btn-plus10" id="plus10-btn">+10</button>
-                <button class="counter-btn btn-reset" id="reset-btn">🔄 リセット</button>
-                <button class="counter-btn btn-random" id="random-btn">🎲 ランダム</button>
-            </div>
-            
-            <div class="status-display" id="status-display">カウンター準備完了！</div>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h4>制限機能</h4>
-                <p>最小値-50、最大値100で範囲を制限</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h4>複数増減</h4>
-                <p>1, 5, 10単位での増減をサポート</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h4>動的制御</h4>
-                <p>範囲を超える操作を自動で無効化</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h4>進捗表示</h4>
-                <p>現在位置を視覚的に表示</p>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🛡️ バリデーション機能</h3>
-            <p>このカウンターは範囲外の値を防ぐため、以下のチェックを行います：</p>
-            
-            <div class="code-example">
-// 最小値・最大値の定義
-const MIN_VALUE = -50;
-const MAX_VALUE = 100;
-
-// 値の変更前にチェック
-function changeCounter(delta) {
-    let newValue = counter + delta;
-    
-    if (newValue < MIN_VALUE) {
-        newValue = MIN_VALUE;  // 最小値で制限
-    } else if (newValue > MAX_VALUE) {
-        newValue = MAX_VALUE;  // 最大値で制限
-    }
-    
-    counter = newValue;
-    updateDisplay();
-}
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🔧 実装されている機能</h3>
-            <ul>
-                <li><strong>範囲制限</strong>: -50 ≤ 値 ≤ 100</li>
-                <li><strong>複数増減</strong>: ±1, ±5, ±10のボタン</li>
-                <li><strong>ボタン制御</strong>: 範囲外操作の自動無効化</li>
-                <li><strong>進捗バー</strong>: 現在位置の視覚化</li>
-                <li><strong>ステータス表示</strong>: 操作結果のフィードバック</li>
-                <li><strong>ランダム機能</strong>: 範囲内のランダム値設定</li>
-            </ul>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 すべての機能を試してみよう！</h3>
-            <p>異なる増減値のボタンを使って、制限機能がどのように働くか確認してください。最小値(-50)や最大値(100)に到達した時の動作も確認しましょう。</p>
-            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブで詳細ログも確認できます！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <h1>カウンター拡張</h1>
+  <div id="counter-display">0</div>
+  <button id="minus10-btn">-10</button>
+  <button id="minus1-btn">-1</button>
+  <button id="reset-btn">リセット</button>
+  <button id="plus1-btn">+1</button>
+  <button id="plus10-btn">+10</button>
+  <small>範囲: -10 〜 10</small>
+  <script src="script.js"></script>
 </body>
 </html>

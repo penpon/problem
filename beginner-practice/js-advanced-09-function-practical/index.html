@@ -1,96 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>関数の実用応用</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>タイマー基本</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🔧 関数の実用応用</h1>
-        <div class="step-info">
-            <strong>関数の実用応用 - パラメータと戻り値を使った実用的な関数</strong>
-        </div>
-        
-        <div class="celebration">🔧 📊 ✨</div>
-        
-        <div class="info-box">
-            <h3>🎯 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>パラメータ（引数）</strong>を受け取る関数</li>
-                <li><strong>戻り値</strong>を返す関数の作り方</li>
-                <li>関数を使った<strong>実用的な計算</strong></li>
-                <li>フォーム入力と<strong>関数の連携</strong></li>
-            </ul>
-        </div>
-        
-        <div class="demo-section">
-            <h3>📊 実用関数デモ</h3>
-            <p>フォームに値を入力して、パラメータと戻り値を使った関数を体験しましょう！</p>
-            
-            <div class="content-display" id="content-display">
-                <h3 style="color: #3498db; margin-top: 0;">🎯 計算結果表示エリア</h3>
-                <p>下のフォームに値を入力してボタンをクリックすると、計算結果が表示されます。</p>
-            </div>
-            
-            <div class="form-sections">
-                <div class="form-section">
-                    <h4>🔢 足し算計算</h4>
-                    <div class="input-group">
-                        <input type="number" id="num1" placeholder="数字1" value="5">
-                        <span>+</span>
-                        <input type="number" id="num2" placeholder="数字2" value="3">
-                        <button class="calc-btn btn-add" id="add-btn">計算実行</button>
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <h4>💪 BMI計算</h4>
-                    <div class="input-group">
-                        <input type="number" id="height" placeholder="身長(cm)" value="170">
-                        <input type="number" id="weight" placeholder="体重(kg)" value="60">
-                        <button class="calc-btn btn-bmi" id="bmi-btn">BMI計算</button>
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <h4>👋 名前付き挨拶</h4>
-                    <div class="input-group">
-                        <input type="text" id="name" placeholder="お名前" value="太郎">
-                        <button class="calc-btn btn-greet" id="greet-btn">挨拶作成</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>💡 パラメータと戻り値の基本</h3>
-            <p>関数にデータを渡し、計算結果を受け取る方法：</p>
-            
-            <div class="code-example">
-// パラメータを受け取る関数
-function add(a, b) {        // a と b がパラメータ
-    let result = a + b;     // 計算処理
-    return result;          // 戻り値として結果を返す
-}
-
-// 関数を呼び出して戻り値を取得
-let sum = add(5, 3);       // 5 と 3 を渡して、8 が返される
-console.log(sum);          // 8 が出力される
-
-// 別の値でも使える
-let sum2 = add(10, 20);    // 30 が返される
-            </div>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 実用的な関数を体験してみよう！</h3>
-            <p>フォームの値を変更して、3つの計算ボタンをそれぞれ試してください。</p>
-            <p>同じ関数でも、入力値によって異なる結果が返されることを確認しましょう！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <h1>タイマー基本</h1>
+  <div id="count">0</div>
+  <button id="start">開始</button>
+  <button id="stop">停止</button>
+  <script src="script.js"></script>
 </body>
 </html>

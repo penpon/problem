@@ -1,125 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>複数ボタン</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>複数ボタン</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🎛️ 複数ボタン</h1>
-        <div class="step-info">
-            <strong>複数ボタン - 複数の要素を操作する</strong>
-        </div>
-        
-        <div class="celebration">🎛️ 🖱️ ✨</div>
-        
-        <div class="info-box">
-            <h3>📚 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>複数のボタン</strong>にそれぞれ異なるイベントを設定する</li>
-                <li>各ボタンで<strong>異なるテキスト変更</strong>を実行する</li>
-                <li><strong>独立したイベント処理</strong>の理解と実装</li>
-            </ul>
-        </div>
-        
-        <div class="demo-section">
-            <h3>🎪 6つのボタンデモ</h3>
-            <p>それぞれのボタンが異なる動作をします。すべて試してみましょう！</p>
-            
-            <div class="result-display" id="message-display">
-                🌟 ボタンをクリックして、メッセージを変更してみてください！
-            </div>
-            
-            <div class="button-grid">
-                <button class="action-button" id="welcome-btn">
-                    👋 ようこそボタン
-                </button>
-                
-                <button class="action-button" id="happy-btn">
-                    😊 幸せボタン
-                </button>
-                
-                <button class="action-button" id="rocket-btn">
-                    🚀 ロケットボタン
-                </button>
-                
-                <button class="action-button" id="rainbow-btn">
-                    🌈 虹色ボタン
-                </button>
-                
-                <button class="action-button" id="music-btn">
-                    🎵 音楽ボタン
-                </button>
-                
-                <button class="action-button" id="magic-btn">
-                    ✨ 魔法ボタン
-                </button>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div>合計クリック数</div>
-                    <div class="stat-number" id="total-clicks">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>最後のクリック</div>
-                    <div id="last-clicked" style="font-size: 1rem; color: #feca57;">なし</div>
-                </div>
-                <div class="stat-item">
-                    <div>お気に入り</div>
-                    <div id="favorite-button" style="font-size: 1rem; color: #feca57;">未設定</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🎯 複数ボタンの管理方法</h3>
-            <p>複数のボタンを効率的に管理するために、以下の手順で実装します：</p>
-            
-            <div class="code-example">
-// 1. 各ボタンを個別に取得
-let welcomeBtn = document.getElementById("welcome-btn");
-let happyBtn = document.getElementById("happy-btn");
-
-// 2. それぞれにイベントを設定
-welcomeBtn.addEventListener("click", function() {
-    // ようこそボタン用の処理
-});
-
-happyBtn.addEventListener("click", function() {
-    // 幸せボタン用の処理
-});
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>👀 実装されているコード例</h3>
-            <div class="code-example">
-// ようこそボタンの処理
-document.getElementById("welcome-btn").addEventListener("click", function() {
-    let display = document.getElementById("message-display");
-    display.textContent = "👋 ようこそ！JavaScriptの学習へ！";
-    display.style.background = "linear-gradient(135deg, #667eea, #764ba2)";
-});
-
-// 幸せボタンの処理
-document.getElementById("happy-btn").addEventListener("click", function() {
-    let display = document.getElementById("message-display");
-    display.textContent = "😊 今日は良い一日ですね！笑顔でいきましょう！";
-    display.style.background = "linear-gradient(135deg, #ffecd2, #fcb69f)";
-});
-            </div>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 すべてのボタンを試してみよう！</h3>
-            <p>6つのボタンをすべてクリックして、それぞれ異なるメッセージと背景色の変化を確認してください。</p>
-            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブでクリックの詳細ログも確認できます！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <h1>複数ボタン</h1>
+  <div id="message-display">ボタンをクリックしてください</div>
+  <button id="welcome-btn">ようこそ</button>
+  <button id="happy-btn">幸せ</button>
+  <button id="rocket-btn">ロケット</button>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,134 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>基本データ管理</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>reduce で合計</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>📊 基本データ管理</h1>
-        <div class="step-info">
-            <strong>基本データ管理 - 配列と変数を使った基本的なデータ管理</strong>
-        </div>
-        
-        <div class="celebration">📊 💾 ✨</div>
-        
-        <div class="info-box">
-            <h3>🎯 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>配列</strong>を使ったデータの追加・削除</li>
-                <li><strong>オブジェクト</strong>の基本的な操作</li>
-                <li>データの<strong>表示・更新</strong>機能</li>
-                <li><strong>簡単な統計</strong>の計算</li>
-            </ul>
-        </div>
-        
-        <div class="demo-section">
-            <h3>🗂️ 商品お気に入り管理</h3>
-            <p>商品をお気に入りに追加・削除して、データ管理を体験しましょう！</p>
-            
-            <div class="product-grid">
-                <div class="product-card" data-id="1">
-                    <div class="product-emoji">👕</div>
-                    <h4>Tシャツ</h4>
-                    <p class="price">¥2,980</p>
-                    <button class="fav-btn" data-product="Tシャツ" data-price="2980">
-                        ⭐ お気に入り
-                    </button>
-                </div>
-                
-                <div class="product-card" data-id="2">
-                    <div class="product-emoji">👖</div>
-                    <h4>ジーンズ</h4>
-                    <p class="price">¥4,500</p>
-                    <button class="fav-btn" data-product="ジーンズ" data-price="4500">
-                        ⭐ お気に入り
-                    </button>
-                </div>
-                
-                <div class="product-card" data-id="3">
-                    <div class="product-emoji">👟</div>
-                    <h4>スニーカー</h4>
-                    <p class="price">¥8,800</p>
-                    <button class="fav-btn" data-product="スニーカー" data-price="8800">
-                        ⭐ お気に入り
-                    </button>
-                </div>
-                
-                <div class="product-card" data-id="4">
-                    <div class="product-emoji">🎒</div>
-                    <h4>リュック</h4>
-                    <p class="price">¥6,200</p>
-                    <button class="fav-btn" data-product="リュック" data-price="6200">
-                        ⭐ お気に入り
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="favorites-section">
-            <h3>💖 お気に入り商品一覧</h3>
-            <div class="favorites-list" id="favorites-list">
-                <p class="empty-message">まだお気に入り商品がありません</p>
-            </div>
-            
-            <div class="controls">
-                <button class="control-btn" id="clear-btn">🗑️ 全て削除</button>
-                <button class="control-btn" id="show-stats-btn">📊 統計表示</button>
-            </div>
-        </div>
-        
-        <div class="stats-section" id="stats-section">
-            <h4>📈 お気に入り統計</h4>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">商品数</div>
-                    <div class="stat-number" id="item-count">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">合計金額</div>
-                    <div class="stat-number" id="total-price">¥0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">平均価格</div>
-                    <div class="stat-number" id="avg-price">¥0</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>💡 データ管理の基本</h3>
-            <p>配列を使ってデータを管理する基本的な方法：</p>
-            
-            <div class="code-example">
-// お気に入り商品を保存する配列
-let favorites = [];
-
-// 商品オブジェクトを配列に追加
-function addToFavorites(name, price) {
-    let product = { name: name, price: price };
-    favorites.push(product);  // 配列に追加
-}
-
-// 配列から商品を削除
-function removeFromFavorites(name) {
-    favorites = favorites.filter(item => item.name !== name);
-}
-
-// 配列の要素数を確認
-let count = favorites.length;
-            </div>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 データ管理を体験してみよう！</h3>
-            <p>商品のお気に入りボタンをクリックして、配列への追加・削除を体験してください。</p>
-            <p>統計表示で、配列データをどのように計算・表示するかも確認しましょう！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <main style="padding:16px">
+    <div>件数: <span id="count">0</span></div>
+    <div>合計: <span id="total">0</span></div>
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple', price: 120 },
+      { id: 2, name: 'Banana', price: 80 },
+      { id: 3, name: 'Cherry', price: 200 }
+    ];
+    function render(){
+      const count = items.length;
+      const total = items.reduce((sum, it) => sum + it.price, 0);
+      document.getElementById('count').textContent = String(count);
+      document.getElementById('total').textContent = String(total);
+      const html = items.map(it => `<div class=\"item\">${it.name} - ￥${it.price}</div>`).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    render();
+  </script>
 </body>
 </html>

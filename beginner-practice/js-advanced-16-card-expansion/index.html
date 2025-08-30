@@ -1,90 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>19.2 カード機能拡張 - DOM操作学習</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>イベント委譲</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}.buy{margin-left:8px}</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- 商品カード -->
-        <div class="product-card">
-            <div class="product-image">👕</div>
-            
-            <div class="product-info">
-                <h2 id="productName">プレミアム Tシャツ</h2>
-                <div class="product-price">¥<span id="productPrice">2,980</span></div>
-            </div>
-            
-            <!-- アクションボタン（拡張版） -->
-            <div class="action-buttons">
-                <button class="btn btn-like" id="likeBtn">
-                    ❤️ <span id="likeCount">0</span>
-                </button>
-                <button class="btn btn-details" id="detailsBtn">
-                    📝 詳細
-                </button>
-                <button class="btn btn-cart" id="cartBtn">
-                    🛒 カート
-                </button>
-            </div>
-            
-            <!-- 商品詳細（DOM操作の主な対象） -->
-            <div class="product-details" id="productDetails">
-                <h3>商品詳細</h3>
-                <p><strong>素材:</strong> 100%綿（オーガニック）</p>
-                <p><strong>サイズ:</strong> S, M, L, XL</p>
-                <p><strong>カラー:</strong> 4色展開</p>
-                <p><strong>特徴:</strong> 肌触りの良い上質素材</p>
-            </div>
-        </div>
-        
-        <!-- 学習パネル（拡張版） -->
-        <div class="learning-panel">
-            <h2 class="panel-title">📚 DOM操作学習モード</h2>
-            
-            <!-- 拡張統計表示 -->
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" id="totalLikes">0</div>
-                    <div class="stat-label">いいね数</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalDetailViews">0</div>
-                    <div class="stat-label">詳細表示回数</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalCartActions">0</div>
-                    <div class="stat-label">カート操作回数</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalDomChanges">0</div>
-                    <div class="stat-label">DOM変更回数</div>
-                </div>
-            </div>
-            
-            <!-- DOM変化表示 -->
-            <div class="dom-display">
-                <div class="dom-title">🔍 最新のDOM操作</div>
-                <div class="dom-content" id="domDisplay">
-                    初期化完了
-                </div>
-            </div>
-            
-            <!-- オブジェクト表示 -->
-            <div class="object-display">
-                <div class="object-title">📊 productData オブジェクト</div>
-                <div class="object-content" id="objectDisplay">
-                    読み込み中...
-                </div>
-            </div>
-            
-            <!-- リセットボタン -->
-            <button class="btn-reset" id="resetBtn">🔄 全リセット</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <main style="padding:16px">
+    <div id="list"></div>
+    <div id="log" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple' },
+      { id: 2, name: 'Banana' },
+      { id: 3, name: 'Cherry' }
+    ];
+    function render(){
+      const html = items.map(it => `<div class=\"item\">${it.name}<button class=\"buy\" data-id=\"${it.id}\">購入</button></div>`).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    function setup(){
+      const list = document.getElementById('list');
+      list.addEventListener('click', (event) => {
+        if (event.target.matches('.buy')) {
+          const id = Number(event.target.dataset.id);
+          const found = items.find(it => it.id === id);
+          document.getElementById('log').textContent = `${found.name} を購入`;
+        }
+      });
+    }
+    render();
+    setup();
+  </script>
 </body>
 </html>

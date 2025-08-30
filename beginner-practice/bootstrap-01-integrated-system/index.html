@@ -3,14 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap導入</title>
+  <title>Bootstrap導入と2カラムレイアウト</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="container py-4">
+  <div class="container py-3">
     <div class="row">
-      <div class="col-6">商品A - ¥1,000</div>
-      <div class="col-6">商品B - ¥2,000</div>
+      <div class="col-6">
+        <h2 class="h5 mb-1">商品A</h2>
+        <div>価格: ￥1000</div>
+      </div>
+      <div class="col-6">
+        <h2 class="h5 mb-1">商品B</h2>
+        <div>価格: ￥2000</div>
+      </div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>

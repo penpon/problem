@@ -1,104 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>20.2 動的表示システム - 動的HTML生成学習</title>
-    <!-- 外部CSSファイルの読み込み -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>商品ギャラリー（最小）</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <!-- ギャラリーメインエリア -->
-        <div class="gallery-main">
-            <div class="gallery-header">
-                <h1 class="gallery-title">🏪 動的商品ギャラリー</h1>
-                <p class="gallery-subtitle">JavaScriptによる自動生成システム</p>
-                <div class="generation-status" id="generationStatus">
-                    6商品を動的生成中...
-                </div>
-            </div>
-            
-            <!-- 商品グリッド（動的生成される） -->
-            <div class="products-grid" id="productsGrid">
-                <!-- ここに商品カードが動的に生成されます -->
-            </div>
-            
-            <!-- ギャラリー統計 -->
-            <div class="gallery-stats">
-                <div class="stat-item">
-                    <div class="stat-number" id="totalProducts">6</div>
-                    <div class="stat-label">総商品数</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalLikes">0</div>
-                    <div class="stat-label">総いいね</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalCategories">4</div>
-                    <div class="stat-label">カテゴリ数</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="generatedElements">0</div>
-                    <div class="stat-label">生成要素数</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 学習パネル -->
-        <div class="learning-panel">
-            <!-- 動的生成プロセス -->
-            <div class="panel-section">
-                <h2 class="section-title">🔄 動的生成プロセス</h2>
-                <div class="generation-process">
-                    <div class="process-title">HTML生成ステップ:</div>
-                    <div id="generationSteps">
-                        <div class="process-step">1. createElement で要素作成</div>
-                        <div class="process-step">2. プロパティ・属性を設定</div>
-                        <div class="process-step">3. 子要素を作成・追加</div>
-                        <div class="process-step">4. イベントリスナー設定</div>
-                        <div class="process-step">5. DOM に appendChild</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- カテゴリ統計 -->
-            <div class="panel-section">
-                <h2 class="section-title">📊 カテゴリ別統計</h2>
-                <div class="category-stats" id="categoryStats">
-                    <!-- 動的に生成 -->
-                </div>
-            </div>
-            
-            <!-- テンプレート情報 -->
-            <div class="panel-section">
-                <h2 class="section-title">🏗️ テンプレート情報</h2>
-                <div class="template-info" id="templateInfo">
-                    テンプレート関数による統一された<br>
-                    商品カード生成システム:<br><br>
-                    • 1つの関数で全商品カードを生成<br>
-                    • カテゴリに応じた動的スタイリング<br>
-                    • イベント処理の自動バインド<br>
-                    • レスポンシブ対応の自動レイアウト
-                </div>
-            </div>
-            
-            <!-- コントロール -->
-            <div class="panel-section">
-                <h2 class="section-title">🎮 コントロール</h2>
-                <div class="control-area">
-                    <button class="btn-control btn-regenerate" id="regenerateBtn">
-                        🔄 再生成
-                    </button>
-                    <button class="btn-control btn-reset" id="resetBtn">
-                        🗑️ リセット
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 外部JavaScriptファイルの読み込み -->
-    <script src="script.js"></script>
+  <div class="container py-4">
+    <h1 class="h4 mb-3">ギャラリー</h1>
+    <div id="galleryContainer"><!-- JSで挿入 --></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

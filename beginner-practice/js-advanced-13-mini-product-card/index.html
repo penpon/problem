@@ -1,241 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品カード - 実用的なECコンポーネント</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>sort の昇順/降順</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header class="page-header">
-            <h1>🛍️ 商品カードデモ</h1>
-            <p class="subtitle">HTML、CSS、JavaScriptを統合した実用的なECサイトコンポーネント</p>
-        </header>
-        
-        <main class="product-showcase">
-            <div class="product-card" id="product-card">
-                <!-- 商品画像セクション -->
-                <div class="product-image-section">
-                    <div class="product-images">
-                        <img id="main-image" src="../shared/images/simple-product.svg" alt="ワイヤレスイヤホン" class="main-image">
-                        <div class="image-thumbnails">
-                            <img src="../shared/images/simple-product.svg" alt="メイン画像" class="thumbnail active" data-image="../shared/images/simple-product.svg">
-                            <div class="thumbnail placeholder" data-image="https://via.placeholder.com/400x300/4299e1/white?text=Side+View">📱</div>
-                            <div class="thumbnail placeholder" data-image="https://via.placeholder.com/400x300/48bb78/white?text=In+Box">📦</div>
-                            <div class="thumbnail placeholder" data-image="https://via.placeholder.com/400x300/ed8936/white?text=Features">✨</div>
-                        </div>
-                    </div>
-                    
-                    <div class="badge-container">
-                        <span class="badge sale-badge" id="sale-badge">25% OFF</span>
-                        <span class="badge new-badge">NEW</span>
-                    </div>
-                </div>
-                
-                <!-- 商品情報セクション -->
-                <div class="product-info">
-                    <div class="product-header">
-                        <h2 class="product-title" id="product-title">プレミアム ワイヤレスイヤホン</h2>
-                        <button class="wishlist-btn" id="wishlist-btn" aria-label="お気に入りに追加">
-                            <span class="heart-icon">🤍</span>
-                        </button>
-                    </div>
-                    
-                    <div class="rating-section">
-                        <div class="stars" id="rating-stars">
-                            <span class="star filled">★</span>
-                            <span class="star filled">★</span>
-                            <span class="star filled">★</span>
-                            <span class="star filled">★</span>
-                            <span class="star">★</span>
-                        </div>
-                        <span class="rating-text">4.2 / 5.0</span>
-                        <span class="review-count">(<span id="review-count">127</span> レビュー)</span>
-                    </div>
-                    
-                    <div class="price-section">
-                        <span class="current-price" id="current-price">¥12,800</span>
-                        <span class="original-price" id="original-price">¥16,000</span>
-                        <span class="discount-amount" id="discount-amount">¥3,200お得</span>
-                    </div>
-                    
-                    <div class="product-features">
-                        <span class="feature-tag">🔋 24時間バッテリー</span>
-                        <span class="feature-tag">🎵 ハイレゾ対応</span>
-                        <span class="feature-tag">💧 防水IPX7</span>
-                        <span class="feature-tag">🎧 ノイズキャンセリング</span>
-                    </div>
-                    
-                    <div class="stock-info">
-                        <div class="stock-indicator">
-                            <div class="stock-bar">
-                                <div class="stock-fill" id="stock-fill"></div>
-                            </div>
-                            <span class="stock-text">残り<span id="stock-count">15</span>個</span>
-                        </div>
-                    </div>
-                    
-                    <div class="quantity-selector">
-                        <label for="quantity">数量:</label>
-                        <div class="quantity-controls">
-                            <button class="qty-btn" id="qty-minus">-</button>
-                            <input type="number" id="quantity" value="1" min="1" max="15">
-                            <button class="qty-btn" id="qty-plus">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="cart-btn" id="add-to-cart">
-                            <span class="btn-icon">🛒</span>
-                            <span class="btn-text">カートに追加</span>
-                            <span class="cart-count" id="cart-count">0</span>
-                        </button>
-                        <button class="buy-now-btn" id="buy-now">
-                            <span class="btn-icon">⚡</span>
-                            今すぐ購入
-                        </button>
-                    </div>
-                    
-                    <div class="social-actions">
-                        <button class="like-btn" id="like-btn" aria-label="いいねする">
-                            <span class="like-icon">👍</span>
-                            <span class="like-text">いいね</span>
-                            <span class="like-count" id="like-count">127</span>
-                        </button>
-                        <button class="share-btn" id="share-btn" aria-label="商品をシェア">
-                            <span class="share-icon">📤</span>
-                            シェア
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- 詳細情報セクション -->
-                <div class="product-details" id="product-details">
-                    <div class="details-header">
-                        <h3>商品詳細</h3>
-                        <button class="toggle-details" id="toggle-details" aria-expanded="false">
-                            <span class="toggle-icon">▼</span>
-                        </button>
-                    </div>
-                    
-                    <div class="details-content" id="details-content">
-                        <div class="detail-section">
-                            <h4>主な特徴</h4>
-                            <ul class="feature-list">
-                                <li>✅ Bluetooth 5.2接続で安定した音質</li>
-                                <li>✅ アクティブノイズキャンセリング機能</li>
-                                <li>✅ IPX7防水規格で運動時も安心</li>
-                                <li>✅ 最大24時間の長時間再生</li>
-                                <li>✅ 急速充電対応（15分で3時間再生）</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h4>スペック</h4>
-                            <div class="spec-table">
-                                <div class="spec-row">
-                                    <span class="spec-label">接続方式</span>
-                                    <span class="spec-value">Bluetooth 5.2</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-label">再生時間</span>
-                                    <span class="spec-value">イヤホン本体: 8時間 / ケース込み: 24時間</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-label">充電時間</span>
-                                    <span class="spec-value">約1.5時間</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-label">防水性能</span>
-                                    <span class="spec-value">IPX7</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-label">重量</span>
-                                    <span class="spec-value">片耳: 5g / ケース: 45g</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h4>配送・返品情報</h4>
-                            <div class="shipping-info">
-                                <div class="shipping-item">
-                                    <span class="shipping-icon">🚚</span>
-                                    <span class="shipping-text">全国送料無料（通常2-3営業日でお届け）</span>
-                                </div>
-                                <div class="shipping-item">
-                                    <span class="shipping-icon">🔄</span>
-                                    <span class="shipping-text">30日間返品・交換保証</span>
-                                </div>
-                                <div class="shipping-item">
-                                    <span class="shipping-icon">🛡️</span>
-                                    <span class="shipping-text">メーカー1年保証付き</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 通知システム -->
-            <div class="notification" id="notification">
-                <span class="notification-icon" id="notification-icon">✅</span>
-                <span class="notification-message" id="notification-message">メッセージ</span>
-                <button class="notification-close" id="notification-close" aria-label="通知を閉じる">×</button>
-            </div>
-            
-            <!-- 機能説明パネル -->
-            <div class="info-panel">
-                <h3>🔥 実装されている機能</h3>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <span class="feature-icon">❤️</span>
-                        <div class="feature-info">
-                            <strong>いいね機能</strong>
-                            <p>ハートボタンでいいね数を増減</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">🛒</span>
-                        <div class="feature-info">
-                            <strong>カート機能</strong>
-                            <p>商品をカートに追加・数量管理</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">📱</span>
-                        <div class="feature-info">
-                            <strong>画像切替</strong>
-                            <p>サムネイルで商品画像を切替</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">📊</span>
-                        <div class="feature-info">
-                            <strong>在庫管理</strong>
-                            <p>リアルタイムでの在庫表示</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">💾</span>
-                        <div class="feature-info">
-                            <strong>データ保存</strong>
-                            <p>LocalStorageでデータ永続化</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">📱</span>
-                        <div class="feature-info">
-                            <strong>レスポンシブ</strong>
-                            <p>スマホ・タブレット対応</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    
-    <script src="script.js"></script>
+  <main style="padding:16px">
+    <select id="sort">
+      <option value="price-asc">価格昇順</option>
+      <option value="price-desc">価格降順</option>
+    </select>
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple', price: 120 },
+      { id: 2, name: 'Banana', price: 80 },
+      { id: 3, name: 'Cherry', price: 200 }
+    ];
+    const sortSelect = document.getElementById('sort');
+    function render(){
+      const val = sortSelect.value;
+      const sorted = [...items].sort((a,b) => val==='price-asc' ? a.price-b.price : b.price-a.price);
+      const html = sorted.map(it => `<div class=\"item\">${it.name} - ￥${it.price}</div>`).join('');
+      document.getElementById('list').innerHTML = html;
+    }
+    sortSelect.addEventListener('change', render);
+    render();
+  </script>
 </body>
 </html>

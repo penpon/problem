@@ -1,227 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>オブジェクト基礎 - データ構造管理の学習</title>
-    <!-- 外部CSSファイルの読み込み -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>filter で在庫のみ</title>
+  <style>#list{display:grid;gap:6px}.item{padding:6px;border:1px solid #ddd;border-radius:6px}</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🏗️ オブジェクトとデータ構造</h1>
-        <div class="step-info">
-            <strong>オブジェクト基礎 - オブジェクト指向プログラミングの入門</strong>
-        </div>
-        
-        <div class="celebration">🏗️ 📦 ✨</div>
-        
-        <div class="info-box">
-            <h3>📚 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>オブジェクトリテラル</strong>の基本構文と作成方法</li>
-                <li><strong>プロパティアクセス</strong>（ドット記法とブラケット記法）</li>
-                <li><strong>メソッド</strong>（オブジェクトに属する関数）の定義と実行</li>
-                <li><strong>this</strong>の基本概念と使い方</li>
-            </ul>
-        </div>
-        
-        <div class="demo-section">
-            <h3>🏗️ インタラクティブオブジェクトシステム</h3>
-            
-            <div class="object-display">
-                <div class="result-main" id="result-display">オブジェクトを操作してください</div>
-                <div class="object-status" id="object-status">オブジェクト待機中 - ボタンを押して操作してください</div>
-            </div>
-            
-            <div class="button-grid">
-                <button class="object-btn btn-basic" id="basic-btn">
-                    👤 基本オブジェクト
-                </button>
-                
-                <button class="object-btn btn-method" id="method-btn">
-                    🎭 メソッド付き
-                </button>
-                
-                <button class="object-btn btn-nested" id="nested-btn">
-                    🏠 ネストオブジェクト
-                </button>
-                
-                <button class="object-btn btn-array" id="array-btn">
-                    👥 オブジェクト配列
-                </button>
-                
-                <button class="object-btn btn-dynamic" id="dynamic-btn">
-                    ⚡ 動的生成
-                </button>
-                
-                <button class="object-btn btn-system" id="system-btn">
-                    📚 図書管理システム
-                </button>
-            </div>
-        </div>
-        
-        <div class="input-section" id="input-section">
-            <h3>📝 オブジェクト作成用入力</h3>
-            
-            <div class="input-row">
-                <div class="input-group">
-                    <label for="person-name">名前:</label>
-                    <input type="text" id="person-name" placeholder="例: 田中太郎" value="田中太郎">
-                </div>
-                <div class="input-group">
-                    <label for="person-age">年齢:</label>
-                    <input type="number" id="person-age" placeholder="例: 25" value="25" min="1" max="150">
-                </div>
-            </div>
-            
-            <div class="input-row">
-                <div class="input-group">
-                    <label for="person-job">職業:</label>
-                    <input type="text" id="person-job" placeholder="例: エンジニア" value="エンジニア">
-                </div>
-                <div class="input-group">
-                    <label for="person-city">都市:</label>
-                    <input type="text" id="person-city" placeholder="例: 東京" value="東京">
-                </div>
-            </div>
-            
-            <div class="input-group">
-                <label for="person-hobby">趣味:</label>
-                <select id="person-hobby">
-                    <option value="プログラミング">プログラミング</option>
-                    <option value="読書">読書</option>
-                    <option value="映画鑑賞">映画鑑賞</option>
-                    <option value="スポーツ">スポーツ</option>
-                    <option value="音楽">音楽</option>
-                    <option value="料理">料理</option>
-                    <option value="旅行">旅行</option>
-                </select>
-            </div>
-        </div>
-        
-        <div class="object-display-area" id="object-area">
-            <h4>🔍 オブジェクト表示エリア</h4>
-            <div id="object-content">
-                オブジェクトの内容がここに表示されます
-            </div>
-        </div>
-        
-        <div class="library-system" id="library-system" style="display: none;">
-            <h3>📚 図書管理システム</h3>
-            <div class="input-row">
-                <div class="input-group">
-                    <label for="book-title">書籍タイトル:</label>
-                    <input type="text" id="book-title" placeholder="例: JavaScript入門" value="JavaScript入門">
-                </div>
-                <div class="input-group">
-                    <label for="book-author">著者:</label>
-                    <input type="text" id="book-author" placeholder="例: 田中太郎" value="田中太郎">
-                </div>
-            </div>
-            <div class="input-row">
-                <div class="input-group">
-                    <label for="book-genre">ジャンル:</label>
-                    <select id="book-genre">
-                        <option value="プログラミング">プログラミング</option>
-                        <option value="小説">小説</option>
-                        <option value="ビジネス">ビジネス</option>
-                        <option value="科学">科学</option>
-                        <option value="歴史">歴史</option>
-                        <option value="料理">料理</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="book-pages">ページ数:</label>
-                    <input type="number" id="book-pages" value="300" min="1" max="2000">
-                </div>
-            </div>
-            <button class="object-btn" id="add-book-btn" style="margin: 10px 0;">📖 書籍を追加</button>
-            
-            <div class="book-list" id="book-list">
-                <!-- 書籍リストがここに表示されます -->
-            </div>
-        </div>
-        
-        <div class="stats-section">
-            <h4>📊 オブジェクト統計</h4>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div>総操作回数</div>
-                    <div class="stat-number" id="total-operations">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>基本オブジェクト</div>
-                    <div class="stat-number" id="basic-operations">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>メソッド実行</div>
-                    <div class="stat-number" id="method-operations">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>動的生成</div>
-                    <div class="stat-number" id="dynamic-operations">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>作成オブジェクト数</div>
-                    <div class="stat-number" id="created-objects">0</div>
-                </div>
-                <div class="stat-item">
-                    <div>図書管理使用</div>
-                    <div class="stat-number" id="library-operations">0</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🏗️ オブジェクトの基本構文</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
-                <div style="background: #e8f5e8; padding: 15px; border-radius: 10px;">
-                    <h4 style="margin-top: 0; color: #27ae60;">オブジェクトリテラル</h4>
-                    <div class="code-example">
-const person = {
-    name: "田中太郎",
-    age: 25,
-    job: "エンジニア"
-};
-                    </div>
-                    <p style="margin-bottom: 0;">基本的なオブジェクト作成方法</p>
-                </div>
-                <div style="background: #e3f2fd; padding: 15px; border-radius: 10px;">
-                    <h4 style="margin-top: 0; color: #2196f3;">メソッド付きオブジェクト</h4>
-                    <div class="code-example">
-const person = {
-    name: "田中太郎",
-    sayHello() {
-        return `こんにちは、${this.name}です！`;
+  <main style="padding:16px">
+    <label><input id="inStock" type="checkbox"> 在庫のみ</label>
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script>
+    const items = [
+      { id: 1, name: 'Apple', price: 120, inStock: true },
+      { id: 2, name: 'Banana', price: 80, inStock: false },
+      { id: 3, name: 'Cherry', price: 200, inStock: true }
+    ];
+    const inStockCheckbox = document.getElementById('inStock');
+    function render(){
+      const showOnly = inStockCheckbox.checked;
+      const filtered = showOnly ? items.filter(it => it.inStock) : items;
+      const html = filtered.map(it => `<div class=\"item\">${it.name}</div>`).join('');
+      document.getElementById('list').innerHTML = html;
     }
-};
-                    </div>
-                    <p style="margin-bottom: 0;">関数を持つオブジェクト</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>🔧 実装されているオブジェクト機能</h3>
-            <ul>
-                <li><strong>👤 基本オブジェクト</strong>: 人物情報をプロパティで管理</li>
-                <li><strong>🎭 メソッド付き</strong>: 自己紹介機能を持つオブジェクト</li>
-                <li><strong>🏠 ネストオブジェクト</strong>: 住所情報などの階層構造</li>
-                <li><strong>👥 オブジェクト配列</strong>: 複数人のデータを配列で管理</li>
-                <li><strong>⚡ 動的生成</strong>: ユーザー入力でオブジェクト作成</li>
-                <li><strong>📚 図書管理システム</strong>: 実用的なオブジェクトシステム</li>
-            </ul>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 すべてのオブジェクト機能を試してみよう！</h3>
-            <p>6つのボタンをすべてクリックして、オブジェクトの様々な使い方を確認してください。動的生成では入力フィールドの値を変更して、パラメータによる結果の違いも確認しましょう。</p>
-            <p><strong>F12</strong>（MacはCmd+Option+I）で開発者ツールを開き、<strong>Console</strong>タブでオブジェクトの詳細な構造も確認できます！</p>
-        </div>
-    </div>
-    
-    <!-- 外部JavaScriptファイルの読み込み -->
-    <script src="script.js"></script>
+    inStockCheckbox.addEventListener('change', render);
+    render();
+  </script>
 </body>
 </html>

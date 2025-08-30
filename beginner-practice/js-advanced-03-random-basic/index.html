@@ -1,97 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ランダム基本</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ランダム基本</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🎲 ランダムの基本</h1>
-        <div class="step-info">
-            <strong>ランダム基本 - ランダム数生成と配列からの選択</strong>
-        </div>
-        
-        <div class="celebration">🎲 🎯 ⚡</div>
-        
-        <div class="info-box">
-            <h3>🎯 この学習で学ぶこと</h3>
-            <ul>
-                <li><strong>Math.random()</strong>を使ったランダム数生成</li>
-                <li><strong>Math.floor()</strong>で小数点を切り捨て</li>
-                <li>配列から<strong>ランダムに要素を選択</strong>する方法</li>
-                <li><strong>インデックス</strong>を使ったランダムアクセス</li>
-            </ul>
-        </div>
-        
-        <div class="demo-section">
-            <h3>🎪 ランダム選択デモ</h3>
-            <p>ボタンをクリックして、配列からランダムに要素を選択してみましょう！</p>
-            
-            <div class="content-display" id="content-display">
-                <h3 style="color: #3498db; margin-top: 0;">🎯 ランダム選択結果</h3>
-                <p>下のボタンをクリックして、ランダム選択がどのように動作するか確認してください。</p>
-            </div>
-            
-            <div class="button-grid">
-                <button class="random-btn btn-animal" id="animal-btn">
-                    🐾 動物ランダム選択
-                </button>
-                <button class="random-btn btn-number" id="number-btn">
-                    🔢 数字ランダム選択
-                </button>
-            </div>
-            
-            <div class="process-display" id="process-display">
-                <h4>📊 ランダム処理の詳細</h4>
-                <p>ボタンをクリックすると、ランダム処理の詳細がここに表示されます。</p>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3>💡 ランダム選択の仕組み</h3>
-            <p>配列からランダムに要素を選択する基本的な手順：</p>
-            
-            <div class="code-example">
-// 1. 配列を用意
-let animals = ["犬", "猫", "鳥"];
-
-// 2. 0～1未満のランダム数を生成
-let randomNumber = Math.random(); // 例: 0.7234...
-
-// 3. 配列の長さをかけて範囲を調整
-let scaled = randomNumber * animals.length; // 例: 2.17...
-
-// 4. 小数点を切り捨ててインデックスを取得
-let index = Math.floor(scaled); // 例: 2
-
-// 5. インデックスで配列から要素を取得
-let selected = animals[index]; // "鳥"
-            </div>
-        </div>
-        
-        <div class="array-display">
-            <h4>📋 使用している配列</h4>
-            <div class="array-grid">
-                <div class="array-card">
-                    <h4>🐾 動物配列</h4>
-                    <div id="animals-display">読み込み中...</div>
-                </div>
-                <div class="array-card">
-                    <h4>🔢 数字配列</h4>
-                    <div id="numbers-display">読み込み中...</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="instruction">
-            <h3>🚀 ランダム選択を体験してみよう！</h3>
-            <p>2つのボタンを何度もクリックして、毎回違う結果が出ることを確認してください。</p>
-            <p>「ランダム処理の詳細」で、どのようにランダム選択されているかも確認しましょう！</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <h1>ランダム基本</h1>
+  <div id="result">-</div>
+  <button id="pick">選ぶ</button>
+  <script src="script.js"></script>
 </body>
 </html>

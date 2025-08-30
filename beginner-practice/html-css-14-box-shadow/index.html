@@ -3,95 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>影の基本 - Practice 12</title>
+    <title>課題実装</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>🎭 影（box-shadow）の基本学習</h1>
-        
-        <div class="section">
-            <h2>📝 基本的な影の種類</h2>
-            <div class="shadow-grid">
-                <div class="shadow-demo no-shadow">
-                    <h3>影なし</h3>
-                    <p>基本の状態</p>
-                </div>
-                
-                <div class="shadow-demo basic-shadow">
-                    <h3>基本的な影</h3>
-                    <p>2px 2px 5px</p>
-                </div>
-                
-                <div class="shadow-demo soft-shadow">
-                    <h3>柔らかい影</h3>
-                    <p>0px 4px 15px</p>
-                </div>
-                
-                <div class="shadow-demo dark-shadow">
-                    <h3>濃い影</h3>
-                    <p>3px 3px 10px</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>🔍 透明度（alpha）の違い</h2>
-            <div class="alpha-comparison">
-                <div class="shadow-demo alpha-light">
-                    <h3>薄い影</h3>
-                    <p>alpha: 0.1</p>
-                </div>
-                
-                <div class="shadow-demo alpha-medium">
-                    <h3>標準の影</h3>
-                    <p>alpha: 0.2</p>
-                </div>
-                
-                <div class="shadow-demo alpha-strong">
-                    <h3>濃い影</h3>
-                    <p>alpha: 0.4</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>🔄 内側の影（inset）</h2>
-            <div class="inset-comparison">
-                <div class="shadow-demo normal-shadow">
-                    <h3>通常の影</h3>
-                    <p>外側に影</p>
-                </div>
-                
-                <div class="shadow-demo inset-shadow">
-                    <h3>内側の影</h3>
-                    <p>押し込まれた印象</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>💫 実用的なカードデザイン</h2>
-            <div class="card-examples">
-                <div class="card simple-card">
-                    <h3>🎨 シンプルカード</h3>
-                    <p>基本的な影でシンプルな立体感を演出</p>
-                    <div class="card-info">box-shadow: 0 2px 8px rgba(0,0,0,0.1)</div>
-                </div>
-                
-                <div class="card floating-card">
-                    <h3>🌟 浮遊カード</h3>
-                    <p>柔らかい大きめの影で浮いているような効果</p>
-                    <div class="card-info">box-shadow: 0 8px 25px rgba(0,0,0,0.15)</div>
-                </div>
-                
-                <div class="card pressed-card">
-                    <h3>📱 押下カード</h3>
-                    <p>内側の影で押し込まれた印象</p>
-                    <div class="card-info">box-shadow: inset 0 2px 4px rgba(0,0,0,0.2)</div>
-                </div>
-            </div>
-        </div>
+      <div class="card-container">
+        <div class="card">card</div>
+        <div class="card image-card">image</div>
+        <div class="card action-card">action</div>
+      </div>
     </div>
 </body>
 </html>

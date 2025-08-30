@@ -1,146 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flexbox基礎</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課題実装</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Flexbox基礎の練習</h1>
-    
-    <h2>1. 基本的なFlexbox</h2>
-    <div class="basic-demo">
-        <div class="flex-container">
-            <div class="flex-item">アイテム1</div>
-            <div class="flex-item">アイテム2</div>
-            <div class="flex-item">アイテム3</div>
-        </div>
-        <p>通常のdiv（ブロック要素）は縦に並びますが、Flexboxでは横に並びます</p>
-    </div>
-    
-    <h2>2. justify-content（水平方向の配置）</h2>
-    <div class="justify-demo">
-        <h3>flex-start（左寄せ）</h3>
-        <div class="flex-container justify-start">
-            <div class="flex-item">A</div>
-            <div class="flex-item">B</div>
-            <div class="flex-item">C</div>
-        </div>
-        
-        <h3>center（中央寄せ）</h3>
-        <div class="flex-container justify-center">
-            <div class="flex-item">A</div>
-            <div class="flex-item">B</div>
-            <div class="flex-item">C</div>
-        </div>
-        
-        <h3>flex-end（右寄せ）</h3>
-        <div class="flex-container justify-end">
-            <div class="flex-item">A</div>
-            <div class="flex-item">B</div>
-            <div class="flex-item">C</div>
-        </div>
-        
-        <h3>space-between（両端揃え）</h3>
-        <div class="flex-container justify-between">
-            <div class="flex-item">A</div>
-            <div class="flex-item">B</div>
-            <div class="flex-item">C</div>
-        </div>
-        
-        <h3>space-around（等間隔）</h3>
-        <div class="flex-container justify-around">
-            <div class="flex-item">A</div>
-            <div class="flex-item">B</div>
-            <div class="flex-item">C</div>
-        </div>
-    </div>
-    
-    <h2>3. align-items（垂直方向の配置）</h2>
-    <div class="align-demo">
-        <h3>flex-start（上寄せ）</h3>
-        <div class="flex-container align-start tall">
-            <div class="flex-item">A</div>
-            <div class="flex-item large">B<br>大きい</div>
-            <div class="flex-item">C</div>
-        </div>
-        
-        <h3>center（中央寄せ）</h3>
-        <div class="flex-container align-center tall">
-            <div class="flex-item">A</div>
-            <div class="flex-item large">B<br>大きい</div>
-            <div class="flex-item">C</div>
-        </div>
-        
-        <h3>flex-end（下寄せ）</h3>
-        <div class="flex-container align-end tall">
-            <div class="flex-item">A</div>
-            <div class="flex-item large">B<br>大きい</div>
-            <div class="flex-item">C</div>
-        </div>
-        
-        <h3>stretch（高さを揃える）</h3>
-        <div class="flex-container align-stretch tall">
-            <div class="flex-item">A</div>
-            <div class="flex-item large">B<br>大きい</div>
-            <div class="flex-item">C</div>
-        </div>
-    </div>
-    
-    <h2>4. flex-direction（配置方向）</h2>
-    <div class="direction-demo">
-        <h3>row（横並び・デフォルト）</h3>
-        <div class="flex-container direction-row">
-            <div class="flex-item">1</div>
-            <div class="flex-item">2</div>
-            <div class="flex-item">3</div>
-        </div>
-        
-        <h3>column（縦並び）</h3>
-        <div class="flex-container direction-column">
-            <div class="flex-item">1</div>
-            <div class="flex-item">2</div>
-            <div class="flex-item">3</div>
-        </div>
-    </div>
-    
-    <h2>5. 完璧な中央寄せ</h2>
-    <div class="perfect-center">
-        <div class="center-content">
-            <h3>完璧な中央</h3>
-            <p>水平・垂直両方向で中央に配置されています</p>
-        </div>
-    </div>
-    
-    <h2>6. 実用例：ナビゲーション</h2>
+  <div class="container">
     <nav class="main-nav">
-        <div class="logo">MyLogo</div>
-        <ul class="nav-links">
-            <li><a href="#">ホーム</a></li>
-            <li><a href="#">サービス</a></li>
-            <li><a href="#">会社概要</a></li>
-            <li><a href="#">お問い合わせ</a></li>
-        </ul>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
-    
-    <h2>7. 実用例：カードレイアウト</h2>
-    <div class="card-gallery">
-        <div class="card">
-            <h4>カード1</h4>
-            <p>Flexboxで美しく配置されたカードです。</p>
-            <button>詳細を見る</button>
-        </div>
-        <div class="card">
-            <h4>カード2</h4>
-            <p>レスポンシブ対応で様々な画面サイズに対応します。</p>
-            <button>詳細を見る</button>
-        </div>
-        <div class="card">
-            <h4>カード3</h4>
-            <p>高さが異なってもキレイに揃います。</p>
-            <button>詳細を見る</button>
-        </div>
-    </div>
+  </div>
 </body>
 </html>
