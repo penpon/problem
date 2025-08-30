@@ -1,0 +1,30 @@
+{
+  "id": "js-basic-14",
+  "title": "リンクの既定動作を止める",
+  "description": "リンククリック時に event.preventDefault() で遷移を止め、クリック回数を表示します",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#link のクリックイベントで event.preventDefault() を呼ぶ",
+    "#status にクリック回数を textContent で表示"
+  ],
+  "files": {
+    "html": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-14/files.html.expected"
+    },
+    "css": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-14/files.css.expected"
+    },
+    "js": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-14/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "link", "name": "#link", "type": "html", "message": "#link 要素（aタグ）を用意してください" },
+    { "id": "status", "name": "#status", "type": "html", "message": "#status 要素を用意してください" },
+    { "id": "preventDefault", "name": "preventDefault", "type": "js", "message": "クリック時に event.preventDefault() を呼んでください" }
+  ]
+}

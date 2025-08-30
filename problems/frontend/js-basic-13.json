@@ -1,0 +1,29 @@
+{
+  "id": "js-basic-13",
+  "title": "入力ライブプレビュー",
+  "description": "input イベントで、タイピング中にプレビューへ即時反映します",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#text 入力の値を取得（inputイベント）",
+    "#preview.textContent に常に現在の入力値を反映"
+  ],
+  "files": {
+    "html": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-13/files.html.expected"
+    },
+    "css": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-13/files.css.expected"
+    },
+    "js": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-13/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "input", "name": "#text", "type": "html", "message": "#text 入力を用意してください" },
+    { "id": "preview", "name": "#preview", "type": "html", "message": "#preview 要素を用意してください" }
+  ]
+}

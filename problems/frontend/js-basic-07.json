@@ -1,75 +1,12 @@
 {
   "id": "js-basic-07",
-  "title": "複数ボタン",
-  "description": "複数のボタンを同時に管理し、それぞれに異なる機能を実装してDOM操作の応用を学習します",
+  "title": "複数ボタンのイベント処理",
+  "description": "複数のボタンにイベントを設定し、それぞれ別の動作を実行します",
   "category": "javascript-basics",
-  "instructions": [
-    "複数のボタンにそれぞれ異なるイベントを設定する",
-    "ボタンごとに異なるメッセージや処理を実行する",
-    "共通の処理と個別の処理を使い分ける",
-    "ボタンの状態管理を実装する"
-  ],
+  "difficulty": "初級",
   "files": {
-    "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.html.expected"
-    },
-    "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#message-display { margin: 8px 0; }\nbutton { margin-right: 6px; }",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.css.expected"
-    },
-    "js": {
-      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.js.expected"
-    }
-  },
-  "expectedResult": {
-    "individualFunctions": "各ボタンが独立したメッセージを表示する",
-    "stateManagement": "クリックに応じて表示内容が切り替わる",
-    "behavior": "addEventListenerで複数ボタンが動作する"
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
-      "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
-    }
-  ]
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.js.expected" }
+  }
 }

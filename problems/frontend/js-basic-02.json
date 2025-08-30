@@ -1,73 +1,12 @@
 {
   "id": "js-basic-02",
-  "title": "JavaScript超入門",
-  "description": "完全初心者がJavaScriptの第一歩を踏み出し、alert()で最初のメッセージを表示する方法を学習します",
+  "title": "JavaScriptでHello",
+  "description": "JavaScriptで簡単なテキスト表示を行います",
   "category": "javascript-basics",
-  "instructions": [
-    "JavaScriptとは何かを理解する",
-    "alert()で最初のメッセージを表示する",
-    "HTML内で<script>タグを使う方法を学ぶ"
-  ],
+  "difficulty": "初級",
   "files": {
-    "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.html.expected"
-    },
-    "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.css.expected"
-    },
-    "js": {
-      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.js.expected"
-    }
-  },
-  "expectedResult": {
-    "alert": "こんにちは",
-    "behavior": "ページ読み込み時にアラートが自動表示される"
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
-      "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
-    }
-  ]
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.js.expected" }
+  }
 }

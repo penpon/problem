@@ -1,0 +1,31 @@
+{
+  "id": "js-basic-12",
+  "title": "入力値をテキストに反映",
+  "description": "テキスト入力とボタンを使って、入力内容を安全にtextContentへ反映します",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#name 入力の値を取得",
+    "#applyBtn クリックで #display.textContent に反映",
+    "未入力時は空メッセージを表示（例: 入力が空です）"
+  ],
+  "files": {
+    "html": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-12/files.html.expected"
+    },
+    "css": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-12/files.css.expected"
+    },
+    "js": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-12/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "input", "name": "#name", "type": "html", "message": "#name 入力を用意してください" },
+    { "id": "btn", "name": "#applyBtn", "type": "html", "message": "#applyBtn ボタンを用意してください" },
+    { "id": "display", "name": "#display", "type": "html", "message": "#display 要素を用意してください" }
+  ]
+}

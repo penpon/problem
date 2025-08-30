@@ -2,7 +2,7 @@
   "id": "js-basic-11",
   "title": "classList + d-none 切替（最小）",
   "description": "ボタンでボックスの表示/非表示を切り替えます（classList と d-none を使用）",
-  "category": "javascript-basic",
+  "category": "javascript-basics",
   "instructions": [
     "#box 要素を用意（最初は表示）",
     "#toggleBtn クリックで #box に d-none を付け外し（classList.toggle）",

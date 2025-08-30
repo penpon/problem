@@ -1,78 +1,12 @@
 {
   "id": "js-basic-03",
-  "title": "コンソールと変数",
-  "description": "プログラマーの重要な道具であるコンソールと変数の基本的な使い方を学習します",
+  "title": "コンソールと変数の基本",
+  "description": "console.log と 変数宣言（let/const）の基本を学びます",
   "category": "javascript-basics",
-  "instructions": [
-    "console.log()でメッセージを出力する方法を学ぶ",
-    "ブラウザの開発者ツールの使い方を覚える",
-    "変数でデータを保存する基礎を理解する"
-  ],
+  "difficulty": "初級",
   "files": {
-    "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.html.expected"
-    },
-    "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.css.expected"
-    },
-    "js": {
-      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.js.expected"
-    }
-  },
-  "expectedResult": {
-    "console": [
-      "コンソールと変数へようこそ！",
-      "こんにちは、未来のプログラマーさん！",
-      "現在の学習：コンソールと変数"
-    ],
-    "behavior": "コンソールに3つのメッセージが表示される",
-    "learning": "コンソールと変数の基本を理解"
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
-      "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
-    }
-  ]
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.js.expected" }
+  }
 }

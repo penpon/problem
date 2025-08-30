@@ -264,6 +264,10 @@ class ProblemLoader {
       'js-basic-09': 'js-basic-09-counter-enhanced',
       'js-basic-10': 'js-basic-10-change-content',
       'js-basic-11': 'js-basic-11-classlist-toggle',
+      'js-basic-12': 'js-basic-12-input-to-text',
+      'js-basic-13': 'js-basic-13-live-preview',
+      'js-basic-14': 'js-basic-14-prevent-default',
+      'js-basic-15': 'js-basic-15-focus-blur',
       
       // JavaScript応用(js-advanced-01 → js-advanced-20)
       'js-advanced-01': 'js-advanced-01-text-content-change',

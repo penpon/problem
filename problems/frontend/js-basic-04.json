@@ -1,75 +1,12 @@
 {
   "id": "js-basic-04",
-  "title": "基本計算",
-  "description": "JavaScriptで基本的な四則演算を行い、計算結果をWebページに表示する方法を学習します",
+  "title": "基本の計算（四則演算）",
+  "description": "JavaScriptで四則演算を行い、結果を画面に表示します",
   "category": "javascript-basics",
-  "instructions": [
-    "四則演算（+、-、*、/）の基本操作を理解する",
-    "数値型の変数を作成して計算を実行する",
-    "計算結果をHTML要素に表示する",
-    "複数の計算例を実装する"
-  ],
+  "difficulty": "初級",
   "files": {
-    "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.html.expected"
-    },
-    "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#add, #sub, #mul, #div { margin: 6px 0; }",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.css.expected"
-    },
-    "js": {
-      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.js.expected"
-    }
-  },
-  "expectedResult": {
-    "calculations": "四則演算の結果が表示される",
-    "display": "各結果が対応する要素に表示される",
-    "behavior": "ページ読み込み時に結果が表示される"
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
-      "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
-    }
-  ]
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.js.expected" }
+  }
 }

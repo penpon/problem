@@ -124,74 +124,165 @@
 - **「次が楽しみになる」終わり方**
 - **学習の成果を実感できる構成**
 
-## ⚠️ 注意事項
+## ⚠️ 注意事項（カテゴリ方針）
 
 ### 1. カテゴリの明確化
-- **HTML/CSS基礎**: HTML/CSSのみを使用（JavaScriptを含まない）
-- **JavaScript基礎**: Bootstrapを含まない、オブジェクト指向を含まない基本的なJavaScript構文とDOM操作
-- **JavaScript応用**: Bootstrapを含まない、オブジェクト指向を含まない配列、関数、イベント処理などの応用
+- **HTML/CSS基礎（html-css-\*)**: HTML/CSSのみ（JavaScriptは含めない）
+- **JavaScript基礎（js-basic-\*)**: 基本文法とDOM操作（フレームワーク/OOPなし）
+- **JavaScript応用（js-advanced-\*)**: 配列・関数・イベント等の応用（フレームワーク/OOPなし）
+- **Bootstrap基礎（bootstrap-\*)**: BootstrapのCSSユーティリティ中心（JSプラグインは必要回のみ最小導入）
+- **ECプロジェクト（ec-project-\*)**: 実用ミニアプリ構築（複数回を横断して段階的に拡張）
 
 ### 2. 問題構成の統一
-- expected HTML/CSSはシンプルな実装例とし、解説ページ形式を避ける
-- ユーザーが制作する答えとして適した構成を維持する
+- 各回は「files.html / files.css / files.js」の3分割を原則（html-css-* は `files.js` を原則空/未使用）
+- expected は解説ページではなく、ユーザーが作るべき最小の完成例を示す
 
 ### 3. ECサイト制作との関連性
-- 各問題はECサイト制作で最低限必要な知識を得られる構成とする
-- 完全未経験者が0からのECサイト制作に必要な基礎を段階的に学習できる内容とする
+- 各カテゴリともECサイト制作で必要な基礎/応用を段階的に学べる内容にする
 
 ---
 
-## 🧭 問題作成で重視している原則（運営方針）
+## 🧭 共通運用原則（全カテゴリ）
 
 ### 📈 段階的難易度・1ステップ1概念
-- 前ステップ比の増加は最大「約1.1倍」まで
-- 新規概念は1つに限定（例: 17.1 textContent → 17.2 innerHTML → 17.3 配列）
-- beginner方針「超小ステップ」「概念の単一導入原則」を厳守
+- 前ステップ比は最大「約1.1倍」まで
+- 新規概念は1つに限定
 
 ### ⚙️ 最小で確実に動く実装
 - コピペ即動作・エラーなし（ブラウザ標準でOK）
-- 視覚的変化を必ず入れる（クリック反応など）。レイアウト課題は完成状態の視覚確認を重視
+- 視覚的変化を必ず入れる（レイアウト課題は完成状態の視覚確認を重視）
 
 ### 🧩 実用性と統一
-- ECサイトで実際に使う最小要素を優先
-- 3分割構成（files.html / files.css / files.js）に統一
-- 期待値は `__INCLUDE__` 参照で外出し（例: `problems/frontend/expected/<id>/files.html.expected`）
+- 3分割構成（files.html / files.css / files.js）
+- 期待値は `problems/frontend/expected/<id>/files.<ext>.expected` に外出し
 - 文言・トーンは命令形・簡潔・用語統一
 
 ### ✅ チェック整合性
-- 問題JSONの `checks` とテンプレDOM/仕様を常に一致させる
-- 検証するID/クラス/要件はテンプレ側で必ず用意
-- 配列処理やイベントの使用は `checks` 文言とズレない実装例で提示
+- 問題JSONの `checks` とテンプレDOM/仕様を一致させる
+- 検証対象のID/クラス/要件はテンプレ側で必ず用意
 
 ### 🔒 セキュリティ・教育観点
-- innerHTML の使用は用途限定・簡潔（不必要な挿入を避ける）
-- 入力値検証は段階導入（形式 → 制約 → フィードバック）
+- 入力値の反映は `textContent` を基本（XSS回避）
+- `innerHTML` は必要回のみ最小使用（学習目的を明記）
 
 ### ♿ アクセシビリティとUI
-- 必要に応じて `aria-live` 等を最小導入（例: ミニカート件数更新）
-- スマホで崩れない最小グリッド/タイポグラフィ（例: `col-12 col-sm-6 col-lg-4`）
+- 必要に応じて `aria-live` 等を最小導入
+- スマホで崩れない最小グリッド/タイポ（例: `col-12 col-sm-6 col-lg-4`）
 
 ### 🗂️ 命名・マッピング管理
-- ディレクトリ命名は一貫（例: `ec-project-15-mini-cart/`）
-- `js/problemLoader.js#getProblemDirectoryMap()` を変更時に必ず更新
+- ディレクトリ命名の一貫性（例: `html-css-06-<slug>/`, `js-basic-12-<slug>/`, `js-advanced-05-<slug>/`, `bootstrap-03-<slug>/`, `ec-project-15-mini-cart/`）
+- `js/problemLoader.js#getProblemDirectoryMap()` を変更時に更新
 - 古い重複課題はアーカイブ → 不要なら削除
 
 ### 🔁 差分設計
-- 既存の流れに自然に橋渡し（例: 15でミニカート → 16でチェックアウト分離）
+- 既存の流れに自然に橋渡し（例: js-basic → js-advanced → ec-project）
 - 各README冒頭に「学習目標・チェックリスト」を明記
 
 ### 🔗 依存関係
 - 原則フレームワーク不使用。使用時は理由と最小CDN（例: Bootstrapは `@latest`）
-- 外部画像等は安定ソース（placeholder / picsum）を使用
+- 外部画像等は安定ソース（placeholder / picsum）
 
 ---
 
-## ✅ 作業チェックリスト（運用）
-（詳細は上記「運営方針」を参照）
-- 【構成】3分割＋ `__INCLUDE__` 参照
-- 【整合】`checks` とテンプレDOM/ID/文言の一致
-- 【難易度】前ステップ比≈1.1倍／新概念は1つ
-- 【文言】命令形・簡潔・用語統一
-- 【動作】コピペ即動作・視覚的反応
-- 【索引】`getProblemDirectoryMap()` 更新
-- 【清掃】重複/旧版を整理（アーカイブ→不要なら削除）
+## 🛠️ カテゴリ別運用ガイド
+
+### ■ HTML/CSS基礎（html-css-\*）
+- **ファイル**: `files.html`, `files.css` のみ（`files.js` は空/未使用）
+- **禁止**: `<script>` の挿入、JavaScriptによる動作
+- **expected**: `.expected` は実体HTML/CSSを直接格納（`__INCLUDE__` の二重参照禁止）
+- **checks**: セレクタ構造・クラス付与・レスポンシブ指定などを明確化
+
+### ■ JavaScript基礎（js-basic-\*）
+- **範囲**: 変数/条件/反復/DOM基本操作/イベント基本
+- **expected**: `.expected` は最終テキストを直接格納（beginner-practice からのコピー可、二重参照禁止）
+- **checks**: `textContent` での安全な反映、`id/class` の一致、イベントの発火確認
+
+### ■ JavaScript応用（js-advanced-\*）
+- **範囲**: 配列/関数の分割、モジュール的分割（OOP/フレームワークなし）
+- **expected**: 実体テキストを直接格納。ユーティリティ関数は最小・読みやすく
+- **checks**: 配列処理結果、条件分岐、イベントデリゲーション等の動作を明文化
+
+### ■ Bootstrap基礎（bootstrap-\*）
+- **範囲**: レイアウト/ユーティリティ/フォーム/コンポーネント（CSS中心）
+- **依存**: CDNは最小。JSプラグインは必要回のみ（導入理由を明記）
+- **expected**: クラス構成と表示結果が一意に分かる最小HTML/CSS/JS（JSは不要なら空）
+- **checks**: クラス名と構造の一致、レスポンシブ振る舞いの確認観点
+
+### ■ ECプロジェクト（ec-project-\*）
+- **範囲**: ミニカート→チェックアウト→履歴等、段階的に機能追加
+- **構成**: 可能な限り3分割を維持。複数ページになる場合はテンプレを明確化
+- **expected**: 実体テキストのみ。モックデータは安定値で固定
+- **checks**: UI更新、計算結果、状態遷移、アクセシビリティの要件を明記
+
+---
+
+## 🔧 フロント統合（共通）
+- **一覧**: `problems/frontend/index.json` の該当カテゴリ `problems` 配列にIDを並び順で追加
+- **合計数**: `totalProblems` をカテゴリ合算に合わせて更新
+- **問題JSON**: `problems/frontend/<id>.json` を作成し、`files.*.expected` は
+  `__INCLUDE__: problems/frontend/expected/<id>/files.<ext>.expected` を参照
+- **日付**: `index.json.lastUpdated` を最新日に更新（例: `2025-08-30`）
+
+---
+
+## ❗ expected 作成ルール（重要・再掲）
+- **二重参照禁止**: `.expected` 内で `beginner-practice/...` への再 `__INCLUDE__` を禁止
+- **実体化**: `.expected` は最終テキストを直接格納（必要なら `beginner-practice` からコピー）
+- **対象**: `files.html.expected`, `files.css.expected`, `files.js.expected`
+
+---
+
+## ✅ 最小チェックリスト（提出前・全カテゴリ共通）
+- [ ] `<id>.json` が存在し、カテゴリIDと一致
+- [ ] `files.html/css/js.expected` は「実体テキスト」。`__INCLUDE__` の二重参照なし
+- [ ] `checks` とテンプレDOM/仕様が一致（必要なID/クラスがテンプレに存在）
+- [ ] `index.json` の並び・合計数・最終更新日を更新
+- [ ] 表示・正解プレビュー・採点が通る（12〜15で発生した種の不具合が再発しない）
+
+---
+
+## 🧾 一連の流れチェックリスト：問題作成 → frontend.html 表示
+
+> 新しい問題を作って、フロントの一覧に表示・採点できるまでの手順です（全カテゴリ共通）。
+
+### 1. 企画・命名
+- [ ] **ID決定**: `html-css-XX` / `js-basic-XX` / `js-advanced-XX` / `bootstrap-XX` / `ec-project-XX`
+- [ ] **カテゴリ確認**: READMEのカテゴリ方針に合致している
+- [ ] **ディレクトリ名**: `beginner-practice/<id>-<slug>/`
+
+### 2. テンプレ作成（beginner-practice/）
+- [ ] `files.html` `files.css` `files.js` を作成（html-css-* は `files.js` 空でも可）
+- [ ] DOM/ID/クラスは後述の checks と一致させて用意
+- [ ] コピペ即動作・視覚的反応がある（または完成状態が確認できる）
+
+### 3. expected 作成（problems/frontend/expected/<id>/）
+- [ ] `files.html.expected` `files.css.expected` `files.js.expected` を作成
+- [ ] 中身は「実体テキスト」を直接格納（beginner-practice からコピーして整える）
+- [ ] `__INCLUDE__` の二重参照は禁止（expected → expected で完結させる）
+
+### 4. 問題JSON 作成（problems/frontend/<id>.json）
+- [ ] `id`, `title`, `category`（カテゴリIDと厳密一致）
+- [ ] `files.*.expected` は `__INCLUDE__: problems/frontend/expected/<id>/files.<ext>.expected`
+- [ ] `checks` を定義（観点はテンプレDOM/仕様と完全一致）
+
+### 5. 一覧へ追加（problems/frontend/index.json）
+- [ ] 対応カテゴリの `problems` 配列に `<id>` を追記（並び順に注意）
+- [ ] `totalProblems` を合算に合わせて更新
+- [ ] `lastUpdated` を最新日に更新（例: `2025-08-30`）
+
+### 6. 参照マップ（必要に応じて）
+- [ ] `js/problemLoader.js#getProblemDirectoryMap()` を変更が必要な場合は更新
+
+### 7. 動作確認
+- [ ] `frontend.html` を開く
+- [ ] カテゴリに新規 `<id>` が表示される
+- [ ] 問題詳細で expected プレビューが正しく表示される（`__INCLUDE__` の生表示がない）
+- [ ] 採点（checks）が意図通りに通る
+
+### 8. よくある不具合チェック
+- [ ] `.expected` が二重 `__INCLUDE__` になっている
+- [ ] `category` のスペル/IDミスマッチ
+- [ ] `checks` とテンプレDOM/仕様がズレている
+- [ ] `index.json` の合計数や日付の未更新
+
+---

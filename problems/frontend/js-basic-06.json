@@ -1,81 +1,12 @@
 {
   "id": "js-basic-06",
-  "title": "ボタンクリック",
-  "description": "ボタンのクリックイベントを処理し、JavaScriptでインタラクティブな動作を実装する方法を学習します",
+  "title": "ボタンクリックイベント",
+  "description": "ボタンクリック時のイベントリスナーでDOMを更新します",
   "category": "javascript-basics",
-  "instructions": [
-    "ボタン要素にclickイベントリスナーを追加する",
-    "onclick属性とaddEventListener()の使い方を理解する",
-    "クリック時に特定の処理を実行する",
-    "複数のボタンでそれぞれ異なる動作を実装する"
-  ],
+  "difficulty": "初級",
   "files": {
-    "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>ボタンクリックイベント</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>ボタンクリックイベントの実装</h1>\n        \n        <div class=\"demo-section\">\n            <div class=\"message-display\" id=\"message-display\">\n                ボタンをクリックしてください\n            </div>\n            \n            <button class=\"click-button\" id=\"hello-button\">\n                Hello ボタン\n            </button>\n            \n            <button class=\"click-button\" id=\"color-button\">\n                色変更ボタン\n            </button>\n            \n            <button class=\"click-button\" id=\"time-button\">\n                時間表示ボタン\n            </button>\n        </div>\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.html.expected"
-    },
-    "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#message-display { margin: 8px 0; }\nbutton { margin-right: 6px; }",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.css.expected"
-    },
-    "js": {
-      "template": "// ボタンクリックイベントの基本実装\n\n// 1. Helloボタンの処理\nlet helloButton = document.getElementById('hello-button');\nhelloButton.addEventListener('click', function() {\n    let display = document.getElementById('message-display');\n    display.textContent = 'Hello! ボタンがクリックされました！';\n});\n\n// 2. 色変更ボタンの処理\nlet colorButton = document.getElementById('color-button');\ncolorButton.addEventListener('click', function() {\n    let display = document.getElementById('message-display');\n    display.textContent = '色が変わりました！';\n    display.style.background = '#ffeb3b';\n});\n\n// 3. 時間表示ボタンの処理\nlet timeButton = document.getElementById('time-button');\ntimeButton.addEventListener('click', function() {\n    let display = document.getElementById('message-display');\n    let now = new Date();\n    let timeString = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();\n    display.textContent = '現在時刻: ' + timeString;\n});",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.js.expected"
-    }
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
-    },
-    {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "button-elements",
-      "name": "ボタン要素",
-      "type": "html",
-      "message": "button要素が複数必要です"
-    },
-    {
-      "id": "event-listeners",
-      "name": "イベントリスナー",
-      "type": "js",
-      "message": "addEventListenerでイベント処理を追加してください"
-    },
-    {
-      "id": "dom-manipulation",
-      "name": "DOM操作",
-      "type": "js",
-      "message": "getElementByIdでDOM要素を取得し操作してください"
-    }
-  ],
-  "expectedResult": {
-    "clickHandling": "各ボタンのクリックでメッセージが更新される",
-    "multipleButtons": "3つのボタンがそれぞれ異なる表示を行う",
-    "behavior": "addEventListenerでクリック処理が機能する"
+    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.css.expected" },
+    "js":   { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.js.expected" }
   }
 }

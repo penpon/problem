@@ -1,0 +1,30 @@
+{
+  "id": "js-basic-15",
+  "title": "フォーカス/ブラーで見た目を変える",
+  "description": "入力に focus/blur イベントを付け、フォーカス中は見た目を変えます（クラス付け替え）",
+  "category": "javascript-basics",
+  "difficulty": "初級",
+  "instructions": [
+    "#field に focus で 'focused' クラスを付与",
+    "blur で 'focused' クラスを除去"
+  ],
+  "files": {
+    "html": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-15/files.html.expected"
+    },
+    "css": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-15/files.css.expected"
+    },
+    "js": {
+      "template": "",
+      "expected": "__INCLUDE__: problems/frontend/expected/js-basic-15/files.js.expected"
+    }
+  },
+  "checks": [
+    { "id": "field", "name": "#field", "type": "html", "message": "#field 入力要素を用意してください" },
+    { "id": "focused-css", "name": ".focused CSS", "type": "css", "message": ".focused の見た目変更を定義してください" },
+    { "id": "focus-blur", "name": "focus/blur", "type": "js", "message": "focus/blur でクラスを付け外ししてください" }
+  ]
+}
