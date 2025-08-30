@@ -1,311 +1,217 @@
-# 基本的なECサイト
+# EC-20: 完成版ミニEC（一覧×検索×絞込×並び替え×カート）
 
-## 🎯 学習目標
-これまで学んだHTML、CSS、JavaScriptの基礎知識を使って、シンプルで実用的な基本ECサイトを作ります。初心者が「ECサイトを作れた！」と達成感を得られる、理解しやすいレベルで実装します。
+## 🧩 学ぶタグ/プロパティ
+- 一覧/検索/絞込/並び替え/カートの統合
+- 状態管理の基本パターン（単一ソース）
+- BootstrapのレイアウトとフォームUI
 
-### 身につく基本概念
-- **HTML/CSS/JavaScript の総合活用**: 基礎技術の統合練習
-- **商品表示**: 複数商品のカード表示
-- **基本的なカート機能**: 商品の追加・削除・数量変更
-- **簡単な検索・フィルター**: 基本的なデータ処理
+## 🔁 前回の復習
+- 認証モック、管理ログ、チェックアウト分割、ミニカート
 
-## 📖 学習内容
+## 📌 重要なポイント
+- 元データ（products）と状態（filters, sort, cart）を分離
+- UIは毎回「描画関数」で再構築し一貫性を担保
 
-### 実装する基本機能
-1. **商品表示** 📦 - 3-4個の商品をカード形式で表示
-2. **商品詳細** 🔍 - クリックで詳細情報を表示
-3. **カート機能** 🛒 - 商品の追加・削除・数量変更
-4. **カテゴリフィルター** 📂 - カテゴリ別に商品を絞り込み
-5. **商品検索** 🔍 - 商品名での簡単な検索
-6. **合計計算** 💰 - カート内商品の合計金額表示
-
-### 基本的なECサイト構造
+## 🧪 例題（コピペ即動作）
 ```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>基本ショップ - 初心者向けECサイト</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC-20 完成版ミニEC</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-  <!-- ヘッダー -->
-  <header>
-    <h1>🛍️ 基本ショップ</h1>
-    <div id="cartButton">
-      🛒 カート (<span id="cartCount">0</span>)
-    </div>
-  </header>
+<body class="bg-light">
+  <div class="container py-4">
+    <h1 class="mb-3">完成版ミニEC</h1>
 
-  <!-- 検索とフィルター -->
-  <div class="controls">
-    <input type="text" id="searchInput" placeholder="商品を検索...">
-    <select id="categoryFilter">
-      <option value="">すべてのカテゴリ</option>
-      <option value="服">服</option>
-      <option value="靴">靴</option>
-      <option value="バッグ">バッグ</option>
-    </select>
-  </div>
-
-  <!-- 商品一覧 -->
-  <div class="products-grid" id="productsGrid">
-    <!-- JavaScript で商品が追加される -->
-  </div>
-
-  <!-- カートサイドバー -->
-  <div id="cartSidebar" class="cart-sidebar hidden">
-    <div class="cart-header">
-      <h3>🛒 ショッピングカート</h3>
-      <button id="closeCart">✕</button>
+    <div class="row g-2 mb-3">
+      <div class="col-12 col-md-4">
+        <input id="q" class="form-control" placeholder="検索（商品名）">
+      </div>
+      <div class="col-6 col-md-4">
+        <select id="category" class="form-select">
+          <option value="">カテゴリ: すべて</option>
+          <option value="服">服</option>
+          <option value="靴">靴</option>
+          <option value="バッグ">バッグ</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-4">
+        <select id="sort" class="form-select">
+          <option value="">並び替え: なし</option>
+          <option value="price-asc">価格（安→高）</option>
+          <option value="price-desc">価格（高→安）</option>
+          <option value="name-asc">名前（A→Z）</option>
+          <option value="name-desc">名前（Z→A）</option>
+        </select>
+      </div>
     </div>
-    <div id="cartItems" class="cart-items">
-      <!-- JavaScript でカートアイテムが追加される -->
-    </div>
-    <div class="cart-total">
-      <strong>合計: ¥<span id="cartTotal">0</span></strong>
-    </div>
-  </div>
 
-  <!-- 商品詳細モーダル -->
-  <div id="productModal" class="modal hidden">
-    <div class="modal-content">
-      <button id="closeModal">✕</button>
-      <div id="productDetails">
-        <!-- JavaScript で商品詳細が表示される -->
+    <div class="row g-3">
+      <div class="col-12 col-lg-8">
+        <div id="list" class="row g-3"></div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <span>🛒 カート</span>
+            <span class="badge bg-primary" id="count">0</span>
+          </div>
+          <ul class="list-group list-group-flush" id="cart"></ul>
+          <div class="card-body d-flex justify-content-between">
+            <strong>合計</strong>
+            <strong>¥<span id="total">0</span></strong>
+          </div>
+          <div class="card-body pt-0">
+            <button id="checkout" class="btn btn-success w-100" disabled>チェックアウトへ</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // --- データ ---
+    const products = [
+      { id: 1, name: 'ベーシックTシャツ', category: '服', price: 2980, image: 'https://picsum.photos/seed/p1/600/400' },
+      { id: 2, name: 'カジュアルスニーカー', category: '靴', price: 4980, image: 'https://picsum.photos/seed/p2/600/400' },
+      { id: 3, name: 'レザーバッグ', category: 'バッグ', price: 8980, image: 'https://picsum.photos/seed/p3/600/400' },
+      { id: 4, name: 'シャツ', category: '服', price: 1980, image: 'https://picsum.photos/seed/p4/600/400' }
+    ];
+
+    // --- 状態 ---
+    const state = {
+      q: '',
+      category: '',
+      sort: '',
+      cart: [] // {id, name, price, qty}
+    };
+
+    // --- ユーティリティ ---
+    const byNum = (k, dir=1) => (a,b) => (a[k]-b[k]) * dir;
+    const byStr = (k, dir=1) => (a,b) => a[k].localeCompare(b[k], 'ja') * dir;
+
+    function filteredSorted(){
+      let arr = [...products];
+      const t = state.q.trim().toLowerCase();
+      if (t) arr = arr.filter(p => p.name.toLowerCase().includes(t));
+      if (state.category) arr = arr.filter(p => p.category === state.category);
+      const s = state.sort;
+      if (s === 'price-asc') arr.sort(byNum('price', +1));
+      if (s === 'price-desc') arr.sort(byNum('price', -1));
+      if (s === 'name-asc') arr.sort(byStr('name', +1));
+      if (s === 'name-desc') arr.sort(byStr('name', -1));
+      return arr;
+    }
+
+    // --- 描画 ---
+    function renderList(){
+      const root = document.getElementById('list');
+      root.innerHTML = '';
+      filteredSorted().forEach(p => {
+        const col = document.createElement('div');
+        col.className = 'col-12 col-md-6';
+        col.innerHTML = `
+          <div class="card h-100">
+            <img src="${p.image}" class="card-img-top" alt="${p.name}">
+            <div class="card-body d-flex justify-content-between align-items-start">
+              <div>
+                <h5 class="card-title mb-1">${p.name}</h5>
+                <div class="text-primary fw-bold">¥${p.price.toLocaleString()}</div>
+                <span class="badge bg-secondary">${p.category}</span>
+              </div>
+              <button class="btn btn-sm btn-primary add" data-id="${p.id}">追加</button>
+            </div>
+          </div>`;
+        root.appendChild(col);
+      });
+    }
+
+    function renderCart(){
+      const ul = document.getElementById('cart');
+      ul.innerHTML = '';
+      let total = 0; let count = 0;
+      state.cart.forEach(item => {
+        const sub = item.price * item.qty; total += sub; count += item.qty;
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+        li.innerHTML = `
+          <div>
+            <div class="fw-bold">${item.name}</div>
+            <div class="text-muted">¥${item.price.toLocaleString()} × ${item.qty} = ¥${sub.toLocaleString()}</div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-sm btn-outline-secondary dec" data-id="${item.id}">-</button>
+            <button class="btn btn-sm btn-outline-secondary inc" data-id="${item.id}">+</button>
+            <button class="btn btn-sm btn-outline-danger del" data-id="${item.id}">✕</button>
+          </div>`;
+        ul.appendChild(li);
+      });
+      document.getElementById('total').textContent = total.toLocaleString();
+      document.getElementById('count').textContent = count;
+      document.getElementById('checkout').disabled = state.cart.length === 0;
+    }
+
+    function render(){
+      renderList();
+      renderCart();
+    }
+
+    // --- カート操作 ---
+    function addToCart(id){
+      const p = products.find(x => x.id == id);
+      const hit = state.cart.find(x => x.id == id);
+      if (hit) hit.qty += 1; else state.cart.push({ id:p.id, name:p.name, price:p.price, qty:1 });
+      renderCart();
+    }
+    function changeQty(id, delta){
+      const i = state.cart.findIndex(x => x.id == id);
+      if (i === -1) return;
+      state.cart[i].qty += delta;
+      if (state.cart[i].qty <= 0) state.cart.splice(i,1);
+      renderCart();
+    }
+
+    // --- イベント ---
+    document.getElementById('q').addEventListener('input', e => { state.q = e.target.value; renderList(); });
+    document.getElementById('category').addEventListener('change', e => { state.category = e.target.value; renderList(); });
+    document.getElementById('sort').addEventListener('change', e => { state.sort = e.target.value; renderList(); });
+
+    document.addEventListener('click', (e) => {
+      const id = e.target.dataset.id;
+      if (e.target.classList.contains('add')) addToCart(id);
+      if (e.target.classList.contains('inc')) changeQty(id, +1);
+      if (e.target.classList.contains('dec')) changeQty(id, -1);
+      if (e.target.classList.contains('del')) changeQty(id, -9999);
+    });
+
+    document.getElementById('checkout').addEventListener('click', () => {
+      const total = state.cart.reduce((s, x) => s + x.price * x.qty, 0);
+      const count = state.cart.reduce((s, x) => s + x.qty, 0);
+      alert(`仮チェックアウト\n点数: ${count}\n合計: ¥${total.toLocaleString()}`);
+    });
+
+    // 初期描画
+    render();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 ```
 
-## 📝 学習ポイント
+## ✨ 新しく追加された部分
+- 検索/絞込/並び替え/カートの統合と状態管理
 
-### 💡 基本的なJavaScript実装
+## 🔍 コードの説明
+- `state` に検索/絞込/並び替え/カートを集約し、`render*` でUIを同期
 
-```javascript
-// 商品データ（配列とオブジェクトの基礎）
-const products = [
-  {
-    id: 1,
-    name: "ベーシックTシャツ",
-    category: "服",
-    price: 2980,
-    image: "https://via.placeholder.com/200x200?text=Tシャツ",
-    description: "着心地の良いベーシックなTシャツです。"
-  },
-  {
-    id: 2,
-    name: "カジュアルスニーカー",
-    category: "靴", 
-    price: 4980,
-    image: "https://via.placeholder.com/200x200?text=スニーカー",
-    description: "歩きやすくて丈夫なスニーカーです。"
-  },
-  {
-    id: 3,
-    name: "レザーバッグ",
-    category: "バッグ",
-    price: 8980,
-    image: "https://via.placeholder.com/200x200?text=バッグ",
-    description: "上質なレザーを使ったおしゃれなバッグです。"
-  }
-];
+## 📖 豆知識
+- 小規模なら「単一状態 + 再描画」パターンが最もシンプル
 
-// カートの状態管理（基本的な配列操作）
-let cart = [];
+## ⚠️ 注意点
+- 実運用では在庫同期/価格改定/非同期通信/認証などと連携が必要
 
-// DOM要素の取得（getElementById の基礎）
-function getElements() {
-  return {
-    productsGrid: document.getElementById('productsGrid'),
-    cartButton: document.getElementById('cartButton'),
-    cartCount: document.getElementById('cartCount'),
-    cartSidebar: document.getElementById('cartSidebar'),
-    closeCart: document.getElementById('closeCart'),
-    cartItems: document.getElementById('cartItems'),
-    cartTotal: document.getElementById('cartTotal'),
-    searchInput: document.getElementById('searchInput'),
-    categoryFilter: document.getElementById('categoryFilter')
-  };
-}
-
-// 商品を表示する関数
-function displayProducts(productsToShow = products) {
-  const elements = getElements();
-  elements.productsGrid.innerHTML = '';
-  
-  productsToShow.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.className = 'product-card';
-    
-    productCard.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p class="price">¥${product.price.toLocaleString()}</p>
-      <p class="description">${product.description}</p>
-      <button onclick="addToCart(${product.id})" class="add-to-cart-btn">
-        🛒 カートに追加
-      </button>
-      <button onclick="showProductDetail(${product.id})" class="detail-btn">
-        詳細を見る
-      </button>
-    `;
-    
-    elements.productsGrid.appendChild(productCard);
-  });
-}
-
-// カートに商品を追加する関数
-function addToCart(productId) {
-  const product = products.find(p => p.id === productId);
-  const existingItem = cart.find(item => item.id === productId);
-  
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cart.push({
-      ...product,
-      quantity: 1
-    });
-  }
-  
-  updateCartDisplay();
-  updateCartCount();
-}
-
-// 検索機能
-function searchProducts() {
-  const elements = getElements();
-  const searchTerm = elements.searchInput.value.toLowerCase();
-  const category = elements.categoryFilter.value;
-  
-  let filteredProducts = products;
-  
-  // 検索フィルター
-  if (searchTerm) {
-    filteredProducts = filteredProducts.filter(product => 
-      product.name.toLowerCase().includes(searchTerm)
-    );
-  }
-  
-  // カテゴリフィルター
-  if (category) {
-    filteredProducts = filteredProducts.filter(product => 
-      product.category === category
-    );
-  }
-  
-  displayProducts(filteredProducts);
-}
-
-// 初期化処理
-document.addEventListener('DOMContentLoaded', function() {
-  displayProducts();
-  
-  // イベントリスナーの設定
-  const elements = getElements();
-  
-  // カートボタンクリック
-  elements.cartButton.addEventListener('click', function() {
-    elements.cartSidebar.classList.toggle('hidden');
-  });
-  
-  // 検索機能
-  elements.searchInput.addEventListener('input', searchProducts);
-  elements.categoryFilter.addEventListener('change', searchProducts);
-});
-```
-
-### 💡 基本的なCSS実装
-
-```css
-/* 基本的なレイアウト */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f4f4f4;
-}
-
-/* ヘッダー */
-header {
-  background-color: #007bff;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#cartButton {
-  background-color: rgba(255,255,255,0.2);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* 商品グリッド */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.product-card {
-  background: white;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-}
-
-.product-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-}
-
-.price {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #007bff;
-  margin: 1rem 0;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin: 0.3rem;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-```
+## 🛒 ECサイト制作で繋がるポイント
+- ここまでの学びを統合した最小プロトタイプ。次はAPI接続や永続化へ拡張

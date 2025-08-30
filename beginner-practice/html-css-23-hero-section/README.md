@@ -14,6 +14,47 @@
 
 - 🧪 **例題**
   - 新サービスのランディングの先頭セクションを再現
+  - 下記コードをそのまま `index.html` として保存すると動作します。
+
+  ```html
+  <!doctype html>
+  <html lang="ja">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>ヒーローセクション例</title>
+      <style>
+        :root { --accent:#16a34a; }
+        body { font-family: system-ui, sans-serif; margin:0; }
+        .hero {
+          text-align: center;
+          padding: 80px 20px;
+          background: linear-gradient(180deg,#f0fdf4,#ffffff);
+        }
+        .hero h1 { font-size: clamp(28px, 6vw, 48px); margin: 0 0 16px; }
+        .hero p { max-width: 640px; margin: 0 auto 24px; line-height: 1.7; color:#334155; }
+        .cta {
+          display: inline-block; padding: 12px 20px; border-radius: 999px;
+          background: var(--accent); color:#fff; text-decoration: none;
+          transition: transform .15s ease, box-shadow .15s ease, background .15s linear;
+          box-shadow: 0 4px 14px rgba(22,163,74,.25);
+        }
+        .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(22,163,74,.35); }
+        .cta:focus-visible { outline: 3px solid #a7f3d0; outline-offset: 3px; }
+      </style>
+    </head>
+    <body>
+      <section class="hero">
+        <h1>はじめよう、あなたの新しい体験</h1>
+        <p>
+          シンプルでパワフルなツールで、アイデアをすぐに形に。読みやすい行間と適切な幅で、
+          ストレスのない情報設計を体験しましょう。
+        </p>
+        <a class="cta" href="#">今すぐ試す</a>
+      </section>
+    </body>
+  </html>
+  ```
 
 - ✨ **新しく追加された部分**
   - `.hero`に十分な`padding`と中央寄せ

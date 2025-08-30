@@ -1,75 +1,86 @@
-# 関数の実用応用
+# タイマー基本（setInterval）
 
-## 🎯 学習目標
+## 🧩 **学ぶタグ/プロパティ**
+- `setInterval` と `clearInterval`
+- ボタンでの開始/停止制御
+- 数値の安全な表示（`textContent`）
 
-**パラメータと戻り値を活用した実用的な関数を作成し、フォーム入力との連携を通じて本格的なプログラミングスキルを習得する**
+## 🔁 **前回の復習**
+- DOM 取得とイベントリスナー設定
+- ライブ更新エリアの概念（`aria-live`）
 
-- 関数のパラメータ（引数）を使ったデータ受け渡しを理解する
-- 戻り値（return）を使った計算結果の返却を学ぶ
-- フォーム入力値と関数の連携システムを実装する
-- 実用的な計算処理（BMI計算、文字列処理）を習得する
+## 📌 **重要なポイント**
+- `setInterval` はIDを保持し、停止時に `clearInterval` する
+- 二重起動に注意（必要に応じてガード）
+- 期待仕様: 0 から 0.5 秒ごとに +1
 
-## 📝 学習内容
+## 🧪 **例題**
+HTML
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>js-advanced-09 タイマー基本</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>タイマー基本</h1>
+  <div>
+    <button id="startBtn">開始</button>
+    <button id="stopBtn">停止</button>
+  </div>
+  <div id="count" aria-live="polite">0</div>
+  <script src="script.js"></script>
+</body>
+</html>
+```
 
-### **今回学ぶこと**
-- **パラメータ（引数）**：関数にデータを渡す仕組みの理解
-- **戻り値（return）**：関数から結果を受け取る仕組み
-- **フォーム連携**：HTML入力フィールドと JavaScript関数の接続
-- **実用計算**：BMI計算、文字列生成などの実践的な処理
+CSS
+```css
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 16px; }
+#count { margin: 12px 0; font-size: 20px; }
+button { margin-right: 8px; }
+```
 
-### **前回の復習**
-- 配列とランダム選択の組み合わせ
-- 複数データの管理と統計機能
-- DOM操作とイベント処理の基本
+JavaScript
+```js
+let timerId = null;
+let n = 0;
+const $count = document.getElementById('count');
 
-### **重要なポイント**
-1. **データの流れ**：フォーム→関数（パラメータ）→計算→戻り値→表示
-2. **関数の独立性**：同じ関数でも入力値によって異なる結果を返す
-3. **エラー対策**：parseInt()による数値変換と入力値検証
+document.getElementById('startBtn').addEventListener('click', () => {
+  if (timerId !== null) return; // 多重起動防止（任意）
+  timerId = setInterval(() => {
+    n += 1;
+    $count.textContent = String(n);
+  }, 500); // 0.5秒ごと
+});
 
-## 🔍 コードの説明
+document.getElementById('stopBtn').addEventListener('click', () => {
+  if (timerId !== null) {
+    clearInterval(timerId);
+    timerId = null;
+  }
+});
+```
 
-この学習では、3つの実用的な関数を実装します：
-1. **addNumbers(a, b)**: 2つの数値を受け取り、合計を返す
-2. **calculateBMI(heightCm, weightKg)**: 身長と体重からBMIを計算し、小数点1桁で返す
-3. **createGreeting(name)**: 名前を受け取り、パーソナライズされた挨拶文を返す
+## ✨ **新しく追加された部分**
+- 0.5秒ピッチのインターバル更新
+- 多重起動防止の最小実装
 
-これらの関数は、フォームからの入力値をパラメータとして受け取り、処理結果を戻り値として返します。
+## 🔍 **コードの説明**
+- `timerId` を参照して開始/停止を制御
+- コールバックで `n` をインクリメントし、`textContent` に反映
 
-## 🚀 実践してみよう
+## 📖 **豆知識**
+- 遅延誤差が蓄積する用途では `Date.now()` との差分で計測
+- 表示更新頻度が高い場合は `requestAnimationFrame` も検討
 
-### **手順1: ファイルを開く**
-`34-function-practical/index.html` をブラウザで開いてください。
+## ⚠️ **注意点**
+- タブ非アクティブ時は間隔が伸びることがある（ブラウザ仕様）
+- コンポーネント破棄時に `clearInterval` を必ず実施
 
-### **手順2: 足し算計算を体験**
-1. 数字1と数字2のフィールドに異なる値を入力
-2. 「計算実行」ボタンをクリック
-3. パラメータがどのように渡され、戻り値がどう表示されるかを確認
-
-### **手順3: BMI計算機能を試す**
-身長と体重を変更してBMI計算を実行し、評価（やせ/標準/肥満）がどう判定されるかを確認
-
-### **手順4: 名前付き挨拶機能を使う**
-自分の名前を入力して、パーソナライズされた挨拶メッセージを生成してください
-
-## ✨ 試してみよう
-
-以下を変更して、変化を確認してみましょう：
-
-1. **新しい計算関数の追加**：掛け算や割り算の関数を作成
-2. **より複雑な判定の実装**：年齢による挨拶内容の変更
-
-## ✅ この学習でできるようになること
-
-- [ ] 関数にパラメータを渡すことができる
-- [ ] 関数から戻り値を受け取ることができる
-- [ ] フォーム入力値を関数で処理できる
-- [ ] 実用的な計算（BMI、挨拶生成）を実装できる
-
-## 📚 次の学習
-
-次は **基本データ管理** で配列とオブジェクトを使った本格的なデータ管理システムを学びます！
-
----
-
-**🎉 おめでとうございます！パラメータと戻り値を使った実用的な関数をマスターしました。これで本格的なプログラミングの基礎が身につきました！**
+## 🛒 **ECサイト制作で繋がるポイント**
+- カート在庫の定期リフレッシュ、タイムセール残り時間表示などに応用

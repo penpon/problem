@@ -1,0 +1,31 @@
+{
+  "id": "bootstrap-23",
+  "title": "まとめ練習 - ヘッダー＋検索＋ナビ",
+  "description": "ブランド・ナビ・検索フォームを含むレスポンシブなヘッダーと、ヒーローセクションを組み合わせた実用構成を作成します。",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CDN(@latest) を <head> に読み込む",
+    ".navbar.navbar-expand-lg.navbar-light.bg-light を配置し、.container-fluid 内に .navbar-brand / .navbar-toggler / .collapse#nav / .navbar-nav / 検索フォーム を配置",
+    "検索フォームは input.form-control.me-2 と button.btn.btn-outline-success を用意",
+    "ヒーローを .container 内に .p-5.bg-light.rounded-3 とし、見出し/テキスト/ボタン(.btn.btn-primary.btn-lg) を配置"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>まとめ練習 - ヘッダー＋検索＋ナビ</title>\n  <!-- Bootstrap CDN を読み込んでください -->\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-23/files.html.expected"
+    },
+    "css": {
+      "template": "/* 追加スタイルは任意 */",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-23/files.css.expected"
+    }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "navbar-structure", "name": ".navbar.navbar-expand-lg.navbar-light.bg-light .container-fluid", "type": "structure", "message": "ナビバーの基本構成を作成してください" },
+    { "id": "brand", "name": ".navbar-brand", "type": "structure", "message": "ブランドを配置してください" },
+    { "id": "collapse", "name": "#nav.collapse.navbar-collapse", "type": "structure", "message": "折りたたみ領域 #nav を .collapse.navbar-collapse として用意してください" },
+    { "id": "nav-links", "name": ".navbar-nav .nav-link", "type": "structure", "message": "ナビゲーションリンクを配置してください" },
+    { "id": "search-form", "name": "form.d-flex .form-control.me-2, form.d-flex .btn.btn-outline-success", "type": "structure", "message": "検索フォーム（入力とボタン）を配置してください" },
+    { "id": "hero", "name": ".container .p-5.bg-light.rounded-3 .btn.btn-primary.btn-lg", "type": "structure", "message": "ヒーローにCTAボタンを配置してください" }
+  ]
+}

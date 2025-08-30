@@ -1,133 +1,94 @@
-# 19.2 カード機能拡張 - DOM操作とイベント処理入門
+# イベント委譲（リスト内ボタン）
 
-## 🎯 学習目標
+## 🧩 学ぶタグ/プロパティ
+- イベント委譲（親に1つだけイベントを登録）
+- `event.target.matches(selector)` による発火元の特定
+- 安全なテキスト表示（`textContent`）
 
-**19.1で学んだオブジェクト管理を基礎として、DOM操作とイベント処理を習得**
+## 🔁 前回の復習
+- `map().join('')` + `innerHTML` によるリスト描画
+- クリックイベントの基本（`addEventListener('click', ...)`）
 
-前回のオブジェクトによるデータ管理をしっかりと活用しながら、今度は「画面の要素を動的に変更する技術」を学習します。ボタンクリックで詳細情報が表示されたり、カート機能が動作したりする、よりインタラクティブな商品カードを実装します。
+## 📌 重要なポイント
+- 子のボタンごとにイベントを付けず、親 `#list` に1つだけ付与
+- クリックされた要素が `.buy` かを `matches()` で判定
+- 押下した商品の名前を `#log` に表示（追記でも置換でも可）
 
-## 📖 学習内容
-
-### ✨ 実装する7つの機能（19.1 + 新機能2つ）
-
-#### 19.1から継続する機能
-1. **商品情報表示** - オブジェクトによるデータ管理（復習）
-2. **いいね機能** - オブジェクトの値更新（復習）
-3. **統計表示** - データの可視化（拡張版）
-4. **リセット機能** - 初期状態への復元（復習）
-
-#### 今回の新機能（DOM操作とイベント処理）
-5. **詳細表示切替** - ボタンクリックで画面要素の表示・非表示制御
-6. **基本カート機能** - 商品をカートに追加・削除する操作
-7. **DOM学習支援** - 画面要素の変化を可視化して学習をサポート
-
-### 🎨 デザインの特徴
-
-- **段階的な複雑化**: 19.1の美しいデザインをベースに機能追加
-- **視覚的フィードバック**: ボタンの状態変化、要素の表示切替
-- **学習の可視化**: DOM要素の変化過程を目で確認可能
-
-## 📝 学習ポイント
-
-### 🔧 今回のメイン学習テーマ: DOM操作とイベント処理
-
-1. **DOM操作とは何か？**
-   - DOM = Document Object Model（文書オブジェクトモデル）
-   - HTMLの要素を JavaScript で操作する技術
-   - 「ボタンを押したら何かが起こる」を実現する仕組み
-
-2. **なぜDOM操作を学ぶのか？**
-   - 静的なWebページ → 動的なWebアプリケーションへ
-   - ユーザーの操作に反応するインタラクティブな体験
-   - 現代のWebサイトには必須の技術
-
-3. **DOM操作の基本パターン**
-   - `getElementById()` で要素を取得
-   - `classList.add/remove()` で見た目を変更
-   - `textContent` や `innerHTML` で内容を更新
-
-### 💡 19.1からの発展ポイント
-
-- **データ管理（19.1）** + **画面制御（19.2）** = **完全なWebアプリ機能**
-- オブジェクトの値が変わったら、画面も自動的に更新
-- 複数のボタンを管理する方法を習得
-
-## 🔍 詳細解説
-
-### 🏗️ 19.1から19.2への発展過程
-
-**19.1の基礎**:
-```javascript
-// オブジェクトでデータ管理
-const productData = {
-    name: "プレミアム Tシャツ",
-    likes: 0,
-    isLiked: false
-};
+## 🧪 例題
+HTML
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>イベント委譲</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <div id="list"></div>
+    <div id="log" style="margin-top:8px" aria-live="polite"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
 ```
 
-**19.2の拡張**:
-```javascript
-// オブジェクト + DOM操作を組み合わせ
-const productData = {
-    name: "プレミアム Tシャツ",
-    likes: 0,
-    isLiked: false,
-    showDetails: false,  // ← 新しい状態を追加
-    inCart: false        // ← カート機能のための状態
-};
+CSS
+```css
+#list{display:grid;gap:6px}
+.item{padding:6px;border:1px solid #ddd;border-radius:6px}
+.buy{margin-left:8px}
+```
 
-// DOM要素の表示・非表示を制御
-function toggleDetails() {
-    const detailsElement = document.getElementById('productDetails');
-    if (productData.showDetails) {
-        detailsElement.classList.add('show');  // 表示
-    } else {
-        detailsElement.classList.remove('show');  // 非表示
-    }
+JavaScript
+```js
+const items = [
+  { id: 1, name: 'Apple' },
+  { id: 2, name: 'Banana' },
+  { id: 3, name: 'Cherry' }
+];
+
+function render(){
+  const html = items.map(it => `
+    <div class="item">${it.name}<button class="buy" data-id="${it.id}">購入</button></div>
+  `).join('');
+  document.getElementById('list').innerHTML = html; // 固定データのみ
 }
+
+function setup(){
+  const $list = document.getElementById('list');
+  const $log = document.getElementById('log');
+  $list.addEventListener('click', (event) => {
+    if (!event.target.matches('.buy')) return; // 発火元が購入ボタンか
+    const id = Number(event.target.getAttribute('data-id'));
+    const item = items.find(i => i.id === id);
+    if (!item) return;
+    $log.textContent = `${item.name} を購入ボタンでクリックしました`;
+  });
+}
+
+render();
+setup();
 ```
 
-### 🎯 学習戦略
+## ✨ 新しく追加された部分
+- 親要素にイベントを一括登録し、子でのクリックを捕捉
+- `matches('.buy')` と `dataset`/`getAttribute` で対象特定
 
-1. **段階的構築**
-   - 19.1の知識（オブジェクト管理）を確実に活用
-   - 新しい概念（DOM操作）を一つずつ追加
-   - 機能ごとに動作確認
+## 🔍 コードの説明
+- DOM描画は `render()` に集約、イベントは `setup()` で1回だけ登録
+- クリック時に該当IDを取得し、対応する商品名を `#log` に表示
 
-2. **実践的学習**
-   - 詳細表示機能：「表示される・隠れる」を目で確認
-   - カート機能：「追加される・削除される」を体験
-   - 統計機能：データの変化をリアルタイム表示
+## 📖 豆知識
+- 委譲は動的追加要素にも有効。大量要素でも負荷が少ない
+- 最近のブラウザでは `closest('.selector')` も便利
 
-3. **デバッグ習慣の強化**
-   - コンソールでオブジェクトとDOM要素の両方を確認
-   - どのボタンが押されたか、どの要素が変化したかを追跡
+## ⚠️ 注意点
+- `innerHTML` は固定データのみ。ユーザー入力は `textContent` で
+- `event.target` はボタン内の子要素になることもあるため `closest` を使うと堅牢
 
-### 🚀 実用性の向上
-
-- **ECサイト的な操作感**: 実際のネットショップと同じ操作
-- **ユーザビリティ**: 直感的で使いやすいインターフェース
-- **拡張性**: 19.3以降でさらに高度な機能を追加する土台
-
----
-
-### 💻 実習の進め方
-
-1. **19.1の復習**: オブジェクトによるデータ管理の確認
-2. **詳細表示機能**: DOM要素の表示・非表示切替を体験
-3. **カート機能**: 商品の追加・削除操作を実装
-4. **統合テスト**: 全ての機能が連携して動作することを確認
-5. **DOM学習**: コンソールで要素の変化を観察
-
-**重要**: 今回は「DOM操作とイベント処理」に集中し、19.1の基礎知識を確実に活用しながら新しい技術を学習しましょう！
-
----
-
-## 🎉 完成時の達成感
-
-- ✅ **DOM操作の基礎**をマスターし、画面制御が可能に
-- ✅ **複数の機能を連携**させる技術を習得
-- ✅ **19.1のオブジェクト管理 + 19.2のDOM操作**で実用的なWebアプリの基盤完成
-- ✅ **より動的で魅力的**な商品カード機能を実現
-- ✅ **19.3でのデータ管理強化**への確実な準備が完了
+## 🛒 ECサイト制作で繋がるポイント
+- 商品リストでの「購入」「お気に入り」などのクリック処理を一括管理
+- 動的に増えるリストに対しても追加実装不要

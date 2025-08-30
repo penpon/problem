@@ -1,0 +1,30 @@
+{
+  "id": "bootstrap-21",
+  "title": "まとめ練習 - EC商品一覧＋フィルタ",
+  "description": "カテゴリ/在庫/並び替えのUIとカードグリッドを1ページに統合して配置します。視覚的に完成状態のレイアウトを作ることが目的です。",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "ヘッダーに .navbar.navbar-light.bg-light + .container-fluid + .navbar-brand を配置",
+    ".container 内上部に .row.g-2 を作り、 select#cat.form-select / input#inStock.form-check-input(+label) / select#sort.form-select を mdで3列配置",
+    "#products.row の中に .col-12.col-md-6.col-lg-4 のカードを3枚配置（画像/タイトル/価格/カテゴリバッジ）",
+    "価格は .price.h5.text-primary として強調する"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>まとめ練習 - EC商品一覧＋フィルタ</title>\n  <!-- Bootstrap CDN を読み込んでください -->\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-21/files.html.expected"
+    },
+    "css": {
+      "template": ".price { font-weight: 700; }",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-21/files.css.expected"
+    }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "navbar", "name": ".navbar.navbar-light.bg-light .container-fluid .navbar-brand", "type": "structure", "message": "ヘッダーにブランド付きナビバーを配置してください" },
+    { "id": "filters", "name": "#cat.form-select, #inStock.form-check-input, #sort.form-select", "type": "structure", "message": "カテゴリ/在庫/並び替えUIを配置してください" },
+    { "id": "products", "name": "#products.row .card", "type": "structure", "message": "#products 内に .card を配置してください" },
+    { "id": "price", "name": ".price.h5.text-primary", "type": "structure", "message": "価格は .price.h5.text-primary で強調してください" }
+  ]
+}

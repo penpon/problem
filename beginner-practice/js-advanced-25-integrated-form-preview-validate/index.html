@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>js-advanced-25 総合: フォーム プレビュー + バリデーション</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>総合: フォーム プレビュー + バリデーション</h1>
+
+    <form id="contactForm" novalidate>
+      <div class="field">
+        <label for="nameInput">お名前</label>
+        <input id="nameInput" type="text" placeholder="山田 太郎" required />
+      </div>
+      <div class="field">
+        <label for="emailInput">メール</label>
+        <input id="emailInput" type="email" placeholder="taro@example.com" required />
+      </div>
+      <div class="field">
+        <label for="msgInput">メッセージ</label>
+        <textarea id="msgInput" rows="4" placeholder="お問い合わせ内容"></textarea>
+      </div>
+      <div class="actions">
+        <button id="submitBtn" type="submit" disabled>送信</button>
+        <span id="statusText" class="meta">未送信</span>
+      </div>
+    </form>
+
+    <div class="preview" aria-live="polite">
+      <h2>プレビュー</h2>
+      <div>お名前: <span id="pvName">-</span></div>
+      <div>メール: <span id="pvEmail">-</span></div>
+      <div>メッセージ: <span id="pvMsg">-</span></div>
+      <ul id="errorList" class="errors"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

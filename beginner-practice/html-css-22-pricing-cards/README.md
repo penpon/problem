@@ -14,6 +14,69 @@
 
 - 🧪 **例題**
   - Basic / Pro / Enterprise の3プランを横並びにし、Proを強調
+  - 下記コードをそのまま `index.html` として保存すると動作します。
+
+  ```html
+  <!doctype html>
+  <html lang="ja">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>価格表カード例</title>
+      <style>
+        :root { --accent:#2563eb; }
+        body { font-family: system-ui, sans-serif; margin:0; padding:40px; background:#f7f7fb; }
+        .pricing { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+        .card {
+          width:260px; background:#fff; border-radius:16px; padding:24px; text-align:center;
+          box-shadow:0 2px 10px rgba(0,0,0,.06); transition:transform .2s ease, box-shadow .2s ease;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,.16); }
+        .card--featured { border:2px solid var(--accent); transform: scale(1.02); }
+        .title { font-size:20px; font-weight:700; margin:0 0 8px; }
+        .price { font-size:32px; font-weight:800; color:var(--accent); margin:0 0 16px; }
+        ul { list-style: none; padding:0; margin:0 0 16px; }
+        li { margin:6px 0; color:#444; }
+        .btn { display:inline-block; padding:10px 16px; border-radius:999px; background:var(--accent); color:#fff; text-decoration:none; }
+      </style>
+    </head>
+    <body>
+      <h1>プラン比較</h1>
+      <section class="pricing">
+        <article class="card">
+          <h2 class="title">Basic</h2>
+          <p class="price">¥0</p>
+          <ul>
+            <li>1プロジェクト</li>
+            <li>メールサポート</li>
+            <li>月間1GB</li>
+          </ul>
+          <a class="btn" href="#">はじめる</a>
+        </article>
+        <article class="card card--featured">
+          <h2 class="title">Pro</h2>
+          <p class="price">¥980</p>
+          <ul>
+            <li>無制限プロジェクト</li>
+            <li>優先サポート</li>
+            <li>月間50GB</li>
+          </ul>
+          <a class="btn" href="#">今すぐ登録</a>
+        </article>
+        <article class="card">
+          <h2 class="title">Enterprise</h2>
+          <p class="price">お問い合わせ</p>
+          <ul>
+            <li>SLA保証</li>
+            <li>専任サクセスマネージャー</li>
+            <li>カスタム統合</li>
+          </ul>
+          <a class="btn" href="#">相談する</a>
+        </article>
+      </section>
+    </body>
+  </html>
+  ```
 
 - ✨ **新しく追加された部分**
   - `.card--featured`に`transform`や強い配色で差別化

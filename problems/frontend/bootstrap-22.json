@@ -1,0 +1,31 @@
+{
+  "id": "bootstrap-22",
+  "title": "まとめ練習 - EC商品詳細",
+  "description": "商品画像・タイトル・価格・カテゴリ・説明・CTAを2カラムレイアウトで配置します。視覚的に完成した詳細ページのレイアウトを作ります。",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "メインは .container 内で .row を使って 画像(.img-fluid) と 詳細(テキスト/ボタン) を 2カラムに配置",
+    "価格は .price.h4.text-primary とする",
+    "カテゴリは .badge を使用する",
+    "CTAは .btn.btn-primary.btn-lg として配置"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>まとめ練習 - EC商品詳細</title>\n  <!-- Bootstrap CDN を読み込んでください -->\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-22/files.html.expected"
+    },
+    "css": {
+      "template": ".price { font-weight: 700; }",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-22/files.css.expected"
+    }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "layout", "name": ".container .row", "type": "structure", "message": ".container 内で .row によるレイアウトを作ってください" },
+    { "id": "image", "name": "img.img-fluid", "type": "structure", "message": "商品画像は .img-fluid を付与してください" },
+    { "id": "price", "name": ".price.h4.text-primary", "type": "structure", "message": "価格は .price.h4.text-primary で強調してください" },
+    { "id": "badge", "name": ".badge", "type": "structure", "message": "カテゴリ表示に .badge を使用してください" },
+    { "id": "cta", "name": ".btn.btn-primary.btn-lg", "type": "structure", "message": "CTAボタンは .btn.btn-primary.btn-lg を使用してください" }
+  ]
+}

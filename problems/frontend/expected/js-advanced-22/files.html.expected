@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>js-advanced-22 まとめ練習 - カート合計（数量+送料+クーポン）</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>まとめ練習 - カート合計（数量 + 送料 + クーポン）</h1>
+
+    <div class="cart">
+      <div class="cart-row header">
+        <div>商品</div>
+        <div>価格</div>
+        <div>数量</div>
+        <div>小計</div>
+      </div>
+      <div class="cart-row" data-id="1">
+        <div class="title">Mini Tripod</div>
+        <div class="price" data-price="1800">¥1,800</div>
+        <div class="qty">
+          <button class="dec" type="button">-</button>
+          <input class="qty-input" type="number" value="1" min="0" />
+          <button class="inc" type="button">+</button>
+        </div>
+        <div class="subtotal">¥1,800</div>
+      </div>
+      <div class="cart-row" data-id="2">
+        <div class="title">Light Stand</div>
+        <div class="price" data-price="3200">¥3,200</div>
+        <div class="qty">
+          <button class="dec" type="button">-</button>
+          <input class="qty-input" type="number" value="1" min="0" />
+          <button class="inc" type="button">+</button>
+        </div>
+        <div class="subtotal">¥3,200</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label for="shippingSelect">送料</label>
+      <select id="shippingSelect">
+        <option value="0">通常(¥500)</option>
+        <option value="1">無料(¥0)</option>
+      </select>
+
+      <label for="couponInput">クーポン</label>
+      <input id="couponInput" type="text" placeholder="SAVE10" />
+      <button id="applyBtn" type="button">適用</button>
+    </div>
+
+    <div class="summary">
+      <div>小計: <span id="sumSubtotal">¥0</span></div>
+      <div>送料: <span id="sumShipping">¥0</span></div>
+      <div class="total">合計: <span id="sumTotal">¥0</span></div>
+      <div class="meta" id="statusText">未計算</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

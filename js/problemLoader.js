@@ -301,11 +301,18 @@ class ProblemLoader {
       'js-advanced-19': 'js-advanced-19-card-template',
       'js-advanced-20': 'js-advanced-20-basic-validation',
       
+      // JavaScript応用 統合 (js-advanced-21 → js-advanced-25)
+      'js-advanced-21': 'js-advanced-21-integrated-search-sort-filter',
+      'js-advanced-22': 'js-advanced-22-integrated-cart-totals',
+      'js-advanced-23': 'js-advanced-23-integrated-favorite-view',
+      'js-advanced-24': 'js-advanced-24-integrated-timer-banner',
+      'js-advanced-25': 'js-advanced-25-integrated-form-preview-validate',
+      
       // Bootstrap・最小課題（bootstrap-01 → bootstrap-10）
       'bootstrap-01': 'bootstrap-01-integrated-system',
-      'bootstrap-02': 'bootstrap-02-simple-calculator',
+      'bootstrap-02': 'bootstrap-02-ec-header-search',
       'bootstrap-03': 'bootstrap-03-simple-calculator-bootstrap',
-      'bootstrap-04': 'bootstrap-04-basic-calculator',
+      'bootstrap-04': 'bootstrap-04-ec-product-card',
       'bootstrap-05': 'bootstrap-05-advanced-calculator',
       'bootstrap-06': 'bootstrap-06-scientific-calculator',
       'bootstrap-07': 'bootstrap-07-two-product-gallery',
@@ -315,14 +322,20 @@ class ProblemLoader {
       // 追加: Bootstrap 11以降（EC橋渡し用）
       'bootstrap-11': 'bootstrap-11-grid-12-6-4',
       'bootstrap-12': 'bootstrap-12-card-3-items',
-      'bootstrap-13': 'bootstrap-13-navbar-basic',
+      'bootstrap-13': 'bootstrap-13-ec-product-grid',
       'bootstrap-14': 'bootstrap-14-utility-classes',
       'bootstrap-15': 'bootstrap-15-form-controls',
-      'bootstrap-16': 'bootstrap-16-button-states',
-      'bootstrap-17': 'bootstrap-17-modal-minimal',
+      'bootstrap-16': 'bootstrap-16-ec-cart-summary',
+      'bootstrap-17': 'bootstrap-17-ec-filter-bar',
       'bootstrap-18': 'bootstrap-18-badges',
       'bootstrap-19': 'bootstrap-19-table-minimal',
       'bootstrap-20': 'bootstrap-20-advanced-grid',
+      // 追加: Bootstrap 総合(まとめ練習) 21〜25
+      'bootstrap-21': 'bootstrap-21-summary-product-list-filter',
+      'bootstrap-22': 'bootstrap-22-summary-product-detail',
+      'bootstrap-23': 'bootstrap-23-summary-header-search-nav',
+      'bootstrap-24': 'bootstrap-24-summary-landing-page',
+      'bootstrap-25': 'bootstrap-25-summary-pricing',
       
       // 総合ECサイト構築 (ec-project-01 → ec-project-15)
       'ec-project-01': 'ec-project-01-responsive-system',

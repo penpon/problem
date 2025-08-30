@@ -1,45 +1,140 @@
-# EC-15: ミニカート導入（件数と合計の更新）
+# EC-15: ミニカート（明細と合計）
 
-## 🎯 学習目標
-カタログ画面に「ミニカート（件数と合計金額の表示）」を導入します。商品カードの「カートに追加」操作で件数と合計を即時に更新できるようにし、次のステップ EC-16「チェックアウト分離」でカート画面へ遷移できる準備を整えます。
+## 🧩 学ぶタグ/プロパティ
+- カート配列と数量: `id/price/qty`
+- 合計金額の再計算
+- イベント委任: 追加/±/削除
 
-### 身につく基本概念
-- 配列の基本操作（find / push / map / reduce）
-- DOM 要素の取得と更新（textContent の更新）
-- シンプルな状態管理（`cart` 配列）
-- ユーザー操作に対する UI 反映（イベントと再計算）
+## 🔁 前回の復習
+- 配列→カード描画、カウント増加
 
-## 📖 学習内容
+## 📌 重要なポイント
+- 単一のソース（cart配列）からUIを毎回再描画
+- 小計=price×qty、合計=小計の合算
 
-### 実装する機能（最小）
-1. 商品一覧の表示（3 件程度、カード形式）
-2. 「カートに追加」ボタンで `cart` に商品を追加
-3. ヘッダーのミニカート表示
-   - 件数: `#cartCount`
-   - 合計: `#miniCartTotal`
-4. 追加時に件数と合計を即時更新
+## 🧪 例題（コピペ即動作）
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC-15 ミニカート</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h1 class="mb-3">ミニカート（明細と合計）</h1>
 
-> 注意: 本ステップではチェックアウト画面や明細リストの描画は行いません。次の EC-16 で「カタログ→チェックアウト分離」を学びます。
+    <div class="row g-3">
+      <div class="col-12 col-lg-8">
+        <div class="row g-3" id="products"></div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card">
+          <div class="card-header">🛒 カート</div>
+          <ul class="list-group list-group-flush" id="cartList"></ul>
+          <div class="card-body d-flex justify-content-between">
+            <strong>合計</strong>
+            <strong>¥<span id="grand">0</span></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-## 🧱 最小構成
-- `index.html`: ヘッダー（ミニカート）、商品一覧
-- `style.css`: シンプルなカードレイアウト
-- `script.js`: データ定義、`addToCart()`、合計/件数の再計算と表示
+  <script>
+    const products = [
+      { id: 1, name: 'マグ', price: 1200 },
+      { id: 2, name: 'Tシャツ', price: 2980 },
+      { id: 3, name: 'バッグ', price: 3480 }
+    ];
+    const cart = [];
 
-## 📝 学習ポイント
-- `Array.prototype.find()` で既存アイテムを探索
-- 既存なら数量 `quantity` を +1、初回なら `{ ...product, quantity: 1 }` を push
-- 件数は `cart.reduce((sum, i) => sum + i.quantity, 0)`
-- 合計は `cart.reduce((sum, i) => sum + i.price * i.quantity, 0)`
-- 数値の表示は `toLocaleString()` を活用
+    function renderProducts(){
+      const root = document.getElementById('products');
+      root.innerHTML = '';
+      products.forEach(p => {
+        const col = document.createElement('div');
+        col.className = 'col-12 col-md-6';
+        col.innerHTML = `
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-1">${p.name}</h5>
+              <div class="text-primary fw-bold mb-2">¥${p.price.toLocaleString()}</div>
+              <button class="btn btn-primary add" data-id="${p.id}">カートに追加</button>
+            </div>
+          </div>`;
+        root.appendChild(col);
+      });
+    }
 
-## ✅ 完成チェックリスト
-- [ ] カードの「カートに追加」で `#cartCount` が増える
-- [ ] 同操作で `#miniCartTotal` が増える
-- [ ] ページを再読み込みすると初期化される（永続化は不要）
-- [ ] エラーが出ない（コンソールも正常）
+    function renderCart(){
+      const list = document.getElementById('cartList');
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+        const sub = item.price * item.qty; total += sub;
+        li.innerHTML = `
+          <div>
+            <div class="fw-bold">${item.name}</div>
+            <div class="text-muted">¥${item.price.toLocaleString()} × ${item.qty} = ¥${sub.toLocaleString()}</div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-sm btn-outline-secondary dec" data-id="${item.id}">-</button>
+            <button class="btn btn-sm btn-outline-secondary inc" data-id="${item.id}">+</button>
+            <button class="btn btn-sm btn-outline-danger del" data-id="${item.id}">✕</button>
+          </div>`;
+        list.appendChild(li);
+      });
+      document.getElementById('grand').textContent = total.toLocaleString();
+    }
 
-## 🚀 次の学習（EC-16 への橋渡し）
-- 複数ビューの状態管理（`d-none` の切替）
-- カート明細の描画とチェックアウト画面
-- 小計/合計の再計算と UI 反映
+    function addToCart(id){
+      const p = products.find(x => x.id == id);
+      const hit = cart.find(x => x.id == id);
+      if (hit) hit.qty += 1; else cart.push({ ...p, qty: 1 });
+      renderCart();
+    }
+
+    function changeQty(id, delta){
+      const i = cart.findIndex(x => x.id == id);
+      if (i === -1) return;
+      cart[i].qty += delta;
+      if (cart[i].qty <= 0) cart.splice(i,1);
+      renderCart();
+    }
+
+    document.addEventListener('click', (e) => {
+      const id = e.target.dataset.id;
+      if (e.target.classList.contains('add')) addToCart(id);
+      if (e.target.classList.contains('inc')) changeQty(id, +1);
+      if (e.target.classList.contains('dec')) changeQty(id, -1);
+      if (e.target.classList.contains('del')) changeQty(id, -9999);
+    });
+
+    renderProducts();
+    renderCart();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+```
+
+## ✨ 新しく追加された部分
+- 明細リストと小計/合計の表示
+- 数量の±と削除
+
+## 🔍 コードの説明
+- `cart` を唯一の真実としUIを再描画
+
+## 📖 豆知識
+- 金額は常に表示直前で計算→一貫性が保てる
+
+## ⚠️ 注意点
+- マイナス数量を許さない防御
+
+## 🛒 ECサイト制作で繋がるポイント
+- チェックアウト画面へつなぐ準備が整う

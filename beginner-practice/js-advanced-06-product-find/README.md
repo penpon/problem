@@ -1,37 +1,100 @@
 # 単一商品詳細表示（find）
 
-## 🧩 学ぶポイント
-- Array.prototype.find による単一要素の取得
-- 最小のフォーム入力（number）とクリックイベント
-- textContent による安全な表示
+## 🧩 **学ぶタグ/プロパティ**
+- `Array.prototype.find` による単一要素検索
+- 入力値の数値化と妥当性チェック（`Number`, `Number.isInteger`）
+- `textContent` による安全な表示
 
-## 🔁 前回の復習
-- filter/includes や sort の配列処理
-- イベント駆動での DOM 更新
+## 🔁 **前回の復習**
+- リスト表示・カードDOM生成（03/04）
+- ユーザー入力の正規化（trim, toLowerCase）
 
-## 📌 重要なポイント
-- 入力値は Number に変換し、妥当性を確認
-- find は一致した最初の要素を返し、無い場合は undefined
-- 表示は textContent を用いて XSS を回避
+## 📌 **重要なポイント**
+- `find` は最初に一致した1件のみを返す（無ければ `undefined`）
+- 非数や0/負数は不正として扱い、見つからない表示にする
+- 画面更新は一箇所の `renderDetail()` に集約
 
-## 🧪 例題（HTML/CSS/JS）
-- 本ディレクトリのテンプレート（index.html/style.css/script.js）を参照
+## 🧪 **例題**
+HTML
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>js-advanced-06 単一商品詳細表示（find）</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>商品詳細</h1>
+    <div class="controls">
+      <label for="productIdInput">商品ID</label>
+      <input id="productIdInput" type="number" min="1" step="1" placeholder="例: 1" />
+      <button id="showBtn" type="button">表示</button>
+      <div class="meta">該当: <span id="statusText">未検索</span></div>
+    </div>
+    <div id="productDetail" class="product-detail" aria-live="polite"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+```
 
-## ✨ 新しく追加された部分
-- ID 入力 → ボタンクリックで 1 件の詳細表示
-- 見つかった/見つからないのステータス表示
+JavaScript
+```js
+const products = [
+  { id: 1, name: 'Pro Camera', price: 49800 },
+  { id: 2, name: 'Light Stand', price: 3200 },
+  { id: 3, name: 'Mini Tripod', price: 1800 },
+  { id: 4, name: 'Pro Light', price: 9800 },
+  { id: 5, name: 'Simple Bag', price: 2500 }
+];
 
-## 🔍 コードの説明
-- findProductById(id): products.find(p => p.id === id) || null
-- renderDetail(product): 詳細DOM生成とステータス更新
+const $input = document.getElementById('productIdInput');
+const $btn = document.getElementById('showBtn');
+const $detail = document.getElementById('productDetail');
+const $status = document.getElementById('statusText');
 
-## 📖 豆知識
-- toLocaleString で価格フォーマット
-- aria-live=polite で動的更新の読み上げを補助
+function renderDetail(product) {
+  $detail.innerHTML = '';
+  if (!product) { $status.textContent = '見つかりません'; return; }
+  const name = document.createElement('div');
+  name.className = 'product-name';
+  name.textContent = product.name;
+  const price = document.createElement('div');
+  price.className = 'product-price';
+  price.textContent = `¥${product.price.toLocaleString()}`;
+  $detail.appendChild(name);
+  $detail.appendChild(price);
+  $status.textContent = '見つかりました';
+}
 
-## ⚠️ 注意点
-- 不正な入力（小数/0/負値）は見つからない扱い
-- innerHTML 直書きは使わず、要素生成 + textContent で追加
+function findProductById(id) { return products.find(p => p.id === id) || null; }
 
-## 🛒 ECサイト制作で繋がるポイント
-- 商品詳細画面（PDP）への基礎。検索→詳細遷移の一部ロジックに対応
+$btn.addEventListener('click', () => {
+  const id = Number($input.value);
+  if (!Number.isInteger(id) || id <= 0) { renderDetail(null); return; }
+  renderDetail(findProductById(id));
+});
+```
+
+## ✨ **新しく追加された部分**
+- `find` による単一データの取得フロー
+- ステータステキスト（見つかった/見つからない）の導入
+
+## 🔍 **コードの説明**
+- `findProductById` が1件検索を返す
+- `renderDetail` が詳細DOM生成と状態表示を担う
+
+## 📖 **豆知識**
+- 複数候補が欲しい場合は `filter`
+- 見つからないときの代替UI/プレースホルダを用意すると親切
+
+## ⚠️ **注意点**
+- 入力を厳格に数値検証（空/小数/負数はNG）
+- 表示は `textContent` で安全に行う
+
+## 🛒 **ECサイト制作で繋がるポイント**
+- 商品詳細ページのIDクエリ解決
+- 入力/パラメータに対する堅牢なバリデーション

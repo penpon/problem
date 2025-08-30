@@ -14,6 +14,51 @@
 
 - 🧪 **例題**
   - 利用規約 / プライバシー / お問い合わせ / 採用情報 を横並びリンクで配置
+  - 下記コードをそのまま `index.html` として保存すると動作します。
+
+  ```html
+  <!doctype html>
+  <html lang="ja">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>フッター例</title>
+      <style>
+        :root { --bg:#111827; --link:#e5e7eb; }
+        body { font-family: system-ui, sans-serif; margin:0; min-height:100vh; display:flex; flex-direction:column; }
+        main { flex:1; padding:40px 20px; }
+        .footer {
+          background: var(--bg); color:#9ca3af; padding: 28px 16px;
+        }
+        .footer nav { display:flex; justify-content:center; }
+        .footer ul { display:flex; gap:20px; padding:0; margin:0; list-style:none; }
+        .footer a {
+          color: var(--link); text-decoration:none; opacity:.85;
+          transition: opacity .15s ease, color .15s ease;
+        }
+        .footer a:hover { opacity:1; color:#fff; }
+        .copyright { text-align:center; margin-top:12px; font-size:12px; opacity:.7; }
+      </style>
+    </head>
+    <body>
+      <main>
+        <h1>サンプルページ</h1>
+        <p>本文コンテンツ...</p>
+      </main>
+      <footer class="footer">
+        <nav aria-label="フッターナビゲーション">
+          <ul>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシー</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+            <li><a href="#">採用情報</a></li>
+          </ul>
+        </nav>
+        <p class="copyright"> 2025 Example Inc.</p>
+      </footer>
+    </body>
+  </html>
+  ```
 
 - ✨ **新しく追加された部分**
   - `.footer`に背景色と充分な`padding`

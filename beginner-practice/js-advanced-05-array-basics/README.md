@@ -1,193 +1,91 @@
-# 配列基礎
+# 配列の基本操作
 
-## 🎯 学習目標
+## 🧩 **学ぶタグ/プロパティ**
+- 配列の作成と参照
+- 要素の追加 `push()` / 削除 `pop()`
+- 要素数 `length`
 
-**JavaScript配列の基本概念と基本操作**
+## 🔁 **前回の復習**
+- 変数と複数値管理の違い
+- DOM への安全な表示（`textContent`）
 
-- 配列（Array）の基本的な概念を理解する
-- 配列の作成方法を学ぶ
-- 配列の要素へのアクセス方法を習得する
-- 配列の基本操作（push、pop、length）を学ぶ
-- 配列の表示方法を理解する
+## 📌 **重要なポイント**
+- 配列は 0 から始まるインデックスで要素にアクセス
+- `push` は末尾に追加、`pop` は末尾から削除（戻り値は削除した要素）
 
-## 📖 この学習の内容
-
-### 📋 配列とは？
-
-**配列（Array）**は、複数の値をひとつの変数で管理するためのデータ構造です。今まで一つの値しか保存できなかった変数に対して、配列を使えば複数の値を順序付きで保存できます。
-
-```javascript
-// 今までの変数（一つの値のみ）
-let fruit = "りんご";
-
-// 配列（複数の値を保存）
-let fruits = ["りんご", "バナナ", "オレンジ"];
+## 🧪 **例題**
+HTML
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>js-advanced-05 配列の基本操作</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>配列の基本操作</h1>
+    <div class="controls">
+      <button id="addBtn">追加</button>
+      <button id="removeBtn">削除</button>
+    </div>
+    <div id="arr"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
 ```
 
-### 📝 学習ポイント
-
-#### 1. 配列の作成方法
-```javascript
-// 空の配列を作成
-let emptyArray = [];
-
-// 初期値を持つ配列を作成
-let colors = ["赤", "青", "緑"];
-let numbers = [1, 2, 3, 4, 5];
-let mixed = ["文字", 123, true]; // 異なる型も混在可能
+CSS
+```css
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 16px; }
+#arr { margin: 12px 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+button { margin-right: 8px; }
 ```
 
-#### 2. 配列の要素にアクセス
-```javascript
-let animals = ["犬", "猫", "鳥"];
+JavaScript
+```js
+const arr = ['りんご', 'バナナ'];
+const $arr = document.getElementById('arr');
+const $add = document.getElementById('addBtn');
+const $remove = document.getElementById('removeBtn');
 
-// インデックス（番号）でアクセス（0から開始）
-let first = animals[0];    // "犬"
-let second = animals[1];   // "猫"
-let third = animals[2];    // "鳥"
-```
-
-#### 3. 配列の基本情報取得
-```javascript
-let fruits = ["りんご", "バナナ", "オレンジ"];
-
-// 配列の長さ（要素数）を取得
-let count = fruits.length; // 3
-
-// 最初の要素
-let firstFruit = fruits[0]; // "りんご"
-
-// 最後の要素
-let lastFruit = fruits[fruits.length - 1]; // "オレンジ"
-```
-
-#### 4. 配列への要素の追加・削除
-```javascript
-let items = ["アイテム1", "アイテム2"];
-
-// 末尾に要素を追加
-items.push("アイテム3");
-console.log(items); // ["アイテム1", "アイテム2", "アイテム3"]
-
-// 末尾の要素を削除
-let removed = items.pop();
-console.log(removed); // "アイテム3"
-console.log(items);   // ["アイテム1", "アイテム2"]
-```
-
-## 🎪 実装された機能
-
-### 4つの配列操作デモ
-
-1. **📋 配列表示**: 配列の内容とインデックスを確認
-2. **🔍 要素アクセス**: インデックスを指定して要素を取得
-3. **➕ 要素追加**: 配列に新しい要素を追加
-4. **➖ 要素削除**: 配列から要素を削除
-
-### 学習用データセット
-
-- **🍎 果物配列**: ["りんご", "バナナ", "オレンジ", "ぶどう"]
-- **🎨 色配列**: ["赤", "青", "緑", "黄色"]
-- **🔢 数字配列**: [10, 20, 30, 40, 50]
-
-## 🏃‍♀️ 実行方法
-
-1. `index.html`をブラウザで開く
-2. 4つの機能ボタンを順番に試す
-3. 各操作の結果を確認する
-4. 配列の状態変化を観察する
-5. 開発者ツール（F12）でConsoleタブのログを確認
-
-## ✅ 完成チェックリスト
-
-この学習が完了したら、以下を確認してください：
-
-- [ ] 配列が複数の値を保存することを理解した
-- [ ] インデックス（0から開始）で要素にアクセスできた
-- [ ] 配列の長さ（length）の概念を理解した
-- [ ] push()で要素追加ができた
-- [ ] pop()で要素削除ができた
-- [ ] 各操作後の配列状態を確認した
-- [ ] コンソールで配列操作のログを確認した
-
-### 期待される動作例
-- **配列表示**: 配列の全内容と各要素のインデックスを表示
-- **要素アクセス**: "果物配列の2番目は「オレンジ」です"
-- **要素追加**: 配列に新要素が追加され、lengthが増加
-- **要素削除**: 最後の要素が削除され、lengthが減少
-
-## 🎨 試してみよう
-
-慣れてきたら、以下にチャレンジしてみましょう：
-
-1. **独自配列の作成**
-   ```javascript
-   // 開発者ツールのコンソールで実行
-   let myHobbies = ["読書", "映画鑑賞", "散歩"];
-   console.log("私の趣味:", myHobbies);
-   console.log("趣味の数:", myHobbies.length);
-   ```
-
-2. **特定位置の要素変更**
-   ```javascript
-   let colors = ["赤", "青", "緑"];
-   colors[1] = "紫"; // 2番目の要素を変更
-   console.log("変更後:", colors); // ["赤", "紫", "緑"]
-   ```
-
-3. **配列の全要素確認**
-   ```javascript
-   let numbers = [5, 10, 15, 20];
-   for(let i = 0; i < numbers.length; i++) {
-       console.log(`インデックス${i}: ${numbers[i]}`);
-   }
-   ```
-
-## 💡 配列の重要性
-
-### なぜ配列が必要？
-
-- **効率的なデータ管理**: 関連する複数の値をまとめて管理
-- **順序の保持**: 要素の順番を保持できる
-- **動的なサイズ**: 必要に応じて要素を追加・削除
-- **プログラムの簡潔性**: 複雑なデータ処理を簡単に記述
-
-### 実際の使用例
-
-#### ショッピングリスト
-```javascript
-let shoppingList = ["牛乳", "パン", "卵"];
-shoppingList.push("チーズ"); // 買い物リストに追加
-console.log(`買い物点数: ${shoppingList.length}個`);
-```
-
-#### 学生の成績管理
-```javascript
-let scores = [85, 92, 78, 96, 88];
-let total = 0;
-for(let i = 0; i < scores.length; i++) {
-    total += scores[i];
+function render() {
+  $arr.textContent = `[${arr.join(', ')}]  (length: ${arr.length})`;
 }
-let average = total / scores.length;
-console.log(`平均点: ${average}点`);
+
+$add.addEventListener('click', () => {
+  const item = `item-${arr.length + 1}`;
+  arr.push(item);
+  render();
+});
+
+$remove.addEventListener('click', () => {
+  arr.pop();
+  render();
+});
+
+// 初期表示
+render();
 ```
 
-## 📈 次の学習へ
+## ✨ **新しく追加された部分**
+- ボタン操作で配列の追加/削除を体験
+- 画面表示と `length` の同期
 
-素晴らしい！配列の基本操作をマスターしました！🎉
+## 🔍 **コードの説明**
+- `render()` が配列内容と要素数を一行で表示
+- `add/remove` の各イベントで配列操作 → `render()` 呼び出し
 
-次の学習では、今回学んだ配列を活用して、**ランダム選択システム**を実装し、Math.random()とランダム選択の仕組みを学習します。
+## 📖 **豆知識**
+- 先頭操作は `unshift`/`shift`
+- 任意位置の挿入/削除は `splice`
 
----
+## ⚠️ **注意点**
+- 大量DOM更新は避け、必要最小限の再描画にする（ここでは一箇所のテキスト更新）
 
-**💡 配列の基礎完了！**
-
-配列という「複数の値を管理する仕組み」を理解しました。この知識は：
-- データベースからの情報取得
-- ユーザーからの入力の管理
-- 動的なコンテンツの表示
-- ゲームの要素管理
-
-など、あらゆるプログラミング場面で活用される基本的で重要な概念です。
-
-**一つ一つの要素を順序立てて管理する力を身につけました！** 🚀
+## 🛒 **ECサイト制作で繋がるポイント**
+- カート配列の追加/削除と件数表示の基本パターン
+- 履歴リストや最近見た商品にも応用

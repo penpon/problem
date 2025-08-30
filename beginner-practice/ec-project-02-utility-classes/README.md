@@ -1,111 +1,87 @@
-# 20.7 スマホとPCで表示を変えよう
+# EC-02: スマホ/PCで切替（基本レスポンシブ）
 
-## 🎯 学習目標
+## 🧩 学ぶタグ/プロパティ
+- **グリッドのブレークポイント**: `col-12 col-md-4`
+- **余白ユーティリティ**: `g-3`, `mb-3`
+- **アラート**: `.alert`
 
-**56番のカードの続きで、スマホでは1つずつ、PCでは3つ並べる方法を学ぼう**
+## 🔁 前回の復習
+- `container` / `row` / `col-*` の基本
+- `.card` コンポーネントの使い方
 
-- `col-12 col-md-4`を使った基本的なレスポンシブ対応
-- スマホとPCで異なる表示を実現する
-- ブラウザの幅を変えて確認する方法を覚える
+## 📌 重要なポイント
+- 画面幅に応じてカラムを切替える: 小画面=1列, 中画面以上=3列
+- コンポーネント間の余白はユーティリティクラスで調整
 
-## 📝 学習内容
-
-### 今回作るもの
-
-**レスポンシブな3商品カード**
-- スマホ（小さい画面）：1つずつ縦に並ぶ
-- PC（大きい画面）：3つ横に並ぶ
-- 56番で学んだ3つのカードを使用
-
-### 今回学ぶこと
-
-- `col-12 col-md-4`の意味と使い方
-- スマホとPCでの表示の違い
-- ブラウザの幅を変えて確認する方法
-
-## 🔍 詳細解説
-
-### レスポンシブの仕組み
-
-**col-12 col-md-4の意味**
-- `col-12`: スマホなど小さい画面では12カラム分（全幅）を使用
-- `col-md-4`: 中サイズ以上（PC）の画面では4カラム分を使用
-- 結果：スマホでは1つずつ、PCでは3つ並ぶ
-
-### レスポンシブ対応した3つのカード
-
-**HTML（56番のコードを少し変更）**
+## 🧪 例題（コピペ即動作）
 ```html
-<h2>スマホとPCで表示が変わるカード</h2>
-<p>ブラウザの幅を変えて確認してみましょう</p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC-02 レスポンシブ切替</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h1 class="mb-3">📱→🖥️ 自動でレイアウトが変わる</h1>
+    <div class="alert alert-info">幅を縮めたり広げたりして挙動を確認しよう</div>
 
-<div class="alert alert-warning" role="alert">
-    ブラウザの幅を小さくしたり大きくしたりしてみてね！
-</div>
-
-<div class="row">
-    <!-- 1番目のカード -->
-    <div class="col-12 col-md-4 mb-3">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200/ff6b6b/white?text=商品1" class="card-img-top" alt="商品1">
-            <div class="card-body">
-                <h5 class="card-title">商品1</h5>
-                <p class="card-text">美味しいリンゴです。</p>
-                <a href="#" class="btn btn-danger">購入する</a>
-            </div>
+    <div class="row g-3">
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/p1/600/400" class="card-img-top" alt="商品1">
+          <div class="card-body">
+            <h5 class="card-title">商品1</h5>
+            <p class="card-text">小画面では1列、広い画面で3列。</p>
+            <a href="#" class="btn btn-primary">購入する</a>
+          </div>
         </div>
-    </div>
-    
-    <!-- 2番目のカード -->
-    <div class="col-12 col-md-4 mb-3">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200/4ecdc4/white?text=商品2" class="card-img-top" alt="商品2">
-            <div class="card-body">
-                <h5 class="card-title">商品2</h5>
-                <p class="card-text">新鮮なバナナです。</p>
-                <a href="#" class="btn btn-warning">購入する</a>
-            </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/p2/600/400" class="card-img-top" alt="商品2">
+          <div class="card-body">
+            <h5 class="card-title">商品2</h5>
+            <p class="card-text">`col-12 col-md-4` を使用。</p>
+            <a href="#" class="btn btn-success">購入する</a>
+          </div>
         </div>
-    </div>
-    
-    <!-- 3番目のカード -->
-    <div class="col-12 col-md-4 mb-3">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200/95e1d3/white?text=商品3" class="card-img-top" alt="商品3">
-            <div class="card-body">
-                <h5 class="card-title">商品3</h5>
-                <p class="card-text">甘いオレンジです。</p>
-                <a href="#" class="btn btn-success">購入する</a>
-            </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/p3/600/400" class="card-img-top" alt="商品3">
+          <div class="card-body">
+            <h5 class="card-title">商品3</h5>
+            <p class="card-text">カード間の余白は `g-3`。</p>
+            <a href="#" class="btn btn-warning">購入する</a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
-<!-- 確認のための説明 -->
-<h3 class="mt-4">確認方法</h3>
-<div class="alert alert-info" role="alert">
-    <strong>PCの場合：</strong>ブラウザの横幅をドラッグして小さくしてみてください<br>
-    <strong>スマホの場合：</strong>画面を縦向きと横向きで確認してみてください
-</div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 ```
 
-### 仕組みの説明
+## ✨ 新しく追加された部分
+- ブレークポイント指定 `col-12 col-md-4`
+- 行・列のギャップ `g-3`
 
-1. **col-12**: スマホでは12カラム分（全幅）なので1つずつ縦に並ぶ
-2. **col-md-4**: PCでは4カラム分なので3つ横に並ぶ（4×3=12）
-3. **mb-3**: カード間に余白を追加（特にスマホで見やすくなる）
-4. **自動調整**: 画面サイズによって自動的に表示が切り替わる
+## 🔍 コードの説明
+- `col-12`: 小画面で全幅（縦並び）
+- `col-md-4`: 中画面以上で 3 分割
+- `g-3`: 同一行の列間余白
 
-## 💻 実習の進め方
+## 📖 豆知識
+- Bootstrap のブレークポイント: `sm`/`md`/`lg`/`xl`/`xxl`
+- 最初は `md` 基準でOK。後続回で細かく最適化
 
-1. **56番をコピー**: 前回の3つのカードをベースにする
-2. **col-4をcol-12 col-md-4に変更**: レスポンシブ対応にする
-3. **mb-3を追加**: カード間の余白を調整
-4. **ブラウザで確認**: 幅を変えて表示の変化を確認
+## ⚠️ 注意点
+- 画像の縦横比が揃わないと視覚的に崩れる → サンプルでは `picsum` 固定サイズで安定
 
-## 🎉 完成時の達成感
-
-- ✅ **レスポンシブ**の基本が理解できた
-- ✅ **スマホとPCの違い**を実感できた
-- ✅ **1つのコードで2つの表示**を実現できた
-- ✅ **次の学習**（もっと実用的なカード）への準備ができた
+## 🛒 ECサイト制作で繋がるポイント
+- 同一レイアウトで端末に最適化 → 実運用で最重要
+- 後続の検索/並び替え機能でもこの土台に描画していく

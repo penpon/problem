@@ -1,74 +1,90 @@
-# 基本データ管理
+# reduce で件数と合計を計算
 
-## 🎯 学習目標
+## 🧩 学ぶタグ/プロパティ
+- `Array.prototype.reduce` による集計（件数・合計）
+- `map().join('')` + `innerHTML` による一覧描画
+- 数値の整形表示（`toLocaleString()`）
 
-**配列とオブジェクトを組み合わせた本格的なデータ管理システムを構築し、商品お気に入り機能を通じて実用的なWebアプリケーション開発技術を習得する**
+## 🔁 前回の復習
+- `map().join('')` でのカードHTML生成
+- イベント非依存の初期描画フロー
 
-- 配列とオブジェクトを組み合わせたデータ構造を理解する
-- データの追加・削除・表示の基本的なCRUD操作を学ぶ
-- 配列データから統計情報を計算・表示する方法を習得する
-- 実際のECサイトに近い機能を実装する
+## 📌 重要なポイント
+- 件数は `items.length`、合計は `reduce((sum, i) => sum + i.price, 0)`
+- 結果は `#count` と `#total` に表示（通貨表記は任意）
+- 一覧は `map→join→#list.innerHTML` で最小実装
 
-## 📝 学習内容
+## 🧪 例題
+HTML
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>reduce で合計</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <div>件数: <span id="count">0</span></div>
+    <div>合計: <span id="total">0</span></div>
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
+```
 
-### **今回学ぶこと**
-- **配列 + オブジェクト**：複雑なデータ構造の管理方法
-- **CRUD操作**：Create（追加）、Read（表示）、Update、Delete（削除）の基本
-- **データの統計処理**：合計金額、平均価格、商品数の計算
-- **重複チェック**：同じ商品の重複追加防止機能
+CSS
+```css
+#list{display:grid;gap:6px}
+.item{padding:6px;border:1px solid #ddd;border-radius:6px}
+.name{font-weight:600}
+```
 
-### **前回の復習**
-- 関数のパラメータと戻り値
-- フォーム入力との連携
-- 実用的な計算処理
+JavaScript
+```js
+const items = [
+  { id: 1, name: 'Apple', price: 120 },
+  { id: 2, name: 'Banana', price: 80 },
+  { id: 3, name: 'Cherry', price: 200 }
+];
 
-### **重要なポイント**
-1. **データ構造設計**：{name: "商品名", price: 価格, addedTime: 時刻} のオブジェクト構造
-2. **配列操作メソッド**：push()で追加、filter()で削除、length で要素数取得
-3. **動的UI更新**：データの変更に応じてリアルタイムで画面を更新
+function render(){
+  const count = items.length;
+  const total = items.reduce((sum, i) => sum + i.price, 0);
+  document.getElementById('count').textContent = String(count);
+  document.getElementById('total').textContent = `¥${total.toLocaleString()}`;
+
+  const html = items.map(i => `
+    <div class="item">
+      <div class="name">${i.name}</div>
+      <div class="price">¥${i.price.toLocaleString()}</div>
+    </div>
+  `).join('');
+  document.getElementById('list').innerHTML = html; // 固定配列のみ
+}
+
+render();
+```
+
+## ✨ 新しく追加された部分
+- `reduce` による合計値の計算
+- 件数・合計のヘッダ表示
 
 ## 🔍 コードの説明
+- `reduce` 初期値 `0`、各要素の `price` を加算
+- 一覧は `map().join('')` でHTML生成→`innerHTML` へ反映
 
-この学習では、商品のお気に入り機能を実装します。4つの商品（Tシャツ、ジーンズ、スニーカー、リュック）から選択してお気に入りに追加し、統計情報を表示できます。
+## 📖 豆知識
+- 複合集計（件数・合計・平均）はオブジェクトをアキュムレータに
+- 金額フォーマットは `Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' })`
 
-核となる `favorites` 配列には、商品オブジェクトが格納され、追加・削除・統計計算の対象となります。また、重複チェック機能により、同じ商品を複数回追加することを防ぎます。
+## ⚠️ 注意点
+- 数値型での加算を保証（文字列連結に注意）
+- ユーザー入力はテンプレ直挿ししない（XSS対策）
 
-## 🚀 実践してみよう
-
-### **手順1: ファイルを開く**
-`42-data-basic/index.html` をブラウザで開いてください。
-
-### **手順2: お気に入り機能を体験**
-1. 4つの商品から「⭐ お気に入り」ボタンをクリック
-2. お気に入り商品一覧に追加されることを確認
-3. 統計が自動的に更新されることを確認
-
-### **手順3: データ管理機能を確認**
-1. 商品を複数追加して合計金額・平均価格の変化を観察
-2. 「削除」ボタンで個別商品を削除
-3. 「🗑️ 全て削除」で一括削除を試す
-
-### **手順4: 重複チェック機能の確認**
-同じ商品のお気に入りボタンを連続でクリックし、重複防止アラートが表示されることを確認
-
-## ✨ 試してみよう
-
-以下を変更して、変化を確認してみましょう：
-
-1. **新しい商品の追加**：HTMLに新しい商品カードを追加
-2. **データの拡張**：商品オブジェクトにカテゴリや評価などの項目を追加
-
-## ✅ この学習でできるようになること
-
-- [ ] 配列とオブジェクトを組み合わせたデータ管理ができる
-- [ ] 配列への要素の追加・削除ができる
-- [ ] 配列データから統計情報を計算できる
-- [ ] 重複チェックなどのデータ検証を実装できる
-
-## 📚 次の学習
-
-次は **データ管理強化** でlocalStorageによるデータ永続化技術を学びます！
-
----
-
-**🎉 おめでとうございます！基本的なデータ管理システムをマスターしました。実際のWebアプリケーションで使われる技術の基礎を身につけました！**
+## 🛒 ECサイト制作で繋がるポイント
+- カート内件数・小計の算出
+- 絞り込み結果の合計金額表示

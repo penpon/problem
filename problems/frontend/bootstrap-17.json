@@ -1,25 +1,32 @@
 {
   "id": "bootstrap-17",
-  "title": "モーダル（最小起動）",
-  "description": "ボタンでモーダルを開く最小構成を作成します",
+  "title": "ECフィルターバー（カテゴリ/在庫/並び替え）",
+  "description": "カテゴリ選択・在庫チェック・並び替えの最小フィルターバー",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CSS/JS を CDN(@latest)で読み込み",
-    "トリガーボタン（data-bs-toggle=modal で良い）",
-    "モーダル本体（.modal .modal-dialog .modal-content 最小）"
+    "Bootstrap CDN(@latest) を読み込む",
+    ".container 内に .row.g-2 を作り、colで3要素を横並び（sm:1 md:3）",
+    "カテゴリ<select#cat.form-select> / 在庫<input#inStock.form-check-input> / 並び替え<select#sort.form-select>"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>モーダル最小</title>\n</head>\n<body>\n  <div class=\"container my-3\">\n    <button class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">開く</button>\n\n    <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\">\n      <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\"><h5 class=\"modal-title\">タイトル</h5></div>\n          <div class=\"modal-body\">本文</div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">閉じる</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Filter Bar</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-17/files.html.expected"
     },
-    "css": { "template": "/* なし（最小） */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-17/files.css.expected" },
-    "js": { "template": "// data 属性で起動可。JSは不要（最小）\n", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-17/files.js.expected" }
+    "css": {
+      "template": "/* なし（最小） */",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-17/files.css.expected"
+    },
+    "js": {
+      "template": "// なし（最小）",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-17/files.js.expected"
+    }
   },
   "checks": [
     { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "bootstrap-js", "name": "Bootstrap JS", "type": "structure", "message": "Bootstrap JS CDNを読み込んでください" },
-    { "id": "modal-structure", "name": ".modal 構造", "type": "structure", "message": ".modal .modal-dialog .modal-content を配置してください" }
-  ],
-  "expectedResult": { "behavior": "ボタンを押すとモーダルが開く" }
+    { "id": "row-cols", "name": ".row.g-2 > .col-12.col-md-4", "type": "structure", "message": "3カラムの行を作ってください" },
+    { "id": "cat", "name": "#cat.form-select", "type": "structure", "message": "カテゴリ選択を配置してください" },
+    { "id": "stock", "name": "#inStock.form-check-input", "type": "structure", "message": "在庫チェックを配置してください" },
+    { "id": "sort", "name": "#sort.form-select", "type": "structure", "message": "並び替えを配置してください" }
+  ]
 }

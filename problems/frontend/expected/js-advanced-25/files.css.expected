@@ -1,0 +1,9 @@
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;margin:16px}
+.container{max-width:720px;margin:auto}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+input,textarea{padding:8px;border:1px solid #ccc;border-radius:6px}
+.actions{display:flex;gap:12px;align-items:center;margin-top:8px}
+button{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}
+.meta{color:#666}
+.preview{margin-top:16px;padding:12px;border:1px solid #e5e7eb;border-radius:8px;background:#fff}
+.errors{margin-top:8px;color:#b91c1c}

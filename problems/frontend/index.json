@@ -91,7 +91,12 @@
         "js-advanced-17",
         "js-advanced-18",
         "js-advanced-19",
-        "js-advanced-20"
+        "js-advanced-20",
+        "js-advanced-21",
+        "js-advanced-22",
+        "js-advanced-23",
+        "js-advanced-24",
+        "js-advanced-25"
       ]
     },
     {
@@ -119,7 +124,12 @@
         "bootstrap-17",
         "bootstrap-18",
         "bootstrap-19",
-        "bootstrap-20"
+        "bootstrap-20",
+        "bootstrap-21",
+        "bootstrap-22",
+        "bootstrap-23",
+        "bootstrap-24",
+        "bootstrap-25"
       ]
     },
     {
@@ -151,7 +161,7 @@
       ]
     }
   ],
-  "totalProblems": 110,
+  "totalProblems": 120,
   "lastUpdated": "2025-08-30",
   "version": "6.0.0"
 }

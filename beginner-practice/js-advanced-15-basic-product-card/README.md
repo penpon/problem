@@ -1,115 +1,95 @@
-# 19.1 基本商品カード - オブジェクトでデータ管理入門
+# 検索（input + includes）
 
-## 🎯 学習目標
+## 🧩 学ぶタグ/プロパティ
+- 文字列検索：`String.prototype.includes`
+- 入力イベント：`input` で都度再描画
+- `map().join('')` + `innerHTML` による一覧表示
 
-**JavaScriptの「オブジェクト」を使った効果的なデータ管理方法を学習**
+## 🔁 前回の復習
+- `filter` と `map().join('')`、`innerHTML` の組合せ
+- イベントドリブンなUI更新（`change`/`input`）
 
-今回のメインテーマは「オブジェクト」です。これまでの計算機で使った変数を、より整理された形で管理する方法を実用的な商品カードを通じて学びます。一つの概念に集中して、確実に身につけることで、次の段階への確実なステップアップを目指します。
+## 📌 重要なポイント
+- `#search` の値で `items` をフィルタし、`name` に `includes` する要素のみを表示
+- 大文字小文字の影響を避けるため、`toLowerCase()` で正規化
+- 固定配列のみをテンプレに流し込み、ユーザー入力はロジックにのみ利用（XSS対策）
 
-## 📖 学習内容
-
-### ✨ 実装する5つのシンプル機能
-
-1. **商品情報表示** - オブジェクトを使った商品データの表示
-2. **いいね機能** - オブジェクトの値を更新してUI反映
-3. **基本統計表示** - オブジェクトデータの可視化
-4. **学習支援機能** - コンソールでオブジェクトの変化を確認
-5. **リセット機能** - オブジェクトを初期状態に戻す
-
-### 🎨 デザインの特徴
-
-- **プロフェッショナルな外観**: 実際のECサイトのような美しいカードデザイン
-- **直感的な操作**: クリック一つで様々な機能が動作
-- **視覚的フィードバック**: ボタンの色変化、アニメーション効果
-- **統計の可視化**: 使用状況が一目で分かる表示
-
-## 📝 学習ポイント
-
-### 🔧 今回のメイン学習テーマ: オブジェクト
-
-1. **オブジェクトとは何か？**
-   - 関連する情報をひとまとめにして管理する仕組み
-   - 商品の「名前、価格、いいね数」を一つの箱に入れて管理
-
-2. **なぜオブジェクトを使うのか？**
-   - 変数がバラバラだと管理が大変 → オブジェクトで整理整頓
-   - データの関係性が分かりやすい
-   - 将来的に機能を追加しやすい
-
-3. **オブジェクトの基本操作**
-   - `productData.name` でデータを取得
-   - `productData.likes += 1` でデータを更新
-   - コンソールで変化を確認する習慣
-
-### 💡 プログラミング思考の第一歩
-
-- **データ整理術**: バラバラな情報を構造化して管理
-- **状態管理の基礎**: オブジェクトの値を変更してUIに反映
-- **デバッグ習慣**: console.logでオブジェクトの中身を常に確認
-
-## 🔍 詳細解説
-
-### 🏗️ オブジェクトでデータを整理する理由
-
-従来の変数管理：
-```javascript
-// バラバラで管理が大変...
-let productName = "プレミアム Tシャツ";
-let productPrice = 2980;
-let productLikes = 0;
-let isLiked = false;
+## 🧪 例題
+HTML
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>検索（includes）</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <input id="search" type="text" placeholder="検索" />
+    <div id="list" style="margin-top:8px"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
 ```
 
-**オブジェクトで整理すると：**
-```javascript
-// 関連する情報をひとまとめに！
-const productData = {
-    name: "プレミアム Tシャツ",
-    price: 2980,
-    likes: 0,
-    isLiked: false
-};
+CSS
+```css
+#list{display:grid;gap:6px}
+.item{padding:6px;border:1px solid #ddd;border-radius:6px}
+.name{font-weight:600}
 ```
 
-### 🎯 オブジェクトの3つの大きな利点
+JavaScript
+```js
+const items = [
+  { id: 1, name: 'Apple' },
+  { id: 2, name: 'Banana' },
+  { id: 3, name: 'Cherry' },
+  { id: 4, name: 'Grape' }
+];
 
-1. **情報の整理整頓**
-   - 商品に関する情報が一箇所にまとまる
-   - 「この商品のいいね数は？」→ `productData.likes` ですぐ分かる
+const $search = document.getElementById('search');
+const $list = document.getElementById('list');
 
-2. **データの関係性が明確**
-   - 「いいね数」と「いいね状態」が同じ商品のものだと一目瞭然
-   - 情報の関連性が分かりやすい
+function template(list){
+  return list.map(i => `
+    <div class="item">
+      <div class="name">${i.name}</div>
+    </div>
+  `).join('');
+}
 
-3. **変更管理が簡単**
-   - 一つのオブジェクトを更新するだけで、関連する全ての情報を管理
-   - バラバラな変数を追いかけなくて良い
+function render(){
+  const q = $search.value.trim().toLowerCase();
+  const filtered = q === ''
+    ? items
+    : items.filter(i => i.name.toLowerCase().includes(q));
+  $list.innerHTML = template(filtered); // 固定配列のみ
+}
 
-### 🚀 実際の使い方を体験
+$search.addEventListener('input', render);
+render();
+```
 
-このページでは、オブジェクトの変化をリアルタイムで確認できます：
+## ✨ 新しく追加された部分
+- 入力のたびにフィルタ＆描画する検索UI
+- 大文字小文字を無視した一致判定
 
-- いいねボタンを押す → `productData.likes`が増加
-- コンソールでオブジェクトの中身が確認できる
-- 「データが変わる瞬間」を目で見て理解
+## 🔍 コードの説明
+- クエリ `q` を正規化し、`includes` で部分一致
+- `map().join('')` でHTMLを生成し、`innerHTML` に反映
 
----
+## 📖 豆知識
+- 検索負荷が高い場合は `debounce`（例: 200ms）で入力ハンドラを間引く
+- 完全一致は `===`、前方一致は `startsWith`、後方一致は `endsWith`
 
-### 💻 実習の進め方
+## ⚠️ 注意点
+- ユーザー入力をテンプレに直挿ししない（XSS対策）。表示は固定配列から生成
+- 空入力時の仕様（全件表示 or 空表示）を明確化（ここでは全件）
 
-1. **オブジェクト構造の理解**: `productData`がどんな情報を持つか確認
-2. **いいね機能の体験**: ボタンを押してオブジェクトの変化を観察
-3. **コンソール確認**: F12でオブジェクトの中身を見る習慣をつける
-4. **リセット機能**: オブジェクトが初期状態に戻る仕組みを理解
-
-**重要**: 今回は「オブジェクト」という一つの概念をしっかり理解することが目標です。焦らず確実に身につけましょう！
-
----
-
-## 🎉 完成時の達成感
-
-- ✅ **オブジェクトによるデータ管理**の基礎をマスター
-- ✅ バラバラな変数を整理整頓する技術を習得
-- ✅ 実用的な商品カードでオブジェクトの活用を体験
-- ✅ **19.2でさらに高度な機能**に挑戦する準備完了
-- ✅ プログラミングの「整理整頓術」を身につけた満足感
+## 🛒 ECサイト制作で繋がるポイント
+- 検索ボックスの基本動作（名前での部分一致）
+- フィルタとソートとの組み合わせで実用的な商品一覧へ発展

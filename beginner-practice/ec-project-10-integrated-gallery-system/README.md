@@ -1,264 +1,127 @@
-# 20.6 統合ギャラリーシステム - 完全な商品ギャラリー
+# EC-10: 統合ギャラリー（検索×絞込×並び替え）
 
-## 🎯 学習目標
+## 🧩 学ぶタグ/プロパティ
+- **検索**: `input`、部分一致
+- **カテゴリ絞込**: `<select>`、`change`
+- **並び替え**: `<select>`、比較関数
 
-**20.5の検索技術を基盤として、レイアウト切り替えとモーダル表示による本格的な商品ギャラリーシステムを習得**
+## 🔁 前回の復習
+- 検索、カテゴリ、ソートを個別に実装
 
-20.5で身につけた「フィルタ + ソート + 検索技術」を活用し、今度は「レイアウト切り替えと詳細表示」を学習します。12商品から15商品への拡張と、グリッド/リスト表示の切り替え、商品詳細モーダルを通じて、実際のECサイトで使われる本格的な商品ギャラリーシステムを完成させます。
+## 📌 重要なポイント
+- 条件はすべて1箇所で適用 → 結果を一括再描画
+- 元配列は不変、都度コピーして操作
 
-## 📖 学習内容
+## 🧪 例題（コピペ即動作）
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC-10 統合ギャラリー</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h1 class="mb-3">検索×カテゴリ×並び替え</h1>
 
-### ✨ 実装する18の機能（20.5 + 新機能4つ）
+    <div class="row g-2 mb-3">
+      <div class="col-12 col-md-4">
+        <input id="q" class="form-control" placeholder="検索..." />
+      </div>
+      <div class="col-6 col-md-4">
+        <select id="category" class="form-select">
+          <option value="">すべて</option>
+          <option value="服">服</option>
+          <option value="靴">靴</option>
+          <option value="バッグ">バッグ</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-4">
+        <select id="sort" class="form-select">
+          <option value="">並び替えなし</option>
+          <option value="price-asc">価格（安→高）</option>
+          <option value="price-desc">価格（高→安）</option>
+          <option value="name-asc">名前（A→Z）</option>
+          <option value="name-desc">名前（Z→A）</option>
+        </select>
+      </div>
+    </div>
 
-#### 20.5から継続する機能
-1. **動的HTML生成システム** - テンプレート関数による商品カード自動作成（基盤）
-2. **商品データ拡張管理** - 15商品の効率的な表示・管理（拡張）
-3. **カテゴリフィルタシステム** - カテゴリ別の商品絞り込み機能（基盤）
-4. **価格帯フィルタシステム** - 価格範囲による商品絞り込み機能（基盤）
-5. **価格ソートシステム** - 価格の安い順・高い順での並び替え（基盤）
-6. **多軸ソートシステム** - いいね順・名前順・追加順での並び替え（基盤）
-7. **テキスト検索システム** - 商品名・説明文での部分一致検索（基盤）
-8. **リアルタイム検索システム** - 入力と同時に検索結果が更新（基盤）
-9. **統計の集約表示** - 全商品・処理結果の情報統合（基盤）
-10. **データ永続化** - 全状態の保存・読み込み（基盤）
-11. **個別いいね機能** - 各商品独立のいいね操作（基盤）
-12. **レスポンシブ対応** - 画面サイズに応じた最適な表示（基盤）
-13. **検索ハイライト** - 検索キーワードの強調表示（基盤）
-14. **リセット機能** - 全処理状態の初期化（基盤）
+    <div class="row g-3" id="productList"></div>
+  </div>
 
-#### 今回の新機能（統合ギャラリー）
-15. **レイアウト切り替えシステム** - グリッド表示とリスト表示の切り替え
-16. **商品詳細モーダルシステム** - 商品詳細情報のポップアップ表示
-17. **高度統計ダッシュボード** - カテゴリ分析・価格分析・人気分析
-18. **プロフェッショナルUI** - アニメーション効果と洗練されたデザイン
+  <script>
+    const products = [
+      { id: 1, name: 'ベーシックTシャツ', category: '服', price: 2980, image: 'https://picsum.photos/seed/p1/600/400' },
+      { id: 2, name: 'カジュアルスニーカー', category: '靴', price: 4980, image: 'https://picsum.photos/seed/p2/600/400' },
+      { id: 3, name: 'レザーバッグ', category: 'バッグ', price: 8980, image: 'https://picsum.photos/seed/p3/600/400' },
+      { id: 4, name: 'シャツ', category: '服', price: 1980, image: 'https://picsum.photos/seed/p4/600/400' }
+    ];
 
-### 🎨 デザインの特徴
-
-- **プロフェッショナルUI**: 実際のECサイトレベルのデザイン
-- **4つの機能統合**: フィルタ・ソート・検索・レイアウトの完全統合
-- **モーダル詳細表示**: 商品の詳細情報を美しく表示
-- **アニメーション強化**: 滑らかな画面遷移と視覚効果
-
-## 📝 学習ポイント
-
-### 🔧 今回のメイン学習テーマ: レイアウト切り替えとモーダル表示
-
-1. **レイアウト切り替えとは何か？**
-   - 同じデータを異なる表示形式で見せる技術
-   - グリッド表示（カード型）とリスト表示（行型）の切り替え
-   - CSSクラスの動的変更とレスポンシブ対応
-
-2. **モーダル表示とは何か？**
-   - ページ上に重ねて表示される詳細情報ウィンドウ
-   - 背景をオーバーレイして注意を集中
-   - ESCキーや背景クリックで閉じる操作
-
-3. **統合システムの構築方法**
-   ```javascript
-   // レイアウト切り替え
-   function switchLayout(layoutType) {
-       productsGrid.className = `products-grid ${layoutType}-layout`;
-       renderProcessedProducts();
-   }
-   
-   // モーダル表示
-   function showProductModal(product) {
-       const modal = createModal(product);
-       document.body.appendChild(modal);
-       modal.style.display = 'flex';
-   }
-   ```
-
-### 💡 20.5からの発展ポイント
-
-- **フィルタ+ソート+検索（20.5）** + **レイアウト+モーダル（20.6）** = **完全な商品ギャラリーシステム**
-- **12商品システム** → **15商品の本格的な商品カタログ**
-- **基本的な表示** → **プロフェッショナルなユーザー体験**
-
-## 🔍 詳細解説
-
-### 🏗️ 20.5から20.6への技術発展
-
-**20.5の基本的なグリッド表示：**
-```javascript
-// 固定的なグリッド表示
-function renderProducts() {
-    productsGrid.className = 'products-grid';
-    // 商品カードをグリッドに配置
-}
-```
-
-**20.6の動的レイアウト切り替え：**
-```javascript
-// レイアウトに応じた動的表示
-function renderProducts() {
-    productsGrid.className = `products-grid ${currentLayout}-layout`;
-    // レイアウトに最適化された商品カードを配置
-}
-```
-
-### 🎯 統合システムの4つの主要技術
-
-1. **レイアウト切り替え技術**
-   ```javascript
-   // グリッド・リスト表示の切り替え
-   function switchLayout(layout) {
-       currentLayout = layout;
-       
-       // CSSクラスの変更
-       productsGrid.className = `products-grid ${layout}-layout`;
-       
-       // レイアウトに応じたカード生成
-       renderProcessedProducts();
-       
-       // ボタン状態の更新
-       updateLayoutButtons();
-   }
-   ```
-
-2. **モーダル表示技術**
-   ```javascript
-   // 商品詳細モーダルの表示
-   function showProductDetails(product) {
-       const modal = document.createElement('div');
-       modal.className = 'modal-overlay';
-       
-       modal.innerHTML = `
-           <div class="modal-content">
-               <h2>${product.name}</h2>
-               <p>${product.description}</p>
-               <button onclick="closeModal()">閉じる</button>
-           </div>
-       `;
-       
-       document.body.appendChild(modal);
-   }
-   ```
-
-3. **高度統計システム**
-   ```javascript
-   // カテゴリ別統計分析
-   function generateAdvancedStats() {
-       const stats = {
-           categoryDistribution: getCategoryDistribution(),
-           priceAnalysis: getPriceAnalysis(),
-           popularityRanking: getPopularityRanking()
-       };
-       
-       renderDashboard(stats);
-   }
-   ```
-
-4. **統合UI管理**
-   ```javascript
-   // 4つの機能を統合した状態管理
-   const systemState = {
-       filters: currentFilters,
-       sort: currentSort,
-       search: currentSearch,
-       layout: currentLayout
-   };
-   ```
-
-### 🚀 実用的な統合システムの特徴
-
-- **4軸処理**: フィルタ・ソート・検索・レイアウトの統合制御
-- **モーダル詳細**: 商品情報の効果的な表示
-- **統計ダッシュボード**: データの可視化と分析
-- **プロレベルUX**: 実際のECサイトと同等のユーザー体験
-
-### 💡 統合システムによるUX向上
-
-1. **表示の柔軟性**
-   - グリッド表示：商品の概観把握に最適
-   - リスト表示：詳細比較に最適
-
-2. **情報の深掘り**
-   - カード表示：基本情報の確認
-   - モーダル表示：詳細情報の確認
-
-3. **データの理解**
-   - 基本統計：商品数や価格の概要
-   - 高度統計：カテゴリ分布や人気傾向
-
-### 🎨 15商品システムの特徴
-
-```javascript
-// 20.6での商品データ構造（3商品追加）
-const products = [
-    // 20.5からの12商品 + 新規3商品
-    {
-        id: 13,
-        name: "ゲーミング キーボード",
-        category: "electronics",
-        price: 15800,
-        description: "メカニカルスイッチ採用RGB光るゲーミングキーボード",
-        emoji: "⌨️",
-        tags: ["ゲーミング", "RGB", "メカニカル"]
-    },
-    {
-        id: 14,
-        name: "アウトドア ジャケット",
-        category: "fashion",
-        price: 18500,
-        description: "防水・透湿機能付き本格アウトドアジャケット",
-        emoji: "🧥",
-        tags: ["アウトドア", "防水", "透湿"]
-    },
-    {
-        id: 15,
-        name: "ヨガ ブロック",
-        category: "sports",
-        price: 1800,
-        description: "ヨガポーズをサポートする軽量EVAブロック",
-        emoji: "🧘",
-        tags: ["ヨガ", "軽量", "サポート"]
+    function card(p) {
+      const col = document.createElement('div');
+      col.className = 'col-12 col-md-4';
+      col.innerHTML = `
+        <div class="card h-100">
+          <img src="${p.image}" class="card-img-top" alt="${p.name}">
+          <div class="card-body">
+            <h5 class="card-title mb-1">${p.name}</h5>
+            <div class="text-primary fw-bold mb-1">¥${p.price.toLocaleString()}</div>
+            <span class="badge bg-secondary">${p.category}</span>
+          </div>
+        </div>`;
+      return col;
     }
-];
+
+    function render(list) {
+      const root = document.getElementById('productList');
+      root.innerHTML = '';
+      list.forEach(p => root.appendChild(card(p)));
+    }
+
+    function applyAll() {
+      const term = document.getElementById('q').value.trim().toLowerCase();
+      const cat = document.getElementById('category').value;
+      const sort = document.getElementById('sort').value;
+
+      let arr = [...products];
+      if (term) arr = arr.filter(p => p.name.toLowerCase().includes(term));
+      if (cat) arr = arr.filter(p => p.category === cat);
+
+      const byNum = (k, dir=1) => (a,b) => (a[k]-b[k]) * dir;
+      const byStr = (k, dir=1) => (a,b) => a[k].localeCompare(b[k], 'ja') * dir;
+      if (sort === 'price-asc') arr.sort(byNum('price', +1));
+      if (sort === 'price-desc') arr.sort(byNum('price', -1));
+      if (sort === 'name-asc') arr.sort(byStr('name', +1));
+      if (sort === 'name-desc') arr.sort(byStr('name', -1));
+
+      render(arr);
+    }
+
+    document.getElementById('q').addEventListener('input', applyAll);
+    document.getElementById('category').addEventListener('change', applyAll);
+    document.getElementById('sort').addEventListener('change', applyAll);
+    render(products);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 ```
 
-### 🎯 統合機能の特徴
+## ✨ 新しく追加された部分
+- 全条件をまとめて適用する `applyAll()`
+- 検索→絞込→ソートの順に処理
 
-1. **レイアウト切り替え**
-   - グリッド表示：カード形式での一覧
-   - リスト表示：行形式での詳細比較
+## 🔍 コードの説明
+- 条件変更ごとに `applyAll()` を呼んで再描画
 
-2. **商品詳細モーダル**
-   - 拡大画像表示
-   - 詳細説明とスペック
-   - 関連商品の提案
+## 📖 豆知識
+- 条件の組合せが増えても「一次関数」を合成するように順次適用でOK
 
-3. **高度統計ダッシュボード**
-   - カテゴリ別商品分布
-   - 価格帯別分析
-   - 人気ランキング
+## ⚠️ 注意点
+- 空結果（0件）時も正常終了（エラーなし）
 
-4. **プロフェッショナルUI**
-   - 滑らかなアニメーション
-   - 直感的な操作性
-   - レスポンシブ対応
-
----
-
-### 💻 実習の進め方
-
-1. **20.5の復習**: フィルタ+ソート+検索機能の確認
-2. **レイアウト切り替え**: グリッドとリスト表示の切り替えを体験
-3. **モーダル表示**: 商品詳細モーダルの表示・操作を確認
-4. **統計ダッシュボード**: 高度な統計情報の表示を確認
-5. **統合操作**: 4つの機能を組み合わせた総合的な操作体験
-6. **プロレベルUX**: 実際のECサイトレベルの操作感を実感
-
-**重要**: 今回は「レイアウト切り替えとモーダル表示」に集中し、20.5までの全知識を確実に活用しながら統合システムを習得しましょう！
-
----
-
-## 🎉 完成時の達成感
-
-- ✅ **レイアウト切り替え技術**をマスターし、柔軟な表示方法を実現
-- ✅ **モーダル表示技術**を習得し、効果的な詳細情報表示が可能に
-- ✅ **20段階の全技術統合**で本格的な商品ギャラリーシステムを完成
-- ✅ **15商品システム**による本格的な商品カタログ体験
-- ✅ **4軸統合処理**（フィルタ×ソート×検索×レイアウト）で最高レベルの検索機能を実装
-- ✅ **実際のECサイトと同等レベル**のプロフェッショナルなシステムを構築した満足感
-- ✅ **HTML・CSS・JavaScript の総合技術**を駆使した開発力の獲得
+## 🛒 ECサイト制作で繋がるポイント
+- 実用的な商品一覧の核が完成。次は詳細・カートへ展開

@@ -1,0 +1,29 @@
+{
+  "id": "bootstrap-24",
+  "title": "まとめ練習 - ランディングページ",
+  "description": "ヒーローと3つの特徴セクションを持つ最小ランディングページを構築します。見出し、リード文、CTAボタン、3カラム特徴を整理して配置します。",
+  "category": "bootstrap",
+  "instructions": [
+    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "ヘッダーに .container を用いて中央寄せのヒーローを作成（見出し .display-6 / 説明 .lead / CTA .btn.btn-primary.btn-lg）",
+    "特徴セクションを .container 内に .row.g-4 + .col-12.col-md-4 × 3 で作成し、各ボックスは .text-center 配置",
+    "補助テキストには .text-muted を使用"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>まとめ練習 - ランディングページ</title>\n  <!-- Bootstrap CDN を読み込んでください -->\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-24/files.html.expected"
+    },
+    "css": {
+      "template": "/* なし（最小） */",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-24/files.css.expected"
+    }
+  },
+  "checks": [
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "hero", "name": ".container .btn.btn-primary.btn-lg", "type": "structure", "message": "ヒーローにCTAボタンを配置してください" },
+    { "id": "display-lead", "name": ".display-6, .lead", "type": "structure", "message": "見出しとリード文を配置してください" },
+    { "id": "features", "name": ".container .row.g-4 .col-12.col-md-4 .text-center", "type": "structure", "message": "3カラムの特徴ボックスを中央寄せで配置してください" },
+    { "id": "muted", "name": ".text-muted", "type": "structure", "message": "補助テキストに .text-muted を使用してください" }
+  ]
+}

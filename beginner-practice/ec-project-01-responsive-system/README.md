@@ -1,111 +1,95 @@
-# 20.6 3つのカードを並べよう
+# EC-01: レスポンシブ土台（Bootstrap導入と3カラム）
 
-## 🎯 学習目標
+## 🧩 学ぶタグ/プロパティ
+- **Bootstrap CDN**（CSS/JS）
+- **グリッドの基本**: `container` / `row` / `col-4`
+- **カード**: `.card`, `.card-body`, `.btn`
 
-**55番のカードの続きで、3つのカードを並べる方法を学ぼう**
+## 🔁 前回の復習
+- HTML の基本構造（`<!DOCTYPE html>` / `<head>` / `<body>`）
+- 画像の表示とテキストの配置
 
-- `col-4`を使って3つのカードを横に並べる
-- 55番で学んだボタンの色を活用する
-- 簡単なグリッドシステムの基本を理解する
+## 📌 重要なポイント
+- Bootstrap は 12 カラム制。`col-4` × 3 = 12 で3列レイアウト
+- 幅が狭い画面では自動的に縦並び（最小限のレスポンシブ）
+- まずは「動く土台」を作り、後続回で機能を積み上げる
 
-## 📝 学習内容
-
-### 今回作るもの
-
-**3つの商品カードが横に並んだギャラリー**
-- 55番で学んだカラフルなボタンを使用
-- 3つのカードを綺麗に横に並べる
-- 異なる商品情報で練習
-
-### 今回学ぶこと
-
-- `col-4`（12÷3=4）で3つのカードを等間隔に配置
-- 55番で学んだ色の種類を活用
-- カードの内容を変更する方法
-
-## 🔍 詳細解説
-
-### グリッドの計算
-
-**Bootstrapは12カラムシステム**
-- 54番: `col-6` + `col-6` = 6 + 6 = 12（2つ並び）
-- 今回: `col-4` + `col-4` + `col-4` = 4 + 4 + 4 = 12（3つ並び）
-
-### 3つのカードの例
-
-**HTML（55番の内容を発展）**
+## 🧪 例題（コピペ即動作）
 ```html
-<h2>3つの商品カード</h2>
-<p>55番で学んだ色とりどりのボタンで、3つの商品を並べてみましょう</p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC-01 商品ギャラリー（土台）</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h1 class="mb-3">🛍️ 商品ギャラリー（3カラム）</h1>
+    <p class="text-muted">Bootstrap のグリッドで 3 つのカードを並べてみよう</p>
 
-<!-- 55番のアラートはそのまま -->
-<div class="alert alert-success" role="alert">
-    今度は3つのカードが並んでいるよ！
-</div>
+    <div class="row g-3">
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/p1/600/400" class="card-img-top" alt="商品1">
+          <div class="card-body">
+            <h5 class="card-title">商品1</h5>
+            <p class="card-text">シンプルで使いやすいアイテム。</p>
+            <a href="#" class="btn btn-primary">購入する</a>
+          </div>
+        </div>
+      </div>
 
-<div class="row">
-    <!-- 1番目のカード -->
-    <div class="col-4">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200/ff6b6b/white?text=商品1" class="card-img-top" alt="商品1">
-            <div class="card-body">
-                <h5 class="card-title">商品1</h5>
-                <p class="card-text">美味しいリンゴです。</p>
-                <a href="#" class="btn btn-danger">購入する</a>
-            </div>
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/p2/600/400" class="card-img-top" alt="商品2">
+          <div class="card-body">
+            <h5 class="card-title">商品2</h5>
+            <p class="card-text">日常をちょっと良くするアイテム。</p>
+            <a href="#" class="btn btn-success">購入する</a>
+          </div>
         </div>
-    </div>
-    
-    <!-- 2番目のカード -->
-    <div class="col-4">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200/4ecdc4/white?text=商品2" class="card-img-top" alt="商品2">
-            <div class="card-body">
-                <h5 class="card-title">商品2</h5>
-                <p class="card-text">新鮮なバナナです。</p>
-                <a href="#" class="btn btn-warning">購入する</a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 3番目のカード（新しく追加） -->
-    <div class="col-4">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200/95e1d3/white?text=商品3" class="card-img-top" alt="商品3">
-            <div class="card-body">
-                <h5 class="card-title">商品3</h5>
-                <p class="card-text">甘いオレンジです。</p>
-                <a href="#" class="btn btn-success">購入する</a>
-            </div>
-        </div>
-    </div>
-</div>
+      </div>
 
-<!-- 55番で学んだボタンも復習 -->
-<h3 class="mt-4">色々なボタンを復習</h3>
-<p>55番で学んだボタンの色を思い出そう</p>
-<button class="btn btn-primary">青いボタン</button>
-<button class="btn btn-info">水色のボタン</button>
-<button class="btn btn-secondary">グレーのボタン</button>
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/p3/600/400" class="card-img-top" alt="商品3">
+          <div class="card-body">
+            <h5 class="card-title">商品3</h5>
+            <p class="card-text">ギフトにも最適な定番。</p>
+            <a href="#" class="btn btn-warning">購入する</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 ```
 
-### 仕組みの説明
+## ✨ 新しく追加された部分
+- CDN で **Bootstrap** を導入
+- `row` と `col-4`（実装では `col-12 col-md-4` にして最小レスポンシブ）
+- `.card` コンポーネントで商品カードの形を統一
 
-1. **col-4**: 12カラムの中で4カラム分を使用（12÷3=4）
-2. **3つのcol-4**: 4 + 4 + 4 = 12でちょうど一行に並ぶ
-3. **55番の知識**: ボタンの色を自由に変更できる
-4. **異なる商品**: それぞれ違う商品情報で練習
+## 🔍 コードの説明
+- `<link ... bootstrap.min.css>`: Bootstrap のスタイルを読み込み
+- `.container`/`.row`/`.col-12 .col-md-4`: 画面幅に応じて 1 → 3 カラム
+- `.card` + `.btn`: 部品化された UI を安全に流用
 
-## 💻 実習の進め方
+## 📖 豆知識
+- 「12 カラム制」は Web レイアウトの定番。3 等分なら 4、4 等分なら 3 を使う
+- 画像は `picsum.photos` のシード固定で安定表示
 
-1. **55番をベースにする**: 前回のアラートやボタンの色はそのまま活用
-2. **col-6をcol-4に変更**: 2つ並びから3つ並びに変更
-3. **3番目のカードを追加**: 新しいカードを1つ追加
-4. **内容をカスタマイズ**: 実際の商品名や色を自分で変更
+## ⚠️ 注意点
+- CDN の `<link>`/`<script>` を必ず `<head>`/`</body>` 直前に正しく配置
+- 画像の `alt` を設定し、アクセシビリティを担保
 
-## 🎉 完成時の達成感
-
-- ✅ **3つのカード**が綺麗に並んだ
-- ✅ **グリッドシステム**の基本が理解できた
-- ✅ **55番の色の知識**を活用できた
-- ✅ **次の学習**（レスポンシブ対応）への準備ができた
+## 🛒 ECサイト制作で繋がるポイント
+- 商品カードの「土台」はこの回で完成
+- 次回以降で価格・バッジ・評価・検索/絞り込み・カートへと徐々に拡張

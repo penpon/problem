@@ -1,145 +1,84 @@
-# 19.3 データ管理強化 - localStorage による永続化入門
+# ビュー切替（d-none・関数化）
 
-## 🎯 学習目標
+## 🧩 学ぶタグ/プロパティ
+- 表示/非表示の切替クラス：`.d-none { display: none }`
+- ビュー切替ロジックの関数化：`toggleView(targetId)`
+- イベントリスナーでの画面更新
 
-**19.1-19.2の基礎知識を活用し、localStorage によるデータ永続化技術を習得**
+## 🔁 前回の復習
+- 基本的なイベント処理（クリック）
+- DOM取得とクラスの付け外し（`classList.add/remove`）
 
-これまで学習した「オブジェクトによるデータ管理」「DOM操作とイベント処理」の技術を基盤として、今度は「ブラウザを閉じても記録が残る」仕組みを実装します。実際のWebアプリケーションでは必須の技術であり、ユーザー体験を大幅に向上させる重要な機能です。
+## 📌 重要なポイント
+- `#viewA` と `#viewB` のどちらか一方だけを表示
+- 初期状態は `#viewA` を表示、`#viewB` は `d-none`
+- 切替は必ず `toggleView(targetId)` に集約し、重複ロジックを排除
 
-## 📖 学習内容
-
-### ✨ 実装する9つの機能（19.2 + 新機能2つ）
-
-#### 19.1-19.2から継続する機能
-1. **商品情報表示** - オブジェクトによるデータ管理（基礎）
-2. **いいね機能** - DOM操作とイベント処理（基礎）
-3. **詳細表示切替** - 画面要素の動的制御（基礎）
-4. **カート機能** - 複数状態の管理（基礎）
-5. **統計表示** - データの可視化（基礎）
-
-#### 今回の新機能（localStorage による永続化）
-6. **データ永続化** - ブラウザ閉鎖後もデータを保持
-7. **自動読み込み** - ページ再読み込み時にデータを復元
-8. **履歴機能** - 操作記録をタイムスタンプ付きで保存
-9. **データ検証** - 破損したデータの検出と修復
-
-### 🎨 デザインの特徴
-
-- **状態の保持**: ブラウザを閉じて開いても前回の状態を維持
-- **履歴の可視化**: いつ何をしたかの記録を表示
-- **データの安全性**: エラーが発生してもアプリケーションが正常動作
-
-## 📝 学習ポイント
-
-### 🔧 今回のメイン学習テーマ: localStorage による永続化
-
-1. **localStorage とは何か？**
-   - ブラウザに内蔵されたデータ保存機能
-   - ページを閉じても、ブラウザを再起動してもデータが残る
-   - 「お気に入り」「設定」「履歴」などを保存する仕組み
-
-2. **なぜ永続化が重要なのか？**
-   - ユーザー体験の向上：「前回の続きから」ができる
-   - 実用性の実現：設定やお気に入りが記憶される
-   - 現代Webアプリの必須機能：SNS、EC、ゲームすべてで使用
-
-3. **localStorage の基本操作**
-   - `localStorage.setItem('key', 'value')` でデータ保存
-   - `localStorage.getItem('key')` でデータ読み込み
-   - JSON形式でオブジェクトを保存・復元
-
-### 💡 19.1-19.2からの発展ポイント
-
-- **オブジェクト管理（19.1）** → **永続化により長期間保持**
-- **DOM操作（19.2）** → **保存されたデータでUI復元**
-- **一時的な状態** → **永続的なユーザーデータ**
-
-## 🔍 詳細解説
-
-### 🏗️ 19.2から19.3への発展過程
-
-**19.2の基礎**:
-```javascript
-// データは一時的（ページを閉じると消える）
-const productData = {
-    likes: 5,
-    inCart: true
-};
+## 🧪 例題
+HTML
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ビュー切替</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main style="padding:16px">
+    <div class="buttons">
+      <button id="btnA">A</button>
+      <button id="btnB">B</button>
+    </div>
+    <div id="viewA" class="view">ビューA</div>
+    <div id="viewB" class="view d-none">ビューB</div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
 ```
 
-**19.3の拡張**:
-```javascript
-// データを localStorage に保存
-function saveData() {
-    localStorage.setItem('productData', JSON.stringify(productData));
-}
-
-// ページ読み込み時にデータを復元
-function loadData() {
-    const saved = localStorage.getItem('productData');
-    if (saved) {
-        productData = JSON.parse(saved); // JSON文字列をオブジェクトに変換
-    }
-}
+CSS
+```css
+.view{padding:8px;border:1px solid #ddd;border-radius:6px;margin-top:8px}
+.d-none{display:none}
 ```
 
-### 🎯 localStorage の安全な使い方
+JavaScript
+```js
+function toggleView(targetId){
+  const ids = ['viewA', 'viewB'];
+  for (const id of ids){
+    const el = document.getElementById(id);
+    if (!el) continue;
+    if (id === targetId) el.classList.remove('d-none');
+    else el.classList.add('d-none');
+  }
+}
 
-1. **データの保存**
-   ```javascript
-   // オブジェクト→JSON文字列→localStorage
-   localStorage.setItem('myData', JSON.stringify(data));
-   ```
+const btnA = document.getElementById('btnA');
+const btnB = document.getElementById('btnB');
+btnA.addEventListener('click', () => toggleView('viewA'));
+btnB.addEventListener('click', () => toggleView('viewB'));
+```
 
-2. **データの読み込み**
-   ```javascript
-   // localStorage→JSON文字列→オブジェクト
-   const data = JSON.parse(localStorage.getItem('myData') || '{}');
-   ```
+## ✨ 新しく追加された部分
+- 切替処理を `toggleView()` に一元化
+- `classList` による表示制御の明確化
 
-3. **エラー対応**
-   ```javascript
-   // データが壊れていても安全に処理
-   try {
-       const data = JSON.parse(localStorage.getItem('myData'));
-   } catch (error) {
-       console.log('データを初期化します');
-   }
-   ```
+## 🔍 コードの説明
+- `ids` 配列で対象ビューを列挙し、ループで `d-none` を切替
+- クリック時に目的ビューIDを渡して関数を呼び出す
 
-### 🚀 実用性の大幅向上
+## 📖 豆知識
+- 複数ビュー（3つ以上）の場合でも `ids` を増やすだけで拡張可能
+- アニメーションをつける場合は `opacity/visibility` とCSSトランジションも有効
 
-- **継続的な体験**: ブラウザを閉じても設定・お気に入りが残る
-- **履歴機能**: いつ何をしたかの記録が蓄積される
-- **データ復旧**: 誤操作してもリセット可能
-- **本格アプリ感**: 実際のWebサービスと同等の機能
+## ⚠️ 注意点
+- 存在しないIDの指定に備えた `null` チェック
+- 初期状態（A表示/B非表示）をHTML/CSSで定義
 
-### ⚠️ localStorage の注意点
-
-- **ブラウザ依存**: 各ブラウザで独立して保存
-- **容量制限**: 通常5-10MB程度の制限あり
-- **文字列のみ**: オブジェクトはJSON変換が必要
-- **セキュリティ**: 機密情報の保存は避ける
-
----
-
-### 💻 実習の進め方
-
-1. **19.1-19.2の復習**: オブジェクト管理とDOM操作の確認
-2. **データ保存体験**: いいねやカート設定が保存されることを確認
-3. **ページ再読み込みテスト**: F5押下後も状態が維持されることを体験
-4. **履歴機能確認**: 操作記録が時系列で蓄積されることを観察
-5. **エラー処理理解**: 異常なデータでも安全に動作することを確認
-
-**重要**: 今回は「localStorage による永続化」に集中し、19.1-19.2の知識を確実に活用しながら新しい技術を学習しましょう！
-
----
-
-## 🎉 完成時の達成感
-
-- ✅ **localStorage による永続化**をマスターし、データが永続的に保存可能に
-- ✅ **19.1オブジェクト管理 + 19.2DOM操作 + 19.3永続化** の技術統合を実現
-- ✅ **実用的なWebアプリケーション**レベルの機能を体験
-- ✅ **ブラウザを閉じても状態が残る**本格的なアプリ動作を実装
-- ✅ **19.4でのインタラクション高度化**への確実な準備が完了
-- ✅ **現代Webアプリの基盤技術**を身につけた満足感
+## 🛒 ECサイト制作で繋がるポイント
+- タブ切替・モーダル・ステップフォームなどの表示制御に応用
+- ローディング状態の切替（骨組み→結果）にも応用可能

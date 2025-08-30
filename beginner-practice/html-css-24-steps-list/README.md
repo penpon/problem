@@ -14,6 +14,50 @@
 
 - 🧪 **例題**
   - 会員登録の手順（1. 入力 → 2. 確認 → 3. 完了）をカード風に
+  - 下記コードをそのまま `index.html` として保存すると動作します。
+
+  ```html
+  <!doctype html>
+  <html lang="ja">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>手順リスト例</title>
+      <style>
+        body { font-family: system-ui, sans-serif; margin:0; padding:40px; background:#fafafa; }
+        .steps { max-width: 720px; margin: 0 auto; }
+        h2 { margin: 0 0 16px; }
+        ol { list-style: decimal; margin:0; padding:0; }
+        li {
+          background:#fff; border-left: 6px solid #0ea5e9; margin: 12px 0; padding: 16px 16px 16px 16px;
+          border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+        li + li { margin-top: 16px; }
+        h3 { margin: 0 0 8px; font-size: 18px; }
+        p { margin: 0; line-height: 1.7; color:#374151; }
+      </style>
+    </head>
+    <body>
+      <section class="steps">
+        <h2>会員登録の手順</h2>
+        <ol>
+          <li>
+            <h3>1. 入力</h3>
+            <p>必要事項（氏名・メールアドレス・パスワード）をフォームに入力します。</p>
+          </li>
+          <li>
+            <h3>2. 確認</h3>
+            <p>入力内容を確認し、問題なければ送信します。</p>
+          </li>
+          <li>
+            <h3>3. 完了</h3>
+            <p>登録完了メールが届きます。マイページへログインできます。</p>
+          </li>
+        </ol>
+      </section>
+    </body>
+  </html>
+  ```
 
 - ✨ **新しく追加された部分**
   - `ol/li`をベースに、各`li`へ装飾（背景色、左ボーダー、角丸）

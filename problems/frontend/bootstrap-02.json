@@ -1,55 +1,31 @@
 {
   "id": "bootstrap-02",
-  "title": "タイポグラフィとテキストユーティリティ",
-  "description": "見出しと本文、テキスト系ユーティリティクラスを最小で使用する",
+  "title": "ECヘッダー＋検索バー（最小）",
+  "description": "ブランド付きナビバーと検索入力を最小で配置します",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDNを読み込む",
-    "container内にh1見出しと本文pを配置",
-    "text-muted などテキストユーティリティを1つ以上使用"
+    "Bootstrap CDN(@latest) を読み込む",
+    "ヘッダーに .navbar.navbar-light.bg-light + .container-fluid + .navbar-brand",
+    "本文上部に .container 内で input#q.form-control を配置（placeholder必須）"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>課題を実装してください</h1>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>EC Header + Search</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-02/files.html.expected"
     },
     "css": {
-      "template": "/* ここに実装してください */",
+      "template": "/* なし（最小） */",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-02/files.css.expected"
     },
     "js": {
-      "template": "// ここに実装してください",
+      "template": "// なし（最小）",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-02/files.js.expected"
     }
   },
-  "expectedResult": {
-    "headingAndText": "見出しと本文が表示される",
-    "textUtilities": "text-muted や fw-bold などのユーティリティが使われている"
-  },
   "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "bootstrap-css",
-      "name": "Bootstrap CSS",
-      "type": "structure",
-      "message": "Bootstrap CSS CDNを読み込んでください"
-    },
-    {
-      "id": "container",
-      "name": ".container",
-      "type": "structure",
-      "message": ".container を使ってください"
-    },
-    {
-      "id": "text-utils",
-      "name": "テキストユーティリティ",
-      "type": "structure",
-      "message": "text-muted や fw-bold を1つ以上使ってください"
-    }
+    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
+    { "id": "navbar", "name": ".navbar.navbar-light.bg-light", "type": "structure", "message": ".navbar.navbar-light.bg-light を配置してください" },
+    { "id": "brand", "name": ".navbar-brand", "type": "structure", "message": "ブランドを配置してください" },
+    { "id": "search-input", "name": "#q.form-control[placeholder]", "type": "structure", "message": "検索入力 #q.form-control（placeholder付）を配置してください" }
   ]
 }
