@@ -157,6 +157,7 @@
         "ec-project-14",
         "ec-project-15",
         "ec-project-16",
+        "ec-project-17",
         "ec-project-18",
         "ec-project-19",
         "ec-project-20",
@@ -168,7 +169,7 @@
       ]
     }
   ],
-  "totalProblems": 124,
+  "totalProblems": 125,
   "lastUpdated": "2025-08-31",
   "version": "6.0.0"
 }
