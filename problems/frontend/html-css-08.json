@@ -61,6 +61,24 @@
       "type": "css",
       "message": "CSSでスタイルを設定してください"
     }
+    ,
+    { "type": "html-text", "name": ".basic-border テキスト", "selector": ".container p.basic-border", "text": "基本的な境界線です", "message": ".basic-border の段落テキストを『基本的な境界線です』にしてください" },
+    { "type": "html-text", "name": ".thick-border テキスト", "selector": ".container p.thick-border", "text": "太い境界線です", "message": ".thick-border の段落テキストを『太い境界線です』にしてください" },
+    { "type": "html-text", "name": ".dashed-border テキスト", "selector": ".container p.dashed-border", "text": "点線の境界線です", "message": ".dashed-border の段落テキストを『点線の境界線です』にしてください" },
+    { "type": "html-text", "name": ".colored-border テキスト", "selector": ".container p.colored-border", "text": "カラフルな境界線です", "message": ".colored-border の段落テキストを『カラフルな境界線です』にしてください" },
+
+    { "type": "css-decl", "name": ".basic-border 枠線", "selector": ".basic-border", "prop": "border", "valueRegex": "^2px\\s+solid\\s+black$", "message": ".basic-border に 2px solid black の境界線を設定してください" },
+
+    { "type": "css-decl", "name": ".thick-border 枠線", "selector": ".thick-border", "prop": "border", "valueRegex": "^5px\\s+solid\\s+red$", "message": ".thick-border に 5px solid red の境界線を設定してください" },
+    { "type": "css-decl", "name": ".thick-border 背景", "selector": ".thick-border", "prop": "background-color", "valueRegex": "^#ffe6e6$", "message": ".thick-border の背景色を #ffe6e6 にしてください" },
+
+    { "type": "css-decl", "name": ".dashed-border 枠線", "selector": ".dashed-border", "prop": "border", "valueRegex": "^3px\\s+dashed\\s+blue$", "message": ".dashed-border に 3px dashed blue の境界線を設定してください" },
+    { "type": "css-decl", "name": ".dashed-border 背景", "selector": ".dashed-border", "prop": "background-color", "valueRegex": "^#e6f2ff$", "message": ".dashed-border の背景色を #e6f2ff にしてください" },
+
+    { "type": "css-decl", "name": ".colored-border 上辺", "selector": ".colored-border", "prop": "border-top", "valueRegex": "^4px\\s+solid\\s+red$", "message": ".colored-border の上辺を 4px solid red にしてください" },
+    { "type": "css-decl", "name": ".colored-border 右辺", "selector": ".colored-border", "prop": "border-right", "valueRegex": "^4px\\s+solid\\s+blue$", "message": ".colored-border の右辺を 4px solid blue にしてください" },
+    { "type": "css-decl", "name": ".colored-border 下辺", "selector": ".colored-border", "prop": "border-bottom", "valueRegex": "^4px\\s+solid\\s+green$", "message": ".colored-border の下辺を 4px solid green にしてください" },
+    { "type": "css-decl", "name": ".colored-border 左辺", "selector": ".colored-border", "prop": "border-left", "valueRegex": "^4px\\s+solid\\s+orange$", "message": ".colored-border の左辺を 4px solid orange にしてください" }
   ],
   "hints": [
     "border: 太さ スタイル 色; の形式で書く",

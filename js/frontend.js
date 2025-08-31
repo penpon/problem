@@ -1066,6 +1066,61 @@ extractProblemNumber(problemId, categoryId) {
             return false;
         }
     }
+
+    // ==========================================
+    // HTML/CSS 具体チェック用ヘルパー
+    // ==========================================
+    /**
+     * セレクタに一致する要素のうち、textContent のトリム後が完全一致するものがあるか
+     */
+    hasElementWithExactText(doc, selector, expectedText) {
+        const nodes = Array.from(doc.querySelectorAll(selector) || []);
+        return nodes.some(n => (n.textContent || '').trim() === expectedText);
+    }
+
+    /**
+     * セレクタに一致する要素のうち、タグ名が一致し、テキストも一致するものがあるか
+     */
+    hasElementWithTagAndText(doc, selector, tagName, expectedText) {
+        const nodes = Array.from(doc.querySelectorAll(selector) || []);
+        return nodes.some(n => n.tagName?.toLowerCase() === tagName && (n.textContent || '').trim() === expectedText);
+    }
+
+    /**
+     * 親セレクタ内に、子セレクタでテキストが一致する要素があるか
+     */
+    hasNestedElementWithText(doc, parentSelector, childSelector, expectedText) {
+        const parents = Array.from(doc.querySelectorAll(parentSelector) || []);
+        return parents.some(p => Array.from(p.querySelectorAll(childSelector) || [])
+            .some(c => (c.textContent || '').trim() === expectedText));
+    }
+
+    /** 要素の存在チェック */
+    hasElement(doc, selector) {
+        return !!doc.querySelector(selector);
+    }
+
+    /** セレクタに一致する要素に属性が存在し、値が正規表現にマッチするものがあるか */
+    hasElementWithAttr(doc, selector, attr, valueRegex) {
+        const nodes = Array.from(doc.querySelectorAll(selector) || []);
+        const re = new RegExp(valueRegex, 'i');
+        return nodes.some(n => {
+            const v = n.getAttribute(attr);
+            return typeof v === 'string' && re.test(v);
+        });
+    }
+
+    /**
+     * CSSの指定にセレクタとプロパティ: 値 の組み合わせが含まれるか（簡易判定）
+     */
+    hasCssDeclaration(selector, property, valuePattern) {
+        const css = (this.fileContents.css || '');
+        const sel = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // エスケープ
+        const prop = property.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const val = valuePattern; // 呼び出し側で適切にエスケープ/パターン指定
+        const regex = new RegExp(`${sel}\\s*\\{[\\s\\S]*?${prop}\\s*:\\s*${val}`, 'i');
+        return regex.test(css);
+    }
     
     getChecksForProblem(problemId) {
         if (this.currentProblem && this.currentProblem.checks) {
@@ -1083,6 +1138,47 @@ extractProblemNumber(problemId, categoryId) {
     
     async runCheck(doc, check, originalHtml = '') {
         try {
+            // 汎用タイプベースのチェック（後方互換のためIDスイッチ前に評価）
+            if (check && check.type) {
+                switch (check.type) {
+                    case 'html-has': { // { selector }
+                        const ok = this.hasElement(doc, check.selector);
+                        return { ...check, passed: ok, message: check.message || (ok ? '要素が存在します' : `要素 ${check.selector} が見つかりません`) };
+                    }
+                    case 'html-text': { // { selector, text }
+                        const ok = this.hasElementWithExactText(doc, check.selector, check.text || '');
+                        return { ...check, passed: ok, message: check.message || (ok ? 'HTMLテキスト一致' : `要素 ${check.selector} のテキストが一致しません`) };
+                    }
+                    case 'html-tag-text': { // { selector, tag, text }
+                        const ok = this.hasElementWithTagAndText(doc, check.selector, (check.tag || '').toLowerCase(), check.text || '');
+                        return { ...check, passed: ok, message: check.message || (ok ? 'HTMLタグとテキスト一致' : `要素 ${check.selector} (${check.tag}) のテキストが一致しません`) };
+                    }
+                    case 'html-nested-text': { // { parentSelector, childSelector, text }
+                        const ok = this.hasNestedElementWithText(doc, check.parentSelector, check.childSelector, check.text || '');
+                        return { ...check, passed: ok, message: check.message || (ok ? '入れ子のテキスト一致' : `入れ子 ${check.parentSelector} 内 ${check.childSelector} のテキストが一致しません`) };
+                    }
+                    case 'html-attr': { // { selector, attr, valueRegex }
+                        const pattern = check.valueRegex || '.*';
+                        const ok = this.hasElementWithAttr(doc, check.selector, check.attr, pattern);
+                        return { ...check, passed: ok, message: check.message || (ok ? '属性が一致します' : `要素 ${check.selector} の属性 ${check.attr} が条件に一致しません`) };
+                    }
+                    case 'css-decl': { // { selector, property, valueRegex }
+                        const pattern = check.valueRegex || '.*';
+                        const ok = this.hasCssDeclaration(check.selector, check.property, `(${pattern})`);
+                        return { ...check, passed: ok, message: check.message || (ok ? 'CSS宣言あり' : `CSS: ${check.selector} { ${check.property}: ${pattern} } が見つかりません`) };
+                    }
+                    case 'css-decls': { // { selector, decls: [{property, valueRegex}], mode?: 'all'|'any' }
+                        const decls = Array.isArray(check.decls) ? check.decls : [];
+                        const mode = check.mode === 'any' ? 'any' : 'all';
+                        const results = decls.map(d => this.hasCssDeclaration(check.selector, d.property, `(${d.valueRegex || '.*'})`));
+                        const ok = mode === 'all' ? results.every(Boolean) : results.some(Boolean);
+                        return { ...check, passed: ok, message: check.message || (ok ? 'CSS宣言チェック合格' : 'CSS宣言チェック不合格') };
+                    }
+                    default:
+                        // 続けてIDスイッチへ（従来チェック）
+                        break;
+                }
+            }
             switch (check.id) {
                 case 'doctype': {
                     const hasDoctype = originalHtml.toLowerCase().includes('<!doctype html>') ||
@@ -1108,6 +1204,28 @@ extractProblemNumber(problemId, categoryId) {
                 case 'h1': {
                     const h1 = doc.querySelector('h1');
                     return { ...check, passed: h1 !== null && h1.textContent.trim() !== '', message: '<h1>見出しと内容が必要です' };
+                }
+
+                // ===== HTML 構造・テキスト（#09: 中央寄せ 用） =====
+                case 'html-h1-text': {
+                    const ok = this.hasElementWithExactText(doc, 'h1', '中央寄せ');
+                    return { ...check, passed: ok, message: ok ? 'h1 のテキストが一致しています' : 'h1 のテキストを「中央寄せ」にしてください' };
+                }
+                case 'html-center-text': {
+                    const ok = this.hasElementWithTagAndText(doc, '.center-text', 'p', '中央寄せのテキスト');
+                    return { ...check, passed: ok, message: ok ? 'center-text が正しい段落です' : 'p.center-text に「中央寄せのテキスト」を設定してください' };
+                }
+                case 'html-center-box': {
+                    const ok = this.hasElementWithTagAndText(doc, '.center-box', 'div', '中央寄せのボックス');
+                    return { ...check, passed: ok, message: ok ? 'center-box が正しいdivです' : 'div.center-box に「中央寄せのボックス」を設定してください' };
+                }
+                case 'html-center-everything-structure': {
+                    const ok = this.hasNestedElementWithText(doc, '.center-everything', 'p', 'ボックスも中身も中央');
+                    return { ...check, passed: ok, message: ok ? 'center-everything の入れ子が正しいです' : 'div.center-everything の中に <p>ボックスも中身も中央</p> を入れてください' };
+                }
+                case 'html-card': {
+                    const ok = this.hasElementWithTagAndText(doc, '.card', 'div', 'カード');
+                    return { ...check, passed: ok, message: ok ? 'card が正しいdivです' : 'div.card に「カード」を設定してください' };
                 }
 
                 // CSS 基本
@@ -1152,6 +1270,36 @@ extractProblemNumber(problemId, categoryId) {
                     const css = (this.fileContents.css || '').toLowerCase();
                     const hasTransition = /\btransition\s*:/i.test(css) || /\btransition-(property|duration|timing-function|delay)\s*:/i.test(css);
                     return { ...check, passed: !!hasTransition, message: hasTransition ? 'transitionが設定されています' : (check.message || 'transitionプロパティで変化のアニメーションを設定してください') };
+                }
+
+                // ===== CSS 具体（#09: 中央寄せ 用） =====
+                case 'css-h1-center': {
+                    const ok = this.hasCssDeclaration('h1', 'text-align', '(center)');
+                    return { ...check, passed: ok, message: ok ? 'h1 が中央寄せです' : 'h1 に text-align: center を指定してください' };
+                }
+                case 'css-center-text-center': {
+                    const ok = this.hasCssDeclaration('\\.center-text', 'text-align', '(center)');
+                    return { ...check, passed: ok, message: ok ? '.center-text が中央寄せです' : '.center-text に text-align: center を指定してください' };
+                }
+                case 'css-center-box': {
+                    const w = this.hasCssDeclaration('\\.center-box', 'width', '(400px)');
+                    const m = this.hasCssDeclaration('\\.center-box', 'margin', '(0\s*auto)');
+                    const ok = w && m;
+                    return { ...check, passed: ok, message: ok ? '.center-box の幅と中央寄せが正しいです' : '.center-box に width: 400px と margin: 0 auto を指定してください' };
+                }
+                case 'css-center-everything': {
+                    const w = this.hasCssDeclaration('\\.center-everything', 'width', '(350px)');
+                    const m = this.hasCssDeclaration('\\.center-everything', 'margin', '(0\s*auto)');
+                    const t = this.hasCssDeclaration('\\.center-everything', 'text-align', '(center)');
+                    const ok = w && m && t;
+                    return { ...check, passed: ok, message: ok ? '.center-everything の幅/中央寄せ/テキスト中央が正しいです' : '.center-everything に width: 350px, margin: 0 auto, text-align: center を指定してください' };
+                }
+                case 'css-card': {
+                    const w = this.hasCssDeclaration('\\.card', 'width', '(300px)');
+                    const m = this.hasCssDeclaration('\\.card', 'margin', '(30px\s*auto)');
+                    const t = this.hasCssDeclaration('\\.card', 'text-align', '(center)');
+                    const ok = w && m && t;
+                    return { ...check, passed: ok, message: ok ? '.card の幅/余白/テキスト中央が正しいです' : '.card に width: 300px, margin: 30px auto, text-align: center を指定してください' };
                 }
 
                 default:

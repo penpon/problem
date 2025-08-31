@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC-23 Expected</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header class="p-2 border-bottom"><div class="container d-flex justify-content-between"><strong>EC</strong><nav class="d-flex gap-2"><button id="goA" class="btn btn-outline-primary btn-sm">Aへ</button><button id="goB" class="btn btn-primary btn-sm">Bへ</button></nav></div></header>
+  <main class="container my-3">
+    <section id="viewA" class="p-3 border rounded">ビューA <button id="toB" class="btn btn-sm btn-secondary ms-2">Bに切替</button></section>
+    <section id="viewB" class="p-3 border rounded d-none">ビューB <button id="toA" class="btn btn-sm btn-secondary ms-2">Aに切替</button></section>
+  </main>
+  <footer class="p-3 border-top text-center text-muted"><small>&copy; EC</small></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

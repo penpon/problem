@@ -55,6 +55,12 @@
       "type": "structure",
       "message": "<title>タグと内容が必要です"
     }
+    ,
+    { "type": "html-text", "name": "h1テキスト", "selector": ".container h1", "text": "画像表示", "message": "h1 を『画像表示』にしてください" },
+    { "type": "html-has", "name": "画像の存在", "selector": ".container img", "message": "img 要素を配置してください" },
+    { "type": "html-attr", "name": "画像src", "selector": ".container img", "attr": "src", "valueRegex": "\\.\\./shared/images/simple-product\\.svg$", "message": "img の src を ../shared/images/simple-product.svg にしてください" },
+    { "type": "html-attr", "name": "画像alt", "selector": ".container img", "attr": "alt", "valueRegex": "商品画像", "message": "img の alt を『商品画像』にしてください" },
+    { "type": "html-tag-text", "name": "説明文", "selector": ".container p", "tag": "p", "text": "画像の説明文です。", "message": "説明文 <p>画像の説明文です。</p> を追加してください" }
   ],
   "hints": [
     "imgタグは自己完結タグ（閉じタグが不要）です",

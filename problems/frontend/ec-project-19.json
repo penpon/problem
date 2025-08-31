@@ -1,33 +1,39 @@
 {
   "id": "ec-project-19",
-  "title": "19: 管理/購入ログ（localStorage）",
-  "description": "購入完了時に購入ログを保存し、管理者のみがログ一覧を閲覧・消去できるようにします。",
+  "title": "19: カタログ→チェックアウト分離",
   "category": "ec-project",
+  "description": "カタログとチェックアウトの役割分担を明確化し、配列操作とビュー切替を実装します。",
   "instructions": [
-    "完了画面遷移時に購入ログを localStorage に追記",
-    "admin ロールのときだけ #viewAdmin を表示",
-    "管理画面でログ一覧を表示し、クリアボタンで削除できるようにする"
+    "カテゴリ・在庫・並び替えで一覧を更新",
+    "カート追加で件数/小計を更新",
+    "チェックアウトビューでカート内訳と合計を表示"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <main class=\"container\">\n    <section id=\"viewCatalog\"></section>\n    <section id=\"viewCheckout\" class=\"d-none\"></section>\n  </main>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-19/files.html.expected"
     },
     "css": {
-      "template": "/* 任意で調整 */",
+      "template": "/* 任意 */",
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-19/files.css.expected"
     },
     "js": {
-      "template": "// ここに実装してください",
+      "template": "// 実装してください",
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-19/files.js.expected"
     }
   },
+  "expectedResult": {
+    "behavior": "一覧のフィルタ/ソートで #list が更新され、カート追加で件数と小計が増える。チェックアウトで内訳と合計が表示される"
+  },
   "checks": [
-    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewAdmin が存在し、ログ一覧 #purchaseLogs があること" },
-    { "id": "auth-admin-logs", "name": "認証/管理/ログ", "type": "js", "message": "admin ログイン時のみ管理画面が表示され、購入完了でログが追加・表示され、削除できること" }
+    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewCatalog と #viewCheckout が存在する" },
+    { "id": "controls", "type": "html", "name": "コントロール", "message": "#category, #sort, #inStock, #list が存在する" },
+    { "id": "array", "type": "js", "name": "配列処理", "message": "filter/sort/map を用いてリストを生成" },
+    { "id": "grid", "type": "css", "name": "グリッド", "message": "#list 直下に col-12 col-sm-6 col-lg-4 が並ぶ" }
   ],
   "hints": [
-    "localStorage.setItem/getItem で配列JSONを保存",
-    "role==='admin' で管理画面アクセスを許可"
+    "arr.filter(...).sort(...).map(...).join('') で innerHTML に代入",
+    "委譲(click)で data-add を拾って cart に push",
+    "showView('catalog'|'checkout') で d-none 切替"
   ]
 }

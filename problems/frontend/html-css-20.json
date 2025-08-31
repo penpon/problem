@@ -22,6 +22,27 @@
     {"id":"body","name":"<body>セクション","type":"structure","message":"<body>セクションが必要です"},
     {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
     {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"}
+    ,
+    { "type": "html-has", "name": ".media 存在", "selector": ".container .media", "message": ".media を配置してください" },
+    { "type": "html-has", "name": "img.media-thumb 存在", "selector": ".media img.media-thumb", "message": ".media 内に .media-thumb 画像を配置してください" },
+    { "type": "html-has", "name": ".media-body 存在", "selector": ".media .media-body", "message": ".media 内に .media-body を配置してください" },
+    { "type": "html-text", "name": "見出しテキスト", "selector": ".media-body h2", "expectedText": "美しいレイアウト", "message": "h2 のテキストを '美しいレイアウト' にしてください" },
+    { "type": "html-text", "name": "本文テキスト", "selector": ".media-body p", "expectedText": "画像とテキストを横並びに配置し、読みやすい行間と余白で情報を整理します。", "message": "p のテキストを expected と一致させてください" },
+
+    { "type": "css-decl", "name": ".media display", "selector": ".media", "prop": "display", "valueRegex": "^flex$", "message": ".media に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".media gap", "selector": ".media", "prop": "gap", "valueRegex": "^20px$", "message": ".media に gap: 20px を設定してください" },
+    { "type": "css-decl", "name": ".media align-items", "selector": ".media", "prop": "align-items", "valueRegex": "^flex-start$", "message": ".media に align-items: flex-start を設定してください" },
+
+    { "type": "css-decl", "name": ".media-thumb width", "selector": ".media-thumb", "prop": "width", "valueRegex": "^220px$", "message": ".media-thumb の width を 220px にしてください" },
+    { "type": "css-decl", "name": ".media-thumb height", "selector": ".media-thumb", "prop": "height", "valueRegex": "^160px$", "message": ".media-thumb の height を 160px にしてください" },
+    { "type": "css-decl", "name": ".media-thumb object-fit", "selector": ".media-thumb", "prop": "object-fit", "valueRegex": "^cover$", "message": ".media-thumb の object-fit を cover にしてください" },
+    { "type": "css-decl", "name": ".media-thumb border-radius", "selector": ".media-thumb", "prop": "border-radius", "valueRegex": "^10px$", "message": ".media-thumb の border-radius を 10px にしてください" },
+
+    { "type": "css-decl", "name": ".media-body flex", "selector": ".media-body", "prop": "flex", "valueRegex": "^1$", "message": ".media-body に flex: 1 を設定してください" },
+    { "type": "css-decl", "name": ".media-body h2 margin", "selector": ".media-body h2", "prop": "margin", "valueRegex": "^0\\s+0\\s+10px$", "message": ".media-body h2 の margin を 0 0 10px にしてください" },
+    { "type": "css-decl", "name": ".media-body p color", "selector": ".media-body p", "prop": "color", "valueRegex": "^#555$", "message": ".media-body p の color を #555 にしてください" },
+    { "type": "css-decl", "name": ".media-body p line-height", "selector": ".media-body p", "prop": "line-height", "valueRegex": "^1\\.8$", "message": ".media-body p の line-height を 1.8 にしてください" },
+    { "type": "css-decl", "name": ".media-body p margin", "selector": ".media-body p", "prop": "margin", "valueRegex": "^0$", "message": ".media-body p の margin を 0 にしてください" }
   ],
   "hints": [
     "画像の固定幅は例えばwidth: 200px;など",

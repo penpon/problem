@@ -61,6 +61,24 @@
       "type": "css",
       "message": "CSSでスタイルを設定してください"
     }
+    ,
+    { "type": "html-text", "name": "h1テキスト", "selector": ".container h1", "text": "見出しサンプル", "message": "h1 を『見出しサンプル』にしてください" },
+    { "type": "html-text", "name": "pテキスト", "selector": ".container p", "text": "段落サンプル", "message": "p に『段落サンプル』を配置してください" },
+    { "type": "html-tag-text", "name": "ul項目1", "selector": ".container ul li:nth-child(1)", "tag": "li", "text": "項目1", "message": "ul の 1件目を『項目1』にしてください" },
+    { "type": "html-tag-text", "name": "ul項目2", "selector": ".container ul li:nth-child(2)", "tag": "li", "text": "項目2", "message": "ul の 2件目を『項目2』にしてください" },
+    { "type": "html-tag-text", "name": "ul項目3", "selector": ".container ul li:nth-child(3)", "tag": "li", "text": "項目3", "message": "ul の 3件目を『項目3』にしてください" },
+
+    { "type": "css-decl", "name": "h1色", "selector": "h1", "prop": "color", "valueRegex": "^blue$", "message": "h1 の color を blue にしてください" },
+    { "type": "css-decl", "name": "h1フォント", "selector": "h1", "prop": "font-family", "valueRegex": "Arial", "message": "h1 の font-family に Arial を含めてください" },
+    { "type": "css-decl", "name": "h1サイズ", "selector": "h1", "prop": "font-size", "valueRegex": "^32px$", "message": "h1 の font-size を 32px にしてください" },
+
+    { "type": "css-decl", "name": "p色", "selector": "p", "prop": "color", "valueRegex": "^green$", "message": "p の color を green にしてください" },
+    { "type": "css-decl", "name": "pフォント", "selector": "p", "prop": "font-family", "valueRegex": "Arial", "message": "p の font-family に Arial を含めてください" },
+    { "type": "css-decl", "name": "pサイズ", "selector": "p", "prop": "font-size", "valueRegex": "^18px$", "message": "p の font-size を 18px にしてください" },
+
+    { "type": "css-decl", "name": "li色", "selector": "li", "prop": "color", "valueRegex": "^red$", "message": "li の color を red にしてください" },
+    { "type": "css-decl", "name": "liフォント", "selector": "li", "prop": "font-family", "valueRegex": "Arial", "message": "li の font-family に Arial を含めてください" },
+    { "type": "css-decl", "name": "liサイズ", "selector": "li", "prop": "font-size", "valueRegex": "^16px$", "message": "li の font-size を 16px にしてください" }
   ],
   "hints": [
     "CSSファイルは拡張子が.cssです",

@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECプロジェクト高度機能</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC-14 Expected</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="#">EC Pro System</a>
-            </div>
-        </nav>
-        <main class="py-4">
-            <div class="container">
-                <h1 class="display-4">高度なEC機能実装</h1>
-                <div id="mainContent">
-                    <!-- JavaScript で動的に生成される高度なコンテンツ -->
-                </div>
-            </div>
-        </main>
+  <header class="p-2 border-bottom"><div class="container d-flex justify-content-between"><strong>EC</strong><span>Cart: <span id="cartCount">0</span></span></div></header>
+  <main class="container my-3">
+    <div class="row g-2 mb-3">
+      <div class="col-auto">
+        <label class="form-label" for="priceMin">最低価格</label>
+        <input id="priceMin" type="number" class="form-control" min="0" step="100" placeholder="0">
+      </div>
+      <div class="col-auto">
+        <label class="form-label" for="priceMax">最高価格</label>
+        <input id="priceMax" type="number" class="form-control" min="0" step="100" placeholder="10000">
+      </div>
+      <div class="col-auto">
+        <label class="form-label" for="sort">並び替え</label>
+        <select id="sort" class="form-select">
+          <option value="new">新着</option>
+          <option value="price_asc">価格(安い順)</option>
+          <option value="price_desc">価格(高い順)</option>
+        </select>
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <div id="list" class="row g-3"></div>
+  </main>
+  <footer class="p-3 border-top text-center text-muted"><small>&copy; EC</small></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

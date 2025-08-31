@@ -73,6 +73,21 @@
       "type": "css",
       "message": "transitionで滑らかなアニメーションを設定してください"
     }
+    ,
+    { "type": "html-has", "name": ".hover-item.scale 存在", "selector": ".container .hover-item.scale", "message": ".hover-item.scale 要素を配置してください" },
+    { "type": "html-has", "name": ".hover-item.rotate 存在", "selector": ".container .hover-item.rotate", "message": ".hover-item.rotate 要素を配置してください" },
+    { "type": "html-has", "name": ".btn 存在", "selector": ".container .btn", "message": ".btn 要素を配置してください" },
+    { "type": "html-has", "name": ".card 存在", "selector": ".container .card", "message": ".card 要素を配置してください" },
+
+    { "type": "css-decl", "name": ".hover-item transition", "selector": ".hover-item", "prop": "transition", "valueRegex": "^all\\s+0\\.3s\\s+ease$", "message": ".hover-item に transition: all 0.3s ease を設定してください" },
+    { "type": "css-decl", "name": ".scale:hover transform", "selector": ".scale:hover", "prop": "transform", "valueRegex": "^scale\\(1\\.1\\)$", "message": ".scale:hover に transform: scale(1.1) を設定してください" },
+    { "type": "css-decl", "name": ".rotate:hover transform", "selector": ".rotate:hover", "prop": "transform", "valueRegex": "^rotate\\(5deg\\)$", "message": ".rotate:hover に transform: rotate(5deg) を設定してください" },
+
+    { "type": "css-decl", "name": ".btn transition", "selector": ".btn", "prop": "transition", "valueRegex": "^all\\s+0\\.3s\\s+ease$", "message": ".btn に transition: all 0.3s ease を設定してください" },
+    { "type": "css-decl", "name": ".btn:hover transform", "selector": ".btn:hover", "prop": "transform", "valueRegex": "^translateY\\(-2px\\)$", "message": ".btn:hover に transform: translateY(-2px) を設定してください" },
+
+    { "type": "css-decl", "name": ".card transition", "selector": ".card", "prop": "transition", "valueRegex": "^all\\s+0\\.3s\\s+ease$", "message": ".card に transition: all 0.3s ease を設定してください" },
+    { "type": "css-decl", "name": ".card:hover transform", "selector": ".card:hover", "prop": "transform", "valueRegex": "^translateY\\(-4px\\)$", "message": ".card:hover に transform: translateY(-4px) を設定してください" }
   ],
   "hints": [
     ":hoverセレクタはマウスオーバー時のスタイルを指定します",

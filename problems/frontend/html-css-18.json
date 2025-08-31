@@ -23,6 +23,37 @@
     {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
     {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"},
     {"id":"hover-effects","name":"ホバー効果","type":"css","message":":hoverセレクタでホバー効果を設定してください"}
+    ,
+    { "type": "html-has", "name": ".card-list 存在", "selector": ".container .card-list", "message": ".card-list を配置してください" },
+    { "type": "html-has", "name": ".card 存在", "selector": ".card-list .card", "message": ".card を1つ以上配置してください" },
+    { "type": "html-has", "name": ".card img 存在", "selector": ".card img", "message": ".card 内に img を配置してください" },
+    { "type": "html-has", "name": ".card h3 存在", "selector": ".card h3", "message": ".card 内に h3 を配置してください" },
+    { "type": "html-has", "name": ".card p 存在", "selector": ".card p", "message": ".card 内に p を配置してください" },
+
+    { "type": "css-decl", "name": ".card-list display", "selector": ".card-list", "prop": "display", "valueRegex": "^flex$", "message": ".card-list に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".card-list gap", "selector": ".card-list", "prop": "gap", "valueRegex": "^20px$", "message": ".card-list に gap: 20px を設定してください" },
+    { "type": "css-decl", "name": ".card-list flex-wrap", "selector": ".card-list", "prop": "flex-wrap", "valueRegex": "^wrap$", "message": ".card-list に flex-wrap: wrap を設定してください" },
+    { "type": "css-decl", "name": ".card-list justify-content", "selector": ".card-list", "prop": "justify-content", "valueRegex": "^center$", "message": ".card-list に justify-content: center を設定してください" },
+
+    { "type": "css-decl", "name": ".card width", "selector": ".card", "prop": "width", "valueRegex": "^300px$", "message": ".card の width を 300px にしてください" },
+    { "type": "css-decl", "name": ".card background", "selector": ".card", "prop": "background", "valueRegex": "^#fff$", "message": ".card の背景色を #fff にしてください" },
+    { "type": "css-decl", "name": ".card border-radius", "selector": ".card", "prop": "border-radius", "valueRegex": "^12px$", "message": ".card の border-radius を 12px にしてください" },
+    { "type": "css-decl", "name": ".card box-shadow", "selector": ".card", "prop": "box-shadow", "valueRegex": "^0\\s+2px\\s+10px\\s+rgba\\(0,\\s*0,\\s*0,\\s*0\\.08\\)$", "message": ".card の box-shadow を 0 2px 10px rgba(0,0,0,0.08) にしてください" },
+    { "type": "css-decl", "name": ".card overflow", "selector": ".card", "prop": "overflow", "valueRegex": "^hidden$", "message": ".card の overflow を hidden にしてください" },
+    { "type": "css-decl", "name": ".card transition", "selector": ".card", "prop": "transition", "valueRegex": "^\\.25s$", "message": ".card の transition を .25s にしてください" },
+    { "type": "css-decl", "name": ".card text-align", "selector": ".card", "prop": "text-align", "valueRegex": "^center$", "message": ".card の text-align を center にしてください" },
+
+    { "type": "css-decl", "name": ".card img display", "selector": ".card img", "prop": "display", "valueRegex": "^block$", "message": ".card img に display: block を設定してください" },
+    { "type": "css-decl", "name": ".card img width", "selector": ".card img", "prop": "width", "valueRegex": "^100%$", "message": ".card img の width を 100% にしてください" },
+    { "type": "css-decl", "name": ".card img height", "selector": ".card img", "prop": "height", "valueRegex": "^180px$", "message": ".card img の height を 180px にしてください" },
+    { "type": "css-decl", "name": ".card img object-fit", "selector": ".card img", "prop": "object-fit", "valueRegex": "^cover$", "message": ".card img の object-fit を cover にしてください" },
+
+    { "type": "css-decl", "name": ".card h3 margin", "selector": ".card h3", "prop": "margin", "valueRegex": "^14px\\s+0\\s+6px$", "message": ".card h3 の margin を 14px 0 6px にしてください" },
+    { "type": "css-decl", "name": ".card p color", "selector": ".card p", "prop": "color", "valueRegex": "^#555$", "message": ".card p の color を #555 にしてください" },
+    { "type": "css-decl", "name": ".card p margin", "selector": ".card p", "prop": "margin", "valueRegex": "^0\\s+16px\\s+18px$", "message": ".card p の margin を 0 16px 18px にしてください" },
+
+    { "type": "css-decl", "name": ".card:hover transform", "selector": ".card:hover", "prop": "transform", "valueRegex": "^translateY\\(-4px\\)$", "message": ".card:hover に transform: translateY(-4px) を設定してください" },
+    { "type": "css-decl", "name": ".card:hover box-shadow", "selector": ".card:hover", "prop": "box-shadow", "valueRegex": "^0\\s+10px\\s+20px\\s+rgba\\(0,\\s*0,\\s*0,\\s*0\\.12\\)$", "message": ".card:hover の box-shadow を 0 10px 20px rgba(0,0,0,0.12) にしてください" }
   ],
   "hints": [
     "画像は幅100%でカード幅にフィットさせるとレイアウトが崩れにくい",

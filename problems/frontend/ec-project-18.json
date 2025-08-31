@@ -1,33 +1,41 @@
 {
   "id": "ec-project-18",
-  "title": "18: 認証モック（ログイン/ログアウトでUI切替）",
-  "description": "簡易認証モックを導入し、ログイン状態でヘッダーの表示を切り替えます。admin ログインは次課題の管理機能に備えます。",
+  "title": "18: 統合基礎",
+  "description": "カタログ→チェックアウト→完了の3ビュー遷移と、配列処理での一覧生成・カート更新を最小構成で学びます。",
   "category": "ec-project",
   "instructions": [
-    "ヘッダーにログイン/ログアウト UI を実装",
-    "ログインフォーム(viewAuth)でユーザー名を入力し、状態を保持",
-    "admin ユーザーは role=admin として扱う"
+    "filter/sort/map/join で #list のカードHTMLを生成",
+    "カート追加で #cartCount と合計を更新",
+    "#viewCatalog/#viewCheckout/#viewComplete を d-none 切替で遷移"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-18/files.html.expected"
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <header class=\"p-2 border-bottom\">\n    <div class=\"container d-flex justify-content-between\">\n      <strong>EC</strong>\n      <span>Cart: <span id=\"cartCount\">0</span></span>\n    </div>\n  </header>\n\n  <main class=\"container my-3\">\n    <section id=\"viewCatalog\">\n      <div class=\"row g-2 align-items-center mb-3\">\n        <div class=\"col-auto\">\n          <select id=\"category\" class=\"form-select\">\n            <option value=\"all\">すべて</option>\n          </select>\n        </div>\n        <div class=\"col-auto\">\n          <select id=\"sort\" class=\"form-select\">\n            <option value=\"price-asc\">価格昇順</option>\n          </select>\n        </div>\n        <div class=\"col-auto form-check\">\n          <input id=\"inStock\" type=\"checkbox\" class=\"form-check-input\">\n          <label for=\"inStock\" class=\"form-check-label\">在庫のみ</label>\n        </div>\n        <div class=\"col ms-auto\" id=\"miniCartTotal\"></div>\n        <div class=\"col-auto\">\n          <button id=\"goCheckoutMini\" class=\"btn btn-primary\">チェックアウトへ</button>\n        </div>\n      </div>\n      <div id=\"list\" class=\"row\"></div>\n    </section>\n\n    <section id=\"viewCheckout\" class=\"d-none\">\n      <div id=\"checkoutList\" class=\"list-group mb-3\"></div>\n      <div id=\"checkoutTotal\" class=\"mb-3\"></div>\n      <button id=\"goComplete\" class=\"btn btn-success\">購入を確定</button>\n    </section>\n\n    <section id=\"viewComplete\" class=\"d-none\">\n      <div id=\"orderNumber\"></div>\n    </section>\n  </main>\n\n  <footer class=\"p-3 border-top\">\n    <div class=\"container\">&copy; EC</div>\n  </footer>\n\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.html.expected"
     },
     "css": {
       "template": "/* 任意で調整 */",
-      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-18/files.css.expected"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.css.expected"
     },
     "js": {
       "template": "// ここに実装してください",
-      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-18/files.js.expected"
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.js.expected"
     }
   },
+  "expectedResult": {
+    "behavior": "カタログ→チェックアウト→完了の3ビューで遷移。フィルタ/並び替え/在庫/カテゴリで一覧更新、カートに追加で合計と件数が増加。チェックアウトでカート一覧と合計を確認し、完了で注文番号表示"
+  },
   "checks": [
-    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewAuth が存在しログインフォームがあること" },
-    { "id": "auth-toggle", "name": "認証UI切替", "type": "js", "message": "ログイン/ログアウトでヘッダーの表示が切り替わること" }
+    { "id": "layout-header-footer", "name": "ヘッダー/フッター", "type": "html", "message": "<header> と <footer> が存在すること" },
+    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewCatalog, #viewCheckout, #viewComplete が存在すること" },
+    { "id": "controls", "name": "操作UI", "type": "html", "message": "#category, #sort, #inStock, #miniCartTotal, #list, #goCheckoutMini が存在すること" },
+    { "id": "uses-array-methods", "name": "配列処理", "type": "js", "message": "filter/sort/map のいずれかを用いて一覧生成していること" },
+    { "id": "grid-classes", "name": "グリッド", "type": "css", "message": "#list 直下に col-12 col-sm-6 col-lg-4 のクラスを持つ要素が並ぶこと" },
+    { "id": "cart-and-checkout", "name": "カート/決済", "type": "js", "message": "カートに追加で件数(#cartCount)と合計が更新され、チェックアウト画面で一覧と合計が表示され、完了ボタンで完了ビューに遷移すること" }
   ],
   "hints": [
-    "authUser のオブジェクトを保持し、null/非nullでUI分岐",
-    "admin という名前なら role=admin とする"
+    "arr.filter(...).sort(...).map(...).join('') で一覧HTMLを作り innerHTML に代入",
+    "イベント委譲でボタンを処理し、cart 配列と total を管理",
+    "showView() で d-none を切り替えて遷移"
   ]
 }

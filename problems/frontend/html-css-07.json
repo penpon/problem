@@ -67,6 +67,20 @@
       "type": "css",
       "message": "paddingプロパティで内側余白を設定してください"
     }
+    ,
+    { "type": "html-text", "name": "h1テキスト", "selector": ".container h1", "text": "余白のテスト", "message": "h1 を『余白のテスト』にしてください" },
+    { "type": "html-text", "name": "p.box1テキスト", "selector": ".container p.box1", "text": "この段落にはmarginとpaddingがあります", "message": "p.box1 のテキストを期待どおりにしてください" },
+    { "type": "html-text", "name": "p.box2テキスト", "selector": ".container p.box2", "text": "こちらの段落は別のスタイルです", "message": "p.box2 のテキストを期待どおりにしてください" },
+    { "type": "html-text", "name": "通常pテキスト", "selector": ".container p:not(.box1):not(.box2)", "text": "普通の段落です（比較用）", "message": "通常の p のテキストを期待どおりにしてください" },
+    { "type": "html-text", "name": "h2テキスト", "selector": ".container h2", "text": "余白の違いを見てみましょう", "message": "h2 を『余白の違いを見てみましょう』にしてください" },
+
+    { "type": "css-decl", "name": ".box1 背景色", "selector": ".box1", "prop": "background-color", "valueRegex": "^lightblue$", "message": ".box1 の背景色を lightblue にしてください" },
+    { "type": "css-decl", "name": ".box1 margin", "selector": ".box1", "prop": "margin", "valueRegex": "^20px$", "message": ".box1 の margin を 20px にしてください" },
+    { "type": "css-decl", "name": ".box1 padding", "selector": ".box1", "prop": "padding", "valueRegex": "^15px$", "message": ".box1 の padding を 15px にしてください" },
+
+    { "type": "css-decl", "name": ".box2 背景色", "selector": ".box2", "prop": "background-color", "valueRegex": "^lightgreen$", "message": ".box2 の背景色を lightgreen にしてください" },
+    { "type": "css-decl", "name": ".box2 margin(上下/左右)", "selector": ".box2", "prop": "margin", "valueRegex": "^10px\\s+0(px)?$", "message": ".box2 の margin を 10px 0px（または 10px 0）にしてください" },
+    { "type": "css-decl", "name": ".box2 padding(上下/左右)", "selector": ".box2", "prop": "padding", "valueRegex": "^20px\\s+10px$", "message": ".box2 の padding を 20px 10px にしてください" }
   ],
   "hints": [
     "marginは要素の外側の余白を設定します",

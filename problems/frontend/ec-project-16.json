@@ -1,37 +1,22 @@
 {
   "id": "ec-project-16",
-  "title": "16: カタログ→チェックアウト分離",
-  "description": "カタログ画面からチェックアウト画面への遷移を実装します。",
+  "title": "16: フィルタ→ソート適用順",
   "category": "ec-project",
+  "description": "フィルタで対象集合を作ってからソートを適用する順序性を意識して一覧を描画する。",
   "instructions": [
-    "カテゴリ/並び替え/在庫フィルタを提供し、一覧を更新する",
-    "\"カートに追加\"で件数と合計を更新する",
-    "ミニカートボタンでチェックアウト画面に遷移する",
-    "チェックアウト画面で一覧と合計を表示する"
+    "カテゴリと在庫でフィルタ",
+    "その結果に対して並び替えを適用",
+    "イベント委譲でカート件数更新"
   ],
   "files": {
-    "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <!-- 実装はJSに合わせて行ってください -->\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.html.expected"
-    },
-    "css": {
-      "template": "/* 任意で調整 */",
-      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.css.expected"
-    },
-    "js": {
-      "template": "// ここに実装してください",
-      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.js.expected"
-    }
+    "html": {"template": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>課題実装</title><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\"></head><body><main class=\"container\"><div id=\"list\"></div></main><script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script></body></html>", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.html.expected"},
+    "css": {"template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.css.expected"},
+    "js": {"template": "// 実装してください", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.js.expected"}
   },
   "checks": [
-    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewCatalog と #viewCheckout が存在すること" },
-    { "id": "controls", "name": "操作UI", "type": "html", "message": "#category, #sort, #inStock, #miniCartTotal, #list, #goCheckoutMini が存在すること" },
-    { "id": "grid-classes", "name": "グリッド", "type": "css", "message": "#list 直下に col-12 col-sm-6 col-lg-4 の要素が並ぶこと" },
-    { "id": "cart-and-checkout", "name": "カート/決済", "type": "js", "message": "カート追加で #cartCount と合計が更新され、チェックアウト画面に一覧と合計が表示されること" }
+    {"id":"controls","type":"html","name":"コントロール","message":"#category,#sort,#inStock,#cartCount,#list が存在"},
+    {"id":"order","type":"js","name":"適用順","message":"フィルタ関数の結果に対してソートを適用している（filter→sort）"},
+    {"id":"grid","type":"css","name":"グリッド","message":"#list 直下に col-12 col-sm-6 col-lg-4 が並ぶ"}
   ],
-  "hints": [
-    "filter/sort/map の組み合わせで一覧を構築",
-    "イベント委譲で data-add を処理",
-    "ビュー切替は d-none の付け外しで"
-  ]
+  "expectedResult": {"behavior":"カテゴリ/在庫変更→フィルタされた集合が並び替え設定で整列し、カート追加で件数が増える"}
 }

@@ -1,0 +1,40 @@
+{
+  "id": "ec-project-22",
+  "title": "22: 管理ビューと購入ログ",
+  "category": "ec-project",
+  "description": "localStorage を用いて購入ログを保存・表示する管理ビューを実装します（管理者のみ閲覧可能）。",
+  "instructions": [
+    "カタログでフィルタ/ソート/在庫を用いて一覧生成",
+    "カート追加で件数/小計更新、チェックアウト→完了",
+    "完了時に購入ログを localStorage へ追記",
+    "ログイン（admin ならロール=admin）後、管理リンクからログ一覧に遷移"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <main class=\"container\">\n    <section id=\"viewCatalog\"></section>\n    <section id=\"viewCheckout\" class=\"d-none\"></section>\n    <section id=\"viewComplete\" class=\"d-none\"></section>\n    <section id=\"viewAuth\" class=\"d-none\"></section>\n    <section id=\"viewAdmin\" class=\"d-none\"></section>\n  </main>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-22/files.html.expected"
+    },
+    "css": {
+      "template": "/* 任意 */",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-22/files.css.expected"
+    },
+    "js": {
+      "template": "// 実装してください",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-22/files.js.expected"
+    }
+  },
+  "expectedResult": {
+    "behavior": "完了時に localStorage に購入ログが追加され、管理者(admin)でログイン時のみ管理ビュー(#viewAdmin)に遷移し一覧が表示される。ログ消去ボタンでログが空になる"
+  },
+  "checks": [
+    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewCatalog,#viewCheckout,#viewComplete,#viewAuth,#viewAdmin が存在" },
+    { "id": "auth-area", "type": "html", "name": "認証領域", "message": "#authArea がヘッダーに存在" },
+    { "id": "admin-link", "type": "html", "name": "管理リンク", "message": "#goAdmin が存在" },
+    { "id": "logs-ls", "type": "js", "name": "ログ保存", "message": "localStorage に配列として保存し、管理ビューで描画している" }
+  ],
+  "hints": [
+    "LS_KEY を決めて JSON.stringify/parse で配列保存",
+    "appendLog() で {when,user,total,items[]} を push/unshift",
+    "ロール判定は authUser.role==='admin' で分岐"
+  ]
+}

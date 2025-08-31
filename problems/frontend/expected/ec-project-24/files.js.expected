@@ -1,0 +1,119 @@
+(() => {
+  const products = [
+    { id: 3, name: 'ベーシックT', price: 1980, category: 'tops', inStock: true },
+    { id: 2, name: 'トートバッグ', price: 2980, category: 'bags', inStock: true },
+    { id: 1, name: '限定T', price: 2480, category: 'tops', inStock: false }
+  ];
+
+  const els = {
+    category: document.getElementById('category'),
+    sort: document.getElementById('sort'),
+    inStock: document.getElementById('inStock'),
+    list: document.getElementById('list'),
+    cartCount: document.getElementById('cartCount'),
+    miniCartTotal: document.getElementById('miniCartTotal'),
+    goCheckoutMini: document.getElementById('goCheckoutMini'),
+    viewCatalog: document.getElementById('viewCatalog'),
+    viewCheckout: document.getElementById('viewCheckout'),
+    viewComplete: document.getElementById('viewComplete'),
+    viewAuth: document.getElementById('viewAuth'),
+    viewAdmin: document.getElementById('viewAdmin'),
+    checkoutList: document.getElementById('checkoutList'),
+    backToCatalog: document.getElementById('backToCatalog'),
+    goComplete: document.getElementById('goComplete'),
+    orderNo: document.getElementById('orderNo'),
+    backHome: document.getElementById('backHome'),
+    // auth
+    authArea: document.getElementById('authArea'),
+    loginUser: document.getElementById('loginUser'),
+    loginPass: document.getElementById('loginPass'),
+    doLogin: document.getElementById('doLogin'),
+    cancelAuth: document.getElementById('cancelAuth'),
+    // admin
+    purchaseLogs: document.getElementById('purchaseLogs'),
+    goAdmin: document.getElementById('goAdmin')
+  };
+
+  const cart = [];
+  let authUser = null; // {name, role}
+  const fmt = n => '¥' + n.toLocaleString();
+
+  function renderList(){
+    let arr = [...products];
+    if (els.category.value !== 'all') arr = arr.filter(p => p.category === els.category.value);
+    if (els.inStock.checked) arr = arr.filter(p => p.inStock);
+    if (els.sort.value === 'price_asc') arr.sort((a,b)=>a.price-b.price);
+    else if (els.sort.value === 'price_desc') arr.sort((a,b)=>b.price-a.price);
+    else arr.sort((a,b)=>b.id-a.id);
+
+    els.list.innerHTML = arr.map(p => `
+      <div class=\"col-12 col-sm-6 col-lg-4\">
+        <div class=\"card h-100\">
+          <div class=\"card-body\">
+            <h5 class=\"card-title\">${p.name}</h5>
+            <p class=\"card-text\">${fmt(p.price)}</p>
+            <button class=\"btn btn-primary\" data-add=\"${p.id}\" ${p.inStock?'':'disabled'}>カートに追加</button>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+  function updateCartUI(){
+    els.cartCount.textContent = String(cart.length);
+    const total = cart.reduce((s,i)=>s+i.price,0);
+    els.miniCartTotal.textContent = `合計: ${fmt(total)}`;
+  }
+  function showView(v){
+    els.viewCatalog.classList.toggle('d-none', v!=='catalog');
+    els.viewCheckout.classList.toggle('d-none', v!=='checkout');
+    els.viewComplete.classList.toggle('d-none', v!=='complete');
+    els.viewAuth.classList.toggle('d-none', v!=='auth');
+    els.viewAdmin.classList.toggle('d-none', v!=='admin');
+  }
+  function renderCheckout(){
+    const total = cart.reduce((s,i)=>s+i.price,0);
+    els.checkoutList && (els.checkoutList.innerHTML = cart.map(c=>`<div class=\"item\"><span>${c.name}</span><span>${fmt(c.price)}</span></div>`).join('') +
+      `<div class=\"item fw-bold\"><span>合計</span><span>${fmt(total)}</span></div>`);
+  }
+  function renderAuthArea(){
+    if (!els.authArea) return;
+    if (!authUser){
+      els.authArea.innerHTML = `<button id=\"btnLogin\" class=\"btn btn-outline-secondary btn-sm\">ログイン</button>`;
+      els.authArea.querySelector('#btnLogin').addEventListener('click', ()=>showView('auth'));
+    } else {
+      els.authArea.innerHTML = `<span class=\"text-muted small\">${authUser.name}</span> <button id=\"btnLogout\" class=\"btn btn-outline-secondary btn-sm\">ログアウト</button>`;
+      els.authArea.querySelector('#btnLogout').addEventListener('click', ()=>{ authUser=null; renderAuthArea(); showView('catalog'); });
+    }
+  }
+
+  // events
+  els.list.addEventListener('click', (e)=>{
+    const id = e.target.closest('[data-add]')?.getAttribute('data-add');
+    if (!id) return;
+    const p = products.find(x=>x.id==id);
+    if (p) cart.push(p);
+    updateCartUI();
+  });
+  ['change'].forEach(ev=>{
+    els.category.addEventListener(ev, ()=>{ renderList(); });
+    els.sort.addEventListener(ev, ()=>{ renderList(); });
+    els.inStock.addEventListener(ev, ()=>{ renderList(); });
+  });
+  els.goCheckoutMini && els.goCheckoutMini.addEventListener('click', ()=>{ renderCheckout(); showView('checkout'); window.scrollTo(0,0); });
+  els.backToCatalog && els.backToCatalog.addEventListener('click', ()=>showView('catalog'));
+  els.goComplete && els.goComplete.addEventListener('click', ()=>{ showView('complete'); });
+  els.backHome && els.backHome.addEventListener('click', ()=>{ cart.length = 0; updateCartUI(); renderList(); showView('catalog'); });
+
+  els.doLogin && els.doLogin.addEventListener('click', ()=>{
+    const name = els.loginUser.value.trim();
+    authUser = { name: name || 'guest', role: name==='admin'?'admin':'user' };
+    renderAuthArea();
+    showView('catalog');
+  });
+  els.cancelAuth && els.cancelAuth.addEventListener('click', ()=>showView('catalog'));
+  els.goAdmin && els.goAdmin.addEventListener('click', (e)=>{ e.preventDefault(); showView('admin'); });
+
+  // init
+  renderList();
+  updateCartUI();
+  renderAuthArea();
+})();

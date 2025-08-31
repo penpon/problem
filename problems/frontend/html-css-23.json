@@ -22,6 +22,33 @@
     {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
     {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"},
     {"id":"hover-effects","name":"ホバー効果","type":"css","message":":hoverセレクタでホバー効果を設定してください"}
+    ,
+    { "type": "html-has", "name": ".container.hero 存在", "selector": ".container.hero", "message": ".container.hero を作成してください" },
+    { "type": "html-text", "name": "h1 テキスト", "selector": ".hero h1", "expectedText": "小さく作り、大きく育てる", "message": "h1 のテキストを '小さく作り、大きく育てる' にしてください" },
+    { "type": "html-text", "name": "p テキスト", "selector": ".hero p", "expectedText": "短い開発サイクルで価値を届け、継続的に改善していくための土台を整えます。", "message": "p のテキストを expected と一致させてください" },
+    { "type": "html-text", "name": "cta テキスト", "selector": ".hero .cta", "expectedText": "今すぐ始める", "message": "a.cta のテキストを '今すぐ始める' にしてください" },
+
+    { "type": "css-decl", "name": ".hero text-align", "selector": ".hero", "prop": "text-align", "valueRegex": "^center$", "message": ".hero に text-align: center を設定してください" },
+    { "type": "css-decl", "name": ".hero padding", "selector": ".hero", "prop": "padding", "valueRegex": "^40px\\s+20px$", "message": ".hero の padding を 40px 20px にしてください" },
+
+    { "type": "css-decl", "name": ".hero h1 font-size", "selector": ".hero h1", "prop": "font-size", "valueRegex": "^42px$", "message": ".hero h1 の font-size を 42px にしてください" },
+    { "type": "css-decl", "name": ".hero h1 margin", "selector": ".hero h1", "prop": "margin", "valueRegex": "^0\\s+0\\s+14px$", "message": ".hero h1 の margin を 0 0 14px にしてください" },
+
+    { "type": "css-decl", "name": ".hero p max-width", "selector": ".hero p", "prop": "max-width", "valueRegex": "^600px$", "message": ".hero p の max-width を 600px にしてください" },
+    { "type": "css-decl", "name": ".hero p margin", "selector": ".hero p", "prop": "margin", "valueRegex": "^0\\s+auto\\s+18px$", "message": ".hero p の margin を 0 auto 18px にしてください" },
+    { "type": "css-decl", "name": ".hero p color", "selector": ".hero p", "prop": "color", "valueRegex": "^#555$", "message": ".hero p の color を #555 にしてください" },
+    { "type": "css-decl", "name": ".hero p line-height", "selector": ".hero p", "prop": "line-height", "valueRegex": "^1\\.9$", "message": ".hero p の line-height を 1.9 にしてください" },
+
+    { "type": "css-decl", "name": ".cta display", "selector": ".cta", "prop": "display", "valueRegex": "^inline-block$", "message": ".cta に display: inline-block を設定してください" },
+    { "type": "css-decl", "name": ".cta background", "selector": ".cta", "prop": "background", "valueRegex": "^#111$", "message": ".cta の背景色を #111 にしてください" },
+    { "type": "css-decl", "name": ".cta color", "selector": ".cta", "prop": "color", "valueRegex": "^#fff$", "message": ".cta の文字色を #fff にしてください" },
+    { "type": "css-decl", "name": ".cta text-decoration", "selector": ".cta", "prop": "text-decoration", "valueRegex": "^none$", "message": ".cta の text-decoration を none にしてください" },
+    { "type": "css-decl", "name": ".cta padding", "selector": ".cta", "prop": "padding", "valueRegex": "^12px\\s+22px$", "message": ".cta の padding を 12px 22px にしてください" },
+    { "type": "css-decl", "name": ".cta border-radius", "selector": ".cta", "prop": "border-radius", "valueRegex": "^10px$", "message": ".cta の border-radius を 10px にしてください" },
+    { "type": "css-decl", "name": ".cta transition", "selector": ".cta", "prop": "transition", "valueRegex": "^\\.25s$", "message": ".cta の transition を .25s にしてください" },
+
+    { "type": "css-decl", "name": ".cta:hover background", "selector": ".cta:hover", "prop": "background", "valueRegex": "^#2d7ef7$", "message": ".cta:hover の背景色を #2d7ef7 にしてください" },
+    { "type": "css-decl", "name": ".cta:hover transform", "selector": ".cta:hover", "prop": "transform", "valueRegex": "^translateY\\(-2px\\)$", "message": ".cta:hover に transform: translateY(-2px) を設定してください" }
   ],
   "hints": [
     "h1はfont-sizeやmarginで視覚的階層を作る",

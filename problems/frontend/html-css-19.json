@@ -22,6 +22,38 @@
     {"id":"body","name":"<body>セクション","type":"structure","message":"<body>セクションが必要です"},
     {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
     {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"}
+    ,
+    { "type": "html-text", "name": "h2 テキスト", "selector": ".container h2", "expectedText": "私たちの強み", "message": "h2 のテキストを '私たちの強み' にしてください" },
+    { "type": "html-has", "name": ".features 存在", "selector": ".container .features", "message": ".features セクションを作成してください" },
+    { "type": "html-has", "name": ".box 存在", "selector": ".features .box", "message": ".features 内に .box を配置してください" },
+    { "type": "html-text", "name": "1番目 h3", "selector": ".features .box:nth-child(1) h3", "expectedText": "高速", "message": "1番目のボックスの h3 を '高速' にしてください" },
+    { "type": "html-text", "name": "1番目 p", "selector": ".features .box:nth-child(1) p", "expectedText": "軽量・最適化で高速表示を実現。", "message": "1番目のボックスの p を expected と一致させてください" },
+    { "type": "html-text", "name": "2番目 h3", "selector": ".features .box:nth-child(2) h3", "expectedText": "安全", "message": "2番目のボックスの h3 を '安全' にしてください" },
+    { "type": "html-text", "name": "2番目 p", "selector": ".features .box:nth-child(2) p", "expectedText": "最新のベストプラクティスで堅牢。", "message": "2番目のボックスの p を expected と一致させてください" },
+    { "type": "html-text", "name": "3番目 h3", "selector": ".features .box:nth-child(3) h3", "expectedText": "柔軟", "message": "3番目のボックスの h3 を '柔軟' にしてください" },
+    { "type": "html-text", "name": "3番目 p", "selector": ".features .box:nth-child(3) p", "expectedText": "スケールや要件変更に強い設計。", "message": "3番目のボックスの p を expected と一致させてください" },
+
+    { "type": "css-decl", "name": ".container h2 text-align", "selector": ".container h2", "prop": "text-align", "valueRegex": "^center$", "message": ".container h2 に text-align: center を設定してください" },
+    { "type": "css-decl", "name": ".container h2 margin", "selector": ".container h2", "prop": "margin", "valueRegex": "^0\\s+0\\s+20px$", "message": ".container h2 の margin を 0 0 20px にしてください" },
+
+    { "type": "css-decl", "name": ".features display", "selector": ".features", "prop": "display", "valueRegex": "^flex$", "message": ".features に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".features gap", "selector": ".features", "prop": "gap", "valueRegex": "^16px$", "message": ".features に gap: 16px を設定してください" },
+    { "type": "css-decl", "name": ".features justify-content", "selector": ".features", "prop": "justify-content", "valueRegex": "^space-between$", "message": ".features に justify-content: space-between を設定してください" },
+
+    { "type": "css-decl", "name": ".box flex", "selector": ".box", "prop": "flex", "valueRegex": "^1$", "message": ".box に flex: 1 を設定してください" },
+    { "type": "css-decl", "name": ".box border", "selector": ".box", "prop": "border", "valueRegex": "^1px\\s+solid\\s+#e3e7ef$", "message": ".box の border を 1px solid #e3e7ef にしてください" },
+    { "type": "css-decl", "name": ".box border-radius", "selector": ".box", "prop": "border-radius", "valueRegex": "^12px$", "message": ".box の border-radius を 12px にしてください" },
+    { "type": "css-decl", "name": ".box padding", "selector": ".box", "prop": "padding", "valueRegex": "^20px$", "message": ".box の padding を 20px にしてください" },
+    { "type": "css-decl", "name": ".box text-align", "selector": ".box", "prop": "text-align", "valueRegex": "^center$", "message": ".box の text-align を center にしてください" },
+    { "type": "css-decl", "name": ".box transition", "selector": ".box", "prop": "transition", "valueRegex": "^\\.2s$", "message": ".box の transition を .2s にしてください" },
+    { "type": "css-decl", "name": ".box background", "selector": ".box", "prop": "background", "valueRegex": "^#fff$", "message": ".box の background を #fff にしてください" },
+
+    { "type": "css-decl", "name": ".box h3 margin", "selector": ".box h3", "prop": "margin", "valueRegex": "^6px\\s+0\\s+10px$", "message": ".box h3 の margin を 6px 0 10px にしてください" },
+    { "type": "css-decl", "name": ".box p color", "selector": ".box p", "prop": "color", "valueRegex": "^#555$", "message": ".box p の color を #555 にしてください" },
+    { "type": "css-decl", "name": ".box p margin", "selector": ".box p", "prop": "margin", "valueRegex": "^0$", "message": ".box p の margin を 0 にしてください" },
+
+    { "type": "css-decl", "name": ".box:hover background", "selector": ".box:hover", "prop": "background", "valueRegex": "^#f8fbff$", "message": ".box:hover の背景色を #f8fbff にしてください" },
+    { "type": "css-decl", "name": ".box:hover box-shadow", "selector": ".box:hover", "prop": "box-shadow", "valueRegex": "^0\\s+8px\\s+18px\\s+rgba\\(0,\\s*0,\\s*0,\\s*0\\.08\\)$", "message": ".box:hover の box-shadow を 0 8px 18px rgba(0,0,0,0.08) にしてください" }
   ],
   "hints": [
     "borderとpaddingでボックスの情報量を整理",

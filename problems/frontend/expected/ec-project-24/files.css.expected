@@ -1,0 +1,2 @@
+#list .card-img-top{object-fit:cover;height:160px}
+#purchaseLogs .log-item{display:flex;justify-content:space-between;align-items:center}

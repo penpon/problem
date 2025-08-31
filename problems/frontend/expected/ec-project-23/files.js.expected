@@ -1,0 +1,20 @@
+(() => {
+  const viewA = document.getElementById('viewA');
+  const viewB = document.getElementById('viewB');
+  const goA = document.getElementById('goA');
+  const goB = document.getElementById('goB');
+  const toA = document.getElementById('toA');
+  const toB = document.getElementById('toB');
+
+  function show(v){
+    viewA.classList.toggle('d-none', v!=='A');
+    viewB.classList.toggle('d-none', v!=='B');
+  }
+
+  goA.addEventListener('click', ()=>show('A'));
+  goB.addEventListener('click', ()=>show('B'));
+  toA.addEventListener('click', ()=>show('A'));
+  toB.addEventListener('click', ()=>show('B'));
+
+  show('A');
+})();

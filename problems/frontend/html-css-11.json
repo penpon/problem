@@ -61,6 +61,19 @@
       "type": "css",
       "message": "CSSでスタイルを設定してください"
     }
+    ,
+    { "type": "html-has", "name": ".basic-shadow 存在", "selector": ".container .basic-shadow", "message": ".basic-shadow 要素を配置してください" },
+    { "type": "html-has", "name": ".small-radius 存在", "selector": ".container .small-radius", "message": ".small-radius 要素を配置してください" },
+    { "type": "html-has", "name": ".large-radius 存在", "selector": ".container .large-radius", "message": ".large-radius 要素を配置してください" },
+    { "type": "html-has", "name": ".circle 存在", "selector": ".container .circle", "message": ".circle 要素を配置してください" },
+    { "type": "html-has", "name": ".card-basic 存在", "selector": ".container .card-basic", "message": ".card-basic 要素を配置してください" },
+
+    { "type": "css-decl", "name": ".basic-shadow box-shadow", "selector": ".basic-shadow", "prop": "box-shadow", "valueRegex": "^2px\\s+2px\\s+5px\\s+rgba\\(0,0,0,0\\.2\\)$", "message": ".basic-shadow に box-shadow: 2px 2px 5px rgba(0,0,0,0.2) を設定してください" },
+    { "type": "css-decl", "name": ".small-radius border-radius", "selector": ".small-radius", "prop": "border-radius", "valueRegex": "^8px$", "message": ".small-radius に border-radius: 8px を設定してください" },
+    { "type": "css-decl", "name": ".large-radius border-radius", "selector": ".large-radius", "prop": "border-radius", "valueRegex": "^25px$", "message": ".large-radius に border-radius: 25px を設定してください" },
+    { "type": "css-decl", "name": ".circle border-radius", "selector": ".circle", "prop": "border-radius", "valueRegex": "^50%$", "message": ".circle に border-radius: 50% を設定してください" },
+    { "type": "css-decl", "name": ".card-basic box-shadow", "selector": ".card-basic", "prop": "box-shadow", "valueRegex": "^0\\s+2px\\s+10px\\s+rgba\\(0,0,0,0\\.1\\)$", "message": ".card-basic に box-shadow: 0 2px 10px rgba(0,0,0,0.1) を設定してください" },
+    { "type": "css-decl", "name": ".card-basic border-radius", "selector": ".card-basic", "prop": "border-radius", "valueRegex": "^10px$", "message": ".card-basic に border-radius: 10px を設定してください" }
   ],
   "hints": [
     "box-shadowの構文: 水平位置 垂直位置 ぼかし 拡がり 色",

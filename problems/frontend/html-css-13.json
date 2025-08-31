@@ -61,6 +61,21 @@
       "type": "css",
       "message": "CSSでスタイルを設定してください"
     }
+    ,
+    { "type": "html-has", "name": ".flex-container.justify-center 存在", "selector": ".container .flex-container.justify-center", "message": ".flex-container.justify-center を配置してください" },
+    { "type": "html-has", "name": ".flex-container.justify-between 存在", "selector": ".container .flex-container.justify-between", "message": ".flex-container.justify-between を配置してください" },
+    { "type": "html-has", "name": ".flex-container.align-center 存在", "selector": ".container .flex-container.align-center", "message": ".flex-container.align-center を配置してください" },
+    { "type": "html-has", "name": ".flex-container.direction-column 存在", "selector": ".container .flex-container.direction-column", "message": ".flex-container.direction-column を配置してください" },
+
+    { "type": "css-decl", "name": ".flex-container display", "selector": ".flex-container", "prop": "display", "valueRegex": "^flex$", "message": ".flex-container に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".justify-center justify-content", "selector": ".justify-center", "prop": "justify-content", "valueRegex": "^center$", "message": ".justify-center に justify-content: center を設定してください" },
+    { "type": "css-decl", "name": ".justify-between justify-content", "selector": ".justify-between", "prop": "justify-content", "valueRegex": "^space-between$", "message": ".justify-between に justify-content: space-between を設定してください" },
+    { "type": "css-decl", "name": ".align-center align-items", "selector": ".align-center", "prop": "align-items", "valueRegex": "^center$", "message": ".align-center に align-items: center を設定してください" },
+    { "type": "css-decl", "name": ".align-center height", "selector": ".align-center", "prop": "height", "valueRegex": "^120px$", "message": ".align-center の height を 120px にしてください" },
+    { "type": "css-decl", "name": ".direction-column flex-direction", "selector": ".direction-column", "prop": "flex-direction", "valueRegex": "^column$", "message": ".direction-column に flex-direction: column を設定してください" },
+    { "type": "css-decl", "name": ".direction-column height", "selector": ".direction-column", "prop": "height", "valueRegex": "^200px$", "message": ".direction-column の height を 200px にしてください" },
+    { "type": "css-decl", "name": ".direction-column width", "selector": ".direction-column", "prop": "width", "valueRegex": "^200px$", "message": ".direction-column の width を 200px にしてください" },
+    { "type": "css-decl", "name": ".direction-column margin", "selector": ".direction-column", "prop": "margin", "valueRegex": "^0(px)?\\s+auto$", "message": ".direction-column の margin を 0 auto にしてください" }
   ],
   "hints": [
     "display: flexで親要素をFlexboxコンテナに",

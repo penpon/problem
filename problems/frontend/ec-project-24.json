@@ -1,0 +1,26 @@
+{
+  "id": "ec-project-24",
+  "title": "24: 統合準備・再点検",
+  "category": "ec-project",
+  "description": "カタログ/チェックアウト/完了/認証/管理など主要ビューの最小構成を揃え、要素存在と遷移の下地を再点検する。",
+  "instructions": [
+    "カテゴリ/在庫/並び替えの基本UIを配置",
+    "ミニカート合計と件数を表示",
+    "チェックアウト、完了、認証、管理へのビュー切替関数を用意"
+  ],
+  "files": {
+    "html": { "template": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>課題実装</title><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\"></head><body><main class=\"container\"></main><script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script></body></html>", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-24/files.html.expected" },
+    "css": { "template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-24/files.css.expected" },
+    "js": { "template": "// 実装してください", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-24/files.js.expected" }
+  },
+  "checks": [
+    { "id":"views", "type":"html", "name":"ビュー", "message":"#viewCatalog,#viewCheckout,#viewComplete,#viewAuth,#viewAdmin が存在" },
+    { "id":"header", "type":"html", "name":"ヘッダー", "message":"#cartCount,#miniCartTotal,#goCheckoutMini,#goAdmin,#authArea が存在" },
+    { "id":"toggle", "type":"js", "name":"切替", "message":"showView('catalog'|'checkout'|'complete'|'auth'|'admin') で表示切替できる" }
+  ],
+  "expectedResult": { "behavior": "主要要素が揃い、簡易的な遷移とカートUIの更新が機能する" },
+  "hints": [
+    "ビュー切替は classList.toggle('d-none', ...) を使う",
+    "合計は reduce で算出"
+  ]
+}

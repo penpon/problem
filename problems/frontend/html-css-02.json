@@ -53,6 +53,8 @@
       "type": "structure",
       "message": "<title>タグと内容が必要です"
     },
+    { "type": "html-text", "name": "h1テキスト", "selector": ".container h1", "text": "私のホームページ", "message": "h1 を『私のホームページ』にしてください" },
+    { "type": "html-tag-text", "name": "本文テキスト", "selector": ".container p", "tag": "p", "text": "Hello, World!", "message": "コンテナ内に <p>Hello, World!</p> を配置してください" },
     {
       "id": "h1",
       "name": "<h1>見出し",

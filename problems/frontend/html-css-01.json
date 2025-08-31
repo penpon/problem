@@ -54,5 +54,14 @@
       "type": "structure",
       "message": "<title>タグと内容が必要です"
     }
+    ,
+    {
+      "type": "html-tag-text",
+      "name": "本文テキスト",
+      "selector": "body p",
+      "tag": "p",
+      "text": "Hello, World!",
+      "message": "<p>Hello, World!</p> を body 内に追加してください"
+    }
   ]
 }

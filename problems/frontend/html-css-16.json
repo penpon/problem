@@ -34,6 +34,29 @@
     { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
     { "id": "hover-effects", "name": "ホバー効果", "type": "css", "message": ":hoverセレクタでホバー効果を設定してください" },
     { "id": "transition-animations", "name": "transitionアニメーション", "type": "css", "message": "transitionで滑らかなアニメーションを設定してください" }
+    ,
+    { "type": "html-has", "name": ".container.hero 存在", "selector": ".container.hero", "message": ".container.hero セクションを作成してください" },
+    { "type": "html-text", "name": "h1 テキスト", "selector": ".hero h1", "expectedText": "あなたのアイデアを形に", "message": "h1 に正しいテキストを入れてください" },
+    { "type": "html-text", "name": "p テキスト", "selector": ".hero p", "expectedText": "シンプルで美しいWeb体験を今すぐ始めましょう。", "message": "p に正しいサブテキストを入れてください" },
+    { "type": "html-text", "name": "CTA テキスト", "selector": ".cta-button", "expectedText": "はじめる", "message": ".cta-button のテキストを 'はじめる' にしてください" },
+
+    { "type": "css-decl", "name": ".hero text-align", "selector": ".hero", "prop": "text-align", "valueRegex": "^center$", "message": ".hero に text-align: center を設定してください" },
+    { "type": "css-decl", "name": ".hero padding", "selector": ".hero", "prop": "padding", "valueRegex": "^40px\\s+20px$", "message": ".hero の padding を 40px 20px にしてください" },
+    { "type": "css-decl", "name": ".hero h1 font-size", "selector": ".hero h1", "prop": "font-size", "valueRegex": "^40px$", "message": ".hero h1 の font-size を 40px にしてください" },
+    { "type": "css-decl", "name": ".hero h1 margin", "selector": ".hero h1", "prop": "margin", "valueRegex": "^0\\s+0\\s+12px$", "message": ".hero h1 の margin を 0 0 12px にしてください" },
+    { "type": "css-decl", "name": ".hero p color", "selector": ".hero p", "prop": "color", "valueRegex": "^#555$", "message": ".hero p の color を #555 にしてください" },
+    { "type": "css-decl", "name": ".hero p margin", "selector": ".hero p", "prop": "margin", "valueRegex": "^0\\s+0\\s+20px$", "message": ".hero p の margin を 0 0 20px にしてください" },
+
+    { "type": "css-decl", "name": ".cta-button display", "selector": ".cta-button", "prop": "display", "valueRegex": "^inline-block$", "message": ".cta-button に display: inline-block を設定してください" },
+    { "type": "css-decl", "name": ".cta-button background", "selector": ".cta-button", "prop": "background", "valueRegex": "^#2d7ef7$", "message": ".cta-button の背景色を #2d7ef7 にしてください" },
+    { "type": "css-decl", "name": ".cta-button color", "selector": ".cta-button", "prop": "color", "valueRegex": "^#fff$", "message": ".cta-button の文字色を #fff にしてください" },
+    { "type": "css-decl", "name": ".cta-button text-decoration", "selector": ".cta-button", "prop": "text-decoration", "valueRegex": "^none$", "message": ".cta-button の text-decoration を none にしてください" },
+    { "type": "css-decl", "name": ".cta-button padding", "selector": ".cta-button", "prop": "padding", "valueRegex": "^12px\\s+24px$", "message": ".cta-button の padding を 12px 24px にしてください" },
+    { "type": "css-decl", "name": ".cta-button border-radius", "selector": ".cta-button", "prop": "border-radius", "valueRegex": "^999px$", "message": ".cta-button の border-radius を 999px にしてください" },
+    { "type": "css-decl", "name": ".cta-button box-shadow", "selector": ".cta-button", "prop": "box-shadow", "valueRegex": "^0\\s+6px\\s+14px\\s+rgba\\(45,\\s*126,\\s*247,\\s*0\\.25\\)$", "message": ".cta-button の box-shadow を 0 6px 14px rgba(45,126,247,0.25) にしてください" },
+    { "type": "css-decl", "name": ".cta-button transition", "selector": ".cta-button", "prop": "transition", "valueRegex": "^\\.25s\\s+ease$", "message": ".cta-button の transition を .25s ease にしてください" },
+    { "type": "css-decl", "name": ".cta-button:hover transform", "selector": ".cta-button:hover", "prop": "transform", "valueRegex": "^translateY\\(-2px\\)$", "message": ".cta-button:hover に transform: translateY(-2px) を設定してください" },
+    { "type": "css-decl", "name": ".cta-button:hover box-shadow", "selector": ".cta-button:hover", "prop": "box-shadow", "valueRegex": "^0\\s+10px\\s+18px\\s+rgba\\(45,\\s*126,\\s*247,\\s*0\\.35\\)$", "message": ".cta-button:hover の box-shadow を 0 10px 18px rgba(45,126,247,0.35) にしてください" }
   ],
   "hints": [
     "中央寄せはtext-align: center、ボックス中央はmargin: 0 auto",

@@ -61,6 +61,33 @@
       "type": "css",
       "message": "CSSでスタイルを設定してください"
     }
+    ,
+    { "type": "html-has", "name": ".card-container 存在", "selector": ".container .card-container", "message": ".card-container を配置してください" },
+    { "type": "html-has", "name": ".card 存在", "selector": ".container .card", "message": ".card を配置してください" },
+    { "type": "html-has", "name": ".image-card 存在", "selector": ".container .image-card", "message": ".image-card を配置してください" },
+    { "type": "html-has", "name": ".action-card 存在", "selector": ".container .action-card", "message": ".action-card を配置してください" },
+
+    { "type": "css-decl", "name": ".card background", "selector": ".card", "prop": "background", "valueRegex": "^white$", "message": ".card の背景色を white にしてください" },
+    { "type": "css-decl", "name": ".card border-radius", "selector": ".card", "prop": "border-radius", "valueRegex": "^16px$", "message": ".card の border-radius を 16px にしてください" },
+    { "type": "css-decl", "name": ".card box-shadow", "selector": ".card", "prop": "box-shadow", "valueRegex": "^0\\s+4px\\s+20px\\s+rgba\\(0,\\s*0,\\s*0,\\s*0\\.1\\)$", "message": ".card の box-shadow を 0 4px 20px rgba(0, 0, 0, 0.1) にしてください" },
+    { "type": "css-decl", "name": ".card transition", "selector": ".card", "prop": "transition", "valueRegex": "^all\\s+0\\.3s\\s+ease$", "message": ".card の transition を all 0.3s ease にしてください" },
+    { "type": "css-decl", "name": ".card overflow", "selector": ".card", "prop": "overflow", "valueRegex": "^hidden$", "message": ".card の overflow を hidden にしてください" },
+    { "type": "css-decl", "name": ".card:hover transform", "selector": ".card:hover", "prop": "transform", "valueRegex": "^translateY\\(-8px\\)$", "message": ".card:hover に transform: translateY(-8px) を設定してください" },
+    { "type": "css-decl", "name": ".card:hover box-shadow", "selector": ".card:hover", "prop": "box-shadow", "valueRegex": "^0\\s+12px\\s+40px\\s+rgba\\(0,\\s*0,\\s*0,\\s*0\\.15\\)$", "message": ".card:hover の box-shadow を 0 12px 40px rgba(0, 0, 0, 0.15) にしてください" },
+
+    { "type": "css-decl", "name": ".card-container display", "selector": ".card-container", "prop": "display", "valueRegex": "^flex$", "message": ".card-container に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".card-container flex-wrap", "selector": ".card-container", "prop": "flex-wrap", "valueRegex": "^wrap$", "message": ".card-container に flex-wrap: wrap を設定してください" },
+    { "type": "css-decl", "name": ".card-container gap", "selector": ".card-container", "prop": "gap", "valueRegex": "^25px$", "message": ".card-container に gap: 25px を設定してください" },
+    { "type": "css-decl", "name": ".card-container justify-content", "selector": ".card-container", "prop": "justify-content", "valueRegex": "^center$", "message": ".card-container に justify-content: center を設定してください" },
+    { "type": "css-decl", "name": ".card-container margin-bottom", "selector": ".card-container", "prop": "margin-bottom", "valueRegex": "^40px$", "message": ".card-container に margin-bottom: 40px を設定してください" },
+
+    { "type": "css-decl", "name": ".image-card max-width", "selector": ".image-card", "prop": "max-width", "valueRegex": "^280px$", "message": ".image-card の max-width を 280px にしてください" },
+    { "type": "css-decl", "name": ".image-card overflow", "selector": ".image-card", "prop": "overflow", "valueRegex": "^hidden$", "message": ".image-card の overflow を hidden にしてください" },
+
+    { "type": "css-decl", "name": ".action-card max-width", "selector": ".action-card", "prop": "max-width", "valueRegex": "^300px$", "message": ".action-card の max-width を 300px にしてください" },
+    { "type": "css-decl", "name": ".action-card padding", "selector": ".action-card", "prop": "padding", "valueRegex": "^25px$", "message": ".action-card の padding を 25px にしてください" },
+    { "type": "css-decl", "name": ".action-card display", "selector": ".action-card", "prop": "display", "valueRegex": "^flex$", "message": ".action-card に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".action-card flex-direction", "selector": ".action-card", "prop": "flex-direction", "valueRegex": "^column$", "message": ".action-card に flex-direction: column を設定してください" }
   ],
   "hints": [
     "box-shadowで立体感を表現",

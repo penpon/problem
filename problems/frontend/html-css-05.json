@@ -55,6 +55,18 @@
       "type": "structure",
       "message": "<title>タグと内容が必要です"
     }
+    ,
+    { "type": "html-text", "name": "h1テキスト", "selector": ".container h1", "text": "リスト表示", "message": "h1 を『リスト表示』にしてください" },
+    { "type": "html-text", "name": "h2(1)テキスト", "selector": ".container h2:nth-of-type(1)", "text": "順序なしリスト", "message": "最初の h2 を『順序なしリスト』にしてください" },
+    { "type": "html-has", "name": "ul存在", "selector": ".container ul", "message": "ul を配置してください" },
+    { "type": "html-tag-text", "name": "ul項目1", "selector": ".container ul li:nth-child(1)", "tag": "li", "text": "項目1", "message": "ul の 1件目を『項目1』にしてください" },
+    { "type": "html-tag-text", "name": "ul項目2", "selector": ".container ul li:nth-child(2)", "tag": "li", "text": "項目2", "message": "ul の 2件目を『項目2』にしてください" },
+    { "type": "html-tag-text", "name": "ul項目3", "selector": ".container ul li:nth-child(3)", "tag": "li", "text": "項目3", "message": "ul の 3件目を『項目3』にしてください" },
+    { "type": "html-text", "name": "h2(2)テキスト", "selector": ".container h2:nth-of-type(2)", "text": "順序付きリスト", "message": "2つ目の h2 を『順序付きリスト』にしてください" },
+    { "type": "html-has", "name": "ol存在", "selector": ".container ol", "message": "ol を配置してください" },
+    { "type": "html-tag-text", "name": "ol手順1", "selector": ".container ol li:nth-child(1)", "tag": "li", "text": "手順1", "message": "ol の 1件目を『手順1』にしてください" },
+    { "type": "html-tag-text", "name": "ol手順2", "selector": ".container ol li:nth-child(2)", "tag": "li", "text": "手順2", "message": "ol の 2件目を『手順2』にしてください" },
+    { "type": "html-tag-text", "name": "ol手順3", "selector": ".container ol li:nth-child(3)", "tag": "li", "text": "手順3", "message": "ol の 3件目を『手順3』にしてください" }
   ],
   "hints": [
     "ulは順序なしリスト（Unordered List）です",

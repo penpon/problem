@@ -1,46 +1,37 @@
 {
   "id": "ec-project-13",
-  "title": "13: 在庫基礎",
-  "description": "配列からカードを生成し、最小のグリッドで一覧表示する基礎を学びます。",
+  "title": "13: イベント委譲の基礎",
   "category": "ec-project",
+  "description": "動的に生成された商品カードに対して、リスト親要素1箇所でクリックイベントを処理するイベント委譲を実装します。",
   "instructions": [
-    "items.map(...) でカードHTMLを作り、#productList に innerHTML で挿入",
-    ".container > .row > .col-*-* でレスポンシブ配置"
+    "filter/sort/map を用いて #list に商品カードを生成",
+    "#list に click リスナーを1つだけ付与し、data-add 属性で追加ボタンを識別",
+    "カート件数(#cartCount)を更新"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <div class=\"container my-3\">\n    <div id=\"productList\" class=\"row\"></div>\n  </div>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <header class=\"p-2 border-bottom\"><div class=\"container d-flex justify-content-between\"><strong>EC</strong><span>Cart: <span id=\"cartCount\">0</span></span></div></header>\n  <main class=\"container my-3\">\n    <div class=\"row g-3 align-items-center mb-3\">\n      <div class=\"col-auto\">\n        <select id=\"category\" class=\"form-select\">\n          <option value=\"all\">すべて</option>\n          <option value=\"tops\">tops</option>\n          <option value=\"bags\">bags</option>\n        </select>\n      </div>\n      <div class=\"col-auto\">\n        <select id=\"sort\" class=\"form-select\">\n          <option value=\"new\">新着</option>\n          <option value=\"price_asc\">価格(安い順)</option>\n          <option value=\"price_desc\">価格(高い順)</option>\n        </select>\n      </div>\n      <div class=\"col-auto form-check\">\n        <input id=\"inStock\" type=\"checkbox\" class=\"form-check-input\">\n        <label class=\"form-check-label\" for=\"inStock\">在庫のみ</label>\n      </div>\n    </div>\n    <div id=\"list\" class=\"row g-3\"></div>\n  </main>\n  <footer class=\"p-3 border-top text-center text-muted\"><small>&copy; EC</small></footer>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-13/files.html.expected"
     },
     "css": {
-      "template": "/* ここに実装してください */",
+      "template": "/* 任意 */",
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-13/files.css.expected"
     },
     "js": {
-      "template": "// ここに実装してください",
+      "template": "// 実装してください",
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-13/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "商品カードが表示され、1〜3列でレスポンシブに並ぶ"
-  },
+  "expectedResult": { "behavior": "#list クリックの委譲でカート件数が増える。フィルタ/ソート/在庫で一覧が更新される" },
   "checks": [
-    {
-      "id": "js-map",
-      "name": "map() による生成",
-      "type": "js",
-      "message": "配列の map() でカードHTMLを生成し、コンテナへ挿入していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+    { "id": "controls", "type": "html", "name": "コントロール", "message": "#category,#sort,#inStock,#list,#cartCount が存在する" },
+    { "id": "array", "type": "js", "name": "配列処理", "message": "filter/sort/map を用いてリスト生成" },
+    { "id": "delegation", "type": "js", "name": "委譲", "message": "#list に click リスナーを1つ置き、closest('[data-add]') でボタンを特定している" },
+    { "id": "grid", "type": "css", "name": "グリッド", "message": "#list 直下に col-12 col-sm-6 col-lg-4 が並ぶ" }
   ],
   "hints": [
-    "products.map(...).join('') を innerHTML に代入",
-    "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
+    "e.target.closest('[data-add]') を使う",
+    "innerHTML に map(...).join('') を代入",
+    "件数は textContent に整数として代入"
   ]
 }

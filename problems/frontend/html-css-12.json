@@ -61,6 +61,20 @@
       "type": "css",
       "message": "CSSでスタイルを設定してください"
     }
+    ,
+    { "type": "html-has", "name": ".basic-hover 存在", "selector": ".container .basic-hover", "message": ".basic-hover 要素を配置してください" },
+    { "type": "html-has", "name": ".bounce-box 存在", "selector": ".container .bounce-box", "message": ".bounce-box 要素を配置してください" },
+    { "type": "html-has", "name": ".fade-box 存在", "selector": ".container .fade-box", "message": ".fade-box 要素を配置してください" },
+    { "type": "html-has", "name": ".slide-box 存在", "selector": ".container .slide-box", "message": ".slide-box 要素を配置してください" },
+
+    { "type": "css-decl", "name": ".basic-hover transition", "selector": ".basic-hover", "prop": "transition", "valueRegex": "^all\\s+0\\.3s\\s+ease$", "message": ".basic-hover に transition: all 0.3s ease を設定してください" },
+    { "type": "css-decl", "name": ".basic-hover:hover transform", "selector": ".basic-hover:hover", "prop": "transform", "valueRegex": "^scale\\(1\\.1\\)$", "message": ".basic-hover:hover に transform: scale(1.1) を設定してください" },
+    { "type": "css-decl", "name": ".basic-hover:hover background-color", "selector": ".basic-hover:hover", "prop": "background-color", "valueRegex": "^#3498db$", "message": ".basic-hover:hover に background-color: #3498db を設定してください" },
+
+    { "type": "css-decl", "name": ".bounce-box animation", "selector": ".bounce-box", "prop": "animation", "valueRegex": "^bounce\\s+2s\\s+infinite\\s+ease$", "message": ".bounce-box に animation: bounce 2s infinite ease を設定してください" },
+    { "type": "css-decl", "name": ".fade-box animation", "selector": ".fade-box", "prop": "animation", "valueRegex": "^fade\\s+1\\.5s\\s+infinite\\s+ease-in-out$", "message": ".fade-box に animation: fade 1.5s infinite ease-in-out を設定してください" },
+    { "type": "css-decl", "name": ".slide-box position", "selector": ".slide-box", "prop": "position", "valueRegex": "^relative$", "message": ".slide-box に position: relative を設定してください" },
+    { "type": "css-decl", "name": ".slide-box animation", "selector": ".slide-box", "prop": "animation", "valueRegex": "^slide\\s+3s\\s+infinite\\s+linear$", "message": ".slide-box に animation: slide 3s infinite linear を設定してください" }
   ],
   "hints": [
     "transitionはプロパティの変化を滑らかにする",

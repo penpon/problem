@@ -31,15 +31,41 @@
     button.active{background:#2563eb;color:#fff;border-color:#2563eb}
   </style>
 </head>
-<body class="detail">
-  <h1 style="margin:0 0 8px">案D: トグル（簡易/詳細）</h1>
-  <div class="toolbar">
-    <button id="btn-detail" class="active">詳細</button>
-    <button id="btn-simple">簡易</button>
+  <body class="detail">
+    <h1 style="margin:0 0 8px">案D: トグル（簡易/詳細）</h1>
+    <div class="toolbar">
+      <button id="btn-detail" class="active">詳細</button>
+      <button id="btn-simple">簡易</button>
+    </div>
+  <!-- 共通スニペット（インライン展開） -->
+  <div class="container">
+    <div class="panel">
+      <h2>✅ 正解コード</h2>
+      <pre class="code-display with-line-numbers" id="expected"><div class="line-numbers"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div></div><div class="code-content">
+<div class="code-line"><span class="t">&lt;!DOCTYPE html&gt;</span></div>
+<div class="code-line"><span class="t">&lt;html lang="ja"&gt;</span></div>
+<div class="code-line modified"><span class="t">&lt;head&gt;</span></div>
+<div class="code-line modified"><span class="t">  &lt;title&gt;</span><span class="diff-char modified">題</span><span class="t">名</span><span class="t">&lt;/title&gt;</span></div>
+<div class="code-line added"><span class="t">  &lt;meta charset="UTF-8"&gt;</span></div>
+<div class="code-line"><span class="t">&lt;/head&gt;</span></div>
+<div class="code-line"><span class="t">&lt;/html&gt;</span></div>
+</div></pre>
+    </div>
+
+    <div class="panel">
+      <h2>🖼️ あなたのコード</h2>
+      <pre class="code-display with-line-numbers" id="user"><div class="line-numbers"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div></div><div class="code-content">
+<div class="code-line"><span class="t">&lt;!DOCTYPE html&gt;</span></div>
+<div class="code-line"><span class="t">&lt;html lang="ja"&gt;</span></div>
+<div class="code-line modified"><span class="t">&lt;head&gt;</span></div>
+<div class="code-line modified"><span class="t">  &lt;title&gt;</span><span class="diff-char modified">タ</span><span class="t">イトル</span><span class="t">&lt;/title&gt;</span></div>
+<div class="code-line"><span class="t">&lt;/head&gt;</span></div>
+<div class="code-line removed"><span class="t">&lt;body&gt;...</span></div>
+<div class="code-line"><span class="t">&lt;/html&gt;</span></div>
+</div></pre>
+    </div>
   </div>
-  <div id="slot"></div>
   <script>
-    fetch('_shared-snippet.html').then(r=>r.text()).then(h=>{document.getElementById('slot').innerHTML=h});
     const body=document.body,bd=document.getElementById('btn-detail'),bs=document.getElementById('btn-simple');
     bd.onclick=()=>{body.classList.add('detail');body.classList.remove('simple');bd.classList.add('active');bs.classList.remove('active')};
     bs.onclick=()=>{body.classList.add('simple');body.classList.remove('detail');bs.classList.add('active');bd.classList.remove('active')};

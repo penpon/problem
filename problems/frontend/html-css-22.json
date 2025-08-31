@@ -22,6 +22,50 @@
     {"id":"body","name":"<body>セクション","type":"structure","message":"<body>セクションが必要です"},
     {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
     {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"}
+    ,
+    { "type": "html-has", "name": ".pricing 存在", "selector": ".container .pricing", "message": ".pricing セクションを作成してください" },
+    { "type": "html-has", "name": ".card 存在", "selector": ".pricing .card", "message": ".pricing 内に .card を配置してください" },
+    { "type": "html-has", "name": ".card--featured 存在", "selector": ".pricing .card.card--featured", "message": "強調カード .card--featured を1つ配置してください" },
+
+    { "type": "html-text", "name": "Basic 見出し", "selector": ".pricing .card:nth-of-type(1) h3", "expectedText": "Basic", "message": "1枚目のカード見出しを 'Basic' にしてください" },
+    { "type": "html-text", "name": "Basic 価格", "selector": ".pricing .card:nth-of-type(1) .price", "expectedText": "¥0/月", "message": "1枚目の価格表記を '¥0/月' にしてください" },
+    { "type": "html-text", "name": "Pro 見出し", "selector": ".pricing .card:nth-of-type(2) h3", "expectedText": "Pro", "message": "2枚目のカード見出しを 'Pro' にしてください" },
+    { "type": "html-text", "name": "Pro 価格", "selector": ".pricing .card:nth-of-type(2) .price", "expectedText": "¥980/月", "message": "2枚目の価格表記を '¥980/月' にしてください" },
+    { "type": "html-text", "name": "Team 見出し", "selector": ".pricing .card:nth-of-type(3) h3", "expectedText": "Team", "message": "3枚目のカード見出しを 'Team' にしてください" },
+    { "type": "html-text", "name": "Team 価格", "selector": ".pricing .card:nth-of-type(3) .price", "expectedText": "¥2,980/月", "message": "3枚目の価格表記を '¥2,980/月' にしてください" },
+
+    { "type": "css-decl", "name": ".pricing display", "selector": ".pricing", "prop": "display", "valueRegex": "^flex$", "message": ".pricing に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".pricing gap", "selector": ".pricing", "prop": "gap", "valueRegex": "^16px$", "message": ".pricing に gap: 16px を設定してください" },
+    { "type": "css-decl", "name": ".pricing justify-content", "selector": ".pricing", "prop": "justify-content", "valueRegex": "^center$", "message": ".pricing に justify-content: center を設定してください" },
+    { "type": "css-decl", "name": ".pricing align-items", "selector": ".pricing", "prop": "align-items", "valueRegex": "^stretch$", "message": ".pricing に align-items: stretch を設定してください" },
+
+    { "type": "css-decl", "name": ".card flex", "selector": ".card", "prop": "flex", "valueRegex": "^1$", "message": ".card に flex: 1 を設定してください" },
+    { "type": "css-decl", "name": ".card min-width", "selector": ".card", "prop": "min-width", "valueRegex": "^260px$", "message": ".card の min-width を 260px にしてください" },
+    { "type": "css-decl", "name": ".card background", "selector": ".card", "prop": "background", "valueRegex": "^#fff$", "message": ".card の背景色を #fff にしてください" },
+    { "type": "css-decl", "name": ".card border-radius", "selector": ".card", "prop": "border-radius", "valueRegex": "^12px$", "message": ".card の border-radius を 12px にしてください" },
+    { "type": "css-decl", "name": ".card box-shadow", "selector": ".card", "prop": "box-shadow", "valueRegex": "^0\\s+2px\\s+10px\\s+rgba\\(0,\\s*0,\\s*0,\\s*0\\.08\\)$", "message": ".card の box-shadow を 0 2px 10px rgba(0,0,0,0.08) にしてください" },
+    { "type": "css-decl", "name": ".card padding", "selector": ".card", "prop": "padding", "valueRegex": "^20px$", "message": ".card の padding を 20px にしてください" },
+    { "type": "css-decl", "name": ".card text-align", "selector": ".card", "prop": "text-align", "valueRegex": "^center$", "message": ".card の text-align を center にしてください" },
+    { "type": "css-decl", "name": ".card transition", "selector": ".card", "prop": "transition", "valueRegex": "^\\.25s$", "message": ".card の transition を .25s にしてください" },
+
+    { "type": "css-decl", "name": ".card h3 margin", "selector": ".card h3", "prop": "margin", "valueRegex": "^8px\\s+0$", "message": ".card h3 の margin を 8px 0 にしてください" },
+    { "type": "css-decl", "name": ".card .price font-size", "selector": ".card .price", "prop": "font-size", "valueRegex": "^22px$", "message": ".card .price の font-size を 22px にしてください" },
+    { "type": "css-decl", "name": ".card .price font-weight", "selector": ".card .price", "prop": "font-weight", "valueRegex": "^bold$", "message": ".card .price の font-weight を bold にしてください" },
+    { "type": "css-decl", "name": ".card .price margin", "selector": ".card .price", "prop": "margin", "valueRegex": "^10px\\s+0\\s+14px$", "message": ".card .price の margin を 10px 0 14px にしてください" },
+
+    { "type": "css-decl", "name": ".card ul list-style", "selector": ".card ul", "prop": "list-style", "valueRegex": "^none$", "message": ".card ul の list-style を none にしてください" },
+    { "type": "css-decl", "name": ".card ul padding", "selector": ".card ul", "prop": "padding", "valueRegex": "^0$", "message": ".card ul の padding を 0 にしてください" },
+    { "type": "css-decl", "name": ".card ul margin", "selector": ".card ul", "prop": "margin", "valueRegex": "^0$", "message": ".card ul の margin を 0 にしてください" },
+    { "type": "css-decl", "name": ".card ul display", "selector": ".card ul", "prop": "display", "valueRegex": "^grid$", "message": ".card ul の display を grid にしてください" },
+    { "type": "css-decl", "name": ".card ul gap", "selector": ".card ul", "prop": "gap", "valueRegex": "^8px$", "message": ".card ul の gap を 8px にしてください" },
+
+    { "type": "css-decl", "name": ".card:hover transform", "selector": ".card:hover", "prop": "transform", "valueRegex": "^translateY\\(-4px\\)$", "message": ".card:hover に transform: translateY(-4px) を設定してください" },
+    { "type": "css-decl", "name": ".card:hover box-shadow", "selector": ".card:hover", "prop": "box-shadow", "valueRegex": "^0\\s+10px\\s+20px\\s+rgba\\(0,\\s*0,\\s*0,\\s*0\\.12\\)$", "message": ".card:hover の box-shadow を 0 10px 20px rgba(0,0,0,0.12) にしてください" },
+
+    { "type": "css-decl", "name": ".card--featured transform", "selector": ".card--featured", "prop": "transform", "valueRegex": "^scale\\(1\\.03\\)$", "message": ".card--featured に transform: scale(1.03) を設定してください" },
+    { "type": "css-decl", "name": ".card--featured background", "selector": ".card--featured", "prop": "background", "valueRegex": "^#f7faff$", "message": ".card--featured の背景色を #f7faff にしてください" },
+    { "type": "css-decl", "name": ".card--featured outline", "selector": ".card--featured", "prop": "outline", "valueRegex": "^2px\\s+solid\\s+#2d7ef7$", "message": ".card--featured の outline を 2px solid #2d7ef7 にしてください" },
+    { "type": "css-decl", "name": ".card--featured:hover transform", "selector": ".card--featured:hover", "prop": "transform", "valueRegex": "^scale\\(1\\.04\\)\\s+translateY\\(-2px\\)$", "message": ".card--featured:hover に transform: scale(1.04) translateY(-2px) を設定してください" }
   ],
   "hints": [
     "中央のカードにscale(1.03)や強い色で視線誘導",

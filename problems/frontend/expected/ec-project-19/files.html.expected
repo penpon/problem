@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EC-19 Expected</title>
+  <title>EC-16 Expected</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
   <header class="navbar navbar-light bg-light px-3 mb-3">
     <span class="navbar-brand">🛍️ Mini Shop</span>
     <div class="ms-auto d-flex align-items-center gap-2">
-      <a id="goAdmin" class="btn btn-outline-secondary btn-sm" href="#">管理</a>
       <span id="miniCartTotal" class="text-muted small">合計: ¥0</span>
       <button id="goCheckoutMini" class="btn btn-sm btn-dark">🛒 <span id="cartCount">0</span></button>
-      <div id="authArea" class="ms-2"></div>
     </div>
   </header>
 
   <main class="container mb-5">
+    <!-- カタログ -->
     <section id="viewCatalog">
       <div class="row g-3 mb-3">
         <div class="col-12 col-md-4">
@@ -43,37 +42,17 @@
           </div>
         </div>
       </div>
+
       <div id="list" class="row g-3"></div>
     </section>
 
+    <!-- チェックアウト -->
     <section id="viewCheckout" class="d-none">
       <h2 class="h5 mb-3">チェックアウト</h2>
       <div id="checkoutList" class="mb-3"></div>
       <div class="d-flex justify-content-between">
         <button id="backToCatalog" class="btn btn-outline-secondary">戻る</button>
-        <button id="goComplete" class="btn btn-primary">完了へ</button>
-      </div>
-    </section>
-
-    <section id="viewComplete" class="d-none">
-      <div class="alert alert-success">ご注文ありがとうございました。注文番号: <strong id="orderNo"></strong></div>
-      <button id="backHome" class="btn btn-secondary">トップへ</button>
-    </section>
-
-    <section id="viewAuth" class="d-none">
-      <h2 class="h5">ログイン</h2>
-      <div class="mb-2"><input id="loginUser" class="form-control" placeholder="ユーザー名 (admin で管理者)"></div>
-      <div class="mb-3"><input id="loginPass" class="form-control" type="password" placeholder="パスワード (任意)"></div>
-      <button id="doLogin" class="btn btn-primary">ログイン</button>
-      <button id="cancelAuth" class="btn btn-outline-secondary ms-2">キャンセル</button>
-    </section>
-
-    <section id="viewAdmin" class="d-none">
-      <h2 class="h5">購入ログ</h2>
-      <div id="purchaseLogs" class="list-group"></div>
-      <div class="mt-3">
-        <button id="clearLogs" class="btn btn-outline-danger btn-sm">ログ消去</button>
-        <button id="backAdminHome" class="btn btn-secondary btn-sm ms-2">戻る</button>
+        <button id="checkout" class="btn btn-primary">注文する</button>
       </div>
     </section>
   </main>

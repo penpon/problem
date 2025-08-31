@@ -23,6 +23,28 @@
     {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"},
     {"id":"hover-effects","name":"ホバー効果","type":"css","message":":hoverセレクタでホバー効果を設定してください"},
     {"id":"transform-properties","name":"transformプロパティ","type":"css","message":"transformで要素の変形や移動を設定してください"}
+  ,
+    { "type": "html-has", "name": ".gallery 存在", "selector": ".container .gallery", "message": ".gallery を作成してください" },
+    { "type": "html-has", "name": ".thumb 存在", "selector": ".gallery .thumb", "message": ".gallery 内に .thumb を配置してください" },
+    { "type": "html-has", "name": ".thumb img 存在", "selector": ".gallery .thumb img", "message": ".thumb 内に img を配置してください" },
+
+    { "type": "css-decl", "name": ".gallery display", "selector": ".gallery", "prop": "display", "valueRegex": "^flex$", "message": ".gallery に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".gallery flex-wrap", "selector": ".gallery", "prop": "flex-wrap", "valueRegex": "^wrap$", "message": ".gallery に flex-wrap: wrap を設定してください" },
+    { "type": "css-decl", "name": ".gallery gap", "selector": ".gallery", "prop": "gap", "valueRegex": "^16px$", "message": ".gallery に gap: 16px を設定してください" },
+    { "type": "css-decl", "name": ".gallery justify-content", "selector": ".gallery", "prop": "justify-content", "valueRegex": "^center$", "message": ".gallery に justify-content: center を設定してください" },
+
+    { "type": "css-decl", "name": ".thumb display", "selector": ".thumb", "prop": "display", "valueRegex": "^block$", "message": ".thumb に display: block を設定してください" },
+    { "type": "css-decl", "name": ".thumb width", "selector": ".thumb", "prop": "width", "valueRegex": "^300px$", "message": ".thumb の width を 300px にしてください" },
+
+    { "type": "css-decl", "name": ".thumb img display", "selector": ".thumb img", "prop": "display", "valueRegex": "^block$", "message": ".thumb img に display: block を設定してください" },
+    { "type": "css-decl", "name": ".thumb img width", "selector": ".thumb img", "prop": "width", "valueRegex": "^100%$", "message": ".thumb img の width を 100% にしてください" },
+    { "type": "css-decl", "name": ".thumb img height", "selector": ".thumb img", "prop": "height", "valueRegex": "^200px$", "message": ".thumb img の height を 200px にしてください" },
+    { "type": "css-decl", "name": ".thumb img object-fit", "selector": ".thumb img", "prop": "object-fit", "valueRegex": "^cover$", "message": ".thumb img の object-fit を cover にしてください" },
+    { "type": "css-decl", "name": ".thumb img border-radius", "selector": ".thumb img", "prop": "border-radius", "valueRegex": "^12px$", "message": ".thumb img の border-radius を 12px にしてください" },
+    { "type": "css-decl", "name": ".thumb img transition", "selector": ".thumb img", "prop": "transition", "valueRegex": "^\\.25s$", "message": ".thumb img の transition を .25s にしてください" },
+
+    { "type": "css-decl", "name": ".thumb:hover img transform", "selector": ".thumb:hover img", "prop": "transform", "valueRegex": "^scale\\(1\\.05\\)$", "message": ".thumb:hover img に transform: scale(1.05) を設定してください" },
+    { "type": "css-decl", "name": ".thumb:hover img box-shadow", "selector": ".thumb:hover img", "prop": "box-shadow", "valueRegex": "^0\\s+10px\\s+22px\\s+rgba\\(0,\\s*0,\\s*0,\\s*0\\.15\\)$", "message": ".thumb:hover img の box-shadow を 0 10px 22px rgba(0,0,0,0.15) にしてください" }
   ],
   "hints": [
     "画像はdisplay: block; width: 100%;で枠にフィット",

@@ -28,6 +28,29 @@
     {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
     {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"},
     {"id":"hover-effects","name":"ホバー効果","type":"css","message":":hoverセレクタでホバー効果を設定してください"}
+    ,
+    { "type": "html-has", "name": "nav.main-nav 存在", "selector": ".container nav.main-nav", "message": "nav.main-nav を配置してください" },
+    { "type": "html-has", "name": "ul/li 構造", "selector": ".main-nav ul li a", "message": "ul/li/a のメニュー構造を作成してください" },
+    { "type": "html-has", "name": "Home リンク", "selector": ".main-nav a[href='#home']", "message": "Home へのリンクを作成してください" },
+    { "type": "html-has", "name": "About リンク", "selector": ".main-nav a[href='#about']", "message": "About へのリンクを作成してください" },
+    { "type": "html-has", "name": "Services リンク", "selector": ".main-nav a[href='#services']", "message": "Services へのリンクを作成してください" },
+    { "type": "html-has", "name": "Contact リンク", "selector": ".main-nav a[href='#contact']", "message": "Contact へのリンクを作成してください" },
+
+    { "type": "css-decl", "name": ".main-nav ul list-style", "selector": ".main-nav ul", "prop": "list-style", "valueRegex": "^none$", "message": ".main-nav ul の list-style を none にしてください" },
+    { "type": "css-decl", "name": ".main-nav ul padding", "selector": ".main-nav ul", "prop": "padding", "valueRegex": "^0$", "message": ".main-nav ul の padding を 0 にしてください" },
+    { "type": "css-decl", "name": ".main-nav ul margin", "selector": ".main-nav ul", "prop": "margin", "valueRegex": "^0$", "message": ".main-nav ul の margin を 0 にしてください" },
+    { "type": "css-decl", "name": ".main-nav ul display", "selector": ".main-nav ul", "prop": "display", "valueRegex": "^flex$", "message": ".main-nav ul に display: flex を設定してください" },
+    { "type": "css-decl", "name": ".main-nav ul justify-content", "selector": ".main-nav ul", "prop": "justify-content", "valueRegex": "^center$", "message": ".main-nav ul に justify-content: center を設定してください" },
+    { "type": "css-decl", "name": ".main-nav ul gap", "selector": ".main-nav ul", "prop": "gap", "valueRegex": "^16px$", "message": ".main-nav ul に gap: 16px を設定してください" },
+
+    { "type": "css-decl", "name": ".main-nav a display", "selector": ".main-nav a", "prop": "display", "valueRegex": "^inline-block$", "message": ".main-nav a に display: inline-block を設定してください" },
+    { "type": "css-decl", "name": ".main-nav a padding", "selector": ".main-nav a", "prop": "padding", "valueRegex": "^10px\\s+14px$", "message": ".main-nav a の padding を 10px 14px にしてください" },
+    { "type": "css-decl", "name": ".main-nav a color", "selector": ".main-nav a", "prop": "color", "valueRegex": "^#333$", "message": ".main-nav a の color を #333 にしてください" },
+    { "type": "css-decl", "name": ".main-nav a text-decoration", "selector": ".main-nav a", "prop": "text-decoration", "valueRegex": "^none$", "message": ".main-nav a の text-decoration を none にしてください" },
+    { "type": "css-decl", "name": ".main-nav a border-radius", "selector": ".main-nav a", "prop": "border-radius", "valueRegex": "^8px$", "message": ".main-nav a の border-radius を 8px にしてください" },
+    { "type": "css-decl", "name": ".main-nav a transition", "selector": ".main-nav a", "prop": "transition", "valueRegex": "^\\.2s$", "message": ".main-nav a の transition を .2s にしてください" },
+    { "type": "css-decl", "name": ".main-nav a:hover background", "selector": ".main-nav a:hover", "prop": "background", "valueRegex": "^#eef3ff$", "message": ".main-nav a:hover の背景色を #eef3ff にしてください" },
+    { "type": "css-decl", "name": ".main-nav a:hover text-decoration", "selector": ".main-nav a:hover", "prop": "text-decoration", "valueRegex": "^underline$", "message": ".main-nav a:hover の text-decoration を underline にしてください" }
   ],
   "hints": [
     "ul/liを横並びにするにはdisplay: inline-blockやdisplay: flex",

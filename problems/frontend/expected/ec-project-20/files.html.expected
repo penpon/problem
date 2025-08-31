@@ -3,183 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Expected EC Project 15</title>
+  <title>EC-17 Expected</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <header class="navbar navbar-expand-lg navbar-light bg-light px-3 mb-3">
-    <a class="navbar-brand" href="#">🛍️ サンプルショップ</a>
+  <header class="navbar navbar-light bg-light px-3 mb-3">
+    <span class="navbar-brand">🛍️ Mini Shop</span>
     <div class="ms-auto d-flex align-items-center gap-2">
-      <a id="goAdmin" class="btn btn-outline-secondary btn-sm" href="#">管理</a>
-      <button id="goCart" class="btn btn-dark btn-sm">🛒 カート (<span id="cartCount">0</span>)</button>
-      <div id="authArea" class="ms-2"></div>
+      <span id="miniCartTotal" class="text-muted small">合計: ¥0</span>
+      <button id="goCheckoutMini" class="btn btn-sm btn-dark">🛒 <span id="cartCount">0</span></button>
     </div>
   </header>
 
   <main class="container mb-5">
-    <!-- 2カラムレイアウト：左=コンテンツ, 右=カート（常時表示） -->
-    <div class="row g-4">
-      <div class="col-12 col-lg-9">
-        <!-- カタログビュー -->
-        <section id="viewCatalog">
-          <div class="row g-4">
-            <!-- 左サイド: フィルター -->
-            <aside class="col-12 col-lg-3">
-              <div class="position-sticky" style="top: 1rem;">
-                <div class="mb-3">
-                  <label for="category" class="form-label">カテゴリ</label>
-                  <select id="category" class="form-select">
-                    <option value="all">すべて</option>
-                    <option value="dresses">dresses</option>
-                    <option value="tops">tops</option>
-                    <option value="skirts">skirts</option>
-                    <option value="accessories">accessories</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="sort" class="form-label">並び替え</label>
-                  <select id="sort" class="form-select">
-                    <option value="new">新着</option>
-                    <option value="price_asc">価格(安い順)</option>
-                    <option value="price_desc">価格(高い順)</option>
-                  </select>
-                </div>
-                <div class="form-check mb-3">
-                  <input class="form-check-input" type="checkbox" id="inStock">
-                  <label class="form-check-label" for="inStock">在庫ありのみ</label>
-                </div>
-                <hr>
-                <div class="form-check mb-3">
-                  <input class="form-check-input" type="checkbox" id="freeShip">
-                  <label class="form-check-label" for="freeShip">送料無料(¥5,000以上)</label>
-                </div>
-                <div class="row g-2 mb-3">
-                  <div class="col-6">
-                    <label for="priceMin" class="form-label">最低価格</label>
-                    <input id="priceMin" type="number" min="0" step="100" class="form-control" placeholder="0">
-                  </div>
-                  <div class="col-6">
-                    <label for="priceMax" class="form-label">最高価格</label>
-                    <input id="priceMax" type="number" min="0" step="100" class="form-control" placeholder="10000">
-                  </div>
-                </div>
-              </div>
-            </aside>
-
-            <!-- 右側: ヒーローのみ（下段でリストはフル幅表示） -->
-            <div class="col-12 col-lg-9">
-              <!-- シーズナル・ヒーローバナー（右側上部） -->
-              <div class="mb-3">
-                <div class="position-relative overflow-hidden rounded" style="background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat; min-height: 180px;">
-                  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,.35);"></div>
-                  <div class="position-relative p-4 p-md-5 text-white">
-                    <h2 class="h3 fw-bold mb-2">Autumn Collection</h2>
-                    <p class="mb-3">トレンドの新作で、毎日をもっと素敵に。</p>
-                    <div class="d-flex gap-2">
-                      <button id="heroShowNew" class="btn btn-light btn-sm">新着を見る</button>
-                      <button id="heroShowDresses" class="btn btn-outline-light btn-sm">ドレス特集</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-              <div id="list" class="row g-3">
-                <!-- 商品カードが追加されます -->
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- チェックアウトビュー -->
-        <section id="viewCheckout" class="d-none">
-          <h2 class="h4 mb-3">チェックアウト</h2>
-          <ul id="cartList" class="list-group mb-3"></ul>
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <strong>合計:</strong>
-            <span id="totalCheckout">¥0</span>
-          </div>
-          <div class="d-flex gap-2">
-            <button id="backToCatalog" class="btn btn-outline-secondary">カタログに戻る</button>
-            <button id="completeBtn" class="btn btn-primary">購入を確定</button>
-          </div>
-        </section>
-
-        <!-- 完了ビュー -->
-        <section id="viewComplete" class="d-none">
-          <div class="alert alert-success" role="alert">
-            ご購入ありがとうございました！ 注文番号: <strong id="orderNo">-</strong>
-          </div>
-          <button id="backHome" class="btn btn-outline-primary">トップへ</button>
-        </section>
-
-        <!-- 認証ビュー（入力欄を共通化） -->
-        <section id="viewAuth" class="d-none">
-          <div class="row justify-content-center">
-            <div class="col-12 col-md-6">
-              <h3 class="h5">ログイン / 新規登録</h3>
-              <div class="mb-2">
-                <label class="form-label" for="loginEmail">メール</label>
-                <input id="loginEmail" class="form-control" type="email" placeholder="you@example.com">
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="loginPassword">パスワード</label>
-                <input id="loginPassword" class="form-control" type="password" placeholder="••••••••">
-              </div>
-              <div class="d-flex gap-2">
-                <button id="loginBtn" class="btn btn-dark flex-fill">ログイン</button>
-                <button id="registerBtn" class="btn btn-outline-dark flex-fill">登録</button>
-              </div>
-              <div class="form-text mt-2">管理者: admin@example.com / password</div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <!-- 右サイドバー：現在のカート状況（常時表示） -->
-      <aside class="col-12 col-lg-3">
-        <div class="position-sticky" style="top: 1rem;">
-          <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-              <strong>カート</strong>
-              <div>小計: <span id="miniCartTotal">¥0</span></div>
-            </div>
-            <ul id="miniCartList" class="list-group list-group-flush" style="max-height: 50vh; overflow:auto;">
-              <!-- ミニカートアイテム -->
-            </ul>
-            <div class="card-body">
-              <button id="goCheckoutMini" class="btn btn-success w-100">チェックアウトへ</button>
-            </div>
+    <section id="viewCatalog">
+      <div class="row g-3 mb-3">
+        <div class="col-12 col-md-4">
+          <label class="form-label" for="category">カテゴリ</label>
+          <select id="category" class="form-select">
+            <option value="all">すべて</option>
+            <option value="tops">tops</option>
+            <option value="bags">bags</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label" for="sort">並び替え</label>
+          <select id="sort" class="form-select">
+            <option value="new">新着</option>
+            <option value="price_asc">価格(安い順)</option>
+            <option value="price_desc">価格(高い順)</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-4 d-flex align-items-end">
+          <div class="form-check">
+            <input id="inStock" class="form-check-input" type="checkbox">
+            <label class="form-check-label" for="inStock">在庫ありのみ</label>
           </div>
         </div>
-      </aside>
-    </div>
-
-    <!-- 管理ビュー -->
-    <section id="viewAdmin" class="d-none">
-      <h2 class="h5 mb-3">購入ログ</h2>
-      <div class="table-responsive">
-        <table class="table table-sm">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>ユーザー</th>
-              <th>アイテム</th>
-              <th>合計</th>
-              <th>注文番号</th>
-              <th>日時</th>
-            </tr>
-          </thead>
-          <tbody id="adminTableBody"></tbody>
-        </table>
       </div>
+      <div id="list" class="row g-3"></div>
+    </section>
+
+    <section id="viewCheckout" class="d-none">
+      <h2 class="h5 mb-3">チェックアウト</h2>
+      <div id="checkoutList" class="mb-3"></div>
+      <div class="d-flex justify-content-between">
+        <button id="backToCatalog" class="btn btn-outline-secondary">戻る</button>
+        <button id="goComplete" class="btn btn-primary">完了へ</button>
+      </div>
+    </section>
+
+    <section id="viewComplete" class="d-none">
+      <div class="alert alert-success">ご注文ありがとうございました。注文番号: <strong id="orderNo"></strong></div>
+      <button id="backHome" class="btn btn-secondary">トップへ</button>
     </section>
   </main>
 
-  <footer class="text-center text-muted py-4">
-    <small>&copy; Sample EC</small>
-  </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- script.js は学習システムが自動で注入します -->
 </body>
 </html>

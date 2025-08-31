@@ -21,6 +21,33 @@
     {"id":"body","name":"<body>セクション","type":"structure","message":"<body>セクションが必要です"},
     {"id":"title","name":"<title>タグ","type":"structure","message":"<title>タグと内容が必要です"},
     {"id":"css-content","name":"CSSスタイル","type":"css","message":"CSSでスタイルを設定してください"}
+    ,
+    { "type": "html-has", "name": ".steps セクション", "selector": ".container .steps", "message": ".steps セクションを作成してください" },
+    { "type": "html-text", "name": ".steps h2 テキスト", "selector": ".steps h2", "expectedText": "セットアップ手順", "message": ".steps h2 のテキストを 'セットアップ手順' にしてください" },
+    { "type": "html-has", "name": ".steps ol 存在", "selector": ".steps ol", "message": ".steps 内に ol を配置してください" },
+    { "type": "html-has", "name": ".steps li 存在", "selector": ".steps ol li", "message": ".steps ol 内に li を配置してください" },
+    { "type": "html-text", "name": "1番目 h3", "selector": ".steps ol li:nth-child(1) h3", "expectedText": "1. リポジトリを取得", "message": "1番目の h3 を '1. リポジトリを取得' にしてください" },
+    { "type": "html-text", "name": "1番目 p", "selector": ".steps ol li:nth-child(1) p", "expectedText": "Gitでプロジェクトをクローンします。", "message": "1番目の説明文を expected と一致させてください" },
+    { "type": "html-text", "name": "2番目 h3", "selector": ".steps ol li:nth-child(2) h3", "expectedText": "2. 依存をインストール", "message": "2番目の h3 を '2. 依存をインストール' にしてください" },
+    { "type": "html-text", "name": "2番目 p", "selector": ".steps ol li:nth-child(2) p", "expectedText": "パッケージマネージャで依存を導入します。", "message": "2番目の説明文を expected と一致させてください" },
+    { "type": "html-text", "name": "3番目 h3", "selector": ".steps ol li:nth-child(3) h3", "expectedText": "3. サーバを起動", "message": "3番目の h3 を '3. サーバを起動' にしてください" },
+    { "type": "html-text", "name": "3番目 p", "selector": ".steps ol li:nth-child(3) p", "expectedText": "開発用サーバを立ち上げて動作確認します。", "message": "3番目の説明文を expected と一致させてください" },
+
+    { "type": "css-decl", "name": ".steps h2 margin", "selector": ".steps h2", "prop": "margin", "valueRegex": "^0\\s+0\\s+12px$", "message": ".steps h2 の margin を 0 0 12px にしてください" },
+    { "type": "css-decl", "name": ".steps ol padding", "selector": ".steps ol", "prop": "padding", "valueRegex": "^0$", "message": ".steps ol の padding を 0 にしてください" },
+    { "type": "css-decl", "name": ".steps ol margin", "selector": ".steps ol", "prop": "margin", "valueRegex": "^0$", "message": ".steps ol の margin を 0 にしてください" },
+    { "type": "css-decl", "name": ".steps ol list-style", "selector": ".steps ol", "prop": "list-style", "valueRegex": "^none$", "message": ".steps ol の list-style を none にしてください" },
+    { "type": "css-decl", "name": ".steps ol display", "selector": ".steps ol", "prop": "display", "valueRegex": "^grid$", "message": ".steps ol の display を grid にしてください" },
+    { "type": "css-decl", "name": ".steps ol gap", "selector": ".steps ol", "prop": "gap", "valueRegex": "^14px$", "message": ".steps ol の gap を 14px にしてください" },
+
+    { "type": "css-decl", "name": ".steps li background", "selector": ".steps li", "prop": "background", "valueRegex": "^#fbfdff$", "message": ".steps li の背景色を #fbfdff にしてください" },
+    { "type": "css-decl", "name": ".steps li border-left", "selector": ".steps li", "prop": "border-left", "valueRegex": "^4px\\s+solid\\s+#2d7ef7$", "message": ".steps li の左ボーダーを 4px solid #2d7ef7 にしてください" },
+    { "type": "css-decl", "name": ".steps li border-radius", "selector": ".steps li", "prop": "border-radius", "valueRegex": "^10px$", "message": ".steps li の border-radius を 10px にしてください" },
+    { "type": "css-decl", "name": ".steps li padding", "selector": ".steps li", "prop": "padding", "valueRegex": "^12px\\s+16px$", "message": ".steps li の padding を 12px 16px にしてください" },
+
+    { "type": "css-decl", "name": ".steps li h3 margin", "selector": ".steps li h3", "prop": "margin", "valueRegex": "^0\\s+0\\s+6px$", "message": ".steps li h3 の margin を 0 0 6px にしてください" },
+    { "type": "css-decl", "name": ".steps li p margin", "selector": ".steps li p", "prop": "margin", "valueRegex": "^0$", "message": ".steps li p の margin を 0 にしてください" },
+    { "type": "css-decl", "name": ".steps li p color", "selector": ".steps li p", "prop": "color", "valueRegex": "^#555$", "message": ".steps li p の color を #555 にしてください" }
   ],
   "hints": [
     "liに背景色と角丸を付けるとカード風に",

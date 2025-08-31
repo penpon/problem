@@ -61,6 +61,33 @@
       "type": "css",
       "message": "CSSでスタイルを設定してください"
     }
+    ,
+    { "type": "html-has", "name": "flexコンテナ存在", "selector": ".container .flex-container", "message": ".flex-container を配置してください" },
+    { "type": "html-tag-text", "name": "flex-item1", "selector": ".flex-container .flex-item:nth-child(1)", "tag": "div", "text": "Flexアイテム1", "message": "1つ目の Flexアイテムのテキストを『Flexアイテム1』にしてください" },
+    { "type": "html-tag-text", "name": "flex-item2", "selector": ".flex-container .flex-item:nth-child(2)", "tag": "div", "text": "Flexアイテム2", "message": "2つ目の Flexアイテムのテキストを『Flexアイテム2』にしてください" },
+    { "type": "html-tag-text", "name": "flex-item3", "selector": ".flex-container .flex-item:nth-child(3)", "tag": "div", "text": "Flexアイテム3", "message": "3つ目の Flexアイテムのテキストを『Flexアイテム3』にしてください" },
+
+    { "type": "html-has", "name": "inline-block コンテナ存在", "selector": ".container .inline-block-container", "message": ".inline-block-container を配置してください" },
+    { "type": "html-has", "name": "inline-block アイテム3つ", "selector": ".inline-block-container .inline-block-item:nth-child(3)", "message": ".inline-block-item を3つ配置してください" },
+
+    { "type": "html-has", "name": "2カラムレイアウト存在", "selector": ".container .layout-container .sidebar", "message": ".layout-container 内に .sidebar を配置してください" },
+    { "type": "html-has", "name": "メインコンテンツ存在", "selector": ".container .layout-container .main-content", "message": ".layout-container 内に .main-content を配置してください" },
+
+    { "type": "html-has", "name": "3カラム存在", "selector": ".container .column-container .column:nth-child(3)", "message": ".column を3つ配置してください" },
+
+    { "type": "css-decl", "name": ".flex-container display", "selector": ".flex-container", "prop": "display", "valueRegex": "^flex$", "message": ".flex-container に display: flex を設定してください" },
+
+    { "type": "css-decl", "name": ".inline-block-item display", "selector": ".inline-block-item", "prop": "display", "valueRegex": "^inline-block$", "message": ".inline-block-item に display: inline-block を設定してください" },
+    { "type": "css-decl", "name": ".inline-block-item 幅", "selector": ".inline-block-item", "prop": "width", "valueRegex": "^120px$", "message": ".inline-block-item の width を 120px にしてください" },
+    { "type": "css-decl", "name": ".inline-block-item 高さ", "selector": ".inline-block-item", "prop": "height", "valueRegex": "^80px$", "message": ".inline-block-item の height を 80px にしてください" },
+
+    { "type": "css-decl", "name": ".sidebar 幅", "selector": ".sidebar", "prop": "width", "valueRegex": "^200px$", "message": ".sidebar の width を 200px にしてください" },
+    { "type": "css-decl", "name": ".sidebar float", "selector": ".sidebar", "prop": "float", "valueRegex": "^left$", "message": ".sidebar に float: left を設定してください" },
+    { "type": "css-decl", "name": ".main-content 左余白", "selector": ".main-content", "prop": "margin-left", "valueRegex": "^241px$", "message": ".main-content の margin-left を 241px にしてください" },
+
+    { "type": "css-decl", "name": ".column 幅", "selector": ".column", "prop": "width", "valueRegex": "^30%$", "message": ".column の width を 30% にしてください" },
+    { "type": "css-decl", "name": ".column float", "selector": ".column", "prop": "float", "valueRegex": "^left$", "message": ".column に float: left を設定してください" },
+    { "type": "css-decl", "name": ".column 余白", "selector": ".column", "prop": "margin", "valueRegex": "^1\\.5%$", "message": ".column の margin を 1.5% にしてください" }
   ],
   "hints": [
     "display: inline-blockは横に並び、幅・高さ指定可能",

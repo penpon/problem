@@ -61,6 +61,23 @@
       "type": "css",
       "message": "CSSでスタイルを設定してください"
     }
+    ,
+    { "type": "html-text", "name": "h1テキスト", "selector": ".container h1", "text": "中央寄せ", "message": "h1 のテキストを『中央寄せ』にしてください" },
+    { "type": "html-tag-text", "name": ".center-text テキスト", "selector": ".container p.center-text", "tag": "p", "text": "中央寄せのテキスト", "message": ".center-text のテキストを『中央寄せのテキスト』にしてください" },
+    { "type": "html-tag-text", "name": ".center-box テキスト", "selector": ".container div.center-box", "tag": "div", "text": "中央寄せのボックス", "message": ".center-box のテキストを『中央寄せのボックス』にしてください" },
+    { "type": "html-nested-text", "name": ".center-everything 内の p テキスト", "selector": ".container .center-everything", "innerSelector": "p", "text": "ボックスも中身も中央", "message": ".center-everything 内の段落を『ボックスも中身も中央』にしてください" },
+    { "type": "html-tag-text", "name": ".card テキスト", "selector": ".container div.card", "tag": "div", "text": "カード", "message": ".card のテキストを『カード』にしてください" },
+
+    { "type": "css-decl", "name": "h1 text-align", "selector": "h1", "prop": "text-align", "valueRegex": "^center$", "message": "h1 に text-align: center を指定してください" },
+    { "type": "css-decl", "name": ".center-text text-align", "selector": ".center-text", "prop": "text-align", "valueRegex": "^center$", "message": ".center-text に text-align: center を指定してください" },
+    { "type": "css-decl", "name": ".center-box width", "selector": ".center-box", "prop": "width", "valueRegex": "^400px$", "message": ".center-box の幅を 400px にしてください" },
+    { "type": "css-decl", "name": ".center-box margin", "selector": ".center-box", "prop": "margin", "valueRegex": "^0(px)?\\s+auto$", "message": ".center-box の margin を 0 auto にしてください" },
+    { "type": "css-decl", "name": ".center-everything width", "selector": ".center-everything", "prop": "width", "valueRegex": "^350px$", "message": ".center-everything の幅を 350px にしてください" },
+    { "type": "css-decl", "name": ".center-everything margin", "selector": ".center-everything", "prop": "margin", "valueRegex": "^0(px)?\\s+auto$", "message": ".center-everything の margin を 0 auto にしてください" },
+    { "type": "css-decl", "name": ".center-everything text-align", "selector": ".center-everything", "prop": "text-align", "valueRegex": "^center$", "message": ".center-everything に text-align: center を指定してください" },
+    { "type": "css-decl", "name": ".card width", "selector": ".card", "prop": "width", "valueRegex": "^300px$", "message": ".card の幅を 300px にしてください" },
+    { "type": "css-decl", "name": ".card margin", "selector": ".card", "prop": "margin", "valueRegex": "^30px\\s+auto$", "message": ".card の margin を 30px auto にしてください" },
+    { "type": "css-decl", "name": ".card text-align", "selector": ".card", "prop": "text-align", "valueRegex": "^center$", "message": ".card に text-align: center を指定してください" }
   ],
   "hints": [
     "text-align: centerは文字や画像を中央寄せ",

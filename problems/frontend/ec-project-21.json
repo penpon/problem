@@ -1,0 +1,38 @@
+{
+  "id": "ec-project-21",
+  "title": "21: 認証モックの導入",
+  "category": "ec-project",
+  "description": "ログイン/ログアウトUIを設置し、ヘッダーの表示を切り替える簡易認証モックを実装します。",
+  "instructions": [
+    "カタログのフィルタ/ソート/在庫で一覧生成",
+    "カート追加で件数/小計更新",
+    "ログインUI(#viewAuth)でユーザー名を入力し、ヘッダーの認証状態(#authArea)を反映"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <main class=\"container\">\n    <section id=\"viewCatalog\"></section>\n    <section id=\"viewCheckout\" class=\"d-none\"></section>\n    <section id=\"viewComplete\" class=\"d-none\"></section>\n    <section id=\"viewAuth\" class=\"d-none\"></section>\n  </main>\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-21/files.html.expected"
+    },
+    "css": {
+      "template": "/* 任意 */",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-21/files.css.expected"
+    },
+    "js": {
+      "template": "// 実装してください",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-21/files.js.expected"
+    }
+  },
+  "expectedResult": {
+    "behavior": "未ログイン時はヘッダーにログインボタン、ログイン後はユーザー名とログアウト。ビュースイッチで #viewAuth を表示/非表示にできる"
+  },
+  "checks": [
+    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewCatalog,#viewCheckout,#viewComplete,#viewAuth が存在" },
+    { "id": "auth-area", "type": "html", "name": "認証領域", "message": "#authArea がヘッダーに存在" },
+    { "id": "array", "type": "js", "name": "配列処理", "message": "filter/sort/map で一覧生成" }
+  ],
+  "hints": [
+    "authUser を状態として管理し、renderAuthArea() で表示を切替",
+    "showView('auth') で認証ビューを開閉",
+    "localStorage はこの回では任意（次回で使用）"
+  ]
+}

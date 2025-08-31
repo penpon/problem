@@ -55,6 +55,11 @@
       "type": "structure",
       "message": "<title>タグと内容が必要です"
     }
+    ,
+    { "type": "html-text", "name": "h1テキスト", "selector": ".container h1", "text": "リンクの練習", "message": "h1 を『リンクの練習』にしてください" },
+    { "type": "html-has", "name": "リンク存在", "selector": ".container p a", "message": "<p>内に a 要素を配置してください" },
+    { "type": "html-attr", "name": "リンク先URL", "selector": ".container p a", "attr": "href", "valueRegex": "^https?://www\\.example\\.com/?$", "message": "a の href を https://www.example.com にしてください" },
+    { "type": "html-text", "name": "リンクテキスト", "selector": ".container p a", "text": "外部リンク", "message": "リンクテキストを『外部リンク』にしてください" }
   ],
   "hints": [
     "aタグのhref属性にはリンク先のURLを指定します",

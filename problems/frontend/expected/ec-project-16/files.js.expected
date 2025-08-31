@@ -1,8 +1,11 @@
 (() => {
   const products = [
-    { id: 3, name: 'ベーシックT', price: 1980, category: 'tops', inStock: true, img: 'https://picsum.photos/seed/t/400/260' },
-    { id: 2, name: 'トートバッグ', price: 2980, category: 'bags', inStock: true, img: 'https://picsum.photos/seed/b/400/260' },
-    { id: 1, name: '限定T', price: 2480, category: 'tops', inStock: false, img: 'https://picsum.photos/seed/u/400/260' }
+    { id: 6, name: 'パーカー', price: 4200, category: 'tops', inStock: true },
+    { id: 5, name: 'シャツ', price: 3800, category: 'tops', inStock: true },
+    { id: 4, name: 'バッグ', price: 5200, category: 'bags', inStock: false },
+    { id: 3, name: 'キャップ', price: 1800, category: 'bags', inStock: true },
+    { id: 2, name: 'カーディガン', price: 4600, category: 'tops', inStock: true },
+    { id: 1, name: 'Tシャツ', price: 2000, category: 'tops', inStock: true }
   ];
 
   const els = {
@@ -10,90 +13,51 @@
     sort: document.getElementById('sort'),
     inStock: document.getElementById('inStock'),
     list: document.getElementById('list'),
-    cartCount: document.getElementById('cartCount'),
-    miniCartTotal: document.getElementById('miniCartTotal'),
-    goCheckoutMini: document.getElementById('goCheckoutMini'),
-    viewCatalog: document.getElementById('viewCatalog'),
-    viewCheckout: document.getElementById('viewCheckout'),
-    checkoutList: document.getElementById('checkoutList'),
-    backToCatalog: document.getElementById('backToCatalog'),
-    checkout: document.getElementById('checkout')
+    cartCount: document.getElementById('cartCount')
   };
 
   const cart = [];
+  const fmt = n => '¥' + n.toLocaleString();
 
-  function formatYen(n){
-    return '¥' + n.toLocaleString();
-  }
-
-  function renderList(){
+  function getFiltered(){
     let arr = [...products];
-    if (els.category.value !== 'all') {
-      arr = arr.filter(p => p.category === els.category.value);
-    }
-    if (els.inStock.checked) {
-      arr = arr.filter(p => p.inStock);
-    }
-    if (els.sort.value === 'price_asc') arr.sort((a,b)=>a.price-b.price);
-    else if (els.sort.value === 'price_desc') arr.sort((a,b)=>b.price-a.price);
-    else arr.sort((a,b)=>b.id-a.id); // new
-
-    els.list.innerHTML = arr.map(p => `
+    if (els.category.value !== 'all') arr = arr.filter(p => p.category === els.category.value);
+    if (els.inStock.checked) arr = arr.filter(p => p.inStock);
+    return arr;
+  }
+  function getSorted(arr){
+    if (els.sort.value === 'price_asc') return arr.slice().sort((a,b)=>a.price-b.price);
+    if (els.sort.value === 'price_desc') return arr.slice().sort((a,b)=>b.price-a.price);
+    return arr.slice().sort((a,b)=>b.id-a.id); // new
+  }
+  function render(){
+    // フィルタ → ソート の順で適用
+    const filtered = getFiltered();
+    const sorted = getSorted(filtered);
+    els.list.innerHTML = sorted.map(p=>`
       <div class="col-12 col-sm-6 col-lg-4">
         <div class="card h-100">
-          <img class="card-img-top" src="${p.img}" alt="${p.name}">
           <div class="card-body">
             <h5 class="card-title">${p.name}</h5>
-            <p class="card-text">${formatYen(p.price)}</p>
-            <button class="btn btn-primary" data-add="${p.id}" ${p.inStock?'' : 'disabled'}>カートに追加</button>
+            <p class="card-text">${fmt(p.price)}</p>
+            <button class="btn btn-primary" data-add="${p.id}" ${p.inStock?'':'disabled'}>カートに追加</button>
           </div>
         </div>
       </div>`).join('');
   }
+  function updateCart(){ els.cartCount.textContent = String(cart.length); }
 
-  function updateCartUI(){
-    const count = cart.length;
-    const total = cart.reduce((s,i)=>s+i.price,0);
-    els.cartCount.textContent = String(count);
-    els.miniCartTotal.textContent = `合計: ${formatYen(total)}`;
-  }
-
-  function showView(id){
-    els.viewCatalog.classList.toggle('d-none', id !== 'catalog');
-    els.viewCheckout.classList.toggle('d-none', id !== 'checkout');
-  }
-
-  function renderCheckout(){
-    const total = cart.reduce((s,i)=>s+i.price,0);
-    els.checkoutList.innerHTML = cart.map(c=>`<div class="item"><span>${c.name}</span><span>${formatYen(c.price)}</span></div>`).join('') +
-      `<div class="item fw-bold"><span>合計</span><span>${formatYen(total)}</span></div>`;
-  }
-
-  // events
-  els.category.addEventListener('change', renderList);
-  els.sort.addEventListener('change', renderList);
-  els.inStock.addEventListener('change', renderList);
   els.list.addEventListener('click', (e)=>{
     const id = e.target.closest('[data-add]')?.getAttribute('data-add');
     if (!id) return;
     const p = products.find(x=>x.id==id);
     if (p) cart.push(p);
-    updateCartUI();
+    updateCart();
   });
-  els.goCheckoutMini.addEventListener('click', ()=>{
-    showView('checkout');
-    renderCheckout();
-    window.scrollTo(0,0);
-  });
-  els.backToCatalog.addEventListener('click', ()=>{
-    showView('catalog');
-  });
-  els.checkout.addEventListener('click', ()=>{
-    // EC-16では完了画面は未実装（EC-17で追加）
-    alert('注文処理のモックです');
-  });
+  els.category.addEventListener('change', render);
+  els.sort.addEventListener('change', render);
+  els.inStock.addEventListener('change', render);
 
-  // init
-  renderList();
-  updateCartUI();
+  render();
+  updateCart();
 })();

@@ -1,0 +1,29 @@
+{
+  "id": "ec-project-23",
+  "title": "23: 2ビュー遷移の素振り",
+  "category": "ec-project",
+  "description": "A/B の2ビューを d-none の付け外しで切り替える基礎練習。ヘッダーからもボタンで切替可能にする。",
+  "instructions": [
+    "#viewA と #viewB を切替",
+    "header の #goA/#goB と、各ビュー内の #toA/#toB ボタンで相互遷移",
+    "切替は classList.toggle('d-none', ...) を用いる"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>課題実装</title><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\"></head><body><main class=\"container\"><section id=\"viewA\"></section><section id=\"viewB\" class=\"d-none\"></section></main><script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script></body></html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-23/files.html.expected"
+    },
+    "css": { "template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-23/files.css.expected" },
+    "js": { "template": "// 実装してください", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-23/files.js.expected" }
+  },
+  "checks": [
+    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewA と #viewB が存在し、どちらかが d-none である" },
+    { "id": "buttons", "type": "html", "name": "ボタン", "message": "#goA,#goB,#toA,#toB が存在する" },
+    { "id": "toggle", "type": "js", "name": "切替", "message": "classList.toggle('d-none', ...) による表示切替が実装されている" }
+  ],
+  "expectedResult": { "behavior": "ボタン操作でA/Bビューが確実に切り替わる" },
+  "hints": [
+    "show('A'|'B') の小関数を作る",
+    "イベントは addEventListener('click', ...) で登録"
+  ]
+}
