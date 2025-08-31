@@ -387,30 +387,31 @@ class AdvancedFrontendLearning {
  * 問題IDから適切な番号を抽出する
  */
 extractProblemNumber(problemId, categoryId) {
-    // 各カテゴリごとのプレフィックスを定義
+    // 各カテゴリごとのプレフィックスを定義（problems/frontend/index.json に準拠）
     const prefixMap = {
         'html-css-basics': 'html-css-',
         'javascript-basics': 'js-basic-',
         'javascript-advanced': 'js-advanced-',
-        'bootstrap-calculator': 'bootstrap-',
+        'bootstrap': 'bootstrap-',
         'ec-project': 'ec-project-'
     };
 
     const prefix = prefixMap[categoryId];
     if (prefix && problemId.startsWith(prefix)) {
-        const numberPart = problemId.replace(prefix, '');
-        return numberPart.padStart(2, '0'); // 01, 02 形式にする
-        }
-        
-        // フォールバック: 最後のハイフン以降の部分を抽出
-        const lastDashIndex = problemId.lastIndexOf('-');
-        if (lastDashIndex !== -1) {
-            const numberPart = problemId.substring(lastDashIndex + 1);
-            return numberPart.padStart(2, '0');
-        }
-        
-        return problemId;
+        const numberPart = problemId.slice(prefix.length);
+        // 小数点付き（例: 10.1）にも対応。桁数が1桁のときのみゼロ埋め。
+        return numberPart.length === 1 ? numberPart.padStart(2, '0') : numberPart;
     }
+
+    // フォールバック: 最後のハイフン以降の部分を抽出（未知カテゴリでも動作）
+    const lastDashIndex = problemId.lastIndexOf('-');
+    if (lastDashIndex !== -1) {
+        const numberPart = problemId.substring(lastDashIndex + 1);
+        return numberPart.length === 1 ? numberPart.padStart(2, '0') : numberPart;
+    }
+
+    return problemId;
+}
     
     /**
      * 問題タイトルから古い番号形式を除去する
