@@ -10,7 +10,7 @@
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>html-css-10.3 floatで二列レイアウト</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>floatで二列レイアウト</h1>\n    <div class=\"two-column\">\n      <div class=\"sidebar\">サイドバー</div>\n      <div class=\"content\">メインコンテンツ。本文が入ります。</div>\n    </div>\n  </div>\n</body>\n</html>\n",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>\n",
       "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.3/files.html.expected"
     },
     "css": {

@@ -10,7 +10,7 @@
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>html-css-10.1 Flex配置とgap</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>Flex配置とgap</h1>\n    <div class=\"flex-row\">\n      <div class=\"box\">A</div>\n      <div class=\"box\">B</div>\n      <div class=\"box\">C</div>\n    </div>\n  </div>\n</body>\n</html>\n",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>\n",
       "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.1/files.html.expected"
     },
     "css": {
