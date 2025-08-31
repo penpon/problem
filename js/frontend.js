@@ -416,8 +416,9 @@ extractProblemNumber(problemId, categoryId) {
      * 問題タイトルから古い番号形式を除去する
      */
     cleanProblemTitle(title) {
-        // 「番号: タイトル」形式から番号部分を除去
-        return title.replace(/^\d+:\s*/, '');
+        // 「番号: タイトル」形式から番号部分を除去（小数点付きにも対応）
+        // 例: "10: ..." や "10.1: ..." を除去
+        return title.replace(/^\d+(?:\.\d+)?:\s*/, '');
     }
     
     /**
@@ -431,8 +432,8 @@ extractProblemNumber(problemId, categoryId) {
             problemItem.className = 'problem-item';
             problemItem.dataset.problemId = problem.id;
             
-            // カテゴリ内での順番に基づいて番号を生成（index + 1）
-            const problemNumber = String(index + 1).padStart(2, '0');
+            // 問題IDから番号を抽出（小数点付きにも対応）。失敗時はフォールバックでインデックス番号。
+            const problemNumber = this.extractProblemNumber(problem.id, category) || String(index + 1).padStart(2, '0');
             // タイトルから古い番号を除去
             const cleanTitle = this.cleanProblemTitle(problem.title);
             

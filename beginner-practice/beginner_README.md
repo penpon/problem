@@ -97,9 +97,45 @@
 - 問題JSONは `problems/frontend/<id>.json` に作成し、`files.*.expected` は `problems/frontend/expected/<id>/files.<ext>.expected` を参照
 
 ## ❗ expected 作成ルール（重要）
-- **二重参照禁止**: `.expected` 内で `beginner-practice/...` への再 `__INCLUDE__` を禁止
 - **実体化**: `.expected` は最終テキストを直接格納（必要なら `beginner-practice` からコピー）
 - **対象**: `files.html.expected`, `files.css.expected`, `files.js.expected`
+
+---
+
+## 🔢 小数点付きID（例: 10.1, 10.2）作成時の注意
+
+> HTML/CSS基礎などで「10.1」「10.2」のように小数点付きの連番を扱う際のガイドです。
+
+- __ID形式__
+  - 例: `html-css-10.1`（カテゴリに応じた接頭辞 + 小数点付き番号）
+  - `category` はカテゴリIDと厳密一致（例: `html-css-basics`）。
+
+- __タイトル形式__
+  - 例: `10.1: レイアウト基礎（...）`
+  - フロント表示では `problem.id` から番号を抽出して左バッジに表示し、タイトル先頭の番号はクリーンアップされます（`cleanProblemTitle()`）。
+
+- __expected 配置__
+  - `problems/frontend/expected/html-css-10.1/files.html.expected`
+  - `problems/frontend/expected/html-css-10.1/files.css.expected`
+  - `problems/frontend/expected/html-css-10.1/files.js.expected`
+  - JSON の参照は `__INCLUDE__: problems/frontend/expected/<id>/files.<ext>.expected`
+
+- __テンプレート方針（回答非掲載）__
+  - 小数点付き練習回（例: 10.1〜10.3）は「エディタの初期テンプレに回答を含めない」。
+  - 例: CSS テンプレは `/* ここに実装してください */` のプレースホルダーのみ。
+
+- __一覧への追加順（index.json）__
+  - `problems/frontend/index.json` の該当カテゴリ `problems` 配列に手動で順序通りに追加（並び順は表示順に直結）。
+  - 例: `html-css-10`, `html-css-10.1`, `html-css-10.2`, `html-css-10.3`, `html-css-11` のように意図した順を明示的に並べる。
+
+- __フロント表示ロジックとの整合性__
+  - 問題一覧の番号は `problem.id` から抽出する仕様（`js/frontend.js` の `extractProblemNumber()`）。
+  - IDの接頭辞とカテゴリの対応が追加カテゴリで必要な場合は、`extractProblemNumber()` の `prefixMap` を拡張する。
+  - タイトル先頭の番号除去は小数点付き対応（`cleanProblemTitle()`）。タイトル形式を変更する場合は正規表現も合わせて更新。
+
+- __同期チェック__
+  - beginner-practice と problems/frontend の両方で ID・ディレクトリ・ファイルを同期。
+  - checks とテンプレDOM/仕様の整合性を再確認。
 
 ---
 

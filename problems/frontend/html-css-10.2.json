@@ -14,7 +14,7 @@
       "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.2/files.html.expected"
     },
     "css": {
-      "template": "/* 基本スタイル */\nbody { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }\n.container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n\n/* 課題実装 */\n.inline-list { font-size: 0; }\n.item {\n  display: inline-block;\n  width: 120px;\n  height: 80px;\n  background: #f1f8e9;\n  border: 1px solid #aed581;\n  border-radius: 8px;\n  vertical-align: top;\n  margin-left: 0;\n  font-size: 14px; /* 子でフォントサイズ復帰 */\n  text-align: center;\n  padding: 8px;\n}\n.item + .item { margin-left: 10px; }\n",
+      "template": "/* 基本スタイル */\nbody { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }\n.container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n\n/* 課題実装（ここに実装してください） */\n.inline-list {\n  /* 例: font-size を 0 に設定して inline-block の隙間をなくす */\n}\n.item {\n  /* 例: display: inline-block, width, height, vertical-align などを設定 */\n  /* 例: 背景色や枠線、角丸、中央寄せ、padding などを設定 */\n}\n.item + .item {\n  /* 例: 左隣接要素に margin-left を付ける */\n}\n",
       "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.2/files.css.expected"
     },
     "js": {

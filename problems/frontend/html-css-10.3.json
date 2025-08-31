@@ -14,7 +14,7 @@
       "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.3/files.html.expected"
     },
     "css": {
-      "template": "/* 基本スタイル */\nbody { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }\n.container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n\n/* 課題実装 */\n.two-column { overflow: auto; }\n.sidebar {\n  width: 200px;\n  float: left;\n  background: #fff3e0;\n  border: 1px solid #ffb74d;\n  border-radius: 8px;\n  padding: 12px;\n}\n.content {\n  margin-left: 220px;\n  background: #e1f5fe;\n  border: 1px solid #4fc3f7;\n  border-radius: 8px;\n  padding: 12px;\n}\n",
+      "template": "/* 基本スタイル */\nbody { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }\n.container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n\n/* 課題実装（ここに実装してください） */\n.two-column {\n  /* 例: overflow を auto にして親の高さを確保 */\n}\n.sidebar {\n  /* 例: width と float を設定 */\n  /* 例: 背景色や枠線、角丸、padding などを設定 */\n}\n.content {\n  /* 例: sidebar 幅に合わせて margin-left を設定 */\n  /* 例: 背景色、枠線、角丸、padding などを設定 */\n}\n",
       "expected": "__INCLUDE__: problems/frontend/expected/html-css-10.3/files.css.expected"
     },
     "js": {
