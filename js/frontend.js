@@ -2178,6 +2178,8 @@ extractProblemNumber(problemId, categoryId) {
         this.showHintLoading();
         
         try {
+            // Markdown/ハイライトライブラリを必要時に読み込み
+            await this.ensureMarkdownLibsLoaded();
             await this.loadHintContent(this.currentProblem.id);
         } catch (error) {
             console.error('ヒントの読み込みに失敗:', error);
@@ -2185,6 +2187,74 @@ extractProblemNumber(problemId, categoryId) {
         }
     }
     
+    /**
+     * marked / highlight.js を動的読み込み
+     * 必要時のみネットワークリクエストを発生させる
+     */
+    async ensureMarkdownLibsLoaded() {
+        // 既に存在する場合は何もしない
+        const hasMarked = typeof marked !== 'undefined';
+        const hasHljs = typeof hljs !== 'undefined';
+        const themeId = 'hljs-theme-github';
+
+        if (hasMarked && hasHljs) {
+            // CSSの確認だけ行う
+            if (!document.getElementById(themeId)) {
+                const link = document.createElement('link');
+                link.id = themeId;
+                link.rel = 'stylesheet';
+                link.href = 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css';
+                document.head.appendChild(link);
+            }
+            return;
+        }
+
+        // 多重読み込み防止
+        if (this._markdownLibsLoading) return this._markdownLibsLoading;
+
+        this._markdownLibsLoading = new Promise((resolve) => {
+            let loadedCount = 0;
+            const done = () => {
+                loadedCount += 1;
+                if (loadedCount >= 2) {
+                    // CSSテーマも挿入
+                    if (!document.getElementById(themeId)) {
+                        const link = document.createElement('link');
+                        link.id = themeId;
+                        link.rel = 'stylesheet';
+                        link.href = 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css';
+                        document.head.appendChild(link);
+                    }
+                    resolve();
+                }
+            };
+
+            // marked の読み込み
+            if (hasMarked) {
+                done();
+            } else {
+                const scriptMarked = document.createElement('script');
+                scriptMarked.src = 'https://cdn.jsdelivr.net/npm/marked@9.1.2/marked.min.js';
+                scriptMarked.onload = done;
+                scriptMarked.onerror = () => done(); // フォールバック動作を維持
+                document.head.appendChild(scriptMarked);
+            }
+
+            // highlight.js の読み込み
+            if (hasHljs) {
+                done();
+            } else {
+                const scriptHljs = document.createElement('script');
+                scriptHljs.src = 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js';
+                scriptHljs.onload = done;
+                scriptHljs.onerror = () => done(); // 読み込めなくても致命的でない
+                document.head.appendChild(scriptHljs);
+            }
+        });
+
+        return this._markdownLibsLoading;
+    }
+
     /**
      * ヒントモーダルを閉じる
      */

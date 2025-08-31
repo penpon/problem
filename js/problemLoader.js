@@ -162,14 +162,30 @@ class ProblemLoader {
     
     for (const category of index.categories) {
       const categoryId = category.id;
-      for (const problemId of category.problems) {
+      for (const entry of category.problems) {
+        // エントリは string (id) または object ({ id, title }) を許容
+        const problemId = typeof entry === 'string' ? entry : entry?.id;
+        if (!problemId) continue;
         if (seen.has(problemId)) {
           console.warn(`Duplicate problem ID detected in frontend index and will be skipped: ${problemId}`);
           continue;
         }
+
+        // 最小スキーマ（id, title）が index.json にあればそれを優先して使用
+        const titleFromIndex = typeof entry === 'object' && entry?.title ? entry.title : null;
+        if (titleFromIndex) {
+          problems.push({
+            id: problemId,
+            title: titleFromIndex,
+            category: categoryId
+          });
+          seen.add(problemId);
+          continue;
+        }
+
+        // フォールバック: タイトルが無い場合のみ従来の詳細JSONを取得
         try {
           const problem = await this.loadFrontendProblem(problemId);
-          // フォールバック: 問題JSONにcategoryが無い/不一致の場合はインデックス側のカテゴリIDを使用
           const problemCategory = problem.category && typeof problem.category === 'string'
             ? problem.category
             : categoryId;
