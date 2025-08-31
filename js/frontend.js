@@ -1152,6 +1152,11 @@ extractProblemNumber(problemId, categoryId) {
             const relaxedBgRe = new RegExp(`[^{}]*${selEsc}[^{}]*\\{[\\s\\S]*?background\\s*:\\s*[^;]*${val}`, 'i');
             if (relaxedBgRe.test(css)) { this._lastCssCheckDebug = { selector, property, valuePattern, via: 'relaxed-bg', regex: String(relaxedBgRe) }; return true; }
         }
+        // 3b) 補助: background を background-color で指定している場合も許容
+        if (/^background$/i.test(property)) {
+            const relaxedBgColorRe = new RegExp(`[^{}]*${selEsc}[^{}]*\\{[\\s\\S]*?background-color\\s*:\\s*${val}`, 'i');
+            if (relaxedBgColorRe.test(css)) { this._lastCssCheckDebug = { selector, property, valuePattern, via: 'relaxed-bgcolor', regex: String(relaxedBgColorRe) }; return true; }
+        }
 
         // 4) フォールバック: CSSOM を使って厳密に解析
         //    - ブラウザのパーサで CSS を解釈し、セレクタ一致と宣言値を取得
