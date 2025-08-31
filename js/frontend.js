@@ -1039,7 +1039,9 @@ extractProblemNumber(problemId, categoryId) {
     
     validateCssBasics(cssContent) {
         try {
-            const hasSelector = /[a-zA-Z#.\-_\[\]:\s]+\s*\{[\s\S]*?\}/.test(cssContent);
+            // より寛容なセレクタ検出: 数字や結合子(>+~)、カンマ、括弧、属性選択子などを許容
+            // 例: .box1, .box-2:hover, #id[item], h1.title, .a, .b { ... }
+            const hasSelector = /[^{}]+\{[^}]*\}/.test(cssContent);
             return hasSelector;
         } catch (error) {
             return false;
