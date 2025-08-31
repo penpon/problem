@@ -1117,11 +1117,87 @@ extractProblemNumber(problemId, categoryId) {
         const css = (this.fileContents.css || '');
         // プロパティ未指定時は判定不能のため false（安全ガード）
         if (!property) return false;
-        const sel = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // エスケープ
-        const prop = property.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const val = valuePattern; // 呼び出し側で適切にエスケープ/パターン指定
-        const regex = new RegExp(`${sel}\\s*\\{[\\s\\S]*?${prop}\\s*:\\s*${val}`, 'i');
-        return regex.test(css);
+
+        // 文字列を正規表現用にエスケープ
+        const escapeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const selEsc = escapeRe(selector.trim());
+        const propEsc = escapeRe(property.trim());
+        // 問題定義の valueRegex は ^...$ を含むことが多い。
+        // 呼び出し側（css-decl）は () でラップして渡すため、まずは外側の () を剥がす。
+        // その後、全文マッチ用の ^/$ アンカーを除去し、CSS宣言内の部分一致として扱う。
+        let valCore = (valuePattern || '').trim();
+        if (valCore.startsWith('(') && valCore.endsWith(')')) {
+            valCore = valCore.slice(1, -1);
+        }
+        if (valCore.startsWith('^')) valCore = valCore.slice(1);
+        if (valCore.endsWith('$')) valCore = valCore.slice(0, -1);
+        // 値の直後に ; や 空白/改行 があっても許容
+        const val = `${valCore}(?:\\s*;|\\s|$)`;
+
+        // 1) 従来の「セレクタ完全一致」パターン
+        const strictRe = new RegExp(`${selEsc}\\s*\\{[\\s\\S]*?${propEsc}\\s*:\\s*${val}`, 'i');
+        if (strictRe.test(css)) { this._lastCssCheckDebug = { selector, property, valuePattern, via: 'strict', regex: String(strictRe) }; return true; }
+
+        // 2) 寛容パターン: セレクタリストや複合/子孫セレクタの一部として含まれる場合
+        //   例: p.box1, .container .box1, .box1:hover, .box1, .foo { ... }
+        //   - Safari 等の後方参照未対応対策で、手動バウンダリを使う
+        // バウンダリ条件が環境差で不安定なため、
+        // セレクタ部に対象セレクタ文字列が含まれていれば良しとするシンプル一致に変更
+        const relaxedRe = new RegExp(`[^{}]*${selEsc}[^{}]*\\{[\\s\\S]*?${propEsc}\\s*:\\s*${val}`, 'i');
+        if (relaxedRe.test(css)) { this._lastCssCheckDebug = { selector, property, valuePattern, via: 'relaxed', regex: String(relaxedRe) }; return true; }
+
+        // 3) 補助: background-color を background で指定している場合を許容（色値が同じならOK）
+        //   - 問題定義で prop が background-color のときのみ有効
+        if (/^background-color$/i.test(property)) {
+            const relaxedBgRe = new RegExp(`[^{}]*${selEsc}[^{}]*\\{[\\s\\S]*?background\\s*:\\s*[^;]*${val}`, 'i');
+            if (relaxedBgRe.test(css)) { this._lastCssCheckDebug = { selector, property, valuePattern, via: 'relaxed-bg', regex: String(relaxedBgRe) }; return true; }
+        }
+
+        // 4) フォールバック: CSSOM を使って厳密に解析
+        //    - ブラウザのパーサで CSS を解釈し、セレクタ一致と宣言値を取得
+        try {
+            const styleEl = document.createElement('style');
+            styleEl.type = 'text/css';
+            styleEl.textContent = css;
+            document.head.appendChild(styleEl);
+            const sheet = Array.from(document.styleSheets).find(s => s.ownerNode === styleEl);
+            if (sheet && sheet.cssRules) {
+                const rules = Array.from(sheet.cssRules).filter(r => r.type === CSSRule.STYLE_RULE);
+                // セレクタリスト内に完全一致のものがあるか
+                const matchRule = rules.find(r => {
+                    const sels = r.selectorText.split(',').map(s => s.trim());
+                    return sels.includes(selector.trim());
+                });
+                if (matchRule) {
+                    const v = matchRule.style.getPropertyValue(property);
+                    if (v) {
+                        const re = new RegExp(valuePattern, 'i');
+                        if (re.test(v.trim())) {
+                            this._lastCssCheckDebug = { selector, property, valuePattern, via: 'cssom:value', value: v.trim() };
+                            document.head.removeChild(styleEl);
+                            return true;
+                        }
+                    }
+                    // background-color の場合、background ショートハンドも確認
+                    if (/^background-color$/i.test(property)) {
+                        const bg = matchRule.style.getPropertyValue('background');
+                        if (bg) {
+                            const re = new RegExp(valuePattern, 'i');
+                            if (re.test(bg.trim())) {
+                                this._lastCssCheckDebug = { selector, property, valuePattern, via: 'cssom:background', value: bg.trim() };
+                                document.head.removeChild(styleEl);
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (styleEl.parentNode) document.head.removeChild(styleEl);
+        } catch (_) {
+            // CSSOM 解析に失敗しても静かにフォールバック
+        }
+
+        return false;
     }
     
     getChecksForProblem(problemId) {
@@ -1425,7 +1501,7 @@ extractProblemNumber(problemId, categoryId) {
                 </div>
             </div>
         `;
-        
+
         this.resultArea.innerHTML = resultHtml;
         this.resultArea.style.display = 'block';
         this.noResult.style.display = 'none';
@@ -2636,6 +2712,17 @@ ${(this.currentProblem?.instructions || []).map((instruction, index) => `${index
             await this.autoPasteExpectedAndGradeById(id);
         }
         console.log('[auto-grade] 完了');
+    }
+
+    /**
+     * html-css-01 〜 html-css-25 を一括で expected 貼付→採点
+     */
+    async autoGradeHtmlCss01to25() {
+        const ids = Array.from({ length: 25 }, (_, i) => {
+            const n = (i + 1).toString().padStart(2, '0');
+            return `html-css-${n}`;
+        });
+        await this.autoPasteExpectedAndGradeIds(ids);
     }
     
     /**
