@@ -1228,101 +1228,45 @@ extractProblemNumber(problemId, categoryId) {
                             <span class="score-percentage">${checkPercentage}%</span>
                         </div>
                     </div>
-                    <div class="test-message">
-                        ${displayMessage}
-                    </div>
-                    
-                    <!-- 詳細なエラー情報 -->
-                    ${!check.passed && check.details ? `
-                        <div class="error-details">
-                            <div class="error-details-header">🔍 詳細な解析結果</div>
-                            <div class="error-details-content">${this.escapeHtml(check.details)}</div>
+                    <div class="test-details" style="display: none;">
+                        <div class="test-message">
+                            ${displayMessage}
                         </div>
-                    ` : ''}
-                    
-                    <!-- 期待値と実際の値の比較 -->
-                    ${!check.passed && check.expected && check.actual ? `
-                        <div class="output-comparison">
-                            <div class="output-box expected-output">
-                                <h4>期待される結果</h4>
-                                <div class="output-content">${this.escapeHtml(check.expected)}</div>
+                        
+                        <!-- 詳細なエラー情報 -->
+                        ${!check.passed && check.details ? `
+                            <div class="error-details">
+                                <div class="error-details-header">🔍 詳細な解析結果</div>
+                                <div class="error-details-content">${this.escapeHtml(check.details)}</div>
                             </div>
-                            <div class="output-box actual-output">
-                                <h4>実際の結果</h4>
-                                <div class="output-content">${this.escapeHtml(check.actual)}</div>
+                        ` : ''}
+                        
+                        <!-- 期待値と実際の値の比較 -->
+                        ${!check.passed && check.expected && check.actual ? `
+                            <div class="output-comparison">
+                                <div class="output-box expected-output">
+                                    <h4>期待される結果</h4>
+                                    <div class="output-content">${this.escapeHtml(check.expected)}</div>
+                                </div>
+                                <div class="output-box actual-output">
+                                    <h4>実際の結果</h4>
+                                    <div class="output-content">${this.escapeHtml(check.actual)}</div>
+                                </div>
                             </div>
-                        </div>
-                    ` : ''}
-                    
-                    <div class="test-progress">
-                        <div class="test-progress-bar">
-                            <div class="test-progress-fill ${itemClass}" style="width: ${checkPercentage}%"></div>
+                        ` : ''}
+                        
+                        <div class="test-progress">
+                            <div class="test-progress-bar">
+                                <div class="test-progress-fill ${itemClass}" style="width: ${checkPercentage}%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
         });
         
-        // ファイル別サマリー表示
-        const fileTypeCounts = {
-            html: { total: 0, passed: 0 },
-            css: { total: 0, passed: 0 },
-            js: { total: 0, passed: 0 },
-            structure: { total: 0, passed: 0 }
-        };
-        
-        result.checks.forEach(check => {
-            const type = check.type || 'structure';
-            if (fileTypeCounts[type]) {
-                fileTypeCounts[type].total++;
-                if (check.passed) {
-                    fileTypeCounts[type].passed++;
-                }
-            }
-        });
-        
+        // テストケース一覧のみ表示（ファイル別サマリーは非表示）
         resultHtml += `
-                    </div>
-                    
-                    <!-- ファイル別サマリー -->
-                    <div class="file-summary">
-                        <div class="results-title">📁 ファイル別結果</div>
-                        <div class="file-summary-grid">
-        `;
-        
-        Object.entries(fileTypeCounts).forEach(([type, counts]) => {
-            if (counts.total > 0) {
-                const typePercentage = Math.round((counts.passed / counts.total) * 100);
-                const typeClass = typePercentage === 100 ? 'summary-perfect' : 
-                                typePercentage > 0 ? 'summary-partial' : 'summary-zero';
-                const typeIcon = type === 'html' ? '🌐' : 
-                               type === 'css' ? '🎨' : 
-                               type === 'js' ? '⚙️' : '🏗️';
-                const typeName = type === 'html' ? 'HTML' : 
-                               type === 'css' ? 'CSS' : 
-                               type === 'js' ? 'JavaScript' : '構造';
-                
-                resultHtml += `
-                    <div class="file-summary-item ${typeClass}">
-                        <div class="file-summary-header">
-                            <span class="file-summary-icon">${typeIcon}</span>
-                            <span class="file-summary-name">${typeName}</span>
-                        </div>
-                        <div class="file-summary-score">
-                            ${counts.passed}/${counts.total} (${typePercentage}%)
-                        </div>
-                        <div class="file-summary-progress">
-                            <div class="file-summary-progress-bar">
-                                <div class="file-summary-progress-fill ${typeClass}" style="width: ${typePercentage}%"></div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        });
-        
-        resultHtml += `
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1331,7 +1275,7 @@ extractProblemNumber(problemId, categoryId) {
         this.resultArea.innerHTML = resultHtml;
         this.resultArea.style.display = 'block';
         this.noResult.style.display = 'none';
-        
+
         // 結果エリアにスムーズスクロール
         this.resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
@@ -1348,6 +1292,19 @@ extractProblemNumber(problemId, categoryId) {
         // 結果通知音（オプション）
         this.playNotificationSound(result.status);
         
+        // 詳細トグルの初期化（ヘッダークリックで開閉）
+        this.resultArea.querySelectorAll('.test-case').forEach(tc => {
+            const header = tc.querySelector('.test-case-header');
+            const details = tc.querySelector('.test-details');
+            if (header && details) {
+                header.style.cursor = 'pointer';
+                header.addEventListener('click', () => {
+                    const isHidden = details.style.display === 'none';
+                    details.style.display = isHidden ? 'block' : 'none';
+                });
+            }
+        });
+
         // コード比較機能を初期化
         this.initializeCodeComparison();
     }

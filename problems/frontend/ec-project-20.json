@@ -1,13 +1,16 @@
 {
   "id": "ec-project-20",
-  "title": "70: 完全ECサイト統合",
+  "title": "20: 完全ECサイト統合",
   "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
   "category": "ec-project",
   "instructions": [
-    "高度なJavaScript機能を実装してください",
-    "データベース連携を模擬してください",
-    "ユーザビリティを最優先に設計してください",
-    "セキュリティ対策を考慮してください"
+    "<header> と <footer> を設置する",
+    "ビューを用意: #viewCatalog, #viewCheckout, #viewComplete, #viewAuth, #viewAdmin",
+    "操作UIを設置: #category, #sort, #inStock, #miniCartTotal, #list, #goCheckoutMini, #cartCount",
+    "配列処理で一覧生成: filter/sort/map(...).join('') で #list に出力",
+    "#list 直下は col-12 col-sm-6 col-lg-4 のグリッドで並べる",
+    "カート追加で件数(#cartCount)と合計を更新し、チェックアウトで一覧(#cartList)と合計(#totalCheckout)を表示、完了で注文番号(#orderNo)を表示",
+    "ログインでUI切替、adminのみ #viewAdmin 表示、購入完了時に購入ログを localStorage に保存し管理で表示"
   ],
   "files": {
     "html": {
