@@ -1,0 +1,288 @@
+(function(){
+  'use strict';
+  // ================== データ ==================
+  const PRODUCTS = [
+    { id:'d1', name:'フリルドレス', category:'dresses', price:4800, stock:true, isNew:true },
+    { id:'d2', name:'エレガントドレス', category:'dresses', price:8800, stock:true, isNew:false },
+    { id:'t1', name:'コットントップス', category:'tops', price:2800, stock:true, isNew:false },
+    { id:'t2', name:'リラックスTシャツ', category:'tops', price:1800, stock:true, isNew:true },
+    { id:'s1', name:'プリーツスカート', category:'skirts', price:3500, stock:true, isNew:false },
+    { id:'a1', name:'シンプルトート', category:'accessories', price:5800, stock:true, isNew:true }
+  ];
+
+  // ================== ストレージキー ==================
+  const LS_USERS = 'wf_users';
+  const LS_CURRENT = 'wf_current_user';
+  const LS_LOGS = 'wf_purchase_logs';
+
+  // ================== 状態 ==================
+  let cart = []; // {id, qty}
+  let pendingPurchase = false;
+
+  // ================== 要素取得 ==================
+  const $ = (s)=>document.querySelector(s);
+  const list = $('#list');
+  const cartCount = $('#cartCount');
+  const miniCartList = $('#miniCartList');
+  const miniCartTotal = $('#miniCartTotal');
+  const cartList = $('#cartList');
+  const totalCheckout = $('#totalCheckout');
+  const completeBtn = $('#completeBtn');
+  const goCheckoutMini = $('#goCheckoutMini');
+  const backToCatalog = $('#backToCatalog');
+  const backHome = $('#backHome');
+  const orderNoEl = $('#orderNo');
+
+  const categorySel = $('#category');
+  const sortSel = $('#sort');
+  const inStockCb = $('#inStock');
+  const freeShipCb = $('#freeShip');
+  const priceMinInput = $('#priceMin');
+  const priceMaxInput = $('#priceMax');
+
+  const viewCatalog = $('#viewCatalog');
+  const viewCheckout = $('#viewCheckout');
+  const viewComplete = $('#viewComplete');
+  const viewAuth = $('#viewAuth');
+  const viewAdmin = $('#viewAdmin');
+
+  const authArea = $('#authArea');
+  const loginEmail = $('#loginEmail');
+  const loginPass = $('#loginPassword');
+  const loginBtn = $('#loginBtn');
+  const registerBtn = $('#registerBtn');
+
+  const adminTableBody = $('#adminTableBody');
+
+  // ================== ユーティリティ ==================
+  function currency(n){ return '¥' + (n||0).toLocaleString(); }
+  function getUsers(){ try {return JSON.parse(localStorage.getItem(LS_USERS)||'[]');} catch{ return []; } }
+  function setUsers(v){ localStorage.setItem(LS_USERS, JSON.stringify(v)); }
+  function getCurrent(){ return localStorage.getItem(LS_CURRENT)||''; }
+  function setCurrent(v){ localStorage.setItem(LS_CURRENT, v||''); }
+  function getLogs(){ try {return JSON.parse(localStorage.getItem(LS_LOGS)||'[]');} catch{ return []; } }
+  function setLogs(v){ localStorage.setItem(LS_LOGS, JSON.stringify(v)); }
+  function ensureAdmin(){
+    const users = getUsers();
+    if (!users.find(u=>u.email==='admin@example.com')){
+      users.push({ email:'admin@example.com', password:'password', isAdmin:true });
+      setUsers(users);
+    }
+  }
+
+  // ================== レンダリング ==================
+  function filteredSorted(){
+    const cat = categorySel?.value || 'all';
+    const sort = sortSel?.value || 'new';
+    const onlyStock = !!(inStockCb?.checked);
+    const freeShip = !!(freeShipCb?.checked);
+    const pmin = priceMinInput?.value ? Number(priceMinInput.value) : 0;
+    const pmax = priceMaxInput?.value ? Number(priceMaxInput.value) : Infinity;
+
+    let arr = PRODUCTS.slice();
+    if (cat !== 'all') arr = arr.filter(p=>p.category===cat);
+    if (onlyStock) arr = arr.filter(p=>p.stock);
+    if (freeShip) arr = arr.filter(p=>p.price >= 5000);
+    arr = arr.filter(p=>p.price >= pmin && p.price <= pmax);
+
+    if (sort === 'price_asc') arr.sort((a,b)=>a.price-b.price);
+    else if (sort === 'price_desc') arr.sort((a,b)=>b.price-a.price);
+    else if (sort === 'new') arr.sort((a,b)=> (b.isNew?1:0) - (a.isNew?1:0));
+
+    return arr;
+  }
+
+  function renderCatalog(){
+    const items = filteredSorted();
+    const cards = items.map(p=>`
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card h-100">
+          <div class="ratio ratio-16x9 bg-light"></div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <h3 class="h6 m-0">${p.name}</h3>
+              ${p.isNew ? '<span class="badge text-bg-warning">NEW</span>' : ''}
+            </div>
+            <div class="text-muted small mb-2">${p.category}</div>
+            <div class="fw-bold mb-2">${currency(p.price)}</div>
+            <button class="btn btn-sm btn-primary add-to-cart" data-id="${p.id}" ${p.stock? '' : 'disabled'}>カートに追加</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    if (list) list.innerHTML = cards;
+  }
+
+  function renderCartSummary(){
+    const items = cart.map(ci=>({ ...ci, price: PRODUCTS.find(p=>p.id===ci.id)?.price || 0, name: PRODUCTS.find(p=>p.id===ci.id)?.name || '' }));
+    const count = items.reduce((s,i)=>s+i.qty,0);
+    const total = items.reduce((s,i)=>s+i.qty*i.price,0);
+    if (cartCount) cartCount.textContent = String(count);
+    if (miniCartTotal) miniCartTotal.textContent = currency(total);
+  }
+
+  function renderMiniCart(){
+    const items = cart.map(ci=>({ ...ci, price: PRODUCTS.find(p=>p.id===ci.id)?.price || 0, name: PRODUCTS.find(p=>p.id===ci.id)?.name || '' }));
+    const html = items.map(i=>`
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <div class="fw-semibold">${i.name}</div>
+          <div class="text-muted small">${currency(i.price)} × ${i.qty}</div>
+        </div>
+        <button class="btn-close remove-mini" data-id="${i.id}"></button>
+      </li>
+    `).join('');
+    if (miniCartList) miniCartList.innerHTML = html;
+  }
+
+  function renderCheckout(){
+    const items = cart.map(ci=>({ ...ci, price: PRODUCTS.find(p=>p.id===ci.id)?.price || 0, name: PRODUCTS.find(p=>p.id===ci.id)?.name || '' }));
+    const html = items.map(i=>`
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>${i.name} × ${i.qty}</span>
+        <span>${currency(i.qty*i.price)}</span>
+      </li>
+    `).join('');
+    if (cartList) cartList.innerHTML = html;
+    const total = items.reduce((s,i)=>s+i.qty*i.price,0);
+    if (totalCheckout) totalCheckout.textContent = currency(total);
+  }
+
+  // ================== カート操作 ==================
+  function addToCart(id){
+    const ex = cart.find(c=>c.id===id);
+    if (ex) ex.qty += 1; else cart.push({ id, qty:1 });
+    renderCartSummary();
+    renderMiniCart();
+  }
+  function removeFromCart(id){
+    cart = cart.filter(c=>c.id!==id);
+    renderCartSummary();
+    renderMiniCart();
+  }
+
+  // ================== 認証/管理 ==================
+  function updateAuthArea(){
+    if (!authArea) return;
+    const email = getCurrent();
+    if (email){
+      const me = getUsers().find(u=>u.email===email);
+      const admin = me?.isAdmin ? '<span class="badge text-bg-danger ms-2">ADMIN</span>' : '';
+      authArea.innerHTML = `<span class="me-2">${email}</span>${admin}<button id="btnLogout" class="btn btn-outline-secondary btn-sm ms-2">ログアウト</button>`;
+      const btn = $('#btnLogout');
+      btn?.addEventListener('click', ()=>{ setCurrent(''); updateAuthArea(); showView('catalog'); });
+    } else {
+      authArea.innerHTML = `<button id="btnGoAuth" class="btn btn-outline-dark btn-sm">ログイン/登録</button>`;
+      $('#btnGoAuth')?.addEventListener('click', ()=> showView('auth'));
+    }
+  }
+
+  function tryLogin(){
+    const email = (loginEmail?.value||'').trim();
+    const pass = (loginPass?.value||'').trim();
+    if (!email || !pass) return alert('メールとパスワードを入力してください');
+    const u = getUsers().find(x=>x.email===email && x.password===pass);
+    if (!u) return alert('メールまたはパスワードが違います');
+    setCurrent(email); updateAuthArea(); showView('catalog');
+  }
+  function tryRegister(){
+    const email = (loginEmail?.value||'').trim();
+    const pass = (loginPass?.value||'').trim();
+    if (!email || !pass) return alert('メールとパスワードを入力してください');
+    const users = getUsers();
+    if (users.find(x=>x.email===email)) return alert('既に登録済みのメールです');
+    users.push({ email, password:pass, isAdmin:false }); setUsers(users);
+    setCurrent(email); updateAuthArea(); showView('catalog');
+  }
+
+  function renderAdmin(){
+    if (!adminTableBody) return;
+    const me = getUsers().find(u=>u.email===getCurrent());
+    if (!me?.isAdmin){ adminTableBody.innerHTML=''; return; }
+    const rows = getLogs().map((log,idx)=>`
+      <tr>
+        <td>${idx+1}</td>
+        <td>${log.email||'(guest)'}</td>
+        <td>${log.items.map(i=>`${i.name}×${i.qty}`).join(', ')}</td>
+        <td>${currency(log.total)}</td>
+        <td>${log.orderNo}</td>
+        <td>${new Date(log.at).toLocaleString()}</td>
+      </tr>
+    `).join('');
+    adminTableBody.innerHTML = rows || '<tr><td colspan="6" class="text-center text-muted">購入ログはまだありません</td></tr>';
+  }
+
+  // ================== 画面遷移 ==================
+  function showView(name){
+    [viewCatalog, viewCheckout, viewComplete, viewAuth, viewAdmin].forEach(v=>v?.classList.add('d-none'));
+    const map = { catalog:viewCatalog, checkout:viewCheckout, complete:viewComplete, auth:viewAuth, admin:viewAdmin };
+    map[name]?.classList.remove('d-none');
+    if (name==='catalog') renderCatalog();
+    if (name==='checkout') renderCheckout();
+    if (name==='admin') renderAdmin();
+  }
+
+  // ================== 購入処理 ==================
+  function doCheckout(){
+    if (cart.length===0) return alert('カートが空です');
+    const email = getCurrent();
+    if (!email){ alert('購入手続きにはログインが必要です'); showView('auth'); return; }
+    pendingPurchase = true; showView('checkout');
+  }
+  function completePurchase(){
+    if (!pendingPurchase) return;
+    const items = cart.map(ci=>({ ...ci, price: PRODUCTS.find(p=>p.id===ci.id)?.price || 0, name: PRODUCTS.find(p=>p.id===ci.id)?.name || '' }));
+    const total = items.reduce((s,i)=>s+i.qty*i.price,0);
+    const orderNo = 'W' + Math.random().toString(36).slice(2,8).toUpperCase();
+    const logs = getLogs();
+    logs.push({ email:getCurrent()||'', items, total, orderNo, at:Date.now() });
+    setLogs(logs);
+    if (orderNoEl) orderNoEl.textContent = orderNo;
+    cart = []; pendingPurchase = false;
+    renderCartSummary(); renderMiniCart();
+    showView('complete');
+  }
+
+  // ================== バインド ==================
+  function bind(){
+    list?.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.add-to-cart');
+      if (btn) addToCart(btn.dataset.id);
+    });
+    miniCartList?.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.remove-mini');
+      if (btn) removeFromCart(btn.dataset.id);
+    });
+    goCheckoutMini?.addEventListener('click', ()=> doCheckout());
+    backToCatalog?.addEventListener('click', ()=> showView('catalog'));
+    completeBtn?.addEventListener('click', ()=> completePurchase());
+    backHome?.addEventListener('click', ()=> showView('catalog'));
+
+    categorySel?.addEventListener('change', renderCatalog);
+    sortSel?.addEventListener('change', renderCatalog);
+    inStockCb?.addEventListener('change', renderCatalog);
+    freeShipCb?.addEventListener('change', renderCatalog);
+    priceMinInput?.addEventListener('input', renderCatalog);
+    priceMaxInput?.addEventListener('input', renderCatalog);
+
+    loginBtn?.addEventListener('click', tryLogin);
+    registerBtn?.addEventListener('click', tryRegister);
+
+    $('#goCart')?.addEventListener('click', ()=> showView('checkout'));
+    $('#goAdmin')?.addEventListener('click', ()=>{
+      const me = getUsers().find(u=>u.email===getCurrent());
+      if (!me?.isAdmin) return alert('管理画面は管理者のみが閲覧できます');
+      showView('admin');
+    });
+  }
+
+  // ================== 初期化 ==================
+  document.addEventListener('DOMContentLoaded', ()=>{
+    ensureAdmin();
+    updateAuthArea();
+    bind();
+    renderCartSummary();
+    renderMiniCart();
+    showView('catalog');
+  });
+})();

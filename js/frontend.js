@@ -1667,7 +1667,8 @@ extractProblemNumber(problemId, categoryId) {
             // 差分強調用スタイルを両方のiframeに注入
             this.injectDiffStyles(expectedDoc);
             this.injectDiffStyles(userDoc);
-            // 検出した差分を強調表示
+            // 差分を計算して強調表示
+            const differences = this.compareDOMElements(expectedDoc.body, userDoc.body);
             this.markDifferences(expectedDoc, userDoc, differences);
             
         } catch (error) {
@@ -1849,7 +1850,96 @@ extractProblemNumber(problemId, categoryId) {
         if (element1.className !== element2.className) return false;
         if (element1.id !== element2.id) return false;
         if (element1.textContent.trim() !== element2.textContent.trim()) return false;
+
+        // 代表的なCSSプロパティの計算スタイル差分も検出
+        try {
+            if (!this.stylesEqual(element1, element2)) return false;
+        } catch (_) {
+            // 計算スタイル取得で例外が出ても、構造比較は継続
+        }
         return true;
+    }
+
+    /**
+     * 代表的なCSSプロパティの計算スタイルが等しいか
+     */
+    stylesEqual(el1, el2) {
+        const s1 = this.getComputedStyleSafe(el1);
+        const s2 = this.getComputedStyleSafe(el2);
+        if (!s1 || !s2) return true; // 比較不能時は等しい扱い（構造差分で検出されるため）
+
+        const props = this.getImportantStyleProps(s1, s2);
+        for (const prop of props) {
+            const v1 = this.normalizeStyleValue(s1.getPropertyValue(prop));
+            const v2 = this.normalizeStyleValue(s2.getPropertyValue(prop));
+            if (v1 !== v2) return false;
+        }
+        return true;
+    }
+
+    /**
+     * 安全に getComputedStyle を取得
+     */
+    getComputedStyleSafe(el) {
+        try {
+            const view = el?.ownerDocument?.defaultView;
+            if (!view || typeof view.getComputedStyle !== 'function') return null;
+            return view.getComputedStyle(el);
+        } catch (_) {
+            return null;
+        }
+    }
+
+    /**
+     * 比較対象とする代表的なCSSプロパティ一覧を返す
+     * - 文字/フォント
+     * - ボックス（margin/padding/size/border）
+     * - 配置（display/position/flex/grid/align/justify/gap）
+     * - 背景/色/影
+     * - オーバーフロー/可視性
+     */
+    getImportantStyleProps(s1, s2) {
+        // 代表的プロパティ（網羅的だが実運用で安定しやすいセット）
+        const base = [
+            // テキスト/フォント
+            'color','font-size','font-family','font-weight','font-style','line-height','letter-spacing','word-spacing','text-align','text-decoration-line','text-decoration-style','text-decoration-color','text-transform','text-indent','white-space','text-overflow','vertical-align',
+            // ボックス
+            'display','box-sizing','width','height','min-width','min-height','max-width','max-height',
+            'margin-top','margin-right','margin-bottom','margin-left',
+            'padding-top','padding-right','padding-bottom','padding-left',
+            'border-top-width','border-right-width','border-bottom-width','border-left-width',
+            'border-top-style','border-right-style','border-bottom-style','border-left-style',
+            'border-top-color','border-right-color','border-bottom-color','border-left-color',
+            'border-top-left-radius','border-top-right-radius','border-bottom-right-radius','border-bottom-left-radius',
+            // 配置（position/flex/grid）
+            'position','top','right','bottom','left','z-index',
+            'flex','flex-grow','flex-shrink','flex-basis','flex-direction','flex-wrap','justify-content','align-items','align-content','align-self','gap','row-gap','column-gap','order',
+            'grid-auto-flow','grid-template-columns','grid-template-rows','grid-column-gap','grid-row-gap','justify-items','justify-self',
+            // 変形/アニメ/トランジション/フィルタ
+            'transform','transform-origin','transform-style','perspective','perspective-origin','backface-visibility','will-change',
+            'transition-property','transition-duration','transition-timing-function','transition-delay',
+            'animation-name','animation-duration','animation-timing-function','animation-delay','animation-iteration-count','animation-direction','animation-fill-mode','animation-play-state',
+            'filter',
+            // 背景/影/不透明度
+            'background-color','background-image','background-repeat','background-size','background-position','opacity','box-shadow',
+            // リスト
+            'list-style-type','list-style-position','list-style-image',
+            // オーバーフロー/可視性
+            'overflow','overflow-x','overflow-y','visibility'
+        ];
+
+        // 計算スタイルに存在するプロパティだけに限定
+        const available = new Set();
+        const addIf = (st, p) => { try { if (st.getPropertyValue(p) !== null) available.add(p); } catch(_){} };
+        base.forEach(p => { if (s1) addIf(s1, p); if (s2) addIf(s2, p); });
+        return Array.from(available);
+    }
+
+    /**
+     * スタイル値の正規化（単純比較のブレ低減）
+     */
+    normalizeStyleValue(v) {
+        return (v || '').toString().trim().replace(/\s+/g, ' ');
     }
     
     /**

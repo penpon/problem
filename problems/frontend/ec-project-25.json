@@ -1,0 +1,47 @@
+{
+  "id": "ec-project-25",
+  "title": "25: 完全ECサイト統合",
+  "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
+  "category": "ec-project",
+  "instructions": [
+    "<header> と <footer> を設置する",
+    "ビューを用意: #viewCatalog, #viewCheckout, #viewComplete, #viewAuth, #viewAdmin",
+    "操作UIを設置: #category, #sort, #inStock, #miniCartTotal, #list, #goCheckoutMini, #cartCount",
+    "配列処理で一覧生成: filter/sort/map(...).join('') で #list に出力",
+    "#list 直下は col-12 col-sm-6 col-lg-4 のグリッドで並べる",
+    "カート追加で件数(#cartCount)と合計を更新し、チェックアウトで一覧(#cartList)と合計(#totalCheckout)を表示、完了で注文番号(#orderNo)を表示",
+    "ログインでUI切替、adminのみ #viewAdmin 表示、購入完了時に購入ログを localStorage に保存し管理で表示"
+  ],
+  "files": {
+    "html": {
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n</head>\n<body>\n  <!-- ここに実装してください -->\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script>\n  <!-- script.js は学習システムが自動で注入します -->\n</body>\n</html>",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-25/files.html.expected"
+    },
+    "css": {
+      "template": "/* 任意で調整 */",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-25/files.css.expected"
+    },
+    "js": {
+      "template": "// ここに実装してください",
+      "expected": "__INCLUDE__: problems/frontend/expected/ec-project-25/files.js.expected"
+    }
+  },
+  "expectedResult": {
+    "behavior": "カタログ→チェックアウト→完了→認証/管理/ログまで統合。フィルタ/並び替え/在庫/カテゴリで一覧更新、カートに追加で合計と件数が増加。チェックアウトで一覧と合計を確認し、完了で注文番号表示。管理で購入ログ可視化"
+  },
+  "checks": [
+    { "id": "layout-header-footer", "name": "ヘッダー/フッター", "type": "html", "message": "<header> と <footer> が存在すること" },
+    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewCatalog, #viewCheckout, #viewComplete, #viewAuth, #viewAdmin が存在すること" },
+    { "id": "controls", "name": "操作UI", "type": "html", "message": "#category, #sort, #inStock, #miniCartTotal, #list, #goCheckoutMini が存在すること" },
+    { "id": "uses-array-methods", "name": "配列処理", "type": "js", "message": "filter/sort/map のいずれかを用いて一覧生成していること" },
+    { "id": "grid-classes", "name": "グリッド", "type": "css", "message": "#list 直下に col-12 col-sm-6 col-lg-4 のクラスを持つ要素が並ぶこと" },
+    { "id": "cart-and-checkout", "name": "カート/決済", "type": "js", "message": "カートに追加で件数(#cartCount)と合計が更新され、チェックアウト画面で一覧と合計が表示され、完了ボタンで完了ビューに遷移すること" },
+    { "id": "auth-admin-logs", "name": "認証/管理/ログ", "type": "js", "message": "ログインでUI切替、管理者のみ #viewAdmin 表示、購入完了時にローカルログ保存/表示されること" }
+  ],
+  "hints": [
+    "arr.filter(...).sort(...).map(...).join('') の流れ",
+    "イベント委譲でボタンを処理し、cart配列とtotalを管理",
+    "showView() で d-none を付け替えて画面遷移",
+    "localStorage で authUser / purchaseLogs を保持"
+  ]
+}

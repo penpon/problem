@@ -160,11 +160,12 @@
         "ec-project-17",
         "ec-project-18",
         "ec-project-19",
-        "ec-project-20"
+        "ec-project-20",
+        "ec-project-25"
       ]
     }
   ],
-  "totalProblems": 123,
+  "totalProblems": 124,
   "lastUpdated": "2025-08-31",
   "version": "6.0.0"
 }
