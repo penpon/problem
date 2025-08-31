@@ -96,6 +96,33 @@
 - `problems/frontend/index.json` の `problems` 並び順・`totalProblems`・`lastUpdated` を更新
 - 問題JSONは `problems/frontend/<id>.json` に作成し、`files.*.expected` は `problems/frontend/expected/<id>/files.<ext>.expected` を参照
 
+### 🚀 初期表示最適化：インデックスの最小スキーマ運用（重要）
+- フロントの初期ロードを「ほぼ1リクエスト」にするため、`problems/frontend/index.json` の各カテゴリ `problems` は **`{ id, title }` 形式**で管理します。
+- __問題を追加／タイトル変更したら__、以下のスクリプトでインデックスを自動再生成してください（手動編集は不要）。
+
+実行コマンド:
+
+```bash
+node tools/update-frontend-index.js
+```
+
+補足:
+- スクリプトは `problems/frontend/*.json` から `id` と `title` を抽出して `index.json` を更新します。
+- 実行時に `index.json.bak-<timestamp>` を同ディレクトリに自動バックアップします。
+- `package.json` に以下を追加すると簡便です（任意）：
+
+```json
+{
+  "scripts": {
+    "update:index": "node tools/update-frontend-index.js"
+  }
+}
+```
+
+運用ルール:
+- 追加・変更作業の最後に実行するか、pre-commit フック（husky 等）に組み込んで自動化してもOK。
+- `problems/frontend/index.json` を `{ id, title }` で保てば、一覧表示時に各問題JSONの事前フェッチが不要になり表示が高速化されます。
+
 ## ❗ expected 作成ルール（重要）
 - **実体化**: `.expected` は最終テキストを直接格納（必要なら `beginner-practice` からコピー）
 - **対象**: `files.html.expected`, `files.css.expected`, `files.js.expected`
