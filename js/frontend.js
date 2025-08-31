@@ -1115,6 +1115,8 @@ extractProblemNumber(problemId, categoryId) {
      */
     hasCssDeclaration(selector, property, valuePattern) {
         const css = (this.fileContents.css || '');
+        // プロパティ未指定時は判定不能のため false（安全ガード）
+        if (!property) return false;
         const sel = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // エスケープ
         const prop = property.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const val = valuePattern; // 呼び出し側で適切にエスケープ/パターン指定
@@ -1164,13 +1166,15 @@ extractProblemNumber(problemId, categoryId) {
                     }
                     case 'css-decl': { // { selector, property, valueRegex }
                         const pattern = check.valueRegex || '.*';
-                        const ok = this.hasCssDeclaration(check.selector, check.property, `(${pattern})`);
+                        // 後方互換: 問題定義では prop キーを使用しているものがあるため両対応
+                        const prop = (check.prop ?? check.property);
+                        const ok = this.hasCssDeclaration(check.selector, prop, `(${pattern})`);
                         return { ...check, passed: ok, message: check.message || (ok ? 'CSS宣言あり' : `CSS: ${check.selector} { ${check.property}: ${pattern} } が見つかりません`) };
                     }
                     case 'css-decls': { // { selector, decls: [{property, valueRegex}], mode?: 'all'|'any' }
                         const decls = Array.isArray(check.decls) ? check.decls : [];
                         const mode = check.mode === 'any' ? 'any' : 'all';
-                        const results = decls.map(d => this.hasCssDeclaration(check.selector, d.property, `(${d.valueRegex || '.*'})`));
+                        const results = decls.map(d => this.hasCssDeclaration(check.selector, (d.prop ?? d.property), `(${d.valueRegex || '.*'})`));
                         const ok = mode === 'all' ? results.every(Boolean) : results.some(Boolean);
                         return { ...check, passed: ok, message: check.message || (ok ? 'CSS宣言チェック合格' : 'CSS宣言チェック不合格') };
                     }
