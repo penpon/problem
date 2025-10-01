@@ -1,5 +1,16 @@
-const btn = document.getElementById('toggleBtn');
+const showBtn = document.getElementById('show-btn');
+const hideBtn = document.getElementById('hide-btn');
+const toggleBtn = document.getElementById('toggle-btn');
 const box = document.getElementById('box');
-btn.addEventListener('click', () => {
+
+showBtn.addEventListener('click', function() {
+  box.classList.remove('d-none');
+});
+
+hideBtn.addEventListener('click', function() {
+  box.classList.add('d-none');
+});
+
+toggleBtn.addEventListener('click', function() {
   box.classList.toggle('d-none');
 });

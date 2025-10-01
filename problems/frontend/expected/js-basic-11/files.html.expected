@@ -2,20 +2,17 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>classList 切替</title>
-  <style>.d-none{display:none}</style>
+  <title>classList</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main style="padding:16px">
-    <button id="toggleBtn">表示/非表示</button>
-    <div id="box" class="box" style="margin-top:8px; padding:8px; border:1px solid #ddd; border-radius:6px;">ボックス</div>
-  </main>
-  <script>
-    const btn = document.getElementById('toggleBtn');
-    const box = document.getElementById('box');
-    btn.addEventListener('click', () => {
-      box.classList.toggle('d-none');
-    });
-  </script>
+  <h1>classListの操作</h1>
+  <div>
+    <button id="show-btn">表示</button>
+    <button id="hide-btn">非表示</button>
+    <button id="toggle-btn">切替</button>
+  </div>
+  <div id="box" class="box">このボックスが表示/非表示されます</div>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,12 +1,14 @@
 {
   "id": "js-basic-11",
-  "title": "classList + d-none 切替（最小）",
-  "description": "ボタンでボックスの表示/非表示を切り替えます（classList と d-none を使用）",
+  "title": "classList（add/remove/toggle）",
+  "description": "classListの3つの基本メソッド（add/remove/toggle）を使って要素の表示/非表示を制御します",
   "category": "javascript-basics",
   "instructions": [
-    "#box 要素を用意（最初は表示）",
-    "#toggleBtn クリックで #box に d-none を付け外し（classList.toggle）",
-    "CSS に .d-none { display: none } を定義（最小）"
+    "3つのボタン（#show-btn, #hide-btn, #toggle-btn）と#box要素を用意する",
+    "#show-btnクリックで classList.remove('d-none') を実行（表示）",
+    "#hide-btnクリックで classList.add('d-none') を実行（非表示）",
+    "#toggle-btnクリックで classList.toggle('d-none') を実行（切替）",
+    "CSSに .d-none { display: none; } を定義する"
   ],
   "files": {
     "html": {
@@ -24,9 +26,11 @@
   },
   "checks": [
     { "id": "box-el", "name": "#box", "type": "html", "message": "#box を用意してください" },
-    { "id": "toggle-btn", "name": "#toggleBtn", "type": "html", "message": "#toggleBtn を用意してください" },
-    { "id": "d-none-css", "name": ".d-none CSS", "type": "css", "message": ".d-none { display:none } を定義してください" },
-    { "id": "classlist-toggle", "name": "classList.toggle", "type": "js", "message": "classList.toggle で d-none を切り替えてください" }
+    { "id": "show-btn", "name": "#show-btn", "type": "html", "message": "#show-btn ボタンを用意してください" },
+    { "id": "hide-btn", "name": "#hide-btn", "type": "html", "message": "#hide-btn ボタンを用意してください" },
+    { "id": "toggle-btn", "name": "#toggle-btn", "type": "html", "message": "#toggle-btn ボタンを用意してください" },
+    { "id": "d-none-css", "name": ".d-none CSS", "type": "css", "message": ".d-none { display: none; } を定義してください" },
+    { "id": "classlist-toggle", "name": "classList操作", "type": "js", "message": "classList の add/remove/toggle を使って表示を切り替えてください" }
   ],
   "expectedResult": { "behavior": "ボタン押下でボックスが表示/非表示に切り替わる" }
 }

@@ -1,1 +1,11 @@
-.d-none{display:none}
+.d-none {
+  display: none;
+}
+
+.box {
+  margin-top: 16px;
+  padding: 16px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
