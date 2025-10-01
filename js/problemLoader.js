@@ -423,93 +423,6 @@ class ProblemLoader {
   }
 
   /**
-   * 問題のREADME.mdファイルを読み込み
-   * @param {string} problemId 問題ID
-   * @returns {Promise<string>} README.mdの内容（Markdownテキスト）
-   */
-  async loadProblemReadme(problemId) {
-    const cacheKey = `readme_${problemId}`;
-    
-    // キャッシュから取得
-    if (this.loadedProblems.has(cacheKey)) {
-      console.log(`README cache hit for ${problemId}`);
-      return this.loadedProblems.get(cacheKey);
-    }
-
-    try {
-      console.log(`Loading README for problem: ${problemId}`);
-      const readmePath = await this.findReadmePath(problemId);
-      console.log(`README path resolved: ${readmePath}`);
-      
-      const response = await fetch(readmePath, {
-        method: 'GET',
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache'
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-      
-      const markdownContent = await response.text();
-      
-      if (!markdownContent || markdownContent.trim().length === 0) {
-        throw new Error('README file is empty or contains no content');
-      }
-      
-      // キャッシュに保存
-      this.loadedProblems.set(cacheKey, markdownContent);
-      
-      console.log(`README.md successfully loaded for problem ${problemId} (${markdownContent.length} characters)`);
-      return markdownContent;
-      
-    } catch (error) {
-      console.error(`Failed to load README for ${problemId}:`, error);
-      
-      // フォールバック: 問題JSONからヒント情報を取得
-      try {
-        console.log(`Attempting fallback hint for ${problemId}`);
-        const fallbackHint = await this.getFallbackHint(problemId);
-        if (fallbackHint) {
-          return fallbackHint;
-        }
-      } catch (fallbackError) {
-        console.warn(`Fallback hint also failed for ${problemId}:`, fallbackError);
-      }
-      
-      throw new Error(`README読み込みに失敗しました: ${error.message}`);
-    }
-  }
-
-  /**
-   * フォールバックヒント取得（問題JSONからヒント情報を取得）
-   * @param {string} problemId 問題ID
-   * @returns {Promise<string|null>} フォールバックヒントまたはnull
-   */
-  async getFallbackHint(problemId) {
-    try {
-      const problemData = await this.loadFrontendProblem(problemId);
-      
-      if (problemData && problemData.hints) {
-        // 問題データにヒント情報がある場合
-        return `# ${problemData.title} - ヒント\n\n${problemData.hints.join('\n\n')}`;
-      }
-      
-      if (problemData && problemData.description) {
-        // 説明をヒントとして使用
-        return `# ${problemData.title} - ヒント\n\n${problemData.description}`;
-      }
-      
-      return null;
-    } catch (error) {
-      console.warn(`Fallback hint failed for ${problemId}:`, error);
-      return null;
-    }
-  }
-
-  /**
    * 読み込み状況の統計を取得
    * @returns {Object} 統計情報
    */
@@ -560,16 +473,6 @@ async function getFrontendProblem(problemId) {
     return await problemLoader.loadFrontendProblem(problemId);
   } catch (error) {
     console.error(`getFrontendProblem(${problemId}) error:`, error);
-    return null;
-  }
-}
-
-// README読み込み用の関数
-async function loadProblemReadme(problemId) {
-  try {
-    return await problemLoader.loadProblemReadme(problemId);
-  } catch (error) {
-    console.error(`loadProblemReadme(${problemId}) error:`, error);
     return null;
   }
 }
