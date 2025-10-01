@@ -1,13 +1,14 @@
 {
   "id": "js-basic-02",
   "title": "JavaScriptでHello",
-  "description": "JavaScriptで簡単なテキスト表示を行います",
+  "description": "alert()とconsole.log()を使って、2つの出力方法を学習します",
   "category": "javascript-basics",
   "difficulty": "初級",
   "instructions": [
-    "HTML に <script src=\"script.js\"></script> を読み込む（body閉じタグ直前）",
-    "ページ読み込み時に alert('こんにちは') を表示する",
-    "動作確認用に console.log を出しても良い（任意）"
+    "console.log()でコンソールに「プログラムが開始されました」と出力する",
+    "alert()で「こんにちは、JavaScript！」を表示する",
+    "console.log()でコンソールに「プログラムが終了しました」と出力する",
+    "ブラウザの開発者ツールでコンソールを確認する"
   ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-02/files.html.expected" },

@@ -1,1 +1,4 @@
-body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 16px; }
+body {
+  font-family: system-ui, sans-serif;
+  margin: 20px;
+}
