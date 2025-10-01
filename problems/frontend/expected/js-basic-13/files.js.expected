@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   const input = document.getElementById('liveInput');
   const preview = document.getElementById('preview');
 
-  input.addEventListener('input', () => {
+  input.addEventListener('input', function() {
     const val = input.value.trim();
-    preview.textContent = val ? `プレビュー: ${val}` : 'プレビュー: （未入力）';
+    preview.textContent = val ? 'プレビュー: ' + val : 'プレビュー: （未入力）';
   });
 });

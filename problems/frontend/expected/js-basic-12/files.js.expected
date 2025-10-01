@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   const input = document.getElementById('nameInput');
   const btn = document.getElementById('applyBtn');
   const display = document.getElementById('display');
 
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', function() {
     const val = input.value;
-    display.textContent = val ? `こんにちは、${val}さん` : '入力が空です';
+    display.textContent = val ? 'こんにちは、' + val + 'さん' : '入力が空です';
   });
 });

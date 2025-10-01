@@ -1,5 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   const field = document.getElementById('field');
-  field.addEventListener('focus', () => field.classList.add('focused'));
-  field.addEventListener('blur', () => field.classList.remove('focused'));
+  field.addEventListener('focus', function() {
+    field.classList.add('focused');
+  });
+  field.addEventListener('blur', function() {
+    field.classList.remove('focused');
+  });
 });

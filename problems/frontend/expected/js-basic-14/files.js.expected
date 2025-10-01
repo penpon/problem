@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   const link = document.getElementById('dangerLink');
   const status = document.getElementById('status');
   let count = 0;
 
-  link.addEventListener('click', (e) => {
+  link.addEventListener('click', function(e) {
     e.preventDefault();
-    count++;
-    status.textContent = `${count} 回防止しました`;
+    count = count + 1;
+    status.textContent = count + ' 回防止しました';
   });
 });
