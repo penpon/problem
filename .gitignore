@@ -101,6 +101,7 @@ tmp/
 # Claude Code and MCP tools
 .playwright-mcp/
 .claude/
+.serena/
 
 # Project specific
 update-expected-codes.js
