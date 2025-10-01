@@ -247,21 +247,6 @@ const categoryIcons = {
 3. **異なるデータケース**: 様々な入力パターンでの動作確認
 4. **エラーケース**: 異常系での動作確認（必要に応じて）
 
-## 🚀 デプロイ手順
-
-```bash
-# 1. ファイルをGitに追加
-git add problems/
-
-# 2. コミット
-git commit -m "Add new problem: [問題名]"
-
-# 3. プッシュ
-git push
-
-# 4. GitHub Pagesで自動的に反映される
-```
-
 ## ⚡ 自動反映システム
 
 ### タブ表示の仕組み

@@ -46,9 +46,6 @@
                     <button id="format-button" class="format-button">
                         ✨ コード整形
                     </button>
-                    <button id="grade-button" class="grade-button">
-                        📊 採点実行
-                    </button>
                 </div>
             </div>
             
@@ -164,98 +161,7 @@
             </div>
         </div>
             
-        <!-- 採点結果パネル -->
-        <div class="result-section">
-            <h2 class="section-title">📊 採点結果</h2>
-            
-            <!-- 結果表示タブナビゲーション -->
-            <div class="result-tab-navigation" id="result-tab-navigation" style="display: none;">
-                <button class="result-tab-button active" data-result-tab="summary">📊 採点結果</button>
-                <button class="result-tab-button" data-result-tab="comparison">🔍 コード比較</button>
-                <button class="result-tab-button" data-result-tab="preview-diff">👁️ プレビュー差分</button>
-            </div>
-            
-            <div class="result-content-wrapper">
-                <!-- 採点結果表示 -->
-                <div id="result-summary-view" class="result-tab-content">
-                    <div id="result-area" style="display: none;">
-                        <!-- 採点結果がここに表示されます -->
-                    </div>
-                    
-                    <div id="no-result" class="no-result-text">
-                        <p>🎯 問題を選択してコードを書くと、採点結果がここに表示されます</p>
-                        <p style="font-size: 0.9em; margin-top: 10px;">
-                            ヒント: コードエディタで <kbd>Ctrl</kbd> + <kbd>Enter</kbd> でも採点実行できます
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- コード比較表示 -->
-                <div id="result-comparison-view" class="result-tab-content" style="display: none;">
-                    <div class="comparison-file-tabs">
-                        <button class="comparison-file-tab active" data-comparison-file="html">🌐 HTML</button>
-                        <button class="comparison-file-tab" data-comparison-file="css">🎨 CSS</button>
-                        <button class="comparison-file-tab" data-comparison-file="js">⚙️ JavaScript</button>
-                    </div>
-                    
-                    <div class="code-comparison-container">
-                        <div class="expected-code-panel">
-                            <h3 class="comparison-panel-title">✅ 正解コード</h3>
-                            <pre class="code-display" id="expected-comparison-code">
-                                <!-- 正解コードがここに表示されます -->
-                            </pre>
-                        </div>
-                        <div class="user-code-panel">
-                            <h3 class="comparison-panel-title">🖼️ あなたのコード</h3>
-                            <pre class="code-display" id="user-comparison-code">
-                                <!-- ユーザーコードがここに表示されます -->
-                            </pre>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- プレビュー差分表示 -->
-                <div id="result-preview-diff-view" class="result-tab-content" style="display: none;">
-                    <div class="preview-diff-container">
-                        <div class="expected-preview-panel">
-                            <h3 class="comparison-panel-title">✅ 正解の見た目</h3>
-                            <div class="preview-diff-wrapper">
-                                <iframe id="expected-diff-preview" class="preview-diff-iframe" title="正解プレビュー（差分用）">
-                                </iframe>
-                            </div>
-                        </div>
-                        <div class="user-preview-panel">
-                            <h3 class="comparison-panel-title">🖼️ あなたの見た目</h3>
-                            <div class="preview-diff-wrapper">
-                                <iframe id="user-diff-preview" class="preview-diff-iframe" title="ユーザープレビュー（差分用）">
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="preview-diff-info">
-                        <p>👁️ 正解とあなたのコードの見た目を比較して、違いを確認できます</p>
-                        <div class="diff-legend">
-                            <h4>差分の見方：</h4>
-                            <div class="legend-items">
-                                <div class="legend-item">
-                                    <span class="legend-color diff-missing-legend"></span>
-                                    <span class="legend-text">🔴 不足要素（正解にあってあなたのコードにない）</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-color diff-extra-legend"></span>
-                                    <span class="legend-text">🟢 余分要素（あなたのコードにあって正解にない）</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-color diff-changed-legend"></span>
-                                    <span class="legend-text">🟡 変更要素（内容や属性が異なる）</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     <!-- 全画面表示モーダル -->
