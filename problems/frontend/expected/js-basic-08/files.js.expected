@@ -5,17 +5,17 @@ function update() {
   display.textContent = String(counter);
 }
 
-document.getElementById('plus-btn').addEventListener('click', () => {
-  counter += 1;
+document.getElementById('plus-btn').addEventListener('click', function() {
+  counter = counter + 1;
   update();
 });
 
-document.getElementById('minus-btn').addEventListener('click', () => {
-  counter -= 1;
+document.getElementById('minus-btn').addEventListener('click', function() {
+  counter = counter - 1;
   update();
 });
 
-document.getElementById('reset-btn').addEventListener('click', () => {
+document.getElementById('reset-btn').addEventListener('click', function() {
   counter = 0;
   update();
 });

@@ -1,10 +1,10 @@
 const textEl = document.getElementById('text');
 const htmlEl = document.getElementById('html-content');
 
-document.getElementById('text-btn').addEventListener('click', () => {
+document.getElementById('text-btn').addEventListener('click', function() {
   textEl.textContent = 'テキストが変更されました';
 });
 
-document.getElementById('html-btn').addEventListener('click', () => {
+document.getElementById('html-btn').addEventListener('click', function() {
   htmlEl.innerHTML = '<strong>太字になりました</strong>';
 });

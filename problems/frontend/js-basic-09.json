@@ -5,9 +5,11 @@
   "category": "javascript-basics",
   "difficulty": "初級",
   "instructions": [
-    "現在値 value を用意し、最小/最大 MIN/MAX を定義する",
-    "#minus10-btn / #minus1-btn / #reset-btn / #plus1-btn / #plus10-btn に click イベントを登録する",
-    "更新時は clamp() で範囲 [-10,10] に収め、#counter-display に表示する"
+    "値を保存する変数valueを用意する（最初は0）",
+    "各ボタンに click イベントを登録する",
+    "値が-10より小さくならないように、10より大きくならないようにチェックする",
+    "#counter-display に値を表示する",
+    "【ヒント】範囲チェックにはif文を使おう"
   ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.html.expected" },

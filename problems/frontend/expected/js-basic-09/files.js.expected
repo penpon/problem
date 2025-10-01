@@ -1,40 +1,56 @@
 let value = 0;
-const MIN = -10;
-const MAX = 10;
-
 const display = document.getElementById('counter-display');
 
-function clamp(n) {
-  return Math.max(MIN, Math.min(MAX, n));
+// 値が範囲内（-10〜10）に収まるようにする関数
+function checkRange() {
+  // 最小値より小さくなったら最小値にする
+  if (value < -10) {
+    value = -10;
+  }
+  // 最大値より大きくなったら最大値にする
+  if (value > 10) {
+    value = 10;
+  }
 }
 
-function update() {
+// 画面に数字を表示する関数
+function showValue() {
   display.textContent = String(value);
 }
 
-document.getElementById('minus10-btn').addEventListener('click', () => {
-  value = clamp(value - 10);
-  update();
+// +1ボタン
+document.getElementById('plus1-btn').addEventListener('click', function() {
+  value = value + 1;
+  checkRange();
+  showValue();
 });
 
-document.getElementById('minus1-btn').addEventListener('click', () => {
-  value = clamp(value - 1);
-  update();
+// +10ボタン
+document.getElementById('plus10-btn').addEventListener('click', function() {
+  value = value + 10;
+  checkRange();
+  showValue();
 });
 
-document.getElementById('plus1-btn').addEventListener('click', () => {
-  value = clamp(value + 1);
-  update();
+// -1ボタン
+document.getElementById('minus1-btn').addEventListener('click', function() {
+  value = value - 1;
+  checkRange();
+  showValue();
 });
 
-document.getElementById('plus10-btn').addEventListener('click', () => {
-  value = clamp(value + 10);
-  update();
+// -10ボタン
+document.getElementById('minus10-btn').addEventListener('click', function() {
+  value = value - 10;
+  checkRange();
+  showValue();
 });
 
-document.getElementById('reset-btn').addEventListener('click', () => {
+// リセットボタン
+document.getElementById('reset-btn').addEventListener('click', function() {
   value = 0;
-  update();
+  showValue();
 });
 
-update();
+// 最初の表示
+showValue();
