@@ -1,13 +1,17 @@
 const display = document.getElementById('message-display');
 
-document.getElementById('welcome-btn').addEventListener('click', () => {
-  display.textContent = 'ようこそ！';
+document.getElementById('text-btn').addEventListener('click', function() {
+  display.textContent = 'テキストが変わりました';
 });
 
-document.getElementById('happy-btn').addEventListener('click', () => {
-  display.textContent = 'うれしい！';
+document.getElementById('color-btn').addEventListener('click', function() {
+  display.style.color = 'blue';
+  display.textContent = '文字色が青になりました';
 });
 
-document.getElementById('rocket-btn').addEventListener('click', () => {
-  display.textContent = '発進！';
+document.getElementById('time-btn').addEventListener('click', function() {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  display.textContent = '現在時刻: ' + hours + '時' + minutes + '分';
 });

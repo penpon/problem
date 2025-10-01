@@ -2,15 +2,17 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ボタンクリック</title>
+  <title>ボタンでメッセージを変更</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>ボタンクリック</h1>
-  <div id="message-display">ボタンをクリックしてください</div>
-  <button id="hello-button">Hello</button>
-  <button id="color-button">色変更</button>
-  <button id="time-button">時間表示</button>
+  <h1>ボタンでメッセージを変更</h1>
+  <div id="message-display">ここにメッセージが表示されます</div>
+  <div>
+    <button id="btn1">ボタン1</button>
+    <button id="btn2">ボタン2</button>
+    <button id="btn3">ボタン3</button>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

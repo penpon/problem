@@ -2,15 +2,17 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>複数ボタン</title>
+  <title>様々なイベント処理</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>複数ボタン</h1>
-  <div id="message-display">ボタンをクリックしてください</div>
-  <button id="welcome-btn">ようこそ</button>
-  <button id="happy-btn">幸せ</button>
-  <button id="rocket-btn">ロケット</button>
+  <h1>様々な操作を試そう</h1>
+  <div id="message-display">ここに結果が表示されます</div>
+  <div>
+    <button id="text-btn">テキスト変更</button>
+    <button id="color-btn">色変更</button>
+    <button id="time-btn">時刻表示</button>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

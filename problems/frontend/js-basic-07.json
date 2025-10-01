@@ -1,13 +1,14 @@
 {
   "id": "js-basic-07",
-  "title": "複数ボタンのイベント処理",
-  "description": "複数のボタンにイベントを設定し、それぞれ別の動作を実行します",
+  "title": "複数種類のDOM操作",
+  "description": "イベントリスナーで様々な種類のDOM操作（テキスト変更、スタイル変更、動的コンテンツ）を学習します",
   "category": "javascript-basics",
   "difficulty": "初級",
   "instructions": [
-    "#message-display を取得し、表示用に利用する",
-    "#welcome-btn / #happy-btn / #rocket-btn に click イベントを登録する",
-    "各ボタンクリックで #message-display.textContent を異なる文言に更新する"
+    "#message-displayを取得する",
+    "#text-btnクリックで、textContentを変更する",
+    "#color-btnクリックで、style.colorを変更し、テキストも更新する",
+    "#time-btnクリックで、new Date()を使って現在時刻を表示する"
   ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.html.expected" },
@@ -16,8 +17,8 @@
   },
   "checks": [
     { "id": "message-display", "name": "#message-display", "type": "html", "message": "#message-display 要素を用意してください" },
-    { "id": "welcome-btn", "name": "#welcome-btn", "type": "html", "message": "#welcome-btn ボタンを用意してください" },
-    { "id": "happy-btn", "name": "#happy-btn", "type": "html", "message": "#happy-btn ボタンを用意してください" },
-    { "id": "rocket-btn", "name": "#rocket-btn", "type": "html", "message": "#rocket-btn ボタンを用意してください" }
+    { "id": "text-btn", "name": "#text-btn", "type": "html", "message": "#text-btn ボタンを用意してください" },
+    { "id": "color-btn", "name": "#color-btn", "type": "html", "message": "#color-btn ボタンを用意してください" },
+    { "id": "time-btn", "name": "#time-btn", "type": "html", "message": "#time-btn ボタンを用意してください" }
   ]
 }

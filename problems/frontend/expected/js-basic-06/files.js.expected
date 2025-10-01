@@ -1,14 +1,13 @@
 const display = document.getElementById('message-display');
 
-document.getElementById('hello-button').addEventListener('click', () => {
-  display.textContent = 'こんにちは！';
+document.getElementById('btn1').addEventListener('click', function() {
+  display.textContent = 'ボタン1がクリックされました';
 });
 
-document.getElementById('color-button').addEventListener('click', () => {
-  display.textContent = '色が変わりました';
+document.getElementById('btn2').addEventListener('click', function() {
+  display.textContent = 'ボタン2がクリックされました';
 });
 
-document.getElementById('time-button').addEventListener('click', () => {
-  const now = new Date();
-  display.textContent = '現在時刻: ' + now.getHours() + ':' + now.getMinutes();
+document.getElementById('btn3').addEventListener('click', function() {
+  display.textContent = 'ボタン3がクリックされました';
 });

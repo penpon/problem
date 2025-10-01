@@ -1,13 +1,13 @@
 {
   "id": "js-basic-06",
-  "title": "ボタンクリックイベント",
-  "description": "ボタンクリック時のイベントリスナーでDOMを更新します",
+  "title": "textContentでのテキスト置換",
+  "description": "ボタンクリックでテキストを変更する最もシンプルなDOM操作を学習します",
   "category": "javascript-basics",
   "difficulty": "初級",
   "instructions": [
-    "#message-display を取得し、表示テキストの更新に使用する",
-    "#hello-button / #color-button / #time-button に click イベントを登録する",
-    "クリックに応じて #message-display.textContent を変更する（時刻は Date を使用）"
+    "#message-displayを取得して、表示エリアとして使用する",
+    "3つのボタン（#btn1, #btn2, #btn3）にclickイベントを登録する",
+    "各ボタンをクリックしたら、#message-displayのtextContentを変更する"
   ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.html.expected" },
@@ -16,8 +16,8 @@
   },
   "checks": [
     { "id": "message-display", "name": "#message-display", "type": "html", "message": "#message-display 要素を用意してください" },
-    { "id": "hello-button", "name": "#hello-button", "type": "html", "message": "#hello-button ボタンを用意してください" },
-    { "id": "color-button", "name": "#color-button", "type": "html", "message": "#color-button ボタンを用意してください" },
-    { "id": "time-button", "name": "#time-button", "type": "html", "message": "#time-button ボタンを用意してください" }
+    { "id": "btn1", "name": "#btn1", "type": "html", "message": "#btn1 ボタンを用意してください" },
+    { "id": "btn2", "name": "#btn2", "type": "html", "message": "#btn2 ボタンを用意してください" },
+    { "id": "btn3", "name": "#btn3", "type": "html", "message": "#btn3 ボタンを用意してください" }
   ]
 }
