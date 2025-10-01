@@ -1,13 +1,12 @@
 {
   "id": "js-basic-01",
   "title": "初めてのJavaScript",
-  "description": "初めてのJavaScriptでボタンをクリックしてalert()を表示する基本的なインタラクションを学習します",
+  "description": "初めてのJavaScriptでalert()を使ってメッセージを表示する基本を学習します",
   "category": "javascript-basics",
   "instructions": [
-    "JavaScriptファイルの作成とHTMLへの読み込み方法を理解する",
-    "ボタンクリック時にalert()ダイアログを表示する方法を学ぶ",
-    "console.log()でコンソールに出力する基本を理解する",
-    "JavaScriptの第一歩を踏み出す"
+    "HTMLファイルにscript.jsを読み込む（body閉じタグの直前）",
+    "script.jsでalert('こんにちは')を実行する",
+    "ページを開いたときにアラートが表示されることを確認する"
   ],
   "files": {
     "html": {

@@ -1,4 +1,1 @@
-document.getElementById('alertBtn').addEventListener('click', () => {
-  console.log('ボタンがクリックされました');
-  alert('こんにちは');
-});
+alert('こんにちは');

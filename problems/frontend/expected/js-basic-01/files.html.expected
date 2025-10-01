@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>初めてのJavaScript</title>
-    <link rel="stylesheet" href="style.css">
-    
+  <meta charset="UTF-8">
+  <title>初めてのJavaScript</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>初めてのJavaScript</h1>
-    <button id="alertBtn">アラート</button>
-    <script src="script.js"></script>
-    
+  <h1>初めてのJavaScript</h1>
+  <p>このページを開くとメッセージが表示されます</p>
+  <script src="script.js"></script>
 </body>
 </html>
