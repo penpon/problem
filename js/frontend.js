@@ -496,7 +496,7 @@ extractProblemNumber(problemId, categoryId) {
         // 元テンプレートを取得
         let htmlTpl = problem.files?.html?.template || this.getDefaultTemplate();
         let cssTpl = problem.files?.css?.template || '';
-        const jsTpl = problem.files?.js?.template || '';
+        let jsTpl = problem.files?.js?.template || '';
 
         if (isJsAdvanced) {
             // CSS は JavaScript応用カテゴリで常に空
@@ -571,22 +571,21 @@ extractProblemNumber(problemId, categoryId) {
                 
                 
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 if (typeof jsTpl === 'string') {
                     jsTpl = '';
                 } else {
+                    jsTpl = '';
+                }
+            }
+            
+            // 最終オーバーライド: 問題番号ベース（順序の影響を受けない）
+            const __numStr = this.extractProblemNumber(problem.id, 'javascript-advanced');
+            const __num = parseFloat(__numStr);
+            if (!Number.isNaN(__num)) {
+                if (__num >= 2) {
+                    htmlTpl = '';
+                }
+                if (__num >= 7) {
                     jsTpl = '';
                 }
             }
