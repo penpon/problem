@@ -1,6 +1,0 @@
-body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;margin:16px}
-.container{max-width:800px;margin:auto}
-.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}
-button{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}
-.meta{color:#666}
-.counter{border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-top:12px;min-height:56px;font-size:18px}
