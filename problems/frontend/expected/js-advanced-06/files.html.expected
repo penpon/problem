@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>js-advanced-06 単一商品詳細表示（find）</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>まとめ練習</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>商品詳細</h1>
-
+    <h1>商品検索システム</h1>
     <div class="controls">
-      <label for="productIdInput">商品ID</label>
-      <input id="productIdInput" type="number" min="1" step="1" placeholder="例: 1" />
-      <button id="showBtn" type="button">表示</button>
-      <div class="meta">該当: <span id="statusText">未検索</span></div>
+      <input id="search" type="text" placeholder="商品名で検索" class="search-input">
+      <select id="category" class="category-select">
+        <option value="all">すべて</option>
+        <option value="家電">家電</option>
+        <option value="文具">文具</option>
+      </select>
+      <select id="sort" class="sort-select">
+        <option value="default">デフォルト</option>
+        <option value="price-asc">価格の安い順</option>
+        <option value="price-desc">価格の高い順</option>
+      </select>
+      <div>カート: <span id="cart-count">0</span>件</div>
     </div>
-
-    <div id="productDetail" class="product-detail" aria-live="polite">
-      <!-- 商品名/価格を表示 -->
-    </div>
+    <div id="list"></div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>

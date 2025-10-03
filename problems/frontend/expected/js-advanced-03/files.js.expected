@@ -1,48 +1,47 @@
-// 商品データ（js-basic を下地にした最小サンプル）
+// 商品データ（配列）
 const products = [
-  { id: 1, name: 'Pro Camera', price: 49800 },
-  { id: 2, name: 'Light Stand', price: 3200 },
-  { id: 3, name: 'Mini Tripod', price: 1800 },
-  { id: 4, name: 'Pro Light', price: 9800 },
-  { id: 5, name: 'Simple Bag', price: 2500 }
+  { id: 1, name: 'ノートパソコン', price: 89800 },
+  { id: 2, name: 'マウス', price: 1980 },
+  { id: 3, name: 'キーボード', price: 4980 }
 ];
 
-const $input = document.getElementById('searchInput');
-const $list = document.getElementById('productList');
-const $count = document.getElementById('resultCount');
+// 並び替えて表示する関数
+function renderProducts(sortType) {
+  const list = document.getElementById('list');
 
-function render(list) {
-  // 安全のため textContent で反映
-  $list.innerHTML = '';
-  list.forEach(p => {
-    const li = document.createElement('li');
-    li.className = 'product-card';
+  // 元の配列を変更しないようにコピー
+  let items = [...products];
 
-    const name = document.createElement('div');
-    name.className = 'product-name';
-    name.textContent = p.name;
+  if (sortType === 'price-asc') {
+    // 価格の安い順
+    items.sort(function(a, b) {
+      return a.price - b.price;
+    });
+  } else if (sortType === 'price-desc') {
+    // 価格の高い順
+    items.sort(function(a, b) {
+      return b.price - a.price;
+    });
+  }
 
-    const price = document.createElement('div');
-    price.className = 'product-price';
-    price.textContent = `¥${p.price.toLocaleString()}`;
-
-    li.appendChild(name);
-    li.appendChild(price);
-    $list.appendChild(li);
+  // HTMLを作成（map + join）
+  const htmlArray = items.map(function(p) {
+    return `
+      <div class="item">
+        <div class="item-name">${p.name}</div>
+        <div class="item-price">¥${p.price.toLocaleString()}</div>
+      </div>
+    `;
   });
-  $count.textContent = String(list.length);
+
+  list.innerHTML = htmlArray.join('');
 }
 
-function filterProducts(keyword) {
-  const k = keyword.trim().toLowerCase();
-  if (!k) return products;
-  return products.filter(p => p.name.toLowerCase().includes(k));
-}
-
-$input.addEventListener('input', () => {
-  const filtered = filterProducts($input.value);
-  render(filtered);
+// セレクトボックスの変更で並び替え
+const sortSelect = document.getElementById('sort');
+sortSelect.addEventListener('change', function(e) {
+  renderProducts(e.target.value);
 });
 
 // 初期表示
-render(products);
+renderProducts('default');

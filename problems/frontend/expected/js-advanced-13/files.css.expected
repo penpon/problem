@@ -1,2 +1,0 @@
-#list{display:grid;gap:6px}
-.item{padding:6px;border:1px solid #ddd;border-radius:6px}

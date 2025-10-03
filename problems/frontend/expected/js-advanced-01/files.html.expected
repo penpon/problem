@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>テキスト内容変更</title>
+  <title>配列からHTML生成</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>テキスト内容変更</h1>
-  <p id="text">初期テキスト</p>
-  <button id="change">変更</button>
+  <div class="container">
+    <h1>商品一覧</h1>
+    <div id="list"></div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

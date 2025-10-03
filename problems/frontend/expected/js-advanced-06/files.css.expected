@@ -1,9 +1,7 @@
-body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;margin:16px}
-.container{max-width:800px;margin:auto}
-.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}
-#productIdInput{padding:8px 10px;border:1px solid #ccc;border-radius:6px;width:120px}
-#showBtn{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}
-.meta{color:#666}
-.product-detail{border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-top:12px;min-height:56px}
-.product-name{font-weight:600}
-.product-price{color:#0a7;}
+body { font-family: sans-serif; margin: 16px; }
+.container { max-width: 900px; margin: 0 auto; }
+.controls { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.search-input, .category-select, .sort-select { padding: 8px; font-size: 14px; }
+#list { display: grid; gap: 12px; }
+.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+.add-btn { padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }

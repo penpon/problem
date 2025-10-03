@@ -1,3 +1,32 @@
-document.getElementById('change').addEventListener('click', () => {
-  document.getElementById('text').textContent = '変更されました';
-});
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', price: 89800 },
+  { id: 2, name: 'マウス', price: 1980 },
+  { id: 3, name: 'キーボード', price: 4980 }
+];
+
+// 商品一覧を表示する関数
+function renderProducts() {
+  // #list 要素を取得
+  const list = document.getElementById('list');
+  
+  // 配列から HTML を生成（初心者向けの書き方）
+  const htmlArray = products.map(function(product) {
+    // 各商品のHTMLを作成（テンプレート文字列）
+    return `
+      <div class="item">
+        <div class="item-name">${product.name}</div>
+        <div class="item-price">¥${product.price.toLocaleString()}</div>
+      </div>
+    `;
+  });
+  
+  // 配列を1つの文字列にまとめる
+  const htmlString = htmlArray.join('');
+  
+  // #list に HTML を挿入
+  list.innerHTML = htmlString;
+}
+
+// ページ読み込み時に実行
+renderProducts();

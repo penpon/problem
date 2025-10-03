@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>配列の基本操作</title>
+  <title>イベント委譲</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>配列の基本操作</h1>
-  <div id="arr">[]</div>
-  <button id="add">追加</button>
-  <button id="remove">削除</button>
+  <div class="container">
+    <h1>商品一覧（イベント委譲）</h1>
+    <div>カート件数: <span id="cart-count">0</span></div>
+    <div id="list"></div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HTML内容変更基本</title>
+  <title>配列の絞り込み</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>HTML内容変更基本</h1>
-  <div id="box"></div>
-  <button id="render">挿入</button>
+  <div class="container">
+    <h1>商品一覧（カテゴリ絞り込み）</h1>
+    <select id="category" class="category-select">
+      <option value="all">すべて</option>
+      <option value="家電">家電</option>
+      <option value="文具">文具</option>
+    </select>
+    <div id="list"></div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

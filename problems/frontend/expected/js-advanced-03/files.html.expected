@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>js-advanced-03 商品名検索（filter + includes）</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>配列の並び替え</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>商品名検索</h1>
-
-    <div class="controls">
-      <label for="searchInput">検索キーワード</label>
-      <input id="searchInput" type="text" placeholder="例: pro / light / mini" />
-      <div class="meta">該当件数: <span id="resultCount">0</span> 件</div>
-    </div>
-
-    <ul id="productList" class="product-list"></ul>
+    <h1>商品一覧（並び替え）</h1>
+    <select id="sort" class="sort-select">
+      <option value="default">デフォルト</option>
+      <option value="price-asc">価格の安い順</option>
+      <option value="price-desc">価格の高い順</option>
+    </select>
+    <div id="list"></div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>

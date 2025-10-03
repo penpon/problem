@@ -1,44 +1,26 @@
-// 商品データ（最小サンプル）
+// 商品データ（配列）
 const products = [
-  { id: 1, name: 'Pro Camera', price: 49800 },
-  { id: 2, name: 'Light Stand', price: 3200 },
-  { id: 3, name: 'Mini Tripod', price: 1800 },
-  { id: 4, name: 'Pro Light', price: 9800 },
-  { id: 5, name: 'Simple Bag', price: 2500 }
+  { id: 1, name: 'ノートパソコン', price: 89800 },
+  { id: 2, name: 'ボールペン', price: 150 },
+  { id: 3, name: 'マウス', price: 1980 },
+  { id: 4, name: 'ノート', price: 200 }
 ];
 
-const $select = document.getElementById('sortSelect');
-const $list = document.getElementById('productList');
-
-function render(list) {
-  $list.innerHTML = '';
-  list.forEach(p => {
-    const li = document.createElement('li');
-    li.className = 'product-card';
-
-    const name = document.createElement('div');
-    name.className = 'product-name';
-    name.textContent = p.name;
-
-    const price = document.createElement('div');
-    price.className = 'product-price';
-    price.textContent = `¥${p.price.toLocaleString()}`;
-
-    li.appendChild(name);
-    li.appendChild(price);
-    $list.appendChild(li);
-  });
+function searchProducts(keyword) {
+  const list = document.getElementById('list');
+  const k = (keyword || '').trim().toLowerCase();
+  const data = k ? products.filter(p => p.name.toLowerCase().includes(k)) : products;
+  const html = data.map(p => `
+    <div class="item">
+      <div class="item-name">${p.name}</div>
+      <div class="item-price">¥${p.price.toLocaleString()}</div>
+    </div>
+  `).join('');
+  list.innerHTML = html;
 }
 
-function sortProducts(order) {
-  const arr = products.slice();
-  arr.sort((a, b) => order === 'asc' ? a.price - b.price : b.price - a.price);
-  return arr;
-}
-
-$select.addEventListener('change', () => {
-  render(sortProducts($select.value));
+document.getElementById('search').addEventListener('input', function(e) {
+  searchProducts(e.target.value);
 });
 
-// 初期表示
-render(sortProducts($select.value || 'asc'));
+searchProducts('');

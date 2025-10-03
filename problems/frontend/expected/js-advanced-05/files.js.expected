@@ -1,12 +1,32 @@
-const arr = [];
-const out = document.getElementById('arr');
-function render(){ out.textContent = '[' + arr.join(', ') + ']'; }
-document.getElementById('add').addEventListener('click', () => {
-  arr.push('item' + (arr.length + 1));
-  render();
-});
-document.getElementById('remove').addEventListener('click', () => {
-  if (arr.length > 0) arr.pop();
-  render();
-});
-render();
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', price: 89800 },
+  { id: 2, name: 'マウス', price: 1980 },
+  { id: 3, name: 'キーボード', price: 4980 }
+];
+
+let cartCount = 0;
+
+function renderProducts() {
+  const list = document.getElementById('list');
+  const html = products.map(p => `
+    <div class="item">
+      <div class="item-name">${p.name}</div>
+      <button class="add-btn" data-id="${p.id}">追加</button>
+    </div>
+  `).join('');
+  list.innerHTML = html;
+}
+
+function setupEventDelegation() {
+  const list = document.getElementById('list');
+  list.addEventListener('click', function(e) {
+    if (e.target.classList.contains('add-btn')) {
+      cartCount += 1;
+      document.getElementById('cart-count').textContent = String(cartCount);
+    }
+  });
+}
+
+renderProducts();
+setupEventDelegation();

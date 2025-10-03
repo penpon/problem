@@ -1,3 +1,5 @@
-body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 16px; }
-#arr { margin: 12px 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
-button { margin-right: 8px; }
+body { font-family: sans-serif; margin: 16px; }
+.container { max-width: 800px; margin: 0 auto; }
+#list { display: grid; gap: 12px; margin-top: 16px; }
+.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+.add-btn { padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }

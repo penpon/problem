@@ -1,47 +1,89 @@
-// 商品データ（最小サンプル）
+// 商品データ（配列）
 const products = [
-  { id: 1, name: 'Pro Camera', price: 49800 },
-  { id: 2, name: 'Light Stand', price: 3200 },
-  { id: 3, name: 'Mini Tripod', price: 1800 },
-  { id: 4, name: 'Pro Light', price: 9800 },
-  { id: 5, name: 'Simple Bag', price: 2500 }
+  { id: 1, name: 'ノートパソコン', category: '家電', price: 89800 },
+  { id: 2, name: 'ボールペン', category: '文具', price: 150 },
+  { id: 3, name: 'マウス', category: '家電', price: 1980 },
+  { id: 4, name: 'ノート', category: '文具', price: 200 },
+  { id: 5, name: 'キーボード', category: '家電', price: 4980 }
 ];
 
-const $input = document.getElementById('productIdInput');
-const $btn = document.getElementById('showBtn');
-const $detail = document.getElementById('productDetail');
-const $status = document.getElementById('statusText');
+let cartCount = 0;
 
-function renderDetail(product) {
-  $detail.innerHTML = '';
-  if (!product) {
-    $status.textContent = '見つかりません';
-    return;
-  }
-
-  const name = document.createElement('div');
-  name.className = 'product-name';
-  name.textContent = product.name;
-
-  const price = document.createElement('div');
-  price.className = 'product-price';
-  price.textContent = `¥${product.price.toLocaleString()}`;
-
-  $detail.appendChild(name);
-  $detail.appendChild(price);
-  $status.textContent = '見つかりました';
+function getControls() {
+  return {
+    search: document.getElementById('search'),
+    category: document.getElementById('category'),
+    sort: document.getElementById('sort')
+  };
 }
 
-function findProductById(id) {
-  return products.find(p => p.id === id) || null;
+function getFilteredSortedProducts() {
+  const c = getControls();
+  const keyword = (c.search.value || '').trim().toLowerCase();
+  const selectedCategory = c.category.value;
+  const sortType = c.sort.value;
+
+  // 元配列を守るためコピー
+  let items = products.slice();
+
+  // 検索（名前にキーワードを含む）
+  if (keyword) {
+    items = items.filter(function(p) {
+      return p.name.toLowerCase().includes(keyword);
+    });
+  }
+
+  // カテゴリ絞り込み
+  if (selectedCategory && selectedCategory !== 'all') {
+    items = items.filter(function(p) {
+      return p.category === selectedCategory;
+    });
+  }
+
+  // ソート
+  if (sortType === 'price-asc') {
+    items.sort(function(a, b) { return a.price - b.price; });
+  } else if (sortType === 'price-desc') {
+    items.sort(function(a, b) { return b.price - a.price; });
+  }
+
+  return items;
 }
 
-$btn.addEventListener('click', () => {
-  const id = Number($input.value);
-  if (!Number.isInteger(id) || id <= 0) {
-    renderDetail(null);
-    return;
-  }
-  const product = findProductById(id);
-  renderDetail(product);
-});
+function renderProducts() {
+  const list = document.getElementById('list');
+  const items = getFilteredSortedProducts();
+
+  const html = items.map(function(p) {
+    return `
+      <div class="item">
+        <div class="item-name">${p.name}</div>
+        <div class="item-price">¥${p.price.toLocaleString()}</div>
+        <button class="add-btn" data-id="${p.id}">追加</button>
+      </div>
+    `;
+  }).join('');
+
+  list.innerHTML = html;
+}
+
+function setupEvents() {
+  const c = getControls();
+
+  // 入力・選択のたびに再描画
+  c.search.addEventListener('input', renderProducts);
+  c.category.addEventListener('change', renderProducts);
+  c.sort.addEventListener('change', renderProducts);
+
+  // イベント委譲（カート追加）
+  const list = document.getElementById('list');
+  list.addEventListener('click', function(e) {
+    if (e.target.classList.contains('add-btn')) {
+      cartCount += 1;
+      document.getElementById('cart-count').textContent = String(cartCount);
+    }
+  });
+}
+
+renderProducts();
+setupEvents();

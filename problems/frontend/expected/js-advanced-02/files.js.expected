@@ -1,5 +1,44 @@
-const box = document.getElementById('box');
-const btn = document.getElementById('render');
-btn.addEventListener('click', () => {
-  box.innerHTML = '<h2>見出し</h2><p>段落テキスト</p>';
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', category: '家電', price: 89800 },
+  { id: 2, name: 'ボールペン', category: '文具', price: 150 },
+  { id: 3, name: 'マウス', category: '家電', price: 1980 },
+  { id: 4, name: 'ノート', category: '文具', price: 200 }
+];
+
+// 商品を表示する関数
+function renderProducts(selectedCategory) {
+  const list = document.getElementById('list');
+  
+  // 絞り込み（初心者向けの書き方）
+  let filteredProducts;
+  if (selectedCategory === 'all') {
+    // 「すべて」の場合は全商品を表示
+    filteredProducts = products;
+  } else {
+    // 選択されたカテゴリだけを表示
+    filteredProducts = products.filter(function(product) {
+      return product.category === selectedCategory;
+    });
+  }
+  
+  // HTML生成（map + join）
+  const htmlArray = filteredProducts.map(function(product) {
+    return `
+      <div class="item">
+        <div class="item-name">${product.name}</div>
+        <div class="item-price">¥${product.price.toLocaleString()}</div>
+        <div class="item-category">${product.category}</div>
+      </div>
+    `;
+  });
+  
+  const htmlString = htmlArray.join('');
+  list.innerHTML = htmlString;
+}
+
+document.getElementById('category').addEventListener('change', function(e) {
+  renderProducts(e.target.value);
 });
+
+renderProducts('all');
