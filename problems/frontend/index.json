@@ -253,11 +253,8 @@
         {
           "id": "js-advanced-05",
           "title": "イベント委譲の基礎"
-        },
-        {
-          "id": "js-advanced-06",
-          "title": "まとめ練習（検索+フィルタ+ソート統合）"
         }
+        
       ]
     },
     {
@@ -477,7 +474,7 @@
       ]
     }
   ],
-  "totalProblems": 106,
+  "totalProblems": 105,
   "lastUpdated": "2025-10-01",
   "version": "7.0.0"
 }

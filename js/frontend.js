@@ -490,11 +490,37 @@ extractProblemNumber(problemId, categoryId) {
     }
     
     loadProblemTemplate(problem) {
-        // 複数ファイルのテンプレートを設定
+        // 複数ファイルのテンプレートを設定（カテゴリ別ポリシー適用）
+        const isJsAdvanced = problem?.category === 'javascript-advanced';
+
+        // 元テンプレートを取得
+        let htmlTpl = problem.files?.html?.template || this.getDefaultTemplate();
+        let cssTpl = problem.files?.css?.template || '';
+        const jsTpl = problem.files?.js?.template || '';
+
+        if (isJsAdvanced) {
+            // CSS は JavaScript応用カテゴリで常に空
+            cssTpl = '';
+
+            // カテゴリ内の2問目以降では HTML を空にする
+            const categoryId = 'javascript-advanced';
+            const list = this.problemsByCategory?.[categoryId] || [];
+            let idx = -1;
+            if (Array.isArray(list) && list.length) {
+                idx = list.findIndex(p => p.id === problem.id);
+            }
+            // フォールバック: ID末尾が "-01" なら1問目とみなす
+            const isFirstById = /(^|-)01$/.test(problem.id);
+            const isSecondOrLater = idx >= 1 || (!isFirstById && idx === -1);
+            if (isSecondOrLater) {
+                htmlTpl = '';
+            }
+        }
+
         this.fileContents = {
-            html: problem.files?.html?.template || this.getDefaultTemplate(),
-            css: problem.files?.css?.template || '',
-            js: problem.files?.js?.template || ''
+            html: htmlTpl,
+            css: cssTpl,
+            js: jsTpl
         };
         
         // 現在のアクティブタブの内容をエディタに表示
