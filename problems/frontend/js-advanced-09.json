@@ -1,0 +1,24 @@
+{
+  "id": "js-advanced-09",
+  "title": "並び替えトグル（価格昇順/降順）",
+  "description": "sort() で価格の昇順・降順を切り替えて表示します。",
+  "category": "javascript-advanced",
+  "instructions": [
+    "昇順/降順を切り替えるための値を用意（例: sortType）",
+    "昇順は a.price - b.price、降順は b.price - a.price",
+    "map() + join('') + innerHTML で表示"
+  ],
+  "implementationPoints": [
+    "必須: sort() で数値比較を行う",
+    "必須: 昇順・降順の両方に対応する"
+  ],
+  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "expectedResult": { "behavior": "価格順が切り替わる" },
+  "checks": [
+    { "id": "uses-sort", "name": "sort()使用", "type": "js", "message": "sort() を使用してください" }
+  ],
+  "hints": [
+    "昇順: arr.sort(function(a,b){ return a.price - b.price; })",
+    "降順: arr.sort(function(a,b){ return b.price - a.price; })"
+  ]
+}

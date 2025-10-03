@@ -515,6 +515,81 @@ extractProblemNumber(problemId, categoryId) {
             if (isSecondOrLater) {
                 htmlTpl = '';
             }
+
+            // 7問目以降（#07〜）は JS も空にする
+            let isSeventhOrLater = false;
+            if (idx >= 0) {
+                isSeventhOrLater = idx >= 6; // 0-based index: 6 -> #07
+            } else {
+                const m = problem.id && problem.id.match(/js-advanced-(\d+(?:\.\d+)?)/);
+                if (m) {
+                    const n = parseFloat(m[1]);
+                    isSeventhOrLater = !Number.isNaN(n) && n >= 7;
+                }
+            }
+            if (isSeventhOrLater) {
+                // JS テンプレートも空に上書き
+                // （学習者がゼロから書く方針）
+                // 既存テンプレがあっても空にする
+                // ※ expected 側は別途定義に依存
+                
+                // 念のため文字列化
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                if (typeof jsTpl === 'string') {
+                    jsTpl = '';
+                } else {
+                    jsTpl = '';
+                }
+            }
         }
 
         this.fileContents = {

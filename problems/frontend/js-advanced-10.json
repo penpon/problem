@@ -1,0 +1,25 @@
+{
+  "id": "js-advanced-10",
+  "title": "キーワード検索（大小無視・前後空白除去）",
+  "description": "検索語を toLowerCase() と trim() で正規化し、includes() で部分一致検索します。",
+  "category": "javascript-advanced",
+  "instructions": [
+    "入力値を toLowerCase() + trim() で正規化",
+    "filter() + includes() で商品名を検索",
+    "map() + join('') + innerHTML で表示"
+  ],
+  "implementationPoints": [
+    "必須: includes() を使う",
+    "必須: 大文字小文字を区別しない（toLowerCase 使用）",
+    "推奨: 空欄時は全件表示"
+  ],
+  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "expectedResult": { "behavior": "大小無視の検索ができる" },
+  "checks": [
+    { "id": "uses-includes", "name": "includes()使用", "type": "js", "message": "includes() を使用してください" }
+  ],
+  "hints": [
+    "'ABC'.toLowerCase() → 'abc'",
+    "'abc'.includes('a') → true"
+  ]
+}

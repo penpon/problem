@@ -253,6 +253,46 @@
         {
           "id": "js-advanced-05",
           "title": "イベント委譲の基礎"
+        },
+        {
+          "id": "js-advanced-06",
+          "title": "合計/件数の集計（reduce基礎）"
+        },
+        {
+          "id": "js-advanced-07",
+          "title": "配列からHTML生成（画像付きカード最小）"
+        },
+        {
+          "id": "js-advanced-08",
+          "title": "配列の絞り込み（カテゴリ＋在庫あり）"
+        },
+        {
+          "id": "js-advanced-09",
+          "title": "並び替えトグル（価格昇順/降順）"
+        },
+        {
+          "id": "js-advanced-10",
+          "title": "キーワード検索（大小無視・前後空白除去）"
+        },
+        {
+          "id": "js-advanced-11",
+          "title": "クリック処理の委譲（お気に入りマーク）"
+        },
+        {
+          "id": "js-advanced-12",
+          "title": "合計・件数の算出（reduce基礎）"
+        },
+        {
+          "id": "js-advanced-13",
+          "title": "商品検索（キーワード絞り込み）"
+        },
+        {
+          "id": "js-advanced-14",
+          "title": "カテゴリ絞込と価格並び替え"
+        },
+        {
+          "id": "js-advanced-15",
+          "title": "合計金額と件数の集計"
         }
         
       ]
@@ -474,7 +514,7 @@
       ]
     }
   ],
-  "totalProblems": 105,
+  "totalProblems": 115,
   "lastUpdated": "2025-10-01",
   "version": "7.0.0"
 }

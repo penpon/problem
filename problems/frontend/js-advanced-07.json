@@ -1,0 +1,26 @@
+{
+  "id": "js-advanced-07",
+  "title": "配列からHTML生成（画像付きカード最小）",
+  "description": "map() と join('') で商品データから最小のカードHTMLを生成し、innerHTML で表示します。",
+  "category": "javascript-advanced",
+  "instructions": [
+    "map() で各商品の HTML 文字列を作る",
+    "join('') で1つの文字列に結合する",
+    "innerHTML で #list など任意の要素に挿入する"
+  ],
+  "implementationPoints": [
+    "必須: map() と join('') を使う",
+    "必須: innerHTML で表示する",
+    "任意: 画像URLが無い場合は代替テキスト表示"
+  ],
+  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "expectedResult": { "behavior": "商品がカード状に表示される（最小限で可）" },
+  "checks": [
+    { "id": "uses-map", "name": "map()使用", "type": "js", "message": "map() を使用してください" },
+    { "id": "uses-join", "name": "join()使用", "type": "js", "message": "join('') を使用してください" }
+  ],
+  "hints": [
+    "map() は配列の各要素から新しい配列を作ります",
+    "join('') で配列を文字列に結合できます"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "js-advanced-06",
+  "title": "合計/件数の集計（reduce基礎）",
+  "description": "reduce() を使って配列から合計金額や件数を計算し、画面に表示します。ECのカート合計や集計の基礎です。",
+  "category": "javascript-advanced",
+  "instructions": [
+    "配列から合計金額 または 件数のどちらか1つ以上を reduce() で計算する",
+    "計算結果を画面に表示する（例: #summary 要素など任意）",
+    "必要なら toLocaleString() での表示整形は任意（必須ではない）"
+  ],
+  "implementationPoints": [
+    "必須: reduce() を使って集計すること",
+    "必須: 合計金額 または 件数のどちらか1つ以上を表示すること",
+    "推奨: 初期値を適切に設定する（合計なら 0 など）"
+  ],
+  "files": {
+    "html": { "template": "", "expected": "" },
+    "css":  { "template": "", "expected": "" },
+    "js":   {
+      "template": "// 商品データ\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: reduce() を使って合計金額 または 件数を計算して表示\nfunction showSummary() {\n  // ここに実装してください\n}\n\nshowSummary();",
+      "expected": ""
+    }
+  },
+  "expectedResult": { "behavior": "合計金額 または 件数のいずれかが画面に表示される" },
+  "checks": [
+    { "id": "uses-reduce", "name": "reduce()使用", "type": "js", "message": "reduce() を使用してください" }
+  ],
+  "hints": [
+    "reduce() は配列を1つの値にまとめます",
+    "例: const total = products.reduce(function(acc, p){ return acc + p.price; }, 0);"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "js-advanced-11",
+  "title": "クリック処理の委譲（お気に入りマーク）",
+  "description": "親要素に1つだけ click を設定し、event.target / closest / dataset で対象を特定してクラスを切り替えます。",
+  "category": "javascript-advanced",
+  "instructions": [
+    "動的に生成した要素群に対して親で1回だけ click を設定",
+    "event.target から closest() でボタン要素を特定",
+    "dataset.id を読む（任意）",
+    "classList.toggle() でお気に入りを切り替え"
+  ],
+  "implementationPoints": [
+    "必須: 親に1つだけ addEventListener('click', ...) を設定",
+    "必須: event.target / closest() で対象特定",
+    "推奨: dataset の利用"
+  ],
+  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "expectedResult": { "behavior": "ボタンを押すとお気に入り状態が切り替わる" },
+  "checks": [
+    { "id": "event-delegation", "name": "イベント委譲", "type": "js", "message": "親要素に1つだけイベントを設定してください" }
+  ],
+  "hints": [
+    "if (e.target.closest('.fav-btn')) { ... }",
+    "要素識別に data-id を使うと便利です"
+  ]
+}

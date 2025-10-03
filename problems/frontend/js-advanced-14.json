@@ -1,0 +1,24 @@
+{
+  "id": "js-advanced-14",
+  "title": "カテゴリ絞込と価格並び替え",
+  "description": "select でカテゴリ絞込（filter）、ボタンで価格昇順/降順（sort）を切り替えます。",
+  "category": "javascript-advanced",
+  "instructions": [
+    "カテゴリ: filter() で一致したものだけ",
+    "並び替え: sort() で a.price - b.price / b.price - a.price",
+    "表示: map() + join('') + innerHTML"
+  ],
+  "implementationPoints": [
+    "必須: filter() と sort() を使う",
+    "必須: 昇順・降順の両対応"
+  ],
+  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "expectedResult": { "behavior": "カテゴリで絞られ、価格順に並ぶ" },
+  "checks": [
+    { "id": "uses-filter", "name": "filter()使用", "type": "js", "message": "filter() を使用してください" },
+    { "id": "uses-sort", "name": "sort()使用", "type": "js", "message": "sort() を使用してください" }
+  ],
+  "hints": [
+    "昇順: a.price - b.price / 降順: b.price - a.price"
+  ]
+}

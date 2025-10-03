@@ -1,0 +1,24 @@
+{
+  "id": "js-advanced-08",
+  "title": "配列の絞り込み（カテゴリ＋在庫あり）",
+  "description": "filter() でカテゴリが一致しかつ在庫が 1 以上の商品だけを表示します。",
+  "category": "javascript-advanced",
+  "instructions": [
+    "カテゴリ値を取得する（例: 変数 category）",
+    "filter() で category 一致 かつ stock > 0 の要素だけ残す",
+    "map() + join('') + innerHTML で表示する"
+  ],
+  "implementationPoints": [
+    "必須: filter() を使う",
+    "必須: 複合条件（カテゴリ一致 AND 在庫あり）",
+    "推奨: 入力が無い場合は全件表示"
+  ],
+  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "expectedResult": { "behavior": "条件に合う商品だけが表示される" },
+  "checks": [
+    { "id": "uses-filter", "name": "filter()使用", "type": "js", "message": "filter() を使用してください" }
+  ],
+  "hints": [
+    "例: products.filter(function(p){ return p.category === category && p.stock > 0; })"
+  ]
+}
