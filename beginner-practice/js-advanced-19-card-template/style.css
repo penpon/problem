@@ -1,9 +1,0 @@
-body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;margin:16px}
-.container{max-width:900px;margin:auto}
-.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}
-button{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f8f8f8}
-.meta{color:#666}
-.card-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:12px}
-.card{border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fff}
-.card-title{font-weight:600;margin-bottom:4px}
-.card-price{color:#0a7}
