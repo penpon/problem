@@ -199,6 +199,17 @@ class AdvancedFrontendLearning {
             }
         });
         
+        // タブナビゲーションのクリックイベント（イベント委譲）
+        this.tabNavigation.addEventListener('click', (e) => {
+            const tabButton = e.target.closest('.tab-button');
+            if (tabButton) {
+                const category = tabButton.dataset.category;
+                if (category) {
+                    this.switchTab(category);
+                }
+            }
+        });
+        
         // 結果タブ・比較タブは機能撤去のためイベント登録を行いません
     }
     
