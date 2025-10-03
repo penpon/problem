@@ -1,28 +1,35 @@
 {
   "id": "js-advanced-01",
-  "title": "テキスト内容変更",
-  "description": "textContentで要素のテキストを変更する最小の実装を行います",
+  "title": "配列からHTML生成（map基礎）",
+  "description": "配列のデータをmap()で変換し、join('')でHTML文字列にしてinnerHTMLで表示します。ECサイトの商品リスト生成の基礎となる重要な技術です。",
   "category": "javascript-advanced",
   "instructions": [
-    "ボタンのクリックイベントを設定する",
-    "クリック時に要素のtextContentを書き換える"
+    "配列 products をループ処理（map）して、各商品のHTMLを作成する",
+    "作成したHTML配列を join('') で1つの文字列にまとめる",
+    "まとめたHTML文字列を #list の innerHTML に代入して表示する"
+  ],
+  "implementationPoints": [
+    "必須: map()メソッドを使って配列の各要素をHTMLに変換すること",
+    "必須: join('')メソッドで配列を文字列に結合すること",
+    "必須: innerHTMLプロパティでDOMに挿入すること",
+    "推奨: テンプレート文字列（バッククォート）を使うと読みやすい"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>配列からHTML生成</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品一覧</h1>\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.html.expected"
     },
     "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }",
+      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n#list { display: grid; gap: 12px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.css.expected"
     },
     "js": {
-      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: products.map() を使って各商品のHTMLを作成\n// TODO: .join('') で1つの文字列にまとめる\n// TODO: #list の innerHTML に代入\n\nfunction renderProducts() {\n  const list = document.getElementById('list');\n  // ここに実装してください\n}\n\nrenderProducts();",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "ボタンをクリックすると #text のテキストが '変更されました' に変わる"
+    "behavior": "3つの商品がカード形式で縦に並んで表示される（商品名と価格が表示される）"
   },
   "checks": [
     {
@@ -32,40 +39,33 @@
       "message": "DOCTYPE html宣言が必要です"
     },
     {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
+      "id": "list-element",
+      "name": "#list要素",
+      "type": "html",
+      "message": "#list 要素が必要です"
     },
     {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
-    },
-    {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
+      "id": "uses-map",
+      "name": "map()使用",
       "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
+      "message": "map()メソッドを使用してください"
+    },
+    {
+      "id": "uses-join",
+      "name": "join()使用",
+      "type": "js",
+      "message": "join('')メソッドを使用してください"
+    },
+    {
+      "id": "uses-innerHTML",
+      "name": "innerHTML使用",
+      "type": "js",
+      "message": "innerHTMLで要素に挿入してください"
     }
+  ],
+  "hints": [
+    "map()は配列の各要素に対して処理を実行し、新しい配列を作ります",
+    "join('')は配列を文字列に変換します（''は区切り文字なし）",
+    "例: ['<div>A</div>', '<div>B</div>'].join('') → '<div>A</div><div>B</div>'"
   ]
 }

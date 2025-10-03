@@ -1,30 +1,36 @@
 {
   "id": "js-advanced-05",
-  "title": "配列の基本操作",
-  "description": "配列に要素を追加・削除し、内容を表示する最小の実装を行います",
+  "title": "イベント委譲の基礎",
+  "description": "動的に生成した要素のイベントを親要素で一括処理するイベント委譲を学びます。ECサイトのカート追加ボタンなどで使う重要なテクニックです。",
   "category": "javascript-advanced",
   "instructions": [
-    "配列を用意する",
-    "追加ボタンで配列に要素をpushする",
-    "削除ボタンで配列から要素をpopする",
-    "配列内容を画面に表示する"
+    "商品リストを動的に生成し、各商品に「追加」ボタンを配置する",
+    "親要素（#list）に1つだけclickイベントリスナーを設定する",
+    "クリックされた要素がボタンかどうかをclassListで判定する",
+    "カート件数（#cart-count）を増やして表示する"
+  ],
+  "implementationPoints": [
+    "必須: 親要素に1つだけイベントリスナーを設定すること",
+    "必須: event.targetを使ってクリックされた要素を取得すること",
+    "必須: classList.contains()でボタンかどうかを判定すること",
+    "推奨: dataset属性で商品IDを取得すること"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>イベント委譲</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品一覧（イベント委譲）</h1>\n    <div>カート件数: <span id=\"cart-count\">0</span></div>\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-05/files.html.expected"
     },
     "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#arr { margin: 12px 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", monospace; }\nbutton { margin-right: 8px; }",
+      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n#list { display: grid; gap: 12px; margin-top: 16px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }\n.add-btn { padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-05/files.css.expected"
     },
     "js": {
-      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\nlet cartCount = 0;\n\n// TODO: 商品リストを動的に生成（map + join + innerHTML）\n// TODO: 各商品に data-id 属性と add-btn クラスのボタンを配置\n// TODO: #list に1つだけクリックイベントを設定（イベント委譲）\n// TODO: クリックされた要素が add-btn かどうかを classList.contains() で判定\n// TODO: カート件数を増やして #cart-count に表示\n\nfunction renderProducts() {\n  // ここに実装してください\n}\n\n// イベント委譲の設定\nfunction setupEventDelegation() {\n  // ここに実装してください\n}\n\nrenderProducts();\nsetupEventDelegation();",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-05/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "追加で要素が1つ増え、削除で末尾要素が1つ減る"
+    "behavior": "追加ボタンをクリックするとカート件数が1ずつ増える"
   },
   "checks": [
     {
@@ -34,40 +40,34 @@
       "message": "DOCTYPE html宣言が必要です"
     },
     {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
+      "id": "cart-count",
+      "name": "#cart-count要素",
+      "type": "html",
+      "message": "#cart-count 要素が必要です"
     },
     {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
+      "id": "list-element",
+      "name": "#list要素",
+      "type": "html",
+      "message": "#list 要素が必要です"
     },
     {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
+      "id": "event-delegation",
+      "name": "イベント委譲",
       "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
+      "message": "親要素に1つだけイベントリスナーを設定してください"
+    },
+    {
+      "id": "uses-classList",
+      "name": "classList.contains()使用",
+      "type": "js",
+      "message": "classList.contains()を使ってボタン判定してください"
     }
+  ],
+  "hints": [
+    "イベント委譲: 親要素でイベントをキャッチし、event.targetで実際にクリックされた要素を判定",
+    "例: if (e.target.classList.contains('add-btn')) { ... }",
+    "動的に生成されたボタンでもイベントが機能します",
+    "各ボタンにdata-id属性を付けると商品を識別できます"
   ]
 }

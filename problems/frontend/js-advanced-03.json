@@ -1,39 +1,72 @@
 {
   "id": "js-advanced-03",
-  "title": "商品名検索（filter + includes）",
-  "description": "入力キーワードで商品配列を filter/includes で絞り込み、DOMに安全に表示します",
+  "title": "配列の並び替え（sort基礎）",
+  "description": "sort()メソッドを使って配列を昇順・降順に並び替えます。ECサイトの価格ソート機能に使う重要な技術です。",
   "category": "javascript-advanced",
   "instructions": [
-    "#searchInput に input イベントを設定する",
-    "入力値を trim().toLowerCase() で正規化する",
-    "products 配列を filter + includes で絞り込む",
-    "#productList にカードを生成して textContent で表示する",
-    "#resultCount に該当件数を表示する"
+    "セレクトボックス（#sort）で並び替え方法を選択する",
+    "products配列をsort()で並び替える（価格の安い順・高い順）",
+    "並び替えた結果をmap()とjoin()でHTMLにして #list に表示する"
+  ],
+  "implementationPoints": [
+    "必須: sort()メソッドを使って配列を並び替えること",
+    "必須: 数値の比較には「a.price - b.price」を使うこと（昇順）",
+    "必須: 降順は「b.price - a.price」にすること",
+    "推奨: 元の配列を変更しないようスプレッド構文[...products]を使うこと"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>js-advanced-03 商品名検索（filter + includes）</title>\n  <link rel=\"stylesheet\" href=\"style.css\" />\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品名検索</h1>\n\n    <div class=\"controls\">\n      <label for=\"searchInput\">検索キーワード</label>\n      <input id=\"searchInput\" type=\"text\" placeholder=\"例: pro / light / mini\" />\n      <div class=\"meta\">該当件数: <span id=\"resultCount\">0</span> 件</div>\n    </div>\n\n    <ul id=\"productList\" class=\"product-list\"></ul>\n  </div>\n\n  <script src=\"script.js\"></script>\n</body>\n</html>\n",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>配列の並び替え</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品一覧（並び替え）</h1>\n    <select id=\"sort\" class=\"sort-select\">\n      <option value=\"default\">デフォルト</option>\n      <option value=\"price-asc\">価格の安い順</option>\n      <option value=\"price-desc\">価格の高い順</option>\n    </select>\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.html.expected"
     },
     "css": {
-      "template": "body{font-family:system-ui,-apple-system,\"Segoe UI\",sans-serif;margin:16px}\n.container{max-width:800px;margin:auto}\n.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}\n#searchInput{padding:8px 10px;border:1px solid #ccc;border-radius:6px;min-width:240px}\n.meta{color:#666}\n.product-list{list-style:none;padding:0;margin:16px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}\n.product-card{border:1px solid #e5e7eb;border-radius:8px;padding:12px}\n.product-name{font-weight:600}\n.product-price{color:#0a7;}\n",
+      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n.sort-select { margin-bottom: 16px; padding: 8px; font-size: 14px; }\n#list { display: grid; gap: 12px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.css.expected"
     },
     "js": {
-      "template": "// 商品データ（js-basic を下地にした最小サンプル）\nconst products = [\n  { id: 1, name: 'Pro Camera', price: 49800 },\n  { id: 2, name: 'Light Stand', price: 3200 },\n  { id: 3, name: 'Mini Tripod', price: 1800 },\n  { id: 4, name: 'Pro Light', price: 9800 },\n  { id: 5, name: 'Simple Bag', price: 2500 }\n];\n\nconst $input = document.getElementById('searchInput');\nconst $list = document.getElementById('productList');\nconst $count = document.getElementById('resultCount');\n\nfunction render(list) {\n  // 安全のため textContent で反映\n  $list.innerHTML = '';\n  list.forEach(p => {\n    const li = document.createElement('li');\n    li.className = 'product-card';\n\n    const name = document.createElement('div');\n    name.className = 'product-name';\n    name.textContent = p.name;\n\n    const price = document.createElement('div');\n    price.className = 'product-price';\n    price.textContent = `¥${p.price.toLocaleString()}`;\n\n    li.appendChild(name);\n    li.appendChild(price);\n    $list.appendChild(li);\n  });\n  $count.textContent = String(list.length);\n}\n\nfunction filterProducts(keyword) {\n  const k = keyword.trim().toLowerCase();\n  if (!k) return products;\n  return products.filter(p => p.name.toLowerCase().includes(k));\n}\n\n$input.addEventListener('input', () => {\n  const filtered = filterProducts($input.value);\n  render(filtered);\n});\n\n// 初期表示\nrender(products);\n",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: sort() を使って価格順に並び替える\n// TODO: 昇順は a.price - b.price\n// TODO: 降順は b.price - a.price\n// TODO: map() と join('') でHTMLに変換\n// TODO: #list に innerHTML で挿入\n\nfunction renderProducts(sortType) {\n  // ここに実装してください\n}\n\n// 並び替え変更時に実行\ndocument.getElementById('sort').addEventListener('change', function(e) {\n  renderProducts(e.target.value);\n});\n\n// 初期表示\nrenderProducts('default');",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "入力すると #productList がキーワードに一致する要素のみになり、#resultCount が一致件数を表示する"
+    "behavior": "セレクトボックスで並び替え方法を選択すると、商品が価格順に並び替わる"
   },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
-    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
-    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
-    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
-    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
-    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "sort-select",
+      "name": "#sort要素",
+      "type": "html",
+      "message": "#sort のセレクトボックスが必要です"
+    },
+    {
+      "id": "list-element",
+      "name": "#list要素",
+      "type": "html",
+      "message": "#list 要素が必要です"
+    },
+    {
+      "id": "uses-sort",
+      "name": "sort()使用",
+      "type": "js",
+      "message": "sort()メソッドを使用してください"
+    },
+    {
+      "id": "change-event",
+      "name": "changeイベント",
+      "type": "js",
+      "message": "セレクトボックスのchangeイベントを設定してください"
+    }
+  ],
+  "hints": [
+    "sort()は配列を並び替えます（元の配列が変更されるので注意）",
+    "数値の昇順: arr.sort(function(a, b) { return a.price - b.price; })",
+    "数値の降順: arr.sort(function(a, b) { return b.price - a.price; })",
+    "元の配列を守るには [...products] でコピーしてから並び替えます"
   ]
 }

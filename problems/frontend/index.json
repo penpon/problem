@@ -231,108 +231,32 @@
     {
       "id": "javascript-advanced",
       "name": "JavaScript応用",
-      "description": "配列、関数、オブジェクトを使った動的システム構築を学習します",
+      "description": "ECサイト構築に必須の配列操作（map/filter/sort）とイベント委譲を学習します",
       "icon": "⚡",
       "problems": [
         {
           "id": "js-advanced-01",
-          "title": "テキスト内容変更"
+          "title": "配列からHTML生成（map基礎）"
         },
         {
           "id": "js-advanced-02",
-          "title": "HTML内容変更基本"
+          "title": "配列の絞り込み（filter基礎）"
         },
         {
           "id": "js-advanced-03",
-          "title": "商品名検索（filter + includes）"
+          "title": "配列の並び替え（sort基礎）"
         },
         {
           "id": "js-advanced-04",
-          "title": "価格ソート（昇順/降順）"
+          "title": "検索機能（filter + includes）"
         },
         {
           "id": "js-advanced-05",
-          "title": "配列の基本操作"
+          "title": "イベント委譲の基礎"
         },
         {
           "id": "js-advanced-06",
-          "title": "単一商品詳細表示（find）"
-        },
-        {
-          "id": "js-advanced-07",
-          "title": "タイマー基礎（setInterval）"
-        },
-        {
-          "id": "js-advanced-08",
-          "title": "タイマーアニメーション（setInterval）"
-        },
-        {
-          "id": "js-advanced-09",
-          "title": "タイマー基本 (setInterval)"
-        },
-        {
-          "id": "js-advanced-10",
-          "title": "配列のフィルタ表示"
-        },
-        {
-          "id": "js-advanced-11",
-          "title": "map().join('') でHTML生成"
-        },
-        {
-          "id": "js-advanced-12",
-          "title": "filter で在庫のみ表示"
-        },
-        {
-          "id": "js-advanced-13",
-          "title": "sort の昇順/降順切替"
-        },
-        {
-          "id": "js-advanced-14",
-          "title": "複合条件フィルタ（カテゴリ + 在庫）"
-        },
-        {
-          "id": "js-advanced-15",
-          "title": "検索（input + includes）"
-        },
-        {
-          "id": "js-advanced-16",
-          "title": "イベント委譲（リスト内ボタン）"
-        },
-        {
-          "id": "js-advanced-17",
-          "title": "reduce で件数と合計を計算"
-        },
-        {
-          "id": "js-advanced-18",
-          "title": "ビュー切替（d-none・関数化）"
-        },
-        {
-          "id": "js-advanced-19",
-          "title": "カードテンプレ（配列→カード生成）"
-        },
-        {
-          "id": "js-advanced-20",
-          "title": "基本バリデーション（名前とメール）"
-        },
-        {
-          "id": "js-advanced-21",
-          "title": "まとめ練習 - 検索 + カテゴリ + ソート"
-        },
-        {
-          "id": "js-advanced-22",
-          "title": "まとめ練習 - カート合計（数量 + 送料 + クーポン）"
-        },
-        {
-          "id": "js-advanced-23",
-          "title": "まとめ練習 - お気に入り + 表示切替"
-        },
-        {
-          "id": "js-advanced-24",
-          "title": "まとめ練習 - タイマーバナー（カウントダウンで表示/非表示）"
-        },
-        {
-          "id": "js-advanced-25",
-          "title": "まとめ練習 - フォーム プレビュー + バリデーション"
+          "title": "まとめ練習（検索+フィルタ+ソート統合）"
         }
       ]
     },
@@ -553,7 +477,7 @@
       ]
     }
   ],
-  "totalProblems": 125,
-  "lastUpdated": "2025-08-31",
-  "version": "6.0.0"
+  "totalProblems": 106,
+  "lastUpdated": "2025-10-01",
+  "version": "7.0.0"
 }

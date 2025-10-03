@@ -1,38 +1,79 @@
 {
   "id": "js-advanced-04",
-  "title": "価格ソート（昇順/降順）",
-  "description": "select の値に応じて配列を昇順/降順に並べ替え、DOMに表示します",
+  "title": "検索機能（filter + includes）",
+  "description": "入力キーワードでfilter()とincludes()を組み合わせて商品を検索します。ECサイトの商品名検索機能の基礎です。",
   "category": "javascript-advanced",
   "instructions": [
-    "#sortSelect に change イベントを設定する",
-    "破壊的操作の回避のため slice() でコピーする",
-    "order が 'asc' の場合は a.price - b.price、'desc' の場合は b.price - a.price で sort",
-    "#productList にカードを生成して textContent で表示する"
+    "検索入力欄（#search）のinputイベントで検索を実行する",
+    "入力値をtrim()とtoLowerCase()で正規化する",
+    "products配列をfilter()とincludes()で絞り込む",
+    "絞り込んだ結果をmap()とjoin()でHTMLにして #list に表示する"
+  ],
+  "implementationPoints": [
+    "必須: filter()メソッドとincludes()メソッドを組み合わせて使うこと",
+    "必須: 大文字小文字を区別しないようtoLowerCase()を使うこと",
+    "必須: 空欄の場合は全商品を表示すること",
+    "推奨: trim()で前後の空白を除去すること"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>js-advanced-04 価格ソート（昇順/降順）</title>\n  <link rel=\"stylesheet\" href=\"style.css\" />\n</head>\n<body>\n  <div class=\"container\">\n    <h1>価格ソート</h1>\n\n    <div class=\"controls\">\n      <label for=\"sortSelect\">並び順</label>\n      <select id=\"sortSelect\">\n        <option value=\"asc\">価格の安い順</option>\n        <option value=\"desc\">価格の高い順</option>\n      </select>\n    </div>\n\n    <ul id=\"productList\" class=\"product-list\"></ul>\n  </div>\n\n  <script src=\"script.js\"></script>\n</body>\n</html>\n",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>検索機能</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品検索</h1>\n    <input id=\"search\" type=\"text\" placeholder=\"商品名を入力\" class=\"search-input\">\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-04/files.html.expected"
     },
     "css": {
-      "template": "body{font-family:system-ui,-apple-system,\"Segoe UI\",sans-serif;margin:16px}\n.container{max-width:800px;margin:auto}\n.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}\n#sortSelect{padding:8px 10px;border:1px solid #ccc;border-radius:6px}\n.product-list{list-style:none;padding:0;margin:16px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}\n.product-card{border:1px solid #e5e7eb;border-radius:8px;padding:12px}\n.product-name{font-weight:600}\n.product-price{color:#0a7;}\n",
+      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n.search-input { width: 100%; margin-bottom: 16px; padding: 8px; font-size: 14px; }\n#list { display: grid; gap: 12px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-04/files.css.expected"
     },
     "js": {
-      "template": "// 商品データ（最小サンプル）\nconst products = [\n  { id: 1, name: 'Pro Camera', price: 49800 },\n  { id: 2, name: 'Light Stand', price: 3200 },\n  { id: 3, name: 'Mini Tripod', price: 1800 },\n  { id: 4, name: 'Pro Light', price: 9800 },\n  { id: 5, name: 'Simple Bag', price: 2500 }\n];\n\nconst $select = document.getElementById('sortSelect');\nconst $list = document.getElementById('productList');\n\nfunction render(list) {\n  $list.innerHTML = '';\n  list.forEach(p => {\n    const li = document.createElement('li');\n    li.className = 'product-card';\n\n    const name = document.createElement('div');\n    name.className = 'product-name';\n    name.textContent = p.name;\n\n    const price = document.createElement('div');\n    price.className = 'product-price';\n    price.textContent = `¥${p.price.toLocaleString()}`;\n\n    li.appendChild(name);\n    li.appendChild(price);\n    $list.appendChild(li);\n  });\n}\n\nfunction sortProducts(order) {\n  const arr = products.slice();\n  arr.sort((a, b) => order === 'asc' ? a.price - b.price : b.price - a.price);\n  return arr;\n}\n\n$select.addEventListener('change', () => {\n  render(sortProducts($select.value));\n});\n\n// 初期表示\nrender(sortProducts($select.value || 'asc'));\n",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'ボールペン', price: 150 },\n  { id: 3, name: 'マウス', price: 1980 },\n  { id: 4, name: 'ノート', price: 200 }\n];\n\n// TODO: filter() と includes() を使って検索する\n// TODO: toLowerCase() で大文字小文字を区別しない\n// TODO: map() と join('') でHTMLに変換\n// TODO: #list に innerHTML で挿入\n\nfunction searchProducts(keyword) {\n  // ここに実装してください\n}\n\n// 入力時に検索を実行\ndocument.getElementById('search').addEventListener('input', function(e) {\n  searchProducts(e.target.value);\n});\n\n// 初期表示\nsearchProducts('');",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-04/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "select の変更で並び順が変わり、価格表示順が昇順/降順に切り替わる"
+    "behavior": "入力欄にキーワードを入力すると、商品名に含まれる商品だけが表示される"
   },
   "checks": [
-    { "id": "doctype", "name": "DOCTYPE宣言", "type": "structure", "message": "DOCTYPE html宣言が必要です" },
-    { "id": "html", "name": "<html>タグ", "type": "structure", "message": "<html>タグが必要です" },
-    { "id": "head", "name": "<head>セクション", "type": "structure", "message": "<head>セクションが必要です" },
-    { "id": "body", "name": "<body>セクション", "type": "structure", "message": "<body>セクションが必要です" },
-    { "id": "title", "name": "<title>タグ", "type": "structure", "message": "<title>タグと内容が必要です" },
-    { "id": "css-content", "name": "CSSスタイル", "type": "css", "message": "CSSでスタイルを設定してください" },
-    { "id": "js-content", "name": "JavaScript", "type": "js", "message": "JavaScriptで動的な動作を実装してください" }
+    {
+      "id": "doctype",
+      "name": "DOCTYPE宣言",
+      "type": "structure",
+      "message": "DOCTYPE html宣言が必要です"
+    },
+    {
+      "id": "search-input",
+      "name": "#search要素",
+      "type": "html",
+      "message": "#search の入力欄が必要です"
+    },
+    {
+      "id": "list-element",
+      "name": "#list要素",
+      "type": "html",
+      "message": "#list 要素が必要です"
+    },
+    {
+      "id": "uses-filter",
+      "name": "filter()使用",
+      "type": "js",
+      "message": "filter()メソッドを使用してください"
+    },
+    {
+      "id": "uses-includes",
+      "name": "includes()使用",
+      "type": "js",
+      "message": "includes()メソッドを使用してください"
+    },
+    {
+      "id": "input-event",
+      "name": "inputイベント",
+      "type": "js",
+      "message": "入力欄のinputイベントを設定してください"
+    }
+  ],
+  "hints": [
+    "includes()は文字列に指定の文字が含まれるか判定します",
+    "例: 'ノートパソコン'.includes('ノート') → true",
+    "toLowerCase()で大文字小文字を統一すると検索しやすくなります",
+    "空欄の場合は全商品を返すようにしましょう"
   ]
 }

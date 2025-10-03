@@ -1,28 +1,35 @@
 {
   "id": "js-advanced-02",
-  "title": "HTML内容変更基本",
-  "description": "innerHTMLで簡単なHTMLを挿入する最小の実装を行います",
+  "title": "配列の絞り込み（filter基礎）",
+  "description": "filter()メソッドを使って条件に合う要素だけを抽出します。ECサイトのカテゴリフィルタや在庫絞り込みに使う重要な技術です。",
   "category": "javascript-advanced",
   "instructions": [
-    "ボタンのクリックイベントを設定する",
-    "クリック時に要素のinnerHTMLに見出しと段落を挿入する"
+    "セレクトボックス（#category）で選択されたカテゴリを取得する",
+    "products配列をfilter()で絞り込む（選択カテゴリと一致するもののみ）",
+    "絞り込んだ結果をmap()とjoin()でHTMLにして #list に表示する"
+  ],
+  "implementationPoints": [
+    "必須: filter()メソッドを使って配列を絞り込むこと",
+    "必須: 条件に合う要素だけを含む新しい配列が返ること",
+    "必須: セレクトボックスのchangeイベントで絞り込みを実行すること",
+    "推奨: 「すべて」選択時は全商品を表示すること"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>配列の絞り込み</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品一覧（カテゴリ絞り込み）</h1>\n    <select id=\"category\" class=\"category-select\">\n      <option value=\"all\">すべて</option>\n      <option value=\"家電\">家電</option>\n      <option value=\"文具\">文具</option>\n    </select>\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-02/files.html.expected"
     },
     "css": {
-      "template": "/* 基本的なスタイル（最小） */\nbody { font-family: system-ui, -apple-system, \"Segoe UI\", sans-serif; margin: 16px; }\n#box { margin: 12px 0; }",
+      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n.category-select { margin-bottom: 16px; padding: 8px; font-size: 14px; }\n#list { display: grid; gap: 12px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-02/files.css.expected"
     },
     "js": {
-      "template": "// JavaScript実装エリア\n\n// ここに実装してください\nconsole.log('課題実装を開始してください');",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', category: '家電', price: 89800 },\n  { id: 2, name: 'ボールペン', category: '文具', price: 150 },\n  { id: 3, name: 'マウス', category: '家電', price: 1980 },\n  { id: 4, name: 'ノート', category: '文具', price: 200 }\n];\n\n// TODO: filter() を使ってカテゴリで絞り込む\n// TODO: map() と join('') でHTMLに変換\n// TODO: #list に innerHTML で挿入\n\nfunction renderProducts(selectedCategory) {\n  // ここに実装してください\n}\n\n// カテゴリ変更時に実行\ndocument.getElementById('category').addEventListener('change', function(e) {\n  renderProducts(e.target.value);\n});\n\n// 初期表示\nrenderProducts('all');",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-02/files.js.expected"
     }
   },
   "expectedResult": {
-    "behavior": "ボタンをクリックすると #box に <h2> と <p> が挿入される"
+    "behavior": "セレクトボックスでカテゴリを選択すると、該当する商品だけが表示される"
   },
   "checks": [
     {
@@ -32,40 +39,33 @@
       "message": "DOCTYPE html宣言が必要です"
     },
     {
-      "id": "html",
-      "name": "<html>タグ",
-      "type": "structure",
-      "message": "<html>タグが必要です"
+      "id": "category-select",
+      "name": "#category要素",
+      "type": "html",
+      "message": "#category のセレクトボックスが必要です"
     },
     {
-      "id": "head",
-      "name": "<head>セクション",
-      "type": "structure",
-      "message": "<head>セクションが必要です"
+      "id": "list-element",
+      "name": "#list要素",
+      "type": "html",
+      "message": "#list 要素が必要です"
     },
     {
-      "id": "body",
-      "name": "<body>セクション",
-      "type": "structure",
-      "message": "<body>セクションが必要です"
-    },
-    {
-      "id": "title",
-      "name": "<title>タグ",
-      "type": "structure",
-      "message": "<title>タグと内容が必要です"
-    },
-    {
-      "id": "css-content",
-      "name": "CSSスタイル",
-      "type": "css",
-      "message": "CSSでスタイルを設定してください"
-    },
-    {
-      "id": "js-content",
-      "name": "JavaScript",
+      "id": "uses-filter",
+      "name": "filter()使用",
       "type": "js",
-      "message": "JavaScriptで動的な動作を実装してください"
+      "message": "filter()メソッドを使用してください"
+    },
+    {
+      "id": "change-event",
+      "name": "changeイベント",
+      "type": "js",
+      "message": "セレクトボックスのchangeイベントを設定してください"
     }
+  ],
+  "hints": [
+    "filter()は条件に合う要素だけを含む新しい配列を返します",
+    "例: arr.filter(function(item) { return item.category === '家電'; })",
+    "「すべて」の場合は条件なしで全商品を返すようにします"
   ]
 }
