@@ -17,13 +17,5 @@
     "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.html.expected"}, 
     "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.css.expected"}, 
     "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.js.expected"} 
-  },
-  "expectedResult": { "behavior": "大小無視の検索ができる" },
-  "checks": [
-    { "id": "uses-includes", "name": "includes()使用", "type": "js", "message": "includes() を使用してください" }
-  ],
-  "hints": [
-    "'ABC'.toLowerCase() → 'abc'",
-    "'abc'.includes('a') → true"
-  ]
+  }
 }

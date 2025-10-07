@@ -18,13 +18,5 @@
     "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-11/files.html.expected"}, 
     "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-11/files.css.expected"}, 
     "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-11/files.js.expected"} 
-  },
-  "expectedResult": { "behavior": "ボタンを押すとお気に入り状態が切り替わる" },
-  "checks": [
-    { "id": "event-delegation", "name": "イベント委譲", "type": "js", "message": "親要素に1つだけイベントを設定してください" }
-  ],
-  "hints": [
-    "if (e.target.closest('.fav-btn')) { ... }",
-    "要素識別に data-id を使うと便利です"
-  ]
+  }
 }

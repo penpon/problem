@@ -27,45 +27,5 @@
       "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: products.map() を使って各商品のHTMLを作成\n// TODO: .join('') で1つの文字列にまとめる\n// TODO: #list の innerHTML に代入\n\nfunction renderProducts() {\n  const list = document.getElementById('list');\n  // ここに実装してください\n}\n\nrenderProducts();",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.js.expected"
     }
-  },
-  "expectedResult": {
-    "behavior": "3つの商品がカード形式で縦に並んで表示される（商品名と価格が表示される）"
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "list-element",
-      "name": "#list要素",
-      "type": "html",
-      "message": "#list 要素が必要です"
-    },
-    {
-      "id": "uses-map",
-      "name": "map()使用",
-      "type": "js",
-      "message": "map()メソッドを使用してください"
-    },
-    {
-      "id": "uses-join",
-      "name": "join()使用",
-      "type": "js",
-      "message": "join('')メソッドを使用してください"
-    },
-    {
-      "id": "uses-innerHTML",
-      "name": "innerHTML使用",
-      "type": "js",
-      "message": "innerHTMLで要素に挿入してください"
-    }
-  ],
-  "hints": [
-    "map()は配列の各要素に対して処理を実行し、新しい配列を作ります",
-    "join('')は配列を文字列に変換します（''は区切り文字なし）",
-    "例: ['<div>A</div>', '<div>B</div>'].join('') → '<div>A</div><div>B</div>'"
-  ]
+  }
 }

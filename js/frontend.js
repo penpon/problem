@@ -471,16 +471,22 @@ extractProblemNumber(problemId, categoryId) {
     displayProblemDetails(problem) {
         const cleanTitle = problem.title?.replace(/^問題\d+：?\s*/, '') || '無題';
         
+        // description に instructions を追記
+        const descriptionHtml = [
+            problem.description || '',
+            ...((problem.instructions || []).map(i => i ? `・${i}` : '')).filter(Boolean)
+        ].join('<br>');
+
         this.problemDetails.innerHTML = `
             <div class="problem-title-display">
                 <h3>${cleanTitle}</h3>
             </div>
-            <div class="problem-description">${problem.description || ''}</div>
+            <div class="problem-description">${descriptionHtml}</div>
             <div class="problem-instructions">
                 <div class="instructions-header">💡 実装のポイント</div>
                 <ul>
-                    ${(problem.instructions || []).map(instruction => 
-                        instruction ? `<li>${instruction}</li>` : '<li style="list-style:none; height:5px;"></li>'
+                    ${(problem.implementationPoints || []).map(point => 
+                        point ? `<li>${point}</li>` : '<li style="list-style:none; height:5px;"></li>'
                     ).join('')}
                 </ul>
             </div>

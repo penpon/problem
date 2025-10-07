@@ -16,13 +16,5 @@
     "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.html.expected"}, 
     "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.css.expected"}, 
     "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.js.expected"} 
-  },
-  "expectedResult": { "behavior": "カテゴリで絞られ、価格順に並ぶ" },
-  "checks": [
-    { "id": "uses-filter", "name": "filter()使用", "type": "js", "message": "filter() を使用してください" },
-    { "id": "uses-sort", "name": "sort()使用", "type": "js", "message": "sort() を使用してください" }
-  ],
-  "hints": [
-    "昇順: a.price - b.price / 降順: b.price - a.price"
-  ]
+  }
 }

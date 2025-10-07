@@ -17,12 +17,5 @@
     "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.html.expected"}, 
     "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.css.expected"}, 
     "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.js.expected"} 
-  },
-  "expectedResult": { "behavior": "条件に合う商品だけが表示される" },
-  "checks": [
-    { "id": "uses-filter", "name": "filter()使用", "type": "js", "message": "filter() を使用してください" }
-  ],
-  "hints": [
-    "例: products.filter(function(p){ return p.category === category && p.stock > 0; })"
-  ]
+  }
 }

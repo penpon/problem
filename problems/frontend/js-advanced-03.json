@@ -27,46 +27,5 @@
       "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: sort() を使って価格順に並び替える\n// TODO: 昇順は a.price - b.price\n// TODO: 降順は b.price - a.price\n// TODO: map() と join('') でHTMLに変換\n// TODO: #list に innerHTML で挿入\n\nfunction renderProducts(sortType) {\n  // ここに実装してください\n}\n\n// 並び替え変更時に実行\ndocument.getElementById('sort').addEventListener('change', function(e) {\n  renderProducts(e.target.value);\n});\n\n// 初期表示\nrenderProducts('default');",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.js.expected"
     }
-  },
-  "expectedResult": {
-    "behavior": "セレクトボックスで並び替え方法を選択すると、商品が価格順に並び替わる"
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "sort-select",
-      "name": "#sort要素",
-      "type": "html",
-      "message": "#sort のセレクトボックスが必要です"
-    },
-    {
-      "id": "list-element",
-      "name": "#list要素",
-      "type": "html",
-      "message": "#list 要素が必要です"
-    },
-    {
-      "id": "uses-sort",
-      "name": "sort()使用",
-      "type": "js",
-      "message": "sort()メソッドを使用してください"
-    },
-    {
-      "id": "change-event",
-      "name": "changeイベント",
-      "type": "js",
-      "message": "セレクトボックスのchangeイベントを設定してください"
-    }
-  ],
-  "hints": [
-    "sort()は配列を並び替えます（元の配列が変更されるので注意）",
-    "数値の昇順: arr.sort(function(a, b) { return a.price - b.price; })",
-    "数値の降順: arr.sort(function(a, b) { return b.price - a.price; })",
-    "元の配列を守るには [...products] でコピーしてから並び替えます"
-  ]
+  }
 }

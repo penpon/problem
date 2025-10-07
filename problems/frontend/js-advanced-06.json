@@ -20,13 +20,5 @@
       "template": "// 商品データ\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: reduce() を使って合計金額 または 件数を計算して表示\nfunction showSummary() {\n  // ここに実装してください\n}\n\nshowSummary();",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-06/files.js.expected"
     }
-  },
-  "expectedResult": { "behavior": "合計金額 または 件数のいずれかが画面に表示される" },
-  "checks": [
-    { "id": "uses-reduce", "name": "reduce()使用", "type": "js", "message": "reduce() を使用してください" }
-  ],
-  "hints": [
-    "reduce() は配列を1つの値にまとめます",
-    "例: const total = products.reduce(function(acc, p){ return acc + p.price; }, 0);"
-  ]
+  }
 }

@@ -15,14 +15,5 @@
     "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-13/files.html.expected"}, 
     "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-13/files.css.expected"}, 
     "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-13/files.js.expected"} 
-  },
-  "expectedResult": { "behavior": "入力した語を含む商品だけ表示される" },
-  "checks": [
-    { "id": "uses-includes", "name": "includes()使用", "type": "js", "message": "includes() を使用してください" }
-  ],
-  "hints": [
-    "'ノート'.includes('ノ') → true",
-    "'ABC'.toLowerCase() → 'abc'",
-    "''.trim() は空文字のままです"
-  ]
+  }
 }
