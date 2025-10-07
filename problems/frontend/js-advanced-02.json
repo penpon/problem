@@ -4,9 +4,10 @@
   "description": "filter()メソッドを使って条件に合う要素だけを抽出します。ECサイトのカテゴリフィルタや在庫絞り込みに使う重要な技術です。",
   "category": "javascript-advanced",
   "instructions": [
-    "セレクトボックス（#category）で選択されたカテゴリを取得する",
-    "products配列をfilter()で絞り込む（選択カテゴリと一致するもののみ）",
-    "絞り込んだ結果をmap()とjoin()でHTMLにして #list に表示する"
+    "セレクトボックス（#category）でカテゴリを取得する",
+    "products を filter() で絞り込む（選択カテゴリ一致または all は全件）",
+    "<template id=\"item-template\"> を用意し、for ループで cloneNode(true) して要素を作る",
+    "textContent で値を差し込み、既存の出力コンテナ（例: #list）へ appendChild する（innerHTML は使わない）"
   ],
   "implementationPoints": [
     "必須: filter()メソッドを使って配列を絞り込むこと",
@@ -16,11 +17,11 @@
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>配列の絞り込み</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品一覧（カテゴリ絞り込み）</h1>\n    <select id=\"category\" class=\"category-select\">\n      <option value=\"all\">すべて</option>\n      <option value=\"家電\">家電</option>\n      <option value=\"文具\">文具</option>\n    </select>\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-02/files.html.expected"
     },
     "css": {
-      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n.category-select { margin-bottom: 16px; padding: 8px; font-size: 14px; }\n#list { display: grid; gap: 12px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-02/files.css.expected"
     },
     "js": {

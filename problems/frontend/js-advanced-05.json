@@ -17,11 +17,11 @@
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>イベント委譲</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品一覧（イベント委譲）</h1>\n    <div>カート件数: <span id=\"cart-count\">0</span></div>\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-05/files.html.expected"
     },
     "css": {
-      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n#list { display: grid; gap: 12px; margin-top: 16px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }\n.add-btn { padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-05/files.css.expected"
     },
     "js": {

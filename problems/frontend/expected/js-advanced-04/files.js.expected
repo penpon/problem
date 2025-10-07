@@ -8,15 +8,21 @@ const products = [
 
 function searchProducts(keyword) {
   const list = document.getElementById('list');
+  const template = document.getElementById('item-template');
   const k = (keyword || '').trim().toLowerCase();
-  const data = k ? products.filter(p => p.name.toLowerCase().includes(k)) : products;
-  const html = data.map(p => `
-    <div class="item">
-      <div class="item-name">${p.name}</div>
-      <div class="item-price">¥${p.price.toLocaleString()}</div>
-    </div>
-  `).join('');
-  list.innerHTML = html;
+  const data = k ? products.filter(function(p){ return p.name.toLowerCase().includes(k); }) : products;
+
+  // 表示をクリア
+  list.textContent = '';
+
+  const items = [...data];
+  for (let i = 0; i < items.length; i++) {
+    const p = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = p.name;
+    el.querySelector('.item-price').textContent = '¥' + p.price;
+    list.appendChild(el);
+  }
 }
 
 document.getElementById('search').addEventListener('input', function(e) {

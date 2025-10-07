@@ -4,9 +4,10 @@
   "description": "sort()メソッドを使って配列を昇順・降順に並び替えます。ECサイトの価格ソート機能に使う重要な技術です。",
   "category": "javascript-advanced",
   "instructions": [
-    "セレクトボックス（#sort）で並び替え方法を選択する",
-    "products配列をsort()で並び替える（価格の安い順・高い順）",
-    "並び替えた結果をmap()とjoin()でHTMLにして #list に表示する"
+    "セレクトボックス（#sort）の変更で並び替えを実行する",
+    "配列はスプレッド構文でコピー（const items = [...products]）し、sort() で価格昇順/降順に並び替える",
+    "<template id=\"item-template\"> を cloneNode(true) して各要素を生成し、textContent で値を差し込む",
+    "既存の出力コンテナ（#list）に appendChild で追加する（innerHTML は使わない）"
   ],
   "implementationPoints": [
     "必須: sort()メソッドを使って配列を並び替えること",
@@ -16,11 +17,11 @@
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>配列の並び替え</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品一覧（並び替え）</h1>\n    <select id=\"sort\" class=\"sort-select\">\n      <option value=\"default\">デフォルト</option>\n      <option value=\"price-asc\">価格の安い順</option>\n      <option value=\"price-desc\">価格の高い順</option>\n    </select>\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.html.expected"
     },
     "css": {
-      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n.sort-select { margin-bottom: 16px; padding: 8px; font-size: 14px; }\n#list { display: grid; gap: 12px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-03/files.css.expected"
     },
     "js": {

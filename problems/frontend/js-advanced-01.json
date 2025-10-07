@@ -1,18 +1,20 @@
 {
   "id": "js-advanced-01",
   "title": "配列からHTML生成（map基礎）",
-  "description": "配列のデータをmap()で変換し、join('')でHTML文字列にしてinnerHTMLで表示します。ECサイトの商品リスト生成の基礎となる重要な技術です。",
+  "description": "<template> を複製して DOM 操作で表示します（innerHTML は使いません）。ECサイトの商品リスト生成の基礎を安全に学びます。",
   "category": "javascript-advanced",
   "instructions": [
-    "配列 products をループ処理（map）して、各商品のHTMLを作成する",
-    "作成したHTML配列を join('') で1つの文字列にまとめる",
-    "まとめたHTML文字列を #list の innerHTML に代入して表示する"
+    "出力用コンテナ（例: #list）と <template id=\"item-template\"> を用意する",
+    "配列 products をスプレッド構文でコピー（const items = [...products]）",
+    "for ループで template を cloneNode(true) して要素を作る",
+    "textContent で名前と価格を差し込み、appendChild でコンテナに追加する",
+    "innerHTML は使用しない（安全のため）"
   ],
   "implementationPoints": [
-    "必須: map()メソッドを使って配列の各要素をHTMLに変換すること",
-    "必須: join('')メソッドで配列を文字列に結合すること",
-    "必須: innerHTMLプロパティでDOMに挿入すること",
-    "推奨: テンプレート文字列（バッククォート）を使うと読みやすい"
+    "必須: <template> を cloneNode(true) して要素を生成すること",
+    "必須: textContent で値を挿入すること（innerHTML は使わない）",
+    "必須: 配列コピーにスプレッド構文を使用すること（const items = [...products]）",
+    "推奨: for ループと const/let を使ってシンプルに書く"
   ],
   "files": {
     "html": {
@@ -20,7 +22,7 @@
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.html.expected"
     },
     "css": {
-      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n#list { display: grid; gap: 12px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.css.expected"
     },
     "js": {

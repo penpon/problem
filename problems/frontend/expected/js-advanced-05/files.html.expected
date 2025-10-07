@@ -12,6 +12,12 @@
     <div>カート件数: <span id="cart-count">0</span></div>
     <div id="list"></div>
   </div>
+  <template id="item-template">
+    <div class="item">
+      <div class="item-name"></div>
+      <button class="add-btn" data-id="">追加</button>
+    </div>
+  </template>
   <script src="script.js"></script>
 </body>
 </html>

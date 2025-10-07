@@ -9,32 +9,32 @@ const products = [
 // 商品を表示する関数
 function renderProducts(selectedCategory) {
   const list = document.getElementById('list');
-  
-  // 絞り込み（初心者向けの書き方）
+  const template = document.getElementById('item-template');
+
+  // 絞り込み
   let filteredProducts;
   if (selectedCategory === 'all') {
-    // 「すべて」の場合は全商品を表示
     filteredProducts = products;
   } else {
-    // 選択されたカテゴリだけを表示
     filteredProducts = products.filter(function(product) {
       return product.category === selectedCategory;
     });
   }
-  
-  // HTML生成（map + join）
-  const htmlArray = filteredProducts.map(function(product) {
-    return `
-      <div class="item">
-        <div class="item-name">${product.name}</div>
-        <div class="item-price">¥${product.price.toLocaleString()}</div>
-        <div class="item-category">${product.category}</div>
-      </div>
-    `;
-  });
-  
-  const htmlString = htmlArray.join('');
-  list.innerHTML = htmlString;
+
+  // 表示をクリア
+  list.textContent = '';
+
+  // 配列コピーはスプレッド構文（必要に応じて）
+  const items = [...filteredProducts];
+
+  for (let i = 0; i < items.length; i++) {
+    const p = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = p.name;
+    el.querySelector('.item-price').textContent = '¥' + p.price;
+    el.querySelector('.item-category').textContent = p.category;
+    list.appendChild(el);
+  }
 }
 
 document.getElementById('category').addEventListener('change', function(e) {

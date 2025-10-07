@@ -9,13 +9,16 @@ let cartCount = 0;
 
 function renderProducts() {
   const list = document.getElementById('list');
-  const html = products.map(p => `
-    <div class="item">
-      <div class="item-name">${p.name}</div>
-      <button class="add-btn" data-id="${p.id}">追加</button>
-    </div>
-  `).join('');
-  list.innerHTML = html;
+  const template = document.getElementById('item-template');
+  list.textContent = '';
+  const items = [...products];
+  for (let i = 0; i < items.length; i++) {
+    const p = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = p.name;
+    el.querySelector('.add-btn').setAttribute('data-id', String(p.id));
+    list.appendChild(el);
+  }
 }
 
 function setupEventDelegation() {

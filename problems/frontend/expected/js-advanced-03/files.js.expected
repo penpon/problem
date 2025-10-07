@@ -5,36 +5,30 @@ const products = [
   { id: 3, name: 'キーボード', price: 4980 }
 ];
 
-// 並び替えて表示する関数
+// 並び替えて表示する関数（<template> + DOM操作、innerHTML不使用）
 function renderProducts(sortType) {
   const list = document.getElementById('list');
+  const template = document.getElementById('item-template');
 
   // 元の配列を変更しないようにコピー
-  let items = [...products];
+  const items = [...products];
 
   if (sortType === 'price-asc') {
-    // 価格の安い順
-    items.sort(function(a, b) {
-      return a.price - b.price;
-    });
+    items.sort(function(a, b) { return a.price - b.price; });
   } else if (sortType === 'price-desc') {
-    // 価格の高い順
-    items.sort(function(a, b) {
-      return b.price - a.price;
-    });
+    items.sort(function(a, b) { return b.price - a.price; });
   }
 
-  // HTMLを作成（map + join）
-  const htmlArray = items.map(function(p) {
-    return `
-      <div class="item">
-        <div class="item-name">${p.name}</div>
-        <div class="item-price">¥${p.price.toLocaleString()}</div>
-      </div>
-    `;
-  });
+  // 表示をクリア
+  list.textContent = '';
 
-  list.innerHTML = htmlArray.join('');
+  for (let i = 0; i < items.length; i++) {
+    const p = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = p.name;
+    el.querySelector('.item-price').textContent = '¥' + p.price;
+    list.appendChild(el);
+  }
 }
 
 // セレクトボックスの変更で並び替え

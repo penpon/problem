@@ -5,27 +5,25 @@ const products = [
   { id: 3, name: 'キーボード', price: 4980 }
 ];
 
-// 商品一覧を表示する関数
+// 商品一覧を表示する関数（<template> + DOM操作、innerHTML不使用）
 function renderProducts() {
-  // #list 要素を取得
   const list = document.getElementById('list');
-  
-  // 配列から HTML を生成（初心者向けの書き方）
-  const htmlArray = products.map(function(product) {
-    // 各商品のHTMLを作成（テンプレート文字列）
-    return `
-      <div class="item">
-        <div class="item-name">${product.name}</div>
-        <div class="item-price">¥${product.price.toLocaleString()}</div>
-      </div>
-    `;
-  });
-  
-  // 配列を1つの文字列にまとめる
-  const htmlString = htmlArray.join('');
-  
-  // #list に HTML を挿入
-  list.innerHTML = htmlString;
+  const template = document.getElementById('item-template');
+
+  // 表示をクリア
+  list.textContent = '';
+
+  // 配列をスプレッド構文でコピー（元配列は変更しない）
+  const items = [...products];
+
+  // 1件ずつテンプレートを複製して差し込み
+  for (let i = 0; i < items.length; i++) {
+    const p = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = p.name;
+    el.querySelector('.item-price').textContent = '¥' + p.price;
+    list.appendChild(el);
+  }
 }
 
 // ページ読み込み時に実行

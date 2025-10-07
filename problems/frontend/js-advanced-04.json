@@ -4,10 +4,10 @@
   "description": "入力キーワードでfilter()とincludes()を組み合わせて商品を検索します。ECサイトの商品名検索機能の基礎です。",
   "category": "javascript-advanced",
   "instructions": [
-    "検索入力欄（#search）のinputイベントで検索を実行する",
-    "入力値をtrim()とtoLowerCase()で正規化する",
-    "products配列をfilter()とincludes()で絞り込む",
-    "絞り込んだ結果をmap()とjoin()でHTMLにして #list に表示する"
+    "検索入力欄（#search）の input イベントで検索を実行する",
+    "入力値を trim() と toLowerCase() で正規化する",
+    "products を filter() + includes() で絞り込む",
+    "<template id=\"item-template\"> を cloneNode(true) し、textContent で差し込んで既存の出力コンテナ（#list）に appendChild する（innerHTML は使わない）"
   ],
   "implementationPoints": [
     "必須: filter()メソッドとincludes()メソッドを組み合わせて使うこと",
@@ -17,11 +17,11 @@
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>検索機能</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品検索</h1>\n    <input id=\"search\" type=\"text\" placeholder=\"商品名を入力\" class=\"search-input\">\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-04/files.html.expected"
     },
     "css": {
-      "template": "body { font-family: sans-serif; margin: 16px; }\n.container { max-width: 800px; margin: 0 auto; }\n.search-input { width: 100%; margin-bottom: 16px; padding: 8px; font-size: 14px; }\n#list { display: grid; gap: 12px; }\n.item { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }",
+      "template": "",
       "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-04/files.css.expected"
     },
     "js": {
