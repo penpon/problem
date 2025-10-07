@@ -11,28 +11,24 @@ function renderProducts() {
   const categorySelect = document.getElementById('category');
   const selectedCategory = categorySelect.value;
   const list = document.getElementById('list');
-  
-  // filter() でカテゴリ一致 かつ 在庫あり
-  let filteredProducts = products.filter(function(p) {
+  const template = document.getElementById('item-template');
+
+  const filtered = products.filter(function(p) {
     const categoryMatch = selectedCategory === 'all' || p.category === selectedCategory;
     const hasStock = p.stock > 0;
     return categoryMatch && hasStock;
   });
-  
-  // map() + join('') で HTML 生成
-  const html = filteredProducts.map(function(p) {
-    return `
-      <div class="item">
-        <div>
-          <div class="item-name">${p.name}</div>
-          <div class="item-stock">在庫: ${p.stock}個</div>
-        </div>
-        <div class="item-price">¥${p.price.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('');
-  
-  list.innerHTML = html;
+
+  list.textContent = '';
+  const items = [...filtered];
+  for (let i = 0; i < items.length; i++) {
+    const p = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = p.name;
+    el.querySelector('.item-stock').textContent = '在庫: ' + p.stock + '個';
+    el.querySelector('.item-price').textContent = '¥' + p.price;
+    list.appendChild(el);
+  }
 }
 
 // カテゴリ変更時に再描画

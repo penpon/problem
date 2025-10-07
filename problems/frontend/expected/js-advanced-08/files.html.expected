@@ -16,6 +16,15 @@
     </select>
     <div id="list"></div>
   </div>
+  <template id="item-template">
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"></div>
+        <div class="item-stock"></div>
+      </div>
+      <div class="item-price"></div>
+    </div>
+  </template>
   <script src="script.js"></script>
 </body>
 </html>

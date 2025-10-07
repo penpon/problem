@@ -11,32 +11,23 @@ let currentSort = 'default';
 // 商品を並び替えて表示
 function renderProducts(sortType) {
   const list = document.getElementById('list');
-  
-  // 元配列を守るためコピー
-  let sortedProducts = products.slice();
-  
-  // sort() で並び替え
+  const template = document.getElementById('item-template');
+  const items = [...products];
+
   if (sortType === 'asc') {
-    sortedProducts.sort(function(a, b) {
-      return a.price - b.price; // 昇順
-    });
+    items.sort(function(a, b) { return a.price - b.price; });
   } else if (sortType === 'desc') {
-    sortedProducts.sort(function(a, b) {
-      return b.price - a.price; // 降順
-    });
+    items.sort(function(a, b) { return b.price - a.price; });
   }
-  
-  // map() + join('') で HTML 生成
-  const html = sortedProducts.map(function(p) {
-    return `
-      <div class="item">
-        <div class="item-name">${p.name}</div>
-        <div class="item-price">¥${p.price.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('');
-  
-  list.innerHTML = html;
+
+  list.textContent = '';
+  for (let i = 0; i < items.length; i++) {
+    const p = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = p.name;
+    el.querySelector('.item-price').textContent = '¥' + p.price;
+    list.appendChild(el);
+  }
 }
 
 // ボタンイベント

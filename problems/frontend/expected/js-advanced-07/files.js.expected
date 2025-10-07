@@ -8,20 +8,19 @@ const products = [
 // 商品カードを生成して表示
 function renderProducts() {
   const list = document.getElementById('list');
-  
-  // map() で各商品のカードHTMLを作成
-  const html = products.map(function(product) {
-    return `
-      <div class="card">
-        <img src="${product.image}" alt="${product.name}">
-        <div class="card-name">${product.name}</div>
-        <div class="card-price">¥${product.price.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('');
-  
-  // innerHTML で挿入
-  list.innerHTML = html;
+  const template = document.getElementById('item-template');
+  list.textContent = '';
+  const items = [...products];
+  for (let i = 0; i < items.length; i++) {
+    const p = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    const img = el.querySelector('.card-image');
+    img.src = p.image;
+    img.alt = p.name;
+    el.querySelector('.card-name').textContent = p.name;
+    el.querySelector('.card-price').textContent = '¥' + p.price;
+    list.appendChild(el);
+  }
 }
 
 // 実行
