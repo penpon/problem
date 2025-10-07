@@ -1,0 +1,43 @@
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', category: '家電', price: 89800, stock: 3 },
+  { id: 2, name: 'ボールペン', category: '文具', price: 150, stock: 0 },
+  { id: 3, name: 'マウス', category: '家電', price: 1980, stock: 5 },
+  { id: 4, name: 'ノート', category: '文具', price: 200, stock: 2 }
+];
+
+// 商品を絞り込んで表示
+function renderProducts() {
+  const categorySelect = document.getElementById('category');
+  const selectedCategory = categorySelect.value;
+  const list = document.getElementById('list');
+  
+  // filter() でカテゴリ一致 かつ 在庫あり
+  let filteredProducts = products.filter(function(p) {
+    const categoryMatch = selectedCategory === 'all' || p.category === selectedCategory;
+    const hasStock = p.stock > 0;
+    return categoryMatch && hasStock;
+  });
+  
+  // map() + join('') で HTML 生成
+  const html = filteredProducts.map(function(p) {
+    return `
+      <div class="item">
+        <div>
+          <div class="item-name">${p.name}</div>
+          <div class="item-stock">在庫: ${p.stock}個</div>
+        </div>
+        <div class="item-price">¥${p.price.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+  
+  list.innerHTML = html;
+}
+
+// カテゴリ変更時に再描画
+document.getElementById('category').addEventListener('change', renderProducts);
+
+// 初期表示
+renderProducts();
+

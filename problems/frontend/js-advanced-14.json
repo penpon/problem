@@ -12,7 +12,11 @@
     "必須: filter() と sort() を使う",
     "必須: 昇順・降順の両対応"
   ],
-  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "files": { 
+    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.js.expected"} 
+  },
   "expectedResult": { "behavior": "カテゴリで絞られ、価格順に並ぶ" },
   "checks": [
     { "id": "uses-filter", "name": "filter()使用", "type": "js", "message": "filter() を使用してください" },

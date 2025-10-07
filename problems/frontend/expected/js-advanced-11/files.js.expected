@@ -1,0 +1,48 @@
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', price: 89800 },
+  { id: 2, name: 'マウス', price: 1980 },
+  { id: 3, name: 'キーボード', price: 4980 }
+];
+
+// 商品一覧を生成
+function renderProducts() {
+  const list = document.getElementById('list');
+  
+  const html = products.map(function(p) {
+    return `
+      <div class="item">
+        <div class="item-name">${p.name}</div>
+        <button class="fav-btn" data-id="${p.id}">♡</button>
+      </div>
+    `;
+  }).join('');
+  
+  list.innerHTML = html;
+}
+
+// イベント委譲でお気に入り切り替え
+function setupEventDelegation() {
+  const list = document.getElementById('list');
+  
+  // 親に1つだけイベントを設定
+  list.addEventListener('click', function(e) {
+    // closest() で対象ボタンを特定
+    const btn = e.target.closest('.fav-btn');
+    if (btn) {
+      // classList.toggle() で状態切り替え
+      btn.classList.toggle('active');
+      
+      // アクティブ時はハートマークを変更
+      if (btn.classList.contains('active')) {
+        btn.textContent = '♥';
+      } else {
+        btn.textContent = '♡';
+      }
+    }
+  });
+}
+
+renderProducts();
+setupEventDelegation();
+

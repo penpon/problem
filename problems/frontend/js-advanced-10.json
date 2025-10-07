@@ -13,7 +13,11 @@
     "必須: 大文字小文字を区別しない（toLowerCase 使用）",
     "推奨: 空欄時は全件表示"
   ],
-  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "files": { 
+    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.js.expected"} 
+  },
   "expectedResult": { "behavior": "大小無視の検索ができる" },
   "checks": [
     { "id": "uses-includes", "name": "includes()使用", "type": "js", "message": "includes() を使用してください" }

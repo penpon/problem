@@ -13,7 +13,11 @@
     "必須: 複合条件（カテゴリ一致 AND 在庫あり）",
     "推奨: 入力が無い場合は全件表示"
   ],
-  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "files": { 
+    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-08/files.js.expected"} 
+  },
   "expectedResult": { "behavior": "条件に合う商品だけが表示される" },
   "checks": [
     { "id": "uses-filter", "name": "filter()使用", "type": "js", "message": "filter() を使用してください" }

@@ -1,0 +1,55 @@
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', price: 89800 },
+  { id: 2, name: 'マウス', price: 1980 },
+  { id: 3, name: 'キーボード', price: 4980 },
+  { id: 4, name: 'モニター', price: 25800 }
+];
+
+let currentSort = 'default';
+
+// 商品を並び替えて表示
+function renderProducts(sortType) {
+  const list = document.getElementById('list');
+  
+  // 元配列を守るためコピー
+  let sortedProducts = products.slice();
+  
+  // sort() で並び替え
+  if (sortType === 'asc') {
+    sortedProducts.sort(function(a, b) {
+      return a.price - b.price; // 昇順
+    });
+  } else if (sortType === 'desc') {
+    sortedProducts.sort(function(a, b) {
+      return b.price - a.price; // 降順
+    });
+  }
+  
+  // map() + join('') で HTML 生成
+  const html = sortedProducts.map(function(p) {
+    return `
+      <div class="item">
+        <div class="item-name">${p.name}</div>
+        <div class="item-price">¥${p.price.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+  
+  list.innerHTML = html;
+}
+
+// ボタンイベント
+document.getElementById('sort-asc').addEventListener('click', function() {
+  currentSort = 'asc';
+  renderProducts(currentSort);
+});
+
+document.getElementById('sort-desc').addEventListener('click', function() {
+  currentSort = 'desc';
+  renderProducts(currentSort);
+});
+
+// 初期表示
+renderProducts('default');
+

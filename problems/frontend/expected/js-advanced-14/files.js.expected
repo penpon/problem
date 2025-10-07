@@ -1,0 +1,71 @@
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', category: '家電', price: 89800 },
+  { id: 2, name: 'ボールペン', category: '文具', price: 150 },
+  { id: 3, name: 'マウス', category: '家電', price: 1980 },
+  { id: 4, name: 'ノート', category: '文具', price: 200 },
+  { id: 5, name: 'キーボード', category: '家電', price: 4980 }
+];
+
+let currentSort = 'default';
+
+// 絞込と並び替えを適用して表示
+function render() {
+  const categorySelect = document.getElementById('category');
+  const selectedCategory = categorySelect.value;
+  const list = document.getElementById('list');
+  
+  // filter() でカテゴリ絞込
+  let filtered = products;
+  if (selectedCategory && selectedCategory !== 'all') {
+    filtered = products.filter(function(p) {
+      return p.category === selectedCategory;
+    });
+  }
+  
+  // 元配列を守るためコピー
+  let sorted = filtered.slice();
+  
+  // sort() で並び替え
+  if (currentSort === 'asc') {
+    sorted.sort(function(a, b) {
+      return a.price - b.price; // 昇順
+    });
+  } else if (currentSort === 'desc') {
+    sorted.sort(function(a, b) {
+      return b.price - a.price; // 降順
+    });
+  }
+  
+  // map() + join('') + innerHTML で表示
+  const html = sorted.map(function(p) {
+    return `
+      <div class="item">
+        <div class="item-info">
+          <div class="item-name">${p.name}</div>
+          <div class="item-category">${p.category}</div>
+        </div>
+        <div class="item-price">¥${p.price.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+  
+  list.innerHTML = html || '<p style="color: #999;">該当する商品がありません</p>';
+}
+
+// イベント設定
+document.getElementById('category').addEventListener('change', render);
+
+document.getElementById('sort-asc').addEventListener('click', function() {
+  currentSort = 'asc';
+  render();
+});
+
+document.getElementById('sort-desc').addEventListener('click', function() {
+  currentSort = 'desc';
+  render();
+});
+
+// 初期表示
+render();
+

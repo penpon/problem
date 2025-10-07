@@ -10,7 +10,9 @@
   <div class="container">
     <h1>カート集計</h1>
     <div id="summary" class="summary"></div>
+    <div id="list"></div>
   </div>
   <script src="script.js"></script>
 </body>
 </html>
+

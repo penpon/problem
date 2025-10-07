@@ -12,7 +12,11 @@
     "必須: reduce() を使う",
     "必須: 初期値を適切に設定する"
   ],
-  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "files": { 
+    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.js.expected"} 
+  },
   "expectedResult": { "behavior": "合計 または 件数が表示される" },
   "checks": [
     { "id": "uses-reduce", "name": "reduce()使用", "type": "js", "message": "reduce() を使用してください" }

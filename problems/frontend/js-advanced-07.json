@@ -13,7 +13,11 @@
     "必須: innerHTML で表示する",
     "任意: 画像URLが無い場合は代替テキスト表示"
   ],
-  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "files": { 
+    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.js.expected"} 
+  },
   "expectedResult": { "behavior": "商品がカード状に表示される（最小限で可）" },
   "checks": [
     { "id": "uses-map", "name": "map()使用", "type": "js", "message": "map() を使用してください" },

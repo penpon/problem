@@ -836,12 +836,36 @@ extractProblemNumber(problemId, categoryId) {
     }
     
     displayPreview(iframe, htmlCode) {
-        if (!iframe || !htmlCode) return;
+        if (!iframe) return;
         
         try {
-            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            // 1) 新しい文書として読み込む（推奨パス）- グローバル変数がリセットされる
+            if ('srcdoc' in iframe) {
+                iframe.srcdoc = htmlCode || '<!doctype html><html><body></body></html>';
+                return;
+            }
+            
+            // 2) フォールバック: iframe を作り直して参照を更新
+            const parent = iframe.parentNode;
+            if (!parent) {
+                console.warn('iframe has no parent, falling back to document.write');
+                const doc = iframe.contentDocument || iframe.contentWindow.document;
+                doc.open();
+                doc.write(htmlCode || '');
+                doc.close();
+                return;
+            }
+            
+            const clone = iframe.cloneNode(false); // 同じ id/class を維持
+            parent.replaceChild(clone, iframe);
+            
+            // 参照を更新
+            if (this.expectedPreview === iframe) this.expectedPreview = clone;
+            if (this.currentPreview === iframe) this.currentPreview = clone;
+            
+            const doc = clone.contentDocument || clone.contentWindow.document;
             doc.open();
-            doc.write(htmlCode);
+            doc.write(htmlCode || '');
             doc.close();
         } catch (error) {
             console.error('プレビューの表示に失敗:', error);

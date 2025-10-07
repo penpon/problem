@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>集計機能</title>
+  <title>価格並び替え</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>カート集計</h1>
-    <div id="summary" class="summary"></div>
+    <h1>商品一覧（価格順）</h1>
+    <div class="controls">
+      <button id="sort-asc">価格の安い順</button>
+      <button id="sort-desc">価格の高い順</button>
+    </div>
+    <div id="list"></div>
   </div>
   <script src="script.js"></script>
 </body>
 </html>
+

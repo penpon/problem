@@ -1,0 +1,42 @@
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', price: 89800 },
+  { id: 2, name: 'ボールペン', price: 150 },
+  { id: 3, name: 'マウス', price: 1980 },
+  { id: 4, name: 'ノート', price: 200 },
+  { id: 5, name: 'キーボード', price: 4980 }
+];
+
+// 検索して表示
+function searchProducts() {
+  const searchInput = document.getElementById('search');
+  const keyword = searchInput.value.trim().toLowerCase(); // 正規化
+  const list = document.getElementById('list');
+  
+  // filter() + includes() で検索
+  let filteredProducts = products;
+  if (keyword) {
+    filteredProducts = products.filter(function(p) {
+      return p.name.toLowerCase().includes(keyword);
+    });
+  }
+  
+  // map() + join('') で HTML 生成
+  const html = filteredProducts.map(function(p) {
+    return `
+      <div class="item">
+        <div class="item-name">${p.name}</div>
+        <div class="item-price">¥${p.price.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+  
+  list.innerHTML = html || '<p style="color: #999;">該当する商品がありません</p>';
+}
+
+// 入力時に検索実行
+document.getElementById('search').addEventListener('input', searchProducts);
+
+// 初期表示
+searchProducts();
+

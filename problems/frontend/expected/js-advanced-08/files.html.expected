@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>絞り込み検索</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>商品一覧（在庫ありのみ）</h1>
+    <select id="category" class="category-select">
+      <option value="all">すべて</option>
+      <option value="家電">家電</option>
+      <option value="文具">文具</option>
+    </select>
+    <div id="list"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+

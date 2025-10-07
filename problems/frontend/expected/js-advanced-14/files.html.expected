@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>絞込と並び替え</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>商品検索システム</h1>
+    <div class="controls">
+      <select id="category" class="category-select">
+        <option value="all">すべて</option>
+        <option value="家電">家電</option>
+        <option value="文具">文具</option>
+      </select>
+      <button id="sort-asc">価格 ↑</button>
+      <button id="sort-desc">価格 ↓</button>
+    </div>
+    <div id="list"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+

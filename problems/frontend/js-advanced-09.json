@@ -12,7 +12,11 @@
     "必須: sort() で数値比較を行う",
     "必須: 昇順・降順の両方に対応する"
   ],
-  "files": { "html": {"template": "", "expected": ""}, "css": {"template": "", "expected": ""}, "js": {"template": "", "expected": ""} },
+  "files": { 
+    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.js.expected"} 
+  },
   "expectedResult": { "behavior": "価格順が切り替わる" },
   "checks": [
     { "id": "uses-sort", "name": "sort()使用", "type": "js", "message": "sort() を使用してください" }

@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>集計機能</title>
+  <title>商品検索</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>カート集計</h1>
-    <div id="summary" class="summary"></div>
+    <h1>商品検索</h1>
+    <input id="search" type="text" placeholder="商品名で検索" class="search-input">
+    <div id="list"></div>
   </div>
   <script src="script.js"></script>
 </body>
 </html>
+

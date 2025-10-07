@@ -1,0 +1,29 @@
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', price: 89800, image: 'https://via.placeholder.com/200x150?text=PC' },
+  { id: 2, name: 'マウス', price: 1980, image: 'https://via.placeholder.com/200x150?text=Mouse' },
+  { id: 3, name: 'キーボード', price: 4980, image: 'https://via.placeholder.com/200x150?text=Keyboard' }
+];
+
+// 商品カードを生成して表示
+function renderProducts() {
+  const list = document.getElementById('list');
+  
+  // map() で各商品のカードHTMLを作成
+  const html = products.map(function(product) {
+    return `
+      <div class="card">
+        <img src="${product.image}" alt="${product.name}">
+        <div class="card-name">${product.name}</div>
+        <div class="card-price">¥${product.price.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+  
+  // innerHTML で挿入
+  list.innerHTML = html;
+}
+
+// 実行
+renderProducts();
+

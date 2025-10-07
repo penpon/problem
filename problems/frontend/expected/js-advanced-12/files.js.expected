@@ -1,0 +1,44 @@
+// 商品データ（配列）
+const products = [
+  { id: 1, name: 'ノートパソコン', price: 89800 },
+  { id: 2, name: 'マウス', price: 1980 },
+  { id: 3, name: 'キーボード', price: 4980 }
+];
+
+// 合計と件数を計算
+function calculateSummary() {
+  // reduce() で合計金額を計算
+  const total = products.reduce(function(acc, p) {
+    return acc + p.price;
+  }, 0);
+  
+  // 件数
+  const count = products.length;
+  
+  return { total, count };
+}
+
+// 集計結果と一覧を表示
+function render() {
+  const summary = calculateSummary();
+  
+  // 集計を表示
+  document.getElementById('summary').innerHTML = `
+    合計金額: ¥${summary.total.toLocaleString()} / 件数: ${summary.count}件
+  `;
+  
+  // 一覧を表示
+  const html = products.map(function(p) {
+    return `
+      <div class="item">
+        <div class="item-name">${p.name}</div>
+        <div class="item-price">¥${p.price.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+  
+  document.getElementById('list').innerHTML = html;
+}
+
+render();
+
