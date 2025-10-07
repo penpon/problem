@@ -7,20 +7,20 @@ const products = [
 
 // reduce() を使って合計金額 または 件数を計算して表示
 function showSummary() {
-  // 合計金額を計算
-  const total = products.reduce(function(acc, p) {
-    return acc + p.price;
-  }, 0);
-  
-  // 件数を計算
+  const total = products.reduce(function(acc, p) { return acc + p.price; }, 0);
   const count = products.length;
-  
-  // 結果を表示
+
   const summaryEl = document.getElementById('summary');
-  summaryEl.innerHTML = `
-    <div>商品件数: ${count}件</div>
-    <div>合計金額: ¥${total.toLocaleString()}</div>
-  `;
+  // クリア（innerHTML は使わない）
+  summaryEl.textContent = '';
+
+  const countDiv = document.createElement('div');
+  countDiv.textContent = '商品件数: ' + count + '件';
+  const totalDiv = document.createElement('div');
+  totalDiv.textContent = '合計金額: ¥' + total;
+
+  summaryEl.appendChild(countDiv);
+  summaryEl.appendChild(totalDiv);
 }
 
 showSummary();
