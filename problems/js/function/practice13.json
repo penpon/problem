@@ -1,0 +1,41 @@
+{
+  "id": "function/practice13",
+  "title": "問題13：アロー関数の基本",
+  "description": "料理レシピアプリで使うアロー関数を作成してみよう！",
+  "instructions": [
+    "アロー関数の記法を復習してください。",
+    "実用的なアプリケーションでのアロー関数活用方法を理解してください。",
+    "引数と戻り値を持つ様々なパターンのアロー関数を実装してください。"
+  ],
+  "template": "// 問題13: アロー関数の基本\\n// 料理レシピアプリで使うアロー関数を作成してみよう！\\n\\n// 1. cookingTimeアロー関数を定義してください（引数: minutes、戻り値: \"調理時間: [minutes]分\"）\\nlet cookingTime = /* ここにアロー関数を書く */;\\n\\n// 2. ingredientCountアロー関数を定義してください（引数: count、戻り値: count * 2）\\nlet ingredientCount = /* ここにアロー関数を書く */;\\n\\n// 3. showRecipeアロー関数を定義してください（引数なし、「今日のおすすめレシピをご紹介します！」を表示）\\nlet showRecipe = /* ここにアロー関数を書く */;\\n\\n// 4. 各アロー関数を呼び出してテストしてください\\nconsole.log(\"=== 料理レシピアプリ ===\");\\n\\n// showRecipe関数のテスト\\nshowRecipe();\\n\\n// cookingTime関数のテスト\\nlet time1 = cookingTime(30);\\nconsole.log(time1);\\n\\nlet time2 = cookingTime(15);\\nconsole.log(time2);\\n\\n// ingredientCount関数のテスト\\nlet count1 = ingredientCount(3);\\nconsole.log(\"材料を2倍にすると: \" + count1 + \"個\");\\n\\nlet count2 = ingredientCount(5);\\nconsole.log(\"材料を2倍にすると: \" + count2 + \"個\");",
+  "testCases": [
+    {
+      "name": "基本ケース（料理レシピアプリ）",
+      "variables": {},
+      "expectedOutput": "=== 料理レシピアプリ ===\\n今日のおすすめレシピをご紹介します！\\n調理時間: 30分\\n調理時間: 15分\\n材料を2倍にすると: 6個\\n材料を2倍にすると: 10個"
+    },
+    {
+      "name": "cookingTimeアロー関数チェック",
+      "variables": {},
+      "expectedOutput": "=== 料理レシピアプリ ===\\n今日のおすすめレシピをご紹介します！\\n調理時間: 30分\\n調理時間: 15分\\n材料を2倍にすると: 6個\\n材料を2倍にすると: 10個"
+    },
+    {
+      "name": "ingredientCountアロー関数チェック",
+      "variables": {},
+      "expectedOutput": "=== 料理レシピアプリ ===\\n今日のおすすめレシピをご紹介します！\\n調理時間: 30分\\n調理時間: 15分\\n材料を2倍にすると: 6個\\n材料を2倍にすると: 10個"
+    },
+    {
+      "name": "showRecipeアロー関数チェック",
+      "variables": {},
+      "expectedOutput": "=== 料理レシピアプリ ===\\n今日のおすすめレシピをご紹介します！\\n調理時間: 30分\\n調理時間: 15分\\n材料を2倍にすると: 6個\\n材料を2倍にすると: 10個"
+    },
+    {
+      "name": "計算機能確認（3×2=6）",
+      "variables": {},
+      "expectedOutput": "=== 料理レシピアプリ ===\\n今日のおすすめレシピをご紹介します！\\n調理時間: 30分\\n調理時間: 15分\\n材料を2倍にすると: 6個\\n材料を2倍にすると: 10個"
+    }
+  ],
+  "expectedOutput": "=== 料理レシピアプリ ===\\n今日のおすすめレシピをご紹介します！\\n調理時間: 30分\\n調理時間: 15分\\n材料を2倍にすると: 6個\\n材料を2倍にすると: 10個",
+  "testVariables": {},
+  "points": 100
+}

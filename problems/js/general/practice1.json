@@ -1,0 +1,41 @@
+{
+  "id": "general/practice1",
+  "title": "問題1: 変数と計算の基本",
+  "description": "2つの数を足し算して結果を変数に保存し、コンソールに表示する基本的な計算処理を学習します。",
+  "instructions": [
+    "変数aとbに数値が代入されています。",
+    "aとbを足し算した結果をresultという変数に保存してください。",
+    "console.log()を使ってresultの値を表示してください。"
+  ],
+  "template": "// 問題1: 変数と計算の基本\\n// 2つの数を足し算して結果を表示してください\\n\\nlet a = 5;\\nlet b = 3;\\n\\n// ここにコードを書いてください\\n// aとbを足し算してresultという変数に保存\\n\\n\\n// resultをコンソールに表示\\n",
+  "testCases": [
+    {
+      "name": "基本ケース",
+      "variables": { "a": 5, "b": 3 },
+      "expectedOutput": "8"
+    },
+    {
+      "name": "異なる数値の場合",
+      "variables": { "a": 10, "b": 7 },
+      "expectedOutput": "17"
+    },
+    {
+      "name": "0を含む場合",
+      "variables": { "a": 0, "b": 5 },
+      "expectedOutput": "5"
+    },
+    {
+      "name": "大きな数値の場合",
+      "variables": { "a": 25, "b": 15 },
+      "expectedOutput": "40"
+    },
+    {
+      "name": "1桁の数値の場合",
+      "variables": { "a": 1, "b": 2 },
+      "expectedOutput": "3"
+    }
+  ],
+  "expectedOutput": "8",
+  "testVariables": { "a": 5, "b": 3 },
+  "points": 100
+}

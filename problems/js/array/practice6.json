@@ -1,0 +1,45 @@
+{
+  "id": "array/practice6",
+  "title": "問題6：findメソッドで文字列を検索",
+  "description": "findメソッドを使って文字列の条件で配列から要素を見つける方法を学習します。",
+  "instructions": [
+    "文字列の長さはlengthプロパティで取得できます。",
+    "names.find(function(name) { return name.length === 4; })のように使用します。"
+  ],
+  "template": "// 問題6: findメソッドで文字列を検索\\n// 配列 names から文字数が4文字の最初の名前を見つけて出力してください\\n\\nlet names = [\"Tom\", \"Alice\", \"Bob\", \"Charlie\"];\\n\\n// ここにコードを書いてください\\n// findメソッドを使って4文字の最初の名前を見つける\\n\\nlet result; // この変数に結果を代入\\n\\nconsole.log(result); // 期待される出力: Alice",
+  "testCases": [
+    {
+      "name": "基本ケース（名前）",
+      "variables": { 
+        "names": ["Tom", "Alice", "Bob", "Charlie"]
+      },
+      "expectedOutput": "Alice"
+    },
+    {
+      "name": "異なる名前の場合",
+      "variables": { 
+        "names": ["John", "Mary", "David", "Sarah"]
+      },
+      "expectedOutput": "John"
+    },
+    {
+      "name": "該当なしの場合",
+      "variables": { 
+        "names": ["A", "BB", "CCC", "EEEEE"]
+      },
+      "expectedOutput": "undefined"
+    },
+    {
+      "name": "複数該当の場合",
+      "variables": { 
+        "names": ["Kate", "Mike", "Anna", "Paul"]
+      },
+      "expectedOutput": "Kate"
+    }
+  ],
+  "expectedOutput": "Alice",
+  "testVariables": {
+    "names": ["Tom", "Alice", "Bob", "Charlie"]
+  },
+  "points": 100
+}

@@ -1,0 +1,76 @@
+{
+  "id": "object/practice5",
+  "title": "問題5：テスト結果の評価システム",
+  "description": "テスト結果オブジェクトを使って成績を評価するプログラムを作成してください。",
+  "instructions": [
+    "複数のプロパティを使った計算を実装してください。",
+    "条件分岐による評価判定とif-else if-else文を使用してください。"
+  ],
+  "template": "// 問題5: テスト結果の評価システム（オブジェクトと条件分岐）\\n// テスト結果オブジェクトを使って成績を評価するプログラム\\n\\nlet testResult = {\\n  studentName: \"田中花子\",\\n  mathScore: 85,\\n  englishScore: 92\\n};\\n\\n// 学生情報を表示\\n/* ここに「学生名: 」+ 学生名を表示するconsole.logを書く */;\\nconsole.log(\"数学: \" + testResult.mathScore + \"点\");\\nconsole.log(\"英語: \" + testResult.englishScore + \"点\");\\n\\n// 平均点を計算\\nlet average = /* ここに平均点の計算式を書く */;\\n/* ここに「平均点: 」+ 平均点 + 「点」を表示するconsole.logを書く */;\\n\\n// 成績評価を条件分岐で判定\\nlet grade; // 成績評価を格納する変数\\nif (average >= 90) {\\n  grade = \"A\";\\n} else if (/* ここに80点以上90点未満の条件を書く */) {\\n  /* ここにB評価の代入を書く */;\\n} else if (average >= 70) {\\n  grade = \"C\";\\n} else {\\n  grade = \"D\";\\n}\\n\\n// 評価結果を表示\\n/* ここに「成績評価: 」+ 成績評価を表示するconsole.logを書く */;\\n\\n// 評価に応じたメッセージ\\nif (grade === \"A\") {\\n  console.log(\"素晴らしい成績です！\");\\n} else if (grade === \"B\") {\\n  /* ここに「良い成績です！」を表示するconsole.logを書く */;\\n} else {\\n  console.log(\"もう少し頑張りましょう。\");\\n}",
+  "testCases": [
+    {
+      "name": "基本ケース（田中花子・B評価）",
+      "variables": { 
+        "testResult": { 
+          "studentName": "田中花子", 
+          "mathScore": 85, 
+          "englishScore": 92 
+        } 
+      },
+      "expectedOutput": "学生名: 田中花子\\n数学: 85点\\n英語: 92点\\n平均点: 88.5点\\n成績評価: B\\n良い成績です！"
+    },
+    {
+      "name": "A評価ケース（山田太郎・高得点）",
+      "variables": { 
+        "testResult": { 
+          "studentName": "山田太郎", 
+          "mathScore": 95, 
+          "englishScore": 88 
+        } 
+      },
+      "expectedOutput": "学生名: 山田太郎\\n数学: 95点\\n英語: 88点\\n平均点: 91.5点\\n成績評価: A\\n素晴らしい成績です！"
+    },
+    {
+      "name": "C評価ケース（佐藤花子・中程度）",
+      "variables": { 
+        "testResult": { 
+          "studentName": "佐藤花子", 
+          "mathScore": 72, 
+          "englishScore": 78 
+        } 
+      },
+      "expectedOutput": "学生名: 佐藤花子\\n数学: 72点\\n英語: 78点\\n平均点: 75点\\n成績評価: C\\nもう少し頑張りましょう。"
+    },
+    {
+      "name": "D評価ケース（鈴木次郎・低得点）",
+      "variables": { 
+        "testResult": { 
+          "studentName": "鈴木次郎", 
+          "mathScore": 55, 
+          "englishScore": 68 
+        } 
+      },
+      "expectedOutput": "学生名: 鈴木次郎\\n数学: 55点\\n英語: 68点\\n平均点: 61.5点\\n成績評価: D\\nもう少し頑張りましょう。"
+    },
+    {
+      "name": "境界値ケース（高橋美由紀・A評価ぎりぎり）",
+      "variables": { 
+        "testResult": { 
+          "studentName": "高橋美由紀", 
+          "mathScore": 90, 
+          "englishScore": 90 
+        } 
+      },
+      "expectedOutput": "学生名: 高橋美由紀\\n数学: 90点\\n英語: 90点\\n平均点: 90点\\n成績評価: A\\n素晴らしい成績です！"
+    }
+  ],
+  "expectedOutput": "学生名: 田中花子\\n数学: 85点\\n英語: 92点\\n平均点: 88.5点\\n成績評価: B\\n良い成績です！",
+  "testVariables": {
+    "testResult": {
+      "studentName": "田中花子",
+      "mathScore": 85,
+      "englishScore": 92
+    }
+  },
+  "points": 100
+}

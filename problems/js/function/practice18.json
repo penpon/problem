@@ -1,0 +1,59 @@
+{
+  "id": "function/practice18",
+  "title": "問題18：ゲームアプリのスコープ管理",
+  "description": "ゲームアプリで使う変数のスコープ（有効範囲）について学ぼう！",
+  "instructions": [
+    "変数のスコープ（有効範囲）の概念を復習してください。",
+    "グローバル変数とローカル変数の違いを理解してください。",
+    "実用的なゲームアプリでのスコープ管理方法を学んでください。"
+  ],
+  "template": "// 問題18: ゲームアプリのスコープ管理\\n// ゲームアプリで使う変数のスコープ（有効範囲）について学ぼう！\\n// グローバル変数を定義\\nlet gameTitle = \"RPGアドベンチャー\";\\nlet playerScore = 0;\\n// 1. showGameInfo関数を定義してください\\nfunction showGameInfo() {\\n    /* ここにgameTitleを表示するコードを書く */\\n    /* グローバル変数のplayerScoreに100を足すコードを書く */\\n    console.log(\"現在のスコア: \" + playerScore);\\n}\\n// 2. battleSystem関数を定義してください\\nfunction battleSystem() {\\n    let enemyName = \"ドラゴン\";\\n    let battleResult = \"勝利\";\\n    /* ここにenemyNameを表示するコードを書く */\\n    console.log(\"戦闘結果: \" + battleResult);\\n    // 関数内からグローバル変数にアクセス\\n    console.log(\"戦闘中のゲーム: \" + gameTitle);\\n}\\n// 3. levelUpReward関数を定義してください（引数: baseReward, level）\\nfunction levelUpReward(baseReward, level) {\\n    let bonus = /* ここにbaseReward * levelを代入 */;\\n    let message = \"レベルアップ報酬は\" + bonus + \"ポイントです\";\\n    /* ここにmessageを表示するコードを書く */\\n    /* ここにbonusを返すコードを書く */\\n}\\n// 4. 関数を呼び出してテストしてください\\nconsole.log(\"=== ゲームアプリ ===\");\\n// グローバル変数の確認\\nconsole.log(\"ゲーム開始: \" + gameTitle);\\nconsole.log(\"初期スコア: \" + playerScore);\\nconsole.log(\"--- ゲーム情報の表示 ---\");\\n/* ここでshowGameInfo関数を呼び出す */;\\n/* ここでshowGameInfo関数をもう一度呼び出す */;\\nconsole.log(\"--- 戦闘システム ---\");\\n/* ここでbattleSystem関数を呼び出す */;\\nconsole.log(\"--- レベルアップ報酬 ---\");\\nlet reward1 = /* ここでlevelUpReward関数を50、3で呼び出す */;\\nconsole.log(\"獲得した報酬: \" + reward1);\\nlet reward2 = /* ここでlevelUpReward関数を30、5で呼び出す */;\\nconsole.log(\"獲得した報酬: \" + reward2);\\n// グローバル変数の最終状態を確認\\nconsole.log(\"--- 最終状態 ---\");\\nconsole.log(\"最終スコア: \" + playerScore);",
+  "testCases": [
+    {
+      "name": "基本ケース（ゲームアプリ）",
+      "variables": {
+        "gameTitle": "RPGアドベンチャー",
+        "playerScore": 0
+      },
+      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+    },
+    {
+      "name": "showGameInfo関数チェック",
+      "variables": {
+        "gameTitle": "RPGアドベンチャー",
+        "playerScore": 0
+      },
+      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+    },
+    {
+      "name": "battleSystem関数チェック",
+      "variables": {
+        "gameTitle": "RPGアドベンチャー",
+        "playerScore": 0
+      },
+      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+    },
+    {
+      "name": "levelUpReward関数チェック",
+      "variables": {
+        "gameTitle": "RPGアドベンチャー",
+        "playerScore": 0
+      },
+      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+    },
+    {
+      "name": "グローバル変数状態変化確認",
+      "variables": {
+        "gameTitle": "RPGアドベンチャー",
+        "playerScore": 0
+      },
+      "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200"
+    }
+  ],
+  "expectedOutput": "=== ゲームアプリ ===\\nゲーム開始: RPGアドベンチャー\\n初期スコア: 0\\n\\n--- ゲーム情報の表示 ---\\nRPGアドベンチャー\\n現在のスコア: 100\\nRPGアドベンチャー\\n現在のスコア: 200\\n\\n--- 戦闘システム ---\\nドラゴン\\n戦闘結果: 勝利\\n戦闘中のゲーム: RPGアドベンチャー\\n\\n--- レベルアップ報酬 ---\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\nレベルアップ報酬は150ポイントです\\n獲得した報酬: 150\\n\\n--- 最終状態 ---\\n最終スコア: 200",
+  "testVariables": {
+    "gameTitle": "RPGアドベンチャー",
+    "playerScore": 0
+  },
+  "points": 100
+}

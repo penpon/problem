@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript学習サイト</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>🚀 JavaScript学習サイト</h1>
+            <p>プログラミング問題を解いて、自動で採点結果を確認しよう！</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-content">
+            <!-- 問題選択エリア -->
+            <div class="problem-section">
+                <h2 class="section-title">📚 問題選択</h2>
+                
+                <!-- タブナビゲーション -->
+                <div class="tab-navigation">
+                    <!-- タブボタンがJavaScriptで動的に追加されます -->
+                </div>
+                
+                <!-- タブコンテンツ（問題リスト） -->
+                <div class="tab-content">
+                    <div class="problem-list" id="problem-list">
+                        <!-- 動的に問題ボタンが追加される -->
+                    </div>
+                </div>
+                
+                <div id="problem-details" style="display: none;">
+                    <!-- 問題の詳細がここに表示されます -->
+                </div>
+            </div>
+
+            <!-- コードエディタエリア -->
+            <div class="editor-section">
+                <h2 class="section-title">💻 コードエディタ</h2>
+                <div class="form-group">
+                    <label for="code-editor">
+                        コードを入力してください (Ctrl+Enter で実行):
+                    </label>
+                    <textarea 
+                        id="code-editor" 
+                        class="code-editor" 
+                        placeholder="問題を選択すると、ここにテンプレートが表示されます。&#10;穴埋め部分を完成させてください。&#10;&#10;// 例：&#10;let message = 'Hello, World!';&#10;console.log(message);"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+                
+                <button id="run-button" class="run-button">
+                    🚀 コードを実行して採点
+                </button>
+                
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>コードを実行中...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 結果表示エリア -->
+        <div class="result-section">
+            <h2 class="section-title">📊 採点結果</h2>
+            <div id="result-area" style="display: none;">
+                <!-- 採点結果がここに表示されます -->
+            </div>
+            <div id="no-result" class="no-result-text" style="text-align: center; padding: 40px;">
+                <p>🎯 問題を選択してコードを実行すると、採点結果がここに表示されます</p>
+                <p style="font-size: 0.9em; margin-top: 10px;">
+                    ヒント: コードエディタで <kbd>Ctrl</kbd> + <kbd>Enter</kbd> でも実行できます
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-style">
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            JavaScript学習サイト | プログラミング学習支援ツール
+        </p>
+    </footer>
+
+    <!-- ESLintライブラリの読み込み (Code Quality Check機能用) -->
+    <script src="https://cdn.jsdelivr.net/npm/eslint-linter-browserify@9.30.1/dist/eslint.js"></script>
+    <script src="/assets/js/eslint-config.js"></script>
+    
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="/assets/js/navigation.js"></script>
+    <script src="/assets/js/problemLoader.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

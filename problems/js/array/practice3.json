@@ -1,0 +1,45 @@
+{
+  "id": "array/practice3",
+  "title": "問題3：forEachメソッドの基本",
+  "description": "forEachメソッドを使って配列の各要素を順番に処理する方法を学習します。",
+  "instructions": [
+    "forEachメソッドは配列の各要素に対して関数を実行します。",
+    "colors.forEach(function(color) { console.log(color); })のように使用します。"
+  ],
+  "template": "// 問題3: forEachメソッドの基本\\n// 配列 colors の各要素を順番にconsole.logで出力してください\\n\\nlet colors = [\"red\", \"blue\", \"green\"];\\n\\n// ここにコードを書いてください\\n// forEachメソッドを使って各色を出力\\n\\n// 期待される出力:\\n// red\\n// blue\\n// green",
+  "testCases": [
+    {
+      "name": "基本ケース（色）",
+      "variables": { 
+        "colors": ["red", "blue", "green"]
+      },
+      "expectedOutput": "red\\nblue\\ngreen"
+    },
+    {
+      "name": "異なる色の場合",
+      "variables": { 
+        "colors": ["yellow", "purple", "orange"]
+      },
+      "expectedOutput": "yellow\\npurple\\norange"
+    },
+    {
+      "name": "2つの要素の場合",
+      "variables": { 
+        "colors": ["black", "white"]
+      },
+      "expectedOutput": "black\\nwhite"
+    },
+    {
+      "name": "1つの要素の場合",
+      "variables": { 
+        "colors": ["pink"]
+      },
+      "expectedOutput": "pink"
+    }
+  ],
+  "expectedOutput": "red\\nblue\\ngreen",
+  "testVariables": {
+    "colors": ["red", "blue", "green"]
+  },
+  "points": 100
+}

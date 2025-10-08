@@ -1,0 +1,24 @@
+{
+  "id": "general/practice5",
+  "title": "問題5: FizzBuzz",
+  "description": "1から15までの数値をforループで繰り返し処理し、FizzBuzzのルールに従って出力する処理を学習します。",
+  "instructions": [
+    "1から15までの数値に対してFizzBuzzを実行してください。",
+    "3の倍数の場合は「Fizz」を表示",
+    "5の倍数の場合は「Buzz」を表示",
+    "3と5の両方の倍数（15の倍数）の場合は「FizzBuzz」を表示",
+    "それ以外の場合は数値をそのまま表示",
+    "forループと条件分岐を使って実装してください。"
+  ],
+  "template": "// 問題5: FizzBuzz\\n// 1から15までの数値でFizzBuzzを実行してください\\n\\n// ここにコードを書いてください\\n// forループで1から15まで繰り返し\\n// 3の倍数の場合は「Fizz」\\n// 5の倍数の場合は「Buzz」\\n// 15の倍数の場合は「FizzBuzz」\\n// それ以外は数値をそのまま表示\\n\\n",
+  "testCases": [
+    {
+      "name": "基本ケース（1〜15）",
+      "variables": {},
+      "expectedOutput": "1\\n2\\nFizz\\n4\\nBuzz\\nFizz\\n7\\n8\\nFizz\\nBuzz\\n11\\nFizz\\n13\\n14\\nFizzBuzz"
+    }
+  ],
+  "expectedOutput": "1\\n2\\nFizz\\n4\\nBuzz\\nFizz\\n7\\n8\\nFizz\\nBuzz\\n11\\nFizz\\n13\\n14\\nFizzBuzz",
+  "testVariables": {},
+  "points": 100
+}

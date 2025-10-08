@@ -1,0 +1,45 @@
+{
+  "id": "array/practice4",
+  "title": "問題4：forEachメソッドでインデックスも使用",
+  "description": "forEachメソッドで要素とインデックスの両方を使用する方法を学習します。",
+  "instructions": [
+    "forEachメソッドの関数には第2引数としてインデックスが渡されます。",
+    "animals.forEach(function(animal, index) { console.log(index + \": \" + animal); })のように使用します。"
+  ],
+  "template": "// 問題4: forEachメソッドでインデックスも使用\\n// 配列 animals の各要素をインデックスと一緒に出力してください\\n\\nlet animals = [\"cat\", \"dog\", \"bird\"];\\n\\n// ここにコードを書いてください\\n// forEachメソッドを使って「インデックス: 動物名」の形式で出力\\n\\n// 期待される出力:\\n// 0: cat\\n// 1: dog\\n// 2: bird",
+  "testCases": [
+    {
+      "name": "基本ケース（動物）",
+      "variables": { 
+        "animals": ["cat", "dog", "bird"]
+      },
+      "expectedOutput": "0: cat\\n1: dog\\n2: bird"
+    },
+    {
+      "name": "異なる動物の場合",
+      "variables": { 
+        "animals": ["lion", "tiger", "elephant"]
+      },
+      "expectedOutput": "0: lion\\n1: tiger\\n2: elephant"
+    },
+    {
+      "name": "2つの要素の場合",
+      "variables": { 
+        "animals": ["fish", "rabbit"]
+      },
+      "expectedOutput": "0: fish\\n1: rabbit"
+    },
+    {
+      "name": "1つの要素の場合",
+      "variables": { 
+        "animals": ["monkey"]
+      },
+      "expectedOutput": "0: monkey"
+    }
+  ],
+  "expectedOutput": "0: cat\\n1: dog\\n2: bird",
+  "testVariables": {
+    "animals": ["cat", "dog", "bird"]
+  },
+  "points": 100
+}

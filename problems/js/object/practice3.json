@@ -1,0 +1,76 @@
+{
+  "id": "object/practice3",
+  "title": "問題3：undefinedの処理",
+  "description": "オブジェクトにないプロパティへのアクセスとundefined処理を学ぶプログラムを作成してください。",
+  "instructions": [
+    "存在しないプロパティへのアクセスでundefinedが返されることを理解してください。",
+    "undefinedの判定方法と条件分岐での処理を学んでください。"
+  ],
+  "template": "// 問題3: オブジェクトのundefined処理（プロパティ存在確認）\\n// オブジェクトにないプロパティへのアクセスとundefined処理\\n\\nlet book = {\\n  title: \"JavaScript入門\",\\n  author: \"プログラミング太郎\",\\n  price: 2800\\n};\\n\\n// 既存プロパティの表示\\n/* ここに「書籍名: 」+ タイトルを表示するconsole.logを書く */;\\nconsole.log(\"著者: \" + book.author);\\n\\n// 存在しないプロパティにアクセス（undefinedになる）\\nlet publisher = book.publisher; // publisherプロパティは存在しない\\n/* ここに「出版社: 」+ publisher変数を表示するconsole.logを書く */;\\n\\n// undefinedの確認と条件分岐\\nif (/* ここにpublisherがundefinedかどうかの条件を書く */) {\\n  console.log(\"出版社情報は登録されていません。\");\\n} else {\\n  console.log(\"出版社: \" + publisher);\\n}\\n\\n// ページ数プロパティをチェック\\nlet pages = book.pages;\\nif (pages === undefined) {\\n  /* ここにページ数が未登録の場合のメッセージ出力を書く */;\\n} else {\\n  console.log(\"ページ数: \" + pages + \"ページ\");\\n}",
+  "testCases": [
+    {
+      "name": "基本ケース（JavaScript入門）",
+      "variables": { 
+        "book": { 
+          "title": "JavaScript入門", 
+          "author": "プログラミング太郎", 
+          "price": 2800 
+        } 
+      },
+      "expectedOutput": "書籍名: JavaScript入門\\n著者: プログラミング太郎\\n出版社: undefined\\n出版社情報は登録されていません。\\nページ数が未登録です。"
+    },
+    {
+      "name": "技術書ケース（Python基礎）",
+      "variables": { 
+        "book": { 
+          "title": "Python基礎", 
+          "author": "データ分析花子", 
+          "price": 3200 
+        } 
+      },
+      "expectedOutput": "書籍名: Python基礎\\n著者: データ分析花子\\n出版社: undefined\\n出版社情報は登録されていません。\\nページ数が未登録です。"
+    },
+    {
+      "name": "安価な本ケース（HTML入門）",
+      "variables": { 
+        "book": { 
+          "title": "HTML入門", 
+          "author": "ウェブ太郎", 
+          "price": 1500 
+        } 
+      },
+      "expectedOutput": "書籍名: HTML入門\\n著者: ウェブ太郎\\n出版社: undefined\\n出版社情報は登録されていません。\\nページ数が未登録です。"
+    },
+    {
+      "name": "専門書ケース（データベース設計）",
+      "variables": { 
+        "book": { 
+          "title": "データベース設計", 
+          "author": "システム次郎", 
+          "price": 4500 
+        } 
+      },
+      "expectedOutput": "書籍名: データベース設計\\n著者: システム次郎\\n出版社: undefined\\n出版社情報は登録されていません。\\nページ数が未登録です。"
+    },
+    {
+      "name": "高額本ケース（機械学習実践）",
+      "variables": { 
+        "book": { 
+          "title": "機械学習実践", 
+          "author": "AI研究者", 
+          "price": 5800 
+        } 
+      },
+      "expectedOutput": "書籍名: 機械学習実践\\n著者: AI研究者\\n出版社: undefined\\n出版社情報は登録されていません。\\nページ数が未登録です。"
+    }
+  ],
+  "expectedOutput": "書籍名: JavaScript入門\\n著者: プログラミング太郎\\n出版社: undefined\\n出版社情報は登録されていません。\\nページ数が未登録です。",
+  "testVariables": {
+    "book": {
+      "title": "JavaScript入門",
+      "author": "プログラミング太郎",
+      "price": 2800
+    }
+  },
+  "points": 100
+}

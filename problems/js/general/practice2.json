@@ -1,0 +1,41 @@
+{
+  "id": "general/practice2",
+  "title": "問題2: 文字列とテンプレートリテラル",
+  "description": "テンプレートリテラルを使って名前と年齢を含む自己紹介文を作成し、表示する処理を学習します。",
+  "instructions": [
+    "変数nameとageに値が代入されています。",
+    "テンプレートリテラル(`で囲む)を使って自己紹介文を作成してください。",
+    "「私の名前は○○で、年齢は○○歳です。」の形式で出力してください。"
+  ],
+  "template": "// 問題2: 文字列とテンプレートリテラル\\n// テンプレートリテラルを使って自己紹介文を作成してください\\n\\nlet name = \"太郎\";\\nlet age = 20;\\n\\n// ここにコードを書いてください\\n// テンプレートリテラルを使って自己紹介文を作成\\n// 「私の名前は○○で、年齢は○○歳です。」の形式\\n\\n",
+  "testCases": [
+    {
+      "name": "基本ケース",
+      "variables": { "name": "太郎", "age": 20 },
+      "expectedOutput": "私の名前は太郎で、年齢は20歳です。"
+    },
+    {
+      "name": "異なる名前と年齢",
+      "variables": { "name": "花子", "age": 25 },
+      "expectedOutput": "私の名前は花子で、年齢は25歳です。"
+    },
+    {
+      "name": "英語の名前",
+      "variables": { "name": "Mike", "age": 18 },
+      "expectedOutput": "私の名前はMikeで、年齢は18歳です。"
+    },
+    {
+      "name": "年配の方",
+      "variables": { "name": "佐藤", "age": 65 },
+      "expectedOutput": "私の名前は佐藤で、年齢は65歳です。"
+    },
+    {
+      "name": "短い名前",
+      "variables": { "name": "あ", "age": 1 },
+      "expectedOutput": "私の名前はあで、年齢は1歳です。"
+    }
+  ],
+  "expectedOutput": "私の名前は太郎で、年齢は20歳です。",
+  "testVariables": { "name": "太郎", "age": 20 },
+  "points": 100
+}

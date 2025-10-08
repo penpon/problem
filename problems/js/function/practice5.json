@@ -1,0 +1,41 @@
+{
+  "id": "function/practice5",
+  "title": "問題5：関数とオブジェクト",
+  "description": "オブジェクトを扱う関数を作成して、オブジェクトの操作を学ぼう！",
+  "instructions": [
+    "オブジェクトを引数として受け取る関数の作り方を理解してください。",
+    "オブジェクトのプロパティにアクセスする方法を学んでください。",
+    "オブジェクトを作成して返す関数の実装方法を理解してください。"
+  ],
+  "template": "// 問題5: 関数とオブジェクト\\n// オブジェクトを扱う関数を作成して、オブジェクトの操作を学ぼう！\\n// 1. getPersonInfo関数を定義してください（引数: person、戻り値: 人の情報を表す文字列）\\nfunction getPersonInfo(person) {\\n    /* ここに「名前: [person.name], 年齢: [person.age]」を返すコードを書く */\\n}\\n// 2. updatePersonAge関数を定義してください（引数: person, newAge）\\n/* ここにupdatePersonAge関数を定義する（personの年齢をnewAgeに更新）*/\\n// 3. createPerson関数を定義してください（引数: name, age、戻り値: 新しいpersonオブジェクト）\\nfunction createPerson(name, age) {\\n    /* ここにnameとageを持つオブジェクトを作成して返すコードを書く */\\n}\\n// 4. 関数を呼び出してテストしてください\\nconsole.log(\"=== オブジェクトと関数のテスト ===\");\\n// createPerson関数のテスト\\nlet person1 = /* ここでcreatePerson関数を「田中太郎」、25で呼び出す */;\\nlet person2 = /* ここでcreatePerson関数を「佐藤花子」、22で呼び出す */;\\n// getPersonInfo関数のテスト\\nlet info1 = /* ここでgetPersonInfo関数をperson1で呼び出す */;\\nconsole.log(info1);\\nlet info2 = /* ここでgetPersonInfo関数をperson2で呼び出す */;\\nconsole.log(info2);\\n// updatePersonAge関数のテスト\\nconsole.log(\"--- 年齢の更新 ---\");\\n/* ここでupdatePersonAge関数をperson1、30で呼び出す */;\\n/* ここでupdatePersonAge関数をperson2、23で呼び出す */;\\n// 更新後の確認\\nlet updatedInfo1 = /* ここでgetPersonInfo関数をperson1で呼び出す */;\\nconsole.log(\"更新後: \" + updatedInfo1);\\nlet updatedInfo2 = /* ここでgetPersonInfo関数をperson2で呼び出す */;\\nconsole.log(\"更新後: \" + updatedInfo2);",
+  "testCases": [
+    {
+      "name": "基本ケース（オブジェクト操作）",
+      "variables": {},
+      "expectedOutput": "=== オブジェクトと関数のテスト ===\\n名前: 田中太郎, 年齢: 25\\n名前: 佐藤花子, 年齢: 22\\n\\n--- 年齢の更新 ---\\n更新後: 名前: 田中太郎, 年齢: 30\\n更新後: 名前: 佐藤花子, 年齢: 23"
+    },
+    {
+      "name": "getPersonInfo関数チェック",
+      "variables": {},
+      "expectedOutput": "=== オブジェクトと関数のテスト ===\\n名前: 田中太郎, 年齢: 25\\n名前: 佐藤花子, 年齢: 22\\n\\n--- 年齢の更新 ---\\n更新後: 名前: 田中太郎, 年齢: 30\\n更新後: 名前: 佐藤花子, 年齢: 23"
+    },
+    {
+      "name": "updatePersonAge関数チェック",
+      "variables": {},
+      "expectedOutput": "=== オブジェクトと関数のテスト ===\\n名前: 田中太郎, 年齢: 25\\n名前: 佐藤花子, 年齢: 22\\n\\n--- 年齢の更新 ---\\n更新後: 名前: 田中太郎, 年齢: 30\\n更新後: 名前: 佐藤花子, 年齢: 23"
+    },
+    {
+      "name": "createPerson関数チェック",
+      "variables": {},
+      "expectedOutput": "=== オブジェクトと関数のテスト ===\\n名前: 田中太郎, 年齢: 25\\n名前: 佐藤花子, 年齢: 22\\n\\n--- 年齢の更新 ---\\n更新後: 名前: 田中太郎, 年齢: 30\\n更新後: 名前: 佐藤花子, 年齢: 23"
+    },
+    {
+      "name": "オブジェクト更新確認",
+      "variables": {},
+      "expectedOutput": "=== オブジェクトと関数のテスト ===\\n名前: 田中太郎, 年齢: 25\\n名前: 佐藤花子, 年齢: 22\\n\\n--- 年齢の更新 ---\\n更新後: 名前: 田中太郎, 年齢: 30\\n更新後: 名前: 佐藤花子, 年齢: 23"
+    }
+  ],
+  "expectedOutput": "=== オブジェクトと関数のテスト ===\\n名前: 田中太郎, 年齢: 25\\n名前: 佐藤花子, 年齢: 22\\n\\n--- 年齢の更新 ---\\n更新後: 名前: 田中太郎, 年齢: 30\\n更新後: 名前: 佐藤花子, 年齢: 23",
+  "testVariables": {},
+  "points": 100
+}

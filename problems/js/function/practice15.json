@@ -1,0 +1,41 @@
+{
+  "id": "function/practice15",
+  "title": "問題15：関数とオブジェクトの応用",
+  "description": "ペットショップで使うオブジェクト関数を作成して、オブジェクトの操作を学ぼう！",
+  "instructions": [
+    "オブジェクトを扱う関数の復習をしてください。",
+    "実用的なデータ管理システムでのオブジェクト操作を理解してください。",
+    "オブジェクトの作成、更新、情報取得の一連の流れを学んでください。"
+  ],
+  "template": "// 問題15: 関数とオブジェクトの応用\\n// ペットショップで使うオブジェクト関数を作成して、オブジェクトの操作を学ぼう！\\n// 1. getPetDescription関数を定義してください（引数: pet、戻り値: ペットの情報を表す文字列）\\nfunction getPetDescription(pet) {\\n    /* ここに「名前: [pet.name], 種類: [pet.type], 年齢: [pet.age]歳」を返すコードを書く */\\n}\\n// 2. updatePetAge関数を定義してください（引数: pet, newAge）\\n/* ここにupdatePetAge関数を定義する（petの年齢をnewAgeに更新）*/\\n// 3. createPet関数を定義してください（引数: name, type, age、戻り値: 新しいpetオブジェクト）\\nfunction createPet(name, type, age) {\\n    /* ここにname、type、ageを持つオブジェクトを作成して返すコードを書く */\\n}\\n// 4. 関数を呼び出してテストしてください\\nconsole.log(\"=== ペットショップ管理 ===\");\\n// createPet関数のテスト\\nlet pet1 = /* ここでcreatePet関数を「ポチ」、「犬」、3で呼び出す */;\\nlet pet2 = /* ここでcreatePet関数を「ミケ」、「猫」、2で呼び出す */;\\n// getPetDescription関数のテスト\\nlet description1 = /* ここでgetPetDescription関数をpet1で呼び出す */;\\nconsole.log(description1);\\nlet description2 = /* ここでgetPetDescription関数をpet2で呼び出す */;\\nconsole.log(description2);\\n// updatePetAge関数のテスト\\nconsole.log(\"--- 年齢の更新 ---\");\\n/* ここでupdatePetAge関数をpet1、4で呼び出す */;\\n/* ここでupdatePetAge関数をpet2、3で呼び出す */;\\n// 更新後の確認\\nlet updatedDescription1 = /* ここでgetPetDescription関数をpet1で呼び出す */;\\nconsole.log(\"更新後: \" + updatedDescription1);\\nlet updatedDescription2 = /* ここでgetPetDescription関数をpet2で呼び出す */;\\nconsole.log(\"更新後: \" + updatedDescription2);",
+  "testCases": [
+    {
+      "name": "基本ケース（ペットショップ管理）",
+      "variables": {},
+      "expectedOutput": "=== ペットショップ管理 ===\\n名前: ポチ, 種類: 犬, 年齢: 3歳\\n名前: ミケ, 種類: 猫, 年齢: 2歳\\n\\n--- 年齢の更新 ---\\n更新後: 名前: ポチ, 種類: 犬, 年齢: 4歳\\n更新後: 名前: ミケ, 種類: 猫, 年齢: 3歳"
+    },
+    {
+      "name": "getPetDescription関数チェック",
+      "variables": {},
+      "expectedOutput": "=== ペットショップ管理 ===\\n名前: ポチ, 種類: 犬, 年齢: 3歳\\n名前: ミケ, 種類: 猫, 年齢: 2歳\\n\\n--- 年齢の更新 ---\\n更新後: 名前: ポチ, 種類: 犬, 年齢: 4歳\\n更新後: 名前: ミケ, 種類: 猫, 年齢: 3歳"
+    },
+    {
+      "name": "updatePetAge関数チェック",
+      "variables": {},
+      "expectedOutput": "=== ペットショップ管理 ===\\n名前: ポチ, 種類: 犬, 年齢: 3歳\\n名前: ミケ, 種類: 猫, 年齢: 2歳\\n\\n--- 年齢の更新 ---\\n更新後: 名前: ポチ, 種類: 犬, 年齢: 4歳\\n更新後: 名前: ミケ, 種類: 猫, 年齢: 3歳"
+    },
+    {
+      "name": "createPet関数チェック",
+      "variables": {},
+      "expectedOutput": "=== ペットショップ管理 ===\\n名前: ポチ, 種類: 犬, 年齢: 3歳\\n名前: ミケ, 種類: 猫, 年齢: 2歳\\n\\n--- 年齢の更新 ---\\n更新後: 名前: ポチ, 種類: 犬, 年齢: 4歳\\n更新後: 名前: ミケ, 種類: 猫, 年齢: 3歳"
+    },
+    {
+      "name": "オブジェクト操作確認",
+      "variables": {},
+      "expectedOutput": "=== ペットショップ管理 ===\\n名前: ポチ, 種類: 犬, 年齢: 3歳\\n名前: ミケ, 種類: 猫, 年齢: 2歳\\n\\n--- 年齢の更新 ---\\n更新後: 名前: ポチ, 種類: 犬, 年齢: 4歳\\n更新後: 名前: ミケ, 種類: 猫, 年齢: 3歳"
+    }
+  ],
+  "expectedOutput": "=== ペットショップ管理 ===\\n名前: ポチ, 種類: 犬, 年齢: 3歳\\n名前: ミケ, 種類: 猫, 年齢: 2歳\\n\\n--- 年齢の更新 ---\\n更新後: 名前: ポチ, 種類: 犬, 年齢: 4歳\\n更新後: 名前: ミケ, 種類: 猫, 年齢: 3歳",
+  "testVariables": {},
+  "points": 100
+}
