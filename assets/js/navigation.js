@@ -54,10 +54,6 @@ class NavigationManager {
                             <span class="link-icon">🚀</span>
                             <span class="link-text">フロントエンド入門</span>
                         </a>
-                        
-                            <span class="link-icon">📱</span>
-                            <span class="link-text">エンジニアクイズ</span>
-                        </a>
                         <a href="visualizer.html" class="nav-link ${this.currentPage === 'visualizer' ? 'active' : ''}">
                             <span class="link-icon">🔍</span>
                             <span class="link-text">可視化ツール</span>
