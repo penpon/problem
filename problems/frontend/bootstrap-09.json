@@ -1,6 +1,6 @@
 {
   "id": "bootstrap-09",
-  "title": "ECフィルターバー（カテゴリ/在庫/並び替え）",
+  "title": "フィルターバーUI（2セレクト）",
   "description": "カテゴリ選択・在庫チェック・並び替えの最小フィルターバー",
   "category": "bootstrap",
   "instructions": [
@@ -9,7 +9,7 @@
     "カテゴリ<select#cat.form-select> と 並び替え<select#sort.form-select> を配置（JS不要）"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .container 内に .row.g-2 を作成し、.col-12.col-md-6 ×2 を配置",
     "必須: #cat.form-select と #sort.form-select を各カラムに配置する",
     "非使用: チェックボックス等の追加要素やJSは導入しない"

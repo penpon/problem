@@ -4,12 +4,12 @@
   "description": "3つのカードで価格プランを提示する価格表を構築します。中央のプランを視覚的に強調し、主/副ボタンの使い分けを行います。",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "Bootstrap CDN(@latest) を &lt;head&gt; に読み込む",
     ".container 内で .row.g-4 を使い、.col-12.col-md-4 × 3 のカードを配置",
     "中央のカードのタイトルを <strong> で強調（装飾クラスは使用しない）"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .container > .row.g-4 に .col-12.col-md-4 を3つ配置",
     "必須: 各カラムに .card（.card-header/.card-body）を配置する",
     "必須: 中央のカードはタイトルのみ <strong> で視覚的に強調（色/枠線/背景などの装飾クラスは未使用）",

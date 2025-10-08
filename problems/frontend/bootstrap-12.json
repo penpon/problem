@@ -4,7 +4,7 @@
   "description": "商品画像・タイトル・価格・カテゴリ・説明・CTAを2カラムレイアウトで配置します。視覚的に完成した詳細ページのレイアウトを作ります。",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "Bootstrap CDN(@latest) を &lt;head&gt; に読み込む",
     "メインは .container 内で .row を使って 画像(.img-fluid) と 詳細(テキスト) を 2カラムに配置",
     "装飾ユーティリティ（色/サイズ/バッジ/ボタン等）は使用しない"
   ],

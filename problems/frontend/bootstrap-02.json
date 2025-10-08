@@ -9,7 +9,7 @@
     "本文上部に .container 内で input#q.form-control を配置（placeholder必須）"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: ヘッダーに .navbar.navbar-light.bg-light と .container-fluid を構成",
     "必須: .navbar-brand を配置し、本文上部の .container に #q.form-control[placeholder] を置く",
     "非使用: トグラーやドロップダウン等のJS機能は導入しない"

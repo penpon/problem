@@ -9,7 +9,7 @@
     ".card-img-top / .card-body / .card-title / 価格(強調) / .badge を配置"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .card 構造（.card-img-top / .card-body / .card-title）を作成",
     "推奨: 価格とカテゴリを表示（最小のクラス構成で）"
   ],

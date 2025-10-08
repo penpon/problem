@@ -9,7 +9,7 @@
     "幅に応じて画像が縮むことを確認（固定幅は付けない）"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .container 内の <img> に .img-fluid を付与",
     "必須: 画像に alt を設定し、固定幅指定はしない"
   ],

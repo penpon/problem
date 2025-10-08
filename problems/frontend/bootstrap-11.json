@@ -4,7 +4,7 @@
   "description": "カテゴリ/在庫/並び替えのUIとカードグリッドを1ページに統合して配置します。視覚的に完成状態のレイアウトを作ることが目的です。",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "Bootstrap CDN(@latest) を &lt;head&gt; に読み込む",
     "ヘッダーに .navbar.navbar-light.bg-light + .container-fluid + .navbar-brand を配置",
     ".container 内上部に .row.g-2 を作り、 select#cat.form-select / select#sort.form-select を mdで2列配置（JS不要）",
     "#products.row の中に .col-12.col-md-6 のカードを3枚配置（画像/タイトル/価格）",

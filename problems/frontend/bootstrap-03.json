@@ -9,7 +9,7 @@
     "各ブロックに短いテキストを入れる"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .container > .row.gy-3 を作り、.col-12.col-md-6 ×2 を配置",
     "必須: 各ブロックに短いテキストを配置（装飾ユーティリティは追加しない）"
   ],

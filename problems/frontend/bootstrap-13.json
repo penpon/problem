@@ -4,7 +4,7 @@
   "description": "ブランド・ナビ・検索フォームを含むレスポンシブなヘッダーと、ヒーローセクションを組み合わせた実用構成を作成します。",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "Bootstrap CDN(@latest) を &lt;head&gt; に読み込む",
     ".navbar.navbar-light.bg-light を配置し、.container-fluid 内に .navbar-brand / .navbar-nav / 検索フォーム(入力のみ) を配置",
     "検索フォームは input.form-control.me-2 を用意（ボタンやoutlineは使用しない）",
     "ヒーローは .container 内で 見出し/テキスト/ボタン無しの最小構成とする"

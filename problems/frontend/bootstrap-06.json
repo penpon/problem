@@ -9,7 +9,7 @@
     "各アイテムは簡単なテキストのみ（カード不要）"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .container > .row.g-3 を作り、.col-12.col-md-6 を複数配置",
     "必須: 各カラムはテキストのみ（カード等の新規コンポーネントは導入しない）"
   ],

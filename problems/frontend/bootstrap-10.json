@@ -1,6 +1,6 @@
 {
   "id": "bootstrap-10",
-  "title": "ECカート概要（合計・購入ボタン）",
+  "title": "ECカート概要（合計のみ）",
   "description": "リスト表示の合計金額と購入ボタンを最小で配置",
   "category": "bootstrap",
   "instructions": [
@@ -9,7 +9,7 @@
     "合計金額を <strong class=\"total\"></strong> で強調（装飾クラスは使用しない）"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .container 内に .list-group と .list-group-item（2つ以上）を配置",
     "必須: 合計は <strong class=\"total\"> で強調（CSSユーティリティは新規導入しない）",
     "非使用: ボタン等の新規コンポーネントは導入しない"

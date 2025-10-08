@@ -9,7 +9,7 @@
     "ブランドとリンク1〜2個を配置"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .navbar.navbar-light.bg-light と .container-fluid の構成を作る",
     "必須: .navbar-brand と .nav-link（1〜2個）を配置",
     "非使用: トグラーや collapse のJS機能は導入しない"

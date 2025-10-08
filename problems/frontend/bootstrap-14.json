@@ -4,7 +4,7 @@
   "description": "ヒーローと3つの特徴セクションを持つ最小ランディングページを構築します。見出し、リード文、CTAボタン、3カラム特徴を整理して配置します。",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "Bootstrap CDN(@latest) を &lt;head&gt; に読み込む",
     "ヘッダーに .container を用いて中央寄せのヒーロー（見出し + 説明）を作成（装飾クラスは使用しない）",
     "特徴セクションを .container 内に .row.g-4 + .col-12.col-md-4 × 3 で作成し、各ボックスは最小テキスト構成",
     "装飾クラス（.display-6 / .lead / .text-muted / ボタン等）は使用しない"

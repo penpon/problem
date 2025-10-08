@@ -9,7 +9,7 @@
     "label は省略可、アクセシビリティのため placeholder を入れる"
   ],
   "implementationPoints": [
-    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: &lt;head&gt; に Bootstrap CSS CDN を読み込む",
     "必須: .container > .row でレイアウトし、input.form-control と .btn を配置",
     "推奨: input には placeholder を設定（label は任意）"
   ],
