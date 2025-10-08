@@ -501,7 +501,7 @@ extractProblemNumber(problemId, categoryId) {
                 <div class="instructions-header">💡 実装のポイント</div>
                 <ul>
                     ${(problem.implementationPoints || []).map(point => 
-                        point ? `<li>${escapeHtml(point)}</li>` : '<li style="list-style:none; height:5px;"></li>'
+                        point ? `<li>${point}</li>` : '<li style="list-style:none; height:5px;"></li>'
                     ).join('')}
                 </ul>
             </div>
