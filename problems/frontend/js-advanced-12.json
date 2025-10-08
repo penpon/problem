@@ -13,8 +13,8 @@
     "必須: 初期値を適切に設定する"
   ],
   "files": { 
-    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.html.expected"}, 
-    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.css.expected"}, 
-    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-12/files.js.expected"} 
+    "html": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-12/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-12/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-12/files.js.expected"} 
   }
 }

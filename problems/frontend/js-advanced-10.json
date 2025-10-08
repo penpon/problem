@@ -6,7 +6,7 @@
   "instructions": [
     "入力値を toLowerCase() + trim() で正規化",
     "filter() + includes() で商品名を検索",
-    "map() + join('') + innerHTML で表示"
+    "<template id=\"item-template\"> を cloneNode(true) し、textContent で差し込んで出力コンテナに appendChild"
   ],
   "implementationPoints": [
     "必須: includes() を使う",
@@ -14,8 +14,8 @@
     "推奨: 空欄時は全件表示"
   ],
   "files": { 
-    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.html.expected"}, 
-    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.css.expected"}, 
-    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-10/files.js.expected"} 
+    "html": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-10/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-10/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-10/files.js.expected"} 
   }
 }

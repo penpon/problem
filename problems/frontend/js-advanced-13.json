@@ -4,7 +4,7 @@
   "description": "map() で一覧を描画し、入力値で filter() + includes() によるキーワード検索を実装します（大小無視）。",
   "category": "javascript-advanced",
   "instructions": [
-    "一覧描画: map() + join('') + innerHTML",
+    "一覧描画: <template> を cloneNode(true) + textContent で描画",
     "検索: toLowerCase() + trim() → filter() + includes()"
   ],
   "implementationPoints": [
@@ -12,8 +12,8 @@
     "必須: 大小無視（toLowerCase 使用）"
   ],
   "files": { 
-    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-13/files.html.expected"}, 
-    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-13/files.css.expected"}, 
-    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-13/files.js.expected"} 
+    "html": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-13/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-13/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-13/files.js.expected"} 
   }
 }

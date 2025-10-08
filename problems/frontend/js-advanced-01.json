@@ -1,33 +1,32 @@
 {
   "id": "js-advanced-01",
   "title": "配列からHTML生成（map基礎）",
-  "description": "<template> を複製して DOM 操作で表示します（innerHTML は使いません）。ECサイトの商品リスト生成の基礎を安全に学びます。",
+  "description": "<template> を複製して DOM 操作で表示します。ECサイトの商品リスト生成の基礎を安全に学びます。",
   "category": "javascript-advanced",
   "instructions": [
     "出力用コンテナ（例: #list）と <template id=\"item-template\"> を用意する",
     "配列 products をスプレッド構文でコピー（const items = [...products]）",
     "for ループで template を cloneNode(true) して要素を作る",
-    "textContent で名前と価格を差し込み、appendChild でコンテナに追加する",
-    "innerHTML は使用しない（安全のため）"
+    "textContent で名前と価格を差し込み、appendChild でコンテナに追加する"
   ],
   "implementationPoints": [
     "必須: <template> を cloneNode(true) して要素を生成すること",
-    "必須: textContent で値を挿入すること（innerHTML は使わない）",
+    "必須: textContent で値を挿入すること",
     "必須: 配列コピーにスプレッド構文を使用すること（const items = [...products]）",
     "推奨: for ループと const/let を使ってシンプルに書く"
   ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>配列からHTML生成</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>商品一覧</h1>\n    <div id=\"list\"></div>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.html.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-01/files.html.expected"
     },
     "css": {
       "template": "",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.css.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-01/files.css.expected"
     },
     "js": {
       "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: products.map() を使って各商品のHTMLを作成\n// TODO: .join('') で1つの文字列にまとめる\n// TODO: #list の innerHTML に代入\n\nfunction renderProducts() {\n  const list = document.getElementById('list');\n  // ここに実装してください\n}\n\nrenderProducts();",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-01/files.js.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-01/files.js.expected"
     }
   }
 }

@@ -18,15 +18,15 @@
   "files": {
     "html": {
       "template": "",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-05/files.html.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-05/files.html.expected"
     },
     "css": {
       "template": "",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-05/files.css.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-05/files.css.expected"
     },
     "js": {
       "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\nlet cartCount = 0;\n\n// TODO: 商品リストを動的に生成（map + join + innerHTML）\n// TODO: 各商品に data-id 属性と add-btn クラスのボタンを配置\n// TODO: #list に1つだけクリックイベントを設定（イベント委譲）\n// TODO: クリックされた要素が add-btn かどうかを classList.contains() で判定\n// TODO: カート件数を増やして #cart-count に表示\n\nfunction renderProducts() {\n  // ここに実装してください\n}\n\n// イベント委譲の設定\nfunction setupEventDelegation() {\n  // ここに実装してください\n}\n\nrenderProducts();\nsetupEventDelegation();",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-05/files.js.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-05/files.js.expected"
     }
   }
 }

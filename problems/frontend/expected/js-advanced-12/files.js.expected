@@ -23,21 +23,24 @@ function render() {
   const summary = calculateSummary();
   
   // 集計を表示
-  document.getElementById('summary').innerHTML = `
-    合計金額: ¥${summary.total.toLocaleString()} / 件数: ${summary.count}件
-  `;
+  const summaryEl = document.getElementById('summary');
+  summaryEl.textContent = '';
+  const p = document.createElement('p');
+  p.textContent = '合計金額: ¥' + summary.total + ' / 件数: ' + summary.count + '件';
+  summaryEl.appendChild(p);
   
   // 一覧を表示
-  const html = products.map(function(p) {
-    return `
-      <div class="item">
-        <div class="item-name">${p.name}</div>
-        <div class="item-price">¥${p.price.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('');
-  
-  document.getElementById('list').innerHTML = html;
+  const list = document.getElementById('list');
+  const template = document.getElementById('item-template');
+  list.textContent = '';
+  const items = [...products];
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = it.name;
+    el.querySelector('.item-price').textContent = '¥' + it.price;
+    list.appendChild(el);
+  }
 }
 
 render();

@@ -1,21 +1,21 @@
 {
   "id": "js-advanced-07",
   "title": "配列からHTML生成（画像付きカード最小）",
-  "description": "map() と join('') で商品データから最小のカードHTMLを生成し、innerHTML で表示します。",
+  "description": "<template> を複製して DOM 操作でカードを生成・表示します。",
   "category": "javascript-advanced",
   "instructions": [
-    "map() で各商品の HTML 文字列を作る",
-    "join('') で1つの文字列に結合する",
-    "innerHTML で #list など任意の要素に挿入する"
+    "出力先コンテナ（例: #list）と `<template id=\"item-template\">` を用意する",
+    "for ループで template を cloneNode(true) して要素を作る",
+    "画像の src/alt、名前や価格を textContent/属性で差し込み、appendChild で追加する"
   ],
   "implementationPoints": [
-    "必須: map() と join('') を使う",
-    "必須: innerHTML で表示する",
+    "必須: <template> を cloneNode(true) して要素を作る",
+    "必須: textContent/属性で値を差し込む",
     "任意: 画像URLが無い場合は代替テキスト表示"
   ],
   "files": { 
-    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.html.expected"}, 
-    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.css.expected"}, 
-    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-07/files.js.expected"} 
+    "html": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-07/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-07/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-07/files.js.expected"} 
   }
 }

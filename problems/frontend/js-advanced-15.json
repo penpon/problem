@@ -4,16 +4,16 @@
   "description": "現在表示中の配列に対して reduce() を使い、合計金額または件数（どちらか必須、両方でも可）を表示します。",
   "category": "javascript-advanced",
   "instructions": [
-    "reduce() で合計 または 件数を算出",
-    "結果を&lt;p&gt;などに表示（idは任意）"
+    "reduce() で合計 または 件数を算出（初期値 0）",
+    "DOM操作で表示（textContent/appendChild を使用）"
   ],
   "implementationPoints": [
     "必須: reduce() を使う",
     "必須: 初期値の設定（例: 0）"
   ],
   "files": { 
-    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-15/files.html.expected"}, 
-    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-15/files.css.expected"}, 
-    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-15/files.js.expected"} 
+    "html": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-15/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-15/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-15/files.js.expected"} 
   }
 }

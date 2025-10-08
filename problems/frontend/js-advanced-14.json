@@ -5,16 +5,16 @@
   "category": "javascript-advanced",
   "instructions": [
     "カテゴリ: filter() で一致したものだけ",
-    "並び替え: sort() で a.price - b.price / b.price - a.price",
-    "表示: map() + join('') + innerHTML"
+    "並び替え: sort() で a.price - b.price / b.price - a.price（配列コピーはスプレッド構文）",
+    "表示: <template> を cloneNode(true) + textContent で描画"
   ],
   "implementationPoints": [
     "必須: filter() と sort() を使う",
     "必須: 昇順・降順の両対応"
   ],
   "files": { 
-    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.html.expected"}, 
-    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.css.expected"}, 
-    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-14/files.js.expected"} 
+    "html": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-14/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-14/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-14/files.js.expected"} 
   }
 }

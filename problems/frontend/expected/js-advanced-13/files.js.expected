@@ -12,26 +12,31 @@ function searchAndRender() {
   const searchInput = document.getElementById('search');
   const keyword = searchInput.value.toLowerCase().trim();
   const list = document.getElementById('list');
-  
-  // filter() + includes() で検索（大小無視）
+  const template = document.getElementById('item-template');
+
   let filtered = products;
   if (keyword) {
     filtered = products.filter(function(p) {
       return p.name.toLowerCase().includes(keyword);
     });
   }
-  
-  // map() + join('') + innerHTML で表示
-  const html = filtered.map(function(p) {
-    return `
-      <div class="item">
-        <div class="item-name">${p.name}</div>
-        <div class="item-price">¥${p.price.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('');
-  
-  list.innerHTML = html || '<p style="color: #999;">該当する商品がありません</p>';
+
+  list.textContent = '';
+  const items = [...filtered];
+  if (items.length === 0) {
+    const p = document.createElement('p');
+    p.style.color = '#999';
+    p.textContent = '該当する商品がありません';
+    list.appendChild(p);
+    return;
+  }
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = it.name;
+    el.querySelector('.item-price').textContent = '¥' + it.price;
+    list.appendChild(el);
+  }
 }
 
 // 入力時に検索

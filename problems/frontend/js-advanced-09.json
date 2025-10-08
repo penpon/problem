@@ -6,15 +6,15 @@
   "instructions": [
     "昇順/降順を切り替えるための値を用意（例: sortType）",
     "昇順は a.price - b.price、降順は b.price - a.price",
-    "map() + join('') + innerHTML で表示"
+    "配列はスプレッド構文でコピーし sort() で並び替え、<template> を cloneNode(true) + textContent で描画"
   ],
   "implementationPoints": [
     "必須: sort() で数値比較を行う",
     "必須: 昇順・降順の両方に対応する"
   ],
   "files": { 
-    "html": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.html.expected"}, 
-    "css": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.css.expected"}, 
-    "js": {"template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-09/files.js.expected"} 
+    "html": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-09/files.html.expected"}, 
+    "css": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-09/files.css.expected"}, 
+    "js": {"template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-09/files.js.expected"} 
   }
 }

@@ -10,28 +10,33 @@ const products = [
 // 検索して表示
 function searchProducts() {
   const searchInput = document.getElementById('search');
-  const keyword = searchInput.value.trim().toLowerCase(); // 正規化
+  const keyword = searchInput.value.trim().toLowerCase();
   const list = document.getElementById('list');
-  
-  // filter() + includes() で検索
-  let filteredProducts = products;
+  const template = document.getElementById('item-template');
+
+  let filtered = products;
   if (keyword) {
-    filteredProducts = products.filter(function(p) {
+    filtered = products.filter(function(p) {
       return p.name.toLowerCase().includes(keyword);
     });
   }
-  
-  // map() + join('') で HTML 生成
-  const html = filteredProducts.map(function(p) {
-    return `
-      <div class="item">
-        <div class="item-name">${p.name}</div>
-        <div class="item-price">¥${p.price.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('');
-  
-  list.innerHTML = html || '<p style="color: #999;">該当する商品がありません</p>';
+
+  list.textContent = '';
+  const items = [...filtered];
+  if (items.length === 0) {
+    const p = document.createElement('p');
+    p.style.color = '#999';
+    p.textContent = '該当する商品がありません';
+    list.appendChild(p);
+    return;
+  }
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = item.name;
+    el.querySelector('.item-price').textContent = '¥' + item.price;
+    list.appendChild(el);
+  }
 }
 
 // 入力時に検索実行

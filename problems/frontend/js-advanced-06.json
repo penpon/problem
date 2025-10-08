@@ -1,7 +1,7 @@
 {
   "id": "js-advanced-06",
   "title": "合計/件数の集計（reduce基礎）",
-  "description": "reduce() を使って配列から合計金額や件数を計算し、画面に表示します。ECのカート合計や集計の基礎です。",
+  "description": "reduce() で集計し、DOM操作（textContent/appendChild）で画面に表示します（innerHTML は任意ではなく非推奨）。",
   "category": "javascript-advanced",
   "instructions": [
     "配列から合計金額 または 件数のどちらか1つ以上を reduce() で計算する",
@@ -14,11 +14,11 @@
     "推奨: 初期値を適切に設定する（合計なら 0 など）"
   ],
   "files": {
-    "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-06/files.html.expected" },
-    "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-06/files.css.expected" },
+    "html": { "template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-06/files.html.expected" },
+    "css":  { "template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-06/files.css.expected" },
     "js":   {
       "template": "// 商品データ\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: reduce() を使って合計金額 または 件数を計算して表示\nfunction showSummary() {\n  // ここに実装してください\n}\n\nshowSummary();",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-06/files.js.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-06/files.js.expected"
     }
   }
 }

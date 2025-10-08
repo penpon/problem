@@ -18,15 +18,15 @@
   "files": {
     "html": {
       "template": "",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-02/files.html.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-02/files.html.expected"
     },
     "css": {
       "template": "",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-02/files.css.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-02/files.css.expected"
     },
     "js": {
       "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', category: '家電', price: 89800 },\n  { id: 2, name: 'ボールペン', category: '文具', price: 150 },\n  { id: 3, name: 'マウス', category: '家電', price: 1980 },\n  { id: 4, name: 'ノート', category: '文具', price: 200 }\n];\n\n// TODO: filter() を使ってカテゴリで絞り込む\n// TODO: map() と join('') でHTMLに変換\n// TODO: #list に innerHTML で挿入\n\nfunction renderProducts(selectedCategory) {\n  // ここに実装してください\n}\n\n// カテゴリ変更時に実行\ndocument.getElementById('category').addEventListener('change', function(e) {\n  renderProducts(e.target.value);\n});\n\n// 初期表示\nrenderProducts('all');",
-      "expected": "__INCLUDE__: problems/frontend/expected/js-advanced-02/files.js.expected"
+      "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-02/files.js.expected"
     }
   }
 }

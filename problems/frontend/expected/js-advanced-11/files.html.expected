@@ -11,6 +11,12 @@
     <h1>商品一覧</h1>
     <div id="list"></div>
   </div>
+  <template id="item-template">
+    <div class="item">
+      <div class="item-name"></div>
+      <button class="fav-btn" data-id="">♡</button>
+    </div>
+  </template>
   <script src="script.js"></script>
 </body>
 </html>

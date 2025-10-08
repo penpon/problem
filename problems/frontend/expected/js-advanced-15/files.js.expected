@@ -25,22 +25,29 @@ function render() {
   const summary = calculateSummary();
   
   // 集計結果を表示
-  document.getElementById('summary').innerHTML = `
-    <div class="summary-item">商品件数: ${summary.count}件</div>
-    <div class="summary-total">合計金額: ¥${summary.totalPrice.toLocaleString()}</div>
-  `;
+  const summaryEl = document.getElementById('summary');
+  summaryEl.textContent = '';
+  const countDiv = document.createElement('div');
+  countDiv.className = 'summary-item';
+  countDiv.textContent = '商品件数: ' + summary.count + '件';
+  const totalDiv = document.createElement('div');
+  totalDiv.className = 'summary-total';
+  totalDiv.textContent = '合計金額: ¥' + summary.totalPrice;
+  summaryEl.appendChild(countDiv);
+  summaryEl.appendChild(totalDiv);
   
   // 商品一覧を表示
-  const html = products.map(function(p) {
-    return `
-      <div class="item">
-        <div class="item-name">${p.name}</div>
-        <div class="item-price">¥${p.price.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('');
-  
-  document.getElementById('list').innerHTML = html;
+  const list = document.getElementById('list');
+  const template = document.getElementById('item-template');
+  list.textContent = '';
+  const items = [...products];
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = it.name;
+    el.querySelector('.item-price').textContent = '¥' + it.price;
+    list.appendChild(el);
+  }
 }
 
 render();

@@ -14,43 +14,36 @@ function render() {
   const categorySelect = document.getElementById('category');
   const selectedCategory = categorySelect.value;
   const list = document.getElementById('list');
-  
-  // filter() でカテゴリ絞込
+  const template = document.getElementById('item-template');
+
   let filtered = products;
   if (selectedCategory && selectedCategory !== 'all') {
-    filtered = products.filter(function(p) {
-      return p.category === selectedCategory;
-    });
+    filtered = products.filter(function(p) { return p.category === selectedCategory; });
   }
-  
-  // 元配列を守るためコピー
-  let sorted = filtered.slice();
-  
-  // sort() で並び替え
+
+  const sorted = [...filtered];
   if (currentSort === 'asc') {
-    sorted.sort(function(a, b) {
-      return a.price - b.price; // 昇順
-    });
+    sorted.sort(function(a, b) { return a.price - b.price; });
   } else if (currentSort === 'desc') {
-    sorted.sort(function(a, b) {
-      return b.price - a.price; // 降順
-    });
+    sorted.sort(function(a, b) { return b.price - a.price; });
   }
-  
-  // map() + join('') + innerHTML で表示
-  const html = sorted.map(function(p) {
-    return `
-      <div class="item">
-        <div class="item-info">
-          <div class="item-name">${p.name}</div>
-          <div class="item-category">${p.category}</div>
-        </div>
-        <div class="item-price">¥${p.price.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('');
-  
-  list.innerHTML = html || '<p style="color: #999;">該当する商品がありません</p>';
+
+  list.textContent = '';
+  if (sorted.length === 0) {
+    const p = document.createElement('p');
+    p.style.color = '#999';
+    p.textContent = '該当する商品がありません';
+    list.appendChild(p);
+    return;
+  }
+  for (let i = 0; i < sorted.length; i++) {
+    const it = sorted[i];
+    const el = template.content.firstElementChild.cloneNode(true);
+    el.querySelector('.item-name').textContent = it.name;
+    el.querySelector('.item-category').textContent = it.category;
+    el.querySelector('.item-price').textContent = '¥' + it.price;
+    list.appendChild(el);
+  }
 }
 
 // イベント設定
