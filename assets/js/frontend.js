@@ -689,12 +689,13 @@ extractProblemNumber(problemId, categoryId) {
             return this.getDefaultTemplate();
         }
         
-        // 期待プレビュー時は外部参照<link rel="stylesheet">や<script src>を除去（404防止）
+        // 期待プレビュー時は外部参照を一律除去せず、BootstrapのCDNのみ許可して残す
+        const allowBootstrapCdn = /^(https?:)?\/\/cdn\.jsdelivr\.net\/npm\/bootstrap@/i;
         let combinedHtml = htmlContent
-            // 外部CSSリンクを除去
-            .replace(/<link[^>]*rel=["']stylesheet["'][^>]*>/gi, '')
-            // 外部JS読み込みを除去
-            .replace(/<script[^>]*src=[^>]*><\s*\/script>/gi, '');
+            .replace(/<link[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi,
+                (m, href) => allowBootstrapCdn.test(href) ? m : '')
+            .replace(/<script[^>]*src=["']([^"']+)["'][^>]*><\s*\/script>/gi,
+                (m, src) => allowBootstrapCdn.test(src) ? m : '');
         
         // CSS を <style> タグとして挿入
         if (cssContent.trim()) {
@@ -834,10 +835,13 @@ extractProblemNumber(problemId, categoryId) {
             return this.getDefaultTemplate();
         }
         
-        // 外部<link rel="stylesheet">や<script src>は除去（ローカル404防止）
+        // 外部参照を一律除去せず、BootstrapのCDNのみ許可して残す（ローカル404防止と両立）
+        const allowBootstrapCdn = /^(https?:)?\/\/cdn\.jsdelivr\.net\/npm\/bootstrap@/i;
         let combinedHtml = htmlContent
-            .replace(/<link[^>]*rel=["']stylesheet["'][^>]*>/gi, '')
-            .replace(/<script[^>]*src=[^>]*><\s*\/script>/gi, '');
+            .replace(/<link[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi,
+                (m, href) => allowBootstrapCdn.test(href) ? m : '')
+            .replace(/<script[^>]*src=["']([^"']+)["'][^>]*><\s*\/script>/gi,
+                (m, src) => allowBootstrapCdn.test(src) ? m : '');
         
         // CSS を <style> タグとして挿入
         if (cssContent.trim()) {
