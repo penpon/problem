@@ -25,7 +25,7 @@
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-02/files.css.expected"
     },
     "js": {
-      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', category: '家電', price: 89800 },\n  { id: 2, name: 'ボールペン', category: '文具', price: 150 },\n  { id: 3, name: 'マウス', category: '家電', price: 1980 },\n  { id: 4, name: 'ノート', category: '文具', price: 200 }\n];\n\n// TODO: filter() を使ってカテゴリで絞り込む\n// TODO: map() と join('') でHTMLに変換\n// TODO: #list に innerHTML で挿入\n\nfunction renderProducts(selectedCategory) {\n  // ここに実装してください\n}\n\n// カテゴリ変更時に実行\ndocument.getElementById('category').addEventListener('change', function(e) {\n  renderProducts(e.target.value);\n});\n\n// 初期表示\nrenderProducts('all');",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', category: '家電', price: 89800 },\n  { id: 2, name: 'ボールペン', category: '文具', price: 150 },\n  { id: 3, name: 'マウス', category: '家電', price: 1980 },\n  { id: 4, name: 'ノート', category: '文具', price: 200 }\n];\n\n// TODO: セレクト値（#category）を取得（all は全件）\n// TODO: products を category 一致で filter（all はフィルタなし）\n// TODO: <template> を cloneNode(true) + textContent で描画\n// TODO: #list をクリアして appendChild（innerHTML は使わない）\n\nfunction renderProducts(selectedCategory) {\n  // ここに実装してください\n}\n\n// カテゴリ変更時に実行\ndocument.getElementById('category').addEventListener('change', function(e) {\n  renderProducts(e.target.value);\n});\n\n// 初期表示\nrenderProducts('all');",
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-02/files.js.expected"
     }
   }

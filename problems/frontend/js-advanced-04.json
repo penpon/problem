@@ -25,7 +25,7 @@
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-04/files.css.expected"
     },
     "js": {
-      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'ボールペン', price: 150 },\n  { id: 3, name: 'マウス', price: 1980 },\n  { id: 4, name: 'ノート', price: 200 }\n];\n\n// TODO: filter() と includes() を使って検索する\n// TODO: toLowerCase() で大文字小文字を区別しない\n// TODO: map() と join('') でHTMLに変換\n// TODO: #list に innerHTML で挿入\n\nfunction searchProducts(keyword) {\n  // ここに実装してください\n}\n\n// 入力時に検索を実行\ndocument.getElementById('search').addEventListener('input', function(e) {\n  searchProducts(e.target.value);\n});\n\n// 初期表示\nsearchProducts('');",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'ボールペン', price: 150 },\n  { id: 3, name: 'マウス', price: 1980 },\n  { id: 4, name: 'ノート', price: 200 }\n];\n\n// TODO: 入力値を trim().toLowerCase() で正規化\n// TODO: products.filter(p.name.toLowerCase().includes(keyword)) で絞り込み\n// TODO: <template> を cloneNode(true) + textContent で描画（innerHTML は使わない）\n// TODO: 空欄時は全件表示\n\nfunction searchProducts(keyword) {\n  // ここに実装してください\n}\n\n// 入力時に検索を実行\ndocument.getElementById('search').addEventListener('input', function(e) {\n  searchProducts(e.target.value);\n});\n\n// 初期表示\nsearchProducts('');",
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-04/files.js.expected"
     }
   }

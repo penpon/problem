@@ -25,7 +25,7 @@
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-01/files.css.expected"
     },
     "js": {
-      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: products.map() を使って各商品のHTMLを作成\n// TODO: .join('') で1つの文字列にまとめる\n// TODO: #list の innerHTML に代入\n\nfunction renderProducts() {\n  const list = document.getElementById('list');\n  // ここに実装してください\n}\n\nrenderProducts();",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: <template id=\"item-template\"> を cloneNode(true) で複製\n// TODO: textContent で name と price を差し込む\n// TODO: #list に appendChild で追加（innerHTML は使わない）\n// TODO: 配列はスプレッド構文でコピーしてから for で回す\n\nfunction renderProducts() {\n  const list = document.getElementById('list');\n  // ここに実装してください\n}\n\nrenderProducts();",
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-01/files.js.expected"
     }
   }

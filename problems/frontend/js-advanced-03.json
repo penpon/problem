@@ -25,7 +25,7 @@
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-03/files.css.expected"
     },
     "js": {
-      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: sort() を使って価格順に並び替える\n// TODO: 昇順は a.price - b.price\n// TODO: 降順は b.price - a.price\n// TODO: map() と join('') でHTMLに変換\n// TODO: #list に innerHTML で挿入\n\nfunction renderProducts(sortType) {\n  // ここに実装してください\n}\n\n// 並び替え変更時に実行\ndocument.getElementById('sort').addEventListener('change', function(e) {\n  renderProducts(e.target.value);\n});\n\n// 初期表示\nrenderProducts('default');",
+      "template": "// 商品データ（配列）\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: 配列を [...products] でコピー\n// TODO: sort() 昇順: a.price - b.price / 降順: b.price - a.price\n// TODO: <template> を cloneNode(true) + textContent で描画（innerHTML は使わない）\n\nfunction renderProducts(sortType) {\n  // ここに実装してください\n}\n\n// 並び替え変更時に実行\ndocument.getElementById('sort').addEventListener('change', function(e) {\n  renderProducts(e.target.value);\n});\n\n// 初期表示\nrenderProducts('default');",
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-03/files.js.expected"
     }
   }

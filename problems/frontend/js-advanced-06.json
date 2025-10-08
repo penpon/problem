@@ -17,7 +17,7 @@
     "html": { "template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-06/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-06/files.css.expected" },
     "js":   {
-      "template": "// 商品データ\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: reduce() を使って合計金額 または 件数を計算して表示\nfunction showSummary() {\n  // ここに実装してください\n}\n\nshowSummary();",
+      "template": "// 商品データ\nconst products = [\n  { id: 1, name: 'ノートパソコン', price: 89800 },\n  { id: 2, name: 'マウス', price: 1980 },\n  { id: 3, name: 'キーボード', price: 4980 }\n];\n\n// TODO: reduce() で合計 または 件数を算出（初期値 0）\n// TODO: 結果を #summary に DOM 生成で表示（textContent/appendChild）\n// TODO: innerHTML は使わない\nfunction showSummary() {\n  // ここに実装してください\n}\n\nshowSummary();",
       "expected": "__INCLUDE__: /problems/frontend/expected/js-advanced-06/files.js.expected"
     }
   }
