@@ -5,7 +5,8 @@
   "category": "ec-project",
   "instructions": [
     "入力欄（#searchInput）の文字列に基づき products を filter() + includes() で絞り込み、#productList にカード表示する",
-    "Bootstrap グリッド（.container > .row > .col-*-*）でレスポンシブ表示にする"
+    "Bootstrap グリッド（.container > .row > .col-*-*）でレスポンシブ表示にする",
+    "<template> を cloneNode(true) して DOM 操作で描画し、innerHTML は使用しない"
   ],
   "files": {
     "html": {
@@ -21,26 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-05/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "入力に応じて商品カードが絞り込まれ、1〜3列で表示される"
-  },
-  "checks": [
-    {
-      "id": "js-search",
-      "name": "includes() による検索",
-      "type": "js",
-      "message": "入力値に応じて配列を filter() + includes() で絞り込み、#productList を更新していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+  "implementationPoints": [
+    "必須: 入力値を trim と toLowerCase で正規化",
+    "必須: name.toLowerCase().includes(query) で filter",
+    "必須: <template> 複製と textContent で描画（innerHTML禁止）"
   ],
   "hints": [
-    "input.value.toLowerCase() と p.name.toLowerCase().includes(q) で照合",
-    "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
+    "const q = input.value.trim().toLowerCase()",
+    "col-12 col-sm-6 col-lg-4 のクラスでレスポンシブ配置"
   ]
 }

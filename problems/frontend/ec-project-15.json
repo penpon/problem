@@ -1,22 +1,21 @@
 {
   "id": "ec-project-15",
-  "title": "15: 空状態UI",
+  "title": "15: カート件数更新（委譲で+1）",
   "category": "ec-project",
-  "description": "条件に一致する商品がない場合に空状態(Empty State)を表示し、ユーザーに分かりやすく案内する。",
+  "description": "クリックのイベント委譲で [data-add] を検出し、カート件数(#cartCount)を +1 だけ更新します。",
   "instructions": [
-    "価格レンジと並び替えで一覧生成",
-    "対象0件のとき #emptyState を表示",
-    "委譲クリックでカート件数更新"
+    "一覧は <template> 複製＋textContent で描画（innerHTML禁止）",
+    "#list に click を1つだけ付与（イベント委譲）",
+    "e.target.closest('[data-add]') を検出し #cartCount を +1 更新"
   ],
   "files": {
     "html": {"template": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>課題実装</title><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\"></head><body><main class=\"container\"><div id=\"list\"></div></main><script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script></body></html>", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.html.expected"},
     "css": {"template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.css.expected"},
     "js": {"template": "// 実装してください", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-15/files.js.expected"}
   },
-  "checks": [
-    {"id":"controls","type":"html","name":"コントロール","message":"#priceMin,#priceMax,#sort,#cartCount,#list,#emptyState が存在"},
-    {"id":"empty-state","type":"js","name":"空状態","message":"0件時に #emptyState が非表示ではなくなる動作がある"},
-    {"id":"grid","type":"css","name":"グリッド","message":"#list 直下に col-12 col-sm-6 col-lg-4 が並ぶ"}
-  ],
-  "expectedResult": {"behavior":"価格条件で0件のとき空状態が表示され、条件を戻すとリストが出る。ボタンでカート件数が増える"}
+  "implementationPoints": [
+    "必須: 親要素#list に click リスナー1つ",
+    "必須: e.target.closest('[data-add]') で判定",
+    "必須: 件数は変数で保持→#cartCount.textContent に反映"
+  ]
 }

@@ -1,11 +1,12 @@
 {
   "id": "ec-project-12",
-  "title": "12: 昇順ソート基礎",
-  "description": "価格昇順に並べた配列からカードHTMLを生成し #products に表示する基礎を学びます。",
+  "title": "12: 合計の算出（reduce）",
+  "description": "配列の価格を reduce で合計し、所定の要素に表示します（<template>描画・innerHTML禁止）。",
   "category": "ec-project",
   "instructions": [
-    "products.slice().sort((a,b)=>a.price-b.price) で昇順にし map(...).join('') を #products.innerHTML に代入",
-    "#products 直下に .col-12 .col-sm-6 .col-lg-4 を付与してグリッド表示"
+    "products の price を reduce((sum,p)=>sum+p.price,0) で合計",
+    "結果を #total に textContent で表示",
+    "一覧描画は <template> で行い、innerHTML は使用しない"
   ],
   "files": {
     "html": {
@@ -21,25 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-12/files.js.expected"
     }
   },
-  "expectedResult": {
-    "behavior": "商品カードが価格昇順で表示され、1〜3列でレスポンシブに並ぶ"
-  },
-  "checks": [
-    {
-      "id": "uses-map",
-      "name": "map()でHTML生成",
-      "type": "js",
-      "message": "配列に対して map() を用い、文字列を join('') して挿入していること"
-    },
-    {
-      "id": "grid-classes",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": "#products 直下の要素に col-12 col-sm-6 col-lg-4 が付与されていること"
-    }
+  "implementationPoints": [
+    "必須: reduce で合計数値を算出",
+    "必須: 合計を #total に textContent で表示",
+    "必須: 一覧は <template> 複製 + appendChild（innerHTML禁止）"
   ],
   "hints": [
-    "products.slice().sort((a,b)=>a.price-b.price) で昇順",
-    "sorted.map(...).join('') を innerHTML に代入"
+    "Number への型注意（price は数値前提）",
+    "list は毎回クリアしてから描画"
   ]
 }

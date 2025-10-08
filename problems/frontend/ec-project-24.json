@@ -13,12 +13,11 @@
     "css": { "template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-24/files.css.expected" },
     "js": { "template": "// 実装してください", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-24/files.js.expected" }
   },
-  "checks": [
-    { "id":"views", "type":"html", "name":"ビュー", "message":"#viewCatalog,#viewCheckout,#viewComplete,#viewAuth,#viewAdmin が存在" },
-    { "id":"header", "type":"html", "name":"ヘッダー", "message":"#cartCount,#miniCartTotal,#goCheckoutMini,#goAdmin,#authArea が存在" },
-    { "id":"toggle", "type":"js", "name":"切替", "message":"showView('catalog'|'checkout'|'complete'|'auth'|'admin') で表示切替できる" }
+  "implementationPoints": [
+    "必須: 主要ビュー要素の存在確認",
+    "必須: showView() による d-none 切替の素振り",
+    "必須: ミニカート件数/合計の表示（textContent）"
   ],
-  "expectedResult": { "behavior": "主要要素が揃い、簡易的な遷移とカートUIの更新が機能する" },
   "hints": [
     "ビュー切替は classList.toggle('d-none', ...) を使う",
     "合計は reduce で算出"

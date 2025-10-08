@@ -1,12 +1,12 @@
 {
   "id": "ec-project-23",
-  "title": "23: 2ビュー遷移の素振り",
+  "title": "23: 会員の購入履歴表示",
   "category": "ec-project",
-  "description": "A/B の2ビューを d-none の付け外しで切り替える基礎練習。ヘッダーからもボタンで切替可能にする。",
+  "description": "会員（userId）で logs を filter し、該当履歴のみを <template> で描画します。",
   "instructions": [
-    "#viewA と #viewB を切替",
-    "header の #goA/#goB と、各ビュー内の #toA/#toB ボタンで相互遷移",
-    "切替は classList.toggle('d-none', ...) を用いる"
+    "userId を選択（または現在の authUser.id を使用）",
+    "logs.filter(l => l.userId===userId) を取得",
+    "<template> 複製＋textContent で描画（innerHTML禁止）"
   ],
   "files": {
     "html": {
@@ -16,14 +16,13 @@
     "css": { "template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-23/files.css.expected" },
     "js": { "template": "// 実装してください", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-23/files.js.expected" }
   },
-  "checks": [
-    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewA と #viewB が存在し、どちらかが d-none である" },
-    { "id": "buttons", "type": "html", "name": "ボタン", "message": "#goA,#goB,#toA,#toB が存在する" },
-    { "id": "toggle", "type": "js", "name": "切替", "message": "classList.toggle('d-none', ...) による表示切替が実装されている" }
+  "implementationPoints": [
+    "必須: userId 指定で logs を filter",
+    "必須: 結果を <template> で描画（innerHTML禁止）",
+    "必須: 0件時の表示文言（空状態）"
   ],
-  "expectedResult": { "behavior": "ボタン操作でA/Bビューが確実に切り替わる" },
   "hints": [
-    "show('A'|'B') の小関数を作る",
-    "イベントは addEventListener('click', ...) で登録"
+    "authUser?.id を優先し、未ログイン時は選択UI",
+    "list.textContent=''→テンプレートで描画"
   ]
 }

@@ -1,11 +1,11 @@
 {
   "id": "ec-project-08",
-  "title": "08: プロフィール編集基礎",
-  "description": "フォーム入力のリアルタイム反映（プレビュー）と簡易バリデーションを学びます。",
+  "title": "08: 会員登録フォーム（最小）",
+  "description": "会員登録の最小実装。必須入力の確認とプレビュー表示を行います（正規表現は使いません）。",
   "category": "ec-project",
   "instructions": [
-    "#name, #email の input イベントで #preview を更新する",
-    "#profileForm submit で e.preventDefault()、未入力とメール形式(/.+@.+\\..+/)を検証し #message に表示"
+    "#name, #email の input で #preview を更新",
+    "#profileForm submit で e.preventDefault()、未入力と email.includes('@') を確認し #message に表示"
   ],
   "files": {
     "html": {
@@ -21,16 +21,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-08/files.js.expected"
     }
   },
-  "expectedResult": {
-    "behavior": "入力に応じてプレビューが更新され、保存時にバリデーション結果を表示"
-  },
-  "checks": [
-    { "id": "has-profile-form", "name": "フォーム要素", "type": "html", "message": "#profileForm, #name, #email, #preview が存在すること" },
-    { "id": "input-preview", "name": "入力反映", "type": "js", "message": "input イベントでプレビューが更新されること" },
-    { "id": "validate-submit", "name": "保存バリデーション", "type": "js", "message": "submit で e.preventDefault() を行い、未入力/形式不正のエラーを表示すること" }
+  "implementationPoints": [
+    "必須: input イベントで #preview を更新",
+    "必須: submit で e.preventDefault() を呼ぶ",
+    "必須: 必須入力と '@' 含有で簡易確認し #message に表示"
   ],
   "hints": [
     "input イベントで表示を更新",
-    "メール形式は /.+@.+\\..+/ で簡易検証"
+    "正規表現は使わず includes で十分"
   ]
 }

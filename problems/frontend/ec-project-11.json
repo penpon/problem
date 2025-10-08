@@ -1,11 +1,12 @@
 {
   "id": "ec-project-11",
-  "title": "11: レビュー基礎",
-  "description": "配列からカードを生成してグリッド表示する最小構成で基礎を学びます。",
+  "title": "11: 価格レンジ（min/max）",
+  "description": "最低/最高価格の2入力で範囲に一致する商品のみを表示します（<template>描画・innerHTML禁止）。",
   "category": "ec-project",
   "instructions": [
-    "items.map(...) でカードHTMLを作成し、#productList に innerHTML で挿入",
-    ".container > .row > .col-*-* でレスポンシブ配置"
+    "#priceMin/#priceMax を Number() で数値化",
+    "min/max に一致する items のみ filter し描画",
+    "描画は <template> 複製＋textContent、innerHTML禁止"
   ],
   "files": {
     "html": {
@@ -21,26 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-11/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "商品カードが表示され、1〜3列でレスポンシブに並ぶ"
-  },
-  "checks": [
-    {
-      "id": "js-map",
-      "name": "map() による生成",
-      "type": "js",
-      "message": "配列の map() でカードHTMLを生成し、コンテナへ挿入していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+  "implementationPoints": [
+    "必須: Number(min/max) で数値化し NaN は無視",
+    "必須: (min<=price<=max) 条件で filter",
+    "必須: <template> 複製 + textContent、innerHTML禁止"
   ],
   "hints": [
-    "products.map(...).join('') を innerHTML に代入",
-    "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
+    "値未入力は境界を適用しない",
+    "col-12 col-sm-6 col-lg-4 のクラスでレスポンシブ配置"
   ]
 }

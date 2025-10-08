@@ -2,7 +2,7 @@
   "id": "ec-project-21",
   "title": "21: 認証モックの導入",
   "category": "ec-project",
-  "description": "ログイン/ログアウトUIを設置し、ヘッダーの表示を切り替える簡易認証モックを実装します。",
+  "description": "認証UIのON/OFF切替のみを扱います。authUser 変数で状態を持ち、#authArea を条件描画します。",
   "instructions": [
     "カタログのフィルタ/ソート/在庫で一覧生成",
     "カート追加で件数/小計更新",
@@ -25,14 +25,13 @@
   "expectedResult": {
     "behavior": "未ログイン時はヘッダーにログインボタン、ログイン後はユーザー名とログアウト。ビュースイッチで #viewAuth を表示/非表示にできる"
   },
-  "checks": [
-    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewCatalog,#viewCheckout,#viewComplete,#viewAuth が存在" },
-    { "id": "auth-area", "type": "html", "name": "認証領域", "message": "#authArea がヘッダーに存在" },
-    { "id": "array", "type": "js", "name": "配列処理", "message": "filter/sort/map で一覧生成" }
+  "implementationPoints": [
+    "必須: authUser の真偽で #authArea の表示内容を切替",
+    "必須: ログイン/ログアウトのイベントを登録",
+    "必須: innerHTML禁止、template描画（必要部分のみ）"
   ],
   "hints": [
     "authUser を状態として管理し、renderAuthArea() で表示を切替",
-    "showView('auth') で認証ビューを開閉",
-    "localStorage はこの回では任意（次回で使用）"
+    "showView('auth') で認証ビューを開閉"
   ]
 }

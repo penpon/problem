@@ -1,11 +1,11 @@
 {
   "id": "ec-project-07",
   "title": "07: ログインフォーム基礎",
-  "description": "最小のログインフォームで入力検証（メール形式・パスワード長）と送信抑止を学びます。",
+  "description": "最小のログインフォームで送信抑止と簡易検証（長さ/記号含有）を行います（正規表現は使いません）。",
   "category": "ec-project",
   "instructions": [
     "#loginForm の submit で e.preventDefault() を呼ぶ",
-    "#email は簡易メール形式（/.+@.+\\..+/）、#password は6文字以上を検証し、#message に結果を表示"
+    "#email は '@' を含むか、#password は6文字以上かを確認し、#message に結果を表示"
   ],
   "files": {
     "html": {
@@ -21,13 +21,10 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-07/files.js.expected"
     }
   },
-  "expectedResult": {
-    "behavior": "不正な入力ではエラーメッセージ、正しい入力では成功メッセージを表示"
-  },
-  "checks": [
-    { "id": "has-form", "name": "フォーム要素", "type": "html", "message": "#loginForm, #email, #password が存在すること" },
-    { "id": "prevent-default", "name": "送信抑止", "type": "js", "message": "submit イベントで e.preventDefault() を呼んでいること" },
-    { "id": "validation", "name": "入力検証", "type": "js", "message": "メール形式の検証と6文字以上のパスワード検証を行うこと" }
+  "implementationPoints": [
+    "必須: submit で e.preventDefault() を呼ぶ",
+    "必須: email.includes('@') と password.length>=6 を確認",
+    "必須: 結果を #message.textContent に表示"
   ],
   "hints": [
     "正規表現 /.+@.+\\..+/ でメール形式を簡易検証",

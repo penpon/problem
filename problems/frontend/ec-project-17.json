@@ -1,7 +1,7 @@
 {
   "id": "ec-project-17",
-  "title": "17: 完了画面と注文番号表示",
-  "description": "チェックアウト後に完了画面へ遷移し、注文番号を表示します。",
+  "title": "17: 注文番号生成＋完了表示",
+  "description": "注文番号の生成と完了画面への表示のみを扱います（d-none切替）。",
   "category": "ec-project",
   "instructions": [
     "カタログ→チェックアウト→完了の3ビューを用意",
@@ -22,9 +22,10 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-17/files.js.expected"
     }
   },
-  "checks": [
-    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewCatalog, #viewCheckout, #viewComplete が存在すること" },
-    { "id": "cart-flow", "name": "フロー", "type": "js", "message": "カート追加→チェックアウト→完了で注文番号が表示されること" }
+  "implementationPoints": [
+    "必須: makeOrderNo() を用意し Date.now()/Math.random() でID生成",
+    "必須: 完了画面 #viewComplete に ID を textContent で表示",
+    "必須: showView('complete') で表示切替"
   ],
   "hints": [
     "Date.now().toString(36) などで注文番号を作る",

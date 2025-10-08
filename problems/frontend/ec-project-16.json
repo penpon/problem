@@ -1,22 +1,21 @@
 {
   "id": "ec-project-16",
-  "title": "16: フィルタ→ソート適用順",
+  "title": "16: ビュー切替基礎（A/Bのd-none）",
   "category": "ec-project",
-  "description": "フィルタで対象集合を作ってからソートを適用する順序性を意識して一覧を描画する。",
+  "description": "2つのビュー（A/B）の表示切替だけを扱います。classList.toggle('d-none', ...) で確実に切り替えます。",
   "instructions": [
-    "カテゴリと在庫でフィルタ",
-    "その結果に対して並び替えを適用",
-    "イベント委譲でカート件数更新"
+    "#viewA/#viewB を用意",
+    "show('A'|'B') の小関数で classList.toggle('d-none', ...) を制御",
+    "ヘッダーやボタンからの遷移を1箇所に集約"
   ],
   "files": {
     "html": {"template": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>課題実装</title><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\"></head><body><main class=\"container\"><div id=\"list\"></div></main><script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script></body></html>", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.html.expected"},
     "css": {"template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.css.expected"},
     "js": {"template": "// 実装してください", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-16/files.js.expected"}
   },
-  "checks": [
-    {"id":"controls","type":"html","name":"コントロール","message":"#category,#sort,#inStock,#cartCount,#list が存在"},
-    {"id":"order","type":"js","name":"適用順","message":"フィルタ関数の結果に対してソートを適用している（filter→sort）"},
-    {"id":"grid","type":"css","name":"グリッド","message":"#list 直下に col-12 col-sm-6 col-lg-4 が並ぶ"}
-  ],
-  "expectedResult": {"behavior":"カテゴリ/在庫変更→フィルタされた集合が並び替え設定で整列し、カート追加で件数が増える"}
+  "implementationPoints": [
+    "必須: show(view) で 'A' か 'B' を受け取り d-none を制御",
+    "必須: 遷移イベントは addEventListener で登録",
+    "必須: 表示中ビューの一貫性（A表示中はBが非表示）"
+  ]
 }

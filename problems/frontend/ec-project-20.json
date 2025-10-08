@@ -1,8 +1,8 @@
 {
   "id": "ec-project-20",
-  "title": "20: 完了画面と注文番号",
+  "title": "20: 完了後リセット（初期状態へ）",
   "category": "ec-project",
-  "description": "チェックアウト後に完了画面へ遷移し、注文番号を表示する基本フローを実装します。",
+  "description": "完了後にトップへ戻った際、カートや表示状態を初期化します（新規概念なし）。",
   "instructions": [
     "カタログでフィルタ/ソート/在庫を用いて一覧生成",
     "カート追加で件数/小計を更新",
@@ -22,17 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-20/files.js.expected"
     }
   },
-  "expectedResult": {
-    "behavior": "チェックアウトで内訳と合計、完了で注文番号が表示される。トップへ戻ると一覧に復帰しカートがリセットされる"
-  },
-  "checks": [
-    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewCatalog,#viewCheckout,#viewComplete が存在する" },
-    { "id": "controls", "type": "html", "name": "コントロール", "message": "#category,#sort,#inStock,#list が存在する" },
-    { "id": "array", "type": "js", "name": "配列処理", "message": "filter/sort/map を用いてリストを生成" },
-    { "id": "order-no", "type": "js", "name": "注文番号", "message": "完了画面で #orderNo に非空の文字列が入る" }
+  "implementationPoints": [
+    "必須: 戻る操作後に cart 配列・件数・ビュー状態を初期化",
+    "必須: 初期描画関数 renderInitial() で一覧を再描画",
+    "必須: innerHTML禁止、template描画"
   ],
   "hints": [
-    "makeOrderNo() などで Date.now() と Math.random() を組み合わせてID生成",
+    "状態変数の初期値を定義",
     "view 切替は d-none の付け外しで実現"
   ]
 }

@@ -5,7 +5,8 @@
   "category": "ec-project",
   "instructions": [
     "カテゴリ選択（#categoryFilter）の値に応じて配列 products を filter() し、#productList に商品カードを表示する",
-    "Bootstrap グリッド（.container > .row > .col-*-*）でレスポンシブ表示にする"
+    "Bootstrap グリッド（.container > .row > .col-*-*）でレスポンシブ表示にする",
+    "<template> を cloneNode(true) して DOM 操作で描画し、innerHTML は使用しない"
   ],
   "files": {
     "html": {
@@ -21,26 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-03/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "カテゴリ選択に応じて商品カードが絞り込まれ、1〜3列で表示される"
-  },
-  "checks": [
-    {
-      "id": "js-filter",
-      "name": "filter() による絞り込み",
-      "type": "js",
-      "message": "select の値に応じて配列を filter() し、#productList を更新していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+  "implementationPoints": [
+    "必須: select の値に応じて products を filter する",
+    "必須: <template> 複製と textContent で描画（innerHTML禁止）",
+    "必須: .container/.row/.col-* でレスポンシブ表示"
   ],
   "hints": [
-    "select.value に応じて v === 'all' ? products : products.filter(...) で絞り込む",
-    "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
+    "select.value === 'all' ? products : products.filter(...)",
+    "col-12 col-sm-6 col-lg-4 のクラスでレスポンシブ配置"
   ]
 }

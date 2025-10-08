@@ -1,7 +1,7 @@
 {
   "id": "ec-project-25",
   "title": "25: 完全ECサイト統合",
-  "description": "ECプロジェクトの高度な機能実装 - プロフェッショナルレベルのWebアプリケーション開発",
+  "description": "新規概念は追加せず、既存の要素を組み合わせて完全統合を行います（template描画・innerHTML禁止）。",
   "category": "ec-project",
   "instructions": [
     "<header> と <footer> を設置する",
@@ -26,22 +26,15 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-25/files.js.expected"
     }
   },
-  "expectedResult": {
-    "behavior": "カタログ→チェックアウト→完了→認証/管理/ログまで統合。フィルタ/並び替え/在庫/カテゴリで一覧更新、カートに追加で合計と件数が増加。チェックアウトで一覧と合計を確認し、完了で注文番号表示。管理で購入ログ可視化"
-  },
-  "checks": [
-    { "id": "layout-header-footer", "name": "ヘッダー/フッター", "type": "html", "message": "<header> と <footer> が存在すること" },
-    { "id": "views", "name": "ビュー構成", "type": "html", "message": "#viewCatalog, #viewCheckout, #viewComplete, #viewAuth, #viewAdmin が存在すること" },
-    { "id": "controls", "name": "操作UI", "type": "html", "message": "#category, #sort, #inStock, #miniCartTotal, #list, #goCheckoutMini が存在すること" },
-    { "id": "uses-array-methods", "name": "配列処理", "type": "js", "message": "filter/sort/map のいずれかを用いて一覧生成していること" },
-    { "id": "grid-classes", "name": "グリッド", "type": "css", "message": "#list 直下に col-12 col-sm-6 col-lg-4 のクラスを持つ要素が並ぶこと" },
-    { "id": "cart-and-checkout", "name": "カート/決済", "type": "js", "message": "カートに追加で件数(#cartCount)と合計が更新され、チェックアウト画面で一覧と合計が表示され、完了ボタンで完了ビューに遷移すること" },
-    { "id": "auth-admin-logs", "name": "認証/管理/ログ", "type": "js", "message": "ログインでUI切替、管理者のみ #viewAdmin 表示、購入完了時にローカルログ保存/表示されること" }
+  "implementationPoints": [
+    "必須: 各ビュー/操作UIの存在と d-none 切替",
+    "必須: 一覧描画は template 複製＋textContent（innerHTML禁止）",
+    "必須: カート件数/合計・チェックアウト明細・注文番号・認証UI・購入記録の連携"
   ],
   "hints": [
-    "arr.filter(...).sort(...).map(...).join('') の流れ",
+    "arr.filter(...).sort(...).map(...).join('') は使わず template で描画",
     "イベント委譲でボタンを処理し、cart配列とtotalを管理",
     "showView() で d-none を付け替えて画面遷移",
-    "localStorage で authUser / purchaseLogs を保持"
+    "authUser / purchaseLogs はメモリで保持（本カテゴリでは新規概念追加なし）"
   ]
 }

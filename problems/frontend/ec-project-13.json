@@ -2,11 +2,11 @@
   "id": "ec-project-13",
   "title": "13: イベント委譲の基礎",
   "category": "ec-project",
-  "description": "動的に生成された商品カードに対して、リスト親要素1箇所でクリックイベントを処理するイベント委譲を実装します。",
+  "description": "イベント委譲のみを扱います。#list 親要素に click を1つだけ付け、[data-add] を判定してカート件数を更新します。",
   "instructions": [
-    "filter/sort/map を用いて #list に商品カードを生成",
-    "#list に click リスナーを1つだけ付与し、data-add 属性で追加ボタンを識別",
-    "カート件数(#cartCount)を更新"
+    "#list に <template> で商品カードを描画（innerHTML禁止）",
+    "#list へ click リスナーを1つだけ付与",
+    "e.target.closest('[data-add]') を検出し、カート件数(#cartCount)を +1"
   ],
   "files": {
     "html": {
@@ -23,15 +23,14 @@
     }
   },
   "expectedResult": { "behavior": "#list クリックの委譲でカート件数が増える。フィルタ/ソート/在庫で一覧が更新される" },
-  "checks": [
-    { "id": "controls", "type": "html", "name": "コントロール", "message": "#category,#sort,#inStock,#list,#cartCount が存在する" },
-    { "id": "array", "type": "js", "name": "配列処理", "message": "filter/sort/map を用いてリスト生成" },
-    { "id": "delegation", "type": "js", "name": "委譲", "message": "#list に click リスナーを1つ置き、closest('[data-add]') でボタンを特定している" },
-    { "id": "grid", "type": "css", "name": "グリッド", "message": "#list 直下に col-12 col-sm-6 col-lg-4 が並ぶ" }
+  "implementationPoints": [
+    "必須: #list に対して一箇所の click リスナー",
+    "必須: e.target.closest('[data-add]') の有無で分岐",
+    "必須: 件数は変数で保持→#cartCount.textContent に反映"
   ],
   "hints": [
     "e.target.closest('[data-add]') を使う",
-    "innerHTML に map(...).join('') を代入",
+    "list.textContent=''→テンプレート複製で描画",
     "件数は textContent に整数として代入"
   ]
 }

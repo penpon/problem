@@ -1,10 +1,11 @@
 {
   "id": "ec-project-06",
-  "title": "06: ギャラリー統合基礎",
-  "description": "配列データから商品カードを生成し、グリッドで一覧表示する基礎を統合します。",
+  "title": "06: 一覧生成のコア型",
+  "description": "<template> の複製と DOM 操作だけで、配列からカードを描画する最小パターンを身につけます（innerHTML 不使用）。",
   "category": "ec-project",
   "instructions": [
-    "products 配列を map() でカードHTMLにして #productList に挿入する",
+    "products 配列を 1件ずつ <template> を cloneNode(true) して描画する",
+    "テキストは textContent で差し込み、innerHTML は使用しない",
     ".container > .row > .col-*-* でレスポンシブ配置する"
   ],
   "files": {
@@ -21,26 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-06/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "商品カードが表示され、1〜3列でレスポンシブに並ぶ"
-  },
-  "checks": [
-    {
-      "id": "js-map",
-      "name": "map() による生成",
-      "type": "js",
-      "message": "配列の map() でカードHTMLを生成し、コンテナへ挿入していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+  "implementationPoints": [
+    "必須: <template>.content.firstElementChild を cloneNode(true) で複製",
+    "必須: textContent で差し込み（innerHTML 禁止）",
+    "必須: .container/.row/.col-* でレスポンシブ配置"
   ],
   "hints": [
-    "products.map(...).join('') を innerHTML に代入",
+    "list.textContent = '' でクリアしてから appendChild",
     "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
   ]
 }

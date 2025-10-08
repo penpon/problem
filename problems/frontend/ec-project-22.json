@@ -1,13 +1,12 @@
 {
   "id": "ec-project-22",
-  "title": "22: 管理ビューと購入ログ",
+  "title": "22: 購入記録（メモリ保存）",
   "category": "ec-project",
-  "description": "localStorage を用いて購入ログを保存・表示する管理ビューを実装します（管理者のみ閲覧可能）。",
+  "description": "購入完了時にメモリ上の配列 logs へ記録を追記し、必要に応じて画面に表示します（localStorage不使用）。",
   "instructions": [
-    "カタログでフィルタ/ソート/在庫を用いて一覧生成",
-    "カート追加で件数/小計更新、チェックアウト→完了",
-    "完了時に購入ログを localStorage へ追記",
-    "ログイン（admin ならロール=admin）後、管理リンクからログ一覧に遷移"
+    "購入完了時のハンドラで logs.push({when,user,total,items})",
+    "logs を <template> で描画（innerHTML禁止）",
+    "本回では localStorage は使わない"
   ],
   "files": {
     "html": {
@@ -23,18 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-22/files.js.expected"
     }
   },
-  "expectedResult": {
-    "behavior": "完了時に localStorage に購入ログが追加され、管理者(admin)でログイン時のみ管理ビュー(#viewAdmin)に遷移し一覧が表示される。ログ消去ボタンでログが空になる"
-  },
-  "checks": [
-    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewCatalog,#viewCheckout,#viewComplete,#viewAuth,#viewAdmin が存在" },
-    { "id": "auth-area", "type": "html", "name": "認証領域", "message": "#authArea がヘッダーに存在" },
-    { "id": "admin-link", "type": "html", "name": "管理リンク", "message": "#goAdmin が存在" },
-    { "id": "logs-ls", "type": "js", "name": "ログ保存", "message": "localStorage に配列として保存し、管理ビューで描画している" }
+  "implementationPoints": [
+    "必須: logs 配列へ {when,user,total,items[]} を push",
+    "必須: 一覧は <template> 複製＋textContent（innerHTML禁止）",
+    "必須: 必要に応じてユーザー別の filter を行う"
   ],
   "hints": [
-    "LS_KEY を決めて JSON.stringify/parse で配列保存",
-    "appendLog() で {when,user,total,items[]} を push/unshift",
+    "appendLog() で push/unshift を統一",
     "ロール判定は authUser.role==='admin' で分岐"
   ]
 }

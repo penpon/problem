@@ -1,11 +1,12 @@
 {
   "id": "ec-project-10",
-  "title": "10: 一覧生成応用",
-  "description": "配列からカードを生成してグリッド表示する最小構成を確認します。",
+  "title": "10: 空状態UI（0件時の案内）",
+  "description": "検索やフィルタで 0 件になったときに、#emptyState を表示する空状態UIを実装します。",
   "category": "ec-project",
   "instructions": [
-    "products.map(...) でカードHTMLを作成し、#productList に innerHTML で挿入",
-    ".container > .row > .col-*-* でレスポンシブ配置"
+    "描画前に対象配列が 0 件かを確認",
+    "0 件なら #emptyState を表示、>0 件なら #emptyState を非表示",
+    "描画は <template> を cloneNode(true) して DOM 操作で行う（innerHTML禁止）"
   ],
   "files": {
     "html": {
@@ -21,26 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-10/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "商品カードが表示され、1〜3列でレスポンシブに並ぶ"
-  },
-  "checks": [
-    {
-      "id": "js-map",
-      "name": "map() による生成",
-      "type": "js",
-      "message": "配列の map() でカードHTMLを生成し、コンテナへ挿入していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+  "implementationPoints": [
+    "必須: items.length===0 で #emptyState を表示",
+    "必須: items.length>0 で #emptyState を非表示＋テンプレートで描画",
+    "必須: innerHTML は使用しない（textContent + appendChild）"
   ],
   "hints": [
-    "products.map(...).join('') を innerHTML に代入",
-    "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
+    "list.textContent='' のあとに for で append",
+    "col-12 col-sm-6 col-lg-4 のクラスでレスポンシブ配置"
   ]
 }

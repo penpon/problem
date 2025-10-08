@@ -433,7 +433,7 @@
         },
         {
           "id": "ec-project-06",
-          "title": "06: ギャラリー統合基礎"
+          "title": "06: 一覧生成のコア型"
         },
         {
           "id": "ec-project-07",
@@ -441,23 +441,23 @@
         },
         {
           "id": "ec-project-08",
-          "title": "08: プロフィール編集基礎"
+          "title": "08: 会員登録フォーム（最小）"
         },
         {
           "id": "ec-project-09",
-          "title": "09: 一覧生成基礎"
+          "title": "09: 在庫フィルタ（チェックボックス）"
         },
         {
           "id": "ec-project-10",
-          "title": "10: 一覧生成応用"
+          "title": "10: 空状態UI（0件時の案内）"
         },
         {
           "id": "ec-project-11",
-          "title": "11: レビュー基礎"
+          "title": "11: 価格レンジ（min/max）"
         },
         {
           "id": "ec-project-12",
-          "title": "12: 昇順ソート基礎"
+          "title": "12: 合計の算出（reduce）"
         },
         {
           "id": "ec-project-13",
@@ -465,44 +465,44 @@
         },
         {
           "id": "ec-project-14",
-          "title": "14: 価格レンジフィルタ"
+          "title": "14: 適用順（filter→sort）"
         },
         {
           "id": "ec-project-15",
-          "title": "15: 空状態UI"
-        },
+          "title": "15: カート件数更新（委譲で+1）"
+        }
         {
           "id": "ec-project-16",
-          "title": "16: フィルタ→ソート適用順"
+          "title": "16: ビュー切替基礎（A/Bのd-none）"
         },
         {
           "id": "ec-project-17",
-          "title": "17: 完了画面と注文番号表示"
+          "title": "17: 注文番号生成＋完了表示"
         },
         {
           "id": "ec-project-18",
-          "title": "18: 統合基礎"
+          "title": "18: 2ビュー分離（カタログ/チェックアウト）"
         },
         {
           "id": "ec-project-19",
-          "title": "19: カタログ→チェックアウト分離"
+          "title": "19: チェックアウト一覧描画と合計"
         },
         {
           "id": "ec-project-20",
-          "title": "20: 完了画面と注文番号"
+          "title": "20: 完了後リセット（初期状態へ）"
         },
         {
           "id": "ec-project-21",
-          "title": "21: 認証モックの導入"
+          "title": "21: 認証UI切替（#authArea）"
         },
         {
           "id": "ec-project-22",
-          "title": "22: 管理ビューと購入ログ"
+          "title": "22: 購入記録（メモリ保存）"
         },
         {
           "id": "ec-project-23",
-          "title": "23: 2ビュー遷移の素振り"
-        },
+          "title": "23: 会員の購入履歴表示"
+        }
         {
           "id": "ec-project-24",
           "title": "24: 統合準備・再点検"

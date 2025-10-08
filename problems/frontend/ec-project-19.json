@@ -1,8 +1,8 @@
 {
   "id": "ec-project-19",
-  "title": "19: カタログ→チェックアウト分離",
+  "title": "19: チェックアウト一覧描画と合計",
   "category": "ec-project",
-  "description": "カタログとチェックアウトの役割分担を明確化し、配列操作とビュー切替を実装します。",
+  "description": "チェックアウト画面でカート明細と合計を表示します（reduce・template描画・innerHTML禁止）。",
   "instructions": [
     "カテゴリ・在庫・並び替えで一覧を更新",
     "カート追加で件数/小計を更新",
@@ -22,18 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-19/files.js.expected"
     }
   },
-  "expectedResult": {
-    "behavior": "一覧のフィルタ/ソートで #list が更新され、カート追加で件数と小計が増える。チェックアウトで内訳と合計が表示される"
-  },
-  "checks": [
-    { "id": "views", "type": "html", "name": "ビュー", "message": "#viewCatalog と #viewCheckout が存在する" },
-    { "id": "controls", "type": "html", "name": "コントロール", "message": "#category, #sort, #inStock, #list が存在する" },
-    { "id": "array", "type": "js", "name": "配列処理", "message": "filter/sort/map を用いてリストを生成" },
-    { "id": "grid", "type": "css", "name": "グリッド", "message": "#list 直下に col-12 col-sm-6 col-lg-4 が並ぶ" }
+  "implementationPoints": [
+    "必須: cart 配列から reduce で小計/合計算出",
+    "必須: 明細は <template> 複製＋textContent（innerHTML禁止）",
+    "必須: 合計を所定の要素に textContent で表示"
   ],
   "hints": [
-    "arr.filter(...).sort(...).map(...).join('') で innerHTML に代入",
-    "委譲(click)で data-add を拾って cart に push",
-    "showView('catalog'|'checkout') で d-none 切替"
+    "list.textContent=''→テンプレートで描画",
+    "合計表示の要素は1箇所で更新"
   ]
 }

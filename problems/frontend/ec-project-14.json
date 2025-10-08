@@ -1,23 +1,22 @@
 {
   "id": "ec-project-14",
-  "title": "14: 価格レンジフィルタ",
+  "title": "14: 適用順（filter→sort）",
   "category": "ec-project",
-  "description": "最低/最高価格のレンジ指定で商品一覧を絞り込み、並び替えと合わせて表示する。",
+  "description": "配列処理の適用順だけを扱います。まず filter で対象集合を作り、その結果に対して sort を適用します。",
   "instructions": [
-    "#priceMin/#priceMax の値で商品を絞り込み",
-    "sort(new/price_asc/price_desc) と併用",
-    "イベント委譲でカート件数更新"
+    "カテゴリ/在庫などの条件で items を filter",
+    "filter の結果配列に対して sort を適用（昇降切替でも可）",
+    "<template> を複製して描画（innerHTML禁止）"
   ],
   "files": {
     "html": {"template": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>課題実装</title><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css\" rel=\"stylesheet\"></head><body><header class=\"p-2 border-bottom\"><div class=\"container d-flex justify-content-between\"><strong>EC</strong><span>Cart: <span id=\"cartCount\">0</span></span></div></header><main class=\"container my-3\"><div id=\"list\" class=\"row g-3\"></div></main><script src=\"https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js\"></script></body></html>", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-14/files.html.expected"},
     "css": {"template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-14/files.css.expected"},
     "js": {"template": "// 実装してください", "expected": "__INCLUDE__: problems/frontend/expected/ec-project-14/files.js.expected"}
   },
-  "checks": [
-    {"id":"controls","type":"html","name":"コントロール","message":"#priceMin,#priceMax,#sort,#list,#cartCount が存在"},
-    {"id":"array","type":"js","name":"配列処理","message":"filter/sort/map で一覧生成"},
-    {"id":"grid","type":"css","name":"グリッド","message":"#list 直下に col-12 col-sm-6 col-lg-4 が並ぶ"}
+  "implementationPoints": [
+    "必須: items.filter(...) の結果を変数に保持",
+    "必須: その配列に対して items.sort(...) を適用（順序を厳守）",
+    "必須: template 複製＋textContent で描画（innerHTML禁止）"
   ],
-  "expectedResult": {"behavior":"価格レンジで絞り込み、並び替え変更が即時反映。ボタン委譲で件数が増える"},
-  "hints": ["Number(input.value||0) で数値化","min/max を満たす filter -> sort -> map 順"]
+  "hints": ["filter の後に sort（逆順は不可）","list.textContent=''→テンプレートで描画"]
 }

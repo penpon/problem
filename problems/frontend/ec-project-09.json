@@ -1,10 +1,11 @@
 {
   "id": "ec-project-09",
-  "title": "09: 一覧生成基礎",
-  "description": "配列データからカード一覧を生成し、グリッドで表示する最小構成です。",
+  "title": "09: 在庫フィルタ（チェックボックス）",
+  "description": "在庫のみ表示のチェックボックス 1 つで AND 条件のフィルタを行い、<template> で再描画します。",
   "category": "ec-project",
   "instructions": [
-    "products.map(...) でカードHTMLを作成し、#productList に innerHTML で挿入",
+    "#inStock チェックの状態で products を filter し、該当のみ描画",
+    "描画は <template> を cloneNode(true) して DOM 操作で行う（innerHTML禁止）",
     ".container > .row > .col-*-* でレスポンシブ配置"
   ],
   "files": {
@@ -21,26 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-09/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "商品カードが表示され、1〜3列でレスポンシブに並ぶ"
-  },
-  "checks": [
-    {
-      "id": "js-map",
-      "name": "map() による生成",
-      "type": "js",
-      "message": "配列の map() でカードHTMLを生成し、コンテナへ挿入していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+  "implementationPoints": [
+    "必須: #inStock.checked に応じて items.filter(p=>p.inStock) を適用",
+    "必須: <template> の複製と textContent で描画（innerHTML禁止）",
+    "必須: .container/.row/.col-* のグリッド"
   ],
   "hints": [
-    "products.map(...).join('') を innerHTML に代入",
-    "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
+    "list.textContent=''→ループで appendChild",
+    "col-12 col-sm-6 col-lg-4 のクラスでレスポンシブ配置"
   ]
 }

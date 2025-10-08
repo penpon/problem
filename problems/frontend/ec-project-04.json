@@ -5,7 +5,8 @@
   "category": "ec-project",
   "instructions": [
     "JavaScriptの配列 products を sort() で並べ替え、#productList にカード表示する",
-    "Bootstrapのグリッド（.container > .row > .col-*-*）でレスポンシブ配置にする"
+    "Bootstrapのグリッド（.container > .row > .col-*-*）でレスポンシブ配置にする",
+    "<template> を cloneNode(true) して DOM 操作で描画し、innerHTML は使用しない"
   ],
   "files": {
     "html": {
@@ -21,26 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-04/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "選択した条件に応じて商品カードが並び替えられ、1〜3列で表示される"
-  },
-  "checks": [
-    {
-      "id": "js-sort",
-      "name": "sort() による並び替え",
-      "type": "js",
-      "message": "select の値に応じて配列を sort() し、#productList を更新していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+  "implementationPoints": [
+    "必須: select の値に応じて compare 関数で配列を sort する",
+    "必須: <template> 複製と textContent で描画（innerHTML禁止）",
+    "必須: .container/.row/.col-* でレスポンシブ配置"
   ],
   "hints": [
-    "value.split('-') でキーと方向を取り、比較関数で cmp を返す",
-    "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
+    "value で条件分岐し compare を切替",
+    "col-12 col-sm-6 col-lg-4 のクラスでレスポンシブ配置"
   ]
 }

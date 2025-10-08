@@ -5,7 +5,8 @@
   "category": "ec-project",
   "instructions": [
     "JavaScriptの配列から商品カードを生成して #productList に表示する",
-    "Bootstrapのグリッド（.container > .row > .col-*-*）でレスポンシブ配置にする"
+    "Bootstrapのグリッド（.container > .row > .col-*-*）でレスポンシブ配置にする",
+    "<template> を cloneNode(true) して DOM 操作で描画し、innerHTML は使用しない"
   ],
   "files": {
     "html": {
@@ -21,26 +22,13 @@
       "expected": "__INCLUDE__: problems/frontend/expected/ec-project-02/files.js.expected"
     }
   },
-  "expectedResult": {
-    "console": "",
-    "behavior": "配列データから生成された商品カードが画面幅に応じて1〜3列で表示される"
-  },
-  "checks": [
-    {
-      "id": "js-dynamic-list",
-      "name": "配列からの動的生成",
-      "type": "js",
-      "message": "配列を map などで展開し、#productList に商品カードHTMLを挿入していること"
-    },
-    {
-      "id": "bootstrap-grid",
-      "name": "Bootstrapグリッド",
-      "type": "css",
-      "message": ".container/.row/.col-*-* によるレスポンシブグリッドが使用されていること"
-    }
+  "implementationPoints": [
+    "必須: <template> を cloneNode(true) で複製してカード要素を生成する",
+    "必須: textContent で値を挿入（innerHTML は使用しない）",
+    "必須: Bootstrap の .container/.row/.col-* で 1/2/3 列のレスポンシブ配置"
   ],
   "hints": [
-    "products.map(...).join('') を innerHTML に代入",
+    "template.content.firstElementChild を cloneNode(true) して appendChild",
     "col-12 col-sm-6 col-lg-4 のクラスを付与してレスポンシブ配置"
   ]
 }
