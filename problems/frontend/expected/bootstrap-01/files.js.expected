@@ -1,3 +1,0 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Bootstrap 01 expected: no dynamic JS required
-});
