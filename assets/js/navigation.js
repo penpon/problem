@@ -48,7 +48,7 @@ class NavigationManager {
                         </a>
                         <a href="grader.html" class="nav-link ${this.currentPage === 'grader' ? 'active' : ''}">
                             <span class="link-icon">📊</span>
-                            <span class="link-text">採点システム</span>
+                            <span class="link-text">JavaScript入門</span>
                         </a>
                         <a href="frontend.html" class="nav-link ${this.currentPage === 'frontend' ? 'active' : ''}">
                             <span class="link-icon">🚀</span>
