@@ -13,7 +13,7 @@ class NavigationManager {
         const path = window.location.pathname;
         const filename = path.split('/').pop();
         
-        if (filename === 'grader.html') return 'grader';
+        if (filename === 'javascript-grammar.html') return 'grammar';
         if (filename === 'visualizer.html') return 'visualizer';
         if (filename === 'frontend.html') return 'frontend';
         if (filename === 'memory-state-transition.html') return 'memory';
@@ -49,7 +49,7 @@ class NavigationManager {
                             <span class="link-icon">🏠</span>
                             <span class="link-text">ホーム</span>
                         </a>
-                        <a href="${toPages}grader.html" class="nav-link ${this.currentPage === 'grader' ? 'active' : ''}">
+                        <a href="${toPages}javascript-grammar.html" class="nav-link ${this.currentPage === 'grammar' ? 'active' : ''}">
                             <span class="link-icon">📊</span>
                             <span class="link-text">JavaScript入門</span>
                         </a>
@@ -310,7 +310,7 @@ class NavigationManager {
             localStorage.setItem('visualizerCodeTimestamp', Date.now().toString());
             
             // 新しいタブで可視化ツールを開く
-            const url = 'visualizer.html?from=grader&shared=true';
+            const url = 'visualizer.html?from=grammar&shared=true';
             window.open(url, '_blank');
         } catch (error) {
             console.error('コードの共有に失敗しました:', error);
@@ -323,7 +323,7 @@ class NavigationManager {
         try {
             const params = new URLSearchParams(window.location.search);
             
-            if (params.get('shared') === 'true' && params.get('from') === 'grader') {
+            if (params.get('shared') === 'true' && params.get('from') === 'grammar') {
                 const code = localStorage.getItem('visualizerCode');
                 const timestamp = localStorage.getItem('visualizerCodeTimestamp');
                 

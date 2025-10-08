@@ -1025,7 +1025,7 @@ extractProblemNumber(problemId, categoryId) {
         this.fullscreenBody.innerHTML = '';
     }
     
-    // 採点機能（grader.html の結果表示ロジックを統合）
+    // 採点機能（javascript-grammar.html の結果表示ロジックを統合）
     async gradeCode() {
         // removed: grading feature
         return;
