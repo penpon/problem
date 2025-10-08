@@ -38,31 +38,34 @@ class NavigationManager {
     }
 
     getHeaderHTML() {
+        const inPages = /\/pages\//.test(window.location.pathname);
+        const toRoot = inPages ? '../' : '';
+        const toPages = inPages ? '' : 'pages/';
         return `
             <nav class="nav-container">
                 <div class="nav-content">
                     <div class="nav-links">
-                        <a href="index.html" class="nav-link ${this.currentPage === 'home' ? 'active' : ''}">
+                        <a href="${toRoot}index.html" class="nav-link ${this.currentPage === 'home' ? 'active' : ''}">
                             <span class="link-icon">🏠</span>
                             <span class="link-text">ホーム</span>
                         </a>
-                        <a href="grader.html" class="nav-link ${this.currentPage === 'grader' ? 'active' : ''}">
+                        <a href="${toPages}grader.html" class="nav-link ${this.currentPage === 'grader' ? 'active' : ''}">
                             <span class="link-icon">📊</span>
                             <span class="link-text">JavaScript入門</span>
                         </a>
-                        <a href="frontend.html" class="nav-link ${this.currentPage === 'frontend' ? 'active' : ''}">
+                        <a href="${toPages}frontend.html" class="nav-link ${this.currentPage === 'frontend' ? 'active' : ''}">
                             <span class="link-icon">🚀</span>
                             <span class="link-text">フロントエンド入門</span>
                         </a>
-                        <a href="visualizer.html" class="nav-link ${this.currentPage === 'visualizer' ? 'active' : ''}">
+                        <a href="${toPages}visualizer.html" class="nav-link ${this.currentPage === 'visualizer' ? 'active' : ''}">
                             <span class="link-icon">🔍</span>
                             <span class="link-text">可視化ツール</span>
                         </a>
-                        <a href="memory-state-transition.html" class="nav-link ${this.currentPage === 'memory' ? 'active' : ''}">
+                        <a href="${toPages}memory-state-transition.html" class="nav-link ${this.currentPage === 'memory' ? 'active' : ''}">
                             <span class="link-icon">🧠</span>
                             <span class="link-text">メモリ解析</span>
                         </a>
-                        <a href="sequence-diagram.html" class="nav-link ${this.currentPage === 'sequence' ? 'active' : ''}">
+                        <a href="${toPages}sequence-diagram.html" class="nav-link ${this.currentPage === 'sequence' ? 'active' : ''}">
                             <span class="link-icon">📈</span>
                             <span class="link-text">フロー図生成</span>
                         </a>

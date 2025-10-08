@@ -658,9 +658,13 @@ extractProblemNumber(problemId, categoryId) {
         const str = content || '';
         if (typeof str === 'string' && str.trim().startsWith('__INCLUDE__:')) {
             let path = str.split(':')[1]?.trim() || '';
-            // ルート基準で解決できるよう安全に補正（相対パスなら先頭にスラッシュを付与）
-            if (path && !/^https?:\/\//i.test(path) && !path.startsWith('/')) {
-                path = '/' + path;
+            // ベースパスを自動検出（GitHub Pages プロジェクトページ対応）
+            const repo = location.pathname.split('/').filter(Boolean)[0] || '';
+            const base = repo ? '/' + repo + '/' : '/';
+            if (path && !/^https?:\/\//i.test(path)) {
+                // 先頭スラッシュは禁止し、常に base を前置
+                path = path.replace(/^\//, '');
+                path = base + path;
             }
             if (!path) return '';
             try {

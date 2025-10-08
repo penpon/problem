@@ -31,7 +31,8 @@ class AutoGrader {
   
   initializeWorker() {
     if (typeof Worker !== 'undefined') {
-      this.worker = new Worker('/assets/js/worker.js');
+      const prefix = window.location.pathname.includes('/pages/') ? '../' : '';
+      this.worker = new Worker(prefix + 'assets/js/worker.js');
       this.worker.onmessage = (e) => this.handleWorkerMessage(e);
       this.worker.onerror = (e) => this.handleWorkerError(e);
     } else {
