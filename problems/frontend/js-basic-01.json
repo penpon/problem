@@ -8,6 +8,11 @@
     "script.jsでalert('こんにちは')を実行する",
     "ページを開いたときにアラートが表示されることを確認する"
   ],
+  "implementationPoints": [
+    "必須: script.js を</body>直前で読み込むこと",
+    "必須: alert('こんにちは') を実行して動作確認すること",
+    "推奨: 以降の課題でも const/let を使用し var は使わないこと"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <h1>課題を実装してください</h1>\n        <!-- ここに実装してください -->\n    </div>\n    \n    <script src=\"script.js\"></script>\n</body>\n</html>",

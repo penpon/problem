@@ -10,6 +10,11 @@
     ".dashed-borderクラスに3px dashed blueの点線境界線と背景色#e6f2ffを設定してください",
     ".colored-borderクラスに各辺別々の色の境界線を設定してください"
   ],
+  "implementationPoints": [
+    "必須: borderの記法(太さ スタイル 色)を正しく用いること",
+    "必須: 指定のクラスに正確な値を設定すること(2px solid black等)",
+    "推奨: 背景色とpaddingを併用し視認性を高めること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

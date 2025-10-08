@@ -9,6 +9,11 @@
     "aタグにパディングとホバー時の下線や背景色変化を付けてください",
     "ナビゲーション全体を中央寄せにしてください"
   ],
+  "implementationPoints": [
+    "必須: ul/li/a の構造を作り、ulをflexで横並びにすること",
+    "必須: a は inline-block + padding + :hover の視覚変化を設定すること",
+    "推奨: list-style/padding/marginのリセットでメニュー体裁を整えること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <nav class=\"main-nav\">\n            <!-- ここに実装してください -->\n        </nav>\n    </div>\n\n</body>\n</html>",

@@ -24,6 +24,11 @@
     "複合効果で複数のプロパティを同時に変化させてください",
     "ボタンやカードに実用的なホバー効果を適用してください"
   ],
+  "implementationPoints": [
+    "必須: :hover での視覚変化は transition を併用し滑らかにすること",
+    "必須: transform は scale/rotate/translate を用途に応じて適用すること",
+    "推奨: 影/色/移動の組み合わせで操作性を高めること"
+  ],
   "checks": [
     {
       "id": "doctype",

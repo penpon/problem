@@ -10,6 +10,11 @@
     "クーポンを submit で適用（preventDefault, trim）",
     "#summary に最終的な数量・小計・送料・割引・合計の要約を表示（textContent）"
   ],
+  "implementationPoints": [
+    "必須: 小計・送料・割引の各状態を保持し、イベント毎に合計を再計算すること",
+    "必須: submit は preventDefault し、表示は textContent で行うこと",
+    "推奨: update() を単一の真実の源として各イベントから呼ぶ設計にすること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-25/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-25/files.css.expected" },

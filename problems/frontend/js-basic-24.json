@@ -9,6 +9,11 @@
     "#color-btn の click で #preview に .active を toggle",
     "初期表示も関数で統一（update()）"
   ],
+  "implementationPoints": [
+    "必須: 入力は input イベントで反映し表示は textContent を使うこと",
+    "必須: classList.toggle('active') で色状態を切替えること",
+    "推奨: 初期表示と更新処理を update() に集約すること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-24/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-24/files.css.expected" },

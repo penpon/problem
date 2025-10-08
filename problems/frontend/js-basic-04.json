@@ -9,6 +9,11 @@
     "#add/#sub/#mul/#div の各要素に textContent で結果を表示する",
     "割り算は小数点以下を toFixed(2) で整形する"
   ],
+  "implementationPoints": [
+    "必須: textContent で結果を表示すること（innerHTML は不要）",
+    "必須: 割り算はtoFixed(2)で小数を整形すること",
+    "推奨: 計算と表示を関数に分離して再利用性を高めること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-04/files.css.expected" },

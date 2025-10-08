@@ -10,6 +10,11 @@
     ".image-cardクラスにmax-width: 280px、overflow: hiddenを設定してください",
     ".action-cardクラスにmax-width: 300px、padding: 25px、display: flex、flex-direction: columnを設定してください"
   ],
+  "implementationPoints": [
+    "必須: .card の影/角丸/overflow/transitionを設定し :hover で移動+影強化すること",
+    "必須: .card-container は flex + wrap + gap + center で並べること",
+    "推奨: 画像カードは overflow:hidden で角丸を保ちつつ切り出すこと"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

@@ -10,6 +10,11 @@
     ".align-centerクラスにalign-items: centerとheight: 120pxを設定してください",
     ".direction-columnクラスにflex-direction: column、height: 200px、width: 200px、margin: 0 autoを設定してください"
   ],
+  "implementationPoints": [
+    "必須: Flexboxの基本プロパティ(display, justify-content, align-items)を正しく使うこと",
+    "必須: direction-columnではflex-direction/サイズ/中央寄せ(margin:0 auto)を設定すること",
+    "推奨: 各例を別コンテナに分けスタイルの混在を防ぐこと"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

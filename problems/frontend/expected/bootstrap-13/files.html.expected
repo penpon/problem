@@ -3,32 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EC Product Grid</title>
+  <title>まとめ練習 - ヘッダー＋検索＋ナビ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container py-4">
-    <div class="row g-3">
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100">
-          <img src="https://picsum.photos/seed/p1/600/400" class="card-img-top" alt="商品1">
-          <div class="card-body"><h5 class="card-title">商品1</h5></div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100">
-          <img src="https://picsum.photos/seed/p2/600/400" class="card-img-top" alt="商品2">
-          <div class="card-body"><h5 class="card-title">商品2</h5></div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100">
-          <img src="https://picsum.photos/seed/p3/600/400" class="card-img-top" alt="商品3">
-          <div class="card-body"><h5 class="card-title">商品3</h5></div>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MyShop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">ホーム</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">商品</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">お問い合わせ</a></li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="検索" aria-label="検索">
+          <button class="btn btn-outline-success" type="submit">検索</button>
+        </form>
       </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
+  </nav>
+
+  <header class="container my-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-6 fw-bold">ようこそ MyShop へ</h1>
+        <p class="col-md-8 fs-5">最新アイテムをチェックしよう</p>
+        <button class="btn btn-primary btn-lg">今すぐ見る</button>
+      </div>
+    </div>
+  </header>
 </body>
 </html>

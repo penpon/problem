@@ -9,6 +9,11 @@
     "titleタグでページタイトルを設定してください",
     "bodyの中に「Hello, World!」を表示するpタグを追加してください"
   ],
+  "implementationPoints": [
+    "必須: DOCTYPEと基本タグ(html/head/body)を正しく配置すること",
+    "必須: <title>に適切なタイトルを設定すること",
+    "推奨: 本文テキストは<p>要素でマークアップすること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>課題実装</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",

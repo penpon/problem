@@ -9,6 +9,11 @@
     "#add-btn に click イベントを登録する",
     "クリック毎に内部の count を +1 し、#cart-count.textContent を更新する"
   ],
+  "implementationPoints": [
+    "必須: 状態(count)は変数で管理し、クリックごとに+1して表示を更新すること",
+    "必須: textContent で安全に表示すること",
+    "推奨: 初期表示の同期処理を関数にまとめること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-16/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-16/files.css.expected" },

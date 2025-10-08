@@ -10,6 +10,11 @@
     ".card:hoverで浮き上がりと影の強調をしてください",
     "リスト(ul/li)でプランの特徴を記述してください"
   ],
+  "implementationPoints": [
+    "必須: .pricing は display:flex + gap/center で横並びにすること",
+    "必須: .card の角丸・影・余白・中央寄せ・transition を設定すること",
+    "推奨: .card--featured を scale/色/outline で視線誘導し、:hover で微アニメーション"
+  ],
   "files": {
     "html": {"template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <section class=\"pricing\">\n            <!-- ここに実装してください -->\n        </section>\n    </div>\n\n</body>\n</html>", "expected": "__INCLUDE__: problems/frontend/expected/html-css-22/files.html.expected"},
     "css": {"template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 1000px;\n    margin: 0 auto;\n    background: white;\n    padding: 28px;\n    border-radius: 12px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}\n\n/* ここに実装してください */", "expected": "__INCLUDE__: problems/frontend/expected/html-css-22/files.css.expected"},

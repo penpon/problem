@@ -9,6 +9,11 @@
     "画像にはborder-radiusを適用し、ホバーでtransform: scale()とbox-shadowを付けてください",
     "中央寄せと均等な間隔を意識してください"
   ],
+  "implementationPoints": [
+    "必須: .gallery に横並び+折り返し (display:flex, flex-wrap:wrap) を設定すること",
+    "必須: .thumb 幅指定と .thumb img の display:block/width:100%/object-fit:cover を設定すること",
+    "推奨: :hover で transform: scale(...) と box-shadow を組み合わせ、gap/justify-content で整列すること"
+  ],
   "files": {
     "html": {"template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"gallery\">\n            <!-- ここに実装してください -->\n        </div>\n    </div>\n\n</body>\n</html>", "expected": "__INCLUDE__: problems/frontend/expected/html-css-21/files.html.expected"},
     "css": {"template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 1000px;\n    margin: 0 auto;\n    background: white;\n    padding: 28px;\n    border-radius: 12px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}\n\n/* ここに実装してください */", "expected": "__INCLUDE__: problems/frontend/expected/html-css-21/files.css.expected"},

@@ -325,7 +325,7 @@
         },
         {
           "id": "bootstrap-06",
-          "title": "商品カード最小（画像/タイトル/価格/ボタン）"
+          "title": "商品一覧グリッド（sm:1列 / md:2列）"
         },
         {
           "id": "bootstrap-07",
@@ -368,8 +368,8 @@
           "title": "ECカート概要（合計・購入ボタン）"
         },
         {
-          "id": "bootstrap-17",
-          "title": "ECフィルターバー（カテゴリ/在庫/並び替え）"
+          "id": "bootstrap-09",
+          "title": "フィルターバーUI（2セレクト）"
         },
         {
           "id": "bootstrap-18",
@@ -384,23 +384,23 @@
           "title": "応用グリッド（カード + 12/6/4 レイアウト）"
         },
         {
-          "id": "bootstrap-21",
+          "id": "bootstrap-11",
           "title": "まとめ練習 - EC商品一覧＋フィルタ"
         },
         {
-          "id": "bootstrap-22",
+          "id": "bootstrap-12",
           "title": "まとめ練習 - EC商品詳細"
         },
         {
-          "id": "bootstrap-23",
+          "id": "bootstrap-13",
           "title": "まとめ練習 - ヘッダー＋検索＋ナビ"
         },
         {
-          "id": "bootstrap-24",
+          "id": "bootstrap-14",
           "title": "まとめ練習 - ランディングページ"
         },
         {
-          "id": "bootstrap-25",
+          "id": "bootstrap-15",
           "title": "まとめ練習 - 価格表"
         }
       ]

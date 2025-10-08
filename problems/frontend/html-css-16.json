@@ -11,6 +11,11 @@
     ".cta-buttonにbackground、color、padding、border-radius、box-shadowを設定してください",
     ".cta-button:hoverでtransitionとわずかなtransformを適用してください"
   ],
+  "implementationPoints": [
+    "必須: .hero を中央寄せし余白を設定、h1/p/CTAの順で情報設計すること",
+    "必須: .cta-button に色・角丸・影・transition を設定し :hover で移動",
+    "推奨: CTA は inline-block + 余白で可読性とクリック性を高めること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container hero\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

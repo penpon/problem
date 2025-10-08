@@ -9,6 +9,11 @@
     "let/const で変数を宣言し、文字列を代入する",
     "console.log で複数行のメッセージを出力する（テンプレートリテラル推奨）"
   ],
+  "implementationPoints": [
+    "必須: 変数宣言には let/const を使用し var は使わないこと",
+    "必須: console.log で複数行をまとめて出力すること",
+    "推奨: テンプレートリテラルで改行や埋め込みを表現すること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-03/files.css.expected" },

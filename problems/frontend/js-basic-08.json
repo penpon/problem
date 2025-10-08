@@ -9,6 +9,11 @@
     "#plus-btn / #minus-btn / #reset-btn に click イベントを登録する",
     "各操作後に表示更新関数 update() を呼び出す"
   ],
+  "implementationPoints": [
+    "必須: 状態は変数で保持し、更新後に表示関数で反映すること",
+    "必須: ボタンイベントは addEventListener で登録すること",
+    "推奨: update() の中でDOM参照を毎回取り直さず再利用すること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-08/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-08/files.css.expected" },

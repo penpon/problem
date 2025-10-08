@@ -9,6 +9,11 @@
     "取得した要素の textContent を 'JavaScriptで変更されました' に変更する",
     "DOM 取得は1回だけ行い、変数に保持して再利用する"
   ],
+  "implementationPoints": [
+    "必須: document.getElementById で要素を1度だけ取得すること",
+    "必須: 取得要素の textContent を指定文字列に変更すること",
+    "推奨: 取得結果が null でないことを確認してから操作すること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-05/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-05/files.css.expected" },

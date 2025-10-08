@@ -1,55 +1,31 @@
 {
   "id": "bootstrap-10",
-  "title": "ミニ統合（ヘッダー/グリッド/フッター）",
-  "description": "ECサイトの最小レイアウトを統合（ヘッダー/商品グリッド/フッター）",
+  "title": "ECカート概要（合計・購入ボタン）",
+  "description": "リスト表示の合計金額と購入ボタンを最小で配置",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDNを読み込む",
-    "ヘッダー: .navbar-light.bg-light でブランドのみ",
-    "商品グリッド: row g-3 + col-12 col-md-6 を4つ",
-    "フッター: .text-center .py-3 のみ"
+    "Bootstrap CDN(@latest) を読み込む",
+    ".container 内に .list-group でアイテムを2つ以上",
+    "合計金額を <strong class=\"total\"></strong> で強調（装飾クラスは使用しない）"
+  ],
+  "implementationPoints": [
+    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: .container 内に .list-group と .list-group-item（2つ以上）を配置",
+    "必須: 合計は <strong class=\"total\"> で強調（CSSユーティリティは新規導入しない）",
+    "非使用: ボタン等の新規コンポーネントは導入しない"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>課題を実装してください</h1>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Cart Summary</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-10/files.html.expected"
     },
     "css": {
-      "template": "/* ここに実装してください */",
+      "template": "/* なし（最小） */",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-10/files.css.expected"
     },
     "js": {
-      "template": "// ここに実装してください",
+      "template": "// なし（最小）",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-10/files.js.expected"
     }
-  },
-  "expectedResult": {
-    "miniIntegration": "ヘッダー/商品グリッド/フッターの最小構成で表示される"
-  },
-  "checks": [
-    {
-      "id": "bootstrap-css",
-      "name": "Bootstrap CSS",
-      "type": "structure",
-      "message": "Bootstrap CSS CDNを読み込んでください"
-    },
-    {
-      "id": "navbar",
-      "name": ".navbar.bg-light",
-      "type": "structure",
-      "message": "ヘッダーに .navbar .bg-light を使ってください"
-    },
-    {
-      "id": "row",
-      "name": ".row.g-3",
-      "type": "structure",
-      "message": "商品グリッドに .row.g-3 を使ってください"
-    },
-    {
-      "id": "footer",
-      "name": "footer.text-center.py-3",
-      "type": "structure",
-      "message": "フッターに .text-center .py-3 を使ってください"
-    }
-  ]
+  }
 }

@@ -8,6 +8,11 @@
     "#link のクリックイベントで event.preventDefault() を呼ぶ",
     "#status にクリック回数を textContent で表示"
   ],
+  "implementationPoints": [
+    "必須: addEventListener('click', (e)=>{ e.preventDefault(); ... }) を実装すること",
+    "必須: クリック回数の状態を変数で保持し textContent に表示すること",
+    "推奨: ハンドラで this には依存せずイベント引数を使うこと"
+  ],
   "files": {
     "html": {
       "template": "",

@@ -10,6 +10,11 @@
     "#minus-btn / #plus-btn の click で数量を-1/+1（0未満にしない）",
     "#subtotal.textContent に単価×数量を反映する（文字列化）"
   ],
+  "implementationPoints": [
+    "必須: 単価/数量は数値化し、数量は0未満にならないようガードすること",
+    "必須: 小計は textContent で都度更新すること",
+    "推奨: 入力とクリックの両方から update() を呼ぶ設計にすること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-21/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-21/files.css.expected" },

@@ -11,6 +11,11 @@
     "#counter-display に値を表示する",
     "【ヒント】範囲チェックにはif文を使おう"
   ],
+  "implementationPoints": [
+    "必須: 値の下限/上限(-10〜10)をif文でガードすること",
+    "必須: 変更後は常に表示を最新化すること",
+    "推奨: 値更新と描画更新を関数に分けて責務を明確にすること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-09/files.css.expected" },

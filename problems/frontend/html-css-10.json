@@ -10,6 +10,11 @@
     ".main-contentクラスにmargin-left: 241pxを設定してください",
     ".columnクラスにwidth: 30%、float: left、margin: 1.5%を設定してください"
   ],
+  "implementationPoints": [
+    "必須: 指定のレイアウト手法(flex/inline-block/float)をその課題箇所で用いること",
+    "必須: 具体の数値指定(width/height/margin等)は正確に反映すること",
+    "推奨: セクションごとにスタイルを分け可読性を確保すること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

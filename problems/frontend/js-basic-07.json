@@ -10,6 +10,11 @@
     "#color-btnクリックで、style.colorを変更し、テキストも更新する",
     "#time-btnクリックで、new Date()を使って現在時刻を表示する"
   ],
+  "implementationPoints": [
+    "必須: 各ボタンに addEventListener でクリックイベントを設定すること",
+    "必須: style プロパティの更新と textContent 更新を同時に行うこと",
+    "推奨: new Date() の値はテンプレートリテラルで読みやすく整形すること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-07/files.css.expected" },

@@ -9,6 +9,11 @@
     "input イベントで数量変更時に計算用関数 update() を呼ぶ",
     "小計を #subtotal.textContent に反映する（0未満にならないように安全に数値化）"
   ],
+  "implementationPoints": [
+    "必須: Number() や parseFloat() で安全に数値化すること",
+    "必須: 小計=単価×数量を textContent で表示すること",
+    "推奨: 数量は0未満にならないようガードを入れること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-17/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-17/files.css.expected" },

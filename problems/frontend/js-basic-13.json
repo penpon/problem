@@ -8,6 +8,11 @@
     "#text 入力の値を取得（inputイベント）",
     "#preview.textContent に常に現在の入力値を反映"
   ],
+  "implementationPoints": [
+    "必須: input イベントで都度 value を取得して反映すること",
+    "必須: 表示は textContent で行い innerHTML は使わないこと",
+    "推奨: 初期表示の同期用に初回 update() を呼ぶこと"
+  ],
   "files": {
     "html": {
       "template": "",

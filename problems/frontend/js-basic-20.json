@@ -9,6 +9,11 @@
     "#ship-standard と #ship-express の change イベントで update() を呼ぶ",
     "選択に応じて送料(300/800)を設定し、合計を #total.textContent に反映する"
   ],
+  "implementationPoints": [
+    "必須: ラジオの選択に応じて送料(300/800)を切替えること",
+    "必須: 合計 = 基本金額 + 送料 を textContent で更新すること",
+    "推奨: update() を共通関数化しイベントから再利用すること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-20/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-20/files.css.expected" },

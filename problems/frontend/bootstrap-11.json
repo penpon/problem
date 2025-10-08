@@ -1,26 +1,29 @@
 {
   "id": "bootstrap-11",
-  "title": "CDN + コンテナ/行/列（12/6/4）",
-  "description": "Bootstrap CDNを導入し、container 内に row と col-12 col-sm-6 col-lg-4 を配置します",
+  "title": "まとめ練習 - EC商品一覧＋フィルタ",
+  "description": "カテゴリ/在庫/並び替えのUIとカードグリッドを1ページに統合して配置します。視覚的に完成状態のレイアウトを作ることが目的です。",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CSS/JS を CDN(@latest)で読み込み",
-    ".container 内に .row.g-3",
-    ".col-12.col-sm-6.col-lg-4 を3つ配置"
+    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "ヘッダーに .navbar.navbar-light.bg-light + .container-fluid + .navbar-brand を配置",
+    ".container 内上部に .row.g-2 を作り、 select#cat.form-select / select#sort.form-select を mdで2列配置（JS不要）",
+    "#products.row の中に .col-12.col-md-6 のカードを3枚配置（画像/タイトル/価格）",
+    "装飾クラス（色/サイズ/バッジ等）は使用しない"
+  ],
+  "implementationPoints": [
+    "必須: ヘッダーの最小ナビ構成を作る（.navbar.navbar-light.bg-light + .container-fluid + .navbar-brand）",
+    "必須: フィルタUIは #cat.form-select / #sort.form-select の2要素（チェックボックス不使用）",
+    "必須: #products.row に .col-12.col-md-6 ×3 と .card（最小構成）",
+    "非使用: 色/サイズ/バッジ/JS機能など新規概念は導入しない"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Bootstrap Grid</title>\n</head>\n<body>\n  <div class=\"container\">\n    <h1 class=\"my-3\">グリッド</h1>\n    <div class=\"row g-3\" id=\"grid\"></div>\n  </div>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>まとめ練習 - EC商品一覧＋フィルタ</title>\n  <!-- Bootstrap CDN を読み込んでください -->\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-11/files.html.expected"
     },
-    "css": { "template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-11/files.css.expected" },
-    "js": { "template": "// 任意", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-11/files.js.expected" }
-  },
-  "checks": [
-    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "bootstrap-js", "name": "Bootstrap JS", "type": "structure", "message": "Bootstrap JS CDNを読み込んでください" },
-    { "id": "row", "name": ".row.g-3", "type": "structure", "message": ".row.g-3 を使ってください" },
-    { "id": "cols", "name": "col-12 col-sm-6 col-lg-4", "type": "structure", "message": "col-12 col-sm-6 col-lg-4 を3つ配置してください" }
-  ],
-  "expectedResult": { "layout": "sm:1列, sm以上:2列, lg以上:3列" }
+    "css": {
+      "template": ".price { font-weight: 700; }",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-11/files.css.expected"
+    }
+  }
 }

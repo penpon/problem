@@ -10,6 +10,11 @@
     "#toggle-btnクリックで classList.toggle('d-none') を実行（切替）",
     "CSSに .d-none { display: none; } を定義する"
   ],
+  "implementationPoints": [
+    "必須: classList.add/remove/toggle を適切に使い分けること",
+    "必須: .d-none { display:none } をCSSで定義してJSはクラス操作に限定すること",
+    "推奨: イベントハンドラを関数化し重複を避けること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>classList 切替</title>\n</head>\n<body>\n  <main style=\"padding:16px\">\n    <button id=\"toggleBtn\">表示/非表示</button>\n    <div id=\"box\" class=\"box\" style=\"margin-top:8px; padding:8px; border:1px solid #ddd; border-radius:6px;\">ボックス</div>\n  </main>\n</body>\n</html>",

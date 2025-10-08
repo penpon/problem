@@ -10,6 +10,11 @@
     "pタグを緑色、18px、Arial フォントにしてください",
     "liタグを赤色、16px、Arial フォントにしてください"
   ],
+  "implementationPoints": [
+    "必須: CSSは外部ファイルstyle.cssに記述し<link>で読み込むこと",
+    "必須: h1/p/liに指定のcolor・font-size・font-family(Arialを含む)を設定すること",
+    "推奨: セレクタは要素/クラスを適切に使い分け、重複指定を避けること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

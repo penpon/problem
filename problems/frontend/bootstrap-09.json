@@ -1,48 +1,31 @@
 {
   "id": "bootstrap-09",
-  "title": "商品一覧グリッド（sm:1列 / md:2列）",
-  "description": "グリッドで商品を並べる最小例",
+  "title": "ECフィルターバー（カテゴリ/在庫/並び替え）",
+  "description": "カテゴリ選択・在庫チェック・並び替えの最小フィルターバー",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDNを読み込む",
-    "container内に row g-3 を作成し、col-12 col-md-6 のアイテムを4つ配置",
-    "各アイテムは簡単なテキストのみ（カード不要）"
+    "Bootstrap CDN(@latest) を読み込む",
+    ".container 内に .row.g-2 を作り、.col-12.col-md-6 を2つ配置（sm:1 md:2）",
+    "カテゴリ<select#cat.form-select> と 並び替え<select#sort.form-select> を配置（JS不要）"
+  ],
+  "implementationPoints": [
+    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: .container 内に .row.g-2 を作成し、.col-12.col-md-6 ×2 を配置",
+    "必須: #cat.form-select と #sort.form-select を各カラムに配置する",
+    "非使用: チェックボックス等の追加要素やJSは導入しない"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <div class=\"container\">\n    <h1>課題を実装してください</h1>\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Filter Bar</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-09/files.html.expected"
     },
     "css": {
-      "template": "/* ここに実装してください */",
+      "template": "/* なし（最小） */",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-09/files.css.expected"
     },
     "js": {
-      "template": "// ここに実装してください",
+      "template": "// なし（最小）",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-09/files.js.expected"
     }
-  },
-  "expectedResult": {
-    "gridSimple": "smで1列、mdで2列にレイアウトされる"
-  },
-  "checks": [
-    {
-      "id": "bootstrap-css",
-      "name": "Bootstrap CSS",
-      "type": "structure",
-      "message": "Bootstrap CSS CDNを読み込んでください"
-    },
-    {
-      "id": "row",
-      "name": ".row.g-3",
-      "type": "structure",
-      "message": ".row.g-3 を使ってください"
-    },
-    {
-      "id": "cols",
-      "name": "col-12 col-md-6",
-      "type": "structure",
-      "message": "col-12 col-md-6 を4つ配置してください"
-    }
-  ]
+  }
 }

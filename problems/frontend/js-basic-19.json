@@ -9,6 +9,11 @@
     "#coupon の値を取得してトリムし、判定する（例: 'SAVE10'）",
     "結果を #status.textContent に表示する"
   ],
+  "implementationPoints": [
+    "必須: submit イベントで preventDefault を呼ぶこと",
+    "必須: 入力値は trim() して比較し、結果を textContent で表示すること",
+    "推奨: コード比較は大文字小文字の扱いを明確化すること(toUpperCase等)"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-19/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-19/files.css.expected" },

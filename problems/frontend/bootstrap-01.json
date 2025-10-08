@@ -8,6 +8,11 @@
     "container > row > col-6 を使って2カラムを配置",
     "各カラムに簡単な商品名と価格テキストを配置"
   ],
+  "implementationPoints": [
+    "必須: Bootstrap CSS/JS CDN(@latest) を適切な位置に読み込む",
+    "必須: .container > .row の直下に .col-6 を2つ配置",
+    "必須: 各カラムに商品名と価格のテキストを配置する"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>課題実装</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
@@ -21,48 +26,5 @@
       "template": "// ここに実装してください",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-01/files.js.expected"
     }
-  },
-  "expectedResult": {
-    "bootstrapLoaded": "Bootstrap CDNが読み込まれている",
-    "twoColumns": "2カラムが横並びで表示される（col-6 ×2）",
-    "containerRow": "containerとrowが正しく使われている"
-  },
-  "checks": [
-    {
-      "id": "doctype",
-      "name": "DOCTYPE宣言",
-      "type": "structure",
-      "message": "DOCTYPE html宣言が必要です"
-    },
-    {
-      "id": "bootstrap-css",
-      "name": "Bootstrap CSS",
-      "type": "structure",
-      "message": "Bootstrap CSS CDNを読み込んでください"
-    },
-    {
-      "id": "bootstrap-js",
-      "name": "Bootstrap JS",
-      "type": "structure",
-      "message": "Bootstrap JS CDNを読み込んでください"
-    },
-    {
-      "id": "container",
-      "name": ".container",
-      "type": "structure",
-      "message": ".container を使ってください"
-    },
-    {
-      "id": "row",
-      "name": ".row",
-      "type": "structure",
-      "message": ".row を使ってください"
-    },
-    {
-      "id": "cols",
-      "name": ".col-6 ×2",
-      "type": "structure",
-      "message": ".col-6 を2つ配置してください"
-    }
-  ]
+  }
 }

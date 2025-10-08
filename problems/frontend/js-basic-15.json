@@ -8,6 +8,11 @@
     "#field に focus で 'focused' クラスを付与",
     "blur で 'focused' クラスを除去"
   ],
+  "implementationPoints": [
+    "必須: focus/blur イベントで classList.add/remove を使うこと",
+    "必須: 見た目は .focused CSS で定義しJSはクラス操作に限定すること",
+    "推奨: フォーカス解除時の状態リセットを明確にすること"
+  ],
   "files": {
     "html": {
       "template": "",

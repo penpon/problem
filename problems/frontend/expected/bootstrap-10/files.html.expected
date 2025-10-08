@@ -3,25 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ECミニ統合</title>
+  <title>Cart Summary</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">ECサイト</a>
+  <div class="container py-4" style="max-width: 560px;">
+    <ul class="list-group mb-3">
+      <li class="list-group-item d-flex justify-content-between"><span>商品A</span><span>¥1,200</span></li>
+      <li class="list-group-item d-flex justify-content-between"><span>商品B</span><span>¥2,300</span></li>
+    </ul>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="total fw-bold">合計: ¥3,500</div>
+      <button class="btn btn-primary">購入する</button>
     </div>
-  </nav>
-  <main class="container py-4">
-    <div class="row g-3">
-      <div class="col-12 col-md-6">商品1</div>
-      <div class="col-12 col-md-6">商品2</div>
-      <div class="col-12 col-md-6">商品3</div>
-      <div class="col-12 col-md-6">商品4</div>
-    </div>
-  </main>
-  <footer class="text-center py-3">&copy; 2025 EC Sample</footer>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

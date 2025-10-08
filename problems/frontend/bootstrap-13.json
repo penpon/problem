@@ -1,30 +1,27 @@
 {
   "id": "bootstrap-13",
-  "title": "EC商品グリッド（1/2/3列レスポンシブ）",
-  "description": "カードのグリッドを sm:1列 / md:2列 / lg:3列 で表示する最小構成",
+  "title": "まとめ練習 - ヘッダー＋検索＋ナビ",
+  "description": "ブランド・ナビ・検索フォームを含むレスポンシブなヘッダーと、ヒーローセクションを組み合わせた実用構成を作成します。",
   "category": "bootstrap",
   "instructions": [
-    "Bootstrap CDN(@latest) を読み込む",
-    ".container > .row の中に .col-12.col-md-6.col-lg-4 を3つ以上配置",
-    ".card（.card-img-top/.card-body/.card-title）を各カラムに入れる"
+    "Bootstrap CDN(@latest) を <head> に読み込む",
+    ".navbar.navbar-light.bg-light を配置し、.container-fluid 内に .navbar-brand / .navbar-nav / 検索フォーム(入力のみ) を配置",
+    "検索フォームは input.form-control.me-2 を用意（ボタンやoutlineは使用しない）",
+    "ヒーローは .container 内で 見出し/テキスト/ボタン無しの最小構成とする"
+  ],
+  "implementationPoints": [
+    "必須: .navbar.navbar-light.bg-light + .container-fluid + .navbar-brand を構成",
+    "必須: form.d-flex に input.form-control.me-2 を配置（ボタンは未使用）",
+    "必須: ヒーローは .container 内の見出し/テキストのみ（ボタン等の装飾は導入しない）"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>EC Product Grid</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>まとめ練習 - ヘッダー＋検索＋ナビ</title>\n  <!-- Bootstrap CDN を読み込んでください -->\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-13/files.html.expected"
     },
     "css": {
-      "template": "/* なし（最小） */",
+      "template": "/* 追加スタイルは任意 */",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-13/files.css.expected"
-    },
-    "js": {
-      "template": "// なし（最小）",
-      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-13/files.js.expected"
     }
-  },
-  "checks": [
-    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "grid-cols", "name": ".row > .col-12.col-md-6.col-lg-4", "type": "structure", "message": "指定クラスのカラムを配置してください" },
-    { "id": "card-structure", "name": ".card .card-img-top + .card-body .card-title", "type": "structure", "message": "カード構造を作ってください" }
-  ]
+  }
 }

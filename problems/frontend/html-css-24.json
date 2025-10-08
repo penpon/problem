@@ -9,6 +9,11 @@
     "liにborder-leftや背景色、padding、marginを設定して読みやすくしてください",
     "ステップ番号と見出し、説明文(p)を組み合わせてください"
   ],
+  "implementationPoints": [
+    "必須: h2+ol/li の構造を作り、liに背景/左ボーダー/余白を設定すること",
+    "必須: 見出し(h3)と説明(p)の階層を守りmarginで余白を整えること",
+    "推奨: list-styleを除去しgrid+gapでステップ間の間隔を管理すること"
+  ],
   "files": {
     "html": {"template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <section class=\"steps\">\n            <!-- ここに実装してください -->\n        </section>\n    </div>\n\n</body>\n</html>", "expected": "__INCLUDE__: problems/frontend/expected/html-css-24/files.html.expected"},
     "css": {"template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 800px;\n    margin: 0 auto;\n    background: white;\n    padding: 28px;\n    border-radius: 12px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}\n\n/* ここに実装してください */", "expected": "__INCLUDE__: problems/frontend/expected/html-css-24/files.css.expected"},

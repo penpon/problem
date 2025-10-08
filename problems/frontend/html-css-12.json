@@ -10,6 +10,11 @@
     ".fade-boxクラスにanimation: fade 1.5s infinite ease-in-outを設定してください",
     ".slide-boxクラスにanimation: slide 3s infinite linear、position: relativeを設定してください"
   ],
+  "implementationPoints": [
+    "必須: transition/transform/animation を指示通りの値で設定すること",
+    "必須: :hover と @keyframes の役割を分けて適用すること",
+    "推奨: アニメ適用要素はreflow影響を考慮しtransform中心にすること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

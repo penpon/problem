@@ -1,26 +1,26 @@
 {
   "id": "bootstrap-12",
-  "title": "カード3枚（画像・タイトル・テキスト）",
-  "description": "カードコンポーネントで商品を3枚表示します",
+  "title": "まとめ練習 - EC商品詳細",
+  "description": "商品画像・タイトル・価格・カテゴリ・説明・CTAを2カラムレイアウトで配置します。視覚的に完成した詳細ページのレイアウトを作ります。",
   "category": "bootstrap",
   "instructions": [
-    "カード .card を3つ",
-    ".card-img-top と .card-body（.card-title/.card-text）",
-    "画像は https://picsum.photos/seed/{id}/300/200 を使用"
+    "Bootstrap CDN(@latest) を <head> に読み込む",
+    "メインは .container 内で .row を使って 画像(.img-fluid) と 詳細(テキスト) を 2カラムに配置",
+    "装飾ユーティリティ（色/サイズ/バッジ/ボタン等）は使用しない"
+  ],
+  "implementationPoints": [
+    "必須: .container > .row の2カラム構成（左: img.img-fluid / 右: テキスト）",
+    "必須: 画像には alt を設定",
+    "非使用: 色/サイズ/バッジ/ボタン等の新規概念は導入しない"
   ],
   "files": {
     "html": {
-      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>カード3枚</title>\n</head>\n<body>\n  <div class=\"container my-3\">\n    <div class=\"row g-3\" id=\"list\"></div>\n  </div>\n</body>\n</html>",
+      "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>まとめ練習 - EC商品詳細</title>\n  <!-- Bootstrap CDN を読み込んでください -->\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-12/files.html.expected"
     },
-    "css": { "template": "/* 任意 */", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-12/files.css.expected" },
-    "js": { "template": "// 任意", "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-12/files.js.expected" }
-  },
-  "checks": [
-    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "list-row", "name": ".row.g-3", "type": "structure", "message": ".row.g-3 を使ってください" },
-    { "id": "card-structure", "name": ".card 構造", "type": "structure", "message": ".card .card-img-top .card-body .card-title .card-text を使ってください" },
-    { "id": "cols-responsive", "name": "col-12 col-sm-6 col-lg-4", "type": "structure", "message": "col-12 col-sm-6 col-lg-4 で3枚配置してください" }
-  ],
-  "expectedResult": { "layout": "3枚のカードがレスポンシブに配置される" }
+    "css": {
+      "template": ".price { font-weight: 700; }",
+      "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-12/files.css.expected"
+    }
+  }
 }

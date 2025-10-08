@@ -9,6 +9,11 @@
     "#text-btn クリックで #text.textContent を変更（安全なテキスト更新）",
     "#html-btn クリックで #html-content.innerHTML を変更（用途を理解して使用）"
   ],
+  "implementationPoints": [
+    "必須: テキスト更新は textContent を基本に使用すること",
+    "必須: innerHTML は必要時のみ使用し、XSSに注意すること",
+    "推奨: イベントハンドラは関数化して再利用性を上げること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-10/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-10/files.css.expected" },

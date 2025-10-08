@@ -10,6 +10,11 @@
     "alt属性に「商品画像」を設定してください",
     "pタグで説明文を追加してください"
   ],
+  "implementationPoints": [
+    "必須: imgのsrcを../shared/images/simple-product.svgに設定すること",
+    "必須: imgのaltに『商品画像』を設定すること",
+    "推奨: h1見出しと<p>説明文で文書構造を明確にすること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

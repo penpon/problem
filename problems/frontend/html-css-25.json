@@ -9,6 +9,11 @@
     "aにcolorやopacityのホバー変化を設定し、transitionで滑らかにしてください",
     "背景色や上下余白でフッターと本文を視覚的に分離してください"
   ],
+  "implementationPoints": [
+    "必須: .footer に背景/余白、ulをflex+gap+centerで横並びにすること",
+    "必須: aはcolor/opacity/transitionを設定し :hover で変化を付けること",
+    "推奨: list-style/padding/marginのリセットで水平ナビを整えること"
+  ],
   "files": {
     "html": {"template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <p>本文ダミー</p>\n    </div>\n    <footer class=\"footer\">\n        <!-- ここに実装してください -->\n    </footer>\n\n</body>\n</html>", "expected": "__INCLUDE__: problems/frontend/expected/html-css-25/files.html.expected"},
     "css": {"template": "/* 基本的なスタイル */\nbody {\n    font-family: Arial, sans-serif;\n    margin: 40px;\n    background: #f5f5f5;\n}\n\n.container {\n    max-width: 900px;\n    margin: 0 auto;\n    background: white;\n    padding: 28px;\n    border-radius: 12px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}\n\n/* ここに実装してください */", "expected": "__INCLUDE__: problems/frontend/expected/html-css-25/files.css.expected"},

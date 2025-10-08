@@ -9,6 +9,11 @@
     "#applyBtn クリックで #display.textContent に反映",
     "未入力時は空メッセージを表示（例: 入力が空です）"
   ],
+  "implementationPoints": [
+    "必須: 入力値は value から取得し textContent で安全に表示すること",
+    "必須: 未入力時はガードし空メッセージを表示すること",
+    "推奨: trim()で前後空白を除去して扱うこと"
+  ],
   "files": {
     "html": {
       "template": "",

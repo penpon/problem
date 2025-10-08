@@ -10,6 +10,11 @@
     "h2タグで「順序付きリスト」のサブタイトルを追加してください",
     "olタグとliタグで順序付きリストを作成してください（3つの項目）"
   ],
+  "implementationPoints": [
+    "必須: 見出しの階層(h1>h2)を守ること",
+    "必須: ul/olそれぞれにliを3件ずつ配置すること",
+    "推奨: リスト項目は意味のあるテキストを用いること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

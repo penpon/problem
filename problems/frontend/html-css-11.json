@@ -10,6 +10,11 @@
     ".circleクラスにborder-radius: 50%を設定してください",
     ".card-basicクラスにbox-shadow: 0 2px 10px rgba(0,0,0,0.1)とborder-radius: 10pxを設定してください"
   ],
+  "implementationPoints": [
+    "必須: 指定の box-shadow 値を正確に設定すること",
+    "必須: 指定の border-radius 値(8px/25px/50%/10px)を設定すること",
+    "推奨: 影と角丸を組み合わせて視認性と一貫性を高めること"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

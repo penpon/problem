@@ -9,6 +9,11 @@
     "#favorite-btn の click で #heart.classList.toggle('active') を呼び出す",
     "状態に応じて見た目が変わることを確認する"
   ],
+  "implementationPoints": [
+    "必須: classList.toggle('active') で状態を切り替えること",
+    "必須: 見た目はCSS(.active)で定義し、JSはクラス操作に限定すること",
+    "推奨: クリック可視性やアクセシビリティを意識してaria属性も検討すること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-18/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-18/files.css.expected" },

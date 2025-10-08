@@ -8,6 +8,12 @@
     "ヘッダーに .navbar.navbar-light.bg-light + .container-fluid + .navbar-brand",
     "本文上部に .container 内で input#q.form-control を配置（placeholder必須）"
   ],
+  "implementationPoints": [
+    "必須: <head> に Bootstrap CSS CDN を読み込む",
+    "必須: ヘッダーに .navbar.navbar-light.bg-light と .container-fluid を構成",
+    "必須: .navbar-brand を配置し、本文上部の .container に #q.form-control[placeholder] を置く",
+    "非使用: トグラーやドロップダウン等のJS機能は導入しない"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>EC Header + Search</title>\n</head>\n<body>\n  <!-- ここに実装してください -->\n</body>\n</html>",
@@ -21,11 +27,5 @@
       "template": "// なし（最小）",
       "expected": "__INCLUDE__: problems/frontend/expected/bootstrap-02/files.js.expected"
     }
-  },
-  "checks": [
-    { "id": "bootstrap-css", "name": "Bootstrap CSS", "type": "structure", "message": "Bootstrap CSS CDNを読み込んでください" },
-    { "id": "navbar", "name": ".navbar.navbar-light.bg-light", "type": "structure", "message": ".navbar.navbar-light.bg-light を配置してください" },
-    { "id": "brand", "name": ".navbar-brand", "type": "structure", "message": "ブランドを配置してください" },
-    { "id": "search-input", "name": "#q.form-control[placeholder]", "type": "structure", "message": "検索入力 #q.form-control（placeholder付）を配置してください" }
-  ]
+  }
 }

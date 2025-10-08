@@ -9,6 +9,11 @@
     "3つのボタン（#btn1, #btn2, #btn3）にclickイベントを登録する",
     "各ボタンをクリックしたら、#message-displayのtextContentを変更する"
   ],
+  "implementationPoints": [
+    "必須: addEventListener('click', ...) を各ボタンに設定すること",
+    "必須: クリック時は textContent で内容を更新すること",
+    "推奨: ハンドラは関数に切り出し重複コードを避けること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-06/files.css.expected" },

@@ -10,6 +10,11 @@
     "#subtotal, #shipping-fee を元に #total を再計算（割引反映）",
     "#status に適用結果メッセージを表示（textContent）"
   ],
+  "implementationPoints": [
+    "必須: submit で preventDefault し、trim() したコードで判定すること",
+    "必須: 割引率の状態を保持し、合計へ反映して textContent で表示すること",
+    "推奨: 入力は大文字小文字の扱いを統一して比較すること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-23/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-23/files.css.expected" },

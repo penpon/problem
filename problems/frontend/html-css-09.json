@@ -10,6 +10,11 @@
     ".center-everythingクラスに幅350px、margin: 0 auto、text-align: centerを設定してください",
     ".cardクラスに幅300px、margin: 30px auto、text-align: centerを設定してください"
   ],
+  "implementationPoints": [
+    "必須: テキスト中央はtext-align、ボックス中央はmargin: 0 autoで行うこと",
+    "必須: margin: 0 autoを用いる要素にはwidthを指定すること",
+    "推奨: レイアウトとタイポグラフィを分けて指定し可読性を保つこと"
+  ],
   "files": {
     "html": {
       "template": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>課題実装</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"container\">\n        <!-- ここに実装してください -->\n    </div>\n\n</body>\n</html>",

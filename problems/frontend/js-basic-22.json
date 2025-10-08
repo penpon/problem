@@ -10,6 +10,11 @@
     "#shipping-fee と #total を textContent で更新",
     "update() を用意して各イベントから再利用"
   ],
+  "implementationPoints": [
+    "必須: 小計と送料を個別に算出し合計を更新すること",
+    "必須: ラジオ変更・数量変更の両方で update() を呼ぶこと",
+    "推奨: 数値化/文字列化の境界(表示直前)を明確にすること"
+  ],
   "files": {
     "html": { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-22/files.html.expected" },
     "css":  { "template": "", "expected": "__INCLUDE__: problems/frontend/expected/js-basic-22/files.css.expected" },
