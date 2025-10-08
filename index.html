@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript学習サイト - メニュー</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
     <style>
         .hero-section {
@@ -146,7 +146,7 @@
             box-shadow: 0 5px 15px rgba(20, 184, 166, 0.4);
         }
         
-        .quiz-card {
+        /* quiz removed */ .quiz-card { display:none !important; }
             border-color: #8b5cf6;
         }
         
@@ -213,7 +213,7 @@
                     <li>詳細な実行結果表示</li>
                     <li>キーボードショートカット対応</li>
                 </ul>
-                <a href="grader.html" class="tool-button">📚 問題を解いてみる</a>
+                <a href="/pages/grader.html" class="tool-button">📚 問題を解いてみる</a>
             </div>
 
             <!-- 可視化ツール -->
@@ -230,7 +230,7 @@
                     <li>豊富なサンプルコード</li>
                     <li>自動スクロール機能</li>
                 </ul>
-                <a href="visualizer.html" class="tool-button">🔍 コードを可視化する</a>
+                <a href="/pages/visualizer.html" class="tool-button">🔍 コードを可視化する</a>
             </div>
 
             <!-- メモリ状態遷移解析ツール -->
@@ -247,7 +247,7 @@
                     <li>5つの学習シナリオ</li>
                     <li>リアルタイムメモリマップ表示</li>
                 </ul>
-                <a href="memory-state-transition.html" class="tool-button">🧠 メモリを解析する</a>
+                <a href="/pages/memory-state-transition.html" class="tool-button">🧠 メモリを解析する</a>
             </div>
 
             <!-- フロントエンド入門 -->
@@ -264,25 +264,9 @@
                     <li>インテリジェント採点システム</li>
                     <li>コード整形とエラーチェック</li>
                 </ul>
-                <a href="frontend.html" class="tool-button">🎨 HTML/CSSを学ぶ</a>
+                <a href="/pages/frontend.html" class="tool-button">🎨 HTML/CSSを学ぶ</a>
             </div>
 
-            <!-- エンジニア初心者クイズ -->
-            <div class="tool-card quiz-card">
-                <div class="tool-icon">📱</div>
-                <h2 class="tool-title">エンジニア初心者クイズ</h2>
-                <p class="tool-description">
-                    Linuxコマンドとネットワーク基礎の4択クイズ。モバイル最適化されたタッチ操作で、エンジニアの基礎知識を身につけましょう。
-                </p>
-                <ul class="tool-features">
-                    <li>Linuxコマンド・ネットワーク基礎問題</li>
-                    <li>モバイル最適化されたタッチUI</li>
-                    <li>復習機能付きの学習管理</li>
-                    <li>アニメーション付きの分かりやすい解説</li>
-                    <li>進捗トラッキングと実績システム</li>
-                </ul>
-                <a href="quiz.html" class="tool-button">📱 クイズに挑戦する</a>
-            </div>
 
         </div>
     </div>
