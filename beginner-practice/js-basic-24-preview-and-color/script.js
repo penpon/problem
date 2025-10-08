@@ -1,7 +1,0 @@
-const input = document.getElementById('name-input');
-const prev = document.getElementById('preview');
-const btn = document.getElementById('color-btn');
-function update(){ prev.textContent = input.value.trim() || '（ここにプレビュー）'; }
-input.addEventListener('input', update);
-btn.addEventListener('click', ()=>{ prev.classList.toggle('active'); });
-update();

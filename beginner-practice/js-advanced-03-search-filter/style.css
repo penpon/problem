@@ -1,9 +1,0 @@
-body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;margin:16px}
-.container{max-width:800px;margin:auto}
-.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}
-#searchInput{padding:8px 10px;border:1px solid #ccc;border-radius:6px;min-width:240px}
-.meta{color:#666}
-.product-list{list-style:none;padding:0;margin:16px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.product-card{border:1px solid #e5e7eb;border-radius:8px;padding:12px}
-.product-name{font-weight:600}
-.product-price{color:#0a7;}
