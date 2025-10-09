@@ -22,9 +22,9 @@ class ProblemLoader {
 
     try {
       this.isLoading = true;
-      const repo = location.pathname.split('/').filter(Boolean)[0] || '';
-      const base = repo ? '/' + repo + '/' : '/';
-      const response = await fetch(base + 'content/js/index.json');
+      const inPages = window.location.pathname.includes('/pages/');
+      const prefix = inPages ? '../' : '';
+      const response = await fetch(prefix + 'problems/js/index.json');
       
       if (!response.ok) {
         throw new Error(`Failed to load problem index: ${response.status}`);
@@ -55,9 +55,9 @@ class ProblemLoader {
 
     try {
       this.isLoading = true;
-      const repo = location.pathname.split('/').filter(Boolean)[0] || '';
-      const base = repo ? '/' + repo + '/' : '/';
-      const response = await fetch(base + 'problems/frontend/index.json');
+      const inPages = window.location.pathname.includes('/pages/');
+      const prefix = inPages ? '../' : '';
+      const response = await fetch(prefix + 'problems/frontend/index.json');
       
       if (!response.ok) {
         throw new Error(`Failed to load frontend index: ${response.status}`);
@@ -88,9 +88,9 @@ class ProblemLoader {
     }
 
     try {
-      const repo = location.pathname.split('/').filter(Boolean)[0] || '';
-      const base = repo ? '/' + repo + '/' : '/';
-      const response = await fetch(`${base}content/js/${problemId}.json`);
+      const inPages = window.location.pathname.includes('/pages/');
+      const prefix = inPages ? '../' : '';
+      const response = await fetch(`${prefix}problems/js/${problemId}.json`);
       
       if (!response.ok) {
         throw new Error(`Failed to load problem ${problemId}: ${response.status}`);
@@ -124,9 +124,9 @@ class ProblemLoader {
     }
 
     try {
-      const repo = location.pathname.split('/').filter(Boolean)[0] || '';
-      const base = repo ? '/' + repo + '/' : '/';
-      const response = await fetch(`${base}problems/frontend/${problemId}.json`);
+      const inPages = window.location.pathname.includes('/pages/');
+      const prefix = inPages ? '../' : '';
+      const response = await fetch(`${prefix}problems/frontend/${problemId}.json`);
       
       if (!response.ok) {
         throw new Error(`Failed to load frontend problem ${problemId}: ${response.status}`);
@@ -394,7 +394,9 @@ class ProblemLoader {
       const readmePath = this.problemIdToReadmePath(problemId);
       
       // ファイルの存在確認（軽量なHEADリクエストではなくGETで確認）
-      const response = await fetch(readmePath, { 
+      const inPages = window.location.pathname.includes('/pages/');
+      const prefix = inPages ? '../' : '';
+      const response = await fetch(prefix + readmePath, { 
         method: 'GET',
         // キャッシュを避けるためのヘッダー
         headers: {
