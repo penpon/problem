@@ -492,6 +492,7 @@ extractProblemNumber(problemId, categoryId) {
         if (inst) descriptionParts.push(inst);
         const descriptionHtml = descriptionParts.join('<br>');
 
+        // ベースコンテナを組み立て（implementationPoints は後で安全に挿入）
         this.problemDetails.innerHTML = `
             <div class="problem-title-display">
                 <h3>${cleanTitle}</h3>
@@ -499,15 +500,35 @@ extractProblemNumber(problemId, categoryId) {
             <div class="problem-description">${descriptionHtml}</div>
             <div class="problem-instructions">
                 <div class="instructions-header">💡 実装のポイント</div>
-                <ul>
-                    ${(problem.implementationPoints || []).map(point => 
-                        point ? `<li>${point}</li>` : '<li style="list-style:none; height:5px;"></li>'
-                    ).join('')}
-                </ul>
+                <ul id="impl-points-list"></ul>
             </div>
         `;
         this.problemDetails.style.display = 'block';
-        
+
+        // implementationPoints を必ず textContent で挿入（<template> 等を無害化）
+        try {
+            const ul = this.problemDetails.querySelector('#impl-points-list');
+            const points = Array.isArray(problem.implementationPoints) ? problem.implementationPoints : [];
+            if (ul) {
+                points.forEach((pt) => {
+                    const li = document.createElement('li');
+                    li.textContent = typeof pt === 'string' ? pt : String(pt ?? '');
+                    ul.appendChild(li);
+                });
+                if (points.length === 0) {
+                    const li = document.createElement('li');
+                    li.style.listStyle = 'none';
+                    li.style.height = '5px';
+                    ul.appendChild(li);
+                }
+            }
+        } catch (_) {
+            // フォールバック（万一のためエスケープして挿入）
+            const ul = this.problemDetails.querySelector('#impl-points-list');
+            if (ul) {
+                ul.innerHTML = (problem.implementationPoints || []).map(p => `<li>${escapeHtml(String(p ?? ''))}</li>`).join('');
+            }
+        }
     }
     
     loadProblemTemplate(problem) {
